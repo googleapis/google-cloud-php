@@ -46,7 +46,6 @@ class ListAssignmentsRequest extends \Google\Protobuf\Internal\Message
      *                       Or:
      *
      *                       `projects/myproject/locations/US/reservations/-`
-     *                       Please see {@see ReservationServiceClient::reservationName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\ListAssignmentsRequest
      *

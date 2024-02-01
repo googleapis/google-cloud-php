@@ -51,8 +51,7 @@ class ListTablesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The unique name of the instance for which tables should be
-     *                       listed. Values are of the form `projects/{project}/instances/{instance}`. Please see
-     *                       {@see BigtableTableAdminClient::instanceName()} for help formatting this field.
+     *                       listed. Values are of the form `projects/{project}/instances/{instance}`.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\ListTablesRequest
      *

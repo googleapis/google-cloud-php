@@ -32,20 +32,19 @@ use Google\Cloud\BigQuery\DataPolicies\V1\DataPolicy;
  * Creates a new data policy under a project with the given `dataPolicyId`
  * (used as the display name), policy tag, and data policy type.
  *
- * @param string $formattedParent Resource name of the project that the data policy will belong to.
- *                                The format is `projects/{project_number}/locations/{location_id}`. Please see
- *                                {@see DataPolicyServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_data_policy_sample(string $formattedParent): void
+function create_data_policy_sample(): void
 {
     // Create a client.
     $dataPolicyServiceClient = new DataPolicyServiceClient();
 
     // Prepare the request message.
-    $dataPolicy = new DataPolicy();
-    $request = (new CreateDataPolicyRequest())
-        ->setParent($formattedParent)
-        ->setDataPolicy($dataPolicy);
+    $request = new CreateDataPolicyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,21 +54,5 @@ function create_data_policy_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataPolicyServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    create_data_policy_sample($formattedParent);
 }
 // [END bigquerydatapolicy_v1_generated_DataPolicyService_CreateDataPolicy_sync]

@@ -128,8 +128,7 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      *                            * r5: {write_stream: stream_name_2}
      *
      *                            The destination changed in request_4, so the write_stream field must be
-     *                            populated in all subsequent requests in this stream. Please see
-     *                            {@see BigQueryWriteClient::writeStreamName()} for help formatting this field.
+     *                            populated in all subsequent requests in this stream.
      *
      * @return \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest
      *

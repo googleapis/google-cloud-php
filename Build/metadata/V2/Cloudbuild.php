@@ -21,24 +21,24 @@ class Cloudbuild
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ã
-.google/devtools/cloudbuild/v2/cloudbuild.protogoogle.devtools.cloudbuild.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"Ä
-OperationMetadata4
-create_time (2.google.protobuf.TimestampB‡A1
-end_time (2.google.protobuf.TimestampB‡A
-target (	B‡A
-verb (	B‡A
-status_message (	B‡A#
-requested_cancellation (B‡A
-api_version (	B‡A"í
-"RunWorkflowCustomOperationMetadata4
-create_time (2.google.protobuf.TimestampB‡A1
-end_time (2.google.protobuf.TimestampB‡A
-verb (	B‡A#
-requested_cancellation (B‡A
-api_version (	B‡A
-target (	B‡A
-pipeline_run_id (	B‡AB£
+ô
+.google/devtools/cloudbuild/v2/cloudbuild.protogoogle.devtools.cloudbuild.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"á
+OperationMetadata5
+create_time (2.google.protobuf.TimestampB‚A2
+end_time (2.google.protobuf.TimestampB‚A
+target (	B‚A
+verb (	B‚A
+status_message (	B‚A$
+requested_cancellation (B‚A
+api_version (	B‚A"ô
+"RunWorkflowCustomOperationMetadata5
+create_time (2.google.protobuf.TimestampB‚A2
+end_time (2.google.protobuf.TimestampB‚A
+verb (	B‚A$
+requested_cancellation (B‚A
+api_version (	B‚A
+target (	B‚A
+pipeline_run_id (	B‚AB£
 com.google.cloudbuild.v2BCloudBuildProtoPZ>cloud.google.com/go/cloudbuild/apiv2/cloudbuildpb;cloudbuildpb¢GCB™Google.Cloud.CloudBuild.V2 Google\\Cloud\\Build\\V2ÍGoogle::Cloud::Build::V2ÍAN
 compute.googleapis.com/Network,projects/{project}/global/networks/{network}ÍAY
 !iam.googleapis.com/ServiceAccount4projects/{project}/serviceAccounts/{service_account}ÍAJ

@@ -29,37 +29,23 @@ use Google\Cloud\Billing\Budgets\V1beta1\BudgetServiceClient;
 /**
  * Deletes a budget. Returns successfully if already deleted.
  *
- * @param string $formattedName Name of the budget to delete. Values are of the form
- *                              `billingAccounts/{billingAccountId}/budgets/{budgetId}`. Please see
- *                              {@see BudgetServiceClient::budgetName()} for help formatting this field.
- */
-function delete_budget_sample(string $formattedName): void
-{
-    // Create a client.
-    $budgetServiceClient = new BudgetServiceClient();
-
-    // Call the API and handle any network failures.
-    try {
-        $budgetServiceClient->deleteBudget($formattedName);
-        printf('Call completed successfully.' . PHP_EOL);
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function delete_budget_sample(): void
 {
-    $formattedName = BudgetServiceClient::budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
+    // Create a client.
+    $budgetServiceClient = new BudgetServiceClient();
 
-    delete_budget_sample($formattedName);
+    // Call the API and handle any network failures.
+    try {
+        $budgetServiceClient->deleteBudget();
+        printf('Call completed successfully.' . PHP_EOL);
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END billingbudgets_v1beta1_generated_BudgetService_DeleteBudget_sync]

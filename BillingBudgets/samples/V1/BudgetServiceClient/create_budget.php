@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START billingbudgets_v1_generated_BudgetService_CreateBudget_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Billing\Budgets\V1\Budget;
-use Google\Cloud\Billing\Budgets\V1\BudgetAmount;
 use Google\Cloud\Billing\Budgets\V1\Client\BudgetServiceClient;
 use Google\Cloud\Billing\Budgets\V1\CreateBudgetRequest;
 
@@ -34,22 +33,19 @@ use Google\Cloud\Billing\Budgets\V1\CreateBudgetRequest;
  * [Quotas and limits](https://cloud.google.com/billing/quotas)
  * for more information on the limits of the number of budgets you can create.
  *
- * @param string $formattedParent The name of the billing account to create the budget in. Values
- *                                are of the form `billingAccounts/{billingAccountId}`. Please see
- *                                {@see BudgetServiceClient::billingAccountName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_budget_sample(string $formattedParent): void
+function create_budget_sample(): void
 {
     // Create a client.
     $budgetServiceClient = new BudgetServiceClient();
 
     // Prepare the request message.
-    $budgetAmount = new BudgetAmount();
-    $budget = (new Budget())
-        ->setAmount($budgetAmount);
-    $request = (new CreateBudgetRequest())
-        ->setParent($formattedParent)
-        ->setBudget($budget);
+    $request = new CreateBudgetRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,21 +55,5 @@ function create_budget_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = BudgetServiceClient::billingAccountName('[BILLING_ACCOUNT]');
-
-    create_budget_sample($formattedParent);
 }
 // [END billingbudgets_v1_generated_BudgetService_CreateBudget_sync]

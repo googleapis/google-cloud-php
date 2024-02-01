@@ -47,19 +47,19 @@ use Google\Cloud\Channel\V1\GetCustomerRepricingConfigRequest;
  * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
  * resource, otherwise returns an error.
  *
- * @param string $formattedName The resource name of the CustomerRepricingConfig.
- *                              Format:
- *                              accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}. Please see
- *                              {@see CloudChannelServiceClient::customerRepricingConfigName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_customer_repricing_config_sample(string $formattedName): void
+function get_customer_repricing_config_sample(): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = (new GetCustomerRepricingConfigRequest())
-        ->setName($formattedName);
+    $request = new GetCustomerRepricingConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,25 +69,5 @@ function get_customer_repricing_config_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudChannelServiceClient::customerRepricingConfigName(
-        '[ACCOUNT]',
-        '[CUSTOMER]',
-        '[CUSTOMER_REPRICING_CONFIG]'
-    );
-
-    get_customer_repricing_config_sample($formattedName);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_GetCustomerRepricingConfig_sync]

@@ -61,21 +61,19 @@ use Google\Rpc\Status;
  * BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
  * instead.
  *
- * @param string $formattedName The report's resource name. Specifies the account and report used
- *                              to generate report data. The report_id identifier is a UID (for example,
- *                              `613bf59q`).
- *                              Name uses the format:
- *                              accounts/{account_id}/reports/{report_id}
- *                              Please see {@see CloudChannelReportsServiceClient::reportName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function run_report_job_sample(string $formattedName): void
+function run_report_job_sample(): void
 {
     // Create a client.
     $cloudChannelReportsServiceClient = new CloudChannelReportsServiceClient();
 
     // Prepare the request message.
-    $request = (new RunReportJobRequest())
-        ->setName($formattedName);
+    $request = new RunReportJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -95,21 +93,5 @@ function run_report_job_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudChannelReportsServiceClient::reportName('[ACCOUNT]', '[REPORT]');
-
-    run_report_job_sample($formattedName);
 }
 // [END cloudchannel_v1_generated_CloudChannelReportsService_RunReportJob_sync]

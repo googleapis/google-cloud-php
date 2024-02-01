@@ -60,8 +60,7 @@ class ReadChangeStreamRequest extends \Google\Protobuf\Internal\Message
      * @param string $tableName Required. The unique name of the table from which to read a change stream.
      *                          Values are of the form
      *                          `projects/<project>/instances/<instance>/tables/<table>`.
-     *                          Change streaming must be enabled on the table. Please see
-     *                          {@see BigtableClient::tableName()} for help formatting this field.
+     *                          Change streaming must be enabled on the table.
      *
      * @return \Google\Cloud\Bigtable\V2\ReadChangeStreamRequest
      *
@@ -77,8 +76,7 @@ class ReadChangeStreamRequest extends \Google\Protobuf\Internal\Message
      * @param string $tableName    Required. The unique name of the table from which to read a change stream.
      *                             Values are of the form
      *                             `projects/<project>/instances/<instance>/tables/<table>`.
-     *                             Change streaming must be enabled on the table. Please see
-     *                             {@see BigtableClient::tableName()} for help formatting this field.
+     *                             Change streaming must be enabled on the table.
      * @param string $appProfileId This value specifies routing for replication. If not specified, the
      *                             "default" application profile will be used.
      *                             Single cluster routing must be configured on the profile.

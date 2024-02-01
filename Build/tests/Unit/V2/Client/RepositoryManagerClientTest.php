@@ -120,12 +120,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $requests = [];
-        $request = (new BatchCreateRepositoriesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = new BatchCreateRepositoriesRequest();
         $response = $gapicClient->batchCreateRepositories($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -136,10 +131,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/BatchCreateRepositories', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getRequests();
-        $this->assertProtobufEquals($requests, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchCreateRepositoriesTest');
         $response->pollUntilComplete([
@@ -190,12 +181,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $requests = [];
-        $request = (new BatchCreateRepositoriesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = new BatchCreateRepositoriesRequest();
         $response = $gapicClient->batchCreateRepositories($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -255,14 +241,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $connection = new Connection();
-        $connectionId = 'connectionId-513204708';
-        $request = (new CreateConnectionRequest())
-            ->setParent($formattedParent)
-            ->setConnection($connection)
-            ->setConnectionId($connectionId);
+        $request = new CreateConnectionRequest();
         $response = $gapicClient->createConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -273,12 +252,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/CreateConnection', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getConnection();
-        $this->assertProtobufEquals($connection, $actualValue);
-        $actualValue = $actualApiRequestObject->getConnectionId();
-        $this->assertProtobufEquals($connectionId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createConnectionTest');
         $response->pollUntilComplete([
@@ -329,14 +302,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $connection = new Connection();
-        $connectionId = 'connectionId-513204708';
-        $request = (new CreateConnectionRequest())
-            ->setParent($formattedParent)
-            ->setConnection($connection)
-            ->setConnectionId($connectionId);
+        $request = new CreateConnectionRequest();
         $response = $gapicClient->createConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -396,16 +362,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $repository = new Repository();
-        $repositoryRemoteUri = 'repositoryRemoteUri792690460';
-        $repository->setRemoteUri($repositoryRemoteUri);
-        $repositoryId = 'repositoryId1101683248';
-        $request = (new CreateRepositoryRequest())
-            ->setParent($formattedParent)
-            ->setRepository($repository)
-            ->setRepositoryId($repositoryId);
+        $request = new CreateRepositoryRequest();
         $response = $gapicClient->createRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -416,12 +373,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/CreateRepository', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getRepository();
-        $this->assertProtobufEquals($repository, $actualValue);
-        $actualValue = $actualApiRequestObject->getRepositoryId();
-        $this->assertProtobufEquals($repositoryId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createRepositoryTest');
         $response->pollUntilComplete([
@@ -472,16 +423,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $repository = new Repository();
-        $repositoryRemoteUri = 'repositoryRemoteUri792690460';
-        $repository->setRemoteUri($repositoryRemoteUri);
-        $repositoryId = 'repositoryId1101683248';
-        $request = (new CreateRepositoryRequest())
-            ->setParent($formattedParent)
-            ->setRepository($repository)
-            ->setRepositoryId($repositoryId);
+        $request = new CreateRepositoryRequest();
         $response = $gapicClient->createRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -533,10 +475,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new DeleteConnectionRequest())
-            ->setName($formattedName);
+        $request = new DeleteConnectionRequest();
         $response = $gapicClient->deleteConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -547,8 +486,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/DeleteConnection', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteConnectionTest');
         $response->pollUntilComplete([
@@ -599,10 +536,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new DeleteConnectionRequest())
-            ->setName($formattedName);
+        $request = new DeleteConnectionRequest();
         $response = $gapicClient->deleteConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -654,10 +588,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new DeleteRepositoryRequest())
-            ->setName($formattedName);
+        $request = new DeleteRepositoryRequest();
         $response = $gapicClient->deleteRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -668,8 +599,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/DeleteRepository', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteRepositoryTest');
         $response->pollUntilComplete([
@@ -720,10 +649,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new DeleteRepositoryRequest())
-            ->setName($formattedName);
+        $request = new DeleteRepositoryRequest();
         $response = $gapicClient->deleteRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -757,10 +683,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new FetchGitRefsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new FetchGitRefsRequest())
-            ->setRepository($formattedRepository);
+        $request = new FetchGitRefsRequest();
         $response = $gapicClient->fetchGitRefs($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -768,8 +691,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/FetchGitRefs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getRepository();
-        $this->assertProtobufEquals($formattedRepository, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -791,10 +712,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new FetchGitRefsRequest())
-            ->setRepository($formattedRepository);
+        $request = new FetchGitRefsRequest();
         try {
             $gapicClient->fetchGitRefs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -826,10 +744,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRepositories($repositories);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedConnection = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new FetchLinkableRepositoriesRequest())
-            ->setConnection($formattedConnection);
+        $request = new FetchLinkableRepositoriesRequest();
         $response = $gapicClient->fetchLinkableRepositories($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -840,8 +755,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/FetchLinkableRepositories', $actualFuncCall);
-        $actualValue = $actualRequestObject->getConnection();
-        $this->assertProtobufEquals($formattedConnection, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -863,10 +776,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedConnection = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new FetchLinkableRepositoriesRequest())
-            ->setConnection($formattedConnection);
+        $request = new FetchLinkableRepositoriesRequest();
         try {
             $gapicClient->fetchLinkableRepositories($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -893,10 +803,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $expectedResponse = new FetchReadTokenResponse();
         $expectedResponse->setToken($token);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new FetchReadTokenRequest())
-            ->setRepository($formattedRepository);
+        $request = new FetchReadTokenRequest();
         $response = $gapicClient->fetchReadToken($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -904,8 +811,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/FetchReadToken', $actualFuncCall);
-        $actualValue = $actualRequestObject->getRepository();
-        $this->assertProtobufEquals($formattedRepository, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -927,10 +832,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new FetchReadTokenRequest())
-            ->setRepository($formattedRepository);
+        $request = new FetchReadTokenRequest();
         try {
             $gapicClient->fetchReadToken($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -957,10 +859,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $expectedResponse = new FetchReadWriteTokenResponse();
         $expectedResponse->setToken($token);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new FetchReadWriteTokenRequest())
-            ->setRepository($formattedRepository);
+        $request = new FetchReadWriteTokenRequest();
         $response = $gapicClient->fetchReadWriteToken($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -968,8 +867,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/FetchReadWriteToken', $actualFuncCall);
-        $actualValue = $actualRequestObject->getRepository();
-        $this->assertProtobufEquals($formattedRepository, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -991,10 +888,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new FetchReadWriteTokenRequest())
-            ->setRepository($formattedRepository);
+        $request = new FetchReadWriteTokenRequest();
         try {
             $gapicClient->fetchReadWriteToken($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1027,10 +921,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new GetConnectionRequest())
-            ->setName($formattedName);
+        $request = new GetConnectionRequest();
         $response = $gapicClient->getConnection($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1038,8 +929,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/GetConnection', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1061,10 +950,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new GetConnectionRequest())
-            ->setName($formattedName);
+        $request = new GetConnectionRequest();
         try {
             $gapicClient->getConnection($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1097,10 +983,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setWebhookId($webhookId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new GetRepositoryRequest())
-            ->setName($formattedName);
+        $request = new GetRepositoryRequest();
         $response = $gapicClient->getRepository($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1108,8 +991,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/GetRepository', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1131,10 +1012,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new GetRepositoryRequest())
-            ->setName($formattedName);
+        $request = new GetRepositoryRequest();
         try {
             $gapicClient->getRepository($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1166,10 +1044,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConnections($connections);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConnectionsRequest())
-            ->setParent($formattedParent);
+        $request = new ListConnectionsRequest();
         $response = $gapicClient->listConnections($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1180,8 +1055,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/ListConnections', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1203,10 +1076,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConnectionsRequest())
-            ->setParent($formattedParent);
+        $request = new ListConnectionsRequest();
         try {
             $gapicClient->listConnections($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1238,10 +1108,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRepositories($repositories);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new ListRepositoriesRequest())
-            ->setParent($formattedParent);
+        $request = new ListRepositoriesRequest();
         $response = $gapicClient->listRepositories($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1252,8 +1119,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/ListRepositories', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1275,10 +1140,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new ListRepositoriesRequest())
-            ->setParent($formattedParent);
+        $request = new ListRepositoriesRequest();
         try {
             $gapicClient->listRepositories($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1329,10 +1191,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $connection = new Connection();
-        $request = (new UpdateConnectionRequest())
-            ->setConnection($connection);
+        $request = new UpdateConnectionRequest();
         $response = $gapicClient->updateConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1343,8 +1202,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/UpdateConnection', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getConnection();
-        $this->assertProtobufEquals($connection, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateConnectionTest');
         $response->pollUntilComplete([
@@ -1395,10 +1252,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $connection = new Connection();
-        $request = (new UpdateConnectionRequest())
-            ->setConnection($connection);
+        $request = new UpdateConnectionRequest();
         $response = $gapicClient->updateConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1436,10 +1290,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1447,8 +1298,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1470,10 +1319,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1502,12 +1348,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1515,10 +1356,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1540,12 +1377,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1570,12 +1402,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1583,10 +1410,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1608,12 +1431,7 @@ class RepositoryManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1656,12 +1474,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $requests = [];
-        $request = (new BatchCreateRepositoriesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = new BatchCreateRepositoriesRequest();
         $response = $gapicClient->batchCreateRepositoriesAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1672,10 +1485,6 @@ class RepositoryManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/BatchCreateRepositories', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getRequests();
-        $this->assertProtobufEquals($requests, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchCreateRepositoriesTest');
         $response->pollUntilComplete([

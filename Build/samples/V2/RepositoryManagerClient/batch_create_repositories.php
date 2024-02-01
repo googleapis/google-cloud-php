@@ -28,48 +28,24 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Build\V2\BatchCreateRepositoriesRequest;
 use Google\Cloud\Build\V2\BatchCreateRepositoriesResponse;
 use Google\Cloud\Build\V2\Client\RepositoryManagerClient;
-use Google\Cloud\Build\V2\CreateRepositoryRequest;
-use Google\Cloud\Build\V2\Repository;
 use Google\Rpc\Status;
 
 /**
  * Creates multiple repositories inside a connection.
  *
- * @param string $formattedParent             The connection to contain all the repositories being created.
- *                                            Format: projects/&#42;/locations/&#42;/connections/*
- *                                            The parent field in the CreateRepositoryRequest messages
- *                                            must either be empty or match this field. Please see
- *                                            {@see RepositoryManagerClient::connectionName()} for help formatting this field.
- * @param string $formattedRequestsParent     The connection to contain the repository. If the request is part
- *                                            of a BatchCreateRepositoriesRequest, this field should be empty or match
- *                                            the parent specified there. Please see
- *                                            {@see RepositoryManagerClient::connectionName()} for help formatting this field.
- * @param string $requestsRepositoryRemoteUri Git Clone HTTPS URI.
- * @param string $requestsRepositoryId        The ID to use for the repository, which will become the final
- *                                            component of the repository's resource name. This ID should be unique in
- *                                            the connection. Allows alphanumeric characters and any of
- *                                            -._~%!$&'()*+,;=&#64;.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function batch_create_repositories_sample(
-    string $formattedParent,
-    string $formattedRequestsParent,
-    string $requestsRepositoryRemoteUri,
-    string $requestsRepositoryId
-): void {
+function batch_create_repositories_sample(): void
+{
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
     // Prepare the request message.
-    $requestsRepository = (new Repository())
-        ->setRemoteUri($requestsRepositoryRemoteUri);
-    $createRepositoryRequest = (new CreateRepositoryRequest())
-        ->setParent($formattedRequestsParent)
-        ->setRepository($requestsRepository)
-        ->setRepositoryId($requestsRepositoryId);
-    $requests = [$createRepositoryRequest,];
-    $request = (new BatchCreateRepositoriesRequest())
-        ->setParent($formattedParent)
-        ->setRequests($requests);
+    $request = new BatchCreateRepositoriesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -89,37 +65,5 @@ function batch_create_repositories_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = RepositoryManagerClient::connectionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CONNECTION]'
-    );
-    $formattedRequestsParent = RepositoryManagerClient::connectionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CONNECTION]'
-    );
-    $requestsRepositoryRemoteUri = '[REMOTE_URI]';
-    $requestsRepositoryId = '[REPOSITORY_ID]';
-
-    batch_create_repositories_sample(
-        $formattedParent,
-        $formattedRequestsParent,
-        $requestsRepositoryRemoteUri,
-        $requestsRepositoryId
-    );
 }
 // [END cloudbuild_v2_generated_RepositoryManager_BatchCreateRepositories_sync]

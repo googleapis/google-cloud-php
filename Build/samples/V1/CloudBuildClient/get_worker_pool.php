@@ -30,11 +30,13 @@ use Google\Cloud\Build\V1\WorkerPool;
 /**
  * Returns details of a `WorkerPool`.
  *
- * @param string $formattedName The name of the `WorkerPool` to retrieve.
- *                              Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`. Please see
- *                              {@see CloudBuildClient::workerPoolName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_worker_pool_sample(string $formattedName): void
+function get_worker_pool_sample(): void
 {
     // Create a client.
     $cloudBuildClient = new CloudBuildClient();
@@ -42,26 +44,10 @@ function get_worker_pool_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var WorkerPool $response */
-        $response = $cloudBuildClient->getWorkerPool($formattedName);
+        $response = $cloudBuildClient->getWorkerPool();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudBuildClient::workerPoolName('[PROJECT]', '[LOCATION]', '[WORKER_POOL]');
-
-    get_worker_pool_sample($formattedName);
 }
 // [END cloudbuild_v1_generated_CloudBuild_GetWorkerPool_sync]

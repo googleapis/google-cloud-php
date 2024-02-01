@@ -33,8 +33,7 @@ class DeleteAppProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The unique name of the app profile to be deleted. Values are of
      *                     the form
-     *                     `projects/{project}/instances/{instance}/appProfiles/{app_profile}`. Please see
-     *                     {@see BigtableInstanceAdminClient::appProfileName()} for help formatting this field.
+     *                     `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\DeleteAppProfileRequest
      *

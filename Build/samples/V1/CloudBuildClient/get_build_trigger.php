@@ -32,10 +32,13 @@ use Google\Cloud\Build\V1\CloudBuildClient;
  *
  * This API is experimental.
  *
- * @param string $projectId ID of the project that owns the trigger.
- * @param string $triggerId Identifier (`id` or `name`) of the `BuildTrigger` to get.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_build_trigger_sample(string $projectId, string $triggerId): void
+function get_build_trigger_sample(): void
 {
     // Create a client.
     $cloudBuildClient = new CloudBuildClient();
@@ -43,27 +46,10 @@ function get_build_trigger_sample(string $projectId, string $triggerId): void
     // Call the API and handle any network failures.
     try {
         /** @var BuildTrigger $response */
-        $response = $cloudBuildClient->getBuildTrigger($projectId, $triggerId);
+        $response = $cloudBuildClient->getBuildTrigger();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $projectId = '[PROJECT_ID]';
-    $triggerId = '[TRIGGER_ID]';
-
-    get_build_trigger_sample($projectId, $triggerId);
 }
 // [END cloudbuild_v1_generated_CloudBuild_GetBuildTrigger_sync]

@@ -31,37 +31,23 @@ use Google\Cloud\Build\V1\CloudBuildClient;
  *
  * This API is experimental.
  *
- * @param string $projectId ID of the project that owns the trigger.
- * @param string $triggerId ID of the `BuildTrigger` to delete.
- */
-function delete_build_trigger_sample(string $projectId, string $triggerId): void
-{
-    // Create a client.
-    $cloudBuildClient = new CloudBuildClient();
-
-    // Call the API and handle any network failures.
-    try {
-        $cloudBuildClient->deleteBuildTrigger($projectId, $triggerId);
-        printf('Call completed successfully.' . PHP_EOL);
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function delete_build_trigger_sample(): void
 {
-    $projectId = '[PROJECT_ID]';
-    $triggerId = '[TRIGGER_ID]';
+    // Create a client.
+    $cloudBuildClient = new CloudBuildClient();
 
-    delete_build_trigger_sample($projectId, $triggerId);
+    // Call the API and handle any network failures.
+    try {
+        $cloudBuildClient->deleteBuildTrigger();
+        printf('Call completed successfully.' . PHP_EOL);
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END cloudbuild_v1_generated_CloudBuild_DeleteBuildTrigger_sync]

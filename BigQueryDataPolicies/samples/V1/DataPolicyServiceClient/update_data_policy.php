@@ -44,9 +44,7 @@ function update_data_policy_sample(): void
     $dataPolicyServiceClient = new DataPolicyServiceClient();
 
     // Prepare the request message.
-    $dataPolicy = new DataPolicy();
-    $request = (new UpdateDataPolicyRequest())
-        ->setDataPolicy($dataPolicy);
+    $request = new UpdateDataPolicyRequest();
 
     // Call the API and handle any network failures.
     try {

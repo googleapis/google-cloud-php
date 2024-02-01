@@ -23,35 +23,35 @@ class BudgetService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ä
-4google/cloud/billing/budgets/v1/budget_service.protogoogle.cloud.billing.budgets.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2google/cloud/billing/budgets/v1/budget_model.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"‘
-CreateBudgetRequest<
-parent (	B,àAúA&$billingbudgets.googleapis.com/Budget<
-budget (2\'.google.cloud.billing.budgets.v1.BudgetBàA"‰
-UpdateBudgetRequest<
-budget (2\'.google.cloud.billing.budgets.v1.BudgetBàA4
-update_mask (2.google.protobuf.FieldMaskBàA"N
-GetBudgetRequest:
-name (	B,àAúA&
-$billingbudgets.googleapis.com/Budget"—
-ListBudgetsRequest<
-parent (	B,àAúA&$billingbudgets.googleapis.com/Budget
-scope (	BàA
-	page_size (BàA
+î
+4google/cloud/billing/budgets/v1/budget_service.protogoogle.cloud.billing.budgets.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2google/cloud/billing/budgets/v1/budget_model.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"“
+CreateBudgetRequest=
+parent (	B-âAúA&$billingbudgets.googleapis.com/Budget=
+budget (2\'.google.cloud.billing.budgets.v1.BudgetBâA"‹
+UpdateBudgetRequest=
+budget (2\'.google.cloud.billing.budgets.v1.BudgetBâA5
+update_mask (2.google.protobuf.FieldMaskBâA"O
+GetBudgetRequest;
+name (	B-âAúA&
+$billingbudgets.googleapis.com/Budget"›
+ListBudgetsRequest=
+parent (	B-âAúA&$billingbudgets.googleapis.com/Budget
+scope (	BâA
+	page_size (BâA
 
-page_token (	BàA"h
+page_token (	BâA"h
 ListBudgetsResponse8
 budgets (2\'.google.cloud.billing.budgets.v1.Budget
-next_page_token (	"Q
-DeleteBudgetRequest:
-name (	B,àAúA&
+next_page_token (	"R
+DeleteBudgetRequest;
+name (	B-âAúA&
 $billingbudgets.googleapis.com/Budget2÷
 BudgetServiceµ
-CreateBudget4.google.cloud.billing.budgets.v1.CreateBudgetRequest\'.google.cloud.billing.budgets.v1.Budget"F‚Óä“0"&/v1/{parent=billingAccounts/*}/budgets:budgetÚAparent,budgetÁ
-UpdateBudget4.google.cloud.billing.budgets.v1.UpdateBudgetRequest\'.google.cloud.billing.budgets.v1.Budget"R‚Óä“72-/v1/{budget.name=billingAccounts/*/budgets/*}:budgetÚAbudget,update_maskž
-	GetBudget1.google.cloud.billing.budgets.v1.GetBudgetRequest\'.google.cloud.billing.budgets.v1.Budget"5‚Óä“(&/v1/{name=billingAccounts/*/budgets/*}ÚAname±
-ListBudgets3.google.cloud.billing.budgets.v1.ListBudgetsRequest4.google.cloud.billing.budgets.v1.ListBudgetsResponse"7‚Óä“(&/v1/{parent=billingAccounts/*}/budgetsÚAparent“
-DeleteBudget4.google.cloud.billing.budgets.v1.DeleteBudgetRequest.google.protobuf.Empty"5‚Óä“(*&/v1/{name=billingAccounts/*/budgets/*}ÚAnameÊAbillingbudgets.googleapis.comÒA\\https://www.googleapis.com/auth/cloud-billing,https://www.googleapis.com/auth/cloud-platformBz
+CreateBudget4.google.cloud.billing.budgets.v1.CreateBudgetRequest\'.google.cloud.billing.budgets.v1.Budget"FÚAparent,budget‚Óä“0"&/v1/{parent=billingAccounts/*}/budgets:budgetÁ
+UpdateBudget4.google.cloud.billing.budgets.v1.UpdateBudgetRequest\'.google.cloud.billing.budgets.v1.Budget"RÚAbudget,update_mask‚Óä“72-/v1/{budget.name=billingAccounts/*/budgets/*}:budgetž
+	GetBudget1.google.cloud.billing.budgets.v1.GetBudgetRequest\'.google.cloud.billing.budgets.v1.Budget"5ÚAname‚Óä“(&/v1/{name=billingAccounts/*/budgets/*}±
+ListBudgets3.google.cloud.billing.budgets.v1.ListBudgetsRequest4.google.cloud.billing.budgets.v1.ListBudgetsResponse"7ÚAparent‚Óä“(&/v1/{parent=billingAccounts/*}/budgets“
+DeleteBudget4.google.cloud.billing.budgets.v1.DeleteBudgetRequest.google.protobuf.Empty"5ÚAname‚Óä“(*&/v1/{name=billingAccounts/*/budgets/*}ÊAbillingbudgets.googleapis.comÒA\\https://www.googleapis.com/auth/cloud-billing,https://www.googleapis.com/auth/cloud-platformBz
 #com.google.cloud.billing.budgets.v1BBudgetServiceProtoPZ=cloud.google.com/go/billing/budgets/apiv1/budgetspb;budgetspbbproto3'
         , true);
 

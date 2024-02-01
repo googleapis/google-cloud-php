@@ -59,9 +59,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'page_size',
-                ],
             ],
             'SetIamPolicy' => [
                 'method' => 'post',
@@ -97,9 +94,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

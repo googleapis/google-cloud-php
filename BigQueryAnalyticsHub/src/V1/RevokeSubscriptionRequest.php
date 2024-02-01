@@ -26,7 +26,6 @@ class RevokeSubscriptionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Resource name of the subscription to revoke.
      *                     e.g. projects/123/locations/US/subscriptions/456
-     *                     Please see {@see AnalyticsHubServiceClient::subscriptionName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionRequest
      *

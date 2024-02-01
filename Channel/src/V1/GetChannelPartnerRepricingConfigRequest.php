@@ -28,8 +28,7 @@ class GetChannelPartnerRepricingConfigRequest extends \Google\Protobuf\Internal\
     /**
      * @param string $name Required. The resource name of the ChannelPartnerRepricingConfig
      *                     Format:
-     *                     accounts/{account_id}/channelPartnerLinks/{channel_partner_id}/channelPartnerRepricingConfigs/{id}. Please see
-     *                     {@see CloudChannelServiceClient::channelPartnerRepricingConfigName()} for help formatting this field.
+     *                     accounts/{account_id}/channelPartnerLinks/{channel_partner_id}/channelPartnerRepricingConfigs/{id}.
      *
      * @return \Google\Cloud\Channel\V1\GetChannelPartnerRepricingConfigRequest
      *

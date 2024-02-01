@@ -25,8 +25,7 @@ class GetBudgetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of budget to get. Values are of the form
-     *                     `billingAccounts/{billingAccountId}/budgets/{budgetId}`. Please see
-     *                     {@see BudgetServiceClient::budgetName()} for help formatting this field.
+     *                     `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
      *
      * @return \Google\Cloud\Billing\Budgets\V1\GetBudgetRequest
      *

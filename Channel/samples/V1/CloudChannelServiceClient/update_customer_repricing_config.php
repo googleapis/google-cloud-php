@@ -26,11 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\CustomerRepricingConfig;
-use Google\Cloud\Channel\V1\RebillingBasis;
-use Google\Cloud\Channel\V1\RepricingAdjustment;
-use Google\Cloud\Channel\V1\RepricingConfig;
 use Google\Cloud\Channel\V1\UpdateCustomerRepricingConfigRequest;
-use Google\Type\Date;
 
 /**
  * Updates a CustomerRepricingConfig. Call this method to set modifications
@@ -66,27 +62,19 @@ use Google\Type\Date;
  * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
  * resource, otherwise returns an error.
  *
- * @param int $customerRepricingConfigRepricingConfigRebillingBasis The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to
- *                                                                  use for this bill. Specifies the relative cost based on repricing costs you
- *                                                                  will apply.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_customer_repricing_config_sample(
-    int $customerRepricingConfigRepricingConfigRebillingBasis
-): void {
+function update_customer_repricing_config_sample(): void
+{
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $customerRepricingConfigRepricingConfigEffectiveInvoiceMonth = new Date();
-    $customerRepricingConfigRepricingConfigAdjustment = new RepricingAdjustment();
-    $customerRepricingConfigRepricingConfig = (new RepricingConfig())
-        ->setEffectiveInvoiceMonth($customerRepricingConfigRepricingConfigEffectiveInvoiceMonth)
-        ->setAdjustment($customerRepricingConfigRepricingConfigAdjustment)
-        ->setRebillingBasis($customerRepricingConfigRepricingConfigRebillingBasis);
-    $customerRepricingConfig = (new CustomerRepricingConfig())
-        ->setRepricingConfig($customerRepricingConfigRepricingConfig);
-    $request = (new UpdateCustomerRepricingConfigRequest())
-        ->setCustomerRepricingConfig($customerRepricingConfig);
+    $request = new UpdateCustomerRepricingConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -96,21 +84,5 @@ function update_customer_repricing_config_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $customerRepricingConfigRepricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
-
-    update_customer_repricing_config_sample($customerRepricingConfigRepricingConfigRebillingBasis);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_UpdateCustomerRepricingConfig_sync]

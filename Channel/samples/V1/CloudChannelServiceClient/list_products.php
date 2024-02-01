@@ -36,17 +36,19 @@ use Google\Cloud\Channel\V1\Product;
  *
  * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
  *
- * @param string $account The resource name of the reseller account.
- *                        Format: accounts/{account_id}.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_products_sample(string $account): void
+function list_products_sample(): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = (new ListProductsRequest())
-        ->setAccount($account);
+    $request = new ListProductsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +62,5 @@ function list_products_sample(string $account): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $account = '[ACCOUNT]';
-
-    list_products_sample($account);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_ListProducts_sync]

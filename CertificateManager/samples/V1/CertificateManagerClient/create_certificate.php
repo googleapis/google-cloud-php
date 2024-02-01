@@ -33,22 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new Certificate in a given project and location.
  *
- * @param string $formattedParent The parent resource of the certificate. Must be in the format
- *                                `projects/&#42;/locations/*`. Please see
- *                                {@see CertificateManagerClient::locationName()} for help formatting this field.
- * @param string $certificateId   A user-provided name of the certificate.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_certificate_sample(string $formattedParent, string $certificateId): void
+function create_certificate_sample(): void
 {
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
     // Prepare the request message.
-    $certificate = new Certificate();
-    $request = (new CreateCertificateRequest())
-        ->setParent($formattedParent)
-        ->setCertificateId($certificateId)
-        ->setCertificate($certificate);
+    $request = new CreateCertificateRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,22 +65,5 @@ function create_certificate_sample(string $formattedParent, string $certificateI
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CertificateManagerClient::locationName('[PROJECT]', '[LOCATION]');
-    $certificateId = '[CERTIFICATE_ID]';
-
-    create_certificate_sample($formattedParent, $certificateId);
 }
 // [END certificatemanager_v1_generated_CertificateManager_CreateCertificate_sync]

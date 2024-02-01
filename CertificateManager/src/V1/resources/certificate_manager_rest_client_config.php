@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'certificate_id',
-                ],
             ],
             'CreateCertificateIssuanceConfig' => [
                 'method' => 'post',
@@ -28,9 +25,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'certificate_issuance_config_id',
                 ],
             ],
             'CreateCertificateMap' => [
@@ -44,9 +38,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'certificate_map_id',
-                ],
             ],
             'CreateCertificateMapEntry' => [
                 'method' => 'post',
@@ -59,9 +50,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'certificate_map_entry_id',
-                ],
             ],
             'CreateDnsAuthorization' => [
                 'method' => 'post',
@@ -73,9 +61,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'dns_authorization_id',
                 ],
             ],
             'DeleteCertificate' => [
@@ -255,9 +240,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateCertificateMap' => [
                 'method' => 'patch',
@@ -270,9 +252,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'UpdateCertificateMapEntry' => [
@@ -287,9 +266,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateDnsAuthorization' => [
                 'method' => 'patch',
@@ -302,9 +278,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

@@ -83,8 +83,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $cloudBuildClient = new CloudBuildClient();
  * try {
- *     $name = 'name';
- *     $operationResponse = $cloudBuildClient->approveBuild($name);
+ *     $operationResponse = $cloudBuildClient->approveBuild();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -95,7 +94,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $cloudBuildClient->approveBuild($name);
+ *     $operationResponse = $cloudBuildClient->approveBuild();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $cloudBuildClient->resumeOperation($operationName, 'approveBuild');
@@ -911,8 +910,7 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $cloudBuildClient->approveBuild($name);
+     *     $operationResponse = $cloudBuildClient->approveBuild();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -923,7 +921,7 @@ class CloudBuildGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudBuildClient->approveBuild($name);
+     *     $operationResponse = $cloudBuildClient->approveBuild();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudBuildClient->resumeOperation($operationName, 'approveBuild');
@@ -943,11 +941,12 @@ class CloudBuildGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Name of the target build.
-     *                             For example: "projects/{$project_id}/builds/{$build_id}"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the target build.
+     *           For example: "projects/{$project_id}/builds/{$build_id}"
      *     @type ApprovalResult $approvalResult
      *           Approval decision and metadata.
      *     @type RetrySettings|array $retrySettings
@@ -960,12 +959,15 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function approveBuild($name, array $optionalArgs = [])
+    public function approveBuild(array $optionalArgs = [])
     {
         $request = new ApproveBuildRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['location'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['approvalResult'])) {
             $request->setApprovalResult($optionalArgs['approvalResult']);
         }
@@ -982,22 +984,22 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $id = 'id';
-     *     $response = $cloudBuildClient->cancelBuild($projectId, $id);
+     *     $response = $cloudBuildClient->cancelBuild();
      * } finally {
      *     $cloudBuildClient->close();
      * }
      * ```
      *
-     * @param string $projectId    Required. ID of the project.
-     * @param string $id           Required. ID of the build.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $name
      *           The name of the `Build` to cancel.
      *           Format: `projects/{project}/locations/{location}/builds/{build}`
+     *     @type string $projectId
+     *           Required. ID of the project.
+     *     @type string $id
+     *           Required. ID of the build.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1008,15 +1010,21 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelBuild($projectId, $id, array $optionalArgs = [])
+    public function cancelBuild(array $optionalArgs = [])
     {
         $request = new CancelBuildRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setId($id);
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
             $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+
+        if (isset($optionalArgs['id'])) {
+            $request->setId($optionalArgs['id']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1035,9 +1043,7 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $build = new Build();
-     *     $operationResponse = $cloudBuildClient->createBuild($projectId, $build);
+     *     $operationResponse = $cloudBuildClient->createBuild();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1048,7 +1054,7 @@ class CloudBuildGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudBuildClient->createBuild($projectId, $build);
+     *     $operationResponse = $cloudBuildClient->createBuild();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudBuildClient->resumeOperation($operationName, 'createBuild');
@@ -1068,14 +1074,16 @@ class CloudBuildGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Required. ID of the project.
-     * @param Build  $build        Required. Build resource to create.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $parent
      *           The parent resource where this build will be created.
      *           Format: `projects/{project}/locations/{location}`
+     *     @type string $projectId
+     *           Required. ID of the project.
+     *     @type Build $build
+     *           Required. Build resource to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1086,15 +1094,21 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createBuild($projectId, $build, array $optionalArgs = [])
+    public function createBuild(array $optionalArgs = [])
     {
         $request = new CreateBuildRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setBuild($build);
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['location'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+
+        if (isset($optionalArgs['build'])) {
+            $request->setBuild($optionalArgs['build']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1111,22 +1125,22 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $trigger = new BuildTrigger();
-     *     $response = $cloudBuildClient->createBuildTrigger($projectId, $trigger);
+     *     $response = $cloudBuildClient->createBuildTrigger();
      * } finally {
      *     $cloudBuildClient->close();
      * }
      * ```
      *
-     * @param string       $projectId    Required. ID of the project for which to configure automatic builds.
-     * @param BuildTrigger $trigger      Required. `BuildTrigger` to create.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $parent
      *           The parent resource where this trigger will be created.
      *           Format: `projects/{project}/locations/{location}`
+     *     @type string $projectId
+     *           Required. ID of the project for which to configure automatic builds.
+     *     @type BuildTrigger $trigger
+     *           Required. `BuildTrigger` to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1137,15 +1151,21 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createBuildTrigger($projectId, $trigger, array $optionalArgs = [])
+    public function createBuildTrigger(array $optionalArgs = [])
     {
         $request = new CreateBuildTriggerRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setTrigger($trigger);
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['location'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+
+        if (isset($optionalArgs['trigger'])) {
+            $request->setTrigger($optionalArgs['trigger']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1160,10 +1180,7 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $formattedParent = $cloudBuildClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $workerPool = new WorkerPool();
-     *     $workerPoolId = 'worker_pool_id';
-     *     $operationResponse = $cloudBuildClient->createWorkerPool($formattedParent, $workerPool, $workerPoolId);
+     *     $operationResponse = $cloudBuildClient->createWorkerPool();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1174,7 +1191,7 @@ class CloudBuildGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudBuildClient->createWorkerPool($formattedParent, $workerPool, $workerPoolId);
+     *     $operationResponse = $cloudBuildClient->createWorkerPool();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudBuildClient->resumeOperation($operationName, 'createWorkerPool');
@@ -1194,17 +1211,20 @@ class CloudBuildGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The parent resource where this worker pool will be created.
-     *                                 Format: `projects/{project}/locations/{location}`.
-     * @param WorkerPool $workerPool   Required. `WorkerPool` resource to create.
-     * @param string     $workerPoolId Required. Immutable. The ID to use for the `WorkerPool`, which will become
-     *                                 the final component of the resource name.
-     *
-     *                                 This value should be 1-63 characters, and valid characters
-     *                                 are /[a-z][0-9]-/.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource where this worker pool will be created.
+     *           Format: `projects/{project}/locations/{location}`.
+     *     @type WorkerPool $workerPool
+     *           Required. `WorkerPool` resource to create.
+     *     @type string $workerPoolId
+     *           Required. Immutable. The ID to use for the `WorkerPool`, which will become
+     *           the final component of the resource name.
+     *
+     *           This value should be 1-63 characters, and valid characters
+     *           are /[a-z][0-9]-/.
      *     @type bool $validateOnly
      *           If set, validate the request and preview the response, but do not actually
      *           post it.
@@ -1218,14 +1238,23 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createWorkerPool($parent, $workerPool, $workerPoolId, array $optionalArgs = [])
+    public function createWorkerPool(array $optionalArgs = [])
     {
         $request = new CreateWorkerPoolRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setWorkerPool($workerPool);
-        $request->setWorkerPoolId($workerPoolId);
-        $requestParamHeaders['location'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['location'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['workerPool'])) {
+            $request->setWorkerPool($optionalArgs['workerPool']);
+        }
+
+        if (isset($optionalArgs['workerPoolId'])) {
+            $request->setWorkerPoolId($optionalArgs['workerPoolId']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1244,22 +1273,22 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $triggerId = 'trigger_id';
-     *     $cloudBuildClient->deleteBuildTrigger($projectId, $triggerId);
+     *     $cloudBuildClient->deleteBuildTrigger();
      * } finally {
      *     $cloudBuildClient->close();
      * }
      * ```
      *
-     * @param string $projectId    Required. ID of the project that owns the trigger.
-     * @param string $triggerId    Required. ID of the `BuildTrigger` to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $name
      *           The name of the `Trigger` to delete.
      *           Format: `projects/{project}/locations/{location}/triggers/{trigger}`
+     *     @type string $projectId
+     *           Required. ID of the project that owns the trigger.
+     *     @type string $triggerId
+     *           Required. ID of the `BuildTrigger` to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1268,15 +1297,21 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteBuildTrigger($projectId, $triggerId, array $optionalArgs = [])
+    public function deleteBuildTrigger(array $optionalArgs = [])
     {
         $request = new DeleteBuildTriggerRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setTriggerId($triggerId);
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
             $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+
+        if (isset($optionalArgs['triggerId'])) {
+            $request->setTriggerId($optionalArgs['triggerId']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1291,8 +1326,7 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $formattedName = $cloudBuildClient->workerPoolName('[PROJECT]', '[LOCATION]', '[WORKER_POOL]');
-     *     $operationResponse = $cloudBuildClient->deleteWorkerPool($formattedName);
+     *     $operationResponse = $cloudBuildClient->deleteWorkerPool();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1302,7 +1336,7 @@ class CloudBuildGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudBuildClient->deleteWorkerPool($formattedName);
+     *     $operationResponse = $cloudBuildClient->deleteWorkerPool();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudBuildClient->resumeOperation($operationName, 'deleteWorkerPool');
@@ -1321,12 +1355,13 @@ class CloudBuildGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the `WorkerPool` to delete.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/workerPools/{workerPool}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the `WorkerPool` to delete.
+     *           Format:
+     *           `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      *     @type string $etag
      *           Optional. If provided, it must match the server's etag on the workerpool
      *           for the request to be processed.
@@ -1346,12 +1381,15 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteWorkerPool($name, array $optionalArgs = [])
+    public function deleteWorkerPool(array $optionalArgs = [])
     {
         $request = new DeleteWorkerPoolRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['location'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -1379,22 +1417,22 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $id = 'id';
-     *     $response = $cloudBuildClient->getBuild($projectId, $id);
+     *     $response = $cloudBuildClient->getBuild();
      * } finally {
      *     $cloudBuildClient->close();
      * }
      * ```
      *
-     * @param string $projectId    Required. ID of the project.
-     * @param string $id           Required. ID of the build.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $name
      *           The name of the `Build` to retrieve.
      *           Format: `projects/{project}/locations/{location}/builds/{build}`
+     *     @type string $projectId
+     *           Required. ID of the project.
+     *     @type string $id
+     *           Required. ID of the build.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1405,15 +1443,21 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getBuild($projectId, $id, array $optionalArgs = [])
+    public function getBuild(array $optionalArgs = [])
     {
         $request = new GetBuildRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setId($id);
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
             $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+
+        if (isset($optionalArgs['id'])) {
+            $request->setId($optionalArgs['id']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1430,22 +1474,22 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $triggerId = 'trigger_id';
-     *     $response = $cloudBuildClient->getBuildTrigger($projectId, $triggerId);
+     *     $response = $cloudBuildClient->getBuildTrigger();
      * } finally {
      *     $cloudBuildClient->close();
      * }
      * ```
      *
-     * @param string $projectId    Required. ID of the project that owns the trigger.
-     * @param string $triggerId    Required. Identifier (`id` or `name`) of the `BuildTrigger` to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $name
      *           The name of the `Trigger` to retrieve.
      *           Format: `projects/{project}/locations/{location}/triggers/{trigger}`
+     *     @type string $projectId
+     *           Required. ID of the project that owns the trigger.
+     *     @type string $triggerId
+     *           Required. Identifier (`id` or `name`) of the `BuildTrigger` to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1456,15 +1500,21 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getBuildTrigger($projectId, $triggerId, array $optionalArgs = [])
+    public function getBuildTrigger(array $optionalArgs = [])
     {
         $request = new GetBuildTriggerRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setTriggerId($triggerId);
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
             $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+
+        if (isset($optionalArgs['triggerId'])) {
+            $request->setTriggerId($optionalArgs['triggerId']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1479,18 +1529,18 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $formattedName = $cloudBuildClient->workerPoolName('[PROJECT]', '[LOCATION]', '[WORKER_POOL]');
-     *     $response = $cloudBuildClient->getWorkerPool($formattedName);
+     *     $response = $cloudBuildClient->getWorkerPool();
      * } finally {
      *     $cloudBuildClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the `WorkerPool` to retrieve.
-     *                             Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the `WorkerPool` to retrieve.
+     *           Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1501,12 +1551,15 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getWorkerPool($name, array $optionalArgs = [])
+    public function getWorkerPool(array $optionalArgs = [])
     {
         $request = new GetWorkerPoolRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['location'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetWorkerPool', WorkerPool::class, $optionalArgs, $request)->wait();
@@ -1521,9 +1574,8 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $projectId = 'project_id';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudBuildClient->listBuildTriggers($projectId);
+     *     $pagedResponse = $cloudBuildClient->listBuildTriggers();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1531,7 +1583,7 @@ class CloudBuildGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudBuildClient->listBuildTriggers($projectId);
+     *     $pagedResponse = $cloudBuildClient->listBuildTriggers();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1540,13 +1592,14 @@ class CloudBuildGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Required. ID of the project for which to list BuildTriggers.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $parent
      *           The parent of the collection of `Triggers`.
      *           Format: `projects/{project}/locations/{location}`
+     *     @type string $projectId
+     *           Required. ID of the project for which to list BuildTriggers.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1566,14 +1619,17 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listBuildTriggers($projectId, array $optionalArgs = [])
+    public function listBuildTriggers(array $optionalArgs = [])
     {
         $request = new ListBuildTriggersRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['location'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
         }
 
         if (isset($optionalArgs['pageSize'])) {
@@ -1599,9 +1655,8 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $projectId = 'project_id';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudBuildClient->listBuilds($projectId);
+     *     $pagedResponse = $cloudBuildClient->listBuilds();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1609,7 +1664,7 @@ class CloudBuildGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudBuildClient->listBuilds($projectId);
+     *     $pagedResponse = $cloudBuildClient->listBuilds();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1618,13 +1673,14 @@ class CloudBuildGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Required. ID of the project.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $parent
      *           The parent of the collection of `Builds`.
      *           Format: `projects/{project}/locations/{location}`
+     *     @type string $projectId
+     *           Required. ID of the project.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1646,14 +1702,17 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listBuilds($projectId, array $optionalArgs = [])
+    public function listBuilds(array $optionalArgs = [])
     {
         $request = new ListBuildsRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['location'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
         }
 
         if (isset($optionalArgs['pageSize'])) {
@@ -1680,9 +1739,8 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $formattedParent = $cloudBuildClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudBuildClient->listWorkerPools($formattedParent);
+     *     $pagedResponse = $cloudBuildClient->listWorkerPools();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1690,7 +1748,7 @@ class CloudBuildGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudBuildClient->listWorkerPools($formattedParent);
+     *     $pagedResponse = $cloudBuildClient->listWorkerPools();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1699,11 +1757,12 @@ class CloudBuildGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent of the collection of `WorkerPools`.
-     *                             Format: `projects/{project}/locations/{location}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent of the collection of `WorkerPools`.
+     *           Format: `projects/{project}/locations/{location}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1723,12 +1782,15 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listWorkerPools($parent, array $optionalArgs = [])
+    public function listWorkerPools(array $optionalArgs = [])
     {
         $request = new ListWorkerPoolsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['location'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['location'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1845,9 +1907,7 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $id = 'id';
-     *     $operationResponse = $cloudBuildClient->retryBuild($projectId, $id);
+     *     $operationResponse = $cloudBuildClient->retryBuild();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1858,7 +1918,7 @@ class CloudBuildGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudBuildClient->retryBuild($projectId, $id);
+     *     $operationResponse = $cloudBuildClient->retryBuild();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudBuildClient->resumeOperation($operationName, 'retryBuild');
@@ -1878,14 +1938,16 @@ class CloudBuildGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Required. ID of the project.
-     * @param string $id           Required. Build ID of the original build.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $name
      *           The name of the `Build` to retry.
      *           Format: `projects/{project}/locations/{location}/builds/{build}`
+     *     @type string $projectId
+     *           Required. ID of the project.
+     *     @type string $id
+     *           Required. Build ID of the original build.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1896,15 +1958,21 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function retryBuild($projectId, $id, array $optionalArgs = [])
+    public function retryBuild(array $optionalArgs = [])
     {
         $request = new RetryBuildRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setId($id);
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
             $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+
+        if (isset($optionalArgs['id'])) {
+            $request->setId($optionalArgs['id']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1925,9 +1993,7 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $triggerId = 'trigger_id';
-     *     $operationResponse = $cloudBuildClient->runBuildTrigger($projectId, $triggerId);
+     *     $operationResponse = $cloudBuildClient->runBuildTrigger();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1938,7 +2004,7 @@ class CloudBuildGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudBuildClient->runBuildTrigger($projectId, $triggerId);
+     *     $operationResponse = $cloudBuildClient->runBuildTrigger();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudBuildClient->resumeOperation($operationName, 'runBuildTrigger');
@@ -1958,14 +2024,16 @@ class CloudBuildGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Required. ID of the project.
-     * @param string $triggerId    Required. ID of the trigger.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $name
      *           The name of the `Trigger` to run.
      *           Format: `projects/{project}/locations/{location}/triggers/{trigger}`
+     *     @type string $projectId
+     *           Required. ID of the project.
+     *     @type string $triggerId
+     *           Required. ID of the trigger.
      *     @type RepoSource $source
      *           Source to build against this trigger.
      *           Branch and tag names cannot consist of regular expressions.
@@ -1979,15 +2047,21 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function runBuildTrigger($projectId, $triggerId, array $optionalArgs = [])
+    public function runBuildTrigger(array $optionalArgs = [])
     {
         $request = new RunBuildTriggerRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setTriggerId($triggerId);
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
             $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+
+        if (isset($optionalArgs['triggerId'])) {
+            $request->setTriggerId($optionalArgs['triggerId']);
         }
 
         if (isset($optionalArgs['source'])) {
@@ -2008,21 +2082,21 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $triggerId = 'trigger_id';
-     *     $trigger = new BuildTrigger();
-     *     $response = $cloudBuildClient->updateBuildTrigger($projectId, $triggerId, $trigger);
+     *     $response = $cloudBuildClient->updateBuildTrigger();
      * } finally {
      *     $cloudBuildClient->close();
      * }
      * ```
      *
-     * @param string       $projectId    Required. ID of the project that owns the trigger.
-     * @param string       $triggerId    Required. ID of the `BuildTrigger` to update.
-     * @param BuildTrigger $trigger      Required. `BuildTrigger` to update.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectId
+     *           Required. ID of the project that owns the trigger.
+     *     @type string $triggerId
+     *           Required. ID of the `BuildTrigger` to update.
+     *     @type BuildTrigger $trigger
+     *           Required. `BuildTrigger` to update.
      *     @type FieldMask $updateMask
      *           Update mask for the resource. If this is set,
      *           the server will only update the fields specified in the field mask.
@@ -2037,14 +2111,23 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateBuildTrigger($projectId, $triggerId, $trigger, array $optionalArgs = [])
+    public function updateBuildTrigger(array $optionalArgs = [])
     {
         $request = new UpdateBuildTriggerRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setTriggerId($triggerId);
-        $request->setTrigger($trigger);
-        $requestParamHeaders['location'] = $trigger->getResourceName();
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+
+        if (isset($optionalArgs['triggerId'])) {
+            $request->setTriggerId($optionalArgs['triggerId']);
+        }
+
+        if (isset($optionalArgs['trigger'])) {
+            $request->setTrigger($optionalArgs['trigger']);
+            $requestParamHeaders['location'] = $optionalArgs['trigger']->getResourceName();
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2061,8 +2144,7 @@ class CloudBuildGapicClient
      * ```
      * $cloudBuildClient = new CloudBuildClient();
      * try {
-     *     $workerPool = new WorkerPool();
-     *     $operationResponse = $cloudBuildClient->updateWorkerPool($workerPool);
+     *     $operationResponse = $cloudBuildClient->updateWorkerPool();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2073,7 +2155,7 @@ class CloudBuildGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudBuildClient->updateWorkerPool($workerPool);
+     *     $operationResponse = $cloudBuildClient->updateWorkerPool();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudBuildClient->resumeOperation($operationName, 'updateWorkerPool');
@@ -2093,13 +2175,14 @@ class CloudBuildGapicClient
      * }
      * ```
      *
-     * @param WorkerPool $workerPool   Required. The `WorkerPool` to update.
-     *
-     *                                 The `name` field is used to identify the `WorkerPool` to update.
-     *                                 Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type WorkerPool $workerPool
+     *           Required. The `WorkerPool` to update.
+     *
+     *           The `name` field is used to identify the `WorkerPool` to update.
+     *           Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.
      *     @type FieldMask $updateMask
      *           A mask specifying which fields in `worker_pool` to update.
      *     @type bool $validateOnly
@@ -2115,12 +2198,15 @@ class CloudBuildGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateWorkerPool($workerPool, array $optionalArgs = [])
+    public function updateWorkerPool(array $optionalArgs = [])
     {
         $request = new UpdateWorkerPoolRequest();
         $requestParamHeaders = [];
-        $request->setWorkerPool($workerPool);
-        $requestParamHeaders['location'] = $workerPool->getName();
+        if (isset($optionalArgs['workerPool'])) {
+            $request->setWorkerPool($optionalArgs['workerPool']);
+            $requestParamHeaders['location'] = $optionalArgs['workerPool']->getName();
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

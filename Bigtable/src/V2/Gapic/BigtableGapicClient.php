@@ -71,9 +71,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
  * try {
- *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
- *     $rowKey = '...';
- *     $response = $bigtableClient->checkAndMutateRow($formattedTableName, $rowKey);
+ *     $response = $bigtableClient->checkAndMutateRow();
  * } finally {
  *     $bigtableClient->close();
  * }
@@ -319,25 +317,25 @@ class BigtableGapicClient
      * ```
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
-     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-     *     $rowKey = '...';
-     *     $response = $bigtableClient->checkAndMutateRow($formattedTableName, $rowKey);
+     *     $response = $bigtableClient->checkAndMutateRow();
      * } finally {
      *     $bigtableClient->close();
      * }
      * ```
      *
-     * @param string $tableName    Required. The unique name of the table to which the conditional mutation
-     *                             should be applied. Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param string $rowKey       Required. The key of the row to which the conditional mutation should be
-     *                             applied.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $tableName
+     *           Required. The unique name of the table to which the conditional mutation
+     *           should be applied. Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
      *     @type string $appProfileId
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
+     *     @type string $rowKey
+     *           Required. The key of the row to which the conditional mutation should be
+     *           applied.
      *     @type RowFilter $predicateFilter
      *           The filter to be applied to the contents of the specified row. Depending
      *           on whether or not any results are yielded, either `true_mutations` or
@@ -365,20 +363,25 @@ class BigtableGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function checkAndMutateRow($tableName, $rowKey, array $optionalArgs = [])
+    public function checkAndMutateRow(array $optionalArgs = [])
     {
         $request = new CheckAndMutateRowRequest();
         $requestParamHeaders = [];
-        $request->setTableName($tableName);
-        $request->setRowKey($rowKey);
-        $tableNameMatches = [];
-        if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $tableName, $tableNameMatches)) {
-            $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+        if (isset($optionalArgs['tableName'])) {
+            $request->setTableName($optionalArgs['tableName']);
+            $tableNameMatches = [];
+            if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $optionalArgs['tableName'], $tableNameMatches)) {
+                $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+            }
         }
 
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
             $requestParamHeaders['app_profile_id'] = $optionalArgs['appProfileId'];
+        }
+
+        if (isset($optionalArgs['rowKey'])) {
+            $request->setRowKey($optionalArgs['rowKey']);
         }
 
         if (isset($optionalArgs['predicateFilter'])) {
@@ -408,9 +411,8 @@ class BigtableGapicClient
      * ```
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
-     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     // Read all responses until the stream is complete
-     *     $stream = $bigtableClient->generateInitialChangeStreamPartitions($formattedTableName);
+     *     $stream = $bigtableClient->generateInitialChangeStreamPartitions();
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -419,13 +421,14 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName    Required. The unique name of the table from which to get change stream
-     *                             partitions. Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
-     *                             Change streaming must be enabled on the table.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $tableName
+     *           Required. The unique name of the table from which to get change stream
+     *           partitions. Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *           Change streaming must be enabled on the table.
      *     @type string $appProfileId
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -438,12 +441,15 @@ class BigtableGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateInitialChangeStreamPartitions($tableName, array $optionalArgs = [])
+    public function generateInitialChangeStreamPartitions(array $optionalArgs = [])
     {
         $request = new GenerateInitialChangeStreamPartitionsRequest();
         $requestParamHeaders = [];
-        $request->setTableName($tableName);
-        $requestParamHeaders['table_name'] = $tableName;
+        if (isset($optionalArgs['tableName'])) {
+            $request->setTableName($optionalArgs['tableName']);
+            $requestParamHeaders['table_name'] = $optionalArgs['tableName'];
+        }
+
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
         }
@@ -461,28 +467,28 @@ class BigtableGapicClient
      * ```
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
-     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-     *     $rowKey = '...';
-     *     $mutations = [];
-     *     $response = $bigtableClient->mutateRow($formattedTableName, $rowKey, $mutations);
+     *     $response = $bigtableClient->mutateRow();
      * } finally {
      *     $bigtableClient->close();
      * }
      * ```
      *
-     * @param string     $tableName    Required. The unique name of the table to which the mutation should be
-     *                                 applied. Values are of the form
-     *                                 `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param string     $rowKey       Required. The key of the row to which the mutation should be applied.
-     * @param Mutation[] $mutations    Required. Changes to be atomically applied to the specified row. Entries
-     *                                 are applied in order, meaning that earlier mutations can be masked by later
-     *                                 ones. Must contain at least one entry and at most 100000.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $tableName
+     *           Required. The unique name of the table to which the mutation should be
+     *           applied. Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
      *     @type string $appProfileId
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
+     *     @type string $rowKey
+     *           Required. The key of the row to which the mutation should be applied.
+     *     @type Mutation[] $mutations
+     *           Required. Changes to be atomically applied to the specified row. Entries
+     *           are applied in order, meaning that earlier mutations can be masked by later
+     *           ones. Must contain at least one entry and at most 100000.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -493,21 +499,29 @@ class BigtableGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function mutateRow($tableName, $rowKey, $mutations, array $optionalArgs = [])
+    public function mutateRow(array $optionalArgs = [])
     {
         $request = new MutateRowRequest();
         $requestParamHeaders = [];
-        $request->setTableName($tableName);
-        $request->setRowKey($rowKey);
-        $request->setMutations($mutations);
-        $tableNameMatches = [];
-        if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $tableName, $tableNameMatches)) {
-            $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+        if (isset($optionalArgs['tableName'])) {
+            $request->setTableName($optionalArgs['tableName']);
+            $tableNameMatches = [];
+            if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $optionalArgs['tableName'], $tableNameMatches)) {
+                $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+            }
         }
 
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
             $requestParamHeaders['app_profile_id'] = $optionalArgs['appProfileId'];
+        }
+
+        if (isset($optionalArgs['rowKey'])) {
+            $request->setRowKey($optionalArgs['rowKey']);
+        }
+
+        if (isset($optionalArgs['mutations'])) {
+            $request->setMutations($optionalArgs['mutations']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -524,10 +538,8 @@ class BigtableGapicClient
      * ```
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
-     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-     *     $entries = [];
      *     // Read all responses until the stream is complete
-     *     $stream = $bigtableClient->mutateRows($formattedTableName, $entries);
+     *     $stream = $bigtableClient->mutateRows();
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -536,19 +548,21 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string  $tableName    Required. The unique name of the table to which the mutations should be
-     *                              applied.
-     * @param Entry[] $entries      Required. The row keys and corresponding mutations to be applied in bulk.
-     *                              Each entry is applied as an atomic mutation, but the entries may be
-     *                              applied in arbitrary order (even between entries for the same row).
-     *                              At least one entry must be specified, and in total the entries can
-     *                              contain at most 100000 mutations.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $tableName
+     *           Required. The unique name of the table to which the mutations should be
+     *           applied.
      *     @type string $appProfileId
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
+     *     @type Entry[] $entries
+     *           Required. The row keys and corresponding mutations to be applied in bulk.
+     *           Each entry is applied as an atomic mutation, but the entries may be
+     *           applied in arbitrary order (even between entries for the same row).
+     *           At least one entry must be specified, and in total the entries can
+     *           contain at most 100000 mutations.
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -557,20 +571,25 @@ class BigtableGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function mutateRows($tableName, $entries, array $optionalArgs = [])
+    public function mutateRows(array $optionalArgs = [])
     {
         $request = new MutateRowsRequest();
         $requestParamHeaders = [];
-        $request->setTableName($tableName);
-        $request->setEntries($entries);
-        $tableNameMatches = [];
-        if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $tableName, $tableNameMatches)) {
-            $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+        if (isset($optionalArgs['tableName'])) {
+            $request->setTableName($optionalArgs['tableName']);
+            $tableNameMatches = [];
+            if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $optionalArgs['tableName'], $tableNameMatches)) {
+                $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+            }
         }
 
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
             $requestParamHeaders['app_profile_id'] = $optionalArgs['appProfileId'];
+        }
+
+        if (isset($optionalArgs['entries'])) {
+            $request->setEntries($optionalArgs['entries']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -586,19 +605,19 @@ class BigtableGapicClient
      * ```
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
-     *     $formattedName = $bigtableClient->instanceName('[PROJECT]', '[INSTANCE]');
-     *     $response = $bigtableClient->pingAndWarm($formattedName);
+     *     $response = $bigtableClient->pingAndWarm();
      * } finally {
      *     $bigtableClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The unique name of the instance to check permissions for as well
-     *                             as respond. Values are of the form
-     *                             `projects/<project>/instances/<instance>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The unique name of the instance to check permissions for as well
+     *           as respond. Values are of the form
+     *           `projects/<project>/instances/<instance>`.
      *     @type string $appProfileId
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -612,14 +631,16 @@ class BigtableGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function pingAndWarm($name, array $optionalArgs = [])
+    public function pingAndWarm(array $optionalArgs = [])
     {
         $request = new PingAndWarmRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $nameMatches = [];
-        if (preg_match('/^(?<name>projects\/[^\/]+\/instances\/[^\/]+)$/', $name, $nameMatches)) {
-            $requestParamHeaders['name'] = $nameMatches['name'];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $nameMatches = [];
+            if (preg_match('/^(?<name>projects\/[^\/]+\/instances\/[^\/]+)$/', $optionalArgs['name'], $nameMatches)) {
+                $requestParamHeaders['name'] = $nameMatches['name'];
+            }
         }
 
         if (isset($optionalArgs['appProfileId'])) {
@@ -642,9 +663,8 @@ class BigtableGapicClient
      * ```
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
-     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     // Read all responses until the stream is complete
-     *     $stream = $bigtableClient->readChangeStream($formattedTableName);
+     *     $stream = $bigtableClient->readChangeStream();
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -653,13 +673,14 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName    Required. The unique name of the table from which to read a change stream.
-     *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
-     *                             Change streaming must be enabled on the table.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $tableName
+     *           Required. The unique name of the table from which to read a change stream.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *           Change streaming must be enabled on the table.
      *     @type string $appProfileId
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -697,12 +718,15 @@ class BigtableGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function readChangeStream($tableName, array $optionalArgs = [])
+    public function readChangeStream(array $optionalArgs = [])
     {
         $request = new ReadChangeStreamRequest();
         $requestParamHeaders = [];
-        $request->setTableName($tableName);
-        $requestParamHeaders['table_name'] = $tableName;
+        if (isset($optionalArgs['tableName'])) {
+            $request->setTableName($optionalArgs['tableName']);
+            $requestParamHeaders['table_name'] = $optionalArgs['tableName'];
+        }
+
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
         }
@@ -743,29 +767,29 @@ class BigtableGapicClient
      * ```
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
-     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-     *     $rowKey = '...';
-     *     $rules = [];
-     *     $response = $bigtableClient->readModifyWriteRow($formattedTableName, $rowKey, $rules);
+     *     $response = $bigtableClient->readModifyWriteRow();
      * } finally {
      *     $bigtableClient->close();
      * }
      * ```
      *
-     * @param string                $tableName    Required. The unique name of the table to which the read/modify/write rules
-     *                                            should be applied. Values are of the form
-     *                                            `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param string                $rowKey       Required. The key of the row to which the read/modify/write rules should be
-     *                                            applied.
-     * @param ReadModifyWriteRule[] $rules        Required. Rules specifying how the specified row's contents are to be
-     *                                            transformed into writes. Entries are applied in order, meaning that earlier
-     *                                            rules will affect the results of later ones.
-     * @param array                 $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $tableName
+     *           Required. The unique name of the table to which the read/modify/write rules
+     *           should be applied. Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
      *     @type string $appProfileId
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
+     *     @type string $rowKey
+     *           Required. The key of the row to which the read/modify/write rules should be
+     *           applied.
+     *     @type ReadModifyWriteRule[] $rules
+     *           Required. Rules specifying how the specified row's contents are to be
+     *           transformed into writes. Entries are applied in order, meaning that earlier
+     *           rules will affect the results of later ones.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -776,21 +800,29 @@ class BigtableGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function readModifyWriteRow($tableName, $rowKey, $rules, array $optionalArgs = [])
+    public function readModifyWriteRow(array $optionalArgs = [])
     {
         $request = new ReadModifyWriteRowRequest();
         $requestParamHeaders = [];
-        $request->setTableName($tableName);
-        $request->setRowKey($rowKey);
-        $request->setRules($rules);
-        $tableNameMatches = [];
-        if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $tableName, $tableNameMatches)) {
-            $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+        if (isset($optionalArgs['tableName'])) {
+            $request->setTableName($optionalArgs['tableName']);
+            $tableNameMatches = [];
+            if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $optionalArgs['tableName'], $tableNameMatches)) {
+                $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+            }
         }
 
         if (isset($optionalArgs['appProfileId'])) {
             $request->setAppProfileId($optionalArgs['appProfileId']);
             $requestParamHeaders['app_profile_id'] = $optionalArgs['appProfileId'];
+        }
+
+        if (isset($optionalArgs['rowKey'])) {
+            $request->setRowKey($optionalArgs['rowKey']);
+        }
+
+        if (isset($optionalArgs['rules'])) {
+            $request->setRules($optionalArgs['rules']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -809,9 +841,8 @@ class BigtableGapicClient
      * ```
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
-     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     // Read all responses until the stream is complete
-     *     $stream = $bigtableClient->readRows($formattedTableName);
+     *     $stream = $bigtableClient->readRows();
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -820,12 +851,13 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName    Required. The unique name of the table from which to read.
-     *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $tableName
+     *           Required. The unique name of the table from which to read.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
      *     @type string $appProfileId
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -862,14 +894,16 @@ class BigtableGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function readRows($tableName, array $optionalArgs = [])
+    public function readRows(array $optionalArgs = [])
     {
         $request = new ReadRowsRequest();
         $requestParamHeaders = [];
-        $request->setTableName($tableName);
-        $tableNameMatches = [];
-        if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $tableName, $tableNameMatches)) {
-            $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+        if (isset($optionalArgs['tableName'])) {
+            $request->setTableName($optionalArgs['tableName']);
+            $tableNameMatches = [];
+            if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $optionalArgs['tableName'], $tableNameMatches)) {
+                $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+            }
         }
 
         if (isset($optionalArgs['appProfileId'])) {
@@ -912,9 +946,8 @@ class BigtableGapicClient
      * ```
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
-     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     // Read all responses until the stream is complete
-     *     $stream = $bigtableClient->sampleRowKeys($formattedTableName);
+     *     $stream = $bigtableClient->sampleRowKeys();
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -923,12 +956,13 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName    Required. The unique name of the table from which to sample row keys.
-     *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $tableName
+     *           Required. The unique name of the table from which to sample row keys.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
      *     @type string $appProfileId
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -940,14 +974,16 @@ class BigtableGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function sampleRowKeys($tableName, array $optionalArgs = [])
+    public function sampleRowKeys(array $optionalArgs = [])
     {
         $request = new SampleRowKeysRequest();
         $requestParamHeaders = [];
-        $request->setTableName($tableName);
-        $tableNameMatches = [];
-        if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $tableName, $tableNameMatches)) {
-            $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+        if (isset($optionalArgs['tableName'])) {
+            $request->setTableName($optionalArgs['tableName']);
+            $tableNameMatches = [];
+            if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $optionalArgs['tableName'], $tableNameMatches)) {
+                $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+            }
         }
 
         if (isset($optionalArgs['appProfileId'])) {

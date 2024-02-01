@@ -35,18 +35,19 @@ use Google\Rpc\Status;
  * stale when a publisher adds or removes data. This is a long-running
  * operation as it may create many linked datasets.
  *
- * @param string $formattedName Resource name of the Subscription to refresh.
- *                              e.g. `projects/subscriberproject/locations/US/subscriptions/123`
- *                              Please see {@see AnalyticsHubServiceClient::subscriptionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function refresh_subscription_sample(string $formattedName): void
+function refresh_subscription_sample(): void
 {
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
     // Prepare the request message.
-    $request = (new RefreshSubscriptionRequest())
-        ->setName($formattedName);
+    $request = new RefreshSubscriptionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -66,25 +67,5 @@ function refresh_subscription_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AnalyticsHubServiceClient::subscriptionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[SUBSCRIPTION]'
-    );
-
-    refresh_subscription_sample($formattedName);
 }
 // [END analyticshub_v1_generated_AnalyticsHubService_RefreshSubscription_sync]

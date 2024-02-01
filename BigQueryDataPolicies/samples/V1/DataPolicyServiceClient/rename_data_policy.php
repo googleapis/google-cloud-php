@@ -31,19 +31,19 @@ use Google\Cloud\BigQuery\DataPolicies\V1\RenameDataPolicyRequest;
 /**
  * Renames the id (display name) of the specified data policy.
  *
- * @param string $name            Resource name of the data policy to rename. The format is
- *                                `projects/{project_number}/locations/{location_id}/dataPolicies/{data_policy_id}`
- * @param string $newDataPolicyId The new data policy id.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function rename_data_policy_sample(string $name, string $newDataPolicyId): void
+function rename_data_policy_sample(): void
 {
     // Create a client.
     $dataPolicyServiceClient = new DataPolicyServiceClient();
 
     // Prepare the request message.
-    $request = (new RenameDataPolicyRequest())
-        ->setName($name)
-        ->setNewDataPolicyId($newDataPolicyId);
+    $request = new RenameDataPolicyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,22 +53,5 @@ function rename_data_policy_sample(string $name, string $newDataPolicyId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-    $newDataPolicyId = '[NEW_DATA_POLICY_ID]';
-
-    rename_data_policy_sample($name, $newDataPolicyId);
 }
 // [END bigquerydatapolicy_v1_generated_DataPolicyService_RenameDataPolicy_sync]

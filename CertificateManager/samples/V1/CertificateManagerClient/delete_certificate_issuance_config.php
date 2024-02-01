@@ -32,18 +32,19 @@ use Google\Rpc\Status;
 /**
  * Deletes a single CertificateIssuanceConfig.
  *
- * @param string $formattedName A name of the certificate issuance config to delete. Must be in
- *                              the format `projects/&#42;/locations/&#42;/certificateIssuanceConfigs/*`. Please see
- *                              {@see CertificateManagerClient::certificateIssuanceConfigName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_certificate_issuance_config_sample(string $formattedName): void
+function delete_certificate_issuance_config_sample(): void
 {
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
     // Prepare the request message.
-    $request = (new DeleteCertificateIssuanceConfigRequest())
-        ->setName($formattedName);
+    $request = new DeleteCertificateIssuanceConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,25 +62,5 @@ function delete_certificate_issuance_config_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CertificateManagerClient::certificateIssuanceConfigName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CERTIFICATE_ISSUANCE_CONFIG]'
-    );
-
-    delete_certificate_issuance_config_sample($formattedName);
 }
 // [END certificatemanager_v1_generated_CertificateManager_DeleteCertificateIssuanceConfig_sync]

@@ -46,8 +46,7 @@ class CreateAppProfileRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                     $parent       Required. The unique name of the instance in which to create the new app
-     *                                                                 profile. Values are of the form `projects/{project}/instances/{instance}`. Please see
-     *                                                                 {@see BigtableInstanceAdminClient::instanceName()} for help formatting this field.
+     *                                                                 profile. Values are of the form `projects/{project}/instances/{instance}`.
      * @param string                                     $appProfileId Required. The ID to be used when referring to the new app profile within
      *                                                                 its instance, e.g., just `myprofile` rather than
      *                                                                 `projects/myproject/instances/myinstance/appProfiles/myprofile`.

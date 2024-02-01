@@ -36,19 +36,19 @@ use Google\Cloud\Bigtable\V2\ReadRowsResponse;
  * atomicity of each row will still be preserved. See the
  * ReadRowsResponse documentation for details.
  *
- * @param string $formattedTableName The unique name of the table from which to read.
- *                                   Values are of the form
- *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
- *                                   {@see BigtableClient::tableName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function read_rows_sample(string $formattedTableName): void
+function read_rows_sample(): void
 {
     // Create a client.
     $bigtableClient = new BigtableClient();
 
     // Prepare the request message.
-    $request = (new ReadRowsRequest())
-        ->setTableName($formattedTableName);
+    $request = new ReadRowsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,21 +62,5 @@ function read_rows_sample(string $formattedTableName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedTableName = BigtableClient::tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-
-    read_rows_sample($formattedTableName);
 }
 // [END bigtable_v2_generated_Bigtable_ReadRows_sync]

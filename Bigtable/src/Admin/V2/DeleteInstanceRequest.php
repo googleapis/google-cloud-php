@@ -25,8 +25,7 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The unique name of the instance to be deleted.
-     *                     Values are of the form `projects/{project}/instances/{instance}`. Please see
-     *                     {@see BigtableInstanceAdminClient::instanceName()} for help formatting this field.
+     *                     Values are of the form `projects/{project}/instances/{instance}`.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\DeleteInstanceRequest
      *

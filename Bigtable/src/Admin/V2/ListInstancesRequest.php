@@ -31,8 +31,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The unique name of the project for which a list of instances is
-     *                       requested. Values are of the form `projects/{project}`. Please see
-     *                       {@see BigtableInstanceAdminClient::projectName()} for help formatting this field.
+     *                       requested. Values are of the form `projects/{project}`.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\ListInstancesRequest
      *

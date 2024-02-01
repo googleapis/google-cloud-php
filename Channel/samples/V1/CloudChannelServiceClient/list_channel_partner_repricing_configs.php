@@ -55,22 +55,19 @@ use Google\Cloud\Channel\V1\ListChannelPartnerRepricingConfigsRequest;
  *
  * If unsuccessful, returns an error.
  *
- * @param string $formattedParent The resource name of the account's
- *                                [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]. Parent
- *                                uses the format:
- *                                accounts/{account_id}/channelPartnerLinks/{channel_partner_id}.
- *                                Supports accounts/{account_id}/channelPartnerLinks/- to retrieve configs
- *                                for all channel partners. Please see
- *                                {@see CloudChannelServiceClient::channelPartnerLinkName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_channel_partner_repricing_configs_sample(string $formattedParent): void
+function list_channel_partner_repricing_configs_sample(): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = (new ListChannelPartnerRepricingConfigsRequest())
-        ->setParent($formattedParent);
+    $request = new ListChannelPartnerRepricingConfigsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -84,24 +81,5 @@ function list_channel_partner_repricing_configs_sample(string $formattedParent):
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CloudChannelServiceClient::channelPartnerLinkName(
-        '[ACCOUNT]',
-        '[CHANNEL_PARTNER_LINK]'
-    );
-
-    list_channel_partner_repricing_configs_sample($formattedParent);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_ListChannelPartnerRepricingConfigs_sync]

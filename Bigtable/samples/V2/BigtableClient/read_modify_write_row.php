@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Bigtable\V2\Client\BigtableClient;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
-use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
 
 /**
  * Modifies a row atomically on the server. The method reads the latest
@@ -36,24 +35,19 @@ use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
  * timestamp is the greater of the existing timestamp or the current server
  * time. The method returns the new contents of all modified cells.
  *
- * @param string $formattedTableName The unique name of the table to which the read/modify/write rules
- *                                   should be applied. Values are of the form
- *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
- *                                   {@see BigtableClient::tableName()} for help formatting this field.
- * @param string $rowKey             The key of the row to which the read/modify/write rules should be
- *                                   applied.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function read_modify_write_row_sample(string $formattedTableName, string $rowKey): void
+function read_modify_write_row_sample(): void
 {
     // Create a client.
     $bigtableClient = new BigtableClient();
 
     // Prepare the request message.
-    $rules = [new ReadModifyWriteRule()];
-    $request = (new ReadModifyWriteRowRequest())
-        ->setTableName($formattedTableName)
-        ->setRowKey($rowKey)
-        ->setRules($rules);
+    $request = new ReadModifyWriteRowRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,22 +57,5 @@ function read_modify_write_row_sample(string $formattedTableName, string $rowKey
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedTableName = BigtableClient::tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-    $rowKey = '...';
-
-    read_modify_write_row_sample($formattedTableName, $rowKey);
 }
 // [END bigtable_v2_generated_Bigtable_ReadModifyWriteRow_sync]

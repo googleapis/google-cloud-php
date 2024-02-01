@@ -34,8 +34,7 @@ class PingAndWarmRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The unique name of the instance to check permissions for as well
      *                     as respond. Values are of the form
-     *                     `projects/<project>/instances/<instance>`. Please see
-     *                     {@see BigtableClient::instanceName()} for help formatting this field.
+     *                     `projects/<project>/instances/<instance>`.
      *
      * @return \Google\Cloud\Bigtable\V2\PingAndWarmRequest
      *
@@ -50,8 +49,7 @@ class PingAndWarmRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name         Required. The unique name of the instance to check permissions for as well
      *                             as respond. Values are of the form
-     *                             `projects/<project>/instances/<instance>`. Please see
-     *                             {@see BigtableClient::instanceName()} for help formatting this field.
+     *                             `projects/<project>/instances/<instance>`.
      * @param string $appProfileId This value specifies routing for replication. If not specified, the
      *                             "default" application profile will be used.
      *

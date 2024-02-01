@@ -34,7 +34,6 @@ use Google\Cloud\Channel\V1\ChangeOfferRequest;
 use Google\Cloud\Channel\V1\ChangeParametersRequest;
 use Google\Cloud\Channel\V1\ChangeRenewalSettingsRequest;
 use Google\Cloud\Channel\V1\ChannelPartnerLink;
-use Google\Cloud\Channel\V1\ChannelPartnerLinkState;
 use Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig;
 use Google\Cloud\Channel\V1\CheckCloudIdentityAccountsExistRequest;
 use Google\Cloud\Channel\V1\CheckCloudIdentityAccountsExistResponse;
@@ -97,12 +96,8 @@ use Google\Cloud\Channel\V1\PurchasableOffer;
 use Google\Cloud\Channel\V1\PurchasableSku;
 use Google\Cloud\Channel\V1\QueryEligibleBillingAccountsRequest;
 use Google\Cloud\Channel\V1\QueryEligibleBillingAccountsResponse;
-use Google\Cloud\Channel\V1\RebillingBasis;
 use Google\Cloud\Channel\V1\RegisterSubscriberRequest;
 use Google\Cloud\Channel\V1\RegisterSubscriberResponse;
-use Google\Cloud\Channel\V1\RenewalSettings;
-use Google\Cloud\Channel\V1\RepricingAdjustment;
-use Google\Cloud\Channel\V1\RepricingConfig;
 use Google\Cloud\Channel\V1\Sku;
 use Google\Cloud\Channel\V1\SkuGroup;
 use Google\Cloud\Channel\V1\StartPaidServiceRequest;
@@ -121,11 +116,8 @@ use Google\Cloud\Channel\V1\UpdateCustomerRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
-use Google\Type\Date;
-use Google\Type\PostalAddress;
 use stdClass;
 
 /**
@@ -193,10 +185,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new ActivateEntitlementRequest())
-            ->setName($name);
+        $request = new ActivateEntitlementRequest();
         $response = $gapicClient->activateEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -207,8 +196,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ActivateEntitlement', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/activateEntitlementTest');
         $response->pollUntilComplete([
@@ -259,10 +246,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new ActivateEntitlementRequest())
-            ->setName($name);
+        $request = new ActivateEntitlementRequest();
         $response = $gapicClient->activateEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -314,10 +298,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new CancelEntitlementRequest())
-            ->setName($name);
+        $request = new CancelEntitlementRequest();
         $response = $gapicClient->cancelEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -328,8 +309,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/CancelEntitlement', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/cancelEntitlementTest');
         $response->pollUntilComplete([
@@ -380,10 +359,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new CancelEntitlementRequest())
-            ->setName($name);
+        $request = new CancelEntitlementRequest();
         $response = $gapicClient->cancelEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -443,12 +419,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $formattedOffer = $gapicClient->offerName('[ACCOUNT]', '[OFFER]');
-        $request = (new ChangeOfferRequest())
-            ->setName($name)
-            ->setOffer($formattedOffer);
+        $request = new ChangeOfferRequest();
         $response = $gapicClient->changeOffer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -459,10 +430,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ChangeOffer', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualApiRequestObject->getOffer();
-        $this->assertProtobufEquals($formattedOffer, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/changeOfferTest');
         $response->pollUntilComplete([
@@ -513,12 +480,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $formattedOffer = $gapicClient->offerName('[ACCOUNT]', '[OFFER]');
-        $request = (new ChangeOfferRequest())
-            ->setName($name)
-            ->setOffer($formattedOffer);
+        $request = new ChangeOfferRequest();
         $response = $gapicClient->changeOffer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -578,12 +540,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $parameters = [];
-        $request = (new ChangeParametersRequest())
-            ->setName($name)
-            ->setParameters($parameters);
+        $request = new ChangeParametersRequest();
         $response = $gapicClient->changeParameters($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -594,10 +551,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ChangeParameters', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualApiRequestObject->getParameters();
-        $this->assertProtobufEquals($parameters, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/changeParametersTest');
         $response->pollUntilComplete([
@@ -648,12 +601,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $parameters = [];
-        $request = (new ChangeParametersRequest())
-            ->setName($name)
-            ->setParameters($parameters);
+        $request = new ChangeParametersRequest();
         $response = $gapicClient->changeParameters($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -713,12 +661,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $renewalSettings = new RenewalSettings();
-        $request = (new ChangeRenewalSettingsRequest())
-            ->setName($name)
-            ->setRenewalSettings($renewalSettings);
+        $request = new ChangeRenewalSettingsRequest();
         $response = $gapicClient->changeRenewalSettings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -729,10 +672,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ChangeRenewalSettings', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualApiRequestObject->getRenewalSettings();
-        $this->assertProtobufEquals($renewalSettings, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/changeRenewalSettingsTest');
         $response->pollUntilComplete([
@@ -783,12 +722,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $renewalSettings = new RenewalSettings();
-        $request = (new ChangeRenewalSettingsRequest())
-            ->setName($name)
-            ->setRenewalSettings($renewalSettings);
+        $request = new ChangeRenewalSettingsRequest();
         $response = $gapicClient->changeRenewalSettings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -822,12 +756,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new CheckCloudIdentityAccountsExistResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $domain = 'domain-1326197564';
-        $request = (new CheckCloudIdentityAccountsExistRequest())
-            ->setParent($parent)
-            ->setDomain($domain);
+        $request = new CheckCloudIdentityAccountsExistRequest();
         $response = $gapicClient->checkCloudIdentityAccountsExist($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -835,10 +764,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/CheckCloudIdentityAccountsExist', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getDomain();
-        $this->assertProtobufEquals($domain, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -860,12 +785,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $domain = 'domain-1326197564';
-        $request = (new CheckCloudIdentityAccountsExistRequest())
-            ->setParent($parent)
-            ->setDomain($domain);
+        $request = new CheckCloudIdentityAccountsExistRequest();
         try {
             $gapicClient->checkCloudIdentityAccountsExist($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -898,16 +818,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setInviteLinkUri($inviteLinkUri);
         $expectedResponse->setPublicId($publicId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $channelPartnerLink = new ChannelPartnerLink();
-        $channelPartnerLinkResellerCloudIdentityId = 'channelPartnerLinkResellerCloudIdentityId-321778211';
-        $channelPartnerLink->setResellerCloudIdentityId($channelPartnerLinkResellerCloudIdentityId);
-        $channelPartnerLinkLinkState = ChannelPartnerLinkState::CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED;
-        $channelPartnerLink->setLinkState($channelPartnerLinkLinkState);
-        $request = (new CreateChannelPartnerLinkRequest())
-            ->setParent($parent)
-            ->setChannelPartnerLink($channelPartnerLink);
+        $request = new CreateChannelPartnerLinkRequest();
         $response = $gapicClient->createChannelPartnerLink($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -915,10 +826,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/CreateChannelPartnerLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getChannelPartnerLink();
-        $this->assertProtobufEquals($channelPartnerLink, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -940,16 +847,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $channelPartnerLink = new ChannelPartnerLink();
-        $channelPartnerLinkResellerCloudIdentityId = 'channelPartnerLinkResellerCloudIdentityId-321778211';
-        $channelPartnerLink->setResellerCloudIdentityId($channelPartnerLinkResellerCloudIdentityId);
-        $channelPartnerLinkLinkState = ChannelPartnerLinkState::CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED;
-        $channelPartnerLink->setLinkState($channelPartnerLinkLinkState);
-        $request = (new CreateChannelPartnerLinkRequest())
-            ->setParent($parent)
-            ->setChannelPartnerLink($channelPartnerLink);
+        $request = new CreateChannelPartnerLinkRequest();
         try {
             $gapicClient->createChannelPartnerLink($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -976,20 +874,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse = new ChannelPartnerRepricingConfig();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
-        $channelPartnerRepricingConfig = new ChannelPartnerRepricingConfig();
-        $channelPartnerRepricingConfigRepricingConfig = new RepricingConfig();
-        $repricingConfigEffectiveInvoiceMonth = new Date();
-        $channelPartnerRepricingConfigRepricingConfig->setEffectiveInvoiceMonth($repricingConfigEffectiveInvoiceMonth);
-        $repricingConfigAdjustment = new RepricingAdjustment();
-        $channelPartnerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
-        $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
-        $channelPartnerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
-        $channelPartnerRepricingConfig->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
-        $request = (new CreateChannelPartnerRepricingConfigRequest())
-            ->setParent($formattedParent)
-            ->setChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
+        $request = new CreateChannelPartnerRepricingConfigRequest();
         $response = $gapicClient->createChannelPartnerRepricingConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -997,10 +882,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/CreateChannelPartnerRepricingConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getChannelPartnerRepricingConfig();
-        $this->assertProtobufEquals($channelPartnerRepricingConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1022,20 +903,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
-        $channelPartnerRepricingConfig = new ChannelPartnerRepricingConfig();
-        $channelPartnerRepricingConfigRepricingConfig = new RepricingConfig();
-        $repricingConfigEffectiveInvoiceMonth = new Date();
-        $channelPartnerRepricingConfigRepricingConfig->setEffectiveInvoiceMonth($repricingConfigEffectiveInvoiceMonth);
-        $repricingConfigAdjustment = new RepricingAdjustment();
-        $channelPartnerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
-        $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
-        $channelPartnerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
-        $channelPartnerRepricingConfig->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
-        $request = (new CreateChannelPartnerRepricingConfigRequest())
-            ->setParent($formattedParent)
-            ->setChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
+        $request = new CreateChannelPartnerRepricingConfigRequest();
         try {
             $gapicClient->createChannelPartnerRepricingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1076,18 +944,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setChannelPartnerId($channelPartnerId);
         $expectedResponse->setCorrelationId($correlationId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $customer = new Customer();
-        $customerOrgDisplayName = 'customerOrgDisplayName1748404327';
-        $customer->setOrgDisplayName($customerOrgDisplayName);
-        $customerOrgPostalAddress = new PostalAddress();
-        $customer->setOrgPostalAddress($customerOrgPostalAddress);
-        $customerDomain = 'customerDomain1489396290';
-        $customer->setDomain($customerDomain);
-        $request = (new CreateCustomerRequest())
-            ->setParent($parent)
-            ->setCustomer($customer);
+        $request = new CreateCustomerRequest();
         $response = $gapicClient->createCustomer($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1095,10 +952,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/CreateCustomer', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getCustomer();
-        $this->assertProtobufEquals($customer, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1120,18 +973,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $customer = new Customer();
-        $customerOrgDisplayName = 'customerOrgDisplayName1748404327';
-        $customer->setOrgDisplayName($customerOrgDisplayName);
-        $customerOrgPostalAddress = new PostalAddress();
-        $customer->setOrgPostalAddress($customerOrgPostalAddress);
-        $customerDomain = 'customerDomain1489396290';
-        $customer->setDomain($customerDomain);
-        $request = (new CreateCustomerRequest())
-            ->setParent($parent)
-            ->setCustomer($customer);
+        $request = new CreateCustomerRequest();
         try {
             $gapicClient->createCustomer($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1158,20 +1000,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse = new CustomerRepricingConfig();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $customerRepricingConfig = new CustomerRepricingConfig();
-        $customerRepricingConfigRepricingConfig = new RepricingConfig();
-        $repricingConfigEffectiveInvoiceMonth = new Date();
-        $customerRepricingConfigRepricingConfig->setEffectiveInvoiceMonth($repricingConfigEffectiveInvoiceMonth);
-        $repricingConfigAdjustment = new RepricingAdjustment();
-        $customerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
-        $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
-        $customerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
-        $customerRepricingConfig->setRepricingConfig($customerRepricingConfigRepricingConfig);
-        $request = (new CreateCustomerRepricingConfigRequest())
-            ->setParent($formattedParent)
-            ->setCustomerRepricingConfig($customerRepricingConfig);
+        $request = new CreateCustomerRepricingConfigRequest();
         $response = $gapicClient->createCustomerRepricingConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1179,10 +1008,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/CreateCustomerRepricingConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getCustomerRepricingConfig();
-        $this->assertProtobufEquals($customerRepricingConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1204,20 +1029,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $customerRepricingConfig = new CustomerRepricingConfig();
-        $customerRepricingConfigRepricingConfig = new RepricingConfig();
-        $repricingConfigEffectiveInvoiceMonth = new Date();
-        $customerRepricingConfigRepricingConfig->setEffectiveInvoiceMonth($repricingConfigEffectiveInvoiceMonth);
-        $repricingConfigAdjustment = new RepricingAdjustment();
-        $customerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
-        $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
-        $customerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
-        $customerRepricingConfig->setRepricingConfig($customerRepricingConfigRepricingConfig);
-        $request = (new CreateCustomerRepricingConfigRequest())
-            ->setParent($formattedParent)
-            ->setCustomerRepricingConfig($customerRepricingConfig);
+        $request = new CreateCustomerRepricingConfigRequest();
         try {
             $gapicClient->createCustomerRepricingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1268,14 +1080,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $entitlement = new Entitlement();
-        $entitlementOffer = $gapicClient->offerName('[ACCOUNT]', '[OFFER]');
-        $entitlement->setOffer($entitlementOffer);
-        $request = (new CreateEntitlementRequest())
-            ->setParent($formattedParent)
-            ->setEntitlement($entitlement);
+        $request = new CreateEntitlementRequest();
         $response = $gapicClient->createEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1286,10 +1091,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/CreateEntitlement', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getEntitlement();
-        $this->assertProtobufEquals($entitlement, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createEntitlementTest');
         $response->pollUntilComplete([
@@ -1340,14 +1141,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $entitlement = new Entitlement();
-        $entitlementOffer = $gapicClient->offerName('[ACCOUNT]', '[OFFER]');
-        $entitlement->setOffer($entitlementOffer);
-        $request = (new CreateEntitlementRequest())
-            ->setParent($formattedParent)
-            ->setEntitlement($entitlement);
+        $request = new CreateEntitlementRequest();
         $response = $gapicClient->createEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1381,18 +1175,13 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
-        $request = (new DeleteChannelPartnerRepricingConfigRequest())
-            ->setName($formattedName);
+        $request = new DeleteChannelPartnerRepricingConfigRequest();
         $gapicClient->deleteChannelPartnerRepricingConfig($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/DeleteChannelPartnerRepricingConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1414,10 +1203,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
-        $request = (new DeleteChannelPartnerRepricingConfigRequest())
-            ->setName($formattedName);
+        $request = new DeleteChannelPartnerRepricingConfigRequest();
         try {
             $gapicClient->deleteChannelPartnerRepricingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1442,18 +1228,13 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new DeleteCustomerRequest())
-            ->setName($formattedName);
+        $request = new DeleteCustomerRequest();
         $gapicClient->deleteCustomer($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/DeleteCustomer', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1475,10 +1256,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new DeleteCustomerRequest())
-            ->setName($formattedName);
+        $request = new DeleteCustomerRequest();
         try {
             $gapicClient->deleteCustomer($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1503,18 +1281,13 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
-        $request = (new DeleteCustomerRepricingConfigRequest())
-            ->setName($formattedName);
+        $request = new DeleteCustomerRepricingConfigRequest();
         $gapicClient->deleteCustomerRepricingConfig($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/DeleteCustomerRepricingConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1536,10 +1309,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
-        $request = (new DeleteCustomerRepricingConfigRequest())
-            ->setName($formattedName);
+        $request = new DeleteCustomerRepricingConfigRequest();
         try {
             $gapicClient->deleteCustomerRepricingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1572,10 +1342,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setInviteLinkUri($inviteLinkUri);
         $expectedResponse->setPublicId($publicId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new GetChannelPartnerLinkRequest())
-            ->setName($name);
+        $request = new GetChannelPartnerLinkRequest();
         $response = $gapicClient->getChannelPartnerLink($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1583,8 +1350,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/GetChannelPartnerLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1606,10 +1371,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new GetChannelPartnerLinkRequest())
-            ->setName($name);
+        $request = new GetChannelPartnerLinkRequest();
         try {
             $gapicClient->getChannelPartnerLink($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1636,10 +1398,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse = new ChannelPartnerRepricingConfig();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
-        $request = (new GetChannelPartnerRepricingConfigRequest())
-            ->setName($formattedName);
+        $request = new GetChannelPartnerRepricingConfigRequest();
         $response = $gapicClient->getChannelPartnerRepricingConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1647,8 +1406,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/GetChannelPartnerRepricingConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1670,10 +1427,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
-        $request = (new GetChannelPartnerRepricingConfigRequest())
-            ->setName($formattedName);
+        $request = new GetChannelPartnerRepricingConfigRequest();
         try {
             $gapicClient->getChannelPartnerRepricingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1714,10 +1468,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setChannelPartnerId($channelPartnerId);
         $expectedResponse->setCorrelationId($correlationId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new GetCustomerRequest())
-            ->setName($formattedName);
+        $request = new GetCustomerRequest();
         $response = $gapicClient->getCustomer($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1725,8 +1476,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/GetCustomer', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1748,10 +1497,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new GetCustomerRequest())
-            ->setName($formattedName);
+        $request = new GetCustomerRequest();
         try {
             $gapicClient->getCustomer($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1778,10 +1524,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse = new CustomerRepricingConfig();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
-        $request = (new GetCustomerRepricingConfigRequest())
-            ->setName($formattedName);
+        $request = new GetCustomerRepricingConfigRequest();
         $response = $gapicClient->getCustomerRepricingConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1789,8 +1532,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/GetCustomerRepricingConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1812,10 +1553,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
-        $request = (new GetCustomerRepricingConfigRequest())
-            ->setName($formattedName);
+        $request = new GetCustomerRepricingConfigRequest();
         try {
             $gapicClient->getCustomerRepricingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1848,10 +1586,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setPurchaseOrderId($purchaseOrderId);
         $expectedResponse->setBillingAccount($billingAccount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-        $request = (new GetEntitlementRequest())
-            ->setName($formattedName);
+        $request = new GetEntitlementRequest();
         $response = $gapicClient->getEntitlement($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1859,8 +1594,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/GetEntitlement', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1882,10 +1615,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-        $request = (new GetEntitlementRequest())
-            ->setName($formattedName);
+        $request = new GetEntitlementRequest();
         try {
             $gapicClient->getEntitlement($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1926,14 +1656,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setChannelPartnerId($channelPartnerId2);
         $expectedResponse->setCorrelationId($correlationId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $domain = 'domain-1326197564';
-        $parent = 'parent-995424086';
-        $overwriteIfExists = true;
-        $request = (new ImportCustomerRequest())
-            ->setDomain($domain)
-            ->setParent($parent)
-            ->setOverwriteIfExists($overwriteIfExists);
+        $request = new ImportCustomerRequest();
         $response = $gapicClient->importCustomer($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1941,12 +1664,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ImportCustomer', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDomain();
-        $this->assertProtobufEquals($domain, $actualValue);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getOverwriteIfExists();
-        $this->assertProtobufEquals($overwriteIfExists, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1968,14 +1685,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $domain = 'domain-1326197564';
-        $parent = 'parent-995424086';
-        $overwriteIfExists = true;
-        $request = (new ImportCustomerRequest())
-            ->setDomain($domain)
-            ->setParent($parent)
-            ->setOverwriteIfExists($overwriteIfExists);
+        $request = new ImportCustomerRequest();
         try {
             $gapicClient->importCustomer($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2007,10 +1717,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setChannelPartnerLinks($channelPartnerLinks);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListChannelPartnerLinksRequest())
-            ->setParent($parent);
+        $request = new ListChannelPartnerLinksRequest();
         $response = $gapicClient->listChannelPartnerLinks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2021,8 +1728,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListChannelPartnerLinks', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2044,10 +1749,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListChannelPartnerLinksRequest())
-            ->setParent($parent);
+        $request = new ListChannelPartnerLinksRequest();
         try {
             $gapicClient->listChannelPartnerLinks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2079,10 +1781,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setChannelPartnerRepricingConfigs($channelPartnerRepricingConfigs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
-        $request = (new ListChannelPartnerRepricingConfigsRequest())
-            ->setParent($formattedParent);
+        $request = new ListChannelPartnerRepricingConfigsRequest();
         $response = $gapicClient->listChannelPartnerRepricingConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2093,8 +1792,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListChannelPartnerRepricingConfigs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2116,10 +1813,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
-        $request = (new ListChannelPartnerRepricingConfigsRequest())
-            ->setParent($formattedParent);
+        $request = new ListChannelPartnerRepricingConfigsRequest();
         try {
             $gapicClient->listChannelPartnerRepricingConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2151,10 +1845,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCustomerRepricingConfigs($customerRepricingConfigs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListCustomerRepricingConfigsRequest())
-            ->setParent($formattedParent);
+        $request = new ListCustomerRepricingConfigsRequest();
         $response = $gapicClient->listCustomerRepricingConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2165,8 +1856,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListCustomerRepricingConfigs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2188,10 +1877,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListCustomerRepricingConfigsRequest())
-            ->setParent($formattedParent);
+        $request = new ListCustomerRepricingConfigsRequest();
         try {
             $gapicClient->listCustomerRepricingConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2223,10 +1909,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCustomers($customers);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListCustomersRequest())
-            ->setParent($parent);
+        $request = new ListCustomersRequest();
         $response = $gapicClient->listCustomers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2237,8 +1920,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListCustomers', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2260,10 +1941,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListCustomersRequest())
-            ->setParent($parent);
+        $request = new ListCustomersRequest();
         try {
             $gapicClient->listCustomers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2295,10 +1973,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEntitlementChanges($entitlementChanges);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-        $request = (new ListEntitlementChangesRequest())
-            ->setParent($formattedParent);
+        $request = new ListEntitlementChangesRequest();
         $response = $gapicClient->listEntitlementChanges($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2309,8 +1984,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListEntitlementChanges', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2332,10 +2005,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-        $request = (new ListEntitlementChangesRequest())
-            ->setParent($formattedParent);
+        $request = new ListEntitlementChangesRequest();
         try {
             $gapicClient->listEntitlementChanges($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2367,10 +2037,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEntitlements($entitlements);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListEntitlementsRequest())
-            ->setParent($formattedParent);
+        $request = new ListEntitlementsRequest();
         $response = $gapicClient->listEntitlements($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2381,8 +2048,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListEntitlements', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2404,10 +2069,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListEntitlementsRequest())
-            ->setParent($formattedParent);
+        $request = new ListEntitlementsRequest();
         try {
             $gapicClient->listEntitlements($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2439,10 +2101,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOffers($offers);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListOffersRequest())
-            ->setParent($parent);
+        $request = new ListOffersRequest();
         $response = $gapicClient->listOffers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2453,8 +2112,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListOffers', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2476,10 +2133,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListOffersRequest())
-            ->setParent($parent);
+        $request = new ListOffersRequest();
         try {
             $gapicClient->listOffers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2511,10 +2165,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProducts($products);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $account = 'account-1177318867';
-        $request = (new ListProductsRequest())
-            ->setAccount($account);
+        $request = new ListProductsRequest();
         $response = $gapicClient->listProducts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2525,8 +2176,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListProducts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAccount();
-        $this->assertProtobufEquals($account, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2548,10 +2197,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $account = 'account-1177318867';
-        $request = (new ListProductsRequest())
-            ->setAccount($account);
+        $request = new ListProductsRequest();
         try {
             $gapicClient->listProducts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2583,10 +2229,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPurchasableOffers($purchasableOffers);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListPurchasableOffersRequest())
-            ->setCustomer($formattedCustomer);
+        $request = new ListPurchasableOffersRequest();
         $response = $gapicClient->listPurchasableOffers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2597,8 +2240,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListPurchasableOffers', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCustomer();
-        $this->assertProtobufEquals($formattedCustomer, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2620,10 +2261,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListPurchasableOffersRequest())
-            ->setCustomer($formattedCustomer);
+        $request = new ListPurchasableOffersRequest();
         try {
             $gapicClient->listPurchasableOffers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2655,10 +2293,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPurchasableSkus($purchasableSkus);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListPurchasableSkusRequest())
-            ->setCustomer($formattedCustomer);
+        $request = new ListPurchasableSkusRequest();
         $response = $gapicClient->listPurchasableSkus($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2669,8 +2304,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListPurchasableSkus', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCustomer();
-        $this->assertProtobufEquals($formattedCustomer, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2692,10 +2325,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListPurchasableSkusRequest())
-            ->setCustomer($formattedCustomer);
+        $request = new ListPurchasableSkusRequest();
         try {
             $gapicClient->listPurchasableSkus($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2727,10 +2357,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBillableSkus($billableSkus);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->skuGroupName('[ACCOUNT]', '[SKU_GROUP]');
-        $request = (new ListSkuGroupBillableSkusRequest())
-            ->setParent($formattedParent);
+        $request = new ListSkuGroupBillableSkusRequest();
         $response = $gapicClient->listSkuGroupBillableSkus($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2741,8 +2368,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListSkuGroupBillableSkus', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2764,10 +2389,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->skuGroupName('[ACCOUNT]', '[SKU_GROUP]');
-        $request = (new ListSkuGroupBillableSkusRequest())
-            ->setParent($formattedParent);
+        $request = new ListSkuGroupBillableSkusRequest();
         try {
             $gapicClient->listSkuGroupBillableSkus($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2799,10 +2421,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSkuGroups($skuGroups);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListSkuGroupsRequest())
-            ->setParent($parent);
+        $request = new ListSkuGroupsRequest();
         $response = $gapicClient->listSkuGroups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2813,8 +2432,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListSkuGroups', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2836,10 +2453,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListSkuGroupsRequest())
-            ->setParent($parent);
+        $request = new ListSkuGroupsRequest();
         try {
             $gapicClient->listSkuGroups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2871,12 +2485,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSkus($skus);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->productName('[PRODUCT]');
-        $account = 'account-1177318867';
-        $request = (new ListSkusRequest())
-            ->setParent($formattedParent)
-            ->setAccount($account);
+        $request = new ListSkusRequest();
         $response = $gapicClient->listSkus($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2887,10 +2496,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListSkus', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getAccount();
-        $this->assertProtobufEquals($account, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2912,12 +2517,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->productName('[PRODUCT]');
-        $account = 'account-1177318867';
-        $request = (new ListSkusRequest())
-            ->setParent($formattedParent)
-            ->setAccount($account);
+        $request = new ListSkusRequest();
         try {
             $gapicClient->listSkus($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2951,10 +2551,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServiceAccounts($serviceAccounts);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $account = 'account-1177318867';
-        $request = (new ListSubscribersRequest())
-            ->setAccount($account);
+        $request = new ListSubscribersRequest();
         $response = $gapicClient->listSubscribers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2965,8 +2562,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListSubscribers', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAccount();
-        $this->assertProtobufEquals($account, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2988,10 +2583,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $account = 'account-1177318867';
-        $request = (new ListSubscribersRequest())
-            ->setAccount($account);
+        $request = new ListSubscribersRequest();
         try {
             $gapicClient->listSubscribers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3023,12 +2615,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTransferableOffers($transferableOffers);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $sku = 'sku113949';
-        $request = (new ListTransferableOffersRequest())
-            ->setParent($parent)
-            ->setSku($sku);
+        $request = new ListTransferableOffersRequest();
         $response = $gapicClient->listTransferableOffers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3039,10 +2626,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListTransferableOffers', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getSku();
-        $this->assertProtobufEquals($sku, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3064,12 +2647,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $sku = 'sku113949';
-        $request = (new ListTransferableOffersRequest())
-            ->setParent($parent)
-            ->setSku($sku);
+        $request = new ListTransferableOffersRequest();
         try {
             $gapicClient->listTransferableOffers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3101,10 +2679,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTransferableSkus($transferableSkus);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListTransferableSkusRequest())
-            ->setParent($parent);
+        $request = new ListTransferableSkusRequest();
         $response = $gapicClient->listTransferableSkus($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3115,8 +2690,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListTransferableSkus', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3138,10 +2711,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListTransferableSkusRequest())
-            ->setParent($parent);
+        $request = new ListTransferableSkusRequest();
         try {
             $gapicClient->listTransferableSkus($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3170,10 +2740,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDealCode($dealCode);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedEntitlement = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-        $request = (new LookupOfferRequest())
-            ->setEntitlement($formattedEntitlement);
+        $request = new LookupOfferRequest();
         $response = $gapicClient->lookupOffer($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3181,8 +2748,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/LookupOffer', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEntitlement();
-        $this->assertProtobufEquals($formattedEntitlement, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3204,10 +2769,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedEntitlement = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-        $request = (new LookupOfferRequest())
-            ->setEntitlement($formattedEntitlement);
+        $request = new LookupOfferRequest();
         try {
             $gapicClient->lookupOffer($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3266,10 +2828,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ProvisionCloudIdentityRequest())
-            ->setCustomer($formattedCustomer);
+        $request = new ProvisionCloudIdentityRequest();
         $response = $gapicClient->provisionCloudIdentity($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3280,8 +2839,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ProvisionCloudIdentity', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getCustomer();
-        $this->assertProtobufEquals($formattedCustomer, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/provisionCloudIdentityTest');
         $response->pollUntilComplete([
@@ -3332,10 +2889,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ProvisionCloudIdentityRequest())
-            ->setCustomer($formattedCustomer);
+        $request = new ProvisionCloudIdentityRequest();
         $response = $gapicClient->provisionCloudIdentity($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3369,12 +2923,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new QueryEligibleBillingAccountsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $skus = [];
-        $request = (new QueryEligibleBillingAccountsRequest())
-            ->setCustomer($formattedCustomer)
-            ->setSkus($skus);
+        $request = new QueryEligibleBillingAccountsRequest();
         $response = $gapicClient->queryEligibleBillingAccounts($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3382,10 +2931,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/QueryEligibleBillingAccounts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCustomer();
-        $this->assertProtobufEquals($formattedCustomer, $actualValue);
-        $actualValue = $actualRequestObject->getSkus();
-        $this->assertProtobufEquals($skus, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3407,12 +2952,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $skus = [];
-        $request = (new QueryEligibleBillingAccountsRequest())
-            ->setCustomer($formattedCustomer)
-            ->setSkus($skus);
+        $request = new QueryEligibleBillingAccountsRequest();
         try {
             $gapicClient->queryEligibleBillingAccounts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3439,12 +2979,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse = new RegisterSubscriberResponse();
         $expectedResponse->setTopic($topic);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $account = 'account-1177318867';
-        $serviceAccount = 'serviceAccount-1948028253';
-        $request = (new RegisterSubscriberRequest())
-            ->setAccount($account)
-            ->setServiceAccount($serviceAccount);
+        $request = new RegisterSubscriberRequest();
         $response = $gapicClient->registerSubscriber($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3452,10 +2987,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/RegisterSubscriber', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAccount();
-        $this->assertProtobufEquals($account, $actualValue);
-        $actualValue = $actualRequestObject->getServiceAccount();
-        $this->assertProtobufEquals($serviceAccount, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3477,12 +3008,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $account = 'account-1177318867';
-        $serviceAccount = 'serviceAccount-1948028253';
-        $request = (new RegisterSubscriberRequest())
-            ->setAccount($account)
-            ->setServiceAccount($serviceAccount);
+        $request = new RegisterSubscriberRequest();
         try {
             $gapicClient->registerSubscriber($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3533,10 +3059,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new StartPaidServiceRequest())
-            ->setName($name);
+        $request = new StartPaidServiceRequest();
         $response = $gapicClient->startPaidService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3547,8 +3070,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/StartPaidService', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/startPaidServiceTest');
         $response->pollUntilComplete([
@@ -3599,10 +3120,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new StartPaidServiceRequest())
-            ->setName($name);
+        $request = new StartPaidServiceRequest();
         $response = $gapicClient->startPaidService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3662,10 +3180,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new SuspendEntitlementRequest())
-            ->setName($name);
+        $request = new SuspendEntitlementRequest();
         $response = $gapicClient->suspendEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3676,8 +3191,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/SuspendEntitlement', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/suspendEntitlementTest');
         $response->pollUntilComplete([
@@ -3728,10 +3241,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new SuspendEntitlementRequest())
-            ->setName($name);
+        $request = new SuspendEntitlementRequest();
         $response = $gapicClient->suspendEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3783,12 +3293,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $entitlements = [];
-        $request = (new TransferEntitlementsRequest())
-            ->setParent($parent)
-            ->setEntitlements($entitlements);
+        $request = new TransferEntitlementsRequest();
         $response = $gapicClient->transferEntitlements($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3799,10 +3304,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/TransferEntitlements', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getEntitlements();
-        $this->assertProtobufEquals($entitlements, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/transferEntitlementsTest');
         $response->pollUntilComplete([
@@ -3853,12 +3354,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $entitlements = [];
-        $request = (new TransferEntitlementsRequest())
-            ->setParent($parent)
-            ->setEntitlements($entitlements);
+        $request = new TransferEntitlementsRequest();
         $response = $gapicClient->transferEntitlements($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3910,12 +3406,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $entitlements = [];
-        $request = (new TransferEntitlementsToGoogleRequest())
-            ->setParent($parent)
-            ->setEntitlements($entitlements);
+        $request = new TransferEntitlementsToGoogleRequest();
         $response = $gapicClient->transferEntitlementsToGoogle($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3926,10 +3417,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/TransferEntitlementsToGoogle', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getEntitlements();
-        $this->assertProtobufEquals($entitlements, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/transferEntitlementsToGoogleTest');
         $response->pollUntilComplete([
@@ -3980,12 +3467,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $entitlements = [];
-        $request = (new TransferEntitlementsToGoogleRequest())
-            ->setParent($parent)
-            ->setEntitlements($entitlements);
+        $request = new TransferEntitlementsToGoogleRequest();
         $response = $gapicClient->transferEntitlementsToGoogle($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4021,12 +3503,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse = new UnregisterSubscriberResponse();
         $expectedResponse->setTopic($topic);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $account = 'account-1177318867';
-        $serviceAccount = 'serviceAccount-1948028253';
-        $request = (new UnregisterSubscriberRequest())
-            ->setAccount($account)
-            ->setServiceAccount($serviceAccount);
+        $request = new UnregisterSubscriberRequest();
         $response = $gapicClient->unregisterSubscriber($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4034,10 +3511,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/UnregisterSubscriber', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAccount();
-        $this->assertProtobufEquals($account, $actualValue);
-        $actualValue = $actualRequestObject->getServiceAccount();
-        $this->assertProtobufEquals($serviceAccount, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4059,12 +3532,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $account = 'account-1177318867';
-        $serviceAccount = 'serviceAccount-1948028253';
-        $request = (new UnregisterSubscriberRequest())
-            ->setAccount($account)
-            ->setServiceAccount($serviceAccount);
+        $request = new UnregisterSubscriberRequest();
         try {
             $gapicClient->unregisterSubscriber($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4097,18 +3565,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setInviteLinkUri($inviteLinkUri);
         $expectedResponse->setPublicId($publicId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $channelPartnerLink = new ChannelPartnerLink();
-        $channelPartnerLinkResellerCloudIdentityId = 'channelPartnerLinkResellerCloudIdentityId-321778211';
-        $channelPartnerLink->setResellerCloudIdentityId($channelPartnerLinkResellerCloudIdentityId);
-        $channelPartnerLinkLinkState = ChannelPartnerLinkState::CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED;
-        $channelPartnerLink->setLinkState($channelPartnerLinkLinkState);
-        $updateMask = new FieldMask();
-        $request = (new UpdateChannelPartnerLinkRequest())
-            ->setName($name)
-            ->setChannelPartnerLink($channelPartnerLink)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateChannelPartnerLinkRequest();
         $response = $gapicClient->updateChannelPartnerLink($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4116,12 +3573,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/UpdateChannelPartnerLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualRequestObject->getChannelPartnerLink();
-        $this->assertProtobufEquals($channelPartnerLink, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4143,18 +3594,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $channelPartnerLink = new ChannelPartnerLink();
-        $channelPartnerLinkResellerCloudIdentityId = 'channelPartnerLinkResellerCloudIdentityId-321778211';
-        $channelPartnerLink->setResellerCloudIdentityId($channelPartnerLinkResellerCloudIdentityId);
-        $channelPartnerLinkLinkState = ChannelPartnerLinkState::CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED;
-        $channelPartnerLink->setLinkState($channelPartnerLinkLinkState);
-        $updateMask = new FieldMask();
-        $request = (new UpdateChannelPartnerLinkRequest())
-            ->setName($name)
-            ->setChannelPartnerLink($channelPartnerLink)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateChannelPartnerLinkRequest();
         try {
             $gapicClient->updateChannelPartnerLink($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4181,18 +3621,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse = new ChannelPartnerRepricingConfig();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $channelPartnerRepricingConfig = new ChannelPartnerRepricingConfig();
-        $channelPartnerRepricingConfigRepricingConfig = new RepricingConfig();
-        $repricingConfigEffectiveInvoiceMonth = new Date();
-        $channelPartnerRepricingConfigRepricingConfig->setEffectiveInvoiceMonth($repricingConfigEffectiveInvoiceMonth);
-        $repricingConfigAdjustment = new RepricingAdjustment();
-        $channelPartnerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
-        $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
-        $channelPartnerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
-        $channelPartnerRepricingConfig->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
-        $request = (new UpdateChannelPartnerRepricingConfigRequest())
-            ->setChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
+        $request = new UpdateChannelPartnerRepricingConfigRequest();
         $response = $gapicClient->updateChannelPartnerRepricingConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4200,8 +3629,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/UpdateChannelPartnerRepricingConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getChannelPartnerRepricingConfig();
-        $this->assertProtobufEquals($channelPartnerRepricingConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4223,18 +3650,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $channelPartnerRepricingConfig = new ChannelPartnerRepricingConfig();
-        $channelPartnerRepricingConfigRepricingConfig = new RepricingConfig();
-        $repricingConfigEffectiveInvoiceMonth = new Date();
-        $channelPartnerRepricingConfigRepricingConfig->setEffectiveInvoiceMonth($repricingConfigEffectiveInvoiceMonth);
-        $repricingConfigAdjustment = new RepricingAdjustment();
-        $channelPartnerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
-        $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
-        $channelPartnerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
-        $channelPartnerRepricingConfig->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
-        $request = (new UpdateChannelPartnerRepricingConfigRequest())
-            ->setChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
+        $request = new UpdateChannelPartnerRepricingConfigRequest();
         try {
             $gapicClient->updateChannelPartnerRepricingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4275,16 +3691,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setChannelPartnerId($channelPartnerId);
         $expectedResponse->setCorrelationId($correlationId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $customer = new Customer();
-        $customerOrgDisplayName = 'customerOrgDisplayName1748404327';
-        $customer->setOrgDisplayName($customerOrgDisplayName);
-        $customerOrgPostalAddress = new PostalAddress();
-        $customer->setOrgPostalAddress($customerOrgPostalAddress);
-        $customerDomain = 'customerDomain1489396290';
-        $customer->setDomain($customerDomain);
-        $request = (new UpdateCustomerRequest())
-            ->setCustomer($customer);
+        $request = new UpdateCustomerRequest();
         $response = $gapicClient->updateCustomer($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4292,8 +3699,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/UpdateCustomer', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCustomer();
-        $this->assertProtobufEquals($customer, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4315,16 +3720,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $customer = new Customer();
-        $customerOrgDisplayName = 'customerOrgDisplayName1748404327';
-        $customer->setOrgDisplayName($customerOrgDisplayName);
-        $customerOrgPostalAddress = new PostalAddress();
-        $customer->setOrgPostalAddress($customerOrgPostalAddress);
-        $customerDomain = 'customerDomain1489396290';
-        $customer->setDomain($customerDomain);
-        $request = (new UpdateCustomerRequest())
-            ->setCustomer($customer);
+        $request = new UpdateCustomerRequest();
         try {
             $gapicClient->updateCustomer($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4351,18 +3747,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse = new CustomerRepricingConfig();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $customerRepricingConfig = new CustomerRepricingConfig();
-        $customerRepricingConfigRepricingConfig = new RepricingConfig();
-        $repricingConfigEffectiveInvoiceMonth = new Date();
-        $customerRepricingConfigRepricingConfig->setEffectiveInvoiceMonth($repricingConfigEffectiveInvoiceMonth);
-        $repricingConfigAdjustment = new RepricingAdjustment();
-        $customerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
-        $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
-        $customerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
-        $customerRepricingConfig->setRepricingConfig($customerRepricingConfigRepricingConfig);
-        $request = (new UpdateCustomerRepricingConfigRequest())
-            ->setCustomerRepricingConfig($customerRepricingConfig);
+        $request = new UpdateCustomerRepricingConfigRequest();
         $response = $gapicClient->updateCustomerRepricingConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4370,8 +3755,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/UpdateCustomerRepricingConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCustomerRepricingConfig();
-        $this->assertProtobufEquals($customerRepricingConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4393,18 +3776,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $customerRepricingConfig = new CustomerRepricingConfig();
-        $customerRepricingConfigRepricingConfig = new RepricingConfig();
-        $repricingConfigEffectiveInvoiceMonth = new Date();
-        $customerRepricingConfigRepricingConfig->setEffectiveInvoiceMonth($repricingConfigEffectiveInvoiceMonth);
-        $repricingConfigAdjustment = new RepricingAdjustment();
-        $customerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
-        $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
-        $customerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
-        $customerRepricingConfig->setRepricingConfig($customerRepricingConfigRepricingConfig);
-        $request = (new UpdateCustomerRepricingConfigRequest())
-            ->setCustomerRepricingConfig($customerRepricingConfig);
+        $request = new UpdateCustomerRepricingConfigRequest();
         try {
             $gapicClient->updateCustomerRepricingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4455,10 +3827,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new ActivateEntitlementRequest())
-            ->setName($name);
+        $request = new ActivateEntitlementRequest();
         $response = $gapicClient->activateEntitlementAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4469,8 +3838,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ActivateEntitlement', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/activateEntitlementTest');
         $response->pollUntilComplete([

@@ -48,8 +48,7 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                               $tableName Required. The unique name of the table to which the mutation should be
      *                                                        applied. Values are of the form
-     *                                                        `projects/<project>/instances/<instance>/tables/<table>`. Please see
-     *                                                        {@see BigtableClient::tableName()} for help formatting this field.
+     *                                                        `projects/<project>/instances/<instance>/tables/<table>`.
      * @param string                               $rowKey    Required. The key of the row to which the mutation should be applied.
      * @param \Google\Cloud\Bigtable\V2\Mutation[] $mutations Required. Changes to be atomically applied to the specified row. Entries
      *                                                        are applied in order, meaning that earlier mutations can be masked by later
@@ -70,8 +69,7 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                               $tableName    Required. The unique name of the table to which the mutation should be
      *                                                           applied. Values are of the form
-     *                                                           `projects/<project>/instances/<instance>/tables/<table>`. Please see
-     *                                                           {@see BigtableClient::tableName()} for help formatting this field.
+     *                                                           `projects/<project>/instances/<instance>/tables/<table>`.
      * @param string                               $rowKey       Required. The key of the row to which the mutation should be applied.
      * @param \Google\Cloud\Bigtable\V2\Mutation[] $mutations    Required. Changes to be atomically applied to the specified row. Entries
      *                                                           are applied in order, meaning that earlier mutations can be masked by later

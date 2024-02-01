@@ -52,9 +52,7 @@ use Google\Cloud\BigQuery\Storage\V1\SplitReadStreamResponse;
  * ```
  * $bigQueryReadClient = new BigQueryReadClient();
  * try {
- *     $formattedParent = $bigQueryReadClient->projectName('[PROJECT]');
- *     $readSession = new ReadSession();
- *     $response = $bigQueryReadClient->createReadSession($formattedParent, $readSession);
+ *     $response = $bigQueryReadClient->createReadSession();
  * } finally {
  *     $bigQueryReadClient->close();
  * }
@@ -398,20 +396,20 @@ class BigQueryReadGapicClient
      * ```
      * $bigQueryReadClient = new BigQueryReadClient();
      * try {
-     *     $formattedParent = $bigQueryReadClient->projectName('[PROJECT]');
-     *     $readSession = new ReadSession();
-     *     $response = $bigQueryReadClient->createReadSession($formattedParent, $readSession);
+     *     $response = $bigQueryReadClient->createReadSession();
      * } finally {
      *     $bigQueryReadClient->close();
      * }
      * ```
      *
-     * @param string      $parent       Required. The request project that owns the session, in the form of
-     *                                  `projects/{project_id}`.
-     * @param ReadSession $readSession  Required. Session to be created.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The request project that owns the session, in the form of
+     *           `projects/{project_id}`.
+     *     @type ReadSession $readSession
+     *           Required. Session to be created.
      *     @type int $maxStreamCount
      *           Max initial number of streams. If unset or zero, the server will
      *           provide a value of streams so as to produce reasonable throughput. Must be
@@ -442,16 +440,18 @@ class BigQueryReadGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createReadSession(
-        $parent,
-        $readSession,
-        array $optionalArgs = []
-    ) {
+    public function createReadSession(array $optionalArgs = [])
+    {
         $request = new CreateReadSessionRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setReadSession($readSession);
-        $requestParamHeaders['read_session.table'] = $readSession->getTable();
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+
+        if (isset($optionalArgs['readSession'])) {
+            $request->setReadSession($optionalArgs['readSession']);
+        }
+
         if (isset($optionalArgs['maxStreamCount'])) {
             $request->setMaxStreamCount($optionalArgs['maxStreamCount']);
         }
@@ -489,9 +489,8 @@ class BigQueryReadGapicClient
      * ```
      * $bigQueryReadClient = new BigQueryReadClient();
      * try {
-     *     $formattedReadStream = $bigQueryReadClient->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
      *     // Read all responses until the stream is complete
-     *     $stream = $bigQueryReadClient->readRows($formattedReadStream);
+     *     $stream = $bigQueryReadClient->readRows();
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -500,10 +499,11 @@ class BigQueryReadGapicClient
      * }
      * ```
      *
-     * @param string $readStream   Required. Stream to read rows from.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $readStream
+     *           Required. Stream to read rows from.
      *     @type int $offset
      *           The offset requested must be less than the last row read from Read.
      *           Requesting a larger offset is undefined. If not specified, start reading
@@ -516,12 +516,15 @@ class BigQueryReadGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function readRows($readStream, array $optionalArgs = [])
+    public function readRows(array $optionalArgs = [])
     {
         $request = new ReadRowsRequest();
         $requestParamHeaders = [];
-        $request->setReadStream($readStream);
-        $requestParamHeaders['read_stream'] = $readStream;
+        if (isset($optionalArgs['readStream'])) {
+            $request->setReadStream($optionalArgs['readStream']);
+            $requestParamHeaders['read_stream'] = $optionalArgs['readStream'];
+        }
+
         if (isset($optionalArgs['offset'])) {
             $request->setOffset($optionalArgs['offset']);
         }
@@ -559,17 +562,17 @@ class BigQueryReadGapicClient
      * ```
      * $bigQueryReadClient = new BigQueryReadClient();
      * try {
-     *     $formattedName = $bigQueryReadClient->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
-     *     $response = $bigQueryReadClient->splitReadStream($formattedName);
+     *     $response = $bigQueryReadClient->splitReadStream();
      * } finally {
      *     $bigQueryReadClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the stream to split.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the stream to split.
      *     @type float $fraction
      *           A value in the range (0.0, 1.0) that specifies the fractional point at
      *           which the original stream should be split. The actual split point is
@@ -588,12 +591,15 @@ class BigQueryReadGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function splitReadStream($name, array $optionalArgs = [])
+    public function splitReadStream(array $optionalArgs = [])
     {
         $request = new SplitReadStreamRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['fraction'])) {
             $request->setFraction($optionalArgs['fraction']);
         }

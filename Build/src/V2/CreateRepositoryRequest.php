@@ -42,8 +42,7 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                            $parent       Required. The connection to contain the repository. If the request is part
      *                                                        of a BatchCreateRepositoriesRequest, this field should be empty or match
-     *                                                        the parent specified there. Please see
-     *                                                        {@see RepositoryManagerClient::connectionName()} for help formatting this field.
+     *                                                        the parent specified there.
      * @param \Google\Cloud\Build\V2\Repository $repository   Required. The repository to create.
      * @param string                            $repositoryId Required. The ID to use for the repository, which will become the final
      *                                                        component of the repository's resource name. This ID should be unique in

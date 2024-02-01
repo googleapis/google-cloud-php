@@ -25,8 +25,7 @@ class DeleteListingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Resource name of the listing to delete.
-     *                     e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`. Please see
-     *                     {@see AnalyticsHubServiceClient::listingName()} for help formatting this field.
+     *                     e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
      *
      * @return \Google\Cloud\BigQuery\DataExchange\V1beta1\DeleteListingRequest
      *

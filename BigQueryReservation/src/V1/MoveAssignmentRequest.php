@@ -50,7 +50,6 @@ class MoveAssignmentRequest extends \Google\Protobuf\Internal\Message
      * @param string $name          Required. The resource name of the assignment,
      *                              e.g.
      *                              `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
-     *                              Please see {@see ReservationServiceClient::assignmentName()} for help formatting this field.
      * @param string $destinationId The new reservation ID, e.g.:
      *                              `projects/myotherproject/locations/US/reservations/team2-prod`
      *

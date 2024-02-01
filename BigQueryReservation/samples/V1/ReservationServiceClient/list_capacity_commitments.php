@@ -32,18 +32,19 @@ use Google\Cloud\BigQuery\Reservation\V1\ListCapacityCommitmentsRequest;
 /**
  * Lists all the capacity commitments for the admin project.
  *
- * @param string $formattedParent Resource name of the parent reservation. E.g.,
- *                                `projects/myproject/locations/US`
- *                                Please see {@see ReservationServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_capacity_commitments_sample(string $formattedParent): void
+function list_capacity_commitments_sample(): void
 {
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
     // Prepare the request message.
-    $request = (new ListCapacityCommitmentsRequest())
-        ->setParent($formattedParent);
+    $request = new ListCapacityCommitmentsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_capacity_commitments_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ReservationServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_capacity_commitments_sample($formattedParent);
 }
 // [END bigqueryreservation_v1_generated_ReservationService_ListCapacityCommitments_sync]

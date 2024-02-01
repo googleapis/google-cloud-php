@@ -54,19 +54,19 @@ use Google\Cloud\BigQuery\Reservation\V1\SearchAssignmentsRequest;
  * **Note** "-" cannot be used for projects
  * nor locations.
  *
- * @param string $formattedParent The resource name of the admin project(containing project and
- *                                location), e.g.:
- *                                `projects/myproject/locations/US`. Please see
- *                                {@see ReservationServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function search_assignments_sample(string $formattedParent): void
+function search_assignments_sample(): void
 {
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
     // Prepare the request message.
-    $request = (new SearchAssignmentsRequest())
-        ->setParent($formattedParent);
+    $request = new SearchAssignmentsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -80,21 +80,5 @@ function search_assignments_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ReservationServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    search_assignments_sample($formattedParent);
 }
 // [END bigqueryreservation_v1_generated_ReservationService_SearchAssignments_sync]

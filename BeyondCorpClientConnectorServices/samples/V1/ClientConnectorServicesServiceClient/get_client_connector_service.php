@@ -31,17 +31,19 @@ use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\GetClientConnectorService
 /**
  * Gets details of a single ClientConnectorService.
  *
- * @param string $formattedName Name of the resource. Please see
- *                              {@see ClientConnectorServicesServiceClient::clientConnectorServiceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_client_connector_service_sample(string $formattedName): void
+function get_client_connector_service_sample(): void
 {
     // Create a client.
     $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
 
     // Prepare the request message.
-    $request = (new GetClientConnectorServiceRequest())
-        ->setName($formattedName);
+    $request = new GetClientConnectorServiceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,25 +53,5 @@ function get_client_connector_service_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ClientConnectorServicesServiceClient::clientConnectorServiceName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CLIENT_CONNECTOR_SERVICE]'
-    );
-
-    get_client_connector_service_sample($formattedName);
 }
 // [END beyondcorp_v1_generated_ClientConnectorServicesService_GetClientConnectorService_sync]

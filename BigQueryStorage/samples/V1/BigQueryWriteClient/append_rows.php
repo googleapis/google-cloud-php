@@ -62,48 +62,19 @@ use Google\Cloud\BigQuery\Storage\V1\Client\BigQueryWriteClient;
  * finalized (via the `FinalizeWriteStream` rpc), and the stream is explicitly
  * committed via the `BatchCommitWriteStreams` rpc.
  *
- * @param string $formattedWriteStream The write_stream identifies the append operation. It must be
- *                                     provided in the following scenarios:
- *
- *                                     * In the first request to an AppendRows connection.
- *
- *                                     * In all subsequent requests to an AppendRows connection, if you use the
- *                                     same connection to write to multiple tables or change the input schema for
- *                                     default streams.
- *
- *                                     For explicitly created write streams, the format is:
- *
- *                                     * `projects/{project}/datasets/{dataset}/tables/{table}/streams/{id}`
- *
- *                                     For the special default stream, the format is:
- *
- *                                     * `projects/{project}/datasets/{dataset}/tables/{table}/streams/_default`.
- *
- *                                     An example of a possible sequence of requests with write_stream fields
- *                                     within a single connection:
- *
- *                                     * r1: {write_stream: stream_name_1}
- *
- *                                     * r2: {write_stream: /*omit&#42;/}
- *
- *                                     * r3: {write_stream: /*omit&#42;/}
- *
- *                                     * r4: {write_stream: stream_name_2}
- *
- *                                     * r5: {write_stream: stream_name_2}
- *
- *                                     The destination changed in request_4, so the write_stream field must be
- *                                     populated in all subsequent requests in this stream. Please see
- *                                     {@see BigQueryWriteClient::writeStreamName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function append_rows_sample(string $formattedWriteStream): void
+function append_rows_sample(): void
 {
     // Create a client.
     $bigQueryWriteClient = new BigQueryWriteClient();
 
     // Prepare the request message.
-    $request = (new AppendRowsRequest())
-        ->setWriteStream($formattedWriteStream);
+    $request = new AppendRowsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -118,26 +89,5 @@ function append_rows_sample(string $formattedWriteStream): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedWriteStream = BigQueryWriteClient::writeStreamName(
-        '[PROJECT]',
-        '[DATASET]',
-        '[TABLE]',
-        '[STREAM]'
-    );
-
-    append_rows_sample($formattedWriteStream);
 }
 // [END bigquerystorage_v1_generated_BigQueryWrite_AppendRows_sync]

@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\BigQuery\DataTransfer\V1\Client\DataTransferServiceClient;
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig;
 use Google\Cloud\BigQuery\DataTransfer\V1\UpdateTransferConfigRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates a data transfer configuration.
@@ -45,11 +44,7 @@ function update_transfer_config_sample(): void
     $dataTransferServiceClient = new DataTransferServiceClient();
 
     // Prepare the request message.
-    $transferConfig = new TransferConfig();
-    $updateMask = new FieldMask();
-    $request = (new UpdateTransferConfigRequest())
-        ->setTransferConfig($transferConfig)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateTransferConfigRequest();
 
     // Call the API and handle any network failures.
     try {

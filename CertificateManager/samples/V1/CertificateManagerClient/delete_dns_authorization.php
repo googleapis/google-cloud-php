@@ -32,18 +32,19 @@ use Google\Rpc\Status;
 /**
  * Deletes a single DnsAuthorization.
  *
- * @param string $formattedName A name of the dns authorization to delete. Must be in the format
- *                              `projects/&#42;/locations/&#42;/dnsAuthorizations/*`. Please see
- *                              {@see CertificateManagerClient::dnsAuthorizationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_dns_authorization_sample(string $formattedName): void
+function delete_dns_authorization_sample(): void
 {
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
     // Prepare the request message.
-    $request = (new DeleteDnsAuthorizationRequest())
-        ->setName($formattedName);
+    $request = new DeleteDnsAuthorizationRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,25 +62,5 @@ function delete_dns_authorization_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CertificateManagerClient::dnsAuthorizationName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DNS_AUTHORIZATION]'
-    );
-
-    delete_dns_authorization_sample($formattedName);
 }
 // [END certificatemanager_v1_generated_CertificateManager_DeleteDnsAuthorization_sync]

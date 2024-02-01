@@ -40,8 +40,7 @@ class ListAttestorsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The resource name of the project associated with the
-     *                       [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/*`. Please see
-     *                       {@see BinauthzManagementServiceV1Client::projectName()} for help formatting this field.
+     *                       [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/*`.
      *
      * @return \Google\Cloud\BinaryAuthorization\V1\ListAttestorsRequest
      *

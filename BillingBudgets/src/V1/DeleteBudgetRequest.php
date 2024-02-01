@@ -25,8 +25,7 @@ class DeleteBudgetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the budget to delete. Values are of the form
-     *                     `billingAccounts/{billingAccountId}/budgets/{budgetId}`. Please see
-     *                     {@see BudgetServiceClient::budgetName()} for help formatting this field.
+     *                     `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
      *
      * @return \Google\Cloud\Billing\Budgets\V1\DeleteBudgetRequest
      *

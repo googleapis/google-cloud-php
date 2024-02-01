@@ -34,28 +34,19 @@ use Google\Rpc\Status;
  * Creates a Subscription to a Data Exchange. This is a long-running operation
  * as it will create one or more linked datasets.
  *
- * @param string $formattedName        Resource name of the Data Exchange.
- *                                     e.g. `projects/publisherproject/locations/US/dataExchanges/123`
- *                                     Please see {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
- * @param string $formattedDestination The parent resource path of the Subscription.
- *                                     e.g. `projects/subscriberproject/locations/US`
- *                                     Please see {@see AnalyticsHubServiceClient::locationName()} for help formatting this field.
- * @param string $subscription         Name of the subscription to create.
- *                                     e.g. `subscription1`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function subscribe_data_exchange_sample(
-    string $formattedName,
-    string $formattedDestination,
-    string $subscription
-): void {
+function subscribe_data_exchange_sample(): void
+{
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
     // Prepare the request message.
-    $request = (new SubscribeDataExchangeRequest())
-        ->setName($formattedName)
-        ->setDestination($formattedDestination)
-        ->setSubscription($subscription);
+    $request = new SubscribeDataExchangeRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -75,27 +66,5 @@ function subscribe_data_exchange_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AnalyticsHubServiceClient::dataExchangeName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_EXCHANGE]'
-    );
-    $formattedDestination = AnalyticsHubServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $subscription = '[SUBSCRIPTION]';
-
-    subscribe_data_exchange_sample($formattedName, $formattedDestination, $subscription);
 }
 // [END analyticshub_v1_generated_AnalyticsHubService_SubscribeDataExchange_sync]

@@ -32,8 +32,7 @@ class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The unique name of the snapshot to be deleted.
      *                     Values are of the form
-     *                     `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`. Please see
-     *                     {@see BigtableTableAdminClient::snapshotName()} for help formatting this field.
+     *                     `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\DeleteSnapshotRequest
      *

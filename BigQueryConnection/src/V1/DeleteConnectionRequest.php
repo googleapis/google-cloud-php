@@ -26,7 +26,6 @@ class DeleteConnectionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Name of the deleted connection, for example:
      *                     `projects/{project_id}/locations/{location_id}/connections/{connection_id}`
-     *                     Please see {@see ConnectionServiceClient::connectionName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\Connection\V1\DeleteConnectionRequest
      *

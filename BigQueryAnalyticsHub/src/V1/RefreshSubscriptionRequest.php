@@ -26,7 +26,6 @@ class RefreshSubscriptionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Resource name of the Subscription to refresh.
      *                     e.g. `projects/subscriberproject/locations/US/subscriptions/123`
-     *                     Please see {@see AnalyticsHubServiceClient::subscriptionName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\RefreshSubscriptionRequest
      *

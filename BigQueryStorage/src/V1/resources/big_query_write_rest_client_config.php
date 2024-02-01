@@ -13,9 +13,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'write_streams',
-                ],
             ],
             'CreateWriteStream' => [
                 'method' => 'post',

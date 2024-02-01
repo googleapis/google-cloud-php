@@ -77,8 +77,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * $dataTransferServiceClient = new DataTransferServiceClient();
  * try {
- *     $formattedName = $dataTransferServiceClient->dataSourceName('[PROJECT]', '[DATA_SOURCE]');
- *     $response = $dataTransferServiceClient->checkValidCreds($formattedName);
+ *     $response = $dataTransferServiceClient->checkValidCreds();
  * } finally {
  *     $dataTransferServiceClient->close();
  * }
@@ -598,19 +597,19 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedName = $dataTransferServiceClient->dataSourceName('[PROJECT]', '[DATA_SOURCE]');
-     *     $response = $dataTransferServiceClient->checkValidCreds($formattedName);
+     *     $response = $dataTransferServiceClient->checkValidCreds();
      * } finally {
      *     $dataTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The data source in the form:
-     *                             `projects/{project_id}/dataSources/{data_source_id}` or
-     *                             `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The data source in the form:
+     *           `projects/{project_id}/dataSources/{data_source_id}` or
+     *           `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -621,12 +620,15 @@ class DataTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function checkValidCreds($name, array $optionalArgs = [])
+    public function checkValidCreds(array $optionalArgs = [])
     {
         $request = new CheckValidCredsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CheckValidCreds', CheckValidCredsResponse::class, $optionalArgs, $request)->wait();
@@ -639,23 +641,23 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedParent = $dataTransferServiceClient->projectName('[PROJECT]');
-     *     $transferConfig = new TransferConfig();
-     *     $response = $dataTransferServiceClient->createTransferConfig($formattedParent, $transferConfig);
+     *     $response = $dataTransferServiceClient->createTransferConfig();
      * } finally {
      *     $dataTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string         $parent         Required. The BigQuery project id where the transfer configuration should
-     *                                       be created. Must be in the format
-     *                                       projects/{project_id}/locations/{location_id} or projects/{project_id}. If
-     *                                       specified location and location of the destination bigquery dataset do not
-     *                                       match - the request will fail.
-     * @param TransferConfig $transferConfig Required. Data transfer configuration to create.
-     * @param array          $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The BigQuery project id where the transfer configuration should
+     *           be created. Must be in the format
+     *           projects/{project_id}/locations/{location_id} or projects/{project_id}. If
+     *           specified location and location of the destination bigquery dataset do not
+     *           match - the request will fail.
+     *     @type TransferConfig $transferConfig
+     *           Required. Data transfer configuration to create.
      *     @type string $authorizationCode
      *           Optional OAuth2 authorization code to use with this transfer configuration.
      *           This is required only if `transferConfig.dataSourceId` is 'youtube_channel'
@@ -706,13 +708,19 @@ class DataTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTransferConfig($parent, $transferConfig, array $optionalArgs = [])
+    public function createTransferConfig(array $optionalArgs = [])
     {
         $request = new CreateTransferConfigRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setTransferConfig($transferConfig);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['transferConfig'])) {
+            $request->setTransferConfig($optionalArgs['transferConfig']);
+        }
+
         if (isset($optionalArgs['authorizationCode'])) {
             $request->setAuthorizationCode($optionalArgs['authorizationCode']);
         }
@@ -738,19 +746,19 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedName = $dataTransferServiceClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
-     *     $dataTransferServiceClient->deleteTransferConfig($formattedName);
+     *     $dataTransferServiceClient->deleteTransferConfig();
      * } finally {
      *     $dataTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The field will contain name of the resource requested, for
-     *                             example: `projects/{project_id}/transferConfigs/{config_id}` or
-     *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The field will contain name of the resource requested, for
+     *           example: `projects/{project_id}/transferConfigs/{config_id}` or
+     *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -759,12 +767,15 @@ class DataTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTransferConfig($name, array $optionalArgs = [])
+    public function deleteTransferConfig(array $optionalArgs = [])
     {
         $request = new DeleteTransferConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteTransferConfig', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -777,20 +788,20 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedName = $dataTransferServiceClient->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
-     *     $dataTransferServiceClient->deleteTransferRun($formattedName);
+     *     $dataTransferServiceClient->deleteTransferRun();
      * } finally {
      *     $dataTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The field will contain name of the resource requested, for
-     *                             example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
-     *                             or
-     *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The field will contain name of the resource requested, for
+     *           example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *           or
+     *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -799,12 +810,15 @@ class DataTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTransferRun($name, array $optionalArgs = [])
+    public function deleteTransferRun(array $optionalArgs = [])
     {
         $request = new DeleteTransferRunRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteTransferRun', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -871,19 +885,19 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedName = $dataTransferServiceClient->dataSourceName('[PROJECT]', '[DATA_SOURCE]');
-     *     $response = $dataTransferServiceClient->getDataSource($formattedName);
+     *     $response = $dataTransferServiceClient->getDataSource();
      * } finally {
      *     $dataTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The field will contain name of the resource requested, for
-     *                             example: `projects/{project_id}/dataSources/{data_source_id}` or
-     *                             `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The field will contain name of the resource requested, for
+     *           example: `projects/{project_id}/dataSources/{data_source_id}` or
+     *           `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -894,12 +908,15 @@ class DataTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDataSource($name, array $optionalArgs = [])
+    public function getDataSource(array $optionalArgs = [])
     {
         $request = new GetDataSourceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetDataSource', DataSource::class, $optionalArgs, $request)->wait();
@@ -912,19 +929,19 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedName = $dataTransferServiceClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
-     *     $response = $dataTransferServiceClient->getTransferConfig($formattedName);
+     *     $response = $dataTransferServiceClient->getTransferConfig();
      * } finally {
      *     $dataTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The field will contain name of the resource requested, for
-     *                             example: `projects/{project_id}/transferConfigs/{config_id}` or
-     *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The field will contain name of the resource requested, for
+     *           example: `projects/{project_id}/transferConfigs/{config_id}` or
+     *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -935,12 +952,15 @@ class DataTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTransferConfig($name, array $optionalArgs = [])
+    public function getTransferConfig(array $optionalArgs = [])
     {
         $request = new GetTransferConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetTransferConfig', TransferConfig::class, $optionalArgs, $request)->wait();
@@ -953,20 +973,20 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedName = $dataTransferServiceClient->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
-     *     $response = $dataTransferServiceClient->getTransferRun($formattedName);
+     *     $response = $dataTransferServiceClient->getTransferRun();
      * } finally {
      *     $dataTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The field will contain name of the resource requested, for
-     *                             example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
-     *                             or
-     *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The field will contain name of the resource requested, for
+     *           example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *           or
+     *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -977,12 +997,15 @@ class DataTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTransferRun($name, array $optionalArgs = [])
+    public function getTransferRun(array $optionalArgs = [])
     {
         $request = new GetTransferRunRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetTransferRun', TransferRun::class, $optionalArgs, $request)->wait();
@@ -995,9 +1018,8 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedParent = $dataTransferServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataTransferServiceClient->listDataSources($formattedParent);
+     *     $pagedResponse = $dataTransferServiceClient->listDataSources();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1005,7 +1027,7 @@ class DataTransferServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataTransferServiceClient->listDataSources($formattedParent);
+     *     $pagedResponse = $dataTransferServiceClient->listDataSources();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1014,12 +1036,13 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The BigQuery project id for which data sources should be
-     *                             returned. Must be in the form: `projects/{project_id}` or
-     *                             `projects/{project_id}/locations/{location_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The BigQuery project id for which data sources should be
+     *           returned. Must be in the form: `projects/{project_id}` or
+     *           `projects/{project_id}/locations/{location_id}`
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -1039,12 +1062,15 @@ class DataTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDataSources($parent, array $optionalArgs = [])
+    public function listDataSources(array $optionalArgs = [])
     {
         $request = new ListDataSourcesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -1066,9 +1092,8 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedParent = $dataTransferServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataTransferServiceClient->listTransferConfigs($formattedParent);
+     *     $pagedResponse = $dataTransferServiceClient->listTransferConfigs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1076,7 +1101,7 @@ class DataTransferServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataTransferServiceClient->listTransferConfigs($formattedParent);
+     *     $pagedResponse = $dataTransferServiceClient->listTransferConfigs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1085,12 +1110,13 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The BigQuery project id for which transfer configs
-     *                             should be returned: `projects/{project_id}` or
-     *                             `projects/{project_id}/locations/{location_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The BigQuery project id for which transfer configs
+     *           should be returned: `projects/{project_id}` or
+     *           `projects/{project_id}/locations/{location_id}`
      *     @type string[] $dataSourceIds
      *           When specified, only configurations of requested data sources are returned.
      *     @type string $pageToken
@@ -1112,12 +1138,15 @@ class DataTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTransferConfigs($parent, array $optionalArgs = [])
+    public function listTransferConfigs(array $optionalArgs = [])
     {
         $request = new ListTransferConfigsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['dataSourceIds'])) {
             $request->setDataSourceIds($optionalArgs['dataSourceIds']);
         }
@@ -1142,9 +1171,8 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedParent = $dataTransferServiceClient->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataTransferServiceClient->listTransferLogs($formattedParent);
+     *     $pagedResponse = $dataTransferServiceClient->listTransferLogs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1152,7 +1180,7 @@ class DataTransferServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataTransferServiceClient->listTransferLogs($formattedParent);
+     *     $pagedResponse = $dataTransferServiceClient->listTransferLogs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1161,12 +1189,13 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Transfer run name in the form:
-     *                             `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
-     *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Transfer run name in the form:
+     *           `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+     *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -1190,12 +1219,15 @@ class DataTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTransferLogs($parent, array $optionalArgs = [])
+    public function listTransferLogs(array $optionalArgs = [])
     {
         $request = new ListTransferLogsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -1220,9 +1252,8 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedParent = $dataTransferServiceClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataTransferServiceClient->listTransferRuns($formattedParent);
+     *     $pagedResponse = $dataTransferServiceClient->listTransferRuns();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1230,7 +1261,7 @@ class DataTransferServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataTransferServiceClient->listTransferRuns($formattedParent);
+     *     $pagedResponse = $dataTransferServiceClient->listTransferRuns();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1239,13 +1270,14 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of transfer configuration for which transfer runs should be
-     *                             retrieved. Format of transfer configuration resource name is:
-     *                             `projects/{project_id}/transferConfigs/{config_id}` or
-     *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Name of transfer configuration for which transfer runs should be
+     *           retrieved. Format of transfer configuration resource name is:
+     *           `projects/{project_id}/transferConfigs/{config_id}` or
+     *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *     @type int[] $states
      *           When specified, only transfer runs with requested states are returned.
      *           For allowed values, use constants defined on {@see \Google\Cloud\BigQuery\DataTransfer\V1\TransferState}
@@ -1271,12 +1303,15 @@ class DataTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTransferRuns($parent, array $optionalArgs = [])
+    public function listTransferRuns(array $optionalArgs = [])
     {
         $request = new ListTransferRunsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['states'])) {
             $request->setStates($optionalArgs['states']);
         }
@@ -1309,25 +1344,25 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedParent = $dataTransferServiceClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
-     *     $startTime = new Timestamp();
-     *     $endTime = new Timestamp();
-     *     $response = $dataTransferServiceClient->scheduleTransferRuns($formattedParent, $startTime, $endTime);
+     *     $response = $dataTransferServiceClient->scheduleTransferRuns();
      * } finally {
      *     $dataTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string    $parent       Required. Transfer configuration name in the form:
-     *                                `projects/{project_id}/transferConfigs/{config_id}` or
-     *                                `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
-     * @param Timestamp $startTime    Required. Start time of the range of transfer runs. For example,
-     *                                `"2017-05-25T00:00:00+00:00"`.
-     * @param Timestamp $endTime      Required. End time of the range of transfer runs. For example,
-     *                                `"2017-05-30T00:00:00+00:00"`.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Transfer configuration name in the form:
+     *           `projects/{project_id}/transferConfigs/{config_id}` or
+     *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *     @type Timestamp $startTime
+     *           Required. Start time of the range of transfer runs. For example,
+     *           `"2017-05-25T00:00:00+00:00"`.
+     *     @type Timestamp $endTime
+     *           Required. End time of the range of transfer runs. For example,
+     *           `"2017-05-30T00:00:00+00:00"`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1340,14 +1375,23 @@ class DataTransferServiceGapicClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function scheduleTransferRuns($parent, $startTime, $endTime, array $optionalArgs = [])
+    public function scheduleTransferRuns(array $optionalArgs = [])
     {
         $request = new ScheduleTransferRunsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setStartTime($startTime);
-        $request->setEndTime($endTime);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['startTime'])) {
+            $request->setStartTime($optionalArgs['startTime']);
+        }
+
+        if (isset($optionalArgs['endTime'])) {
+            $request->setEndTime($optionalArgs['endTime']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ScheduleTransferRuns', ScheduleTransferRunsResponse::class, $optionalArgs, $request)->wait();
@@ -1426,19 +1470,17 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $transferConfig = new TransferConfig();
-     *     $updateMask = new FieldMask();
-     *     $response = $dataTransferServiceClient->updateTransferConfig($transferConfig, $updateMask);
+     *     $response = $dataTransferServiceClient->updateTransferConfig();
      * } finally {
      *     $dataTransferServiceClient->close();
      * }
      * ```
      *
-     * @param TransferConfig $transferConfig Required. Data transfer configuration to create.
-     * @param FieldMask      $updateMask     Required. Required list of fields to be updated in this request.
-     * @param array          $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type TransferConfig $transferConfig
+     *           Required. Data transfer configuration to create.
      *     @type string $authorizationCode
      *           Optional OAuth2 authorization code to use with this transfer configuration.
      *           This is required only if `transferConfig.dataSourceId` is 'youtube_channel'
@@ -1454,6 +1496,8 @@ class DataTransferServiceGapicClient
      *
      *           Note that this should not be set when `service_account_name` is used to
      *           update the transfer config.
+     *     @type FieldMask $updateMask
+     *           Required. Required list of fields to be updated in this request.
      *     @type string $versionInfo
      *           Optional version info. This is required only if
      *           `transferConfig.dataSourceId` is not 'youtube_channel' and new credentials
@@ -1489,15 +1533,20 @@ class DataTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTransferConfig($transferConfig, $updateMask, array $optionalArgs = [])
+    public function updateTransferConfig(array $optionalArgs = [])
     {
         $request = new UpdateTransferConfigRequest();
         $requestParamHeaders = [];
-        $request->setTransferConfig($transferConfig);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['transfer_config.name'] = $transferConfig->getName();
+        if (isset($optionalArgs['transferConfig'])) {
+            $request->setTransferConfig($optionalArgs['transferConfig']);
+        }
+
         if (isset($optionalArgs['authorizationCode'])) {
             $request->setAuthorizationCode($optionalArgs['authorizationCode']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         if (isset($optionalArgs['versionInfo'])) {

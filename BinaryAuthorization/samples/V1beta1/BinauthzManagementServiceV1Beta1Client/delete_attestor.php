@@ -30,37 +30,23 @@ use Google\Cloud\BinaryAuthorization\V1beta1\BinauthzManagementServiceV1Beta1Cli
  * Deletes an [attestor][google.cloud.binaryauthorization.v1beta1.Attestor]. Returns NOT_FOUND if the
  * [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] does not exist.
  *
- * @param string $formattedName The name of the [attestors][google.cloud.binaryauthorization.v1beta1.Attestor] to delete, in the format
- *                              `projects/&#42;/attestors/*`. Please see
- *                              {@see BinauthzManagementServiceV1Beta1Client::attestorName()} for help formatting this field.
- */
-function delete_attestor_sample(string $formattedName): void
-{
-    // Create a client.
-    $binauthzManagementServiceV1Beta1Client = new BinauthzManagementServiceV1Beta1Client();
-
-    // Call the API and handle any network failures.
-    try {
-        $binauthzManagementServiceV1Beta1Client->deleteAttestor($formattedName);
-        printf('Call completed successfully.' . PHP_EOL);
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function delete_attestor_sample(): void
 {
-    $formattedName = BinauthzManagementServiceV1Beta1Client::attestorName('[PROJECT]', '[ATTESTOR]');
+    // Create a client.
+    $binauthzManagementServiceV1Beta1Client = new BinauthzManagementServiceV1Beta1Client();
 
-    delete_attestor_sample($formattedName);
+    // Call the API and handle any network failures.
+    try {
+        $binauthzManagementServiceV1Beta1Client->deleteAttestor();
+        printf('Call completed successfully.' . PHP_EOL);
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END binaryauthorization_v1beta1_generated_BinauthzManagementServiceV1Beta1_DeleteAttestor_sync]

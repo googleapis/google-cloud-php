@@ -42,8 +42,7 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                              $tableName Required. The unique name of the table to which the mutations should be
-     *                                                                       applied. Please see
-     *                                                                       {@see BigtableClient::tableName()} for help formatting this field.
+     *                                                                       applied.
      * @param \Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry[] $entries   Required. The row keys and corresponding mutations to be applied in bulk.
      *                                                                       Each entry is applied as an atomic mutation, but the entries may be
      *                                                                       applied in arbitrary order (even between entries for the same row).
@@ -63,8 +62,7 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                              $tableName    Required. The unique name of the table to which the mutations should be
-     *                                                                          applied. Please see
-     *                                                                          {@see BigtableClient::tableName()} for help formatting this field.
+     *                                                                          applied.
      * @param \Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry[] $entries      Required. The row keys and corresponding mutations to be applied in bulk.
      *                                                                          Each entry is applied as an atomic mutation, but the entries may be
      *                                                                          applied in arbitrary order (even between entries for the same row).

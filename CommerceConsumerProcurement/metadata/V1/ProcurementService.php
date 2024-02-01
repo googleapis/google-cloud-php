@@ -22,21 +22,21 @@ class ProcurementService
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
- 
-Ggoogle/cloud/commerce/consumer/procurement/v1/procurement_service.proto-google.cloud.commerce.consumer.procurement.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto9google/cloud/commerce/consumer/procurement/v1/order.proto#google/longrunning/operations.proto"å
-PlaceOrderRequestB
-parent (	B2àAúA,
-*cloudbilling.googleapis.com/BillingAccount
-display_name (	BàAX
+¦
+Ggoogle/cloud/commerce/consumer/procurement/v1/procurement_service.proto-google.cloud.commerce.consumer.procurement.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto9google/cloud/commerce/consumer/procurement/v1/order.proto#google/longrunning/operations.proto"é
+PlaceOrderRequestC
+parent (	B3âAúA,
+*cloudbilling.googleapis.com/BillingAccount
+display_name (	BâAY
 line_item_info
- (2;.google.cloud.commerce.consumer.procurement.v1.LineItemInfoBàA
+ (2;.google.cloud.commerce.consumer.procurement.v1.LineItemInfoBâA
 
-request_id (	BàA"
-PlaceOrderMetadata"$
-GetOrderRequest
-name (	BàA"_
-ListOrdersRequest
-parent (	BàA
+request_id (	BâA"
+PlaceOrderMetadata"%
+GetOrderRequest
+name (	BâA"`
+ListOrdersRequest
+parent (	BâA
 	page_size (
 
 page_token (	
@@ -46,11 +46,11 @@ page_token (	
 next_page_token (	2Ì
 ConsumerProcurementServiceÃ
 
-PlaceOrder@.google.cloud.commerce.consumer.procurement.v1.PlaceOrderRequest.google.longrunning.Operation"T‚Óä“0"+/v1/{parent=billingAccounts/*}/orders:place:*ÊA
-OrderPlaceOrderMetadata¶
-GetOrder>.google.cloud.commerce.consumer.procurement.v1.GetOrderRequest4.google.cloud.commerce.consumer.procurement.v1.Order"4‚Óä“\'%/v1/{name=billingAccounts/*/orders/*}ÚAnameÉ
+PlaceOrder@.google.cloud.commerce.consumer.procurement.v1.PlaceOrderRequest.google.longrunning.Operation"TÊA
+OrderPlaceOrderMetadata‚Óä“0"+/v1/{parent=billingAccounts/*}/orders:place:*¶
+GetOrder>.google.cloud.commerce.consumer.procurement.v1.GetOrderRequest4.google.cloud.commerce.consumer.procurement.v1.Order"4ÚAname‚Óä“\'%/v1/{name=billingAccounts/*/orders/*}É
 
-ListOrders@.google.cloud.commerce.consumer.procurement.v1.ListOrdersRequestA.google.cloud.commerce.consumer.procurement.v1.ListOrdersResponse"6‚Óä“\'%/v1/{parent=billingAccounts/*}/ordersÚAparentcÊA/cloudcommerceconsumerprocurement.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBŸ
+ListOrders@.google.cloud.commerce.consumer.procurement.v1.ListOrdersRequestA.google.cloud.commerce.consumer.procurement.v1.ListOrdersResponse"6ÚAparent‚Óä“\'%/v1/{parent=billingAccounts/*}/orderscÊA/cloudcommerceconsumerprocurement.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBŸ
 1com.google.cloud.commerce.consumer.procurement.v1PZScloud.google.com/go/commerce/consumer/procurement/apiv1/procurementpb;procurementpbª-Google.Cloud.Commerce.Consumer.Procurement.V1Ê-Google\\Cloud\\Commerce\\Consumer\\Procurement\\V1ê2Google::Cloud::Commerce::Consumer::Procurement::V1bproto3'
         , true);
 

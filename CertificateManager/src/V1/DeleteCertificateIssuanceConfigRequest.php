@@ -25,8 +25,7 @@ class DeleteCertificateIssuanceConfigRequest extends \Google\Protobuf\Internal\M
 
     /**
      * @param string $name Required. A name of the certificate issuance config to delete. Must be in
-     *                     the format `projects/&#42;/locations/&#42;/certificateIssuanceConfigs/*`. Please see
-     *                     {@see CertificateManagerClient::certificateIssuanceConfigName()} for help formatting this field.
+     *                     the format `projects/&#42;/locations/&#42;/certificateIssuanceConfigs/*`.
      *
      * @return \Google\Cloud\CertificateManager\V1\DeleteCertificateIssuanceConfigRequest
      *

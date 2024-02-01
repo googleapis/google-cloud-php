@@ -260,9 +260,6 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v1/{transfer_config.name=projects/*/transferConfigs/*}',
                         'body' => 'transfer_config',
-                        'queryParams' => [
-                            'update_mask',
-                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -272,9 +269,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

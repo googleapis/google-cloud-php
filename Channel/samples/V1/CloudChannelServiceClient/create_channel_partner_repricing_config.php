@@ -27,10 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig;
 use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\CreateChannelPartnerRepricingConfigRequest;
-use Google\Cloud\Channel\V1\RebillingBasis;
-use Google\Cloud\Channel\V1\RepricingAdjustment;
-use Google\Cloud\Channel\V1\RepricingConfig;
-use Google\Type\Date;
 
 /**
  * Creates a ChannelPartnerRepricingConfig. Call this method to set
@@ -77,33 +73,19 @@ use Google\Type\Date;
  * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
  * resource, otherwise returns an error.
  *
- * @param string $formattedParent                                            The resource name of the ChannelPartner that will receive the
- *                                                                           repricing config. Parent uses the format:
- *                                                                           accounts/{account_id}/channelPartnerLinks/{channel_partner_id}
- *                                                                           Please see {@see CloudChannelServiceClient::channelPartnerLinkName()} for help formatting this field.
- * @param int    $channelPartnerRepricingConfigRepricingConfigRebillingBasis The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to
- *                                                                           use for this bill. Specifies the relative cost based on repricing costs you
- *                                                                           will apply.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_channel_partner_repricing_config_sample(
-    string $formattedParent,
-    int $channelPartnerRepricingConfigRepricingConfigRebillingBasis
-): void {
+function create_channel_partner_repricing_config_sample(): void
+{
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $channelPartnerRepricingConfigRepricingConfigEffectiveInvoiceMonth = new Date();
-    $channelPartnerRepricingConfigRepricingConfigAdjustment = new RepricingAdjustment();
-    $channelPartnerRepricingConfigRepricingConfig = (new RepricingConfig())
-        ->setEffectiveInvoiceMonth($channelPartnerRepricingConfigRepricingConfigEffectiveInvoiceMonth)
-        ->setAdjustment($channelPartnerRepricingConfigRepricingConfigAdjustment)
-        ->setRebillingBasis($channelPartnerRepricingConfigRepricingConfigRebillingBasis);
-    $channelPartnerRepricingConfig = (new ChannelPartnerRepricingConfig())
-        ->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
-    $request = (new CreateChannelPartnerRepricingConfigRequest())
-        ->setParent($formattedParent)
-        ->setChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
+    $request = new CreateChannelPartnerRepricingConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -113,28 +95,5 @@ function create_channel_partner_repricing_config_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CloudChannelServiceClient::channelPartnerLinkName(
-        '[ACCOUNT]',
-        '[CHANNEL_PARTNER_LINK]'
-    );
-    $channelPartnerRepricingConfigRepricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
-
-    create_channel_partner_repricing_config_sample(
-        $formattedParent,
-        $channelPartnerRepricingConfigRepricingConfigRebillingBasis
-    );
 }
 // [END cloudchannel_v1_generated_CloudChannelService_CreateChannelPartnerRepricingConfig_sync]

@@ -53,18 +53,19 @@ use Google\Rpc\Status;
  * CloudChannelOperationsService. The Operation metadata will contain an
  * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
  *
- * @param string $name The resource name of the entitlement to suspend.
- *                     Name uses the format:
- *                     accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function suspend_entitlement_sample(string $name): void
+function suspend_entitlement_sample(): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = (new SuspendEntitlementRequest())
-        ->setName($name);
+    $request = new SuspendEntitlementRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -84,21 +85,5 @@ function suspend_entitlement_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    suspend_entitlement_sample($name);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_SuspendEntitlement_sync]

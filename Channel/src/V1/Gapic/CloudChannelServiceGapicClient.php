@@ -63,7 +63,6 @@ use Google\Cloud\Channel\V1\GetCustomerRepricingConfigRequest;
 use Google\Cloud\Channel\V1\GetCustomerRequest;
 use Google\Cloud\Channel\V1\GetEntitlementRequest;
 use Google\Cloud\Channel\V1\ImportCustomerRequest;
-use Google\Cloud\Channel\V1\ImportCustomerRequest\CustomerIdentityOneof;
 use Google\Cloud\Channel\V1\ListChannelPartnerLinksRequest;
 use Google\Cloud\Channel\V1\ListChannelPartnerLinksResponse;
 use Google\Cloud\Channel\V1\ListChannelPartnerRepricingConfigsRequest;
@@ -150,8 +149,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $cloudChannelServiceClient = new CloudChannelServiceClient();
  * try {
- *     $name = 'name';
- *     $operationResponse = $cloudChannelServiceClient->activateEntitlement($name);
+ *     $operationResponse = $cloudChannelServiceClient->activateEntitlement();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -162,7 +160,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $cloudChannelServiceClient->activateEntitlement($name);
+ *     $operationResponse = $cloudChannelServiceClient->activateEntitlement();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $cloudChannelServiceClient->resumeOperation($operationName, 'activateEntitlement');
@@ -657,8 +655,7 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $cloudChannelServiceClient->activateEntitlement($name);
+     *     $operationResponse = $cloudChannelServiceClient->activateEntitlement();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -669,7 +666,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudChannelServiceClient->activateEntitlement($name);
+     *     $operationResponse = $cloudChannelServiceClient->activateEntitlement();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudChannelServiceClient->resumeOperation($operationName, 'activateEntitlement');
@@ -689,12 +686,13 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the entitlement to activate.
-     *                             Name uses the format:
-     *                             accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the entitlement to activate.
+     *           Name uses the format:
+     *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *     @type string $requestId
      *           Optional. You can specify an optional unique request ID, and if you need to
      *           retry your request, the server will know to ignore the request if it's
@@ -718,12 +716,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function activateEntitlement($name, array $optionalArgs = [])
+    public function activateEntitlement(array $optionalArgs = [])
     {
         $request = new ActivateEntitlementRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -765,8 +766,7 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $cloudChannelServiceClient->cancelEntitlement($name);
+     *     $operationResponse = $cloudChannelServiceClient->cancelEntitlement();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -776,7 +776,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudChannelServiceClient->cancelEntitlement($name);
+     *     $operationResponse = $cloudChannelServiceClient->cancelEntitlement();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudChannelServiceClient->resumeOperation($operationName, 'cancelEntitlement');
@@ -795,12 +795,13 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the entitlement to cancel.
-     *                             Name uses the format:
-     *                             accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the entitlement to cancel.
+     *           Name uses the format:
+     *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *     @type string $requestId
      *           Optional. You can specify an optional unique request ID, and if you need to
      *           retry your request, the server will know to ignore the request if it's
@@ -824,12 +825,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelEntitlement($name, array $optionalArgs = [])
+    public function cancelEntitlement(array $optionalArgs = [])
     {
         $request = new CancelEntitlementRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -866,9 +870,7 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $name = 'name';
-     *     $formattedOffer = $cloudChannelServiceClient->offerName('[ACCOUNT]', '[OFFER]');
-     *     $operationResponse = $cloudChannelServiceClient->changeOffer($name, $formattedOffer);
+     *     $operationResponse = $cloudChannelServiceClient->changeOffer();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -879,7 +881,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudChannelServiceClient->changeOffer($name, $formattedOffer);
+     *     $operationResponse = $cloudChannelServiceClient->changeOffer();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudChannelServiceClient->resumeOperation($operationName, 'changeOffer');
@@ -899,14 +901,16 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the entitlement to update.
-     *                             Name uses the format:
-     *                             accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
-     * @param string $offer        Required. New Offer.
-     *                             Format: accounts/{account_id}/offers/{offer_id}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the entitlement to update.
+     *           Name uses the format:
+     *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
+     *     @type string $offer
+     *           Required. New Offer.
+     *           Format: accounts/{account_id}/offers/{offer_id}.
      *     @type Parameter[] $parameters
      *           Optional. Parameters needed to purchase the Offer. To view the available
      *           Parameters refer to the
@@ -943,13 +947,19 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function changeOffer($name, $offer, array $optionalArgs = [])
+    public function changeOffer(array $optionalArgs = [])
     {
         $request = new ChangeOfferRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setOffer($offer);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['offer'])) {
+            $request->setOffer($optionalArgs['offer']);
+        }
+
         if (isset($optionalArgs['parameters'])) {
             $request->setParameters($optionalArgs['parameters']);
         }
@@ -1000,9 +1010,7 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $name = 'name';
-     *     $parameters = [];
-     *     $operationResponse = $cloudChannelServiceClient->changeParameters($name, $parameters);
+     *     $operationResponse = $cloudChannelServiceClient->changeParameters();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1013,7 +1021,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudChannelServiceClient->changeParameters($name, $parameters);
+     *     $operationResponse = $cloudChannelServiceClient->changeParameters();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudChannelServiceClient->resumeOperation($operationName, 'changeParameters');
@@ -1033,18 +1041,20 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string      $name         Required. The name of the entitlement to update.
-     *                                  Name uses the format:
-     *                                  accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
-     * @param Parameter[] $parameters   Required. Entitlement parameters to update. You can only change editable
-     *                                  parameters.
-     *
-     *                                  To view the available Parameters for a request, refer to the
-     *                                  [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions]
-     *                                  from the desired offer.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the entitlement to update.
+     *           Name uses the format:
+     *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
+     *     @type Parameter[] $parameters
+     *           Required. Entitlement parameters to update. You can only change editable
+     *           parameters.
+     *
+     *           To view the available Parameters for a request, refer to the
+     *           [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions]
+     *           from the desired offer.
      *     @type string $requestId
      *           Optional. You can specify an optional unique request ID, and if you need to
      *           retry your request, the server will know to ignore the request if it's
@@ -1070,13 +1080,19 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function changeParameters($name, $parameters, array $optionalArgs = [])
+    public function changeParameters(array $optionalArgs = [])
     {
         $request = new ChangeParametersRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setParameters($parameters);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['parameters'])) {
+            $request->setParameters($optionalArgs['parameters']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1119,9 +1135,7 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $name = 'name';
-     *     $renewalSettings = new RenewalSettings();
-     *     $operationResponse = $cloudChannelServiceClient->changeRenewalSettings($name, $renewalSettings);
+     *     $operationResponse = $cloudChannelServiceClient->changeRenewalSettings();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1132,7 +1146,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudChannelServiceClient->changeRenewalSettings($name, $renewalSettings);
+     *     $operationResponse = $cloudChannelServiceClient->changeRenewalSettings();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudChannelServiceClient->resumeOperation($operationName, 'changeRenewalSettings');
@@ -1152,13 +1166,15 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string          $name            Required. The name of the entitlement to update.
-     *                                         Name uses the format:
-     *                                         accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
-     * @param RenewalSettings $renewalSettings Required. New renewal settings.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the entitlement to update.
+     *           Name uses the format:
+     *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
+     *     @type RenewalSettings $renewalSettings
+     *           Required. New renewal settings.
      *     @type string $requestId
      *           Optional. You can specify an optional unique request ID, and if you need to
      *           retry your request, the server will know to ignore the request if it's
@@ -1182,13 +1198,19 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function changeRenewalSettings($name, $renewalSettings, array $optionalArgs = [])
+    public function changeRenewalSettings(array $optionalArgs = [])
     {
         $request = new ChangeRenewalSettingsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setRenewalSettings($renewalSettings);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['renewalSettings'])) {
+            $request->setRenewalSettings($optionalArgs['renewalSettings']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1223,20 +1245,20 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $domain = 'domain';
-     *     $response = $cloudChannelServiceClient->checkCloudIdentityAccountsExist($parent, $domain);
+     *     $response = $cloudChannelServiceClient->checkCloudIdentityAccountsExist();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The reseller account's resource name.
-     *                             Parent uses the format: accounts/{account_id}
-     * @param string $domain       Required. Domain to fetch for Cloud Identity account customer.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The reseller account's resource name.
+     *           Parent uses the format: accounts/{account_id}
+     *     @type string $domain
+     *           Required. Domain to fetch for Cloud Identity account customer.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1247,13 +1269,19 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function checkCloudIdentityAccountsExist($parent, $domain, array $optionalArgs = [])
+    public function checkCloudIdentityAccountsExist(array $optionalArgs = [])
     {
         $request = new CheckCloudIdentityAccountsExistRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDomain($domain);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['domain'])) {
+            $request->setDomain($optionalArgs['domain']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CheckCloudIdentityAccountsExist', CheckCloudIdentityAccountsExistResponse::class, $optionalArgs, $request)->wait();
@@ -1288,23 +1316,23 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $channelPartnerLink = new ChannelPartnerLink();
-     *     $response = $cloudChannelServiceClient->createChannelPartnerLink($parent, $channelPartnerLink);
+     *     $response = $cloudChannelServiceClient->createChannelPartnerLink();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string             $parent             Required. Create a channel partner link for the provided reseller account's
-     *                                               resource name.
-     *                                               Parent uses the format: accounts/{account_id}
-     * @param ChannelPartnerLink $channelPartnerLink Required. The channel partner link to create.
-     *                                               Either channel_partner_link.reseller_cloud_identity_id or domain can be
-     *                                               used to create a link.
-     * @param array              $optionalArgs       {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Create a channel partner link for the provided reseller account's
+     *           resource name.
+     *           Parent uses the format: accounts/{account_id}
+     *     @type ChannelPartnerLink $channelPartnerLink
+     *           Required. The channel partner link to create.
+     *           Either channel_partner_link.reseller_cloud_identity_id or domain can be
+     *           used to create a link.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1315,13 +1343,19 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createChannelPartnerLink($parent, $channelPartnerLink, array $optionalArgs = [])
+    public function createChannelPartnerLink(array $optionalArgs = [])
     {
         $request = new CreateChannelPartnerLinkRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setChannelPartnerLink($channelPartnerLink);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['channelPartnerLink'])) {
+            $request->setChannelPartnerLink($optionalArgs['channelPartnerLink']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateChannelPartnerLink', ChannelPartnerLink::class, $optionalArgs, $request)->wait();
@@ -1376,21 +1410,21 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedParent = $cloudChannelServiceClient->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
-     *     $channelPartnerRepricingConfig = new ChannelPartnerRepricingConfig();
-     *     $response = $cloudChannelServiceClient->createChannelPartnerRepricingConfig($formattedParent, $channelPartnerRepricingConfig);
+     *     $response = $cloudChannelServiceClient->createChannelPartnerRepricingConfig();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string                        $parent                        Required. The resource name of the ChannelPartner that will receive the
-     *                                                                     repricing config. Parent uses the format:
-     *                                                                     accounts/{account_id}/channelPartnerLinks/{channel_partner_id}
-     * @param ChannelPartnerRepricingConfig $channelPartnerRepricingConfig Required. The ChannelPartnerRepricingConfig object to update.
-     * @param array                         $optionalArgs                  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the ChannelPartner that will receive the
+     *           repricing config. Parent uses the format:
+     *           accounts/{account_id}/channelPartnerLinks/{channel_partner_id}
+     *     @type ChannelPartnerRepricingConfig $channelPartnerRepricingConfig
+     *           Required. The ChannelPartnerRepricingConfig object to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1401,13 +1435,19 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createChannelPartnerRepricingConfig($parent, $channelPartnerRepricingConfig, array $optionalArgs = [])
+    public function createChannelPartnerRepricingConfig(array $optionalArgs = [])
     {
         $request = new CreateChannelPartnerRepricingConfigRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['channelPartnerRepricingConfig'])) {
+            $request->setChannelPartnerRepricingConfig($optionalArgs['channelPartnerRepricingConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateChannelPartnerRepricingConfig', ChannelPartnerRepricingConfig::class, $optionalArgs, $request)->wait();
@@ -1435,20 +1475,20 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $customer = new Customer();
-     *     $response = $cloudChannelServiceClient->createCustomer($parent, $customer);
+     *     $response = $cloudChannelServiceClient->createCustomer();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string   $parent       Required. The resource name of reseller account in which to create the
-     *                               customer. Parent uses the format: accounts/{account_id}
-     * @param Customer $customer     Required. The customer to create.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of reseller account in which to create the
+     *           customer. Parent uses the format: accounts/{account_id}
+     *     @type Customer $customer
+     *           Required. The customer to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1459,13 +1499,19 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCustomer($parent, $customer, array $optionalArgs = [])
+    public function createCustomer(array $optionalArgs = [])
     {
         $request = new CreateCustomerRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setCustomer($customer);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['customer'])) {
+            $request->setCustomer($optionalArgs['customer']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateCustomer', Customer::class, $optionalArgs, $request)->wait();
@@ -1519,21 +1565,21 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedParent = $cloudChannelServiceClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-     *     $customerRepricingConfig = new CustomerRepricingConfig();
-     *     $response = $cloudChannelServiceClient->createCustomerRepricingConfig($formattedParent, $customerRepricingConfig);
+     *     $response = $cloudChannelServiceClient->createCustomerRepricingConfig();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string                  $parent                  Required. The resource name of the customer that will receive this
-     *                                                         repricing config. Parent uses the format:
-     *                                                         accounts/{account_id}/customers/{customer_id}
-     * @param CustomerRepricingConfig $customerRepricingConfig Required. The CustomerRepricingConfig object to update.
-     * @param array                   $optionalArgs            {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the customer that will receive this
+     *           repricing config. Parent uses the format:
+     *           accounts/{account_id}/customers/{customer_id}
+     *     @type CustomerRepricingConfig $customerRepricingConfig
+     *           Required. The CustomerRepricingConfig object to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1544,13 +1590,19 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCustomerRepricingConfig($parent, $customerRepricingConfig, array $optionalArgs = [])
+    public function createCustomerRepricingConfig(array $optionalArgs = [])
     {
         $request = new CreateCustomerRepricingConfigRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setCustomerRepricingConfig($customerRepricingConfig);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['customerRepricingConfig'])) {
+            $request->setCustomerRepricingConfig($optionalArgs['customerRepricingConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateCustomerRepricingConfig', CustomerRepricingConfig::class, $optionalArgs, $request)->wait();
@@ -1601,9 +1653,7 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedParent = $cloudChannelServiceClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-     *     $entitlement = new Entitlement();
-     *     $operationResponse = $cloudChannelServiceClient->createEntitlement($formattedParent, $entitlement);
+     *     $operationResponse = $cloudChannelServiceClient->createEntitlement();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1614,7 +1664,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudChannelServiceClient->createEntitlement($formattedParent, $entitlement);
+     *     $operationResponse = $cloudChannelServiceClient->createEntitlement();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudChannelServiceClient->resumeOperation($operationName, 'createEntitlement');
@@ -1634,13 +1684,15 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string      $parent       Required. The resource name of the reseller's customer account in which to
-     *                                  create the entitlement. Parent uses the format:
-     *                                  accounts/{account_id}/customers/{customer_id}
-     * @param Entitlement $entitlement  Required. The entitlement to create.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the reseller's customer account in which to
+     *           create the entitlement. Parent uses the format:
+     *           accounts/{account_id}/customers/{customer_id}
+     *     @type Entitlement $entitlement
+     *           Required. The entitlement to create.
      *     @type string $requestId
      *           Optional. You can specify an optional unique request ID, and if you need to
      *           retry your request, the server will know to ignore the request if it's
@@ -1664,13 +1716,19 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createEntitlement($parent, $entitlement, array $optionalArgs = [])
+    public function createEntitlement(array $optionalArgs = [])
     {
         $request = new CreateEntitlementRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setEntitlement($entitlement);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['entitlement'])) {
+            $request->setEntitlement($optionalArgs['entitlement']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1703,18 +1761,18 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedName = $cloudChannelServiceClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
-     *     $cloudChannelServiceClient->deleteChannelPartnerRepricingConfig($formattedName);
+     *     $cloudChannelServiceClient->deleteChannelPartnerRepricingConfig();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the channel partner repricing config rule to
-     *                             delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the channel partner repricing config rule to
+     *           delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1723,12 +1781,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteChannelPartnerRepricingConfig($name, array $optionalArgs = [])
+    public function deleteChannelPartnerRepricingConfig(array $optionalArgs = [])
     {
         $request = new DeleteChannelPartnerRepricingConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteChannelPartnerRepricingConfig', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1750,17 +1811,17 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedName = $cloudChannelServiceClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-     *     $cloudChannelServiceClient->deleteCustomer($formattedName);
+     *     $cloudChannelServiceClient->deleteCustomer();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the customer to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the customer to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1769,12 +1830,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteCustomer($name, array $optionalArgs = [])
+    public function deleteCustomer(array $optionalArgs = [])
     {
         $request = new DeleteCustomerRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteCustomer', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1803,19 +1867,19 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedName = $cloudChannelServiceClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
-     *     $cloudChannelServiceClient->deleteCustomerRepricingConfig($formattedName);
+     *     $cloudChannelServiceClient->deleteCustomerRepricingConfig();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the customer repricing config rule to
-     *                             delete. Format:
-     *                             accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the customer repricing config rule to
+     *           delete. Format:
+     *           accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1824,12 +1888,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteCustomerRepricingConfig($name, array $optionalArgs = [])
+    public function deleteCustomerRepricingConfig(array $optionalArgs = [])
     {
         $request = new DeleteCustomerRepricingConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteCustomerRepricingConfig', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1856,19 +1923,19 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $name = 'name';
-     *     $response = $cloudChannelServiceClient->getChannelPartnerLink($name);
+     *     $response = $cloudChannelServiceClient->getChannelPartnerLink();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the channel partner link to retrieve.
-     *                             Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
-     *                             where {id} is the Cloud Identity ID of the partner.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the channel partner link to retrieve.
+     *           Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
+     *           where {id} is the Cloud Identity ID of the partner.
      *     @type int $view
      *           Optional. The level of granularity the ChannelPartnerLink will display.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Channel\V1\ChannelPartnerLinkView}
@@ -1882,12 +1949,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getChannelPartnerLink($name, array $optionalArgs = [])
+    public function getChannelPartnerLink(array $optionalArgs = [])
     {
         $request = new GetChannelPartnerLinkRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -1920,19 +1990,19 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedName = $cloudChannelServiceClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
-     *     $response = $cloudChannelServiceClient->getChannelPartnerRepricingConfig($formattedName);
+     *     $response = $cloudChannelServiceClient->getChannelPartnerRepricingConfig();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the ChannelPartnerRepricingConfig
-     *                             Format:
-     *                             accounts/{account_id}/channelPartnerLinks/{channel_partner_id}/channelPartnerRepricingConfigs/{id}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the ChannelPartnerRepricingConfig
+     *           Format:
+     *           accounts/{account_id}/channelPartnerLinks/{channel_partner_id}/channelPartnerRepricingConfigs/{id}.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1943,12 +2013,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getChannelPartnerRepricingConfig($name, array $optionalArgs = [])
+    public function getChannelPartnerRepricingConfig(array $optionalArgs = [])
     {
         $request = new GetChannelPartnerRepricingConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetChannelPartnerRepricingConfig', ChannelPartnerRepricingConfig::class, $optionalArgs, $request)->wait();
@@ -1973,18 +2046,18 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedName = $cloudChannelServiceClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-     *     $response = $cloudChannelServiceClient->getCustomer($formattedName);
+     *     $response = $cloudChannelServiceClient->getCustomer();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the customer to retrieve.
-     *                             Name uses the format: accounts/{account_id}/customers/{customer_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the customer to retrieve.
+     *           Name uses the format: accounts/{account_id}/customers/{customer_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1995,12 +2068,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCustomer($name, array $optionalArgs = [])
+    public function getCustomer(array $optionalArgs = [])
     {
         $request = new GetCustomerRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCustomer', Customer::class, $optionalArgs, $request)->wait();
@@ -2029,19 +2105,19 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedName = $cloudChannelServiceClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
-     *     $response = $cloudChannelServiceClient->getCustomerRepricingConfig($formattedName);
+     *     $response = $cloudChannelServiceClient->getCustomerRepricingConfig();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the CustomerRepricingConfig.
-     *                             Format:
-     *                             accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the CustomerRepricingConfig.
+     *           Format:
+     *           accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2052,12 +2128,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCustomerRepricingConfig($name, array $optionalArgs = [])
+    public function getCustomerRepricingConfig(array $optionalArgs = [])
     {
         $request = new GetCustomerRepricingConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCustomerRepricingConfig', CustomerRepricingConfig::class, $optionalArgs, $request)->wait();
@@ -2080,19 +2159,19 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedName = $cloudChannelServiceClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-     *     $response = $cloudChannelServiceClient->getEntitlement($formattedName);
+     *     $response = $cloudChannelServiceClient->getEntitlement();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the entitlement to retrieve.
-     *                             Name uses the format:
-     *                             accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the entitlement to retrieve.
+     *           Name uses the format:
+     *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2103,12 +2182,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEntitlement($name, array $optionalArgs = [])
+    public function getEntitlement(array $optionalArgs = [])
     {
         $request = new GetEntitlementRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetEntitlement', Entitlement::class, $optionalArgs, $request)->wait();
@@ -2140,31 +2222,32 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $customerIdentity = (new CustomerIdentityOneof())
-     *         ->setDomain('domain');
-     *     $parent = 'parent';
-     *     $overwriteIfExists = false;
-     *     $response = $cloudChannelServiceClient->importCustomer($customerIdentity, $parent, $overwriteIfExists);
+     *     $response = $cloudChannelServiceClient->importCustomer();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param CustomerIdentityOneof $customerIdentity  An instance of the wrapper class for the required proto oneof customer_identity.
-     * @param string                $parent            Required. The resource name of the reseller's account.
-     *                                                 Parent takes the format: accounts/{account_id} or
-     *                                                 accounts/{account_id}/channelPartnerLinks/{channel_partner_id}
-     * @param bool                  $overwriteIfExists Required. Choose to overwrite an existing customer if found.
-     *                                                 This must be set to true if there is an existing customer with a
-     *                                                 conflicting region code or domain.
-     * @param array                 $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $domain
+     *           Required. Customer domain.
+     *     @type string $cloudIdentityId
+     *           Required. Customer's Cloud Identity ID
+     *     @type string $parent
+     *           Required. The resource name of the reseller's account.
+     *           Parent takes the format: accounts/{account_id} or
+     *           accounts/{account_id}/channelPartnerLinks/{channel_partner_id}
      *     @type string $authToken
      *           Optional. The super admin of the resold customer generates this token to
      *           authorize a reseller to access their Cloud Identity and purchase
      *           entitlements on their behalf. You can omit this token after authorization.
      *           See https://support.google.com/a/answer/7643790 for more details.
+     *     @type bool $overwriteIfExists
+     *           Required. Choose to overwrite an existing customer if found.
+     *           This must be set to true if there is an existing customer with a
+     *           conflicting region code or domain.
      *     @type string $channelPartnerId
      *           Optional. Cloud Identity ID of a channel partner who will be the direct
      *           reseller for the customer's order. This field is required for 2-tier
@@ -2184,23 +2267,29 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importCustomer($customerIdentity, $parent, $overwriteIfExists, array $optionalArgs = [])
+    public function importCustomer(array $optionalArgs = [])
     {
         $request = new ImportCustomerRequest();
         $requestParamHeaders = [];
-        if ($customerIdentity->isDomain()) {
-            $request->setDomain($customerIdentity->getDomain());
-        } elseif ($customerIdentity->isCloudIdentityId()) {
-            $request->setCloudIdentityId($customerIdentity->getCloudIdentityId());
-        } else {
-            throw new ValidationException("A field for the oneof customer_identity must be set in param $customerIdentity");
+        if (isset($optionalArgs['domain'])) {
+            $request->setDomain($optionalArgs['domain']);
         }
 
-        $request->setParent($parent);
-        $request->setOverwriteIfExists($overwriteIfExists);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['cloudIdentityId'])) {
+            $request->setCloudIdentityId($optionalArgs['cloudIdentityId']);
+        }
+
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['authToken'])) {
             $request->setAuthToken($optionalArgs['authToken']);
+        }
+
+        if (isset($optionalArgs['overwriteIfExists'])) {
+            $request->setOverwriteIfExists($optionalArgs['overwriteIfExists']);
         }
 
         if (isset($optionalArgs['channelPartnerId'])) {
@@ -2234,9 +2323,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listChannelPartnerLinks($parent);
+     *     $pagedResponse = $cloudChannelServiceClient->listChannelPartnerLinks();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2244,7 +2332,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listChannelPartnerLinks($parent);
+     *     $pagedResponse = $cloudChannelServiceClient->listChannelPartnerLinks();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2253,11 +2341,12 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the reseller account for listing channel
-     *                             partner links. Parent uses the format: accounts/{account_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the reseller account for listing channel
+     *           partner links. Parent uses the format: accounts/{account_id}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2280,12 +2369,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listChannelPartnerLinks($parent, array $optionalArgs = [])
+    public function listChannelPartnerLinks(array $optionalArgs = [])
     {
         $request = new ListChannelPartnerLinksRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2333,9 +2425,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedParent = $cloudChannelServiceClient->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listChannelPartnerRepricingConfigs($formattedParent);
+     *     $pagedResponse = $cloudChannelServiceClient->listChannelPartnerRepricingConfigs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2343,7 +2434,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listChannelPartnerRepricingConfigs($formattedParent);
+     *     $pagedResponse = $cloudChannelServiceClient->listChannelPartnerRepricingConfigs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2352,15 +2443,16 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the account's
-     *                             [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]. Parent
-     *                             uses the format:
-     *                             accounts/{account_id}/channelPartnerLinks/{channel_partner_id}.
-     *                             Supports accounts/{account_id}/channelPartnerLinks/- to retrieve configs
-     *                             for all channel partners.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the account's
+     *           [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]. Parent
+     *           uses the format:
+     *           accounts/{account_id}/channelPartnerLinks/{channel_partner_id}.
+     *           Supports accounts/{account_id}/channelPartnerLinks/- to retrieve configs
+     *           for all channel partners.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2390,12 +2482,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listChannelPartnerRepricingConfigs($parent, array $optionalArgs = [])
+    public function listChannelPartnerRepricingConfigs(array $optionalArgs = [])
     {
         $request = new ListChannelPartnerRepricingConfigsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2444,9 +2539,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedParent = $cloudChannelServiceClient->customerName('[ACCOUNT]', '[CUSTOMER]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listCustomerRepricingConfigs($formattedParent);
+     *     $pagedResponse = $cloudChannelServiceClient->listCustomerRepricingConfigs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2454,7 +2548,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listCustomerRepricingConfigs($formattedParent);
+     *     $pagedResponse = $cloudChannelServiceClient->listCustomerRepricingConfigs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2463,13 +2557,14 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the customer.
-     *                             Parent uses the format: accounts/{account_id}/customers/{customer_id}.
-     *                             Supports accounts/{account_id}/customers/- to retrieve configs for all
-     *                             customers.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the customer.
+     *           Parent uses the format: accounts/{account_id}/customers/{customer_id}.
+     *           Supports accounts/{account_id}/customers/- to retrieve configs for all
+     *           customers.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2497,12 +2592,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCustomerRepricingConfigs($parent, array $optionalArgs = [])
+    public function listCustomerRepricingConfigs(array $optionalArgs = [])
     {
         $request = new ListCustomerRepricingConfigsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2537,9 +2635,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listCustomers($parent);
+     *     $pagedResponse = $cloudChannelServiceClient->listCustomers();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2547,7 +2644,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listCustomers($parent);
+     *     $pagedResponse = $cloudChannelServiceClient->listCustomers();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2556,11 +2653,12 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the reseller account to list customers from.
-     *                             Parent uses the format: accounts/{account_id}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the reseller account to list customers from.
+     *           Parent uses the format: accounts/{account_id}.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2585,12 +2683,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCustomers($parent, array $optionalArgs = [])
+    public function listCustomers(array $optionalArgs = [])
     {
         $request = new ListCustomersRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2630,9 +2731,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedParent = $cloudChannelServiceClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listEntitlementChanges($formattedParent);
+     *     $pagedResponse = $cloudChannelServiceClient->listEntitlementChanges();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2640,7 +2740,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listEntitlementChanges($formattedParent);
+     *     $pagedResponse = $cloudChannelServiceClient->listEntitlementChanges();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2649,15 +2749,16 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the entitlement for which to list
-     *                             entitlement changes. The `-` wildcard may be used to match entitlements
-     *                             across a customer. Formats:
-     *
-     *                             * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
-     *                             * accounts/{account_id}/customers/{customer_id}/entitlements/-
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the entitlement for which to list
+     *           entitlement changes. The `-` wildcard may be used to match entitlements
+     *           across a customer. Formats:
+     *
+     *           * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
+     *           * accounts/{account_id}/customers/{customer_id}/entitlements/-
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2679,12 +2780,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listEntitlementChanges($parent, array $optionalArgs = [])
+    public function listEntitlementChanges(array $optionalArgs = [])
     {
         $request = new ListEntitlementChangesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2719,9 +2823,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedParent = $cloudChannelServiceClient->customerName('[ACCOUNT]', '[CUSTOMER]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listEntitlements($formattedParent);
+     *     $pagedResponse = $cloudChannelServiceClient->listEntitlements();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2729,7 +2832,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listEntitlements($formattedParent);
+     *     $pagedResponse = $cloudChannelServiceClient->listEntitlements();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2738,12 +2841,13 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the reseller's customer account to list
-     *                             entitlements for.
-     *                             Parent uses the format: accounts/{account_id}/customers/{customer_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the reseller's customer account to list
+     *           entitlements for.
+     *           Parent uses the format: accounts/{account_id}/customers/{customer_id}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2763,12 +2867,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listEntitlements($parent, array $optionalArgs = [])
+    public function listEntitlements(array $optionalArgs = [])
     {
         $request = new ListEntitlementsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2793,9 +2900,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listOffers($parent);
+     *     $pagedResponse = $cloudChannelServiceClient->listOffers();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2803,7 +2909,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listOffers($parent);
+     *     $pagedResponse = $cloudChannelServiceClient->listOffers();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2812,11 +2918,12 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the reseller account from which to list
-     *                             Offers. Parent uses the format: accounts/{account_id}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the reseller account from which to list
+     *           Offers. Parent uses the format: accounts/{account_id}.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2851,12 +2958,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listOffers($parent, array $optionalArgs = [])
+    public function listOffers(array $optionalArgs = [])
     {
         $request = new ListOffersRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2893,9 +3003,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $account = 'account';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listProducts($account);
+     *     $pagedResponse = $cloudChannelServiceClient->listProducts();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2903,7 +3012,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listProducts($account);
+     *     $pagedResponse = $cloudChannelServiceClient->listProducts();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2912,11 +3021,12 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $account      Required. The resource name of the reseller account.
-     *                             Format: accounts/{account_id}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $account
+     *           Required. The resource name of the reseller account.
+     *           Format: accounts/{account_id}.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2940,10 +3050,13 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listProducts($account, array $optionalArgs = [])
+    public function listProducts(array $optionalArgs = [])
     {
         $request = new ListProductsRequest();
-        $request->setAccount($account);
+        if (isset($optionalArgs['account'])) {
+            $request->setAccount($optionalArgs['account']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2977,9 +3090,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedCustomer = $cloudChannelServiceClient->customerName('[ACCOUNT]', '[CUSTOMER]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listPurchasableOffers($formattedCustomer);
+     *     $pagedResponse = $cloudChannelServiceClient->listPurchasableOffers();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2987,7 +3099,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listPurchasableOffers($formattedCustomer);
+     *     $pagedResponse = $cloudChannelServiceClient->listPurchasableOffers();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2996,15 +3108,16 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $customer     Required. The resource name of the customer to list Offers for.
-     *                             Format: accounts/{account_id}/customers/{customer_id}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type CreateEntitlementPurchase $createEntitlementPurchase
      *           List Offers for CreateEntitlement purchase.
      *     @type ChangeOfferPurchase $changeOfferPurchase
      *           List Offers for ChangeOffer purchase.
+     *     @type string $customer
+     *           Required. The resource name of the customer to list Offers for.
+     *           Format: accounts/{account_id}/customers/{customer_id}.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3028,18 +3141,21 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPurchasableOffers($customer, array $optionalArgs = [])
+    public function listPurchasableOffers(array $optionalArgs = [])
     {
         $request = new ListPurchasableOffersRequest();
         $requestParamHeaders = [];
-        $request->setCustomer($customer);
-        $requestParamHeaders['customer'] = $customer;
         if (isset($optionalArgs['createEntitlementPurchase'])) {
             $request->setCreateEntitlementPurchase($optionalArgs['createEntitlementPurchase']);
         }
 
         if (isset($optionalArgs['changeOfferPurchase'])) {
             $request->setChangeOfferPurchase($optionalArgs['changeOfferPurchase']);
+        }
+
+        if (isset($optionalArgs['customer'])) {
+            $request->setCustomer($optionalArgs['customer']);
+            $requestParamHeaders['customer'] = $optionalArgs['customer'];
         }
 
         if (isset($optionalArgs['pageSize'])) {
@@ -3074,9 +3190,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedCustomer = $cloudChannelServiceClient->customerName('[ACCOUNT]', '[CUSTOMER]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listPurchasableSkus($formattedCustomer);
+     *     $pagedResponse = $cloudChannelServiceClient->listPurchasableSkus();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3084,7 +3199,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listPurchasableSkus($formattedCustomer);
+     *     $pagedResponse = $cloudChannelServiceClient->listPurchasableSkus();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3093,15 +3208,16 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $customer     Required. The resource name of the customer to list SKUs for.
-     *                             Format: accounts/{account_id}/customers/{customer_id}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type \Google\Cloud\Channel\V1\ListPurchasableSkusRequest\CreateEntitlementPurchase $createEntitlementPurchase
      *           List SKUs for CreateEntitlement purchase.
      *     @type \Google\Cloud\Channel\V1\ListPurchasableSkusRequest\ChangeOfferPurchase $changeOfferPurchase
      *           List SKUs for ChangeOffer purchase with a new SKU.
+     *     @type string $customer
+     *           Required. The resource name of the customer to list SKUs for.
+     *           Format: accounts/{account_id}/customers/{customer_id}.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3125,18 +3241,21 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPurchasableSkus($customer, array $optionalArgs = [])
+    public function listPurchasableSkus(array $optionalArgs = [])
     {
         $request = new ListPurchasableSkusRequest();
         $requestParamHeaders = [];
-        $request->setCustomer($customer);
-        $requestParamHeaders['customer'] = $customer;
         if (isset($optionalArgs['createEntitlementPurchase'])) {
             $request->setCreateEntitlementPurchase($optionalArgs['createEntitlementPurchase']);
         }
 
         if (isset($optionalArgs['changeOfferPurchase'])) {
             $request->setChangeOfferPurchase($optionalArgs['changeOfferPurchase']);
+        }
+
+        if (isset($optionalArgs['customer'])) {
+            $request->setCustomer($optionalArgs['customer']);
+            $requestParamHeaders['customer'] = $optionalArgs['customer'];
         }
 
         if (isset($optionalArgs['pageSize'])) {
@@ -3181,9 +3300,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedParent = $cloudChannelServiceClient->skuGroupName('[ACCOUNT]', '[SKU_GROUP]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroupBillableSkus($formattedParent);
+     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroupBillableSkus();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3191,7 +3309,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroupBillableSkus($formattedParent);
+     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroupBillableSkus();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3200,11 +3318,12 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the SKU group.
-     *                             Format: accounts/{account}/skuGroups/{sku_group}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the SKU group.
+     *           Format: accounts/{account}/skuGroups/{sku_group}.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3224,12 +3343,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSkuGroupBillableSkus($parent, array $optionalArgs = [])
+    public function listSkuGroupBillableSkus(array $optionalArgs = [])
     {
         $request = new ListSkuGroupBillableSkusRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3268,9 +3390,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroups($parent);
+     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroups();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3278,7 +3399,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroups($parent);
+     *     $pagedResponse = $cloudChannelServiceClient->listSkuGroups();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3287,11 +3408,12 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the account from which to list SKU groups.
-     *                             Parent uses the format: accounts/{account}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the account from which to list SKU groups.
+     *           Parent uses the format: accounts/{account}.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3311,12 +3433,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSkuGroups($parent, array $optionalArgs = [])
+    public function listSkuGroups(array $optionalArgs = [])
     {
         $request = new ListSkuGroupsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3341,10 +3466,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedParent = $cloudChannelServiceClient->productName('[PRODUCT]');
-     *     $account = 'account';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listSkus($formattedParent, $account);
+     *     $pagedResponse = $cloudChannelServiceClient->listSkus();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3352,7 +3475,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listSkus($formattedParent, $account);
+     *     $pagedResponse = $cloudChannelServiceClient->listSkus();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3361,14 +3484,16 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Product to list SKUs for.
-     *                             Parent uses the format: products/{product_id}.
-     *                             Supports products/- to retrieve SKUs for all products.
-     * @param string $account      Required. Resource name of the reseller.
-     *                             Format: accounts/{account_id}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Product to list SKUs for.
+     *           Parent uses the format: products/{product_id}.
+     *           Supports products/- to retrieve SKUs for all products.
+     *     @type string $account
+     *           Required. Resource name of the reseller.
+     *           Format: accounts/{account_id}.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3392,13 +3517,19 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSkus($parent, $account, array $optionalArgs = [])
+    public function listSkus(array $optionalArgs = [])
     {
         $request = new ListSkusRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAccount($account);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['account'])) {
+            $request->setAccount($optionalArgs['account']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3439,9 +3570,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $account = 'account';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listSubscribers($account);
+     *     $pagedResponse = $cloudChannelServiceClient->listSubscribers();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3449,7 +3579,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listSubscribers($account);
+     *     $pagedResponse = $cloudChannelServiceClient->listSubscribers();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3458,10 +3588,11 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $account      Required. Resource name of the account.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $account
+     *           Required. Resource name of the account.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3481,12 +3612,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSubscribers($account, array $optionalArgs = [])
+    public function listSubscribers(array $optionalArgs = [])
     {
         $request = new ListSubscribersRequest();
         $requestParamHeaders = [];
-        $request->setAccount($account);
-        $requestParamHeaders['account'] = $account;
+        if (isset($optionalArgs['account'])) {
+            $request->setAccount($optionalArgs['account']);
+            $requestParamHeaders['account'] = $optionalArgs['account'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3528,10 +3662,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $sku = 'sku';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listTransferableOffers($parent, $sku);
+     *     $pagedResponse = $cloudChannelServiceClient->listTransferableOffers();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3539,7 +3671,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listTransferableOffers($parent, $sku);
+     *     $pagedResponse = $cloudChannelServiceClient->listTransferableOffers();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3548,9 +3680,7 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the reseller's account.
-     * @param string $sku          Required. The SKU to look up Offers for.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $cloudIdentityId
@@ -3558,6 +3688,8 @@ class CloudChannelServiceGapicClient
      *     @type string $customerName
      *           A reseller should create a customer and use the resource name of
      *           that customer here.
+     *     @type string $parent
+     *           Required. The resource name of the reseller's account.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3567,6 +3699,8 @@ class CloudChannelServiceGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $sku
+     *           Required. The SKU to look up Offers for.
      *     @type string $languageCode
      *           Optional. The BCP-47 language code. For example, "en-US". The
      *           response will localize in the corresponding language code, if specified.
@@ -3587,13 +3721,10 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTransferableOffers($parent, $sku, array $optionalArgs = [])
+    public function listTransferableOffers(array $optionalArgs = [])
     {
         $request = new ListTransferableOffersRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setSku($sku);
-        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['cloudIdentityId'])) {
             $request->setCloudIdentityId($optionalArgs['cloudIdentityId']);
         }
@@ -3602,12 +3733,21 @@ class CloudChannelServiceGapicClient
             $request->setCustomerName($optionalArgs['customerName']);
         }
 
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['sku'])) {
+            $request->setSku($optionalArgs['sku']);
         }
 
         if (isset($optionalArgs['languageCode'])) {
@@ -3648,9 +3788,8 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelServiceClient->listTransferableSkus($parent);
+     *     $pagedResponse = $cloudChannelServiceClient->listTransferableSkus();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3658,7 +3797,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelServiceClient->listTransferableSkus($parent);
+     *     $pagedResponse = $cloudChannelServiceClient->listTransferableSkus();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3667,9 +3806,7 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The reseller account's resource name.
-     *                             Parent uses the format: accounts/{account_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $cloudIdentityId
@@ -3679,6 +3816,9 @@ class CloudChannelServiceGapicClient
      *           the created customer here.
      *           Customer_name uses the format:
      *           accounts/{account_id}/customers/{customer_id}
+     *     @type string $parent
+     *           Required. The reseller account's resource name.
+     *           Parent uses the format: accounts/{account_id}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3708,18 +3848,21 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTransferableSkus($parent, array $optionalArgs = [])
+    public function listTransferableSkus(array $optionalArgs = [])
     {
         $request = new ListTransferableSkusRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['cloudIdentityId'])) {
             $request->setCloudIdentityId($optionalArgs['cloudIdentityId']);
         }
 
         if (isset($optionalArgs['customerName'])) {
             $request->setCustomerName($optionalArgs['customerName']);
+        }
+
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
         }
 
         if (isset($optionalArgs['pageSize'])) {
@@ -3759,19 +3902,19 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedEntitlement = $cloudChannelServiceClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-     *     $response = $cloudChannelServiceClient->lookupOffer($formattedEntitlement);
+     *     $response = $cloudChannelServiceClient->lookupOffer();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string $entitlement  Required. The resource name of the entitlement to retrieve the Offer.
-     *                             Entitlement uses the format:
-     *                             accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $entitlement
+     *           Required. The resource name of the entitlement to retrieve the Offer.
+     *           Entitlement uses the format:
+     *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3782,12 +3925,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function lookupOffer($entitlement, array $optionalArgs = [])
+    public function lookupOffer(array $optionalArgs = [])
     {
         $request = new LookupOfferRequest();
         $requestParamHeaders = [];
-        $request->setEntitlement($entitlement);
-        $requestParamHeaders['entitlement'] = $entitlement;
+        if (isset($optionalArgs['entitlement'])) {
+            $request->setEntitlement($optionalArgs['entitlement']);
+            $requestParamHeaders['entitlement'] = $optionalArgs['entitlement'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('LookupOffer', Offer::class, $optionalArgs, $request)->wait();
@@ -3823,8 +3969,7 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedCustomer = $cloudChannelServiceClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-     *     $operationResponse = $cloudChannelServiceClient->provisionCloudIdentity($formattedCustomer);
+     *     $operationResponse = $cloudChannelServiceClient->provisionCloudIdentity();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3835,7 +3980,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudChannelServiceClient->provisionCloudIdentity($formattedCustomer);
+     *     $operationResponse = $cloudChannelServiceClient->provisionCloudIdentity();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudChannelServiceClient->resumeOperation($operationName, 'provisionCloudIdentity');
@@ -3855,11 +4000,12 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $customer     Required. Resource name of the customer.
-     *                             Format: accounts/{account_id}/customers/{customer_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $customer
+     *           Required. Resource name of the customer.
+     *           Format: accounts/{account_id}/customers/{customer_id}
      *     @type CloudIdentityInfo $cloudIdentityInfo
      *           CloudIdentity-specific customer information.
      *     @type AdminUser $user
@@ -3876,12 +4022,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function provisionCloudIdentity($customer, array $optionalArgs = [])
+    public function provisionCloudIdentity(array $optionalArgs = [])
     {
         $request = new ProvisionCloudIdentityRequest();
         $requestParamHeaders = [];
-        $request->setCustomer($customer);
-        $requestParamHeaders['customer'] = $customer;
+        if (isset($optionalArgs['customer'])) {
+            $request->setCustomer($optionalArgs['customer']);
+            $requestParamHeaders['customer'] = $optionalArgs['customer'];
+        }
+
         if (isset($optionalArgs['cloudIdentityInfo'])) {
             $request->setCloudIdentityInfo($optionalArgs['cloudIdentityInfo']);
         }
@@ -3917,21 +4066,21 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $formattedCustomer = $cloudChannelServiceClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-     *     $skus = [];
-     *     $response = $cloudChannelServiceClient->queryEligibleBillingAccounts($formattedCustomer, $skus);
+     *     $response = $cloudChannelServiceClient->queryEligibleBillingAccounts();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string   $customer     Required. The resource name of the customer to list eligible billing
-     *                               accounts for. Format: accounts/{account_id}/customers/{customer_id}.
-     * @param string[] $skus         Required. List of SKUs to list eligible billing accounts for. At least one
-     *                               SKU is required. Format: products/{product_id}/skus/{sku_id}.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $customer
+     *           Required. The resource name of the customer to list eligible billing
+     *           accounts for. Format: accounts/{account_id}/customers/{customer_id}.
+     *     @type string[] $skus
+     *           Required. List of SKUs to list eligible billing accounts for. At least one
+     *           SKU is required. Format: products/{product_id}/skus/{sku_id}.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3942,13 +4091,19 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function queryEligibleBillingAccounts($customer, $skus, array $optionalArgs = [])
+    public function queryEligibleBillingAccounts(array $optionalArgs = [])
     {
         $request = new QueryEligibleBillingAccountsRequest();
         $requestParamHeaders = [];
-        $request->setCustomer($customer);
-        $request->setSkus($skus);
-        $requestParamHeaders['customer'] = $customer;
+        if (isset($optionalArgs['customer'])) {
+            $request->setCustomer($optionalArgs['customer']);
+            $requestParamHeaders['customer'] = $optionalArgs['customer'];
+        }
+
+        if (isset($optionalArgs['skus'])) {
+            $request->setSkus($optionalArgs['skus']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('QueryEligibleBillingAccounts', QueryEligibleBillingAccountsResponse::class, $optionalArgs, $request)->wait();
@@ -3978,20 +4133,20 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $account = 'account';
-     *     $serviceAccount = 'service_account';
-     *     $response = $cloudChannelServiceClient->registerSubscriber($account, $serviceAccount);
+     *     $response = $cloudChannelServiceClient->registerSubscriber();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string $account        Required. Resource name of the account.
-     * @param string $serviceAccount Required. Service account that provides subscriber access to the registered
-     *                               topic.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $account
+     *           Required. Resource name of the account.
+     *     @type string $serviceAccount
+     *           Required. Service account that provides subscriber access to the registered
+     *           topic.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4002,13 +4157,19 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function registerSubscriber($account, $serviceAccount, array $optionalArgs = [])
+    public function registerSubscriber(array $optionalArgs = [])
     {
         $request = new RegisterSubscriberRequest();
         $requestParamHeaders = [];
-        $request->setAccount($account);
-        $request->setServiceAccount($serviceAccount);
-        $requestParamHeaders['account'] = $account;
+        if (isset($optionalArgs['account'])) {
+            $request->setAccount($optionalArgs['account']);
+            $requestParamHeaders['account'] = $optionalArgs['account'];
+        }
+
+        if (isset($optionalArgs['serviceAccount'])) {
+            $request->setServiceAccount($optionalArgs['serviceAccount']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('RegisterSubscriber', RegisterSubscriberResponse::class, $optionalArgs, $request)->wait();
@@ -4044,8 +4205,7 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $cloudChannelServiceClient->startPaidService($name);
+     *     $operationResponse = $cloudChannelServiceClient->startPaidService();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -4056,7 +4216,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudChannelServiceClient->startPaidService($name);
+     *     $operationResponse = $cloudChannelServiceClient->startPaidService();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudChannelServiceClient->resumeOperation($operationName, 'startPaidService');
@@ -4076,12 +4236,13 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the entitlement to start a paid service for.
-     *                             Name uses the format:
-     *                             accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the entitlement to start a paid service for.
+     *           Name uses the format:
+     *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *     @type string $requestId
      *           Optional. You can specify an optional unique request ID, and if you need to
      *           retry your request, the server will know to ignore the request if it's
@@ -4105,12 +4266,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function startPaidService($name, array $optionalArgs = [])
+    public function startPaidService(array $optionalArgs = [])
     {
         $request = new StartPaidServiceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -4147,8 +4311,7 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $cloudChannelServiceClient->suspendEntitlement($name);
+     *     $operationResponse = $cloudChannelServiceClient->suspendEntitlement();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -4159,7 +4322,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudChannelServiceClient->suspendEntitlement($name);
+     *     $operationResponse = $cloudChannelServiceClient->suspendEntitlement();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudChannelServiceClient->resumeOperation($operationName, 'suspendEntitlement');
@@ -4179,12 +4342,13 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the entitlement to suspend.
-     *                             Name uses the format:
-     *                             accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the entitlement to suspend.
+     *           Name uses the format:
+     *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *     @type string $requestId
      *           Optional. You can specify an optional unique request ID, and if you need to
      *           retry your request, the server will know to ignore the request if it's
@@ -4208,12 +4372,15 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function suspendEntitlement($name, array $optionalArgs = [])
+    public function suspendEntitlement(array $optionalArgs = [])
     {
         $request = new SuspendEntitlementRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -4261,9 +4428,7 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $entitlements = [];
-     *     $operationResponse = $cloudChannelServiceClient->transferEntitlements($parent, $entitlements);
+     *     $operationResponse = $cloudChannelServiceClient->transferEntitlements();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -4274,7 +4439,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudChannelServiceClient->transferEntitlements($parent, $entitlements);
+     *     $operationResponse = $cloudChannelServiceClient->transferEntitlements();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudChannelServiceClient->resumeOperation($operationName, 'transferEntitlements');
@@ -4294,13 +4459,15 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string        $parent       Required. The resource name of the reseller's customer account that will
-     *                                    receive transferred entitlements. Parent uses the format:
-     *                                    accounts/{account_id}/customers/{customer_id}
-     * @param Entitlement[] $entitlements Required. The new entitlements to create or transfer.
-     * @param array         $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the reseller's customer account that will
+     *           receive transferred entitlements. Parent uses the format:
+     *           accounts/{account_id}/customers/{customer_id}
+     *     @type Entitlement[] $entitlements
+     *           Required. The new entitlements to create or transfer.
      *     @type string $authToken
      *           The super admin of the resold customer generates this token to
      *           authorize a reseller to access their Cloud Identity and purchase
@@ -4329,13 +4496,19 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function transferEntitlements($parent, $entitlements, array $optionalArgs = [])
+    public function transferEntitlements(array $optionalArgs = [])
     {
         $request = new TransferEntitlementsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setEntitlements($entitlements);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['entitlements'])) {
+            $request->setEntitlements($optionalArgs['entitlements']);
+        }
+
         if (isset($optionalArgs['authToken'])) {
             $request->setAuthToken($optionalArgs['authToken']);
         }
@@ -4384,9 +4557,7 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $entitlements = [];
-     *     $operationResponse = $cloudChannelServiceClient->transferEntitlementsToGoogle($parent, $entitlements);
+     *     $operationResponse = $cloudChannelServiceClient->transferEntitlementsToGoogle();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -4396,7 +4567,7 @@ class CloudChannelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudChannelServiceClient->transferEntitlementsToGoogle($parent, $entitlements);
+     *     $operationResponse = $cloudChannelServiceClient->transferEntitlementsToGoogle();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudChannelServiceClient->resumeOperation($operationName, 'transferEntitlementsToGoogle');
@@ -4415,13 +4586,15 @@ class CloudChannelServiceGapicClient
      * }
      * ```
      *
-     * @param string        $parent       Required. The resource name of the reseller's customer account where the
-     *                                    entitlements transfer from. Parent uses the format:
-     *                                    accounts/{account_id}/customers/{customer_id}
-     * @param Entitlement[] $entitlements Required. The entitlements to transfer to Google.
-     * @param array         $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the reseller's customer account where the
+     *           entitlements transfer from. Parent uses the format:
+     *           accounts/{account_id}/customers/{customer_id}
+     *     @type Entitlement[] $entitlements
+     *           Required. The entitlements to transfer to Google.
      *     @type string $requestId
      *           Optional. You can specify an optional unique request ID, and if you need to
      *           retry your request, the server will know to ignore the request if it's
@@ -4445,13 +4618,19 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function transferEntitlementsToGoogle($parent, $entitlements, array $optionalArgs = [])
+    public function transferEntitlementsToGoogle(array $optionalArgs = [])
     {
         $request = new TransferEntitlementsToGoogleRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setEntitlements($entitlements);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['entitlements'])) {
+            $request->setEntitlements($optionalArgs['entitlements']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -4488,20 +4667,20 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $account = 'account';
-     *     $serviceAccount = 'service_account';
-     *     $response = $cloudChannelServiceClient->unregisterSubscriber($account, $serviceAccount);
+     *     $response = $cloudChannelServiceClient->unregisterSubscriber();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string $account        Required. Resource name of the account.
-     * @param string $serviceAccount Required. Service account to unregister from subscriber access to the
-     *                               topic.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $account
+     *           Required. Resource name of the account.
+     *     @type string $serviceAccount
+     *           Required. Service account to unregister from subscriber access to the
+     *           topic.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4512,13 +4691,19 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function unregisterSubscriber($account, $serviceAccount, array $optionalArgs = [])
+    public function unregisterSubscriber(array $optionalArgs = [])
     {
         $request = new UnregisterSubscriberRequest();
         $requestParamHeaders = [];
-        $request->setAccount($account);
-        $request->setServiceAccount($serviceAccount);
-        $requestParamHeaders['account'] = $account;
+        if (isset($optionalArgs['account'])) {
+            $request->setAccount($optionalArgs['account']);
+            $requestParamHeaders['account'] = $optionalArgs['account'];
+        }
+
+        if (isset($optionalArgs['serviceAccount'])) {
+            $request->setServiceAccount($optionalArgs['serviceAccount']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UnregisterSubscriber', UnregisterSubscriberResponse::class, $optionalArgs, $request)->wait();
@@ -4552,26 +4737,26 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $name = 'name';
-     *     $channelPartnerLink = new ChannelPartnerLink();
-     *     $updateMask = new FieldMask();
-     *     $response = $cloudChannelServiceClient->updateChannelPartnerLink($name, $channelPartnerLink, $updateMask);
+     *     $response = $cloudChannelServiceClient->updateChannelPartnerLink();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param string             $name               Required. The resource name of the channel partner link to cancel.
-     *                                               Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
-     *                                               where {id} is the Cloud Identity ID of the partner.
-     * @param ChannelPartnerLink $channelPartnerLink Required. The channel partner link to update. Only
-     *                                               channel_partner_link.link_state is allowed for updates.
-     * @param FieldMask          $updateMask         Required. The update mask that applies to the resource.
-     *                                               The only allowable value for an update mask is
-     *                                               channel_partner_link.link_state.
-     * @param array              $optionalArgs       {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the channel partner link to cancel.
+     *           Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
+     *           where {id} is the Cloud Identity ID of the partner.
+     *     @type ChannelPartnerLink $channelPartnerLink
+     *           Required. The channel partner link to update. Only
+     *           channel_partner_link.link_state is allowed for updates.
+     *     @type FieldMask $updateMask
+     *           Required. The update mask that applies to the resource.
+     *           The only allowable value for an update mask is
+     *           channel_partner_link.link_state.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4582,14 +4767,23 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateChannelPartnerLink($name, $channelPartnerLink, $updateMask, array $optionalArgs = [])
+    public function updateChannelPartnerLink(array $optionalArgs = [])
     {
         $request = new UpdateChannelPartnerLinkRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setChannelPartnerLink($channelPartnerLink);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['channelPartnerLink'])) {
+            $request->setChannelPartnerLink($optionalArgs['channelPartnerLink']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateChannelPartnerLink', ChannelPartnerLink::class, $optionalArgs, $request)->wait();
@@ -4633,17 +4827,17 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $channelPartnerRepricingConfig = new ChannelPartnerRepricingConfig();
-     *     $response = $cloudChannelServiceClient->updateChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
+     *     $response = $cloudChannelServiceClient->updateChannelPartnerRepricingConfig();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param ChannelPartnerRepricingConfig $channelPartnerRepricingConfig Required. The ChannelPartnerRepricingConfig object to update.
-     * @param array                         $optionalArgs                  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type ChannelPartnerRepricingConfig $channelPartnerRepricingConfig
+     *           Required. The ChannelPartnerRepricingConfig object to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4654,12 +4848,14 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateChannelPartnerRepricingConfig($channelPartnerRepricingConfig, array $optionalArgs = [])
+    public function updateChannelPartnerRepricingConfig(array $optionalArgs = [])
     {
         $request = new UpdateChannelPartnerRepricingConfigRequest();
         $requestParamHeaders = [];
-        $request->setChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
-        $requestParamHeaders['channel_partner_repricing_config.name'] = $channelPartnerRepricingConfig->getName();
+        if (isset($optionalArgs['channelPartnerRepricingConfig'])) {
+            $request->setChannelPartnerRepricingConfig($optionalArgs['channelPartnerRepricingConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateChannelPartnerRepricingConfig', ChannelPartnerRepricingConfig::class, $optionalArgs, $request)->wait();
@@ -4684,17 +4880,17 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $customer = new Customer();
-     *     $response = $cloudChannelServiceClient->updateCustomer($customer);
+     *     $response = $cloudChannelServiceClient->updateCustomer();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param Customer $customer     Required. New contents of the customer.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Customer $customer
+     *           Required. New contents of the customer.
      *     @type FieldMask $updateMask
      *           The update mask that applies to the resource.
      *           Optional.
@@ -4708,12 +4904,14 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCustomer($customer, array $optionalArgs = [])
+    public function updateCustomer(array $optionalArgs = [])
     {
         $request = new UpdateCustomerRequest();
         $requestParamHeaders = [];
-        $request->setCustomer($customer);
-        $requestParamHeaders['customer.name'] = $customer->getName();
+        if (isset($optionalArgs['customer'])) {
+            $request->setCustomer($optionalArgs['customer']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -4761,17 +4959,17 @@ class CloudChannelServiceGapicClient
      * ```
      * $cloudChannelServiceClient = new CloudChannelServiceClient();
      * try {
-     *     $customerRepricingConfig = new CustomerRepricingConfig();
-     *     $response = $cloudChannelServiceClient->updateCustomerRepricingConfig($customerRepricingConfig);
+     *     $response = $cloudChannelServiceClient->updateCustomerRepricingConfig();
      * } finally {
      *     $cloudChannelServiceClient->close();
      * }
      * ```
      *
-     * @param CustomerRepricingConfig $customerRepricingConfig Required. The CustomerRepricingConfig object to update.
-     * @param array                   $optionalArgs            {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type CustomerRepricingConfig $customerRepricingConfig
+     *           Required. The CustomerRepricingConfig object to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4782,12 +4980,14 @@ class CloudChannelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCustomerRepricingConfig($customerRepricingConfig, array $optionalArgs = [])
+    public function updateCustomerRepricingConfig(array $optionalArgs = [])
     {
         $request = new UpdateCustomerRepricingConfigRequest();
         $requestParamHeaders = [];
-        $request->setCustomerRepricingConfig($customerRepricingConfig);
-        $requestParamHeaders['customer_repricing_config.name'] = $customerRepricingConfig->getName();
+        if (isset($optionalArgs['customerRepricingConfig'])) {
+            $request->setCustomerRepricingConfig($optionalArgs['customerRepricingConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateCustomerRepricingConfig', CustomerRepricingConfig::class, $optionalArgs, $request)->wait();

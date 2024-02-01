@@ -32,18 +32,19 @@ use Google\Cloud\BigQuery\DataPolicies\V1\ListDataPoliciesRequest;
 /**
  * List all of the data policies in the specified parent project.
  *
- * @param string $formattedParent Resource name of the project for which to list data policies.
- *                                Format is `projects/{project_number}/locations/{location_id}`. Please see
- *                                {@see DataPolicyServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_data_policies_sample(string $formattedParent): void
+function list_data_policies_sample(): void
 {
     // Create a client.
     $dataPolicyServiceClient = new DataPolicyServiceClient();
 
     // Prepare the request message.
-    $request = (new ListDataPoliciesRequest())
-        ->setParent($formattedParent);
+    $request = new ListDataPoliciesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_data_policies_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataPolicyServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_data_policies_sample($formattedParent);
 }
 // [END bigquerydatapolicy_v1_generated_DataPolicyService_ListDataPolicies_sync]

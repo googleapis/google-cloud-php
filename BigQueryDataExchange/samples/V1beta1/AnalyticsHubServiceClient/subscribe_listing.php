@@ -36,18 +36,19 @@ use Google\Cloud\BigQuery\DataExchange\V1beta1\SubscribeListingResponse;
  * Upon subscription to a listing for a BigQuery dataset, Analytics Hub
  * creates a linked dataset in the subscriber's project.
  *
- * @param string $formattedName Resource name of the listing that you want to subscribe to.
- *                              e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`. Please see
- *                              {@see AnalyticsHubServiceClient::listingName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function subscribe_listing_sample(string $formattedName): void
+function subscribe_listing_sample(): void
 {
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
     // Prepare the request message.
-    $request = (new SubscribeListingRequest())
-        ->setName($formattedName);
+    $request = new SubscribeListingRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,26 +58,5 @@ function subscribe_listing_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AnalyticsHubServiceClient::listingName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_EXCHANGE]',
-        '[LISTING]'
-    );
-
-    subscribe_listing_sample($formattedName);
 }
 // [END analyticshub_v1beta1_generated_AnalyticsHubService_SubscribeListing_sync]

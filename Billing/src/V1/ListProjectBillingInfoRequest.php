@@ -42,8 +42,7 @@ class ListProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The resource name of the billing account associated with the
      *                     projects that you want to list. For example,
-     *                     `billingAccounts/012345-567890-ABCDEF`. Please see
-     *                     {@see CloudBillingClient::billingAccountName()} for help formatting this field.
+     *                     `billingAccounts/012345-567890-ABCDEF`.
      *
      * @return \Google\Cloud\Billing\V1\ListProjectBillingInfoRequest
      *

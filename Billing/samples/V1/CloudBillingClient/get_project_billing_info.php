@@ -35,18 +35,19 @@ use Google\Cloud\Billing\V1\ProjectBillingInfo;
  * Viewer](https://cloud.google.com/iam/docs/understanding-roles#predefined_roles)
  * role.
  *
- * @param string $formattedName The resource name of the project for which billing information is
- *                              retrieved. For example, `projects/tokyo-rain-123`. Please see
- *                              {@see CloudBillingClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_project_billing_info_sample(string $formattedName): void
+function get_project_billing_info_sample(): void
 {
     // Create a client.
     $cloudBillingClient = new CloudBillingClient();
 
     // Prepare the request message.
-    $request = (new GetProjectBillingInfoRequest())
-        ->setName($formattedName);
+    $request = new GetProjectBillingInfoRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +57,5 @@ function get_project_billing_info_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudBillingClient::projectName('[PROJECT]');
-
-    get_project_billing_info_sample($formattedName);
 }
 // [END cloudbilling_v1_generated_CloudBilling_GetProjectBillingInfo_sync]

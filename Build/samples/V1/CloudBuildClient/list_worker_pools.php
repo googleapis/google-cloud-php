@@ -31,11 +31,13 @@ use Google\Cloud\Build\V1\WorkerPool;
 /**
  * Lists `WorkerPool`s.
  *
- * @param string $formattedParent The parent of the collection of `WorkerPools`.
- *                                Format: `projects/{project}/locations/{location}`. Please see
- *                                {@see CloudBuildClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_worker_pools_sample(string $formattedParent): void
+function list_worker_pools_sample(): void
 {
     // Create a client.
     $cloudBuildClient = new CloudBuildClient();
@@ -43,7 +45,7 @@ function list_worker_pools_sample(string $formattedParent): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudBuildClient->listWorkerPools($formattedParent);
+        $response = $cloudBuildClient->listWorkerPools();
 
         /** @var WorkerPool $element */
         foreach ($response as $element) {
@@ -52,21 +54,5 @@ function list_worker_pools_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CloudBuildClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_worker_pools_sample($formattedParent);
 }
 // [END cloudbuild_v1_generated_CloudBuild_ListWorkerPools_sync]

@@ -33,21 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new ClientGateway in a given project and location.
  *
- * @param string $formattedParent   Value for parent. Please see
- *                                  {@see ClientGatewaysServiceClient::locationName()} for help formatting this field.
- * @param string $clientGatewayName name of resource. The name is ignored during creation.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_client_gateway_sample(string $formattedParent, string $clientGatewayName): void
+function create_client_gateway_sample(): void
 {
     // Create a client.
     $clientGatewaysServiceClient = new ClientGatewaysServiceClient();
 
     // Prepare the request message.
-    $clientGateway = (new ClientGateway())
-        ->setName($clientGatewayName);
-    $request = (new CreateClientGatewayRequest())
-        ->setParent($formattedParent)
-        ->setClientGateway($clientGateway);
+    $request = new CreateClientGatewayRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -67,22 +65,5 @@ function create_client_gateway_sample(string $formattedParent, string $clientGat
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ClientGatewaysServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $clientGatewayName = '[NAME]';
-
-    create_client_gateway_sample($formattedParent, $clientGatewayName);
 }
 // [END beyondcorp_v1_generated_ClientGatewaysService_CreateClientGateway_sync]

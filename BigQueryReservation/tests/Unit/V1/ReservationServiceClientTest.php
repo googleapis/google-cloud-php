@@ -84,17 +84,13 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setAssignee($assignee);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
-        $response = $gapicClient->createAssignment($formattedParent);
+        $response = $gapicClient->createAssignment();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/CreateAssignment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -116,10 +112,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
         try {
-            $gapicClient->createAssignment($formattedParent);
+            $gapicClient->createAssignment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -148,17 +142,13 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setSlotCount($slotCount);
         $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->createCapacityCommitment($formattedParent);
+        $response = $gapicClient->createCapacityCommitment();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/CreateCapacityCommitment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -180,10 +170,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->createCapacityCommitment($formattedParent);
+            $gapicClient->createCapacityCommitment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -216,17 +204,13 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setConcurrency($concurrency);
         $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->createReservation($formattedParent);
+        $response = $gapicClient->createReservation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/CreateReservation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -248,10 +232,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->createReservation($formattedParent);
+            $gapicClient->createReservation();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -274,16 +256,12 @@ class ReservationServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
-        $gapicClient->deleteAssignment($formattedName);
+        $gapicClient->deleteAssignment();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/DeleteAssignment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -305,10 +283,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
         try {
-            $gapicClient->deleteAssignment($formattedName);
+            $gapicClient->deleteAssignment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -331,16 +307,12 @@ class ReservationServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
-        $gapicClient->deleteCapacityCommitment($formattedName);
+        $gapicClient->deleteCapacityCommitment();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/DeleteCapacityCommitment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -362,10 +334,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
         try {
-            $gapicClient->deleteCapacityCommitment($formattedName);
+            $gapicClient->deleteCapacityCommitment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -388,16 +358,12 @@ class ReservationServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
-        $gapicClient->deleteReservation($formattedName);
+        $gapicClient->deleteReservation();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/DeleteReservation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -419,10 +385,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
         try {
-            $gapicClient->deleteReservation($formattedName);
+            $gapicClient->deleteReservation();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -449,17 +413,13 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setSize($size);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->biReservationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->getBiReservation($formattedName);
+        $response = $gapicClient->getBiReservation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/GetBiReservation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -481,10 +441,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->biReservationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->getBiReservation($formattedName);
+            $gapicClient->getBiReservation();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -513,17 +471,13 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setSlotCount($slotCount);
         $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
-        $response = $gapicClient->getCapacityCommitment($formattedName);
+        $response = $gapicClient->getCapacityCommitment();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/GetCapacityCommitment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -545,10 +499,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
         try {
-            $gapicClient->getCapacityCommitment($formattedName);
+            $gapicClient->getCapacityCommitment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -581,17 +533,13 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setConcurrency($concurrency);
         $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
-        $response = $gapicClient->getReservation($formattedName);
+        $response = $gapicClient->getReservation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/GetReservation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -613,10 +561,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
         try {
-            $gapicClient->getReservation($formattedName);
+            $gapicClient->getReservation();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -646,9 +592,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAssignments($assignments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
-        $response = $gapicClient->listAssignments($formattedParent);
+        $response = $gapicClient->listAssignments();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -658,8 +602,6 @@ class ReservationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/ListAssignments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -681,10 +623,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
         try {
-            $gapicClient->listAssignments($formattedParent);
+            $gapicClient->listAssignments();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -714,9 +654,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCapacityCommitments($capacityCommitments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listCapacityCommitments($formattedParent);
+        $response = $gapicClient->listCapacityCommitments();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -726,8 +664,6 @@ class ReservationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/ListCapacityCommitments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -749,10 +685,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listCapacityCommitments($formattedParent);
+            $gapicClient->listCapacityCommitments();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -782,9 +716,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReservations($reservations);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listReservations($formattedParent);
+        $response = $gapicClient->listReservations();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -794,8 +726,6 @@ class ReservationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/ListReservations', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -817,10 +747,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listReservations($formattedParent);
+            $gapicClient->listReservations();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -905,17 +833,13 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setAssignee($assignee);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
-        $response = $gapicClient->moveAssignment($formattedName);
+        $response = $gapicClient->moveAssignment();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/MoveAssignment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -937,10 +861,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
         try {
-            $gapicClient->moveAssignment($formattedName);
+            $gapicClient->moveAssignment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -970,9 +892,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAssignments($assignments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->searchAllAssignments($formattedParent);
+        $response = $gapicClient->searchAllAssignments();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -982,8 +902,6 @@ class ReservationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/SearchAllAssignments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1005,10 +923,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->searchAllAssignments($formattedParent);
+            $gapicClient->searchAllAssignments();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1038,9 +954,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAssignments($assignments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->searchAssignments($formattedParent);
+        $response = $gapicClient->searchAssignments();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1050,8 +964,6 @@ class ReservationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/SearchAssignments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1073,10 +985,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->searchAssignments($formattedParent);
+            $gapicClient->searchAssignments();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1099,17 +1009,13 @@ class ReservationServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SplitCapacityCommitmentResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
-        $response = $gapicClient->splitCapacityCommitment($formattedName);
+        $response = $gapicClient->splitCapacityCommitment();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/SplitCapacityCommitment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1131,10 +1037,8 @@ class ReservationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
         try {
-            $gapicClient->splitCapacityCommitment($formattedName);
+            $gapicClient->splitCapacityCommitment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

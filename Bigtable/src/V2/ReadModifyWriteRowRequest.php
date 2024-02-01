@@ -49,8 +49,7 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                          $tableName Required. The unique name of the table to which the read/modify/write rules
      *                                                                   should be applied. Values are of the form
-     *                                                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
-     *                                                                   {@see BigtableClient::tableName()} for help formatting this field.
+     *                                                                   `projects/<project>/instances/<instance>/tables/<table>`.
      * @param string                                          $rowKey    Required. The key of the row to which the read/modify/write rules should be
      *                                                                   applied.
      * @param \Google\Cloud\Bigtable\V2\ReadModifyWriteRule[] $rules     Required. Rules specifying how the specified row's contents are to be
@@ -72,8 +71,7 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                          $tableName    Required. The unique name of the table to which the read/modify/write rules
      *                                                                      should be applied. Values are of the form
-     *                                                                      `projects/<project>/instances/<instance>/tables/<table>`. Please see
-     *                                                                      {@see BigtableClient::tableName()} for help formatting this field.
+     *                                                                      `projects/<project>/instances/<instance>/tables/<table>`.
      * @param string                                          $rowKey       Required. The key of the row to which the read/modify/write rules should be
      *                                                                      applied.
      * @param \Google\Cloud\Bigtable\V2\ReadModifyWriteRule[] $rules        Required. Rules specifying how the specified row's contents are to be

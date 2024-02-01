@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'attestor_id',
-                ],
             ],
             'DeleteAttestor' => [
                 'method' => 'delete',

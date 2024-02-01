@@ -61,9 +61,7 @@ use Google\Protobuf\Int64Value;
  * ```
  * $bigQueryWriteClient = new BigQueryWriteClient();
  * try {
- *     $writeStream = 'write_stream';
  *     $request = new AppendRowsRequest();
- *     $request->setWriteStream($writeStream);
  *     // Write all requests to the server, then read all responses until the
  *     // stream is complete
  *     $requests = [
@@ -384,9 +382,7 @@ class BigQueryWriteGapicClient
      * ```
      * $bigQueryWriteClient = new BigQueryWriteClient();
      * try {
-     *     $writeStream = 'write_stream';
      *     $request = new AppendRowsRequest();
-     *     $request->setWriteStream($writeStream);
      *     // Write all requests to the server, then read all responses until the
      *     // stream is complete
      *     $requests = [
@@ -456,20 +452,20 @@ class BigQueryWriteGapicClient
      * ```
      * $bigQueryWriteClient = new BigQueryWriteClient();
      * try {
-     *     $formattedParent = $bigQueryWriteClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
-     *     $writeStreams = [];
-     *     $response = $bigQueryWriteClient->batchCommitWriteStreams($formattedParent, $writeStreams);
+     *     $response = $bigQueryWriteClient->batchCommitWriteStreams();
      * } finally {
      *     $bigQueryWriteClient->close();
      * }
      * ```
      *
-     * @param string   $parent       Required. Parent table that all the streams should belong to, in the form
-     *                               of `projects/{project}/datasets/{dataset}/tables/{table}`.
-     * @param string[] $writeStreams Required. The group of streams that will be committed atomically.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent table that all the streams should belong to, in the form
+     *           of `projects/{project}/datasets/{dataset}/tables/{table}`.
+     *     @type string[] $writeStreams
+     *           Required. The group of streams that will be committed atomically.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -480,16 +476,19 @@ class BigQueryWriteGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchCommitWriteStreams(
-        $parent,
-        $writeStreams,
-        array $optionalArgs = []
-    ) {
+    public function batchCommitWriteStreams(array $optionalArgs = [])
+    {
         $request = new BatchCommitWriteStreamsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setWriteStreams($writeStreams);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['writeStreams'])) {
+            $request->setWriteStreams($optionalArgs['writeStreams']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -516,20 +515,20 @@ class BigQueryWriteGapicClient
      * ```
      * $bigQueryWriteClient = new BigQueryWriteClient();
      * try {
-     *     $formattedParent = $bigQueryWriteClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
-     *     $writeStream = new WriteStream();
-     *     $response = $bigQueryWriteClient->createWriteStream($formattedParent, $writeStream);
+     *     $response = $bigQueryWriteClient->createWriteStream();
      * } finally {
      *     $bigQueryWriteClient->close();
      * }
      * ```
      *
-     * @param string      $parent       Required. Reference to the table to which the stream belongs, in the format
-     *                                  of `projects/{project}/datasets/{dataset}/tables/{table}`.
-     * @param WriteStream $writeStream  Required. Stream to be created.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Reference to the table to which the stream belongs, in the format
+     *           of `projects/{project}/datasets/{dataset}/tables/{table}`.
+     *     @type WriteStream $writeStream
+     *           Required. Stream to be created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -540,16 +539,19 @@ class BigQueryWriteGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createWriteStream(
-        $parent,
-        $writeStream,
-        array $optionalArgs = []
-    ) {
+    public function createWriteStream(array $optionalArgs = [])
+    {
         $request = new CreateWriteStreamRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setWriteStream($writeStream);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['writeStream'])) {
+            $request->setWriteStream($optionalArgs['writeStream']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -572,18 +574,18 @@ class BigQueryWriteGapicClient
      * ```
      * $bigQueryWriteClient = new BigQueryWriteClient();
      * try {
-     *     $formattedName = $bigQueryWriteClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
-     *     $response = $bigQueryWriteClient->finalizeWriteStream($formattedName);
+     *     $response = $bigQueryWriteClient->finalizeWriteStream();
      * } finally {
      *     $bigQueryWriteClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the stream to finalize, in the form of
-     *                             `projects/{project}/datasets/{dataset}/tables/{table}/streams/{stream}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the stream to finalize, in the form of
+     *           `projects/{project}/datasets/{dataset}/tables/{table}/streams/{stream}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -594,12 +596,15 @@ class BigQueryWriteGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function finalizeWriteStream($name, array $optionalArgs = [])
+    public function finalizeWriteStream(array $optionalArgs = [])
     {
         $request = new FinalizeWriteStreamRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -628,17 +633,17 @@ class BigQueryWriteGapicClient
      * ```
      * $bigQueryWriteClient = new BigQueryWriteClient();
      * try {
-     *     $formattedWriteStream = $bigQueryWriteClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
-     *     $response = $bigQueryWriteClient->flushRows($formattedWriteStream);
+     *     $response = $bigQueryWriteClient->flushRows();
      * } finally {
      *     $bigQueryWriteClient->close();
      * }
      * ```
      *
-     * @param string $writeStream  Required. The stream that is the target of the flush operation.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $writeStream
+     *           Required. The stream that is the target of the flush operation.
      *     @type Int64Value $offset
      *           Ending offset of the flush operation. Rows before this offset(including
      *           this offset) will be flushed.
@@ -652,12 +657,15 @@ class BigQueryWriteGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function flushRows($writeStream, array $optionalArgs = [])
+    public function flushRows(array $optionalArgs = [])
     {
         $request = new FlushRowsRequest();
         $requestParamHeaders = [];
-        $request->setWriteStream($writeStream);
-        $requestParamHeaders['write_stream'] = $writeStream;
+        if (isset($optionalArgs['writeStream'])) {
+            $request->setWriteStream($optionalArgs['writeStream']);
+            $requestParamHeaders['write_stream'] = $optionalArgs['writeStream'];
+        }
+
         if (isset($optionalArgs['offset'])) {
             $request->setOffset($optionalArgs['offset']);
         }
@@ -683,18 +691,18 @@ class BigQueryWriteGapicClient
      * ```
      * $bigQueryWriteClient = new BigQueryWriteClient();
      * try {
-     *     $formattedName = $bigQueryWriteClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
-     *     $response = $bigQueryWriteClient->getWriteStream($formattedName);
+     *     $response = $bigQueryWriteClient->getWriteStream();
      * } finally {
      *     $bigQueryWriteClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the stream to get, in the form of
-     *                             `projects/{project}/datasets/{dataset}/tables/{table}/streams/{stream}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the stream to get, in the form of
+     *           `projects/{project}/datasets/{dataset}/tables/{table}/streams/{stream}`.
      *     @type int $view
      *           Indicates whether to get full or partial view of the WriteStream. If
      *           not set, view returned will be basic.
@@ -709,12 +717,15 @@ class BigQueryWriteGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getWriteStream($name, array $optionalArgs = [])
+    public function getWriteStream(array $optionalArgs = [])
     {
         $request = new GetWriteStreamRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }

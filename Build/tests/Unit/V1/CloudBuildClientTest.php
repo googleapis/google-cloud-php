@@ -115,9 +115,7 @@ class CloudBuildClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $response = $gapicClient->approveBuild($name);
+        $response = $gapicClient->approveBuild();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -127,8 +125,6 @@ class CloudBuildClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/ApproveBuild', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/approveBuildTest');
         $response->pollUntilComplete([
@@ -179,9 +175,7 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $response = $gapicClient->approveBuild($name);
+        $response = $gapicClient->approveBuild();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -230,20 +224,13 @@ class CloudBuildClientTest extends GeneratedTest
         $expectedResponse->setLogUrl($logUrl);
         $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $id = 'id3355';
-        $response = $gapicClient->cancelBuild($projectId, $id);
+        $response = $gapicClient->cancelBuild();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/CancelBuild', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getId();
-        $this->assertProtobufEquals($id, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -265,11 +252,8 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $id = 'id3355';
         try {
-            $gapicClient->cancelBuild($projectId, $id);
+            $gapicClient->cancelBuild();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -326,10 +310,7 @@ class CloudBuildClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $build = new Build();
-        $response = $gapicClient->createBuild($projectId, $build);
+        $response = $gapicClient->createBuild();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -339,10 +320,6 @@ class CloudBuildClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/CreateBuild', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualApiRequestObject->getBuild();
-        $this->assertProtobufEquals($build, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBuildTest');
         $response->pollUntilComplete([
@@ -393,10 +370,7 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $build = new Build();
-        $response = $gapicClient->createBuild($projectId, $build);
+        $response = $gapicClient->createBuild();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -445,20 +419,13 @@ class CloudBuildClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $trigger = new BuildTrigger();
-        $response = $gapicClient->createBuildTrigger($projectId, $trigger);
+        $response = $gapicClient->createBuildTrigger();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/CreateBuildTrigger', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getTrigger();
-        $this->assertProtobufEquals($trigger, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -480,11 +447,8 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $trigger = new BuildTrigger();
         try {
-            $gapicClient->createBuildTrigger($projectId, $trigger);
+            $gapicClient->createBuildTrigger();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -533,11 +497,7 @@ class CloudBuildClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $workerPool = new WorkerPool();
-        $workerPoolId = 'workerPoolId-300928931';
-        $response = $gapicClient->createWorkerPool($formattedParent, $workerPool, $workerPoolId);
+        $response = $gapicClient->createWorkerPool();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -547,12 +507,6 @@ class CloudBuildClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/CreateWorkerPool', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getWorkerPool();
-        $this->assertProtobufEquals($workerPool, $actualValue);
-        $actualValue = $actualApiRequestObject->getWorkerPoolId();
-        $this->assertProtobufEquals($workerPoolId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createWorkerPoolTest');
         $response->pollUntilComplete([
@@ -603,11 +557,7 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $workerPool = new WorkerPool();
-        $workerPoolId = 'workerPoolId-300928931';
-        $response = $gapicClient->createWorkerPool($formattedParent, $workerPool, $workerPoolId);
+        $response = $gapicClient->createWorkerPool();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -640,19 +590,12 @@ class CloudBuildClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $triggerId = 'triggerId1363517698';
-        $gapicClient->deleteBuildTrigger($projectId, $triggerId);
+        $gapicClient->deleteBuildTrigger();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/DeleteBuildTrigger', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getTriggerId();
-        $this->assertProtobufEquals($triggerId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -674,11 +617,8 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $triggerId = 'triggerId1363517698';
         try {
-            $gapicClient->deleteBuildTrigger($projectId, $triggerId);
+            $gapicClient->deleteBuildTrigger();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -719,9 +659,7 @@ class CloudBuildClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->workerPoolName('[PROJECT]', '[LOCATION]', '[WORKER_POOL]');
-        $response = $gapicClient->deleteWorkerPool($formattedName);
+        $response = $gapicClient->deleteWorkerPool();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -731,8 +669,6 @@ class CloudBuildClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/DeleteWorkerPool', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteWorkerPoolTest');
         $response->pollUntilComplete([
@@ -783,9 +719,7 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->workerPoolName('[PROJECT]', '[LOCATION]', '[WORKER_POOL]');
-        $response = $gapicClient->deleteWorkerPool($formattedName);
+        $response = $gapicClient->deleteWorkerPool();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -834,20 +768,13 @@ class CloudBuildClientTest extends GeneratedTest
         $expectedResponse->setLogUrl($logUrl);
         $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $id = 'id3355';
-        $response = $gapicClient->getBuild($projectId, $id);
+        $response = $gapicClient->getBuild();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/GetBuild', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getId();
-        $this->assertProtobufEquals($id, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -869,11 +796,8 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $id = 'id3355';
         try {
-            $gapicClient->getBuild($projectId, $id);
+            $gapicClient->getBuild();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -912,20 +836,13 @@ class CloudBuildClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $triggerId = 'triggerId1363517698';
-        $response = $gapicClient->getBuildTrigger($projectId, $triggerId);
+        $response = $gapicClient->getBuildTrigger();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/GetBuildTrigger', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getTriggerId();
-        $this->assertProtobufEquals($triggerId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -947,11 +864,8 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $triggerId = 'triggerId1363517698';
         try {
-            $gapicClient->getBuildTrigger($projectId, $triggerId);
+            $gapicClient->getBuildTrigger();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -982,17 +896,13 @@ class CloudBuildClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->workerPoolName('[PROJECT]', '[LOCATION]', '[WORKER_POOL]');
-        $response = $gapicClient->getWorkerPool($formattedName);
+        $response = $gapicClient->getWorkerPool();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/GetWorkerPool', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1014,10 +924,8 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->workerPoolName('[PROJECT]', '[LOCATION]', '[WORKER_POOL]');
         try {
-            $gapicClient->getWorkerPool($formattedName);
+            $gapicClient->getWorkerPool();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1047,9 +955,7 @@ class CloudBuildClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTriggers($triggers);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $response = $gapicClient->listBuildTriggers($projectId);
+        $response = $gapicClient->listBuildTriggers();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1059,8 +965,6 @@ class CloudBuildClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/ListBuildTriggers', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1082,10 +986,8 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
         try {
-            $gapicClient->listBuildTriggers($projectId);
+            $gapicClient->listBuildTriggers();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1115,9 +1017,7 @@ class CloudBuildClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBuilds($builds);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $response = $gapicClient->listBuilds($projectId);
+        $response = $gapicClient->listBuilds();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1127,8 +1027,6 @@ class CloudBuildClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/ListBuilds', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1150,10 +1048,8 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
         try {
-            $gapicClient->listBuilds($projectId);
+            $gapicClient->listBuilds();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1183,9 +1079,7 @@ class CloudBuildClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setWorkerPools($workerPools);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listWorkerPools($formattedParent);
+        $response = $gapicClient->listWorkerPools();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1195,8 +1089,6 @@ class CloudBuildClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/ListWorkerPools', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1218,10 +1110,8 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listWorkerPools($formattedParent);
+            $gapicClient->listWorkerPools();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1330,10 +1220,7 @@ class CloudBuildClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $id = 'id3355';
-        $response = $gapicClient->retryBuild($projectId, $id);
+        $response = $gapicClient->retryBuild();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1343,10 +1230,6 @@ class CloudBuildClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/RetryBuild', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualApiRequestObject->getId();
-        $this->assertProtobufEquals($id, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/retryBuildTest');
         $response->pollUntilComplete([
@@ -1397,10 +1280,7 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $id = 'id3355';
-        $response = $gapicClient->retryBuild($projectId, $id);
+        $response = $gapicClient->retryBuild();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1467,10 +1347,7 @@ class CloudBuildClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $triggerId = 'triggerId1363517698';
-        $response = $gapicClient->runBuildTrigger($projectId, $triggerId);
+        $response = $gapicClient->runBuildTrigger();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1480,10 +1357,6 @@ class CloudBuildClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/RunBuildTrigger', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualApiRequestObject->getTriggerId();
-        $this->assertProtobufEquals($triggerId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/runBuildTriggerTest');
         $response->pollUntilComplete([
@@ -1534,10 +1407,7 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $triggerId = 'triggerId1363517698';
-        $response = $gapicClient->runBuildTrigger($projectId, $triggerId);
+        $response = $gapicClient->runBuildTrigger();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1586,23 +1456,13 @@ class CloudBuildClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $triggerId = 'triggerId1363517698';
-        $trigger = new BuildTrigger();
-        $response = $gapicClient->updateBuildTrigger($projectId, $triggerId, $trigger);
+        $response = $gapicClient->updateBuildTrigger();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/UpdateBuildTrigger', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getTriggerId();
-        $this->assertProtobufEquals($triggerId, $actualValue);
-        $actualValue = $actualRequestObject->getTrigger();
-        $this->assertProtobufEquals($trigger, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1624,12 +1484,8 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $triggerId = 'triggerId1363517698';
-        $trigger = new BuildTrigger();
         try {
-            $gapicClient->updateBuildTrigger($projectId, $triggerId, $trigger);
+            $gapicClient->updateBuildTrigger();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1678,9 +1534,7 @@ class CloudBuildClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $workerPool = new WorkerPool();
-        $response = $gapicClient->updateWorkerPool($workerPool);
+        $response = $gapicClient->updateWorkerPool();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1690,8 +1544,6 @@ class CloudBuildClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudbuild.v1.CloudBuild/UpdateWorkerPool', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getWorkerPool();
-        $this->assertProtobufEquals($workerPool, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateWorkerPoolTest');
         $response->pollUntilComplete([
@@ -1742,9 +1594,7 @@ class CloudBuildClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $workerPool = new WorkerPool();
-        $response = $gapicClient->updateWorkerPool($workerPool);
+        $response = $gapicClient->updateWorkerPool();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

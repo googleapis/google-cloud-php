@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\CreateCustomerRequest;
 use Google\Cloud\Channel\V1\Customer;
-use Google\Type\PostalAddress;
 
 /**
  * Creates a new [Customer][google.cloud.channel.v1.Customer] resource under
@@ -47,29 +46,19 @@ use Google\Type\PostalAddress;
  * Return value:
  * The newly created [Customer][google.cloud.channel.v1.Customer] resource.
  *
- * @param string $parent                 The resource name of reseller account in which to create the
- *                                       customer. Parent uses the format: accounts/{account_id}
- * @param string $customerOrgDisplayName Name of the organization that the customer entity represents.
- * @param string $customerDomain         The customer's primary domain. Must match the primary contact
- *                                       email's domain.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_customer_sample(
-    string $parent,
-    string $customerOrgDisplayName,
-    string $customerDomain
-): void {
+function create_customer_sample(): void
+{
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $customerOrgPostalAddress = new PostalAddress();
-    $customer = (new Customer())
-        ->setOrgDisplayName($customerOrgDisplayName)
-        ->setOrgPostalAddress($customerOrgPostalAddress)
-        ->setDomain($customerDomain);
-    $request = (new CreateCustomerRequest())
-        ->setParent($parent)
-        ->setCustomer($customer);
+    $request = new CreateCustomerRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -79,23 +68,5 @@ function create_customer_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-    $customerOrgDisplayName = '[ORG_DISPLAY_NAME]';
-    $customerDomain = '[DOMAIN]';
-
-    create_customer_sample($parent, $customerOrgDisplayName, $customerDomain);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_CreateCustomer_sync]

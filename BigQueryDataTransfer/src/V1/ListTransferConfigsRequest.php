@@ -50,7 +50,6 @@ class ListTransferConfigsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The BigQuery project id for which transfer configs
      *                       should be returned: `projects/{project_id}` or
      *                       `projects/{project_id}/locations/{location_id}`
-     *                       Please see {@see DataTransferServiceClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferConfigsRequest
      *

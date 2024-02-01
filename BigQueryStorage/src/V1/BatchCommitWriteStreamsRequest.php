@@ -31,8 +31,7 @@ class BatchCommitWriteStreamsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Parent table that all the streams should belong to, in the form
-     *                       of `projects/{project}/datasets/{dataset}/tables/{table}`. Please see
-     *                       {@see BigQueryWriteClient::tableName()} for help formatting this field.
+     *                       of `projects/{project}/datasets/{dataset}/tables/{table}`.
      *
      * @return \Google\Cloud\BigQuery\Storage\V1\BatchCommitWriteStreamsRequest
      *

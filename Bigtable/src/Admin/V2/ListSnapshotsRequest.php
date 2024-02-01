@@ -49,8 +49,7 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
      *                       listed. Values are of the form
      *                       `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *                       Use `{cluster} = '-'` to list snapshots for all clusters in an instance,
-     *                       e.g., `projects/{project}/instances/{instance}/clusters/-`. Please see
-     *                       {@see BigtableTableAdminClient::clusterName()} for help formatting this field.
+     *                       e.g., `projects/{project}/instances/{instance}/clusters/-`.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\ListSnapshotsRequest
      *

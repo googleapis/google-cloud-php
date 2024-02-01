@@ -32,22 +32,19 @@ use Google\Cloud\BigQuery\Connection\V1\ListConnectionsRequest;
 /**
  * Returns a list of connections in the given project.
  *
- * @param string $formattedParent Parent resource name.
- *                                Must be in the form: `projects/{project_id}/locations/{location_id}`
- *                                Please see {@see ConnectionServiceClient::locationName()} for help formatting this field.
- * @param int    $pageSize        The maximum number of resources contained in the underlying API
- *                                response. The API may return fewer values in a page, even if
- *                                there are additional values to be retrieved.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_connections_sample(string $formattedParent, int $pageSize): void
+function list_connections_sample(): void
 {
     // Create a client.
     $connectionServiceClient = new ConnectionServiceClient();
 
     // Prepare the request message.
-    $request = (new ListConnectionsRequest())
-        ->setParent($formattedParent)
-        ->setPageSize($pageSize);
+    $request = new ListConnectionsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,22 +58,5 @@ function list_connections_sample(string $formattedParent, int $pageSize): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ConnectionServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $pageSize = 0;
-
-    list_connections_sample($formattedParent, $pageSize);
 }
 // [END bigqueryconnection_v1_generated_ConnectionService_ListConnections_sync]

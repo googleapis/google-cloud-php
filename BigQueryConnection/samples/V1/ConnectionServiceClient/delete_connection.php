@@ -30,18 +30,19 @@ use Google\Cloud\BigQuery\Connection\V1\DeleteConnectionRequest;
 /**
  * Deletes connection and associated credential.
  *
- * @param string $formattedName Name of the deleted connection, for example:
- *                              `projects/{project_id}/locations/{location_id}/connections/{connection_id}`
- *                              Please see {@see ConnectionServiceClient::connectionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_connection_sample(string $formattedName): void
+function delete_connection_sample(): void
 {
     // Create a client.
     $connectionServiceClient = new ConnectionServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteConnectionRequest())
-        ->setName($formattedName);
+    $request = new DeleteConnectionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -50,21 +51,5 @@ function delete_connection_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ConnectionServiceClient::connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-
-    delete_connection_sample($formattedName);
 }
 // [END bigqueryconnection_v1_generated_ConnectionService_DeleteConnection_sync]

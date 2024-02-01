@@ -31,18 +31,19 @@ use Google\Cloud\BigQuery\Migration\V2\MigrationWorkflow;
 /**
  * Gets a previously created migration workflow.
  *
- * @param string $formattedName The unique identifier for the migration workflow.
- *                              Example: `projects/123/locations/us/workflows/1234`
- *                              Please see {@see MigrationServiceClient::migrationWorkflowName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_migration_workflow_sample(string $formattedName): void
+function get_migration_workflow_sample(): void
 {
     // Create a client.
     $migrationServiceClient = new MigrationServiceClient();
 
     // Prepare the request message.
-    $request = (new GetMigrationWorkflowRequest())
-        ->setName($formattedName);
+    $request = new GetMigrationWorkflowRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,25 +53,5 @@ function get_migration_workflow_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = MigrationServiceClient::migrationWorkflowName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[WORKFLOW]'
-    );
-
-    get_migration_workflow_sample($formattedName);
 }
 // [END bigquerymigration_v2_generated_MigrationService_GetMigrationWorkflow_sync]

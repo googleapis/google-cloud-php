@@ -61,7 +61,6 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -112,14 +111,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $appProfileId = 'appProfileId1262094415';
-        $appProfile = new AppProfile();
-        $request = (new CreateAppProfileRequest())
-            ->setParent($formattedParent)
-            ->setAppProfileId($appProfileId)
-            ->setAppProfile($appProfile);
+        $request = new CreateAppProfileRequest();
         $response = $gapicClient->createAppProfile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -127,12 +119,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/CreateAppProfile', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getAppProfileId();
-        $this->assertProtobufEquals($appProfileId, $actualValue);
-        $actualValue = $actualRequestObject->getAppProfile();
-        $this->assertProtobufEquals($appProfile, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -154,14 +140,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $appProfileId = 'appProfileId1262094415';
-        $appProfile = new AppProfile();
-        $request = (new CreateAppProfileRequest())
-            ->setParent($formattedParent)
-            ->setAppProfileId($appProfileId)
-            ->setAppProfile($appProfile);
+        $request = new CreateAppProfileRequest();
         try {
             $gapicClient->createAppProfile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -210,18 +189,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $clusterId = 'clusterId240280960';
-        $cluster = new Cluster();
-        $clusterName = 'clusterName-1141738587';
-        $cluster->setName($clusterName);
-        $clusterServeNodes = 1434304124;
-        $cluster->setServeNodes($clusterServeNodes);
-        $request = (new CreateClusterRequest())
-            ->setParent($formattedParent)
-            ->setClusterId($clusterId)
-            ->setCluster($cluster);
+        $request = new CreateClusterRequest();
         $response = $gapicClient->createCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -232,12 +200,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/CreateCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getClusterId();
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualApiRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createClusterTest');
         $response->pollUntilComplete([
@@ -288,18 +250,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $clusterId = 'clusterId240280960';
-        $cluster = new Cluster();
-        $clusterName = 'clusterName-1141738587';
-        $cluster->setName($clusterName);
-        $clusterServeNodes = 1434304124;
-        $cluster->setServeNodes($clusterServeNodes);
-        $request = (new CreateClusterRequest())
-            ->setParent($formattedParent)
-            ->setClusterId($clusterId)
-            ->setCluster($cluster);
+        $request = new CreateClusterRequest();
         $response = $gapicClient->createCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -357,34 +308,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $instanceId = 'instanceId-2101995259';
-        $instance = new Instance();
-        $instanceName = 'instanceName-737857344';
-        $instance->setName($instanceName);
-        $instanceDisplayName = 'instanceDisplayName1824500376';
-        $instance->setDisplayName($instanceDisplayName);
-        $instanceType = Type::TYPE_UNSPECIFIED;
-        $instance->setType($instanceType);
-        $labelsValue = 'labelsValue950036658';
-        $instanceLabels = [
-            'labelsKey' => $labelsValue,
-        ];
-        $instance->setLabels($instanceLabels);
-        $clustersValue = new Cluster();
-        $valueName = 'valueName-765894756';
-        $clustersValue->setName($valueName);
-        $valueServeNodes = 370436813;
-        $clustersValue->setServeNodes($valueServeNodes);
-        $clusters = [
-            'clustersKey' => $clustersValue,
-        ];
-        $request = (new CreateInstanceRequest())
-            ->setParent($formattedParent)
-            ->setInstanceId($instanceId)
-            ->setInstance($instance)
-            ->setClusters($clusters);
+        $request = new CreateInstanceRequest();
         $response = $gapicClient->createInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -395,14 +319,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/CreateInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstanceId();
-        $this->assertProtobufEquals($instanceId, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstance();
-        $this->assertProtobufEquals($instance, $actualValue);
-        $actualValue = $actualApiRequestObject->getClusters();
-        $this->assertProtobufEquals($clusters, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInstanceTest');
         $response->pollUntilComplete([
@@ -453,34 +369,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $instanceId = 'instanceId-2101995259';
-        $instance = new Instance();
-        $instanceName = 'instanceName-737857344';
-        $instance->setName($instanceName);
-        $instanceDisplayName = 'instanceDisplayName1824500376';
-        $instance->setDisplayName($instanceDisplayName);
-        $instanceType = Type::TYPE_UNSPECIFIED;
-        $instance->setType($instanceType);
-        $labelsValue = 'labelsValue950036658';
-        $instanceLabels = [
-            'labelsKey' => $labelsValue,
-        ];
-        $instance->setLabels($instanceLabels);
-        $clustersValue = new Cluster();
-        $valueName = 'valueName-765894756';
-        $clustersValue->setName($valueName);
-        $valueServeNodes = 370436813;
-        $clustersValue->setServeNodes($valueServeNodes);
-        $clusters = [
-            'clustersKey' => $clustersValue,
-        ];
-        $request = (new CreateInstanceRequest())
-            ->setParent($formattedParent)
-            ->setInstanceId($instanceId)
-            ->setInstance($instance)
-            ->setClusters($clusters);
+        $request = new CreateInstanceRequest();
         $response = $gapicClient->createInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -514,22 +403,13 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->appProfileName('[PROJECT]', '[INSTANCE]', '[APP_PROFILE]');
-        $ignoreWarnings = true;
-        $request = (new DeleteAppProfileRequest())
-            ->setName($formattedName)
-            ->setIgnoreWarnings($ignoreWarnings);
+        $request = new DeleteAppProfileRequest();
         $gapicClient->deleteAppProfile($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/DeleteAppProfile', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getIgnoreWarnings();
-        $this->assertProtobufEquals($ignoreWarnings, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -551,12 +431,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->appProfileName('[PROJECT]', '[INSTANCE]', '[APP_PROFILE]');
-        $ignoreWarnings = true;
-        $request = (new DeleteAppProfileRequest())
-            ->setName($formattedName)
-            ->setIgnoreWarnings($ignoreWarnings);
+        $request = new DeleteAppProfileRequest();
         try {
             $gapicClient->deleteAppProfile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -581,18 +456,13 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
-        $request = (new DeleteClusterRequest())
-            ->setName($formattedName);
+        $request = new DeleteClusterRequest();
         $gapicClient->deleteCluster($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/DeleteCluster', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -614,10 +484,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
-        $request = (new DeleteClusterRequest())
-            ->setName($formattedName);
+        $request = new DeleteClusterRequest();
         try {
             $gapicClient->deleteCluster($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -642,18 +509,13 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new DeleteInstanceRequest())
-            ->setName($formattedName);
+        $request = new DeleteInstanceRequest();
         $gapicClient->deleteInstance($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/DeleteInstance', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -675,10 +537,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new DeleteInstanceRequest())
-            ->setName($formattedName);
+        $request = new DeleteInstanceRequest();
         try {
             $gapicClient->deleteInstance($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -709,10 +568,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->appProfileName('[PROJECT]', '[INSTANCE]', '[APP_PROFILE]');
-        $request = (new GetAppProfileRequest())
-            ->setName($formattedName);
+        $request = new GetAppProfileRequest();
         $response = $gapicClient->getAppProfile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -720,8 +576,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/GetAppProfile', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -743,10 +597,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->appProfileName('[PROJECT]', '[INSTANCE]', '[APP_PROFILE]');
-        $request = (new GetAppProfileRequest())
-            ->setName($formattedName);
+        $request = new GetAppProfileRequest();
         try {
             $gapicClient->getAppProfile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -777,10 +628,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $expectedResponse->setLocation($location);
         $expectedResponse->setServeNodes($serveNodes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
-        $request = (new GetClusterRequest())
-            ->setName($formattedName);
+        $request = new GetClusterRequest();
         $response = $gapicClient->getCluster($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -788,8 +636,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/GetCluster', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -811,10 +657,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
-        $request = (new GetClusterRequest())
-            ->setName($formattedName);
+        $request = new GetClusterRequest();
         try {
             $gapicClient->getCluster($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -911,10 +754,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new GetInstanceRequest())
-            ->setName($formattedName);
+        $request = new GetInstanceRequest();
         $response = $gapicClient->getInstance($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -922,8 +762,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/GetInstance', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -945,10 +783,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new GetInstanceRequest())
-            ->setName($formattedName);
+        $request = new GetInstanceRequest();
         try {
             $gapicClient->getInstance($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -980,10 +815,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAppProfiles($appProfiles);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new ListAppProfilesRequest())
-            ->setParent($formattedParent);
+        $request = new ListAppProfilesRequest();
         $response = $gapicClient->listAppProfiles($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -994,8 +826,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/ListAppProfiles', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1017,10 +847,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new ListAppProfilesRequest())
-            ->setParent($formattedParent);
+        $request = new ListAppProfilesRequest();
         try {
             $gapicClient->listAppProfiles($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1047,10 +874,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $expectedResponse = new ListClustersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new ListClustersRequest())
-            ->setParent($formattedParent);
+        $request = new ListClustersRequest();
         $response = $gapicClient->listClusters($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1058,8 +882,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/ListClusters', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1081,10 +903,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new ListClustersRequest())
-            ->setParent($formattedParent);
+        $request = new ListClustersRequest();
         try {
             $gapicClient->listClusters($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1116,10 +935,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setHotTablets($hotTablets);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
-        $request = (new ListHotTabletsRequest())
-            ->setParent($formattedParent);
+        $request = new ListHotTabletsRequest();
         $response = $gapicClient->listHotTablets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1130,8 +946,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/ListHotTablets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1153,10 +967,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
-        $request = (new ListHotTabletsRequest())
-            ->setParent($formattedParent);
+        $request = new ListHotTabletsRequest();
         try {
             $gapicClient->listHotTablets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1183,10 +994,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $expectedResponse = new ListInstancesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListInstancesRequest())
-            ->setParent($formattedParent);
+        $request = new ListInstancesRequest();
         $response = $gapicClient->listInstances($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1194,8 +1002,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/ListInstances', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1217,10 +1023,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListInstancesRequest())
-            ->setParent($formattedParent);
+        $request = new ListInstancesRequest();
         try {
             $gapicClient->listInstances($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1269,16 +1072,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $cluster = new Cluster();
-        $clusterName = 'clusterName-1141738587';
-        $cluster->setName($clusterName);
-        $clusterServeNodes = 1434304124;
-        $cluster->setServeNodes($clusterServeNodes);
-        $updateMask = new FieldMask();
-        $request = (new PartialUpdateClusterRequest())
-            ->setCluster($cluster)
-            ->setUpdateMask($updateMask);
+        $request = new PartialUpdateClusterRequest();
         $response = $gapicClient->partialUpdateCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1289,10 +1083,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/PartialUpdateCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/partialUpdateClusterTest');
         $response->pollUntilComplete([
@@ -1343,16 +1133,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $cluster = new Cluster();
-        $clusterName = 'clusterName-1141738587';
-        $cluster->setName($clusterName);
-        $clusterServeNodes = 1434304124;
-        $cluster->setServeNodes($clusterServeNodes);
-        $updateMask = new FieldMask();
-        $request = (new PartialUpdateClusterRequest())
-            ->setCluster($cluster)
-            ->setUpdateMask($updateMask);
+        $request = new PartialUpdateClusterRequest();
         $response = $gapicClient->partialUpdateCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1410,23 +1191,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $instance = new Instance();
-        $instanceName = 'instanceName-737857344';
-        $instance->setName($instanceName);
-        $instanceDisplayName = 'instanceDisplayName1824500376';
-        $instance->setDisplayName($instanceDisplayName);
-        $instanceType = Type::TYPE_UNSPECIFIED;
-        $instance->setType($instanceType);
-        $labelsValue = 'labelsValue950036658';
-        $instanceLabels = [
-            'labelsKey' => $labelsValue,
-        ];
-        $instance->setLabels($instanceLabels);
-        $updateMask = new FieldMask();
-        $request = (new PartialUpdateInstanceRequest())
-            ->setInstance($instance)
-            ->setUpdateMask($updateMask);
+        $request = new PartialUpdateInstanceRequest();
         $response = $gapicClient->partialUpdateInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1437,10 +1202,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/PartialUpdateInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getInstance();
-        $this->assertProtobufEquals($instance, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/partialUpdateInstanceTest');
         $response->pollUntilComplete([
@@ -1491,23 +1252,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $instance = new Instance();
-        $instanceName = 'instanceName-737857344';
-        $instance->setName($instanceName);
-        $instanceDisplayName = 'instanceDisplayName1824500376';
-        $instance->setDisplayName($instanceDisplayName);
-        $instanceType = Type::TYPE_UNSPECIFIED;
-        $instance->setType($instanceType);
-        $labelsValue = 'labelsValue950036658';
-        $instanceLabels = [
-            'labelsKey' => $labelsValue,
-        ];
-        $instance->setLabels($instanceLabels);
-        $updateMask = new FieldMask();
-        $request = (new PartialUpdateInstanceRequest())
-            ->setInstance($instance)
-            ->setUpdateMask($updateMask);
+        $request = new PartialUpdateInstanceRequest();
         $response = $gapicClient->partialUpdateInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1705,12 +1450,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $appProfile = new AppProfile();
-        $updateMask = new FieldMask();
-        $request = (new UpdateAppProfileRequest())
-            ->setAppProfile($appProfile)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateAppProfileRequest();
         $response = $gapicClient->updateAppProfile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1721,10 +1461,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/UpdateAppProfile', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getAppProfile();
-        $this->assertProtobufEquals($appProfile, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateAppProfileTest');
         $response->pollUntilComplete([
@@ -1775,12 +1511,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $appProfile = new AppProfile();
-        $updateMask = new FieldMask();
-        $request = (new UpdateAppProfileRequest())
-            ->setAppProfile($appProfile)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateAppProfileRequest();
         $response = $gapicClient->updateAppProfile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1955,7 +1686,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $displayName = 'displayName1615086568';
         $type = Type::TYPE_UNSPECIFIED;
         $labelsValue = 'labelsValue950036658';
         $labels = [
@@ -1963,7 +1693,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         ];
         $request = (new Instance())
             ->setName($name)
-            ->setDisplayName($displayName)
             ->setType($type)
             ->setLabels($labels);
         $response = $gapicClient->updateInstance($request);
@@ -1975,8 +1704,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/UpdateInstance', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualRequestObject->getDisplayName();
-        $this->assertProtobufEquals($displayName, $actualValue);
         $actualValue = $actualRequestObject->getType();
         $this->assertProtobufEquals($type, $actualValue);
         $actualValue = $actualRequestObject->getLabels();
@@ -2004,7 +1731,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $displayName = 'displayName1615086568';
         $type = Type::TYPE_UNSPECIFIED;
         $labelsValue = 'labelsValue950036658';
         $labels = [
@@ -2012,7 +1738,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         ];
         $request = (new Instance())
             ->setName($name)
-            ->setDisplayName($displayName)
             ->setType($type)
             ->setLabels($labels);
         try {
@@ -2045,14 +1770,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $appProfileId = 'appProfileId1262094415';
-        $appProfile = new AppProfile();
-        $request = (new CreateAppProfileRequest())
-            ->setParent($formattedParent)
-            ->setAppProfileId($appProfileId)
-            ->setAppProfile($appProfile);
+        $request = new CreateAppProfileRequest();
         $response = $gapicClient->createAppProfileAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2060,12 +1778,6 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableInstanceAdmin/CreateAppProfile', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getAppProfileId();
-        $this->assertProtobufEquals($appProfileId, $actualValue);
-        $actualValue = $actualRequestObject->getAppProfile();
-        $this->assertProtobufEquals($appProfile, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

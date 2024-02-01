@@ -25,8 +25,7 @@ class GetPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the [policy][google.cloud.binaryauthorization.v1.Policy] to retrieve,
-     *                     in the format `projects/&#42;/policy`. Please see
-     *                     {@see BinauthzManagementServiceV1Client::policyName()} for help formatting this field.
+     *                     in the format `projects/&#42;/policy`.
      *
      * @return \Google\Cloud\BinaryAuthorization\V1\GetPolicyRequest
      *

@@ -28,8 +28,7 @@ class GetCustomerRepricingConfigRequest extends \Google\Protobuf\Internal\Messag
     /**
      * @param string $name Required. The resource name of the CustomerRepricingConfig.
      *                     Format:
-     *                     accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}. Please see
-     *                     {@see CloudChannelServiceClient::customerRepricingConfigName()} for help formatting this field.
+     *                     accounts/{account_id}/customers/{customer_id}/customerRepricingConfigs/{id}.
      *
      * @return \Google\Cloud\Channel\V1\GetCustomerRepricingConfigRequest
      *

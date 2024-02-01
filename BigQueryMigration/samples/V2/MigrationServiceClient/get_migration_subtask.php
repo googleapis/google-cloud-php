@@ -31,18 +31,19 @@ use Google\Cloud\BigQuery\Migration\V2\MigrationSubtask;
 /**
  * Gets a previously created migration subtask.
  *
- * @param string $formattedName The unique identifier for the migration subtask.
- *                              Example: `projects/123/locations/us/workflows/1234/subtasks/543`
- *                              Please see {@see MigrationServiceClient::migrationSubtaskName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_migration_subtask_sample(string $formattedName): void
+function get_migration_subtask_sample(): void
 {
     // Create a client.
     $migrationServiceClient = new MigrationServiceClient();
 
     // Prepare the request message.
-    $request = (new GetMigrationSubtaskRequest())
-        ->setName($formattedName);
+    $request = new GetMigrationSubtaskRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,26 +53,5 @@ function get_migration_subtask_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = MigrationServiceClient::migrationSubtaskName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[WORKFLOW]',
-        '[SUBTASK]'
-    );
-
-    get_migration_subtask_sample($formattedName);
 }
 // [END bigquerymigration_v2_generated_MigrationService_GetMigrationSubtask_sync]

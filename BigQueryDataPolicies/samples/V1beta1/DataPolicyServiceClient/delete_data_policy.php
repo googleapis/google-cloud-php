@@ -29,41 +29,23 @@ use Google\Cloud\BigQuery\DataPolicies\V1beta1\DataPolicyServiceClient;
 /**
  * Deletes the data policy specified by its resource name.
  *
- * @param string $formattedName Resource name of the data policy to delete. Format is
- *                              `projects/{project_number}/locations/{location_id}/dataPolicies/{data_policy_id}`. Please see
- *                              {@see DataPolicyServiceClient::dataPolicyName()} for help formatting this field.
- */
-function delete_data_policy_sample(string $formattedName): void
-{
-    // Create a client.
-    $dataPolicyServiceClient = new DataPolicyServiceClient();
-
-    // Call the API and handle any network failures.
-    try {
-        $dataPolicyServiceClient->deleteDataPolicy($formattedName);
-        printf('Call completed successfully.' . PHP_EOL);
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function delete_data_policy_sample(): void
 {
-    $formattedName = DataPolicyServiceClient::dataPolicyName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_POLICY]'
-    );
+    // Create a client.
+    $dataPolicyServiceClient = new DataPolicyServiceClient();
 
-    delete_data_policy_sample($formattedName);
+    // Call the API and handle any network failures.
+    try {
+        $dataPolicyServiceClient->deleteDataPolicy();
+        printf('Call completed successfully.' . PHP_EOL);
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END bigquerydatapolicy_v1beta1_generated_DataPolicyService_DeleteDataPolicy_sync]

@@ -31,18 +31,19 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription;
 /**
  * Gets the details of a Subscription.
  *
- * @param string $formattedName Resource name of the subscription.
- *                              e.g. projects/123/locations/US/subscriptions/456
- *                              Please see {@see AnalyticsHubServiceClient::subscriptionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_subscription_sample(string $formattedName): void
+function get_subscription_sample(): void
 {
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
     // Prepare the request message.
-    $request = (new GetSubscriptionRequest())
-        ->setName($formattedName);
+    $request = new GetSubscriptionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,25 +53,5 @@ function get_subscription_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AnalyticsHubServiceClient::subscriptionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[SUBSCRIPTION]'
-    );
-
-    get_subscription_sample($formattedName);
 }
 // [END analyticshub_v1_generated_AnalyticsHubService_GetSubscription_sync]

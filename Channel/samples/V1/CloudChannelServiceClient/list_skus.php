@@ -36,22 +36,19 @@ use Google\Cloud\Channel\V1\Sku;
  *
  * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
  *
- * @param string $formattedParent The resource name of the Product to list SKUs for.
- *                                Parent uses the format: products/{product_id}.
- *                                Supports products/- to retrieve SKUs for all products. Please see
- *                                {@see CloudChannelServiceClient::productName()} for help formatting this field.
- * @param string $account         Resource name of the reseller.
- *                                Format: accounts/{account_id}.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_skus_sample(string $formattedParent, string $account): void
+function list_skus_sample(): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = (new ListSkusRequest())
-        ->setParent($formattedParent)
-        ->setAccount($account);
+    $request = new ListSkusRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,22 +62,5 @@ function list_skus_sample(string $formattedParent, string $account): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CloudChannelServiceClient::productName('[PRODUCT]');
-    $account = '[ACCOUNT]';
-
-    list_skus_sample($formattedParent, $account);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_ListSkus_sync]

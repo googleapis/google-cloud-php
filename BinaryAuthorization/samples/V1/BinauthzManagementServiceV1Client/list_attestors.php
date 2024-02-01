@@ -33,18 +33,19 @@ use Google\Cloud\BinaryAuthorization\V1\ListAttestorsRequest;
  * Lists [attestors][google.cloud.binaryauthorization.v1.Attestor].
  * Returns INVALID_ARGUMENT if the project does not exist.
  *
- * @param string $formattedParent The resource name of the project associated with the
- *                                [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/*`. Please see
- *                                {@see BinauthzManagementServiceV1Client::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_attestors_sample(string $formattedParent): void
+function list_attestors_sample(): void
 {
     // Create a client.
     $binauthzManagementServiceV1Client = new BinauthzManagementServiceV1Client();
 
     // Prepare the request message.
-    $request = (new ListAttestorsRequest())
-        ->setParent($formattedParent);
+    $request = new ListAttestorsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +59,5 @@ function list_attestors_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = BinauthzManagementServiceV1Client::projectName('[PROJECT]');
-
-    list_attestors_sample($formattedParent);
 }
 // [END binaryauthorization_v1_generated_BinauthzManagementServiceV1_ListAttestors_sync]

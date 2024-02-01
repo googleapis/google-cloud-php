@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\CertificateManager\V1\Certificate;
 use Google\Cloud\CertificateManager\V1\Client\CertificateManagerClient;
 use Google\Cloud\CertificateManager\V1\UpdateCertificateRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_certificate_sample(): void
     $certificateManagerClient = new CertificateManagerClient();
 
     // Prepare the request message.
-    $certificate = new Certificate();
-    $updateMask = new FieldMask();
-    $request = (new UpdateCertificateRequest())
-        ->setCertificate($certificate)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateCertificateRequest();
 
     // Call the API and handle any network failures.
     try {

@@ -32,18 +32,19 @@ use Google\Cloud\Billing\V1\Sku;
 /**
  * Lists all publicly available SKUs for a given cloud service.
  *
- * @param string $formattedParent The name of the service.
- *                                Example: "services/DA34-426B-A397"
- *                                Please see {@see CloudCatalogClient::serviceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_skus_sample(string $formattedParent): void
+function list_skus_sample(): void
 {
     // Create a client.
     $cloudCatalogClient = new CloudCatalogClient();
 
     // Prepare the request message.
-    $request = (new ListSkusRequest())
-        ->setParent($formattedParent);
+    $request = new ListSkusRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_skus_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CloudCatalogClient::serviceName('[SERVICE]');
-
-    list_skus_sample($formattedParent);
 }
 // [END cloudbilling_v1_generated_CloudCatalog_ListSkus_sync]

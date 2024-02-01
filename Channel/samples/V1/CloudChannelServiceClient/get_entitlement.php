@@ -41,19 +41,19 @@ use Google\Cloud\Channel\V1\GetEntitlementRequest;
  * Return value:
  * The requested [Entitlement][google.cloud.channel.v1.Entitlement] resource.
  *
- * @param string $formattedName The resource name of the entitlement to retrieve.
- *                              Name uses the format:
- *                              accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
- *                              Please see {@see CloudChannelServiceClient::entitlementName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_entitlement_sample(string $formattedName): void
+function get_entitlement_sample(): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = (new GetEntitlementRequest())
-        ->setName($formattedName);
+    $request = new GetEntitlementRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,25 +63,5 @@ function get_entitlement_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudChannelServiceClient::entitlementName(
-        '[ACCOUNT]',
-        '[CUSTOMER]',
-        '[ENTITLEMENT]'
-    );
-
-    get_entitlement_sample($formattedName);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_GetEntitlement_sync]

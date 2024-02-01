@@ -63,8 +63,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $cloudBillingClient = new CloudBillingClient();
  * try {
- *     $billingAccount = new BillingAccount();
- *     $response = $cloudBillingClient->createBillingAccount($billingAccount);
+ *     $response = $cloudBillingClient->createBillingAccount();
  * } finally {
  *     $cloudBillingClient->close();
  * }
@@ -421,20 +420,20 @@ class CloudBillingGapicClient
      * ```
      * $cloudBillingClient = new CloudBillingClient();
      * try {
-     *     $billingAccount = new BillingAccount();
-     *     $response = $cloudBillingClient->createBillingAccount($billingAccount);
+     *     $response = $cloudBillingClient->createBillingAccount();
      * } finally {
      *     $cloudBillingClient->close();
      * }
      * ```
      *
-     * @param BillingAccount $billingAccount Required. The billing account resource to create.
-     *                                       Currently CreateBillingAccount only supports subaccount creation, so
-     *                                       any created billing accounts must be under a provided parent billing
-     *                                       account.
-     * @param array          $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type BillingAccount $billingAccount
+     *           Required. The billing account resource to create.
+     *           Currently CreateBillingAccount only supports subaccount creation, so
+     *           any created billing accounts must be under a provided parent billing
+     *           account.
      *     @type string $parent
      *           Optional. The parent to create a billing account from.
      *           Format:
@@ -452,13 +451,14 @@ class CloudBillingGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createBillingAccount(
-        $billingAccount,
-        array $optionalArgs = []
-    ) {
+    public function createBillingAccount(array $optionalArgs = [])
+    {
         $request = new CreateBillingAccountRequest();
         $requestParamHeaders = [];
-        $request->setBillingAccount($billingAccount);
+        if (isset($optionalArgs['billingAccount'])) {
+            $request->setBillingAccount($optionalArgs['billingAccount']);
+        }
+
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
@@ -487,18 +487,18 @@ class CloudBillingGapicClient
      * ```
      * $cloudBillingClient = new CloudBillingClient();
      * try {
-     *     $formattedName = $cloudBillingClient->billingAccountName('[BILLING_ACCOUNT]');
-     *     $response = $cloudBillingClient->getBillingAccount($formattedName);
+     *     $response = $cloudBillingClient->getBillingAccount();
      * } finally {
      *     $cloudBillingClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the billing account to retrieve. For
-     *                             example, `billingAccounts/012345-567890-ABCDEF`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the billing account to retrieve. For
+     *           example, `billingAccounts/012345-567890-ABCDEF`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -509,12 +509,15 @@ class CloudBillingGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getBillingAccount($name, array $optionalArgs = [])
+    public function getBillingAccount(array $optionalArgs = [])
     {
         $request = new GetBillingAccountRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -599,18 +602,18 @@ class CloudBillingGapicClient
      * ```
      * $cloudBillingClient = new CloudBillingClient();
      * try {
-     *     $formattedName = $cloudBillingClient->projectName('[PROJECT]');
-     *     $response = $cloudBillingClient->getProjectBillingInfo($formattedName);
+     *     $response = $cloudBillingClient->getProjectBillingInfo();
      * } finally {
      *     $cloudBillingClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the project for which billing information is
-     *                             retrieved. For example, `projects/tokyo-rain-123`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the project for which billing information is
+     *           retrieved. For example, `projects/tokyo-rain-123`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -621,12 +624,15 @@ class CloudBillingGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getProjectBillingInfo($name, array $optionalArgs = [])
+    public function getProjectBillingInfo(array $optionalArgs = [])
     {
         $request = new GetProjectBillingInfoRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -750,9 +756,8 @@ class CloudBillingGapicClient
      * ```
      * $cloudBillingClient = new CloudBillingClient();
      * try {
-     *     $formattedName = $cloudBillingClient->billingAccountName('[BILLING_ACCOUNT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudBillingClient->listProjectBillingInfo($formattedName);
+     *     $pagedResponse = $cloudBillingClient->listProjectBillingInfo();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -760,7 +765,7 @@ class CloudBillingGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudBillingClient->listProjectBillingInfo($formattedName);
+     *     $pagedResponse = $cloudBillingClient->listProjectBillingInfo();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -769,12 +774,13 @@ class CloudBillingGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the billing account associated with the
-     *                             projects that you want to list. For example,
-     *                             `billingAccounts/012345-567890-ABCDEF`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the billing account associated with the
+     *           projects that you want to list. For example,
+     *           `billingAccounts/012345-567890-ABCDEF`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -794,12 +800,15 @@ class CloudBillingGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listProjectBillingInfo($name, array $optionalArgs = [])
+    public function listProjectBillingInfo(array $optionalArgs = [])
     {
         $request = new ListProjectBillingInfoRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -829,24 +838,24 @@ class CloudBillingGapicClient
      * ```
      * $cloudBillingClient = new CloudBillingClient();
      * try {
-     *     $formattedName = $cloudBillingClient->billingAccountName('[BILLING_ACCOUNT]');
-     *     $formattedDestinationParent = $cloudBillingClient->organizationName('[ORGANIZATION]');
-     *     $response = $cloudBillingClient->moveBillingAccount($formattedName, $formattedDestinationParent);
+     *     $response = $cloudBillingClient->moveBillingAccount();
      * } finally {
      *     $cloudBillingClient->close();
      * }
      * ```
      *
-     * @param string $name              Required. The resource name of the billing account to move.
-     *                                  Must be of the form `billingAccounts/{billing_account_id}`.
-     *                                  The specified billing account cannot be a subaccount, since a subaccount
-     *                                  always belongs to the same organization as its parent account.
-     * @param string $destinationParent Required. The resource name of the Organization to move
-     *                                  the billing account under.
-     *                                  Must be of the form `organizations/{organization_id}`.
-     * @param array  $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the billing account to move.
+     *           Must be of the form `billingAccounts/{billing_account_id}`.
+     *           The specified billing account cannot be a subaccount, since a subaccount
+     *           always belongs to the same organization as its parent account.
+     *     @type string $destinationParent
+     *           Required. The resource name of the Organization to move
+     *           the billing account under.
+     *           Must be of the form `organizations/{organization_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -857,17 +866,21 @@ class CloudBillingGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function moveBillingAccount(
-        $name,
-        $destinationParent,
-        array $optionalArgs = []
-    ) {
+    public function moveBillingAccount(array $optionalArgs = [])
+    {
         $request = new MoveBillingAccountRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setDestinationParent($destinationParent);
-        $requestParamHeaders['name'] = $name;
-        $requestParamHeaders['destination_parent'] = $destinationParent;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['destinationParent'])) {
+            $request->setDestinationParent($optionalArgs['destinationParent']);
+            $requestParamHeaders['destination_parent'] =
+                $optionalArgs['destinationParent'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1023,20 +1036,20 @@ class CloudBillingGapicClient
      * ```
      * $cloudBillingClient = new CloudBillingClient();
      * try {
-     *     $formattedName = $cloudBillingClient->billingAccountName('[BILLING_ACCOUNT]');
-     *     $account = new BillingAccount();
-     *     $response = $cloudBillingClient->updateBillingAccount($formattedName, $account);
+     *     $response = $cloudBillingClient->updateBillingAccount();
      * } finally {
      *     $cloudBillingClient->close();
      * }
      * ```
      *
-     * @param string         $name         Required. The name of the billing account resource to be updated.
-     * @param BillingAccount $account      Required. The billing account resource to replace the resource on the
-     *                                     server.
-     * @param array          $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the billing account resource to be updated.
+     *     @type BillingAccount $account
+     *           Required. The billing account resource to replace the resource on the
+     *           server.
      *     @type FieldMask $updateMask
      *           The update mask applied to the resource.
      *           Only "display_name" is currently supported.
@@ -1050,16 +1063,19 @@ class CloudBillingGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateBillingAccount(
-        $name,
-        $account,
-        array $optionalArgs = []
-    ) {
+    public function updateBillingAccount(array $optionalArgs = [])
+    {
         $request = new UpdateBillingAccountRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setAccount($account);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['account'])) {
+            $request->setAccount($optionalArgs['account']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1116,19 +1132,19 @@ class CloudBillingGapicClient
      * ```
      * $cloudBillingClient = new CloudBillingClient();
      * try {
-     *     $name = 'name';
-     *     $response = $cloudBillingClient->updateProjectBillingInfo($name);
+     *     $response = $cloudBillingClient->updateProjectBillingInfo();
      * } finally {
      *     $cloudBillingClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the project associated with the billing
-     *                             information that you want to update. For example,
-     *                             `projects/tokyo-rain-123`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the project associated with the billing
+     *           information that you want to update. For example,
+     *           `projects/tokyo-rain-123`.
      *     @type ProjectBillingInfo $projectBillingInfo
      *           The new billing information for the project. Output-only fields are
      *           ignored; thus, you can leave empty all fields except
@@ -1143,12 +1159,15 @@ class CloudBillingGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateProjectBillingInfo($name, array $optionalArgs = [])
+    public function updateProjectBillingInfo(array $optionalArgs = [])
     {
         $request = new UpdateProjectBillingInfoRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['projectBillingInfo'])) {
             $request->setProjectBillingInfo(
                 $optionalArgs['projectBillingInfo']

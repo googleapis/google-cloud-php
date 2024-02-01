@@ -23,8 +23,7 @@ class GetClientConnectorServiceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. Name of the resource. Please see
-     *                     {@see ClientConnectorServicesServiceClient::clientConnectorServiceName()} for help formatting this field.
+     * @param string $name Required. Name of the resource.
      *
      * @return \Google\Cloud\BeyondCorp\ClientConnectorServices\V1\GetClientConnectorServiceRequest
      *

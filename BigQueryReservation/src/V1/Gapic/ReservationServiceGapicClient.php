@@ -90,8 +90,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $reservationServiceClient = new ReservationServiceClient();
  * try {
- *     $formattedParent = $reservationServiceClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
- *     $response = $reservationServiceClient->createAssignment($formattedParent);
+ *     $response = $reservationServiceClient->createAssignment();
  * } finally {
  *     $reservationServiceClient->close();
  * }
@@ -492,18 +491,18 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedParent = $reservationServiceClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
-     *     $response = $reservationServiceClient->createAssignment($formattedParent);
+     *     $response = $reservationServiceClient->createAssignment();
      * } finally {
      *     $reservationServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource name of the assignment
-     *                             E.g. `projects/myproject/locations/US/reservations/team1-prod`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource name of the assignment
+     *           E.g. `projects/myproject/locations/US/reservations/team1-prod`
      *     @type Assignment $assignment
      *           Assignment resource to create.
      *     @type string $assignmentId
@@ -521,12 +520,15 @@ class ReservationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAssignment($parent, array $optionalArgs = [])
+    public function createAssignment(array $optionalArgs = [])
     {
         $request = new CreateAssignmentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['assignment'])) {
             $request->setAssignment($optionalArgs['assignment']);
         }
@@ -556,18 +558,18 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedParent = $reservationServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $response = $reservationServiceClient->createCapacityCommitment($formattedParent);
+     *     $response = $reservationServiceClient->createCapacityCommitment();
      * } finally {
      *     $reservationServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the parent reservation. E.g.,
-     *                             `projects/myproject/locations/US`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the parent reservation. E.g.,
+     *           `projects/myproject/locations/US`
      *     @type CapacityCommitment $capacityCommitment
      *           Content of the capacity commitment to create.
      *     @type bool $enforceSingleAdminProjectPerOrg
@@ -589,12 +591,15 @@ class ReservationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCapacityCommitment($parent, array $optionalArgs = [])
+    public function createCapacityCommitment(array $optionalArgs = [])
     {
         $request = new CreateCapacityCommitmentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['capacityCommitment'])) {
             $request->setCapacityCommitment(
                 $optionalArgs['capacityCommitment']
@@ -634,18 +639,18 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedParent = $reservationServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $response = $reservationServiceClient->createReservation($formattedParent);
+     *     $response = $reservationServiceClient->createReservation();
      * } finally {
      *     $reservationServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. Project, location. E.g.,
-     *                             `projects/myproject/locations/US`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Project, location. E.g.,
+     *           `projects/myproject/locations/US`
      *     @type string $reservationId
      *           The reservation ID. It must only contain lower case alphanumeric
      *           characters or dashes. It must start with a letter and must not end
@@ -662,12 +667,15 @@ class ReservationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createReservation($parent, array $optionalArgs = [])
+    public function createReservation(array $optionalArgs = [])
     {
         $request = new CreateReservationRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['reservationId'])) {
             $request->setReservationId($optionalArgs['reservationId']);
         }
@@ -711,18 +719,18 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedName = $reservationServiceClient->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
-     *     $reservationServiceClient->deleteAssignment($formattedName);
+     *     $reservationServiceClient->deleteAssignment();
      * } finally {
      *     $reservationServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the resource, e.g.
-     *                             `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the resource, e.g.
+     *           `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -731,12 +739,15 @@ class ReservationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAssignment($name, array $optionalArgs = [])
+    public function deleteAssignment(array $optionalArgs = [])
     {
         $request = new DeleteAssignmentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -760,18 +771,18 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedName = $reservationServiceClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
-     *     $reservationServiceClient->deleteCapacityCommitment($formattedName);
+     *     $reservationServiceClient->deleteCapacityCommitment();
      * } finally {
      *     $reservationServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the capacity commitment to delete. E.g.,
-     *                             `projects/myproject/locations/US/capacityCommitments/123`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the capacity commitment to delete. E.g.,
+     *           `projects/myproject/locations/US/capacityCommitments/123`
      *     @type bool $force
      *           Can be used to force delete commitments even if assignments exist. Deleting
      *           commitments with assignments may cause queries to fail if they no longer
@@ -784,12 +795,15 @@ class ReservationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteCapacityCommitment($name, array $optionalArgs = [])
+    public function deleteCapacityCommitment(array $optionalArgs = [])
     {
         $request = new DeleteCapacityCommitmentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -817,18 +831,18 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedName = $reservationServiceClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
-     *     $reservationServiceClient->deleteReservation($formattedName);
+     *     $reservationServiceClient->deleteReservation();
      * } finally {
      *     $reservationServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the reservation to retrieve. E.g.,
-     *                             `projects/myproject/locations/US/reservations/team1-prod`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the reservation to retrieve. E.g.,
+     *           `projects/myproject/locations/US/reservations/team1-prod`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -837,12 +851,15 @@ class ReservationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteReservation($name, array $optionalArgs = [])
+    public function deleteReservation(array $optionalArgs = [])
     {
         $request = new DeleteReservationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -864,18 +881,18 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedName = $reservationServiceClient->biReservationName('[PROJECT]', '[LOCATION]');
-     *     $response = $reservationServiceClient->getBiReservation($formattedName);
+     *     $response = $reservationServiceClient->getBiReservation();
      * } finally {
      *     $reservationServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the requested reservation, for example:
-     *                             `projects/{project_id}/locations/{location_id}/biReservation`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the requested reservation, for example:
+     *           `projects/{project_id}/locations/{location_id}/biReservation`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -886,12 +903,15 @@ class ReservationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getBiReservation($name, array $optionalArgs = [])
+    public function getBiReservation(array $optionalArgs = [])
     {
         $request = new GetBiReservationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -913,18 +933,18 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedName = $reservationServiceClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
-     *     $response = $reservationServiceClient->getCapacityCommitment($formattedName);
+     *     $response = $reservationServiceClient->getCapacityCommitment();
      * } finally {
      *     $reservationServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the capacity commitment to retrieve. E.g.,
-     *                             `projects/myproject/locations/US/capacityCommitments/123`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the capacity commitment to retrieve. E.g.,
+     *           `projects/myproject/locations/US/capacityCommitments/123`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -935,12 +955,15 @@ class ReservationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCapacityCommitment($name, array $optionalArgs = [])
+    public function getCapacityCommitment(array $optionalArgs = [])
     {
         $request = new GetCapacityCommitmentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -962,18 +985,18 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedName = $reservationServiceClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
-     *     $response = $reservationServiceClient->getReservation($formattedName);
+     *     $response = $reservationServiceClient->getReservation();
      * } finally {
      *     $reservationServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the reservation to retrieve. E.g.,
-     *                             `projects/myproject/locations/US/reservations/team1-prod`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the reservation to retrieve. E.g.,
+     *           `projects/myproject/locations/US/reservations/team1-prod`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -984,12 +1007,15 @@ class ReservationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getReservation($name, array $optionalArgs = [])
+    public function getReservation(array $optionalArgs = [])
     {
         $request = new GetReservationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1031,9 +1057,8 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedParent = $reservationServiceClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $reservationServiceClient->listAssignments($formattedParent);
+     *     $pagedResponse = $reservationServiceClient->listAssignments();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1041,7 +1066,7 @@ class ReservationServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $reservationServiceClient->listAssignments($formattedParent);
+     *     $pagedResponse = $reservationServiceClient->listAssignments();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1050,16 +1075,17 @@ class ReservationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource name e.g.:
-     *
-     *                             `projects/myproject/locations/US/reservations/team1-prod`
-     *
-     *                             Or:
-     *
-     *                             `projects/myproject/locations/US/reservations/-`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource name e.g.:
+     *
+     *           `projects/myproject/locations/US/reservations/team1-prod`
+     *
+     *           Or:
+     *
+     *           `projects/myproject/locations/US/reservations/-`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1079,12 +1105,15 @@ class ReservationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAssignments($parent, array $optionalArgs = [])
+    public function listAssignments(array $optionalArgs = [])
     {
         $request = new ListAssignmentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1114,9 +1143,8 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedParent = $reservationServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $reservationServiceClient->listCapacityCommitments($formattedParent);
+     *     $pagedResponse = $reservationServiceClient->listCapacityCommitments();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1124,7 +1152,7 @@ class ReservationServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $reservationServiceClient->listCapacityCommitments($formattedParent);
+     *     $pagedResponse = $reservationServiceClient->listCapacityCommitments();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1133,11 +1161,12 @@ class ReservationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the parent reservation. E.g.,
-     *                             `projects/myproject/locations/US`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the parent reservation. E.g.,
+     *           `projects/myproject/locations/US`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1157,12 +1186,15 @@ class ReservationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCapacityCommitments($parent, array $optionalArgs = [])
+    public function listCapacityCommitments(array $optionalArgs = [])
     {
         $request = new ListCapacityCommitmentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1192,9 +1224,8 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedParent = $reservationServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $reservationServiceClient->listReservations($formattedParent);
+     *     $pagedResponse = $reservationServiceClient->listReservations();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1202,7 +1233,7 @@ class ReservationServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $reservationServiceClient->listReservations($formattedParent);
+     *     $pagedResponse = $reservationServiceClient->listReservations();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1211,11 +1242,12 @@ class ReservationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource name containing project and location, e.g.:
-     *                             `projects/myproject/locations/US`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource name containing project and location, e.g.:
+     *           `projects/myproject/locations/US`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1235,12 +1267,15 @@ class ReservationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listReservations($parent, array $optionalArgs = [])
+    public function listReservations(array $optionalArgs = [])
     {
         $request = new ListReservationsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1344,19 +1379,19 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedName = $reservationServiceClient->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
-     *     $response = $reservationServiceClient->moveAssignment($formattedName);
+     *     $response = $reservationServiceClient->moveAssignment();
      * } finally {
      *     $reservationServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the assignment,
-     *                             e.g.
-     *                             `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the assignment,
+     *           e.g.
+     *           `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
      *     @type string $destinationId
      *           The new reservation ID, e.g.:
      *           `projects/myotherproject/locations/US/reservations/team2-prod`
@@ -1376,12 +1411,15 @@ class ReservationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function moveAssignment($name, array $optionalArgs = [])
+    public function moveAssignment(array $optionalArgs = [])
     {
         $request = new MoveAssignmentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['destinationId'])) {
             $request->setDestinationId($optionalArgs['destinationId']);
         }
@@ -1430,9 +1468,8 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedParent = $reservationServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $reservationServiceClient->searchAllAssignments($formattedParent);
+     *     $pagedResponse = $reservationServiceClient->searchAllAssignments();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1440,7 +1477,7 @@ class ReservationServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $reservationServiceClient->searchAllAssignments($formattedParent);
+     *     $pagedResponse = $reservationServiceClient->searchAllAssignments();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1449,12 +1486,13 @@ class ReservationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name with location (project name could be the
-     *                             wildcard '-'), e.g.:
-     *                             `projects/-/locations/US`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name with location (project name could be the
+     *           wildcard '-'), e.g.:
+     *           `projects/-/locations/US`.
      *     @type string $query
      *           Please specify resource name as assignee in the query.
      *
@@ -1482,12 +1520,15 @@ class ReservationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function searchAllAssignments($parent, array $optionalArgs = [])
+    public function searchAllAssignments(array $optionalArgs = [])
     {
         $request = new SearchAllAssignmentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['query'])) {
             $request->setQuery($optionalArgs['query']);
         }
@@ -1543,9 +1584,8 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedParent = $reservationServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $reservationServiceClient->searchAssignments($formattedParent);
+     *     $pagedResponse = $reservationServiceClient->searchAssignments();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1553,7 +1593,7 @@ class ReservationServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $reservationServiceClient->searchAssignments($formattedParent);
+     *     $pagedResponse = $reservationServiceClient->searchAssignments();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1562,12 +1602,13 @@ class ReservationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the admin project(containing project and
-     *                             location), e.g.:
-     *                             `projects/myproject/locations/US`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the admin project(containing project and
+     *           location), e.g.:
+     *           `projects/myproject/locations/US`.
      *     @type string $query
      *           Please specify resource name as assignee in the query.
      *
@@ -1597,12 +1638,15 @@ class ReservationServiceGapicClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function searchAssignments($parent, array $optionalArgs = [])
+    public function searchAssignments(array $optionalArgs = [])
     {
         $request = new SearchAssignmentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['query'])) {
             $request->setQuery($optionalArgs['query']);
         }
@@ -1643,18 +1687,18 @@ class ReservationServiceGapicClient
      * ```
      * $reservationServiceClient = new ReservationServiceClient();
      * try {
-     *     $formattedName = $reservationServiceClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
-     *     $response = $reservationServiceClient->splitCapacityCommitment($formattedName);
+     *     $response = $reservationServiceClient->splitCapacityCommitment();
      * } finally {
      *     $reservationServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name e.g.,:
-     *                             `projects/myproject/locations/US/capacityCommitments/123`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name e.g.,:
+     *           `projects/myproject/locations/US/capacityCommitments/123`
      *     @type int $slotCount
      *           Number of slots in the capacity commitment after the split.
      *     @type RetrySettings|array $retrySettings
@@ -1667,12 +1711,15 @@ class ReservationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function splitCapacityCommitment($name, array $optionalArgs = [])
+    public function splitCapacityCommitment(array $optionalArgs = [])
     {
         $request = new SplitCapacityCommitmentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['slotCount'])) {
             $request->setSlotCount($optionalArgs['slotCount']);
         }

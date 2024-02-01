@@ -31,27 +31,19 @@ use Google\Cloud\Billing\V1\MoveBillingAccountRequest;
 /**
  * Changes which parent organization a billing account belongs to.
  *
- * @param string $formattedName              The resource name of the billing account to move.
- *                                           Must be of the form `billingAccounts/{billing_account_id}`.
- *                                           The specified billing account cannot be a subaccount, since a subaccount
- *                                           always belongs to the same organization as its parent account. Please see
- *                                           {@see CloudBillingClient::billingAccountName()} for help formatting this field.
- * @param string $formattedDestinationParent The resource name of the Organization to move
- *                                           the billing account under.
- *                                           Must be of the form `organizations/{organization_id}`. Please see
- *                                           {@see CloudBillingClient::organizationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function move_billing_account_sample(
-    string $formattedName,
-    string $formattedDestinationParent
-): void {
+function move_billing_account_sample(): void
+{
     // Create a client.
     $cloudBillingClient = new CloudBillingClient();
 
     // Prepare the request message.
-    $request = (new MoveBillingAccountRequest())
-        ->setName($formattedName)
-        ->setDestinationParent($formattedDestinationParent);
+    $request = new MoveBillingAccountRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,22 +53,5 @@ function move_billing_account_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudBillingClient::billingAccountName('[BILLING_ACCOUNT]');
-    $formattedDestinationParent = CloudBillingClient::organizationName('[ORGANIZATION]');
-
-    move_billing_account_sample($formattedName, $formattedDestinationParent);
 }
 // [END cloudbilling_v1_generated_CloudBilling_MoveBillingAccount_sync]

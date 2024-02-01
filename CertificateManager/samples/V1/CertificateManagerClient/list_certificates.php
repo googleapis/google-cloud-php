@@ -32,18 +32,19 @@ use Google\Cloud\CertificateManager\V1\ListCertificatesRequest;
 /**
  * Lists Certificates in a given project and location.
  *
- * @param string $formattedParent The project and location from which the certificate should be
- *                                listed, specified in the format `projects/&#42;/locations/*`. Please see
- *                                {@see CertificateManagerClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_certificates_sample(string $formattedParent): void
+function list_certificates_sample(): void
 {
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
     // Prepare the request message.
-    $request = (new ListCertificatesRequest())
-        ->setParent($formattedParent);
+    $request = new ListCertificatesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_certificates_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CertificateManagerClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_certificates_sample($formattedParent);
 }
 // [END certificatemanager_v1_generated_CertificateManager_ListCertificates_sync]

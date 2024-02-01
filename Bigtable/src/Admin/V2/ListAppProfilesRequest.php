@@ -49,8 +49,7 @@ class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
      *                       is requested. Values are of the form
      *                       `projects/{project}/instances/{instance}`.
      *                       Use `{instance} = '-'` to list AppProfiles for all Instances in a project,
-     *                       e.g., `projects/myproject/instances/-`. Please see
-     *                       {@see BigtableInstanceAdminClient::instanceName()} for help formatting this field.
+     *                       e.g., `projects/myproject/instances/-`.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\ListAppProfilesRequest
      *

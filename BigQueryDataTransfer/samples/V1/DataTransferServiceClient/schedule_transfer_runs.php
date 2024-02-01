@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\BigQuery\DataTransfer\V1\Client\DataTransferServiceClient;
 use Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsResponse;
-use Google\Protobuf\Timestamp;
 
 /**
  * Creates transfer runs for a time range [start_time, end_time].
@@ -36,23 +35,19 @@ use Google\Protobuf\Timestamp;
  * Note that runs are created per UTC time in the time range.
  * DEPRECATED: use StartManualTransferRuns instead.
  *
- * @param string $formattedParent Transfer configuration name in the form:
- *                                `projects/{project_id}/transferConfigs/{config_id}` or
- *                                `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`. Please see
- *                                {@see DataTransferServiceClient::transferConfigName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function schedule_transfer_runs_sample(string $formattedParent): void
+function schedule_transfer_runs_sample(): void
 {
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
     // Prepare the request message.
-    $startTime = new Timestamp();
-    $endTime = new Timestamp();
-    $request = (new ScheduleTransferRunsRequest())
-        ->setParent($formattedParent)
-        ->setStartTime($startTime)
-        ->setEndTime($endTime);
+    $request = new ScheduleTransferRunsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,21 +57,5 @@ function schedule_transfer_runs_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataTransferServiceClient::transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
-
-    schedule_transfer_runs_sample($formattedParent);
 }
 // [END bigquerydatatransfer_v1_generated_DataTransferService_ScheduleTransferRuns_sync]

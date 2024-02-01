@@ -36,23 +36,19 @@ use Google\Cloud\BigQuery\Storage\V1\Client\BigQueryWriteClient;
  * times. Once a stream is committed, data in the stream becomes available
  * for read operations.
  *
- * @param string $formattedParent     Parent table that all the streams should belong to, in the form
- *                                    of `projects/{project}/datasets/{dataset}/tables/{table}`. Please see
- *                                    {@see BigQueryWriteClient::tableName()} for help formatting this field.
- * @param string $writeStreamsElement The group of streams that will be committed atomically.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function batch_commit_write_streams_sample(
-    string $formattedParent,
-    string $writeStreamsElement
-): void {
+function batch_commit_write_streams_sample(): void
+{
     // Create a client.
     $bigQueryWriteClient = new BigQueryWriteClient();
 
     // Prepare the request message.
-    $writeStreams = [$writeStreamsElement,];
-    $request = (new BatchCommitWriteStreamsRequest())
-        ->setParent($formattedParent)
-        ->setWriteStreams($writeStreams);
+    $request = new BatchCommitWriteStreamsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,22 +58,5 @@ function batch_commit_write_streams_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = BigQueryWriteClient::tableName('[PROJECT]', '[DATASET]', '[TABLE]');
-    $writeStreamsElement = '[WRITE_STREAMS]';
-
-    batch_commit_write_streams_sample($formattedParent, $writeStreamsElement);
 }
 // [END bigquerystorage_v1_generated_BigQueryWrite_BatchCommitWriteStreams_sync]

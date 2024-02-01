@@ -41,8 +41,7 @@ class CreateListingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                              $parent  Required. The parent resource path of the listing.
-     *                                                                     e.g. `projects/myproject/locations/US/dataExchanges/123`. Please see
-     *                                                                     {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
+     *                                                                     e.g. `projects/myproject/locations/US/dataExchanges/123`.
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing $listing Required. The listing to create.
      *
      * @return \Google\Cloud\BigQuery\DataExchange\V1beta1\CreateListingRequest

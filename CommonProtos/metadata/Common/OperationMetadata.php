@@ -18,16 +18,16 @@ class OperationMetadata
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¿
-,google/cloud/common/operation_metadata.protogoogle.cloud.commongoogle/protobuf/timestamp.proto"˘
-OperationMetadata4
-create_time (2.google.protobuf.TimestampB‡A1
-end_time (2.google.protobuf.TimestampB‡A
-target (	B‡A
-verb (	B‡A
-status_detail (	B‡A
-cancel_requested (B‡A
-api_version (	B‡ABV
+«
+,google/cloud/common/operation_metadata.protogoogle.cloud.commongoogle/protobuf/timestamp.proto"Ä
+OperationMetadata5
+create_time (2.google.protobuf.TimestampB‚A2
+end_time (2.google.protobuf.TimestampB‚A
+target (	B‚A
+verb (	B‚A
+status_detail (	B‚A
+cancel_requested (B‚A
+api_version (	B‚ABV
 com.google.cloud.commonPZ9google.golang.org/genproto/googleapis/cloud/common;commonbproto3'
         , true);
 

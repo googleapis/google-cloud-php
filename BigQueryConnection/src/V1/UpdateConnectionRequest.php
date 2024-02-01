@@ -39,7 +39,6 @@ class UpdateConnectionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                          $name       Required. Name of the connection to update, for example:
      *                                                                    `projects/{project_id}/locations/{location_id}/connections/{connection_id}`
-     *                                                                    Please see {@see ConnectionServiceClient::connectionName()} for help formatting this field.
      * @param \Google\Cloud\BigQuery\Connection\V1\Connection $connection Required. Connection containing the updated fields.
      * @param \Google\Protobuf\FieldMask                      $updateMask Required. Update mask for the connection fields to be updated.
      *

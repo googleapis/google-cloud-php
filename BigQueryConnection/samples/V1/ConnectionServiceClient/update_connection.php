@@ -27,28 +27,24 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\BigQuery\Connection\V1\Client\ConnectionServiceClient;
 use Google\Cloud\BigQuery\Connection\V1\Connection;
 use Google\Cloud\BigQuery\Connection\V1\UpdateConnectionRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates the specified connection. For security reasons, also resets
  * credential if connection properties are in the update field mask.
  *
- * @param string $formattedName Name of the connection to update, for example:
- *                              `projects/{project_id}/locations/{location_id}/connections/{connection_id}`
- *                              Please see {@see ConnectionServiceClient::connectionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_connection_sample(string $formattedName): void
+function update_connection_sample(): void
 {
     // Create a client.
     $connectionServiceClient = new ConnectionServiceClient();
 
     // Prepare the request message.
-    $connection = new Connection();
-    $updateMask = new FieldMask();
-    $request = (new UpdateConnectionRequest())
-        ->setName($formattedName)
-        ->setConnection($connection)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateConnectionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +54,5 @@ function update_connection_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ConnectionServiceClient::connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-
-    update_connection_sample($formattedName);
 }
 // [END bigqueryconnection_v1_generated_ConnectionService_UpdateConnection_sync]

@@ -64,12 +64,10 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name        Required. The unique name of the table to have the snapshot taken.
      *                            Values are of the form
-     *                            `projects/{project}/instances/{instance}/tables/{table}`. Please see
-     *                            {@see BigtableTableAdminClient::tableName()} for help formatting this field.
+     *                            `projects/{project}/instances/{instance}/tables/{table}`.
      * @param string $cluster     Required. The name of the cluster where the snapshot will be created in.
      *                            Values are of the form
-     *                            `projects/{project}/instances/{instance}/clusters/{cluster}`. Please see
-     *                            {@see BigtableTableAdminClient::clusterName()} for help formatting this field.
+     *                            `projects/{project}/instances/{instance}/clusters/{cluster}`.
      * @param string $snapshotId  Required. The ID by which the new snapshot should be referred to within the
      *                            parent cluster, e.g., `mysnapshot` of the form:
      *                            `[_a-zA-Z0-9][-_.a-zA-Z0-9]*` rather than

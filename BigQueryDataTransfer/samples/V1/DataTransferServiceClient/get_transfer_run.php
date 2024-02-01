@@ -31,20 +31,19 @@ use Google\Cloud\BigQuery\DataTransfer\V1\TransferRun;
 /**
  * Returns information about the particular transfer run.
  *
- * @param string $formattedName The field will contain name of the resource requested, for
- *                              example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
- *                              or
- *                              `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
- *                              Please see {@see DataTransferServiceClient::runName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_transfer_run_sample(string $formattedName): void
+function get_transfer_run_sample(): void
 {
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
     // Prepare the request message.
-    $request = (new GetTransferRunRequest())
-        ->setName($formattedName);
+    $request = new GetTransferRunRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +53,5 @@ function get_transfer_run_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DataTransferServiceClient::runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
-
-    get_transfer_run_sample($formattedName);
 }
 // [END bigquerydatatransfer_v1_generated_DataTransferService_GetTransferRun_sync]

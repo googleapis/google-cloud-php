@@ -53,8 +53,7 @@ class ListDataPoliciesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Resource name of the project for which to list data policies.
-     *                       Format is `projects/{project_number}/locations/{location_id}`. Please see
-     *                       {@see DataPolicyServiceClient::locationName()} for help formatting this field.
+     *                       Format is `projects/{project_number}/locations/{location_id}`.
      *
      * @return \Google\Cloud\BigQuery\DataPolicies\V1\ListDataPoliciesRequest
      *

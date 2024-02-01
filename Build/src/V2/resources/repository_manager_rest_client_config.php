@@ -26,9 +26,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'connection_id',
-                ],
             ],
             'CreateRepository' => [
                 'method' => 'post',
@@ -40,9 +37,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'repository_id',
                 ],
             ],
             'DeleteConnection' => [

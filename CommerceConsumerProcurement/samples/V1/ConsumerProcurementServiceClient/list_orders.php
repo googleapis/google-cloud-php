@@ -34,17 +34,19 @@ use Google\Cloud\Commerce\Consumer\Procurement\V1\Order;
  * resources that the user has access to, within the scope of the parent
  * resource.
  *
- * @param string $parent The parent resource to query for orders.
- *                       This field has the form `billingAccounts/{billing-account-id}`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_orders_sample(string $parent): void
+function list_orders_sample(): void
 {
     // Create a client.
     $consumerProcurementServiceClient = new ConsumerProcurementServiceClient();
 
     // Prepare the request message.
-    $request = (new ListOrdersRequest())
-        ->setParent($parent);
+    $request = new ListOrdersRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +60,5 @@ function list_orders_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_orders_sample($parent);
 }
 // [END cloudcommerceconsumerprocurement_v1_generated_ConsumerProcurementService_ListOrders_sync]

@@ -26,9 +26,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\BinaryAuthorization\V1beta1\AdmissionRule;
-use Google\Cloud\BinaryAuthorization\V1beta1\AdmissionRule\EnforcementMode;
-use Google\Cloud\BinaryAuthorization\V1beta1\AdmissionRule\EvaluationMode;
 use Google\Cloud\BinaryAuthorization\V1beta1\Attestor;
 use Google\Cloud\BinaryAuthorization\V1beta1\BinauthzManagementServiceV1Beta1Client;
 use Google\Cloud\BinaryAuthorization\V1beta1\ListAttestorsResponse;
@@ -80,25 +77,13 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $attestorId = 'attestorId-696764206';
-        $attestor = new Attestor();
-        $attestorName = 'attestorName-125367661';
-        $attestor->setName($attestorName);
-        $response = $gapicClient->createAttestor($formattedParent, $attestorId, $attestor);
+        $response = $gapicClient->createAttestor();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.binaryauthorization.v1beta1.BinauthzManagementServiceV1Beta1/CreateAttestor', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getAttestorId();
-        $this->assertProtobufEquals($attestorId, $actualValue);
-        $actualValue = $actualRequestObject->getAttestor();
-        $this->assertProtobufEquals($attestor, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -120,14 +105,8 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $attestorId = 'attestorId-696764206';
-        $attestor = new Attestor();
-        $attestorName = 'attestorName-125367661';
-        $attestor->setName($attestorName);
         try {
-            $gapicClient->createAttestor($formattedParent, $attestorId, $attestor);
+            $gapicClient->createAttestor();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -150,16 +129,12 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->attestorName('[PROJECT]', '[ATTESTOR]');
-        $gapicClient->deleteAttestor($formattedName);
+        $gapicClient->deleteAttestor();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.binaryauthorization.v1beta1.BinauthzManagementServiceV1Beta1/DeleteAttestor', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -181,10 +156,8 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->attestorName('[PROJECT]', '[ATTESTOR]');
         try {
-            $gapicClient->deleteAttestor($formattedName);
+            $gapicClient->deleteAttestor();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -211,17 +184,13 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->attestorName('[PROJECT]', '[ATTESTOR]');
-        $response = $gapicClient->getAttestor($formattedName);
+        $response = $gapicClient->getAttestor();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.binaryauthorization.v1beta1.BinauthzManagementServiceV1Beta1/GetAttestor', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -243,10 +212,8 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->attestorName('[PROJECT]', '[ATTESTOR]');
         try {
-            $gapicClient->getAttestor($formattedName);
+            $gapicClient->getAttestor();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -273,17 +240,13 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->policyName('[PROJECT]');
-        $response = $gapicClient->getPolicy($formattedName);
+        $response = $gapicClient->getPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.binaryauthorization.v1beta1.BinauthzManagementServiceV1Beta1/GetPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -305,10 +268,8 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->policyName('[PROJECT]');
         try {
-            $gapicClient->getPolicy($formattedName);
+            $gapicClient->getPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -338,9 +299,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAttestors($attestors);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->listAttestors($formattedParent);
+        $response = $gapicClient->listAttestors();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -350,8 +309,6 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.binaryauthorization.v1beta1.BinauthzManagementServiceV1Beta1/ListAttestors', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -373,10 +330,8 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listAttestors($formattedParent);
+            $gapicClient->listAttestors();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -403,19 +358,13 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $attestor = new Attestor();
-        $attestorName = 'attestorName-125367661';
-        $attestor->setName($attestorName);
-        $response = $gapicClient->updateAttestor($attestor);
+        $response = $gapicClient->updateAttestor();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.binaryauthorization.v1beta1.BinauthzManagementServiceV1Beta1/UpdateAttestor', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAttestor();
-        $this->assertProtobufEquals($attestor, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -437,12 +386,8 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $attestor = new Attestor();
-        $attestorName = 'attestorName-125367661';
-        $attestor->setName($attestorName);
         try {
-            $gapicClient->updateAttestor($attestor);
+            $gapicClient->updateAttestor();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -469,23 +414,13 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $policy = new Policy();
-        $policyDefaultAdmissionRule = new AdmissionRule();
-        $defaultAdmissionRuleEvaluationMode = EvaluationMode::EVALUATION_MODE_UNSPECIFIED;
-        $policyDefaultAdmissionRule->setEvaluationMode($defaultAdmissionRuleEvaluationMode);
-        $defaultAdmissionRuleEnforcementMode = EnforcementMode::ENFORCEMENT_MODE_UNSPECIFIED;
-        $policyDefaultAdmissionRule->setEnforcementMode($defaultAdmissionRuleEnforcementMode);
-        $policy->setDefaultAdmissionRule($policyDefaultAdmissionRule);
-        $response = $gapicClient->updatePolicy($policy);
+        $response = $gapicClient->updatePolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.binaryauthorization.v1beta1.BinauthzManagementServiceV1Beta1/UpdatePolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -507,16 +442,8 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $policy = new Policy();
-        $policyDefaultAdmissionRule = new AdmissionRule();
-        $defaultAdmissionRuleEvaluationMode = EvaluationMode::EVALUATION_MODE_UNSPECIFIED;
-        $policyDefaultAdmissionRule->setEvaluationMode($defaultAdmissionRuleEvaluationMode);
-        $defaultAdmissionRuleEnforcementMode = EnforcementMode::ENFORCEMENT_MODE_UNSPECIFIED;
-        $policyDefaultAdmissionRule->setEnforcementMode($defaultAdmissionRuleEnforcementMode);
-        $policy->setDefaultAdmissionRule($policyDefaultAdmissionRule);
         try {
-            $gapicClient->updatePolicy($policy);
+            $gapicClient->updatePolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

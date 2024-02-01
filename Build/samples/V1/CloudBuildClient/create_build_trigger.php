@@ -32,39 +32,24 @@ use Google\Cloud\Build\V1\CloudBuildClient;
  *
  * This API is experimental.
  *
- * @param string $projectId ID of the project for which to configure automatic builds.
- */
-function create_build_trigger_sample(string $projectId): void
-{
-    // Create a client.
-    $cloudBuildClient = new CloudBuildClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $trigger = new BuildTrigger();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var BuildTrigger $response */
-        $response = $cloudBuildClient->createBuildTrigger($projectId, $trigger);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function create_build_trigger_sample(): void
 {
-    $projectId = '[PROJECT_ID]';
+    // Create a client.
+    $cloudBuildClient = new CloudBuildClient();
 
-    create_build_trigger_sample($projectId);
+    // Call the API and handle any network failures.
+    try {
+        /** @var BuildTrigger $response */
+        $response = $cloudBuildClient->createBuildTrigger();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END cloudbuild_v1_generated_CloudBuild_CreateBuildTrigger_sync]

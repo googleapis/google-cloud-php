@@ -47,7 +47,6 @@ class DeleteClientGatewayRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the resource
-     *                     Please see {@see ClientGatewaysServiceClient::clientGatewayName()} for help formatting this field.
      *
      * @return \Google\Cloud\BeyondCorp\ClientGateways\V1\DeleteClientGatewayRequest
      *

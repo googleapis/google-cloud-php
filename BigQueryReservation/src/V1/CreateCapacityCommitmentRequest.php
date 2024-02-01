@@ -50,7 +50,6 @@ class CreateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                                   $parent             Required. Resource name of the parent reservation. E.g.,
      *                                                                                     `projects/myproject/locations/US`
-     *                                                                                     Please see {@see ReservationServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $capacityCommitment Content of the capacity commitment to create.
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\CreateCapacityCommitmentRequest

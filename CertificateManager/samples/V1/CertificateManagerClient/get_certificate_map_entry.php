@@ -31,18 +31,19 @@ use Google\Cloud\CertificateManager\V1\GetCertificateMapEntryRequest;
 /**
  * Gets details of a single CertificateMapEntry.
  *
- * @param string $formattedName A name of the certificate map entry to describe. Must be in the
- *                              format `projects/&#42;/locations/&#42;/certificateMaps/&#42;/certificateMapEntries/*`. Please see
- *                              {@see CertificateManagerClient::certificateMapEntryName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_certificate_map_entry_sample(string $formattedName): void
+function get_certificate_map_entry_sample(): void
 {
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
     // Prepare the request message.
-    $request = (new GetCertificateMapEntryRequest())
-        ->setName($formattedName);
+    $request = new GetCertificateMapEntryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,26 +53,5 @@ function get_certificate_map_entry_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CertificateManagerClient::certificateMapEntryName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CERTIFICATE_MAP]',
-        '[CERTIFICATE_MAP_ENTRY]'
-    );
-
-    get_certificate_map_entry_sample($formattedName);
 }
 // [END certificatemanager_v1_generated_CertificateManager_GetCertificateMapEntry_sync]

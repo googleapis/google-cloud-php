@@ -39,7 +39,6 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. Parent resource name.
      *                       Must be in the form: `projects/{project_id}/locations/{location_id}`
-     *                       Please see {@see ConnectionServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\Connection\V1\ListConnectionsRequest
      *

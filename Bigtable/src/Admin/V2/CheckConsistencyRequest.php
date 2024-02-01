@@ -34,8 +34,7 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name             Required. The unique name of the Table for which to check replication
      *                                 consistency. Values are of the form
-     *                                 `projects/{project}/instances/{instance}/tables/{table}`. Please see
-     *                                 {@see BigtableTableAdminClient::tableName()} for help formatting this field.
+     *                                 `projects/{project}/instances/{instance}/tables/{table}`.
      * @param string $consistencyToken Required. The token created using GenerateConsistencyToken for the Table.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\CheckConsistencyRequest

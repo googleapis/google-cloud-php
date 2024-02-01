@@ -33,31 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a Repository.
  *
- * @param string $formattedParent     The connection to contain the repository. If the request is part
- *                                    of a BatchCreateRepositoriesRequest, this field should be empty or match
- *                                    the parent specified there. Please see
- *                                    {@see RepositoryManagerClient::connectionName()} for help formatting this field.
- * @param string $repositoryRemoteUri Git Clone HTTPS URI.
- * @param string $repositoryId        The ID to use for the repository, which will become the final
- *                                    component of the repository's resource name. This ID should be unique in
- *                                    the connection. Allows alphanumeric characters and any of
- *                                    -._~%!$&'()*+,;=&#64;.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_repository_sample(
-    string $formattedParent,
-    string $repositoryRemoteUri,
-    string $repositoryId
-): void {
+function create_repository_sample(): void
+{
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
     // Prepare the request message.
-    $repository = (new Repository())
-        ->setRemoteUri($repositoryRemoteUri);
-    $request = (new CreateRepositoryRequest())
-        ->setParent($formattedParent)
-        ->setRepository($repository)
-        ->setRepositoryId($repositoryId);
+    $request = new CreateRepositoryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -77,27 +65,5 @@ function create_repository_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = RepositoryManagerClient::connectionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CONNECTION]'
-    );
-    $repositoryRemoteUri = '[REMOTE_URI]';
-    $repositoryId = '[REPOSITORY_ID]';
-
-    create_repository_sample($formattedParent, $repositoryRemoteUri, $repositoryId);
 }
 // [END cloudbuild_v2_generated_RepositoryManager_CreateRepository_sync]

@@ -32,18 +32,19 @@ use Google\Cloud\BigQuery\Migration\V2\MigrationWorkflow;
 /**
  * Lists previously created migration workflow.
  *
- * @param string $formattedParent The project and location of the migration workflows to list.
- *                                Example: `projects/123/locations/us`
- *                                Please see {@see MigrationServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_migration_workflows_sample(string $formattedParent): void
+function list_migration_workflows_sample(): void
 {
     // Create a client.
     $migrationServiceClient = new MigrationServiceClient();
 
     // Prepare the request message.
-    $request = (new ListMigrationWorkflowsRequest())
-        ->setParent($formattedParent);
+    $request = new ListMigrationWorkflowsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_migration_workflows_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = MigrationServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_migration_workflows_sample($formattedParent);
 }
 // [END bigquerymigration_v2_generated_MigrationService_ListMigrationWorkflows_sync]

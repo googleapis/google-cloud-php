@@ -75,9 +75,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
  * try {
- *     $formattedParent = $clientConnectorServicesServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     $clientConnectorService = new ClientConnectorService();
- *     $operationResponse = $clientConnectorServicesServiceClient->createClientConnectorService($formattedParent, $clientConnectorService);
+ *     $operationResponse = $clientConnectorServicesServiceClient->createClientConnectorService();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -88,7 +86,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $clientConnectorServicesServiceClient->createClientConnectorService($formattedParent, $clientConnectorService);
+ *     $operationResponse = $clientConnectorServicesServiceClient->createClientConnectorService();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $clientConnectorServicesServiceClient->resumeOperation($operationName, 'createClientConnectorService');
@@ -401,9 +399,7 @@ class ClientConnectorServicesServiceGapicClient
      * ```
      * $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
      * try {
-     *     $formattedParent = $clientConnectorServicesServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $clientConnectorService = new ClientConnectorService();
-     *     $operationResponse = $clientConnectorServicesServiceClient->createClientConnectorService($formattedParent, $clientConnectorService);
+     *     $operationResponse = $clientConnectorServicesServiceClient->createClientConnectorService();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -414,7 +410,7 @@ class ClientConnectorServicesServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $clientConnectorServicesServiceClient->createClientConnectorService($formattedParent, $clientConnectorService);
+     *     $operationResponse = $clientConnectorServicesServiceClient->createClientConnectorService();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $clientConnectorServicesServiceClient->resumeOperation($operationName, 'createClientConnectorService');
@@ -434,11 +430,11 @@ class ClientConnectorServicesServiceGapicClient
      * }
      * ```
      *
-     * @param string                 $parent                 Required. Value for parent.
-     * @param ClientConnectorService $clientConnectorService Required. The resource being created.
-     * @param array                  $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Value for parent.
      *     @type string $clientConnectorServiceId
      *           Optional. User-settable client connector service resource ID.
      *           * Must start with a letter.
@@ -447,6 +443,8 @@ class ClientConnectorServicesServiceGapicClient
      *
      *           A random system generated name will be assigned
      *           if not specified by the user.
+     *     @type ClientConnectorService $clientConnectorService
+     *           Required. The resource being created.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -474,19 +472,24 @@ class ClientConnectorServicesServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createClientConnectorService(
-        $parent,
-        $clientConnectorService,
-        array $optionalArgs = []
-    ) {
+    public function createClientConnectorService(array $optionalArgs = [])
+    {
         $request = new CreateClientConnectorServiceRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setClientConnectorService($clientConnectorService);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['clientConnectorServiceId'])) {
             $request->setClientConnectorServiceId(
                 $optionalArgs['clientConnectorServiceId']
+            );
+        }
+
+        if (isset($optionalArgs['clientConnectorService'])) {
+            $request->setClientConnectorService(
+                $optionalArgs['clientConnectorService']
             );
         }
 
@@ -519,8 +522,7 @@ class ClientConnectorServicesServiceGapicClient
      * ```
      * $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
      * try {
-     *     $formattedName = $clientConnectorServicesServiceClient->clientConnectorServiceName('[PROJECT]', '[LOCATION]', '[CLIENT_CONNECTOR_SERVICE]');
-     *     $operationResponse = $clientConnectorServicesServiceClient->deleteClientConnectorService($formattedName);
+     *     $operationResponse = $clientConnectorServicesServiceClient->deleteClientConnectorService();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -530,7 +532,7 @@ class ClientConnectorServicesServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $clientConnectorServicesServiceClient->deleteClientConnectorService($formattedName);
+     *     $operationResponse = $clientConnectorServicesServiceClient->deleteClientConnectorService();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $clientConnectorServicesServiceClient->resumeOperation($operationName, 'deleteClientConnectorService');
@@ -549,10 +551,11 @@ class ClientConnectorServicesServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Name of the resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the resource.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -580,14 +583,15 @@ class ClientConnectorServicesServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteClientConnectorService(
-        $name,
-        array $optionalArgs = []
-    ) {
+    public function deleteClientConnectorService(array $optionalArgs = [])
+    {
         $request = new DeleteClientConnectorServiceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -617,17 +621,17 @@ class ClientConnectorServicesServiceGapicClient
      * ```
      * $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
      * try {
-     *     $formattedName = $clientConnectorServicesServiceClient->clientConnectorServiceName('[PROJECT]', '[LOCATION]', '[CLIENT_CONNECTOR_SERVICE]');
-     *     $response = $clientConnectorServicesServiceClient->getClientConnectorService($formattedName);
+     *     $response = $clientConnectorServicesServiceClient->getClientConnectorService();
      * } finally {
      *     $clientConnectorServicesServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -638,12 +642,15 @@ class ClientConnectorServicesServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getClientConnectorService($name, array $optionalArgs = [])
+    public function getClientConnectorService(array $optionalArgs = [])
     {
         $request = new GetClientConnectorServiceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -665,9 +672,8 @@ class ClientConnectorServicesServiceGapicClient
      * ```
      * $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
      * try {
-     *     $formattedParent = $clientConnectorServicesServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $clientConnectorServicesServiceClient->listClientConnectorServices($formattedParent);
+     *     $pagedResponse = $clientConnectorServicesServiceClient->listClientConnectorServices();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -675,7 +681,7 @@ class ClientConnectorServicesServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $clientConnectorServicesServiceClient->listClientConnectorServices($formattedParent);
+     *     $pagedResponse = $clientConnectorServicesServiceClient->listClientConnectorServices();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -684,10 +690,11 @@ class ClientConnectorServicesServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent value for ListClientConnectorServicesRequest.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent value for ListClientConnectorServicesRequest.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -711,14 +718,15 @@ class ClientConnectorServicesServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listClientConnectorServices(
-        $parent,
-        array $optionalArgs = []
-    ) {
+    public function listClientConnectorServices(array $optionalArgs = [])
+    {
         $request = new ListClientConnectorServicesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -756,9 +764,7 @@ class ClientConnectorServicesServiceGapicClient
      * ```
      * $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $clientConnectorService = new ClientConnectorService();
-     *     $operationResponse = $clientConnectorServicesServiceClient->updateClientConnectorService($updateMask, $clientConnectorService);
+     *     $operationResponse = $clientConnectorServicesServiceClient->updateClientConnectorService();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -769,7 +775,7 @@ class ClientConnectorServicesServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $clientConnectorServicesServiceClient->updateClientConnectorService($updateMask, $clientConnectorService);
+     *     $operationResponse = $clientConnectorServicesServiceClient->updateClientConnectorService();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $clientConnectorServicesServiceClient->resumeOperation($operationName, 'updateClientConnectorService');
@@ -789,17 +795,19 @@ class ClientConnectorServicesServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask              $updateMask             Required. Field mask is used to specify the fields to be overwritten in the
-     *                                                       ClientConnectorService resource by the update.
-     *                                                       The fields specified in the update_mask are relative to the resource, not
-     *                                                       the full request. A field will be overwritten if it is in the mask. If the
-     *                                                       user does not provide a mask then all fields will be overwritten.
-     *
-     *                                                       Mutable fields: display_name.
-     * @param ClientConnectorService $clientConnectorService Required. The resource being updated.
-     * @param array                  $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Field mask is used to specify the fields to be overwritten in the
+     *           ClientConnectorService resource by the update.
+     *           The fields specified in the update_mask are relative to the resource, not
+     *           the full request. A field will be overwritten if it is in the mask. If the
+     *           user does not provide a mask then all fields will be overwritten.
+     *
+     *           Mutable fields: display_name.
+     *     @type ClientConnectorService $clientConnectorService
+     *           Required. The resource being updated.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -829,18 +837,20 @@ class ClientConnectorServicesServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateClientConnectorService(
-        $updateMask,
-        $clientConnectorService,
-        array $optionalArgs = []
-    ) {
+    public function updateClientConnectorService(array $optionalArgs = [])
+    {
         $request = new UpdateClientConnectorServiceRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setClientConnectorService($clientConnectorService);
-        $requestParamHeaders[
-            'client_connector_service.name'
-        ] = $clientConnectorService->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['clientConnectorService'])) {
+            $request->setClientConnectorService(
+                $optionalArgs['clientConnectorService']
+            );
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1015,18 +1025,18 @@ class ClientConnectorServicesServiceGapicClient
      * ```
      * $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $clientConnectorServicesServiceClient->getIamPolicy($resource);
+     *     $response = $clientConnectorServicesServiceClient->getIamPolicy();
      * } finally {
      *     $clientConnectorServicesServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1040,12 +1050,15 @@ class ClientConnectorServicesServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1077,23 +1090,23 @@ class ClientConnectorServicesServiceGapicClient
      * ```
      * $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $clientConnectorServicesServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $clientConnectorServicesServiceClient->setIamPolicy();
      * } finally {
      *     $clientConnectorServicesServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1110,13 +1123,19 @@ class ClientConnectorServicesServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1150,23 +1169,23 @@ class ClientConnectorServicesServiceGapicClient
      * ```
      * $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $clientConnectorServicesServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $clientConnectorServicesServiceClient->testIamPermissions();
      * } finally {
      *     $clientConnectorServicesServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1177,16 +1196,19 @@ class ClientConnectorServicesServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

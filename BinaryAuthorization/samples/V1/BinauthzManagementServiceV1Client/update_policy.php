@@ -24,9 +24,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START binaryauthorization_v1_generated_BinauthzManagementServiceV1_UpdatePolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BinaryAuthorization\V1\AdmissionRule;
-use Google\Cloud\BinaryAuthorization\V1\AdmissionRule\EnforcementMode;
-use Google\Cloud\BinaryAuthorization\V1\AdmissionRule\EvaluationMode;
 use Google\Cloud\BinaryAuthorization\V1\Client\BinauthzManagementServiceV1Client;
 use Google\Cloud\BinaryAuthorization\V1\Policy;
 use Google\Cloud\BinaryAuthorization\V1\UpdatePolicyRequest;
@@ -38,24 +35,19 @@ use Google\Cloud\BinaryAuthorization\V1\UpdatePolicyRequest;
  * requests. Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT
  * if the request is malformed.
  *
- * @param int $policyDefaultAdmissionRuleEvaluationMode  How this admission rule will be evaluated.
- * @param int $policyDefaultAdmissionRuleEnforcementMode The action when a pod creation is denied by the admission rule.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_policy_sample(
-    int $policyDefaultAdmissionRuleEvaluationMode,
-    int $policyDefaultAdmissionRuleEnforcementMode
-): void {
+function update_policy_sample(): void
+{
     // Create a client.
     $binauthzManagementServiceV1Client = new BinauthzManagementServiceV1Client();
 
     // Prepare the request message.
-    $policyDefaultAdmissionRule = (new AdmissionRule())
-        ->setEvaluationMode($policyDefaultAdmissionRuleEvaluationMode)
-        ->setEnforcementMode($policyDefaultAdmissionRuleEnforcementMode);
-    $policy = (new Policy())
-        ->setDefaultAdmissionRule($policyDefaultAdmissionRule);
-    $request = (new UpdatePolicyRequest())
-        ->setPolicy($policy);
+    $request = new UpdatePolicyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,25 +57,5 @@ function update_policy_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $policyDefaultAdmissionRuleEvaluationMode = EvaluationMode::EVALUATION_MODE_UNSPECIFIED;
-    $policyDefaultAdmissionRuleEnforcementMode = EnforcementMode::ENFORCEMENT_MODE_UNSPECIFIED;
-
-    update_policy_sample(
-        $policyDefaultAdmissionRuleEvaluationMode,
-        $policyDefaultAdmissionRuleEnforcementMode
-    );
 }
 // [END binaryauthorization_v1_generated_BinauthzManagementServiceV1_UpdatePolicy_sync]

@@ -77,9 +77,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $appGatewaysServiceClient = new AppGatewaysServiceClient();
  * try {
- *     $formattedParent = $appGatewaysServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     $appGateway = new AppGateway();
- *     $operationResponse = $appGatewaysServiceClient->createAppGateway($formattedParent, $appGateway);
+ *     $operationResponse = $appGatewaysServiceClient->createAppGateway();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -90,7 +88,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $appGatewaysServiceClient->createAppGateway($formattedParent, $appGateway);
+ *     $operationResponse = $appGatewaysServiceClient->createAppGateway();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $appGatewaysServiceClient->resumeOperation($operationName, 'createAppGateway');
@@ -399,9 +397,7 @@ class AppGatewaysServiceGapicClient
      * ```
      * $appGatewaysServiceClient = new AppGatewaysServiceClient();
      * try {
-     *     $formattedParent = $appGatewaysServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $appGateway = new AppGateway();
-     *     $operationResponse = $appGatewaysServiceClient->createAppGateway($formattedParent, $appGateway);
+     *     $operationResponse = $appGatewaysServiceClient->createAppGateway();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -412,7 +408,7 @@ class AppGatewaysServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $appGatewaysServiceClient->createAppGateway($formattedParent, $appGateway);
+     *     $operationResponse = $appGatewaysServiceClient->createAppGateway();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $appGatewaysServiceClient->resumeOperation($operationName, 'createAppGateway');
@@ -432,17 +428,19 @@ class AppGatewaysServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The resource project name of the AppGateway location using the
-     *                                 form: `projects/{project_id}/locations/{location_id}`
-     * @param AppGateway $appGateway   Required. A BeyondCorp AppGateway resource.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource project name of the AppGateway location using the
+     *           form: `projects/{project_id}/locations/{location_id}`
      *     @type string $appGatewayId
      *           Optional. User-settable AppGateway resource ID.
      *           * Must start with a letter.
      *           * Must contain between 4-63 characters from `/[a-z][0-9]-/`.
      *           * Must end with a number or a letter.
+     *     @type AppGateway $appGateway
+     *           Required. A BeyondCorp AppGateway resource.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -470,18 +468,21 @@ class AppGatewaysServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAppGateway(
-        $parent,
-        $appGateway,
-        array $optionalArgs = []
-    ) {
+    public function createAppGateway(array $optionalArgs = [])
+    {
         $request = new CreateAppGatewayRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAppGateway($appGateway);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['appGatewayId'])) {
             $request->setAppGatewayId($optionalArgs['appGatewayId']);
+        }
+
+        if (isset($optionalArgs['appGateway'])) {
+            $request->setAppGateway($optionalArgs['appGateway']);
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -513,8 +514,7 @@ class AppGatewaysServiceGapicClient
      * ```
      * $appGatewaysServiceClient = new AppGatewaysServiceClient();
      * try {
-     *     $formattedName = $appGatewaysServiceClient->appGatewayName('[PROJECT]', '[LOCATION]', '[APP_GATEWAY]');
-     *     $operationResponse = $appGatewaysServiceClient->deleteAppGateway($formattedName);
+     *     $operationResponse = $appGatewaysServiceClient->deleteAppGateway();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -524,7 +524,7 @@ class AppGatewaysServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $appGatewaysServiceClient->deleteAppGateway($formattedName);
+     *     $operationResponse = $appGatewaysServiceClient->deleteAppGateway();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $appGatewaysServiceClient->resumeOperation($operationName, 'deleteAppGateway');
@@ -543,11 +543,12 @@ class AppGatewaysServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. BeyondCorp AppGateway name using the form:
-     *                             `projects/{project_id}/locations/{location_id}/appGateways/{app_gateway_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. BeyondCorp AppGateway name using the form:
+     *           `projects/{project_id}/locations/{location_id}/appGateways/{app_gateway_id}`
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -575,12 +576,15 @@ class AppGatewaysServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAppGateway($name, array $optionalArgs = [])
+    public function deleteAppGateway(array $optionalArgs = [])
     {
         $request = new DeleteAppGatewayRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -610,18 +614,18 @@ class AppGatewaysServiceGapicClient
      * ```
      * $appGatewaysServiceClient = new AppGatewaysServiceClient();
      * try {
-     *     $formattedName = $appGatewaysServiceClient->appGatewayName('[PROJECT]', '[LOCATION]', '[APP_GATEWAY]');
-     *     $response = $appGatewaysServiceClient->getAppGateway($formattedName);
+     *     $response = $appGatewaysServiceClient->getAppGateway();
      * } finally {
      *     $appGatewaysServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. BeyondCorp AppGateway name using the form:
-     *                             `projects/{project_id}/locations/{location_id}/appGateways/{app_gateway_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. BeyondCorp AppGateway name using the form:
+     *           `projects/{project_id}/locations/{location_id}/appGateways/{app_gateway_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -632,12 +636,15 @@ class AppGatewaysServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAppGateway($name, array $optionalArgs = [])
+    public function getAppGateway(array $optionalArgs = [])
     {
         $request = new GetAppGatewayRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -659,9 +666,8 @@ class AppGatewaysServiceGapicClient
      * ```
      * $appGatewaysServiceClient = new AppGatewaysServiceClient();
      * try {
-     *     $formattedParent = $appGatewaysServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $appGatewaysServiceClient->listAppGateways($formattedParent);
+     *     $pagedResponse = $appGatewaysServiceClient->listAppGateways();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -669,7 +675,7 @@ class AppGatewaysServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $appGatewaysServiceClient->listAppGateways($formattedParent);
+     *     $pagedResponse = $appGatewaysServiceClient->listAppGateways();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -678,11 +684,12 @@ class AppGatewaysServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the AppGateway location using the form:
-     *                             `projects/{project_id}/locations/{location_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the AppGateway location using the form:
+     *           `projects/{project_id}/locations/{location_id}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -709,12 +716,15 @@ class AppGatewaysServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAppGateways($parent, array $optionalArgs = [])
+    public function listAppGateways(array $optionalArgs = [])
     {
         $request = new ListAppGatewaysRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -893,18 +903,18 @@ class AppGatewaysServiceGapicClient
      * ```
      * $appGatewaysServiceClient = new AppGatewaysServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $appGatewaysServiceClient->getIamPolicy($resource);
+     *     $response = $appGatewaysServiceClient->getIamPolicy();
      * } finally {
      *     $appGatewaysServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -918,12 +928,15 @@ class AppGatewaysServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -955,23 +968,23 @@ class AppGatewaysServiceGapicClient
      * ```
      * $appGatewaysServiceClient = new AppGatewaysServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $appGatewaysServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $appGatewaysServiceClient->setIamPolicy();
      * } finally {
      *     $appGatewaysServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -988,13 +1001,19 @@ class AppGatewaysServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1028,23 +1047,23 @@ class AppGatewaysServiceGapicClient
      * ```
      * $appGatewaysServiceClient = new AppGatewaysServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $appGatewaysServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $appGatewaysServiceClient->testIamPermissions();
      * } finally {
      *     $appGatewaysServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1055,16 +1074,19 @@ class AppGatewaysServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

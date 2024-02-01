@@ -60,7 +60,6 @@ class ListEntitlementChangesRequest extends \Google\Protobuf\Internal\Message
      *
      *                       * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *                       * accounts/{account_id}/customers/{customer_id}/entitlements/-
-     *                       Please see {@see CloudChannelServiceClient::entitlementName()} for help formatting this field.
      *
      * @return \Google\Cloud\Channel\V1\ListEntitlementChangesRequest
      *

@@ -30,11 +30,13 @@ use Google\Cloud\BinaryAuthorization\V1beta1\SystemPolicyV1Beta1Client;
 /**
  * Gets the current system policy in the specified location.
  *
- * @param string $formattedName The resource name, in the format `locations/&#42;/policy`.
- *                              Note that the system policy is not associated with a project. Please see
- *                              {@see SystemPolicyV1Beta1Client::policyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_system_policy_sample(string $formattedName): void
+function get_system_policy_sample(): void
 {
     // Create a client.
     $systemPolicyV1Beta1Client = new SystemPolicyV1Beta1Client();
@@ -42,26 +44,10 @@ function get_system_policy_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $systemPolicyV1Beta1Client->getSystemPolicy($formattedName);
+        $response = $systemPolicyV1Beta1Client->getSystemPolicy();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SystemPolicyV1Beta1Client::policyName('[PROJECT]');
-
-    get_system_policy_sample($formattedName);
 }
 // [END binaryauthorization_v1beta1_generated_SystemPolicyV1Beta1_GetSystemPolicy_sync]

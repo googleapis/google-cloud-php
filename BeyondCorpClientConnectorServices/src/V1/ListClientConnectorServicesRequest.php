@@ -48,8 +48,7 @@ class ListClientConnectorServicesRequest extends \Google\Protobuf\Internal\Messa
     private $order_by = '';
 
     /**
-     * @param string $parent Required. Parent value for ListClientConnectorServicesRequest. Please see
-     *                       {@see ClientConnectorServicesServiceClient::locationName()} for help formatting this field.
+     * @param string $parent Required. Parent value for ListClientConnectorServicesRequest.
      *
      * @return \Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ListClientConnectorServicesRequest
      *

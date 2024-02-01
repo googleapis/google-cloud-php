@@ -32,18 +32,19 @@ use Google\Cloud\BinaryAuthorization\V1\GetAttestorRequest;
  * Gets an [attestor][google.cloud.binaryauthorization.v1.Attestor].
  * Returns NOT_FOUND if the [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
  *
- * @param string $formattedName The name of the [attestor][google.cloud.binaryauthorization.v1.Attestor] to retrieve, in the format
- *                              `projects/&#42;/attestors/*`. Please see
- *                              {@see BinauthzManagementServiceV1Client::attestorName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_attestor_sample(string $formattedName): void
+function get_attestor_sample(): void
 {
     // Create a client.
     $binauthzManagementServiceV1Client = new BinauthzManagementServiceV1Client();
 
     // Prepare the request message.
-    $request = (new GetAttestorRequest())
-        ->setName($formattedName);
+    $request = new GetAttestorRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +54,5 @@ function get_attestor_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = BinauthzManagementServiceV1Client::attestorName('[PROJECT]', '[ATTESTOR]');
-
-    get_attestor_sample($formattedName);
 }
 // [END binaryauthorization_v1_generated_BinauthzManagementServiceV1_GetAttestor_sync]

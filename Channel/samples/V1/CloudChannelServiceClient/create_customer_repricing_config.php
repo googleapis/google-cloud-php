@@ -27,10 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\CreateCustomerRepricingConfigRequest;
 use Google\Cloud\Channel\V1\CustomerRepricingConfig;
-use Google\Cloud\Channel\V1\RebillingBasis;
-use Google\Cloud\Channel\V1\RepricingAdjustment;
-use Google\Cloud\Channel\V1\RepricingConfig;
-use Google\Type\Date;
 
 /**
  * Creates a CustomerRepricingConfig. Call this method to set modifications
@@ -76,33 +72,19 @@ use Google\Type\Date;
  * [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
  * resource, otherwise returns an error.
  *
- * @param string $formattedParent                                      The resource name of the customer that will receive this
- *                                                                     repricing config. Parent uses the format:
- *                                                                     accounts/{account_id}/customers/{customer_id}
- *                                                                     Please see {@see CloudChannelServiceClient::customerName()} for help formatting this field.
- * @param int    $customerRepricingConfigRepricingConfigRebillingBasis The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to
- *                                                                     use for this bill. Specifies the relative cost based on repricing costs you
- *                                                                     will apply.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_customer_repricing_config_sample(
-    string $formattedParent,
-    int $customerRepricingConfigRepricingConfigRebillingBasis
-): void {
+function create_customer_repricing_config_sample(): void
+{
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $customerRepricingConfigRepricingConfigEffectiveInvoiceMonth = new Date();
-    $customerRepricingConfigRepricingConfigAdjustment = new RepricingAdjustment();
-    $customerRepricingConfigRepricingConfig = (new RepricingConfig())
-        ->setEffectiveInvoiceMonth($customerRepricingConfigRepricingConfigEffectiveInvoiceMonth)
-        ->setAdjustment($customerRepricingConfigRepricingConfigAdjustment)
-        ->setRebillingBasis($customerRepricingConfigRepricingConfigRebillingBasis);
-    $customerRepricingConfig = (new CustomerRepricingConfig())
-        ->setRepricingConfig($customerRepricingConfigRepricingConfig);
-    $request = (new CreateCustomerRepricingConfigRequest())
-        ->setParent($formattedParent)
-        ->setCustomerRepricingConfig($customerRepricingConfig);
+    $request = new CreateCustomerRepricingConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -112,25 +94,5 @@ function create_customer_repricing_config_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CloudChannelServiceClient::customerName('[ACCOUNT]', '[CUSTOMER]');
-    $customerRepricingConfigRepricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
-
-    create_customer_repricing_config_sample(
-        $formattedParent,
-        $customerRepricingConfigRepricingConfigRebillingBasis
-    );
 }
 // [END cloudchannel_v1_generated_CloudChannelService_CreateCustomerRepricingConfig_sync]

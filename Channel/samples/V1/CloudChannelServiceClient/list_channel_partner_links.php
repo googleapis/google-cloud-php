@@ -43,17 +43,19 @@ use Google\Cloud\Channel\V1\ListChannelPartnerLinksRequest;
  * The list of the distributor account's
  * [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resources.
  *
- * @param string $parent The resource name of the reseller account for listing channel
- *                       partner links. Parent uses the format: accounts/{account_id}
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_channel_partner_links_sample(string $parent): void
+function list_channel_partner_links_sample(): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = (new ListChannelPartnerLinksRequest())
-        ->setParent($parent);
+    $request = new ListChannelPartnerLinksRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -67,21 +69,5 @@ function list_channel_partner_links_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_channel_partner_links_sample($parent);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_ListChannelPartnerLinks_sync]

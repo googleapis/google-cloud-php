@@ -25,8 +25,7 @@ class GetSystemPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name, in the format `locations/&#42;/policy`.
-     *                     Note that the system policy is not associated with a project. Please see
-     *                     {@see SystemPolicyV1Client::policyName()} for help formatting this field.
+     *                     Note that the system policy is not associated with a project.
      *
      * @return \Google\Cloud\BinaryAuthorization\V1\GetSystemPolicyRequest
      *

@@ -37,8 +37,7 @@ class CreateCertificateMapEntryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                                  $parent                Required. The parent resource of the certificate map entry. Must be in the
-     *                                                                                       format `projects/&#42;/locations/&#42;/certificateMaps/*`. Please see
-     *                                                                                       {@see CertificateManagerClient::certificateMapName()} for help formatting this field.
+     *                                                                                       format `projects/&#42;/locations/&#42;/certificateMaps/*`.
      * @param \Google\Cloud\CertificateManager\V1\CertificateMapEntry $certificateMapEntry   Required. A definition of the certificate map entry to create.
      * @param string                                                  $certificateMapEntryId Required. A user-provided name of the certificate map entry.
      *

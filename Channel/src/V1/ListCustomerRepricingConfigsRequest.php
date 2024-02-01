@@ -60,8 +60,7 @@ class ListCustomerRepricingConfigsRequest extends \Google\Protobuf\Internal\Mess
      * @param string $parent Required. The resource name of the customer.
      *                       Parent uses the format: accounts/{account_id}/customers/{customer_id}.
      *                       Supports accounts/{account_id}/customers/- to retrieve configs for all
-     *                       customers. Please see
-     *                       {@see CloudChannelServiceClient::customerName()} for help formatting this field.
+     *                       customers.
      *
      * @return \Google\Cloud\Channel\V1\ListCustomerRepricingConfigsRequest
      *

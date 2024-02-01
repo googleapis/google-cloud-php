@@ -33,17 +33,19 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\ListOrgDataExchangesRequest;
  * Lists all data exchanges from projects in a given organization and
  * location.
  *
- * @param string $organization The organization resource path of the projects containing
- *                             DataExchanges. e.g. `organizations/myorg/locations/US`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_org_data_exchanges_sample(string $organization): void
+function list_org_data_exchanges_sample(): void
 {
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
     // Prepare the request message.
-    $request = (new ListOrgDataExchangesRequest())
-        ->setOrganization($organization);
+    $request = new ListOrgDataExchangesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +59,5 @@ function list_org_data_exchanges_sample(string $organization): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $organization = '[ORGANIZATION]';
-
-    list_org_data_exchanges_sample($organization);
 }
 // [END analyticshub_v1_generated_AnalyticsHubService_ListOrgDataExchanges_sync]

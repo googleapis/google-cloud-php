@@ -31,22 +31,19 @@ use Google\Cloud\Bigtable\V2\Client\BigtableClient;
 /**
  * Mutates a row atomically based on the output of a predicate Reader filter.
  *
- * @param string $formattedTableName The unique name of the table to which the conditional mutation
- *                                   should be applied. Values are of the form
- *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
- *                                   {@see BigtableClient::tableName()} for help formatting this field.
- * @param string $rowKey             The key of the row to which the conditional mutation should be
- *                                   applied.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function check_and_mutate_row_sample(string $formattedTableName, string $rowKey): void
+function check_and_mutate_row_sample(): void
 {
     // Create a client.
     $bigtableClient = new BigtableClient();
 
     // Prepare the request message.
-    $request = (new CheckAndMutateRowRequest())
-        ->setTableName($formattedTableName)
-        ->setRowKey($rowKey);
+    $request = new CheckAndMutateRowRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,22 +53,5 @@ function check_and_mutate_row_sample(string $formattedTableName, string $rowKey)
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedTableName = BigtableClient::tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-    $rowKey = '...';
-
-    check_and_mutate_row_sample($formattedTableName, $rowKey);
 }
 // [END bigtable_v2_generated_Bigtable_CheckAndMutateRow_sync]

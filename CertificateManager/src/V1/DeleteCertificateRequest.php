@@ -25,8 +25,7 @@ class DeleteCertificateRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. A name of the certificate to delete. Must be in the format
-     *                     `projects/&#42;/locations/&#42;/certificates/*`. Please see
-     *                     {@see CertificateManagerClient::certificateName()} for help formatting this field.
+     *                     `projects/&#42;/locations/&#42;/certificates/*`.
      *
      * @return \Google\Cloud\CertificateManager\V1\DeleteCertificateRequest
      *

@@ -25,8 +25,7 @@ class GetListingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the listing.
-     *                     e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`. Please see
-     *                     {@see AnalyticsHubServiceClient::listingName()} for help formatting this field.
+     *                     e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\GetListingRequest
      *

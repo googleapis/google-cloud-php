@@ -25,8 +25,7 @@ class GetDataPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Resource name of the requested data policy. Format is
-     *                     `projects/{project_number}/locations/{location_id}/dataPolicies/{data_policy_id}`. Please see
-     *                     {@see DataPolicyServiceClient::dataPolicyName()} for help formatting this field.
+     *                     `projects/{project_number}/locations/{location_id}/dataPolicies/{data_policy_id}`.
      *
      * @return \Google\Cloud\BigQuery\DataPolicies\V1\GetDataPolicyRequest
      *

@@ -39,7 +39,6 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                          $parent       Required. Parent resource name.
      *                                                                      Must be in the format `projects/{project_id}/locations/{location_id}`
-     *                                                                      Please see {@see ConnectionServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\BigQuery\Connection\V1\Connection $connection   Required. Connection to create.
      * @param string                                          $connectionId Optional. Connection id that should be assigned to the created connection.
      *

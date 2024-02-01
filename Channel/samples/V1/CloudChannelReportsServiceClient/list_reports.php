@@ -37,17 +37,19 @@ use Google\Cloud\Channel\V1\Report;
  * BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
  * instead.
  *
- * @param string $parent The resource name of the partner account to list available
- *                       reports for. Parent uses the format: accounts/{account_id}
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_reports_sample(string $parent): void
+function list_reports_sample(): void
 {
     // Create a client.
     $cloudChannelReportsServiceClient = new CloudChannelReportsServiceClient();
 
     // Prepare the request message.
-    $request = (new ListReportsRequest())
-        ->setParent($parent);
+    $request = new ListReportsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,21 +63,5 @@ function list_reports_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_reports_sample($parent);
 }
 // [END cloudchannel_v1_generated_CloudChannelReportsService_ListReports_sync]

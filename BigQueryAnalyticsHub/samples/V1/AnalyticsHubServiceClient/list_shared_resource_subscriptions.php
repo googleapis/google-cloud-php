@@ -32,19 +32,19 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription;
 /**
  * Lists all subscriptions on a given Data Exchange or Listing.
  *
- * @param string $resource Resource name of the requested target. This resource may be
- *                         either a Listing or a DataExchange. e.g.
- *                         projects/123/locations/US/dataExchanges/456 OR e.g.
- *                         projects/123/locations/US/dataExchanges/456/listings/789
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_shared_resource_subscriptions_sample(string $resource): void
+function list_shared_resource_subscriptions_sample(): void
 {
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
     // Prepare the request message.
-    $request = (new ListSharedResourceSubscriptionsRequest())
-        ->setResource($resource);
+    $request = new ListSharedResourceSubscriptionsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +58,5 @@ function list_shared_resource_subscriptions_sample(string $resource): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $resource = '[RESOURCE]';
-
-    list_shared_resource_subscriptions_sample($resource);
 }
 // [END analyticshub_v1_generated_AnalyticsHubService_ListSharedResourceSubscriptions_sync]

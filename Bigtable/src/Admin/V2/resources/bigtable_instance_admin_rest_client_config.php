@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'app_profile_id',
-                ],
             ],
             'CreateCluster' => [
                 'method' => 'post',
@@ -28,9 +25,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'cluster_id',
                 ],
             ],
             'CreateInstance' => [
@@ -54,9 +48,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'ignore_warnings',
                 ],
             ],
             'DeleteCluster' => [
@@ -182,9 +173,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'PartialUpdateInstance' => [
                 'method' => 'patch',
@@ -197,9 +185,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'SetIamPolicy' => [
@@ -237,9 +222,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'UpdateCluster' => [

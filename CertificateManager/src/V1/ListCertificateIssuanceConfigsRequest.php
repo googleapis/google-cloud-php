@@ -54,8 +54,7 @@ class ListCertificateIssuanceConfigsRequest extends \Google\Protobuf\Internal\Me
 
     /**
      * @param string $parent Required. The project and location from which the certificate should be
-     *                       listed, specified in the format `projects/&#42;/locations/*`. Please see
-     *                       {@see CertificateManagerClient::locationName()} for help formatting this field.
+     *                       listed, specified in the format `projects/&#42;/locations/*`.
      *
      * @return \Google\Cloud\CertificateManager\V1\ListCertificateIssuanceConfigsRequest
      *

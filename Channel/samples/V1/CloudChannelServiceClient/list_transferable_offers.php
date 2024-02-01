@@ -53,18 +53,19 @@ use Google\Cloud\Channel\V1\TransferableOffer;
  * List of [TransferableOffer][google.cloud.channel.v1.TransferableOffer] for
  * the given customer and SKU.
  *
- * @param string $parent The resource name of the reseller's account.
- * @param string $sku    The SKU to look up Offers for.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_transferable_offers_sample(string $parent, string $sku): void
+function list_transferable_offers_sample(): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = (new ListTransferableOffersRequest())
-        ->setParent($parent)
-        ->setSku($sku);
+    $request = new ListTransferableOffersRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -78,22 +79,5 @@ function list_transferable_offers_sample(string $parent, string $sku): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-    $sku = '[SKU]';
-
-    list_transferable_offers_sample($parent, $sku);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_ListTransferableOffers_sync]

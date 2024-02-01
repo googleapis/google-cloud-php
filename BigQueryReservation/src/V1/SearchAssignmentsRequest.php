@@ -52,8 +52,7 @@ class SearchAssignmentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name of the admin project(containing project and
      *                       location), e.g.:
-     *                       `projects/myproject/locations/US`. Please see
-     *                       {@see ReservationServiceClient::locationName()} for help formatting this field.
+     *                       `projects/myproject/locations/US`.
      * @param string $query  Please specify resource name as assignee in the query.
      *
      *                       Examples:

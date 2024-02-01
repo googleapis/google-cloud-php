@@ -59,7 +59,6 @@ class ListAppGatewaysRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name of the AppGateway location using the form:
      *                       `projects/{project_id}/locations/{location_id}`
-     *                       Please see {@see AppGatewaysServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\BeyondCorp\AppGateways\V1\ListAppGatewaysRequest
      *

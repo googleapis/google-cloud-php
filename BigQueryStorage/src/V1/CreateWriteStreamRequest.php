@@ -31,8 +31,7 @@ class CreateWriteStreamRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                        $parent      Required. Reference to the table to which the stream belongs, in the format
-     *                                                                   of `projects/{project}/datasets/{dataset}/tables/{table}`. Please see
-     *                                                                   {@see BigQueryWriteClient::tableName()} for help formatting this field.
+     *                                                                   of `projects/{project}/datasets/{dataset}/tables/{table}`.
      * @param \Google\Cloud\BigQuery\Storage\V1\WriteStream $writeStream Required. Stream to be created.
      *
      * @return \Google\Cloud\BigQuery\Storage\V1\CreateWriteStreamRequest

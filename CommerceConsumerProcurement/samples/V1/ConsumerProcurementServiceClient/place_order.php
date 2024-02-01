@@ -42,20 +42,19 @@ use Google\Rpc\Status;
  * [OrderState.ORDER_STATE_ACTIVE][google.cloud.commerce.consumer.procurement.v1.OrderState.ORDER_STATE_ACTIVE].
  * In case of failure, the order resource will be removed.
  *
- * @param string $formattedParent The resource name of the parent resource.
- *                                This field has the form  `billingAccounts/{billing-account-id}`. Please see
- *                                {@see ConsumerProcurementServiceClient::billingAccountName()} for help formatting this field.
- * @param string $displayName     The user-specified name of the order being placed.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function place_order_sample(string $formattedParent, string $displayName): void
+function place_order_sample(): void
 {
     // Create a client.
     $consumerProcurementServiceClient = new ConsumerProcurementServiceClient();
 
     // Prepare the request message.
-    $request = (new PlaceOrderRequest())
-        ->setParent($formattedParent)
-        ->setDisplayName($displayName);
+    $request = new PlaceOrderRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -75,22 +74,5 @@ function place_order_sample(string $formattedParent, string $displayName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ConsumerProcurementServiceClient::billingAccountName('[BILLING_ACCOUNT]');
-    $displayName = '[DISPLAY_NAME]';
-
-    place_order_sample($formattedParent, $displayName);
 }
 // [END cloudcommerceconsumerprocurement_v1_generated_ConsumerProcurementService_PlaceOrder_sync]

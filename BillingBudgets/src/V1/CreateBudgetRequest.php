@@ -31,8 +31,7 @@ class CreateBudgetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                  $parent Required. The name of the billing account to create the budget in. Values
-     *                                                        are of the form `billingAccounts/{billingAccountId}`. Please see
-     *                                                        {@see BudgetServiceClient::billingAccountName()} for help formatting this field.
+     *                                                        are of the form `billingAccounts/{billingAccountId}`.
      * @param \Google\Cloud\Billing\Budgets\V1\Budget $budget Required. Budget to create.
      *
      * @return \Google\Cloud\Billing\Budgets\V1\CreateBudgetRequest

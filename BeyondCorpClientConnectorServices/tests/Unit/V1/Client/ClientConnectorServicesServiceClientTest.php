@@ -28,8 +28,6 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService;
-use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Egress;
-use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Ingress;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\Client\ClientConnectorServicesServiceClient;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\CreateClientConnectorServiceRequest;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\DeleteClientConnectorServiceRequest;
@@ -49,7 +47,6 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -115,18 +112,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clientConnectorService = new ClientConnectorService();
-        $clientConnectorServiceName = 'clientConnectorServiceName1804966078';
-        $clientConnectorService->setName($clientConnectorServiceName);
-        $clientConnectorServiceIngress = new Ingress();
-        $clientConnectorService->setIngress($clientConnectorServiceIngress);
-        $clientConnectorServiceEgress = new Egress();
-        $clientConnectorService->setEgress($clientConnectorServiceEgress);
-        $request = (new CreateClientConnectorServiceRequest())
-            ->setParent($formattedParent)
-            ->setClientConnectorService($clientConnectorService);
+        $request = new CreateClientConnectorServiceRequest();
         $response = $gapicClient->createClientConnectorService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -137,10 +123,6 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/CreateClientConnectorService', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getClientConnectorService();
-        $this->assertProtobufEquals($clientConnectorService, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createClientConnectorServiceTest');
         $response->pollUntilComplete([
@@ -191,18 +173,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clientConnectorService = new ClientConnectorService();
-        $clientConnectorServiceName = 'clientConnectorServiceName1804966078';
-        $clientConnectorService->setName($clientConnectorServiceName);
-        $clientConnectorServiceIngress = new Ingress();
-        $clientConnectorService->setIngress($clientConnectorServiceIngress);
-        $clientConnectorServiceEgress = new Egress();
-        $clientConnectorService->setEgress($clientConnectorServiceEgress);
-        $request = (new CreateClientConnectorServiceRequest())
-            ->setParent($formattedParent)
-            ->setClientConnectorService($clientConnectorService);
+        $request = new CreateClientConnectorServiceRequest();
         $response = $gapicClient->createClientConnectorService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -254,10 +225,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->clientConnectorServiceName('[PROJECT]', '[LOCATION]', '[CLIENT_CONNECTOR_SERVICE]');
-        $request = (new DeleteClientConnectorServiceRequest())
-            ->setName($formattedName);
+        $request = new DeleteClientConnectorServiceRequest();
         $response = $gapicClient->deleteClientConnectorService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -268,8 +236,6 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/DeleteClientConnectorService', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteClientConnectorServiceTest');
         $response->pollUntilComplete([
@@ -320,10 +286,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->clientConnectorServiceName('[PROJECT]', '[LOCATION]', '[CLIENT_CONNECTOR_SERVICE]');
-        $request = (new DeleteClientConnectorServiceRequest())
-            ->setName($formattedName);
+        $request = new DeleteClientConnectorServiceRequest();
         $response = $gapicClient->deleteClientConnectorService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -361,10 +324,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->clientConnectorServiceName('[PROJECT]', '[LOCATION]', '[CLIENT_CONNECTOR_SERVICE]');
-        $request = (new GetClientConnectorServiceRequest())
-            ->setName($formattedName);
+        $request = new GetClientConnectorServiceRequest();
         $response = $gapicClient->getClientConnectorService($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -372,8 +332,6 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/GetClientConnectorService', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -395,10 +353,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->clientConnectorServiceName('[PROJECT]', '[LOCATION]', '[CLIENT_CONNECTOR_SERVICE]');
-        $request = (new GetClientConnectorServiceRequest())
-            ->setName($formattedName);
+        $request = new GetClientConnectorServiceRequest();
         try {
             $gapicClient->getClientConnectorService($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -430,10 +385,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setClientConnectorServices($clientConnectorServices);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListClientConnectorServicesRequest())
-            ->setParent($formattedParent);
+        $request = new ListClientConnectorServicesRequest();
         $response = $gapicClient->listClientConnectorServices($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -444,8 +396,6 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/ListClientConnectorServices', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -467,10 +417,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListClientConnectorServicesRequest())
-            ->setParent($formattedParent);
+        $request = new ListClientConnectorServicesRequest();
         try {
             $gapicClient->listClientConnectorServices($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -517,18 +464,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $clientConnectorService = new ClientConnectorService();
-        $clientConnectorServiceName = 'clientConnectorServiceName1804966078';
-        $clientConnectorService->setName($clientConnectorServiceName);
-        $clientConnectorServiceIngress = new Ingress();
-        $clientConnectorService->setIngress($clientConnectorServiceIngress);
-        $clientConnectorServiceEgress = new Egress();
-        $clientConnectorService->setEgress($clientConnectorServiceEgress);
-        $request = (new UpdateClientConnectorServiceRequest())
-            ->setUpdateMask($updateMask)
-            ->setClientConnectorService($clientConnectorService);
+        $request = new UpdateClientConnectorServiceRequest();
         $response = $gapicClient->updateClientConnectorService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -539,10 +475,6 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/UpdateClientConnectorService', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getClientConnectorService();
-        $this->assertProtobufEquals($clientConnectorService, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateClientConnectorServiceTest');
         $response->pollUntilComplete([
@@ -593,18 +525,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $clientConnectorService = new ClientConnectorService();
-        $clientConnectorServiceName = 'clientConnectorServiceName1804966078';
-        $clientConnectorService->setName($clientConnectorServiceName);
-        $clientConnectorServiceIngress = new Ingress();
-        $clientConnectorService->setIngress($clientConnectorServiceIngress);
-        $clientConnectorServiceEgress = new Egress();
-        $clientConnectorService->setEgress($clientConnectorServiceEgress);
-        $request = (new UpdateClientConnectorServiceRequest())
-            ->setUpdateMask($updateMask)
-            ->setClientConnectorService($clientConnectorService);
+        $request = new UpdateClientConnectorServiceRequest();
         $response = $gapicClient->updateClientConnectorService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -766,10 +687,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -777,8 +695,6 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -800,10 +716,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -832,12 +745,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -845,10 +753,6 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -870,12 +774,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -900,12 +799,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -913,10 +807,6 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -938,12 +828,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -990,18 +875,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clientConnectorService = new ClientConnectorService();
-        $clientConnectorServiceName = 'clientConnectorServiceName1804966078';
-        $clientConnectorService->setName($clientConnectorServiceName);
-        $clientConnectorServiceIngress = new Ingress();
-        $clientConnectorService->setIngress($clientConnectorServiceIngress);
-        $clientConnectorServiceEgress = new Egress();
-        $clientConnectorService->setEgress($clientConnectorServiceEgress);
-        $request = (new CreateClientConnectorServiceRequest())
-            ->setParent($formattedParent)
-            ->setClientConnectorService($clientConnectorService);
+        $request = new CreateClientConnectorServiceRequest();
         $response = $gapicClient->createClientConnectorServiceAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1012,10 +886,6 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorServicesService/CreateClientConnectorService', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getClientConnectorService();
-        $this->assertProtobufEquals($clientConnectorService, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createClientConnectorServiceTest');
         $response->pollUntilComplete([

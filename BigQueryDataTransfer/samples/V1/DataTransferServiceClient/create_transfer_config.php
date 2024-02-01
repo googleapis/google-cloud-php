@@ -31,23 +31,19 @@ use Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig;
 /**
  * Creates a new data transfer configuration.
  *
- * @param string $formattedParent The BigQuery project id where the transfer configuration should
- *                                be created. Must be in the format
- *                                projects/{project_id}/locations/{location_id} or projects/{project_id}. If
- *                                specified location and location of the destination bigquery dataset do not
- *                                match - the request will fail. Please see
- *                                {@see DataTransferServiceClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_transfer_config_sample(string $formattedParent): void
+function create_transfer_config_sample(): void
 {
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
     // Prepare the request message.
-    $transferConfig = new TransferConfig();
-    $request = (new CreateTransferConfigRequest())
-        ->setParent($formattedParent)
-        ->setTransferConfig($transferConfig);
+    $request = new CreateTransferConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +53,5 @@ function create_transfer_config_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataTransferServiceClient::projectName('[PROJECT]');
-
-    create_transfer_config_sample($formattedParent);
 }
 // [END bigquerydatatransfer_v1_generated_DataTransferService_CreateTransferConfig_sync]

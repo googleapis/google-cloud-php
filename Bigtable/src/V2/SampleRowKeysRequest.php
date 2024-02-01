@@ -34,8 +34,7 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $tableName Required. The unique name of the table from which to sample row keys.
      *                          Values are of the form
-     *                          `projects/<project>/instances/<instance>/tables/<table>`. Please see
-     *                          {@see BigtableClient::tableName()} for help formatting this field.
+     *                          `projects/<project>/instances/<instance>/tables/<table>`.
      *
      * @return \Google\Cloud\Bigtable\V2\SampleRowKeysRequest
      *
@@ -50,8 +49,7 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $tableName    Required. The unique name of the table from which to sample row keys.
      *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`. Please see
-     *                             {@see BigtableClient::tableName()} for help formatting this field.
+     *                             `projects/<project>/instances/<instance>/tables/<table>`.
      * @param string $appProfileId This value specifies routing for replication. If not specified, the
      *                             "default" application profile will be used.
      *

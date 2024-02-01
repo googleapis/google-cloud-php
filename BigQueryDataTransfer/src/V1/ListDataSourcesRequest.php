@@ -44,7 +44,6 @@ class ListDataSourcesRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The BigQuery project id for which data sources should be
      *                       returned. Must be in the form: `projects/{project_id}` or
      *                       `projects/{project_id}/locations/{location_id}`
-     *                       Please see {@see DataTransferServiceClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\ListDataSourcesRequest
      *

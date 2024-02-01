@@ -30,8 +30,7 @@ class FlushRowsRequest extends \Google\Protobuf\Internal\Message
     private $offset = null;
 
     /**
-     * @param string $writeStream Required. The stream that is the target of the flush operation. Please see
-     *                            {@see BigQueryWriteClient::writeStreamName()} for help formatting this field.
+     * @param string $writeStream Required. The stream that is the target of the flush operation.
      *
      * @return \Google\Cloud\BigQuery\Storage\V1\FlushRowsRequest
      *

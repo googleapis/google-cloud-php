@@ -63,8 +63,7 @@ class CreateClientConnectorServiceRequest extends \Google\Protobuf\Internal\Mess
     private $validate_only = false;
 
     /**
-     * @param string                                                                     $parent                   Required. Value for parent. Please see
-     *                                                                                                             {@see ClientConnectorServicesServiceClient::locationName()} for help formatting this field.
+     * @param string                                                                     $parent                   Required. Value for parent.
      * @param \Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService $clientConnectorService   Required. The resource being created.
      * @param string                                                                     $clientConnectorServiceId Optional. User-settable client connector service resource ID.
      *                                                                                                             * Must start with a letter.

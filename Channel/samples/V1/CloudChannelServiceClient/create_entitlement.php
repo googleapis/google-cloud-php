@@ -71,27 +71,19 @@ use Google\Rpc\Status;
  * CloudChannelOperationsService. The Operation metadata will contain an
  * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
  *
- * @param string $formattedParent           The resource name of the reseller's customer account in which to
- *                                          create the entitlement. Parent uses the format:
- *                                          accounts/{account_id}/customers/{customer_id}
- *                                          Please see {@see CloudChannelServiceClient::customerName()} for help formatting this field.
- * @param string $formattedEntitlementOffer The offer resource name for which the entitlement is to be
- *                                          created. Takes the form: accounts/{account_id}/offers/{offer_id}. Please see
- *                                          {@see CloudChannelServiceClient::offerName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_entitlement_sample(
-    string $formattedParent,
-    string $formattedEntitlementOffer
-): void {
+function create_entitlement_sample(): void
+{
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $entitlement = (new Entitlement())
-        ->setOffer($formattedEntitlementOffer);
-    $request = (new CreateEntitlementRequest())
-        ->setParent($formattedParent)
-        ->setEntitlement($entitlement);
+    $request = new CreateEntitlementRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -111,22 +103,5 @@ function create_entitlement_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CloudChannelServiceClient::customerName('[ACCOUNT]', '[CUSTOMER]');
-    $formattedEntitlementOffer = CloudChannelServiceClient::offerName('[ACCOUNT]', '[OFFER]');
-
-    create_entitlement_sample($formattedParent, $formattedEntitlementOffer);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_CreateEntitlement_sync]

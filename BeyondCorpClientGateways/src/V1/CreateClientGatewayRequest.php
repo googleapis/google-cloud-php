@@ -61,8 +61,7 @@ class CreateClientGatewayRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
-     * @param string                                                   $parent          Required. Value for parent. Please see
-     *                                                                                  {@see ClientGatewaysServiceClient::locationName()} for help formatting this field.
+     * @param string                                                   $parent          Required. Value for parent.
      * @param \Google\Cloud\BeyondCorp\ClientGateways\V1\ClientGateway $clientGateway   Required. The resource being created.
      * @param string                                                   $clientGatewayId Optional. User-settable client gateway resource ID.
      *                                                                                  * Must start with a letter.

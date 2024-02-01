@@ -70,8 +70,7 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                               $tableName       Required. The unique name of the table to which the conditional mutation
      *                                                              should be applied. Values are of the form
-     *                                                              `projects/<project>/instances/<instance>/tables/<table>`. Please see
-     *                                                              {@see BigtableClient::tableName()} for help formatting this field.
+     *                                                              `projects/<project>/instances/<instance>/tables/<table>`.
      * @param string                               $rowKey          Required. The key of the row to which the conditional mutation should be
      *                                                              applied.
      * @param \Google\Cloud\Bigtable\V2\RowFilter  $predicateFilter The filter to be applied to the contents of the specified row. Depending
@@ -106,8 +105,7 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                               $tableName       Required. The unique name of the table to which the conditional mutation
      *                                                              should be applied. Values are of the form
-     *                                                              `projects/<project>/instances/<instance>/tables/<table>`. Please see
-     *                                                              {@see BigtableClient::tableName()} for help formatting this field.
+     *                                                              `projects/<project>/instances/<instance>/tables/<table>`.
      * @param string                               $rowKey          Required. The key of the row to which the conditional mutation should be
      *                                                              applied.
      * @param \Google\Cloud\Bigtable\V2\RowFilter  $predicateFilter The filter to be applied to the contents of the specified row. Depending

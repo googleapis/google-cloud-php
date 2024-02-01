@@ -32,19 +32,19 @@ use Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage;
 /**
  * Returns log messages for the transfer run.
  *
- * @param string $formattedParent Transfer run name in the form:
- *                                `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
- *                                `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
- *                                Please see {@see DataTransferServiceClient::runName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_transfer_logs_sample(string $formattedParent): void
+function list_transfer_logs_sample(): void
 {
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
     // Prepare the request message.
-    $request = (new ListTransferLogsRequest())
-        ->setParent($formattedParent);
+    $request = new ListTransferLogsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +58,5 @@ function list_transfer_logs_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataTransferServiceClient::runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
-
-    list_transfer_logs_sample($formattedParent);
 }
 // [END bigquerydatatransfer_v1_generated_DataTransferService_ListTransferLogs_sync]

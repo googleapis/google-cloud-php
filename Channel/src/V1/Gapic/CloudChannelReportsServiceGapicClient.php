@@ -61,9 +61,8 @@ use Google\LongRunning\Operation;
  * ```
  * $cloudChannelReportsServiceClient = new CloudChannelReportsServiceClient();
  * try {
- *     $formattedReportJob = $cloudChannelReportsServiceClient->reportJobName('[ACCOUNT]', '[REPORT_JOB]');
  *     // Iterate over pages of elements
- *     $pagedResponse = $cloudChannelReportsServiceClient->fetchReportResults($formattedReportJob);
+ *     $pagedResponse = $cloudChannelReportsServiceClient->fetchReportResults();
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -71,7 +70,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // Iterate through all elements
- *     $pagedResponse = $cloudChannelReportsServiceClient->fetchReportResults($formattedReportJob);
+ *     $pagedResponse = $cloudChannelReportsServiceClient->fetchReportResults();
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -350,9 +349,8 @@ class CloudChannelReportsServiceGapicClient
      * ```
      * $cloudChannelReportsServiceClient = new CloudChannelReportsServiceClient();
      * try {
-     *     $formattedReportJob = $cloudChannelReportsServiceClient->reportJobName('[ACCOUNT]', '[REPORT_JOB]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelReportsServiceClient->fetchReportResults($formattedReportJob);
+     *     $pagedResponse = $cloudChannelReportsServiceClient->fetchReportResults();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -360,7 +358,7 @@ class CloudChannelReportsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelReportsServiceClient->fetchReportResults($formattedReportJob);
+     *     $pagedResponse = $cloudChannelReportsServiceClient->fetchReportResults();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -369,13 +367,14 @@ class CloudChannelReportsServiceGapicClient
      * }
      * ```
      *
-     * @param string $reportJob    Required. The report job created by
-     *                             [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
-     *                             Report_job uses the format:
-     *                             accounts/{account_id}/reportJobs/{report_job_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $reportJob
+     *           Required. The report job created by
+     *           [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
+     *           Report_job uses the format:
+     *           accounts/{account_id}/reportJobs/{report_job_id}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -400,12 +399,15 @@ class CloudChannelReportsServiceGapicClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function fetchReportResults($reportJob, array $optionalArgs = [])
+    public function fetchReportResults(array $optionalArgs = [])
     {
         $request = new FetchReportResultsRequest();
         $requestParamHeaders = [];
-        $request->setReportJob($reportJob);
-        $requestParamHeaders['report_job'] = $reportJob;
+        if (isset($optionalArgs['reportJob'])) {
+            $request->setReportJob($optionalArgs['reportJob']);
+            $requestParamHeaders['report_job'] = $optionalArgs['reportJob'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -435,9 +437,8 @@ class CloudChannelReportsServiceGapicClient
      * ```
      * $cloudChannelReportsServiceClient = new CloudChannelReportsServiceClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudChannelReportsServiceClient->listReports($parent);
+     *     $pagedResponse = $cloudChannelReportsServiceClient->listReports();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -445,7 +446,7 @@ class CloudChannelReportsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudChannelReportsServiceClient->listReports($parent);
+     *     $pagedResponse = $cloudChannelReportsServiceClient->listReports();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -454,11 +455,12 @@ class CloudChannelReportsServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the partner account to list available
-     *                             reports for. Parent uses the format: accounts/{account_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the partner account to list available
+     *           reports for. Parent uses the format: accounts/{account_id}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -485,12 +487,15 @@ class CloudChannelReportsServiceGapicClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function listReports($parent, array $optionalArgs = [])
+    public function listReports(array $optionalArgs = [])
     {
         $request = new ListReportsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -543,8 +548,7 @@ class CloudChannelReportsServiceGapicClient
      * ```
      * $cloudChannelReportsServiceClient = new CloudChannelReportsServiceClient();
      * try {
-     *     $formattedName = $cloudChannelReportsServiceClient->reportName('[ACCOUNT]', '[REPORT]');
-     *     $operationResponse = $cloudChannelReportsServiceClient->runReportJob($formattedName);
+     *     $operationResponse = $cloudChannelReportsServiceClient->runReportJob();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -555,7 +559,7 @@ class CloudChannelReportsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudChannelReportsServiceClient->runReportJob($formattedName);
+     *     $operationResponse = $cloudChannelReportsServiceClient->runReportJob();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudChannelReportsServiceClient->resumeOperation($operationName, 'runReportJob');
@@ -575,14 +579,15 @@ class CloudChannelReportsServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The report's resource name. Specifies the account and report used
-     *                             to generate report data. The report_id identifier is a UID (for example,
-     *                             `613bf59q`).
-     *                             Name uses the format:
-     *                             accounts/{account_id}/reports/{report_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The report's resource name. Specifies the account and report used
+     *           to generate report data. The report_id identifier is a UID (for example,
+     *           `613bf59q`).
+     *           Name uses the format:
+     *           accounts/{account_id}/reports/{report_id}
      *     @type DateRange $dateRange
      *           Optional. The range of usage or invoice dates to include in the result.
      *     @type string $filter
@@ -613,12 +618,15 @@ class CloudChannelReportsServiceGapicClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function runReportJob($name, array $optionalArgs = [])
+    public function runReportJob(array $optionalArgs = [])
     {
         $request = new RunReportJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['dateRange'])) {
             $request->setDateRange($optionalArgs['dateRange']);
         }

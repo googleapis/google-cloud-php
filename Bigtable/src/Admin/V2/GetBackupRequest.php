@@ -28,8 +28,7 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Name of the backup.
      *                     Values are of the form
-     *                     `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`. Please see
-     *                     {@see BigtableTableAdminClient::backupName()} for help formatting this field.
+     *                     `projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}`.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\GetBackupRequest
      *

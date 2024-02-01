@@ -25,8 +25,7 @@ class DeleteChannelPartnerRepricingConfigRequest extends \Google\Protobuf\Intern
 
     /**
      * @param string $name Required. The resource name of the channel partner repricing config rule to
-     *                     delete. Please see
-     *                     {@see CloudChannelServiceClient::channelPartnerRepricingConfigName()} for help formatting this field.
+     *                     delete.
      *
      * @return \Google\Cloud\Channel\V1\DeleteChannelPartnerRepricingConfigRequest
      *

@@ -32,18 +32,19 @@ use Google\Rpc\Status;
 /**
  * Deletes a single repository.
  *
- * @param string $formattedName The name of the Repository to delete.
- *                              Format: `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`. Please see
- *                              {@see RepositoryManagerClient::repositoryName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_repository_sample(string $formattedName): void
+function delete_repository_sample(): void
 {
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
     // Prepare the request message.
-    $request = (new DeleteRepositoryRequest())
-        ->setName($formattedName);
+    $request = new DeleteRepositoryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,26 +62,5 @@ function delete_repository_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = RepositoryManagerClient::repositoryName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CONNECTION]',
-        '[REPOSITORY]'
-    );
-
-    delete_repository_sample($formattedName);
 }
 // [END cloudbuild_v2_generated_RepositoryManager_DeleteRepository_sync]

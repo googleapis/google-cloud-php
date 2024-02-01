@@ -75,10 +75,7 @@ class SystemPolicyV1ClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->policyName('[PROJECT]');
-        $request = (new GetSystemPolicyRequest())
-            ->setName($formattedName);
+        $request = new GetSystemPolicyRequest();
         $response = $gapicClient->getSystemPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -86,8 +83,6 @@ class SystemPolicyV1ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.binaryauthorization.v1.SystemPolicyV1/GetSystemPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -109,10 +104,7 @@ class SystemPolicyV1ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->policyName('[PROJECT]');
-        $request = (new GetSystemPolicyRequest())
-            ->setName($formattedName);
+        $request = new GetSystemPolicyRequest();
         try {
             $gapicClient->getSystemPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -141,10 +133,7 @@ class SystemPolicyV1ClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->policyName('[PROJECT]');
-        $request = (new GetSystemPolicyRequest())
-            ->setName($formattedName);
+        $request = new GetSystemPolicyRequest();
         $response = $gapicClient->getSystemPolicyAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -152,8 +141,6 @@ class SystemPolicyV1ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.binaryauthorization.v1.SystemPolicyV1/GetSystemPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

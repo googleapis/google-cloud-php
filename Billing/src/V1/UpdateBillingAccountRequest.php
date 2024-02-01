@@ -37,8 +37,7 @@ class UpdateBillingAccountRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
-     * @param string                                  $name    Required. The name of the billing account resource to be updated. Please see
-     *                                                         {@see CloudBillingClient::billingAccountName()} for help formatting this field.
+     * @param string                                  $name    Required. The name of the billing account resource to be updated.
      * @param \Google\Cloud\Billing\V1\BillingAccount $account Required. The billing account resource to replace the resource on the
      *                                                         server.
      *

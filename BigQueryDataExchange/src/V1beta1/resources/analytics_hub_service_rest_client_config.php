@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'data_exchange_id',
-                ],
             ],
             'CreateListing' => [
                 'method' => 'post',
@@ -28,9 +25,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'listing_id',
                 ],
             ],
             'DeleteDataExchange' => [
@@ -191,9 +185,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateListing' => [
                 'method' => 'patch',
@@ -206,9 +197,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],
