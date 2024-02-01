@@ -31,10 +31,13 @@ use Google\Cloud\Metastore\V1alpha\DataprocMetastoreClient;
  * Gets the access control policy for a resource. Returns an empty policy
 if the resource exists and does not have a policy set.
  *
- * @param string $resource REQUIRED: The resource for which the policy is being requested.
- *                         See the operation documentation for the appropriate value for this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_iam_policy_sample(string $resource): void
+function get_iam_policy_sample(): void
 {
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
@@ -42,26 +45,10 @@ function get_iam_policy_sample(string $resource): void
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $dataprocMetastoreClient->getIamPolicy($resource);
+        $response = $dataprocMetastoreClient->getIamPolicy();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $resource = '[RESOURCE]';
-
-    get_iam_policy_sample($resource);
 }
 // [END metastore_v1alpha_generated_DataprocMetastore_GetIamPolicy_sync]

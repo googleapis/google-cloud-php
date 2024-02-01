@@ -34,17 +34,19 @@ use Google\Rpc\Status;
  * Undeploys an issue model.
  * An issue model can not be used in analysis after it has been undeployed.
  *
- * @param string $formattedName The issue model to undeploy. Please see
- *                              {@see ContactCenterInsightsClient::issueModelName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function undeploy_issue_model_sample(string $formattedName): void
+function undeploy_issue_model_sample(): void
 {
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $request = (new UndeployIssueModelRequest())
-        ->setName($formattedName);
+    $request = new UndeployIssueModelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -64,25 +66,5 @@ function undeploy_issue_model_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ContactCenterInsightsClient::issueModelName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[ISSUE_MODEL]'
-    );
-
-    undeploy_issue_model_sample($formattedName);
 }
 // [END contactcenterinsights_v1_generated_ContactCenterInsights_UndeployIssueModel_sync]

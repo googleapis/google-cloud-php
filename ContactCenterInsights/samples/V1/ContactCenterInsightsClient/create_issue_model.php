@@ -33,19 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates an issue model.
  *
- * @param string $formattedParent The parent resource of the issue model. Please see
- *                                {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_issue_model_sample(string $formattedParent): void
+function create_issue_model_sample(): void
 {
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $issueModel = new IssueModel();
-    $request = (new CreateIssueModelRequest())
-        ->setParent($formattedParent)
-        ->setIssueModel($issueModel);
+    $request = new CreateIssueModelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,21 +65,5 @@ function create_issue_model_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ContactCenterInsightsClient::locationName('[PROJECT]', '[LOCATION]');
-
-    create_issue_model_sample($formattedParent);
 }
 // [END contactcenterinsights_v1_generated_ContactCenterInsights_CreateIssueModel_sync]

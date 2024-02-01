@@ -31,18 +31,19 @@ use Google\Cloud\Deploy\V1\GetDeliveryPipelineRequest;
 /**
  * Gets details of a single DeliveryPipeline.
  *
- * @param string $formattedName Name of the `DeliveryPipeline`. Format must be
- *                              `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
- *                              {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_delivery_pipeline_sample(string $formattedName): void
+function get_delivery_pipeline_sample(): void
 {
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = (new GetDeliveryPipelineRequest())
-        ->setName($formattedName);
+    $request = new GetDeliveryPipelineRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,25 +53,5 @@ function get_delivery_pipeline_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudDeployClient::deliveryPipelineName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DELIVERY_PIPELINE]'
-    );
-
-    get_delivery_pipeline_sample($formattedName);
 }
 // [END clouddeploy_v1_generated_CloudDeploy_GetDeliveryPipeline_sync]

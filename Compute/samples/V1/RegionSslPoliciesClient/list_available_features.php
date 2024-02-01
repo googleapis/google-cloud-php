@@ -30,10 +30,13 @@ use Google\Cloud\Compute\V1\SslPoliciesListAvailableFeaturesResponse;
 /**
  * Lists all features that can be specified in the SSL policy when using custom profile.
  *
- * @param string $project Project ID for this request.
- * @param string $region  Name of the region scoping this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_available_features_sample(string $project, string $region): void
+function list_available_features_sample(): void
 {
     // Create a client.
     $regionSslPoliciesClient = new RegionSslPoliciesClient();
@@ -41,27 +44,10 @@ function list_available_features_sample(string $project, string $region): void
     // Call the API and handle any network failures.
     try {
         /** @var SslPoliciesListAvailableFeaturesResponse $response */
-        $response = $regionSslPoliciesClient->listAvailableFeatures($project, $region);
+        $response = $regionSslPoliciesClient->listAvailableFeatures();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-
-    list_available_features_sample($project, $region);
 }
 // [END compute_v1_generated_RegionSslPolicies_ListAvailableFeatures_sync]

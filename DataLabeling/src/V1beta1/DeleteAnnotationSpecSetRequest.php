@@ -25,8 +25,7 @@ class DeleteAnnotationSpecSetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. AnnotationSpec resource name, format:
-     *                     `projects/{project_id}/annotationSpecSets/{annotation_spec_set_id}`. Please see
-     *                     {@see DataLabelingServiceClient::annotationSpecSetName()} for help formatting this field.
+     *                     `projects/{project_id}/annotationSpecSets/{annotation_spec_set_id}`.
      *
      * @return \Google\Cloud\DataLabeling\V1beta1\DeleteAnnotationSpecSetRequest
      *

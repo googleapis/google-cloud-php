@@ -30,11 +30,13 @@ use Google\Cloud\Compute\V1\SendDiagnosticInterruptInstanceResponse;
 /**
  * Sends diagnostic interrupt to the instance.
  *
- * @param string $instance Name of the instance scoping this request.
- * @param string $project  Project ID for this request.
- * @param string $zone     The name of the zone for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function send_diagnostic_interrupt_sample(string $instance, string $project, string $zone): void
+function send_diagnostic_interrupt_sample(): void
 {
     // Create a client.
     $instancesClient = new InstancesClient();
@@ -42,28 +44,10 @@ function send_diagnostic_interrupt_sample(string $instance, string $project, str
     // Call the API and handle any network failures.
     try {
         /** @var SendDiagnosticInterruptInstanceResponse $response */
-        $response = $instancesClient->sendDiagnosticInterrupt($instance, $project, $zone);
+        $response = $instancesClient->sendDiagnosticInterrupt();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $instance = '[INSTANCE]';
-    $project = '[PROJECT]';
-    $zone = '[ZONE]';
-
-    send_diagnostic_interrupt_sample($instance, $project, $zone);
 }
 // [END compute_v1_generated_Instances_SendDiagnosticInterrupt_sync]

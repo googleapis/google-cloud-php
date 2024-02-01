@@ -37,8 +37,7 @@ class IgnoreJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $rollout Required. Name of the Rollout. Format is
-     *                        `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`. Please see
-     *                        {@see CloudDeployClient::rolloutName()} for help formatting this field.
+     *                        `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      * @param string $phaseId Required. The phase ID the Job to ignore belongs to.
      * @param string $jobId   Required. The job ID for the Job to ignore.
      *

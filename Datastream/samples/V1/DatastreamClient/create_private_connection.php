@@ -33,26 +33,19 @@ use Google\Rpc\Status;
 /**
  * Use this method to create a private connectivity configuration.
  *
- * @param string $formattedParent              The parent that owns the collection of PrivateConnections. Please see
- *                                             {@see DatastreamClient::locationName()} for help formatting this field.
- * @param string $privateConnectionId          The private connectivity identifier.
- * @param string $privateConnectionDisplayName Display name.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_private_connection_sample(
-    string $formattedParent,
-    string $privateConnectionId,
-    string $privateConnectionDisplayName
-): void {
+function create_private_connection_sample(): void
+{
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
     // Prepare the request message.
-    $privateConnection = (new PrivateConnection())
-        ->setDisplayName($privateConnectionDisplayName);
-    $request = (new CreatePrivateConnectionRequest())
-        ->setParent($formattedParent)
-        ->setPrivateConnectionId($privateConnectionId)
-        ->setPrivateConnection($privateConnection);
+    $request = new CreatePrivateConnectionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,27 +65,5 @@ function create_private_connection_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DatastreamClient::locationName('[PROJECT]', '[LOCATION]');
-    $privateConnectionId = '[PRIVATE_CONNECTION_ID]';
-    $privateConnectionDisplayName = '[DISPLAY_NAME]';
-
-    create_private_connection_sample(
-        $formattedParent,
-        $privateConnectionId,
-        $privateConnectionDisplayName
-    );
 }
 // [END datastream_v1_generated_Datastream_CreatePrivateConnection_sync]

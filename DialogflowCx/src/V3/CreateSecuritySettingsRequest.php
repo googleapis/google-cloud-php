@@ -33,8 +33,7 @@ class CreateSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                          $parent           Required. The location to create an
      *                                                                          [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] for.
-     *                                                                          Format: `projects/<Project ID>/locations/<Location ID>`. Please see
-     *                                                                          {@see SecuritySettingsServiceClient::locationName()} for help formatting this field.
+     *                                                                          Format: `projects/<Project ID>/locations/<Location ID>`.
      * @param \Google\Cloud\Dialogflow\Cx\V3\SecuritySettings $securitySettings Required. The security settings to create.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\CreateSecuritySettingsRequest

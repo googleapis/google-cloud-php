@@ -47,7 +47,6 @@ class SearchExampleComparisonsRequest extends \Google\Protobuf\Internal\Message
      *                       comparisons from. Format:
      *
      *                       "projects/<var>{project_id}</var>/datasets/<var>{dataset_id}</var>/evaluations/<var>{evaluation_id}</var>"
-     *                       Please see {@see DataLabelingServiceClient::evaluationName()} for help formatting this field.
      *
      * @return \Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsRequest
      *

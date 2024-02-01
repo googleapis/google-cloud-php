@@ -26,27 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\TargetGrpcProxiesClient;
-use Google\Cloud\Compute\V1\TargetGrpcProxy;
 use Google\Rpc\Status;
 
 /**
  * Patches the specified TargetGrpcProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
  *
- * @param string $project         Project ID for this request.
- * @param string $targetGrpcProxy Name of the TargetGrpcProxy resource to patch.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function patch_sample(string $project, string $targetGrpcProxy): void
+function patch_sample(): void
 {
     // Create a client.
     $targetGrpcProxiesClient = new TargetGrpcProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $targetGrpcProxyResource = new TargetGrpcProxy();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetGrpcProxiesClient->patch($project, $targetGrpcProxy, $targetGrpcProxyResource);
+        $response = $targetGrpcProxiesClient->patch();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -59,22 +58,5 @@ function patch_sample(string $project, string $targetGrpcProxy): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $targetGrpcProxy = '[TARGET_GRPC_PROXY]';
-
-    patch_sample($project, $targetGrpcProxy);
 }
 // [END compute_v1_generated_TargetGrpcProxies_Patch_sync]

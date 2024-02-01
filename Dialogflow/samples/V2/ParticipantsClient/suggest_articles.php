@@ -32,19 +32,19 @@ use Google\Cloud\Dialogflow\V2\SuggestArticlesResponse;
  * Gets suggested articles for a participant based on specific historical
  * messages.
  *
- * @param string $formattedParent The name of the participant to fetch suggestion for.
- *                                Format: `projects/<Project ID>/locations/<Location
- *                                ID>/conversations/<Conversation ID>/participants/<Participant ID>`. Please see
- *                                {@see ParticipantsClient::participantName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function suggest_articles_sample(string $formattedParent): void
+function suggest_articles_sample(): void
 {
     // Create a client.
     $participantsClient = new ParticipantsClient();
 
     // Prepare the request message.
-    $request = (new SuggestArticlesRequest())
-        ->setParent($formattedParent);
+    $request = new SuggestArticlesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,25 +54,5 @@ function suggest_articles_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ParticipantsClient::participantName(
-        '[PROJECT]',
-        '[CONVERSATION]',
-        '[PARTICIPANT]'
-    );
-
-    suggest_articles_sample($formattedParent);
 }
 // [END dialogflow_v2_generated_Participants_SuggestArticles_sync]

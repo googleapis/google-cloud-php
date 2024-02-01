@@ -33,18 +33,19 @@ use Google\Cloud\DataCatalog\Lineage\V1\Process;
  * List processes in the given project and location. List order is descending
  * by insertion time.
  *
- * @param string $formattedParent The name of the project and its location that owns this
- *                                collection of processes. Please see
- *                                {@see LineageClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_processes_sample(string $formattedParent): void
+function list_processes_sample(): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
     // Prepare the request message.
-    $request = (new ListProcessesRequest())
-        ->setParent($formattedParent);
+    $request = new ListProcessesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +59,5 @@ function list_processes_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = LineageClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_processes_sample($formattedParent);
 }
 // [END datalineage_v1_generated_Lineage_ListProcesses_sync]

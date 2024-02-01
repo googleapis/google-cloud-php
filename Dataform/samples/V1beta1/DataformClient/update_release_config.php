@@ -31,22 +31,19 @@ use Google\Cloud\Dataform\V1beta1\UpdateReleaseConfigRequest;
 /**
  * Updates a single ReleaseConfig.
  *
- * @param string $releaseConfigGitCommitish Git commit/tag/branch name at which the repository should be
- *                                          compiled. Must exist in the remote repository. Examples:
- *                                          - a commit SHA: `12ade345`
- *                                          - a tag: `tag1`
- *                                          - a branch name: `branch1`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_release_config_sample(string $releaseConfigGitCommitish): void
+function update_release_config_sample(): void
 {
     // Create a client.
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $releaseConfig = (new ReleaseConfig())
-        ->setGitCommitish($releaseConfigGitCommitish);
-    $request = (new UpdateReleaseConfigRequest())
-        ->setReleaseConfig($releaseConfig);
+    $request = new UpdateReleaseConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +53,5 @@ function update_release_config_sample(string $releaseConfigGitCommitish): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $releaseConfigGitCommitish = '[GIT_COMMITISH]';
-
-    update_release_config_sample($releaseConfigGitCommitish);
 }
 // [END dataform_v1beta1_generated_Dataform_UpdateReleaseConfig_sync]

@@ -26,21 +26,13 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Compute\V1\DiskMoveRequest;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
-use Google\Cloud\Compute\V1\InstanceMoveRequest;
-use Google\Cloud\Compute\V1\Metadata;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\Project;
 use Google\Cloud\Compute\V1\ProjectsClient;
-use Google\Cloud\Compute\V1\ProjectsDisableXpnResourceRequest;
-use Google\Cloud\Compute\V1\ProjectsEnableXpnResourceRequest;
 use Google\Cloud\Compute\V1\ProjectsGetXpnResources;
-use Google\Cloud\Compute\V1\ProjectsListXpnHostsRequest;
-use Google\Cloud\Compute\V1\ProjectsSetDefaultNetworkTierRequest;
-use Google\Cloud\Compute\V1\UsageExportLocation;
 use Google\Cloud\Compute\V1\XpnHostList;
 use Google\Cloud\Compute\V1\XpnResourceId;
 use Google\Rpc\Code;
@@ -99,9 +91,7 @@ class ProjectsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/disableXpnHostTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $response = $gapicClient->disableXpnHost($project);
+        $response = $gapicClient->disableXpnHost();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -110,11 +100,8 @@ class ProjectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Projects/DisableXpnHost', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -162,9 +149,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $response = $gapicClient->disableXpnHost($project);
+        $response = $gapicClient->disableXpnHost();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -209,10 +194,7 @@ class ProjectsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/disableXpnResourceTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $projectsDisableXpnResourceRequestResource = new ProjectsDisableXpnResourceRequest();
-        $response = $gapicClient->disableXpnResource($project, $projectsDisableXpnResourceRequestResource);
+        $response = $gapicClient->disableXpnResource();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -221,13 +203,8 @@ class ProjectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Projects/DisableXpnResource', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getProjectsDisableXpnResourceRequestResource();
-        $this->assertProtobufEquals($projectsDisableXpnResourceRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -275,10 +252,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $projectsDisableXpnResourceRequestResource = new ProjectsDisableXpnResourceRequest();
-        $response = $gapicClient->disableXpnResource($project, $projectsDisableXpnResourceRequestResource);
+        $response = $gapicClient->disableXpnResource();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -323,9 +297,7 @@ class ProjectsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/enableXpnHostTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $response = $gapicClient->enableXpnHost($project);
+        $response = $gapicClient->enableXpnHost();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -334,11 +306,8 @@ class ProjectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Projects/EnableXpnHost', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -386,9 +355,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $response = $gapicClient->enableXpnHost($project);
+        $response = $gapicClient->enableXpnHost();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -433,10 +400,7 @@ class ProjectsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/enableXpnResourceTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $projectsEnableXpnResourceRequestResource = new ProjectsEnableXpnResourceRequest();
-        $response = $gapicClient->enableXpnResource($project, $projectsEnableXpnResourceRequestResource);
+        $response = $gapicClient->enableXpnResource();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -445,13 +409,8 @@ class ProjectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Projects/EnableXpnResource', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getProjectsEnableXpnResourceRequestResource();
-        $this->assertProtobufEquals($projectsEnableXpnResourceRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -499,10 +458,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $projectsEnableXpnResourceRequestResource = new ProjectsEnableXpnResourceRequest();
-        $response = $gapicClient->enableXpnResource($project, $projectsEnableXpnResourceRequestResource);
+        $response = $gapicClient->enableXpnResource();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -553,17 +509,13 @@ class ProjectsClientTest extends GeneratedTest
         $expectedResponse->setVmDnsSetting($vmDnsSetting);
         $expectedResponse->setXpnProjectStatus($xpnProjectStatus);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $response = $gapicClient->get($project);
+        $response = $gapicClient->get();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Projects/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -585,10 +537,8 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
         try {
-            $gapicClient->get($project);
+            $gapicClient->get();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -631,17 +581,13 @@ class ProjectsClientTest extends GeneratedTest
         $expectedResponse->setVmDnsSetting($vmDnsSetting);
         $expectedResponse->setXpnProjectStatus($xpnProjectStatus);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $response = $gapicClient->getXpnHost($project);
+        $response = $gapicClient->getXpnHost();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Projects/GetXpnHost', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -663,10 +609,8 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
         try {
-            $gapicClient->getXpnHost($project);
+            $gapicClient->getXpnHost();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -698,9 +642,7 @@ class ProjectsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setResources($resources);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $response = $gapicClient->getXpnResources($project);
+        $response = $gapicClient->getXpnResources();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -710,8 +652,6 @@ class ProjectsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Projects/GetXpnResources', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -733,10 +673,8 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
         try {
-            $gapicClient->getXpnResources($project);
+            $gapicClient->getXpnResources();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -772,10 +710,7 @@ class ProjectsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $projectsListXpnHostsRequestResource = new ProjectsListXpnHostsRequest();
-        $response = $gapicClient->listXpnHosts($project, $projectsListXpnHostsRequestResource);
+        $response = $gapicClient->listXpnHosts();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -785,10 +720,6 @@ class ProjectsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Projects/ListXpnHosts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getProjectsListXpnHostsRequestResource();
-        $this->assertProtobufEquals($projectsListXpnHostsRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -810,11 +741,8 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $projectsListXpnHostsRequestResource = new ProjectsListXpnHostsRequest();
         try {
-            $gapicClient->listXpnHosts($project, $projectsListXpnHostsRequestResource);
+            $gapicClient->listXpnHosts();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -851,10 +779,7 @@ class ProjectsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/moveDiskTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $diskMoveRequestResource = new DiskMoveRequest();
-        $project = 'project-309310695';
-        $response = $gapicClient->moveDisk($diskMoveRequestResource, $project);
+        $response = $gapicClient->moveDisk();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -863,13 +788,8 @@ class ProjectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Projects/MoveDisk', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getDiskMoveRequestResource();
-        $this->assertProtobufEquals($diskMoveRequestResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -917,10 +837,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $diskMoveRequestResource = new DiskMoveRequest();
-        $project = 'project-309310695';
-        $response = $gapicClient->moveDisk($diskMoveRequestResource, $project);
+        $response = $gapicClient->moveDisk();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -965,10 +882,7 @@ class ProjectsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/moveInstanceTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $instanceMoveRequestResource = new InstanceMoveRequest();
-        $project = 'project-309310695';
-        $response = $gapicClient->moveInstance($instanceMoveRequestResource, $project);
+        $response = $gapicClient->moveInstance();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -977,13 +891,8 @@ class ProjectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Projects/MoveInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getInstanceMoveRequestResource();
-        $this->assertProtobufEquals($instanceMoveRequestResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1031,10 +940,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $instanceMoveRequestResource = new InstanceMoveRequest();
-        $project = 'project-309310695';
-        $response = $gapicClient->moveInstance($instanceMoveRequestResource, $project);
+        $response = $gapicClient->moveInstance();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1079,10 +985,7 @@ class ProjectsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setCommonInstanceMetadataTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $metadataResource = new Metadata();
-        $project = 'project-309310695';
-        $response = $gapicClient->setCommonInstanceMetadata($metadataResource, $project);
+        $response = $gapicClient->setCommonInstanceMetadata();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1091,13 +994,8 @@ class ProjectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Projects/SetCommonInstanceMetadata', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getMetadataResource();
-        $this->assertProtobufEquals($metadataResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1145,10 +1043,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $metadataResource = new Metadata();
-        $project = 'project-309310695';
-        $response = $gapicClient->setCommonInstanceMetadata($metadataResource, $project);
+        $response = $gapicClient->setCommonInstanceMetadata();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1193,10 +1088,7 @@ class ProjectsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setDefaultNetworkTierTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $projectsSetDefaultNetworkTierRequestResource = new ProjectsSetDefaultNetworkTierRequest();
-        $response = $gapicClient->setDefaultNetworkTier($project, $projectsSetDefaultNetworkTierRequestResource);
+        $response = $gapicClient->setDefaultNetworkTier();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1205,13 +1097,8 @@ class ProjectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Projects/SetDefaultNetworkTier', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getProjectsSetDefaultNetworkTierRequestResource();
-        $this->assertProtobufEquals($projectsSetDefaultNetworkTierRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1259,10 +1146,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $projectsSetDefaultNetworkTierRequestResource = new ProjectsSetDefaultNetworkTierRequest();
-        $response = $gapicClient->setDefaultNetworkTier($project, $projectsSetDefaultNetworkTierRequestResource);
+        $response = $gapicClient->setDefaultNetworkTier();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1307,10 +1191,7 @@ class ProjectsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setUsageExportBucketTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $usageExportLocationResource = new UsageExportLocation();
-        $response = $gapicClient->setUsageExportBucket($project, $usageExportLocationResource);
+        $response = $gapicClient->setUsageExportBucket();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1319,13 +1200,8 @@ class ProjectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Projects/SetUsageExportBucket', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getUsageExportLocationResource();
-        $this->assertProtobufEquals($usageExportLocationResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1373,10 +1249,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $usageExportLocationResource = new UsageExportLocation();
-        $response = $gapicClient->setUsageExportBucket($project, $usageExportLocationResource);
+        $response = $gapicClient->setUsageExportBucket();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

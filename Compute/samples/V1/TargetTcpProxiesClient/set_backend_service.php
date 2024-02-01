@@ -26,31 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\TargetTcpProxiesClient;
-use Google\Cloud\Compute\V1\TargetTcpProxiesSetBackendServiceRequest;
 use Google\Rpc\Status;
 
 /**
  * Changes the BackendService for TargetTcpProxy.
  *
- * @param string $project        Project ID for this request.
- * @param string $targetTcpProxy Name of the TargetTcpProxy resource whose BackendService resource is to be set.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function set_backend_service_sample(string $project, string $targetTcpProxy): void
+function set_backend_service_sample(): void
 {
     // Create a client.
     $targetTcpProxiesClient = new TargetTcpProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $targetTcpProxiesSetBackendServiceRequestResource = new TargetTcpProxiesSetBackendServiceRequest();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetTcpProxiesClient->setBackendService(
-            $project,
-            $targetTcpProxiesSetBackendServiceRequestResource,
-            $targetTcpProxy
-        );
+        $response = $targetTcpProxiesClient->setBackendService();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -63,22 +58,5 @@ function set_backend_service_sample(string $project, string $targetTcpProxy): vo
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $targetTcpProxy = '[TARGET_TCP_PROXY]';
-
-    set_backend_service_sample($project, $targetTcpProxy);
 }
 // [END compute_v1_generated_TargetTcpProxies_SetBackendService_sync]

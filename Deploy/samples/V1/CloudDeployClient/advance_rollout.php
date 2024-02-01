@@ -31,20 +31,19 @@ use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
 /**
  * Advances a Rollout in a given project and location.
  *
- * @param string $formattedName Name of the Rollout. Format is
- *                              `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`. Please see
- *                              {@see CloudDeployClient::rolloutName()} for help formatting this field.
- * @param string $phaseId       The phase ID to advance the `Rollout` to.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function advance_rollout_sample(string $formattedName, string $phaseId): void
+function advance_rollout_sample(): void
 {
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = (new AdvanceRolloutRequest())
-        ->setName($formattedName)
-        ->setPhaseId($phaseId);
+    $request = new AdvanceRolloutRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,28 +53,5 @@ function advance_rollout_sample(string $formattedName, string $phaseId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudDeployClient::rolloutName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DELIVERY_PIPELINE]',
-        '[RELEASE]',
-        '[ROLLOUT]'
-    );
-    $phaseId = '[PHASE_ID]';
-
-    advance_rollout_sample($formattedName, $phaseId);
 }
 // [END clouddeploy_v1_generated_CloudDeploy_AdvanceRollout_sync]

@@ -51,11 +51,7 @@ function update_tag_template_sample(): void
     $dataCatalogClient = new DataCatalogClient();
 
     // Prepare the request message.
-    $tagTemplateFields = [];
-    $tagTemplate = (new TagTemplate())
-        ->setFields($tagTemplateFields);
-    $request = (new UpdateTagTemplateRequest())
-        ->setTagTemplate($tagTemplate);
+    $request = new UpdateTagTemplateRequest();
 
     // Call the API and handle any network failures.
     try {

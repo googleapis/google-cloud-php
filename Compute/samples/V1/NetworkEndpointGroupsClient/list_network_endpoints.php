@@ -26,46 +26,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\NetworkEndpointGroupsClient;
-use Google\Cloud\Compute\V1\NetworkEndpointGroupsListEndpointsRequest;
 
 /**
  * Lists the network endpoints in the specified network endpoint group.
- *
- * @param string $networkEndpointGroup The name of the network endpoint group from which you want to generate a list of included network endpoints. It should comply with RFC1035.
- * @param string $project              Project ID for this request.
- * @param string $zone                 The name of the zone where the network endpoint group is located. It should comply with RFC1035.
- */
-function list_network_endpoints_sample(
-    string $networkEndpointGroup,
-    string $project,
-    string $zone
-): void {
-    // Create a client.
-    $networkEndpointGroupsClient = new NetworkEndpointGroupsClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $networkEndpointGroupsListEndpointsRequestResource = new NetworkEndpointGroupsListEndpointsRequest();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var PagedListResponse $response */
-        $response = $networkEndpointGroupsClient->listNetworkEndpoints(
-            $networkEndpointGroup,
-            $networkEndpointGroupsListEndpointsRequestResource,
-            $project,
-            $zone
-        );
-
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -73,12 +36,21 @@ function list_network_endpoints_sample(
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function list_network_endpoints_sample(): void
 {
-    $networkEndpointGroup = '[NETWORK_ENDPOINT_GROUP]';
-    $project = '[PROJECT]';
-    $zone = '[ZONE]';
+    // Create a client.
+    $networkEndpointGroupsClient = new NetworkEndpointGroupsClient();
 
-    list_network_endpoints_sample($networkEndpointGroup, $project, $zone);
+    // Call the API and handle any network failures.
+    try {
+        /** @var PagedListResponse $response */
+        $response = $networkEndpointGroupsClient->listNetworkEndpoints();
+
+        foreach ($response as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        }
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END compute_v1_generated_NetworkEndpointGroups_ListNetworkEndpoints_sync]

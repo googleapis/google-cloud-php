@@ -41,19 +41,19 @@ use Google\Rpc\Status;
  * - `response`: An [Empty
  * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
  *
- * @param string $formattedName The [Version][google.cloud.dialogflow.cx.v3.Version] to be loaded
- *                              to draft flow. Format: `projects/<Project ID>/locations/<Location
- *                              ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`. Please see
- *                              {@see VersionsClient::versionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function load_version_sample(string $formattedName): void
+function load_version_sample(): void
 {
     // Create a client.
     $versionsClient = new VersionsClient();
 
     // Prepare the request message.
-    $request = (new LoadVersionRequest())
-        ->setName($formattedName);
+    $request = new LoadVersionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,27 +71,5 @@ function load_version_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = VersionsClient::versionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AGENT]',
-        '[FLOW]',
-        '[VERSION]'
-    );
-
-    load_version_sample($formattedName);
 }
 // [END dialogflow_v3_generated_Versions_LoadVersion_sync]

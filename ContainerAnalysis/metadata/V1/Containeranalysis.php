@@ -23,10 +23,10 @@ class Containeranalysis
         \GPBMetadata\Grafeas\V1\Severity::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Î
-<google/devtools/containeranalysis/v1/containeranalysis.proto$google.devtools.containeranalysis.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protografeas/v1/severity.proto"€
-)GetVulnerabilityOccurrencesSummaryRequestC
-parent (	B3àAúA-
+Ï
+<google/devtools/containeranalysis/v1/containeranalysis.proto$google.devtools.containeranalysis.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protografeas/v1/severity.proto"
+)GetVulnerabilityOccurrencesSummaryRequestD
+parent (	B4âAúA-
 +cloudresourcemanager.googleapis.com/Project
 filter (	"
 VulnerabilityOccurrencesSummaryj
@@ -37,10 +37,10 @@ class Containeranalysis
 fixable_count (
 total_count (2¢
 ContainerAnalysisÒ
-SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"†‚Óä“n"./v1/{resource=projects/*/notes/*}:setIamPolicy:*Z9"4/v1/{resource=projects/*/occurrences/*}:setIamPolicy:*ÚAresource,policyÊ
-GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"‚Óä“n"./v1/{resource=projects/*/notes/*}:getIamPolicy:*Z9"4/v1/{resource=projects/*/occurrences/*}:getIamPolicy:*ÚAresourceƒ
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"—‚Óä“z"4/v1/{resource=projects/*/notes/*}:testIamPermissions:*Z?":/v1/{resource=projects/*/occurrences/*}:testIamPermissions:*ÚAresource,permissionsŽ
-"GetVulnerabilityOccurrencesSummaryO.google.devtools.containeranalysis.v1.GetVulnerabilityOccurrencesSummaryRequestE.google.devtools.containeranalysis.v1.VulnerabilityOccurrencesSummary"P‚Óä“:8/v1/{parent=projects/*}/occurrences:vulnerabilitySummaryÚAparent,filterTÊA containeranalysis.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBø
+SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"†ÚAresource,policy‚Óä“n"./v1/{resource=projects/*/notes/*}:setIamPolicy:*Z9"4/v1/{resource=projects/*/occurrences/*}:setIamPolicy:*Ê
+GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"ÚAresource‚Óä“n"./v1/{resource=projects/*/notes/*}:getIamPolicy:*Z9"4/v1/{resource=projects/*/occurrences/*}:getIamPolicy:*ƒ
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"—ÚAresource,permissions‚Óä“z"4/v1/{resource=projects/*/notes/*}:testIamPermissions:*Z?":/v1/{resource=projects/*/occurrences/*}:testIamPermissions:*Ž
+"GetVulnerabilityOccurrencesSummaryO.google.devtools.containeranalysis.v1.GetVulnerabilityOccurrencesSummaryRequestE.google.devtools.containeranalysis.v1.VulnerabilityOccurrencesSummary"PÚAparent,filter‚Óä“:8/v1/{parent=projects/*}/occurrences:vulnerabilitySummaryTÊA containeranalysis.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBø
 com.google.containeranalysis.v1PZUgoogle.golang.org/genproto/googleapis/devtools/containeranalysis/v1;containeranalysis¢GCAª*Google.Cloud.DevTools.ContainerAnalysis.V1Ê!Google\\Cloud\\ContainerAnalysis\\V1ê$Google::Cloud::ContainerAnalysis::V1bproto3'
         , true);
 

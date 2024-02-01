@@ -33,22 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a [Deployment][google.cloud.config.v1.Deployment].
  *
- * @param string $formattedParent The parent in whose context the Deployment is created. The parent
- *                                value is in the format: 'projects/{project_id}/locations/{location}'. Please see
- *                                {@see ConfigClient::locationName()} for help formatting this field.
- * @param string $deploymentId    The Deployment ID.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_deployment_sample(string $formattedParent, string $deploymentId): void
+function create_deployment_sample(): void
 {
     // Create a client.
     $configClient = new ConfigClient();
 
     // Prepare the request message.
-    $deployment = new Deployment();
-    $request = (new CreateDeploymentRequest())
-        ->setParent($formattedParent)
-        ->setDeploymentId($deploymentId)
-        ->setDeployment($deployment);
+    $request = new CreateDeploymentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,22 +65,5 @@ function create_deployment_sample(string $formattedParent, string $deploymentId)
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ConfigClient::locationName('[PROJECT]', '[LOCATION]');
-    $deploymentId = '[DEPLOYMENT_ID]';
-
-    create_deployment_sample($formattedParent, $deploymentId);
 }
 // [END config_v1_generated_Config_CreateDeployment_sync]

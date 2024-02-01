@@ -28,7 +28,6 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ConfidentialComputing\V1\Challenge;
 use Google\Cloud\ConfidentialComputing\V1\ConfidentialComputingClient;
-use Google\Cloud\ConfidentialComputing\V1\TpmAttestation;
 use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationResponse;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
@@ -80,20 +79,13 @@ class ConfidentialComputingClientTest extends GeneratedTest
         $expectedResponse->setUsed($used);
         $expectedResponse->setTpmNonce($tpmNonce);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $challenge = new Challenge();
-        $response = $gapicClient->createChallenge($formattedParent, $challenge);
+        $response = $gapicClient->createChallenge();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.confidentialcomputing.v1.ConfidentialComputing/CreateChallenge', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getChallenge();
-        $this->assertProtobufEquals($challenge, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -115,11 +107,8 @@ class ConfidentialComputingClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $challenge = new Challenge();
         try {
-            $gapicClient->createChallenge($formattedParent, $challenge);
+            $gapicClient->createChallenge();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -144,20 +133,13 @@ class ConfidentialComputingClientTest extends GeneratedTest
         $expectedResponse = new VerifyAttestationResponse();
         $expectedResponse->setOidcClaimsToken($oidcClaimsToken);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedChallenge = $gapicClient->challengeName('[PROJECT]', '[LOCATION]', '[UUID]');
-        $tpmAttestation = new TpmAttestation();
-        $response = $gapicClient->verifyAttestation($formattedChallenge, $tpmAttestation);
+        $response = $gapicClient->verifyAttestation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.confidentialcomputing.v1.ConfidentialComputing/VerifyAttestation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getChallenge();
-        $this->assertProtobufEquals($formattedChallenge, $actualValue);
-        $actualValue = $actualRequestObject->getTpmAttestation();
-        $this->assertProtobufEquals($tpmAttestation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -179,11 +161,8 @@ class ConfidentialComputingClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedChallenge = $gapicClient->challengeName('[PROJECT]', '[LOCATION]', '[UUID]');
-        $tpmAttestation = new TpmAttestation();
         try {
-            $gapicClient->verifyAttestation($formattedChallenge, $tpmAttestation);
+            $gapicClient->verifyAttestation();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

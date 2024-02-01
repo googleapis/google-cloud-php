@@ -36,22 +36,19 @@ use Google\Cloud\Dialogflow\V2\SessionEntityType;
  * Contact Dialogflow support if you need to use session entities
  * with Google Assistant integration.
  *
- * @param string $formattedParent The session to list all session entity types from.
- *                                Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
- *                                `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
- *                                sessions/<Session ID>`.
- *                                If `Environment ID` is not specified, we assume default 'draft'
- *                                environment. If `User ID` is not specified, we assume default '-' user. Please see
- *                                {@see SessionEntityTypesClient::sessionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_session_entity_types_sample(string $formattedParent): void
+function list_session_entity_types_sample(): void
 {
     // Create a client.
     $sessionEntityTypesClient = new SessionEntityTypesClient();
 
     // Prepare the request message.
-    $request = (new ListSessionEntityTypesRequest())
-        ->setParent($formattedParent);
+    $request = new ListSessionEntityTypesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,21 +62,5 @@ function list_session_entity_types_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SessionEntityTypesClient::sessionName('[PROJECT]', '[SESSION]');
-
-    list_session_entity_types_sample($formattedParent);
 }
 // [END dialogflow_v2_generated_SessionEntityTypes_ListSessionEntityTypes_sync]

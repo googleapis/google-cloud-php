@@ -24,8 +24,7 @@ class GetRunRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the run to get. Please see
-     *                     {@see LineageClient::runName()} for help formatting this field.
+     * @param string $name Required. The name of the run to get.
      *
      * @return \Google\Cloud\DataCatalog\Lineage\V1\GetRunRequest
      *

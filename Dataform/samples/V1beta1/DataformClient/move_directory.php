@@ -32,23 +32,19 @@ use Google\Cloud\Dataform\V1beta1\MoveDirectoryResponse;
  * Moves a directory (inside a Workspace), and all of its contents, to a new
  * location.
  *
- * @param string $formattedWorkspace The workspace's name. Please see
- *                                   {@see DataformClient::workspaceName()} for help formatting this field.
- * @param string $path               The directory's full path including directory name, relative to
- *                                   the workspace root.
- * @param string $newPath            The new path for the directory including directory name, rooted
- *                                   at workspace root.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function move_directory_sample(string $formattedWorkspace, string $path, string $newPath): void
+function move_directory_sample(): void
 {
     // Create a client.
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $request = (new MoveDirectoryRequest())
-        ->setWorkspace($formattedWorkspace)
-        ->setPath($path)
-        ->setNewPath($newPath);
+    $request = new MoveDirectoryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,28 +54,5 @@ function move_directory_sample(string $formattedWorkspace, string $path, string 
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedWorkspace = DataformClient::workspaceName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[REPOSITORY]',
-        '[WORKSPACE]'
-    );
-    $path = '[PATH]';
-    $newPath = '[NEW_PATH]';
-
-    move_directory_sample($formattedWorkspace, $path, $newPath);
 }
 // [END dataform_v1beta1_generated_Dataform_MoveDirectory_sync]

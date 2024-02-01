@@ -26,8 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dialogflow\V2\Client\DocumentsClient;
-use Google\Cloud\Dialogflow\V2\Document\KnowledgeType;
-use Google\Cloud\Dialogflow\V2\ImportDocumentTemplate;
 use Google\Cloud\Dialogflow\V2\ImportDocumentsRequest;
 use Google\Cloud\Dialogflow\V2\ImportDocumentsResponse;
 use Google\Rpc\Status;
@@ -46,29 +44,19 @@ use Google\Rpc\Status;
  * - `response`:
  * [ImportDocumentsResponse][google.cloud.dialogflow.v2.ImportDocumentsResponse]
  *
- * @param string $formattedParent                       The knowledge base to import documents into.
- *                                                      Format: `projects/<Project ID>/locations/<Location
- *                                                      ID>/knowledgeBases/<Knowledge Base ID>`. Please see
- *                                                      {@see DocumentsClient::knowledgeBaseName()} for help formatting this field.
- * @param string $documentTemplateMimeType              The MIME type of the document.
- * @param int    $documentTemplateKnowledgeTypesElement The knowledge type of document content.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function import_documents_sample(
-    string $formattedParent,
-    string $documentTemplateMimeType,
-    int $documentTemplateKnowledgeTypesElement
-): void {
+function import_documents_sample(): void
+{
     // Create a client.
     $documentsClient = new DocumentsClient();
 
     // Prepare the request message.
-    $documentTemplateKnowledgeTypes = [$documentTemplateKnowledgeTypesElement,];
-    $documentTemplate = (new ImportDocumentTemplate())
-        ->setMimeType($documentTemplateMimeType)
-        ->setKnowledgeTypes($documentTemplateKnowledgeTypes);
-    $request = (new ImportDocumentsRequest())
-        ->setParent($formattedParent)
-        ->setDocumentTemplate($documentTemplate);
+    $request = new ImportDocumentsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -88,27 +76,5 @@ function import_documents_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DocumentsClient::knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-    $documentTemplateMimeType = '[MIME_TYPE]';
-    $documentTemplateKnowledgeTypesElement = KnowledgeType::KNOWLEDGE_TYPE_UNSPECIFIED;
-
-    import_documents_sample(
-        $formattedParent,
-        $documentTemplateMimeType,
-        $documentTemplateKnowledgeTypesElement
-    );
 }
 // [END dialogflow_v2_generated_Documents_ImportDocuments_sync]

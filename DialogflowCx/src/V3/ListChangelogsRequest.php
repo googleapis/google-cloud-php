@@ -64,8 +64,7 @@ class ListChangelogsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The agent containing the changelogs.
-     *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
-     *                       {@see ChangelogsClient::agentName()} for help formatting this field.
+     *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\ListChangelogsRequest
      *

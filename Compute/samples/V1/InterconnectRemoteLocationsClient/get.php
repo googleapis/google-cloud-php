@@ -30,10 +30,13 @@ use Google\Cloud\Compute\V1\InterconnectRemoteLocationsClient;
 /**
  * Returns the details for the specified interconnect remote location. Gets a list of available interconnect remote locations by making a list() request.
  *
- * @param string $interconnectRemoteLocation Name of the interconnect remote location to return.
- * @param string $project                    Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_sample(string $interconnectRemoteLocation, string $project): void
+function get_sample(): void
 {
     // Create a client.
     $interconnectRemoteLocationsClient = new InterconnectRemoteLocationsClient();
@@ -41,27 +44,10 @@ function get_sample(string $interconnectRemoteLocation, string $project): void
     // Call the API and handle any network failures.
     try {
         /** @var InterconnectRemoteLocation $response */
-        $response = $interconnectRemoteLocationsClient->get($interconnectRemoteLocation, $project);
+        $response = $interconnectRemoteLocationsClient->get();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $interconnectRemoteLocation = '[INTERCONNECT_REMOTE_LOCATION]';
-    $project = '[PROJECT]';
-
-    get_sample($interconnectRemoteLocation, $project);
 }
 // [END compute_v1_generated_InterconnectRemoteLocations_Get_sync]

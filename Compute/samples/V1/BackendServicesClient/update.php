@@ -25,28 +25,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_BackendServices_Update_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\BackendService;
 use Google\Cloud\Compute\V1\BackendServicesClient;
 use Google\Rpc\Status;
 
 /**
  * Updates the specified BackendService resource with the data included in the request. For more information, see Backend services overview.
  *
- * @param string $backendService Name of the BackendService resource to update.
- * @param string $project        Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_sample(string $backendService, string $project): void
+function update_sample(): void
 {
     // Create a client.
     $backendServicesClient = new BackendServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $backendServiceResource = new BackendService();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backendServicesClient->update($backendService, $backendServiceResource, $project);
+        $response = $backendServicesClient->update();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -59,22 +58,5 @@ function update_sample(string $backendService, string $project): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $backendService = '[BACKEND_SERVICE]';
-    $project = '[PROJECT]';
-
-    update_sample($backendService, $project);
 }
 // [END compute_v1_generated_BackendServices_Update_sync]

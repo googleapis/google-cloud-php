@@ -34,19 +34,19 @@ use Google\Rpc\Status;
  * Creates an analysis. The long running operation is done when the analysis
  * has completed.
  *
- * @param string $formattedParent The parent resource of the analysis. Please see
- *                                {@see ContactCenterInsightsClient::conversationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_analysis_sample(string $formattedParent): void
+function create_analysis_sample(): void
 {
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $analysis = new Analysis();
-    $request = (new CreateAnalysisRequest())
-        ->setParent($formattedParent)
-        ->setAnalysis($analysis);
+    $request = new CreateAnalysisRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -66,25 +66,5 @@ function create_analysis_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ContactCenterInsightsClient::conversationName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CONVERSATION]'
-    );
-
-    create_analysis_sample($formattedParent);
 }
 // [END contactcenterinsights_v1_generated_ContactCenterInsights_CreateAnalysis_sync]

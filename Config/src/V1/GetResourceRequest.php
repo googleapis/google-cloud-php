@@ -25,8 +25,7 @@ class GetResourceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the Resource in the format:
-     *                     'projects/{project_id}/locations/{location}/deployments/{deployment}/revisions/{revision}/resource/{resource}'. Please see
-     *                     {@see ConfigClient::resourceName()} for help formatting this field.
+     *                     'projects/{project_id}/locations/{location}/deployments/{deployment}/revisions/{revision}/resource/{resource}'.
      *
      * @return \Google\Cloud\Config\V1\GetResourceRequest
      *

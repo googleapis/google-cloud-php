@@ -31,13 +31,9 @@ use Google\Cloud\Compute\V1\BackendBucketList;
 use Google\Cloud\Compute\V1\BackendBucketsClient;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
-use Google\Cloud\Compute\V1\GlobalSetPolicyRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\Policy;
-use Google\Cloud\Compute\V1\SecurityPolicyReference;
-use Google\Cloud\Compute\V1\SignedUrlKey;
-use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Rpc\Code;
 use stdClass;
@@ -95,11 +91,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addSignedUrlKeyTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backendBucket = 'backendBucket91714037';
-        $project = 'project-309310695';
-        $signedUrlKeyResource = new SignedUrlKey();
-        $response = $gapicClient->addSignedUrlKey($backendBucket, $project, $signedUrlKeyResource);
+        $response = $gapicClient->addSignedUrlKey();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -108,15 +100,8 @@ class BackendBucketsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.BackendBuckets/AddSignedUrlKey', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendBucket();
-        $this->assertProtobufEquals($backendBucket, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSignedUrlKeyResource();
-        $this->assertProtobufEquals($signedUrlKeyResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -164,11 +149,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backendBucket = 'backendBucket91714037';
-        $project = 'project-309310695';
-        $signedUrlKeyResource = new SignedUrlKey();
-        $response = $gapicClient->addSignedUrlKey($backendBucket, $project, $signedUrlKeyResource);
+        $response = $gapicClient->addSignedUrlKey();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -213,10 +194,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backendBucket = 'backendBucket91714037';
-        $project = 'project-309310695';
-        $response = $gapicClient->delete($backendBucket, $project);
+        $response = $gapicClient->delete();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -225,13 +203,8 @@ class BackendBucketsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.BackendBuckets/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendBucket();
-        $this->assertProtobufEquals($backendBucket, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -279,10 +252,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backendBucket = 'backendBucket91714037';
-        $project = 'project-309310695';
-        $response = $gapicClient->delete($backendBucket, $project);
+        $response = $gapicClient->delete();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -327,11 +297,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteSignedUrlKeyTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backendBucket = 'backendBucket91714037';
-        $keyName = 'keyName500938859';
-        $project = 'project-309310695';
-        $response = $gapicClient->deleteSignedUrlKey($backendBucket, $keyName, $project);
+        $response = $gapicClient->deleteSignedUrlKey();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -340,15 +306,8 @@ class BackendBucketsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.BackendBuckets/DeleteSignedUrlKey', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendBucket();
-        $this->assertProtobufEquals($backendBucket, $actualValue);
-        $actualValue = $actualApiRequestObject->getKeyName();
-        $this->assertProtobufEquals($keyName, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -396,11 +355,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backendBucket = 'backendBucket91714037';
-        $keyName = 'keyName500938859';
-        $project = 'project-309310695';
-        $response = $gapicClient->deleteSignedUrlKey($backendBucket, $keyName, $project);
+        $response = $gapicClient->deleteSignedUrlKey();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -451,20 +406,13 @@ class BackendBucketsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setSelfLink($selfLink);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $backendBucket = 'backendBucket91714037';
-        $project = 'project-309310695';
-        $response = $gapicClient->get($backendBucket, $project);
+        $response = $gapicClient->get();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.BackendBuckets/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getBackendBucket();
-        $this->assertProtobufEquals($backendBucket, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -486,11 +434,8 @@ class BackendBucketsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $backendBucket = 'backendBucket91714037';
-        $project = 'project-309310695';
         try {
-            $gapicClient->get($backendBucket, $project);
+            $gapicClient->get();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -519,20 +464,13 @@ class BackendBucketsClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($project, $resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.BackendBuckets/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -554,11 +492,8 @@ class BackendBucketsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($project, $resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -595,10 +530,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backendBucketResource = new BackendBucket();
-        $project = 'project-309310695';
-        $response = $gapicClient->insert($backendBucketResource, $project);
+        $response = $gapicClient->insert();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -607,13 +539,8 @@ class BackendBucketsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.BackendBuckets/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendBucketResource();
-        $this->assertProtobufEquals($backendBucketResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -661,10 +588,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backendBucketResource = new BackendBucket();
-        $project = 'project-309310695';
-        $response = $gapicClient->insert($backendBucketResource, $project);
+        $response = $gapicClient->insert();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -708,9 +632,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $response = $gapicClient->list($project);
+        $response = $gapicClient->list();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -720,8 +642,6 @@ class BackendBucketsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.BackendBuckets/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -743,10 +663,8 @@ class BackendBucketsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
         try {
-            $gapicClient->list($project);
+            $gapicClient->list();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -783,11 +701,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backendBucket = 'backendBucket91714037';
-        $backendBucketResource = new BackendBucket();
-        $project = 'project-309310695';
-        $response = $gapicClient->patch($backendBucket, $backendBucketResource, $project);
+        $response = $gapicClient->patch();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -796,15 +710,8 @@ class BackendBucketsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.BackendBuckets/Patch', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendBucket();
-        $this->assertProtobufEquals($backendBucket, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackendBucketResource();
-        $this->assertProtobufEquals($backendBucketResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -852,11 +759,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backendBucket = 'backendBucket91714037';
-        $backendBucketResource = new BackendBucket();
-        $project = 'project-309310695';
-        $response = $gapicClient->patch($backendBucket, $backendBucketResource, $project);
+        $response = $gapicClient->patch();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -901,11 +804,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setEdgeSecurityPolicyTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backendBucket = 'backendBucket91714037';
-        $project = 'project-309310695';
-        $securityPolicyReferenceResource = new SecurityPolicyReference();
-        $response = $gapicClient->setEdgeSecurityPolicy($backendBucket, $project, $securityPolicyReferenceResource);
+        $response = $gapicClient->setEdgeSecurityPolicy();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -914,15 +813,8 @@ class BackendBucketsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.BackendBuckets/SetEdgeSecurityPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendBucket();
-        $this->assertProtobufEquals($backendBucket, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicyReferenceResource();
-        $this->assertProtobufEquals($securityPolicyReferenceResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -970,11 +862,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backendBucket = 'backendBucket91714037';
-        $project = 'project-309310695';
-        $securityPolicyReferenceResource = new SecurityPolicyReference();
-        $response = $gapicClient->setEdgeSecurityPolicy($backendBucket, $project, $securityPolicyReferenceResource);
+        $response = $gapicClient->setEdgeSecurityPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1011,23 +899,13 @@ class BackendBucketsClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $response = $gapicClient->setIamPolicy($globalSetPolicyRequestResource, $project, $resource);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.BackendBuckets/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getGlobalSetPolicyRequestResource();
-        $this->assertProtobufEquals($globalSetPolicyRequestResource, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1049,12 +927,8 @@ class BackendBucketsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->setIamPolicy($globalSetPolicyRequestResource, $project, $resource);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1077,23 +951,13 @@ class BackendBucketsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
-        $response = $gapicClient->testIamPermissions($project, $resource, $testPermissionsRequestResource);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.BackendBuckets/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
-        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1115,12 +979,8 @@ class BackendBucketsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
         try {
-            $gapicClient->testIamPermissions($project, $resource, $testPermissionsRequestResource);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1157,11 +1017,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/updateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backendBucket = 'backendBucket91714037';
-        $backendBucketResource = new BackendBucket();
-        $project = 'project-309310695';
-        $response = $gapicClient->update($backendBucket, $backendBucketResource, $project);
+        $response = $gapicClient->update();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1170,15 +1026,8 @@ class BackendBucketsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.BackendBuckets/Update', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendBucket();
-        $this->assertProtobufEquals($backendBucket, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackendBucketResource();
-        $this->assertProtobufEquals($backendBucketResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1226,11 +1075,7 @@ class BackendBucketsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backendBucket = 'backendBucket91714037';
-        $backendBucketResource = new BackendBucket();
-        $project = 'project-309310695';
-        $response = $gapicClient->update($backendBucket, $backendBucketResource, $project);
+        $response = $gapicClient->update();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

@@ -30,19 +30,19 @@ use Google\Cloud\Dialogflow\Cx\V3\DeleteWebhookRequest;
 /**
  * Deletes the specified webhook.
  *
- * @param string $formattedName The name of the webhook to delete.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/webhooks/<Webhook ID>`. Please see
- *                              {@see WebhooksClient::webhookName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_webhook_sample(string $formattedName): void
+function delete_webhook_sample(): void
 {
     // Create a client.
     $webhooksClient = new WebhooksClient();
 
     // Prepare the request message.
-    $request = (new DeleteWebhookRequest())
-        ->setName($formattedName);
+    $request = new DeleteWebhookRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,21 +51,5 @@ function delete_webhook_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = WebhooksClient::webhookName('[PROJECT]', '[LOCATION]', '[AGENT]', '[WEBHOOK]');
-
-    delete_webhook_sample($formattedName);
 }
 // [END dialogflow_v3_generated_Webhooks_DeleteWebhook_sync]

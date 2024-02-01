@@ -28,8 +28,7 @@ class StartExperimentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Resource name of the experiment to start.
      *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/environments/<Environment ID>/experiments/<Experiment ID>`. Please see
-     *                     {@see ExperimentsClient::experimentName()} for help formatting this field.
+     *                     ID>/environments/<Environment ID>/experiments/<Experiment ID>`.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\StartExperimentRequest
      *

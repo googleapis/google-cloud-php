@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dialogflow\V2\BatchCreateEntitiesRequest;
 use Google\Cloud\Dialogflow\V2\Client\EntityTypesClient;
-use Google\Cloud\Dialogflow\V2\EntityType\Entity;
 use Google\Rpc\Status;
 
 /**
@@ -46,46 +45,19 @@ use Google\Rpc\Status;
  * [training
  * documentation](https://cloud.google.com/dialogflow/es/docs/training).
  *
- * @param string $formattedParent         The name of the entity type to create entities in. Format:
- *                                        `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`. Please see
- *                                        {@see EntityTypesClient::entityTypeName()} for help formatting this field.
- * @param string $entitiesValue           The primary value associated with this entity entry.
- *                                        For example, if the entity type is *vegetable*, the value could be
- *                                        *scallions*.
- *
- *                                        For `KIND_MAP` entity types:
- *
- *                                        *   A reference value to be used in place of synonyms.
- *
- *                                        For `KIND_LIST` entity types:
- *
- *                                        *   A string that can contain references to other entity types (with or
- *                                        without aliases).
- * @param string $entitiesSynonymsElement A collection of value synonyms. For example, if the entity type
- *                                        is *vegetable*, and `value` is *scallions*, a synonym could be *green
- *                                        onions*.
- *
- *                                        For `KIND_LIST` entity types:
- *
- *                                        *   This collection must contain exactly one synonym equal to `value`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function batch_create_entities_sample(
-    string $formattedParent,
-    string $entitiesValue,
-    string $entitiesSynonymsElement
-): void {
+function batch_create_entities_sample(): void
+{
     // Create a client.
     $entityTypesClient = new EntityTypesClient();
 
     // Prepare the request message.
-    $entitiesSynonyms = [$entitiesSynonymsElement,];
-    $entity = (new Entity())
-        ->setValue($entitiesValue)
-        ->setSynonyms($entitiesSynonyms);
-    $entities = [$entity,];
-    $request = (new BatchCreateEntitiesRequest())
-        ->setParent($formattedParent)
-        ->setEntities($entities);
+    $request = new BatchCreateEntitiesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -103,23 +75,5 @@ function batch_create_entities_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = EntityTypesClient::entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-    $entitiesValue = '[VALUE]';
-    $entitiesSynonymsElement = '[SYNONYMS]';
-
-    batch_create_entities_sample($formattedParent, $entitiesValue, $entitiesSynonymsElement);
 }
 // [END dialogflow_v2_generated_EntityTypes_BatchCreateEntities_sync]

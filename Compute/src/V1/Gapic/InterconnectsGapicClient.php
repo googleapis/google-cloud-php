@@ -58,9 +58,7 @@ use Google\Cloud\Compute\V1\SetLabelsInterconnectRequest;
  * ```
  * $interconnectsClient = new InterconnectsClient();
  * try {
- *     $interconnect = 'interconnect';
- *     $project = 'project';
- *     $operationResponse = $interconnectsClient->delete($interconnect, $project);
+ *     $operationResponse = $interconnectsClient->delete();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -70,7 +68,7 @@ use Google\Cloud\Compute\V1\SetLabelsInterconnectRequest;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $interconnectsClient->delete($interconnect, $project);
+ *     $operationResponse = $interconnectsClient->delete();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $interconnectsClient->resumeOperation($operationName, 'delete');
@@ -170,9 +168,7 @@ class InterconnectsGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -268,9 +264,7 @@ class InterconnectsGapicClient
      * ```
      * $interconnectsClient = new InterconnectsClient();
      * try {
-     *     $interconnect = 'interconnect';
-     *     $project = 'project';
-     *     $operationResponse = $interconnectsClient->delete($interconnect, $project);
+     *     $operationResponse = $interconnectsClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -280,7 +274,7 @@ class InterconnectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $interconnectsClient->delete($interconnect, $project);
+     *     $operationResponse = $interconnectsClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $interconnectsClient->resumeOperation($operationName, 'delete');
@@ -299,11 +293,13 @@ class InterconnectsGapicClient
      * }
      * ```
      *
-     * @param string $interconnect Name of the interconnect to delete.
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $interconnect
+     *           Name of the interconnect to delete.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -316,14 +312,20 @@ class InterconnectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($interconnect, $project, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteInterconnectRequest();
         $requestParamHeaders = [];
-        $request->setInterconnect($interconnect);
-        $request->setProject($project);
-        $requestParamHeaders['interconnect'] = $interconnect;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['interconnect'])) {
+            $request->setInterconnect($optionalArgs['interconnect']);
+            $requestParamHeaders['interconnect'] = $optionalArgs['interconnect'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -340,19 +342,19 @@ class InterconnectsGapicClient
      * ```
      * $interconnectsClient = new InterconnectsClient();
      * try {
-     *     $interconnect = 'interconnect';
-     *     $project = 'project';
-     *     $response = $interconnectsClient->get($interconnect, $project);
+     *     $response = $interconnectsClient->get();
      * } finally {
      *     $interconnectsClient->close();
      * }
      * ```
      *
-     * @param string $interconnect Name of the interconnect to return.
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $interconnect
+     *           Name of the interconnect to return.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -363,14 +365,20 @@ class InterconnectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($interconnect, $project, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetInterconnectRequest();
         $requestParamHeaders = [];
-        $request->setInterconnect($interconnect);
-        $request->setProject($project);
-        $requestParamHeaders['interconnect'] = $interconnect;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['interconnect'])) {
+            $request->setInterconnect($optionalArgs['interconnect']);
+            $requestParamHeaders['interconnect'] = $optionalArgs['interconnect'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', Interconnect::class, $optionalArgs, $request)->wait();
@@ -383,19 +391,19 @@ class InterconnectsGapicClient
      * ```
      * $interconnectsClient = new InterconnectsClient();
      * try {
-     *     $interconnect = 'interconnect';
-     *     $project = 'project';
-     *     $response = $interconnectsClient->getDiagnostics($interconnect, $project);
+     *     $response = $interconnectsClient->getDiagnostics();
      * } finally {
      *     $interconnectsClient->close();
      * }
      * ```
      *
-     * @param string $interconnect Name of the interconnect resource to query.
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $interconnect
+     *           Name of the interconnect resource to query.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -406,14 +414,20 @@ class InterconnectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDiagnostics($interconnect, $project, array $optionalArgs = [])
+    public function getDiagnostics(array $optionalArgs = [])
     {
         $request = new GetDiagnosticsInterconnectRequest();
         $requestParamHeaders = [];
-        $request->setInterconnect($interconnect);
-        $request->setProject($project);
-        $requestParamHeaders['interconnect'] = $interconnect;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['interconnect'])) {
+            $request->setInterconnect($optionalArgs['interconnect']);
+            $requestParamHeaders['interconnect'] = $optionalArgs['interconnect'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetDiagnostics', InterconnectsGetDiagnosticsResponse::class, $optionalArgs, $request)->wait();
@@ -426,19 +440,19 @@ class InterconnectsGapicClient
      * ```
      * $interconnectsClient = new InterconnectsClient();
      * try {
-     *     $interconnect = 'interconnect';
-     *     $project = 'project';
-     *     $response = $interconnectsClient->getMacsecConfig($interconnect, $project);
+     *     $response = $interconnectsClient->getMacsecConfig();
      * } finally {
      *     $interconnectsClient->close();
      * }
      * ```
      *
-     * @param string $interconnect Name of the interconnect resource to query.
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $interconnect
+     *           Name of the interconnect resource to query.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -449,14 +463,20 @@ class InterconnectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getMacsecConfig($interconnect, $project, array $optionalArgs = [])
+    public function getMacsecConfig(array $optionalArgs = [])
     {
         $request = new GetMacsecConfigInterconnectRequest();
         $requestParamHeaders = [];
-        $request->setInterconnect($interconnect);
-        $request->setProject($project);
-        $requestParamHeaders['interconnect'] = $interconnect;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['interconnect'])) {
+            $request->setInterconnect($optionalArgs['interconnect']);
+            $requestParamHeaders['interconnect'] = $optionalArgs['interconnect'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetMacsecConfig', InterconnectsGetMacsecConfigResponse::class, $optionalArgs, $request)->wait();
@@ -469,9 +489,7 @@ class InterconnectsGapicClient
      * ```
      * $interconnectsClient = new InterconnectsClient();
      * try {
-     *     $interconnectResource = new Interconnect();
-     *     $project = 'project';
-     *     $operationResponse = $interconnectsClient->insert($interconnectResource, $project);
+     *     $operationResponse = $interconnectsClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -481,7 +499,7 @@ class InterconnectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $interconnectsClient->insert($interconnectResource, $project);
+     *     $operationResponse = $interconnectsClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $interconnectsClient->resumeOperation($operationName, 'insert');
@@ -500,11 +518,13 @@ class InterconnectsGapicClient
      * }
      * ```
      *
-     * @param Interconnect $interconnectResource The body resource for this request
-     * @param string       $project              Project ID for this request.
-     * @param array        $optionalArgs         {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Interconnect $interconnectResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -517,13 +537,19 @@ class InterconnectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($interconnectResource, $project, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertInterconnectRequest();
         $requestParamHeaders = [];
-        $request->setInterconnectResource($interconnectResource);
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['interconnectResource'])) {
+            $request->setInterconnectResource($optionalArgs['interconnectResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -540,9 +566,8 @@ class InterconnectsGapicClient
      * ```
      * $interconnectsClient = new InterconnectsClient();
      * try {
-     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $interconnectsClient->list($project);
+     *     $pagedResponse = $interconnectsClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -550,7 +575,7 @@ class InterconnectsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $interconnectsClient->list($project);
+     *     $pagedResponse = $interconnectsClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -559,8 +584,7 @@ class InterconnectsGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -574,6 +598,8 @@ class InterconnectsGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -586,12 +612,10 @@ class InterconnectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListInterconnectsRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -606,6 +630,11 @@ class InterconnectsGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -624,10 +653,7 @@ class InterconnectsGapicClient
      * ```
      * $interconnectsClient = new InterconnectsClient();
      * try {
-     *     $interconnect = 'interconnect';
-     *     $interconnectResource = new Interconnect();
-     *     $project = 'project';
-     *     $operationResponse = $interconnectsClient->patch($interconnect, $interconnectResource, $project);
+     *     $operationResponse = $interconnectsClient->patch();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -637,7 +663,7 @@ class InterconnectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $interconnectsClient->patch($interconnect, $interconnectResource, $project);
+     *     $operationResponse = $interconnectsClient->patch();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $interconnectsClient->resumeOperation($operationName, 'patch');
@@ -656,12 +682,15 @@ class InterconnectsGapicClient
      * }
      * ```
      *
-     * @param string       $interconnect         Name of the interconnect to update.
-     * @param Interconnect $interconnectResource The body resource for this request
-     * @param string       $project              Project ID for this request.
-     * @param array        $optionalArgs         {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $interconnect
+     *           Name of the interconnect to update.
+     *     @type Interconnect $interconnectResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -674,15 +703,24 @@ class InterconnectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch($interconnect, $interconnectResource, $project, array $optionalArgs = [])
+    public function patch(array $optionalArgs = [])
     {
         $request = new PatchInterconnectRequest();
         $requestParamHeaders = [];
-        $request->setInterconnect($interconnect);
-        $request->setInterconnectResource($interconnectResource);
-        $request->setProject($project);
-        $requestParamHeaders['interconnect'] = $interconnect;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['interconnect'])) {
+            $request->setInterconnect($optionalArgs['interconnect']);
+            $requestParamHeaders['interconnect'] = $optionalArgs['interconnect'];
+        }
+
+        if (isset($optionalArgs['interconnectResource'])) {
+            $request->setInterconnectResource($optionalArgs['interconnectResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -699,10 +737,7 @@ class InterconnectsGapicClient
      * ```
      * $interconnectsClient = new InterconnectsClient();
      * try {
-     *     $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
-     *     $project = 'project';
-     *     $resource = 'resource';
-     *     $operationResponse = $interconnectsClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+     *     $operationResponse = $interconnectsClient->setLabels();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -712,7 +747,7 @@ class InterconnectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $interconnectsClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+     *     $operationResponse = $interconnectsClient->setLabels();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $interconnectsClient->resumeOperation($operationName, 'setLabels');
@@ -731,12 +766,15 @@ class InterconnectsGapicClient
      * }
      * ```
      *
-     * @param GlobalSetLabelsRequest $globalSetLabelsRequestResource The body resource for this request
-     * @param string                 $project                        Project ID for this request.
-     * @param string                 $resource                       Name or id of the resource for this request.
-     * @param array                  $optionalArgs                   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type GlobalSetLabelsRequest $globalSetLabelsRequestResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $resource
+     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -747,15 +785,24 @@ class InterconnectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setLabels($globalSetLabelsRequestResource, $project, $resource, array $optionalArgs = [])
+    public function setLabels(array $optionalArgs = [])
     {
         $request = new SetLabelsInterconnectRequest();
         $requestParamHeaders = [];
-        $request->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource);
-        $request->setProject($project);
-        $request->setResource($resource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['globalSetLabelsRequestResource'])) {
+            $request->setGlobalSetLabelsRequestResource($optionalArgs['globalSetLabelsRequestResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('SetLabels', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();

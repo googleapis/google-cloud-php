@@ -31,29 +31,21 @@ use Google\Rpc\Status;
 /**
  * Changes the intended size of the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes one or more instances. The resize operation is marked DONE if the resize request is successful. The underlying actions take additional time. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.
  *
- * @param string $instanceGroupManager Name of the managed instance group.
- * @param string $project              Project ID for this request.
- * @param string $region               Name of the region scoping this request.
- * @param int    $size                 Number of instances that should exist in this instance group manager.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function resize_sample(
-    string $instanceGroupManager,
-    string $project,
-    string $region,
-    int $size
-): void {
+function resize_sample(): void
+{
     // Create a client.
     $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionInstanceGroupManagersClient->resize(
-            $instanceGroupManager,
-            $project,
-            $region,
-            $size
-        );
+        $response = $regionInstanceGroupManagersClient->resize();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -66,24 +58,5 @@ function resize_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $instanceGroupManager = '[INSTANCE_GROUP_MANAGER]';
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-    $size = 0;
-
-    resize_sample($instanceGroupManager, $project, $region, $size);
 }
 // [END compute_v1_generated_RegionInstanceGroupManagers_Resize_sync]

@@ -32,15 +32,13 @@ use Google\Rpc\Status;
 /**
  * Query DPMS metadata.
  *
- * @param string $formattedService The relative resource name of the metastore service to query
- *                                 metadata, in the following format:
- *
- *                                 `projects/{project_id}/locations/{location_id}/services/{service_id}`. Please see
- *                                 {@see DataprocMetastoreClient::serviceName()} for help formatting this field.
- * @param string $query            A read-only SQL query to execute against the metadata database.
- *                                 The query cannot change or mutate the data.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function query_metadata_sample(string $formattedService, string $query): void
+function query_metadata_sample(): void
 {
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
@@ -48,7 +46,7 @@ function query_metadata_sample(string $formattedService, string $query): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreClient->queryMetadata($formattedService, $query);
+        $response = $dataprocMetastoreClient->queryMetadata();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -63,22 +61,5 @@ function query_metadata_sample(string $formattedService, string $query): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedService = DataprocMetastoreClient::serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-    $query = '[QUERY]';
-
-    query_metadata_sample($formattedService, $query);
 }
 // [END metastore_v1alpha_generated_DataprocMetastore_QueryMetadata_sync]

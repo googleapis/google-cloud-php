@@ -62,8 +62,7 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      * @param string                                    $parent           Required. The relative resource name of the service in which to create a
      *                                                                    metastore import, in the following form:
      *
-     *                                                                    `projects/{project_number}/locations/{location_id}/services/{service_id}`. Please see
-     *                                                                    {@see DataprocMetastoreClient::serviceName()} for help formatting this field.
+     *                                                                    `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      * @param \Google\Cloud\Metastore\V1\MetadataImport $metadataImport   Required. The metadata import to create. The `name` field is ignored. The
      *                                                                    ID of the created metadata import must be provided in the request's
      *                                                                    `metadata_import_id` field.

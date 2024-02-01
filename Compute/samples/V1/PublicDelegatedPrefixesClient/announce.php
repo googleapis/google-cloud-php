@@ -31,11 +31,13 @@ use Google\Rpc\Status;
 /**
  * Announces the specified PublicDelegatedPrefix in the given region.
  *
- * @param string $project               Project ID for this request.
- * @param string $publicDelegatedPrefix The name of the public delegated prefix. It should comply with RFC1035.
- * @param string $region                The name of the region where the public delegated prefix is located. It should comply with RFC1035.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function announce_sample(string $project, string $publicDelegatedPrefix, string $region): void
+function announce_sample(): void
 {
     // Create a client.
     $publicDelegatedPrefixesClient = new PublicDelegatedPrefixesClient();
@@ -43,7 +45,7 @@ function announce_sample(string $project, string $publicDelegatedPrefix, string 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $publicDelegatedPrefixesClient->announce($project, $publicDelegatedPrefix, $region);
+        $response = $publicDelegatedPrefixesClient->announce();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -56,23 +58,5 @@ function announce_sample(string $project, string $publicDelegatedPrefix, string 
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $publicDelegatedPrefix = '[PUBLIC_DELEGATED_PREFIX]';
-    $region = '[REGION]';
-
-    announce_sample($project, $publicDelegatedPrefix, $region);
 }
 // [END compute_v1_generated_PublicDelegatedPrefixes_Announce_sync]

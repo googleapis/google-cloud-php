@@ -51,28 +51,19 @@ use Google\Cloud\Dialogflow\V2\CreateConversationRequest;
  * [Intent.live_agent_handoff][google.cloud.dialogflow.v2.Intent.live_agent_handoff]
  * is triggered, conversation will transfer to Assist Stage.
  *
- * @param string $formattedParent                          Resource identifier of the project creating the conversation.
- *                                                         Format: `projects/<Project ID>/locations/<Location ID>`. Please see
- *                                                         {@see ConversationsClient::projectName()} for help formatting this field.
- * @param string $formattedConversationConversationProfile The Conversation Profile to be used to configure this
- *                                                         Conversation. This field cannot be updated.
- *                                                         Format: `projects/<Project ID>/locations/<Location
- *                                                         ID>/conversationProfiles/<Conversation Profile ID>`. Please see
- *                                                         {@see ConversationsClient::conversationProfileName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_conversation_sample(
-    string $formattedParent,
-    string $formattedConversationConversationProfile
-): void {
+function create_conversation_sample(): void
+{
     // Create a client.
     $conversationsClient = new ConversationsClient();
 
     // Prepare the request message.
-    $conversation = (new Conversation())
-        ->setConversationProfile($formattedConversationConversationProfile);
-    $request = (new CreateConversationRequest())
-        ->setParent($formattedParent)
-        ->setConversation($conversation);
+    $request = new CreateConversationRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -82,25 +73,5 @@ function create_conversation_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ConversationsClient::projectName('[PROJECT]');
-    $formattedConversationConversationProfile = ConversationsClient::conversationProfileName(
-        '[PROJECT]',
-        '[CONVERSATION_PROFILE]'
-    );
-
-    create_conversation_sample($formattedParent, $formattedConversationConversationProfile);
 }
 // [END dialogflow_v2_generated_Conversations_CreateConversation_sync]

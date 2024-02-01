@@ -36,31 +36,19 @@ use Google\Rpc\Status;
  * created. If an ImportEntities operation is cancelled, it is possible
  * that a subset of the data has already been imported to Cloud Datastore.
  *
- * @param string $projectId Project ID against which to make the request.
- * @param string $inputUrl  The full resource URL of the external storage location.
- *                          Currently, only Google Cloud Storage is supported. So input_url should be
- *                          of the form:
- *                          `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where
- *                          `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is
- *                          an optional Cloud Storage namespace path (this is not a Cloud Datastore
- *                          namespace), and `OVERALL_EXPORT_METADATA_FILE` is the metadata file written
- *                          by the ExportEntities operation. For more information about Cloud Storage
- *                          namespace paths, see
- *                          [Object name
- *                          considerations](https://cloud.google.com/storage/docs/naming#object-considerations).
- *
- *                          For more information, see
- *                          [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url].
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function import_entities_sample(string $projectId, string $inputUrl): void
+function import_entities_sample(): void
 {
     // Create a client.
     $datastoreAdminClient = new DatastoreAdminClient();
 
     // Prepare the request message.
-    $request = (new ImportEntitiesRequest())
-        ->setProjectId($projectId)
-        ->setInputUrl($inputUrl);
+    $request = new ImportEntitiesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -78,22 +66,5 @@ function import_entities_sample(string $projectId, string $inputUrl): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $projectId = '[PROJECT_ID]';
-    $inputUrl = '[INPUT_URL]';
-
-    import_entities_sample($projectId, $inputUrl);
 }
 // [END datastore_v1_generated_DatastoreAdmin_ImportEntities_sync]

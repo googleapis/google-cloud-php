@@ -31,11 +31,13 @@ use Google\Rpc\Status;
 /**
  * Deletes the specified ServiceAttachment in the given scope
  *
- * @param string $project           Project ID for this request.
- * @param string $region            Name of the region of this request.
- * @param string $serviceAttachment Name of the ServiceAttachment resource to delete.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_sample(string $project, string $region, string $serviceAttachment): void
+function delete_sample(): void
 {
     // Create a client.
     $serviceAttachmentsClient = new ServiceAttachmentsClient();
@@ -43,7 +45,7 @@ function delete_sample(string $project, string $region, string $serviceAttachmen
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $serviceAttachmentsClient->delete($project, $region, $serviceAttachment);
+        $response = $serviceAttachmentsClient->delete();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -56,23 +58,5 @@ function delete_sample(string $project, string $region, string $serviceAttachmen
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-    $serviceAttachment = '[SERVICE_ATTACHMENT]';
-
-    delete_sample($project, $region, $serviceAttachment);
 }
 // [END compute_v1_generated_ServiceAttachments_Delete_sync]

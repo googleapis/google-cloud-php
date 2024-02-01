@@ -72,9 +72,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  * ```
  * $firewallPoliciesClient = new FirewallPoliciesClient();
  * try {
- *     $firewallPolicy = 'firewall_policy';
- *     $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
- *     $operationResponse = $firewallPoliciesClient->addAssociation($firewallPolicy, $firewallPolicyAssociationResource);
+ *     $operationResponse = $firewallPoliciesClient->addAssociation();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -84,7 +82,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $firewallPoliciesClient->addAssociation($firewallPolicy, $firewallPolicyAssociationResource);
+ *     $operationResponse = $firewallPoliciesClient->addAssociation();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'addAssociation');
@@ -281,9 +279,7 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $firewallPolicy = 'firewall_policy';
-     *     $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
-     *     $operationResponse = $firewallPoliciesClient->addAssociation($firewallPolicy, $firewallPolicyAssociationResource);
+     *     $operationResponse = $firewallPoliciesClient->addAssociation();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -293,7 +289,7 @@ class FirewallPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->addAssociation($firewallPolicy, $firewallPolicyAssociationResource);
+     *     $operationResponse = $firewallPoliciesClient->addAssociation();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'addAssociation');
@@ -312,11 +308,13 @@ class FirewallPoliciesGapicClient
      * }
      * ```
      *
-     * @param string                    $firewallPolicy                    Name of the firewall policy to update.
-     * @param FirewallPolicyAssociation $firewallPolicyAssociationResource The body resource for this request
-     * @param array                     $optionalArgs                      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $firewallPolicy
+     *           Name of the firewall policy to update.
+     *     @type FirewallPolicyAssociation $firewallPolicyAssociationResource
+     *           The body resource for this request
      *     @type bool $replaceExistingAssociation
      *           Indicates whether or not to replace it if an association of the attachment already exists. This is false by default, in which case an error will be returned if an association already exists.
      *     @type string $requestId
@@ -331,13 +329,19 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addAssociation($firewallPolicy, $firewallPolicyAssociationResource, array $optionalArgs = [])
+    public function addAssociation(array $optionalArgs = [])
     {
         $request = new AddAssociationFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setFirewallPolicy($firewallPolicy);
-        $request->setFirewallPolicyAssociationResource($firewallPolicyAssociationResource);
-        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        if (isset($optionalArgs['firewallPolicy'])) {
+            $request->setFirewallPolicy($optionalArgs['firewallPolicy']);
+            $requestParamHeaders['firewall_policy'] = $optionalArgs['firewallPolicy'];
+        }
+
+        if (isset($optionalArgs['firewallPolicyAssociationResource'])) {
+            $request->setFirewallPolicyAssociationResource($optionalArgs['firewallPolicyAssociationResource']);
+        }
+
         if (isset($optionalArgs['replaceExistingAssociation'])) {
             $request->setReplaceExistingAssociation($optionalArgs['replaceExistingAssociation']);
         }
@@ -358,9 +362,7 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $firewallPolicy = 'firewall_policy';
-     *     $firewallPolicyRuleResource = new FirewallPolicyRule();
-     *     $operationResponse = $firewallPoliciesClient->addRule($firewallPolicy, $firewallPolicyRuleResource);
+     *     $operationResponse = $firewallPoliciesClient->addRule();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -370,7 +372,7 @@ class FirewallPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->addRule($firewallPolicy, $firewallPolicyRuleResource);
+     *     $operationResponse = $firewallPoliciesClient->addRule();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'addRule');
@@ -389,11 +391,13 @@ class FirewallPoliciesGapicClient
      * }
      * ```
      *
-     * @param string             $firewallPolicy             Name of the firewall policy to update.
-     * @param FirewallPolicyRule $firewallPolicyRuleResource The body resource for this request
-     * @param array              $optionalArgs               {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $firewallPolicy
+     *           Name of the firewall policy to update.
+     *     @type FirewallPolicyRule $firewallPolicyRuleResource
+     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -406,13 +410,19 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addRule($firewallPolicy, $firewallPolicyRuleResource, array $optionalArgs = [])
+    public function addRule(array $optionalArgs = [])
     {
         $request = new AddRuleFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setFirewallPolicy($firewallPolicy);
-        $request->setFirewallPolicyRuleResource($firewallPolicyRuleResource);
-        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        if (isset($optionalArgs['firewallPolicy'])) {
+            $request->setFirewallPolicy($optionalArgs['firewallPolicy']);
+            $requestParamHeaders['firewall_policy'] = $optionalArgs['firewallPolicy'];
+        }
+
+        if (isset($optionalArgs['firewallPolicyRuleResource'])) {
+            $request->setFirewallPolicyRuleResource($optionalArgs['firewallPolicyRuleResource']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -429,8 +439,7 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $firewallPolicy = 'firewall_policy';
-     *     $operationResponse = $firewallPoliciesClient->cloneRules($firewallPolicy);
+     *     $operationResponse = $firewallPoliciesClient->cloneRules();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -440,7 +449,7 @@ class FirewallPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->cloneRules($firewallPolicy);
+     *     $operationResponse = $firewallPoliciesClient->cloneRules();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'cloneRules');
@@ -459,10 +468,11 @@ class FirewallPoliciesGapicClient
      * }
      * ```
      *
-     * @param string $firewallPolicy Name of the firewall policy to update.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $firewallPolicy
+     *           Name of the firewall policy to update.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type string $sourceFirewallPolicy
@@ -477,12 +487,15 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cloneRules($firewallPolicy, array $optionalArgs = [])
+    public function cloneRules(array $optionalArgs = [])
     {
         $request = new CloneRulesFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setFirewallPolicy($firewallPolicy);
-        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        if (isset($optionalArgs['firewallPolicy'])) {
+            $request->setFirewallPolicy($optionalArgs['firewallPolicy']);
+            $requestParamHeaders['firewall_policy'] = $optionalArgs['firewallPolicy'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -503,8 +516,7 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $firewallPolicy = 'firewall_policy';
-     *     $operationResponse = $firewallPoliciesClient->delete($firewallPolicy);
+     *     $operationResponse = $firewallPoliciesClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -514,7 +526,7 @@ class FirewallPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->delete($firewallPolicy);
+     *     $operationResponse = $firewallPoliciesClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'delete');
@@ -533,10 +545,11 @@ class FirewallPoliciesGapicClient
      * }
      * ```
      *
-     * @param string $firewallPolicy Name of the firewall policy to delete.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $firewallPolicy
+     *           Name of the firewall policy to delete.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -549,12 +562,15 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($firewallPolicy, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setFirewallPolicy($firewallPolicy);
-        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        if (isset($optionalArgs['firewallPolicy'])) {
+            $request->setFirewallPolicy($optionalArgs['firewallPolicy']);
+            $requestParamHeaders['firewall_policy'] = $optionalArgs['firewallPolicy'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -571,17 +587,17 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $firewallPolicy = 'firewall_policy';
-     *     $response = $firewallPoliciesClient->get($firewallPolicy);
+     *     $response = $firewallPoliciesClient->get();
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
      * ```
      *
-     * @param string $firewallPolicy Name of the firewall policy to get.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $firewallPolicy
+     *           Name of the firewall policy to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -592,12 +608,15 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($firewallPolicy, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setFirewallPolicy($firewallPolicy);
-        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        if (isset($optionalArgs['firewallPolicy'])) {
+            $request->setFirewallPolicy($optionalArgs['firewallPolicy']);
+            $requestParamHeaders['firewall_policy'] = $optionalArgs['firewallPolicy'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', FirewallPolicy::class, $optionalArgs, $request)->wait();
@@ -610,17 +629,17 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $firewallPolicy = 'firewall_policy';
-     *     $response = $firewallPoliciesClient->getAssociation($firewallPolicy);
+     *     $response = $firewallPoliciesClient->getAssociation();
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
      * ```
      *
-     * @param string $firewallPolicy Name of the firewall policy to which the queried rule belongs.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $firewallPolicy
+     *           Name of the firewall policy to which the queried rule belongs.
      *     @type string $name
      *           The name of the association to get from the firewall policy.
      *     @type RetrySettings|array $retrySettings
@@ -633,12 +652,15 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAssociation($firewallPolicy, array $optionalArgs = [])
+    public function getAssociation(array $optionalArgs = [])
     {
         $request = new GetAssociationFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setFirewallPolicy($firewallPolicy);
-        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        if (isset($optionalArgs['firewallPolicy'])) {
+            $request->setFirewallPolicy($optionalArgs['firewallPolicy']);
+            $requestParamHeaders['firewall_policy'] = $optionalArgs['firewallPolicy'];
+        }
+
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
         }
@@ -655,19 +677,19 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $firewallPoliciesClient->getIamPolicy($resource);
+     *     $response = $firewallPoliciesClient->getIamPolicy();
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
      * ```
      *
-     * @param string $resource     Name or id of the resource for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type int $optionsRequestedPolicyVersion
      *           Requested IAM Policy version.
+     *     @type string $resource
+     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -678,14 +700,17 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['optionsRequestedPolicyVersion'])) {
             $request->setOptionsRequestedPolicyVersion($optionalArgs['optionsRequestedPolicyVersion']);
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -700,17 +725,17 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $firewallPolicy = 'firewall_policy';
-     *     $response = $firewallPoliciesClient->getRule($firewallPolicy);
+     *     $response = $firewallPoliciesClient->getRule();
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
      * ```
      *
-     * @param string $firewallPolicy Name of the firewall policy to which the queried rule belongs.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $firewallPolicy
+     *           Name of the firewall policy to which the queried rule belongs.
      *     @type int $priority
      *           The priority of the rule to get from the firewall policy.
      *     @type RetrySettings|array $retrySettings
@@ -723,12 +748,15 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRule($firewallPolicy, array $optionalArgs = [])
+    public function getRule(array $optionalArgs = [])
     {
         $request = new GetRuleFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setFirewallPolicy($firewallPolicy);
-        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        if (isset($optionalArgs['firewallPolicy'])) {
+            $request->setFirewallPolicy($optionalArgs['firewallPolicy']);
+            $requestParamHeaders['firewall_policy'] = $optionalArgs['firewallPolicy'];
+        }
+
         if (isset($optionalArgs['priority'])) {
             $request->setPriority($optionalArgs['priority']);
         }
@@ -745,9 +773,7 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $firewallPolicyResource = new FirewallPolicy();
-     *     $parentId = 'parent_id';
-     *     $operationResponse = $firewallPoliciesClient->insert($firewallPolicyResource, $parentId);
+     *     $operationResponse = $firewallPoliciesClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -757,7 +783,7 @@ class FirewallPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->insert($firewallPolicyResource, $parentId);
+     *     $operationResponse = $firewallPoliciesClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'insert');
@@ -776,11 +802,13 @@ class FirewallPoliciesGapicClient
      * }
      * ```
      *
-     * @param FirewallPolicy $firewallPolicyResource The body resource for this request
-     * @param string         $parentId               Parent ID for this request. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
-     * @param array          $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FirewallPolicy $firewallPolicyResource
+     *           The body resource for this request
+     *     @type string $parentId
+     *           Parent ID for this request. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -793,11 +821,17 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($firewallPolicyResource, $parentId, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertFirewallPolicyRequest();
-        $request->setFirewallPolicyResource($firewallPolicyResource);
-        $request->setParentId($parentId);
+        if (isset($optionalArgs['firewallPolicyResource'])) {
+            $request->setFirewallPolicyResource($optionalArgs['firewallPolicyResource']);
+        }
+
+        if (isset($optionalArgs['parentId'])) {
+            $request->setParentId($optionalArgs['parentId']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -933,9 +967,7 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $firewallPolicy = 'firewall_policy';
-     *     $parentId = 'parent_id';
-     *     $operationResponse = $firewallPoliciesClient->move($firewallPolicy, $parentId);
+     *     $operationResponse = $firewallPoliciesClient->move();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -945,7 +977,7 @@ class FirewallPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->move($firewallPolicy, $parentId);
+     *     $operationResponse = $firewallPoliciesClient->move();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'move');
@@ -964,11 +996,13 @@ class FirewallPoliciesGapicClient
      * }
      * ```
      *
-     * @param string $firewallPolicy Name of the firewall policy to update.
-     * @param string $parentId       The new parent of the firewall policy. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $firewallPolicy
+     *           Name of the firewall policy to update.
+     *     @type string $parentId
+     *           The new parent of the firewall policy. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -981,13 +1015,19 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function move($firewallPolicy, $parentId, array $optionalArgs = [])
+    public function move(array $optionalArgs = [])
     {
         $request = new MoveFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setFirewallPolicy($firewallPolicy);
-        $request->setParentId($parentId);
-        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        if (isset($optionalArgs['firewallPolicy'])) {
+            $request->setFirewallPolicy($optionalArgs['firewallPolicy']);
+            $requestParamHeaders['firewall_policy'] = $optionalArgs['firewallPolicy'];
+        }
+
+        if (isset($optionalArgs['parentId'])) {
+            $request->setParentId($optionalArgs['parentId']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1004,9 +1044,7 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $firewallPolicy = 'firewall_policy';
-     *     $firewallPolicyResource = new FirewallPolicy();
-     *     $operationResponse = $firewallPoliciesClient->patch($firewallPolicy, $firewallPolicyResource);
+     *     $operationResponse = $firewallPoliciesClient->patch();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1016,7 +1054,7 @@ class FirewallPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->patch($firewallPolicy, $firewallPolicyResource);
+     *     $operationResponse = $firewallPoliciesClient->patch();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'patch');
@@ -1035,11 +1073,13 @@ class FirewallPoliciesGapicClient
      * }
      * ```
      *
-     * @param string         $firewallPolicy         Name of the firewall policy to update.
-     * @param FirewallPolicy $firewallPolicyResource The body resource for this request
-     * @param array          $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $firewallPolicy
+     *           Name of the firewall policy to update.
+     *     @type FirewallPolicy $firewallPolicyResource
+     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -1052,13 +1092,19 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch($firewallPolicy, $firewallPolicyResource, array $optionalArgs = [])
+    public function patch(array $optionalArgs = [])
     {
         $request = new PatchFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setFirewallPolicy($firewallPolicy);
-        $request->setFirewallPolicyResource($firewallPolicyResource);
-        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        if (isset($optionalArgs['firewallPolicy'])) {
+            $request->setFirewallPolicy($optionalArgs['firewallPolicy']);
+            $requestParamHeaders['firewall_policy'] = $optionalArgs['firewallPolicy'];
+        }
+
+        if (isset($optionalArgs['firewallPolicyResource'])) {
+            $request->setFirewallPolicyResource($optionalArgs['firewallPolicyResource']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1075,9 +1121,7 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $firewallPolicy = 'firewall_policy';
-     *     $firewallPolicyRuleResource = new FirewallPolicyRule();
-     *     $operationResponse = $firewallPoliciesClient->patchRule($firewallPolicy, $firewallPolicyRuleResource);
+     *     $operationResponse = $firewallPoliciesClient->patchRule();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1087,7 +1131,7 @@ class FirewallPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->patchRule($firewallPolicy, $firewallPolicyRuleResource);
+     *     $operationResponse = $firewallPoliciesClient->patchRule();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'patchRule');
@@ -1106,11 +1150,13 @@ class FirewallPoliciesGapicClient
      * }
      * ```
      *
-     * @param string             $firewallPolicy             Name of the firewall policy to update.
-     * @param FirewallPolicyRule $firewallPolicyRuleResource The body resource for this request
-     * @param array              $optionalArgs               {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $firewallPolicy
+     *           Name of the firewall policy to update.
+     *     @type FirewallPolicyRule $firewallPolicyRuleResource
+     *           The body resource for this request
      *     @type int $priority
      *           The priority of the rule to patch.
      *     @type string $requestId
@@ -1125,13 +1171,19 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patchRule($firewallPolicy, $firewallPolicyRuleResource, array $optionalArgs = [])
+    public function patchRule(array $optionalArgs = [])
     {
         $request = new PatchRuleFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setFirewallPolicy($firewallPolicy);
-        $request->setFirewallPolicyRuleResource($firewallPolicyRuleResource);
-        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        if (isset($optionalArgs['firewallPolicy'])) {
+            $request->setFirewallPolicy($optionalArgs['firewallPolicy']);
+            $requestParamHeaders['firewall_policy'] = $optionalArgs['firewallPolicy'];
+        }
+
+        if (isset($optionalArgs['firewallPolicyRuleResource'])) {
+            $request->setFirewallPolicyRuleResource($optionalArgs['firewallPolicyRuleResource']);
+        }
+
         if (isset($optionalArgs['priority'])) {
             $request->setPriority($optionalArgs['priority']);
         }
@@ -1152,8 +1204,7 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $firewallPolicy = 'firewall_policy';
-     *     $operationResponse = $firewallPoliciesClient->removeAssociation($firewallPolicy);
+     *     $operationResponse = $firewallPoliciesClient->removeAssociation();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1163,7 +1214,7 @@ class FirewallPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->removeAssociation($firewallPolicy);
+     *     $operationResponse = $firewallPoliciesClient->removeAssociation();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'removeAssociation');
@@ -1182,10 +1233,11 @@ class FirewallPoliciesGapicClient
      * }
      * ```
      *
-     * @param string $firewallPolicy Name of the firewall policy to update.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $firewallPolicy
+     *           Name of the firewall policy to update.
      *     @type string $name
      *           Name for the attachment that will be removed.
      *     @type string $requestId
@@ -1200,12 +1252,15 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function removeAssociation($firewallPolicy, array $optionalArgs = [])
+    public function removeAssociation(array $optionalArgs = [])
     {
         $request = new RemoveAssociationFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setFirewallPolicy($firewallPolicy);
-        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        if (isset($optionalArgs['firewallPolicy'])) {
+            $request->setFirewallPolicy($optionalArgs['firewallPolicy']);
+            $requestParamHeaders['firewall_policy'] = $optionalArgs['firewallPolicy'];
+        }
+
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
         }
@@ -1226,8 +1281,7 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $firewallPolicy = 'firewall_policy';
-     *     $operationResponse = $firewallPoliciesClient->removeRule($firewallPolicy);
+     *     $operationResponse = $firewallPoliciesClient->removeRule();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1237,7 +1291,7 @@ class FirewallPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->removeRule($firewallPolicy);
+     *     $operationResponse = $firewallPoliciesClient->removeRule();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'removeRule');
@@ -1256,10 +1310,11 @@ class FirewallPoliciesGapicClient
      * }
      * ```
      *
-     * @param string $firewallPolicy Name of the firewall policy to update.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $firewallPolicy
+     *           Name of the firewall policy to update.
      *     @type int $priority
      *           The priority of the rule to remove from the firewall policy.
      *     @type string $requestId
@@ -1274,12 +1329,15 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function removeRule($firewallPolicy, array $optionalArgs = [])
+    public function removeRule(array $optionalArgs = [])
     {
         $request = new RemoveRuleFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setFirewallPolicy($firewallPolicy);
-        $requestParamHeaders['firewall_policy'] = $firewallPolicy;
+        if (isset($optionalArgs['firewallPolicy'])) {
+            $request->setFirewallPolicy($optionalArgs['firewallPolicy']);
+            $requestParamHeaders['firewall_policy'] = $optionalArgs['firewallPolicy'];
+        }
+
         if (isset($optionalArgs['priority'])) {
             $request->setPriority($optionalArgs['priority']);
         }
@@ -1300,19 +1358,19 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $globalOrganizationSetPolicyRequestResource = new GlobalOrganizationSetPolicyRequest();
-     *     $resource = 'resource';
-     *     $response = $firewallPoliciesClient->setIamPolicy($globalOrganizationSetPolicyRequestResource, $resource);
+     *     $response = $firewallPoliciesClient->setIamPolicy();
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
      * ```
      *
-     * @param GlobalOrganizationSetPolicyRequest $globalOrganizationSetPolicyRequestResource The body resource for this request
-     * @param string                             $resource                                   Name or id of the resource for this request.
-     * @param array                              $optionalArgs                               {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type GlobalOrganizationSetPolicyRequest $globalOrganizationSetPolicyRequestResource
+     *           The body resource for this request
+     *     @type string $resource
+     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1323,13 +1381,19 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($globalOrganizationSetPolicyRequestResource, $resource, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setGlobalOrganizationSetPolicyRequestResource($globalOrganizationSetPolicyRequestResource);
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['globalOrganizationSetPolicyRequestResource'])) {
+            $request->setGlobalOrganizationSetPolicyRequestResource($optionalArgs['globalOrganizationSetPolicyRequestResource']);
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
@@ -1342,19 +1406,19 @@ class FirewallPoliciesGapicClient
      * ```
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
-     *     $resource = 'resource';
-     *     $testPermissionsRequestResource = new TestPermissionsRequest();
-     *     $response = $firewallPoliciesClient->testIamPermissions($resource, $testPermissionsRequestResource);
+     *     $response = $firewallPoliciesClient->testIamPermissions();
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
      * ```
      *
-     * @param string                 $resource                       Name or id of the resource for this request.
-     * @param TestPermissionsRequest $testPermissionsRequestResource The body resource for this request
-     * @param array                  $optionalArgs                   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           Name or id of the resource for this request.
+     *     @type TestPermissionsRequest $testPermissionsRequestResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1365,13 +1429,19 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($resource, $testPermissionsRequestResource, array $optionalArgs = [])
+    public function testIamPermissions(array $optionalArgs = [])
     {
         $request = new TestIamPermissionsFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setTestPermissionsRequestResource($testPermissionsRequestResource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['testPermissionsRequestResource'])) {
+            $request->setTestPermissionsRequestResource($optionalArgs['testPermissionsRequestResource']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestPermissionsResponse::class, $optionalArgs, $request)->wait();

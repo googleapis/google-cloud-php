@@ -30,11 +30,13 @@ use Google\Cloud\Compute\V1\UrlMap;
 /**
  * Returns the specified UrlMap resource.
  *
- * @param string $project Project ID for this request.
- * @param string $region  Name of the region scoping this request.
- * @param string $urlMap  Name of the UrlMap resource to return.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_sample(string $project, string $region, string $urlMap): void
+function get_sample(): void
 {
     // Create a client.
     $regionUrlMapsClient = new RegionUrlMapsClient();
@@ -42,28 +44,10 @@ function get_sample(string $project, string $region, string $urlMap): void
     // Call the API and handle any network failures.
     try {
         /** @var UrlMap $response */
-        $response = $regionUrlMapsClient->get($project, $region, $urlMap);
+        $response = $regionUrlMapsClient->get();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-    $urlMap = '[URL_MAP]';
-
-    get_sample($project, $region, $urlMap);
 }
 // [END compute_v1_generated_RegionUrlMaps_Get_sync]

@@ -25,28 +25,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START container_v1_generated_ClusterManager_SetMasterAuth_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Container\V1\Client\ClusterManagerClient;
-use Google\Cloud\Container\V1\MasterAuth;
 use Google\Cloud\Container\V1\Operation;
 use Google\Cloud\Container\V1\SetMasterAuthRequest;
-use Google\Cloud\Container\V1\SetMasterAuthRequest\Action;
 
 /**
  * Sets master auth materials. Currently supports changing the admin password
  * or a specific cluster, either via password generation or explicitly setting
  * the password.
  *
- * @param int $action The exact form of action to be taken on the master auth.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function set_master_auth_sample(int $action): void
+function set_master_auth_sample(): void
 {
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
     // Prepare the request message.
-    $update = new MasterAuth();
-    $request = (new SetMasterAuthRequest())
-        ->setAction($action)
-        ->setUpdate($update);
+    $request = new SetMasterAuthRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +55,5 @@ function set_master_auth_sample(int $action): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $action = Action::UNKNOWN;
-
-    set_master_auth_sample($action);
 }
 // [END container_v1_generated_ClusterManager_SetMasterAuth_sync]

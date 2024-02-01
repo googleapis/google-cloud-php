@@ -25,28 +25,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Images_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\Image;
 use Google\Cloud\Compute\V1\ImagesClient;
 use Google\Rpc\Status;
 
 /**
  * Patches the specified image with the data included in the request. Only the following fields can be modified: family, description, deprecation status.
  *
- * @param string $image   Name of the image resource to patch.
- * @param string $project Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function patch_sample(string $image, string $project): void
+function patch_sample(): void
 {
     // Create a client.
     $imagesClient = new ImagesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $imageResource = new Image();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $imagesClient->patch($image, $imageResource, $project);
+        $response = $imagesClient->patch();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -59,22 +58,5 @@ function patch_sample(string $image, string $project): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $image = '[IMAGE]';
-    $project = '[PROJECT]';
-
-    patch_sample($image, $project);
 }
 // [END compute_v1_generated_Images_Patch_sync]

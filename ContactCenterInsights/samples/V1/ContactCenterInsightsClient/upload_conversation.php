@@ -35,19 +35,19 @@ use Google\Rpc\Status;
  * from CreateConversation by allowing audio transcription and optional DLP
  * redaction.
  *
- * @param string $formattedParent The parent resource of the conversation. Please see
- *                                {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function upload_conversation_sample(string $formattedParent): void
+function upload_conversation_sample(): void
 {
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $conversation = new Conversation();
-    $request = (new UploadConversationRequest())
-        ->setParent($formattedParent)
-        ->setConversation($conversation);
+    $request = new UploadConversationRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -67,21 +67,5 @@ function upload_conversation_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ContactCenterInsightsClient::locationName('[PROJECT]', '[LOCATION]');
-
-    upload_conversation_sample($formattedParent);
 }
 // [END contactcenterinsights_v1_generated_ContactCenterInsights_UploadConversation_sync]

@@ -21,10 +21,10 @@ class Changelog
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-þ
--google/cloud/dialogflow/cx/v3/changelog.protogoogle.cloud.dialogflow.cx.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"‹
-ListChangelogsRequest;
-parent (	B+àAúA%#dialogflow.googleapis.com/Changelog
+€
+-google/cloud/dialogflow/cx/v3/changelog.protogoogle.cloud.dialogflow.cx.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"Œ
+ListChangelogsRequest<
+parent (	B,âAúA%#dialogflow.googleapis.com/Changelog
 filter (	
 	page_size (
 
@@ -32,9 +32,9 @@ page_token (	"o
 ListChangelogsResponse<
 
 changelogs (2(.google.cloud.dialogflow.cx.v3.Changelog
-next_page_token (	"P
-GetChangelogRequest9
-name (	B+àAúA%
+next_page_token (	"Q
+GetChangelogRequest:
+name (	B,âAúA%
 #dialogflow.googleapis.com/Changelog"
 	Changelog
 name (	
@@ -48,8 +48,8 @@ user_email (	
 #dialogflow.googleapis.com/ChangelogMprojects/{project}/locations/{location}/agents/{agent}/changelogs/{changelog}2‡
 
 ChangelogsÇ
-ListChangelogs4.google.cloud.dialogflow.cx.v3.ListChangelogsRequest5.google.cloud.dialogflow.cx.v3.ListChangelogsResponse"H‚Óä“97/v3/{parent=projects/*/locations/*/agents/*}/changelogsÚAparent´
-GetChangelog2.google.cloud.dialogflow.cx.v3.GetChangelogRequest(.google.cloud.dialogflow.cx.v3.Changelog"F‚Óä“97/v3/{name=projects/*/locations/*/agents/*/changelogs/*}ÚAnamexÊAdialogflow.googleapis.comÒAYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB´
+ListChangelogs4.google.cloud.dialogflow.cx.v3.ListChangelogsRequest5.google.cloud.dialogflow.cx.v3.ListChangelogsResponse"HÚAparent‚Óä“97/v3/{parent=projects/*/locations/*/agents/*}/changelogs´
+GetChangelog2.google.cloud.dialogflow.cx.v3.GetChangelogRequest(.google.cloud.dialogflow.cx.v3.Changelog"FÚAname‚Óä“97/v3/{name=projects/*/locations/*/agents/*/changelogs/*}xÊAdialogflow.googleapis.comÒAYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB´
 !com.google.cloud.dialogflow.cx.v3BChangelogProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpbø¢DFªGoogle.Cloud.Dialogflow.Cx.V3ê!Google::Cloud::Dialogflow::CX::V3bproto3'
         , true);
 

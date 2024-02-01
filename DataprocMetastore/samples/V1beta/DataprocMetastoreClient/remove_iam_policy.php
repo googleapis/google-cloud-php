@@ -30,14 +30,13 @@ use Google\Cloud\Metastore\V1beta\RemoveIamPolicyResponse;
 /**
  * Removes the attached IAM policies for a resource
  *
- * @param string $resource The relative resource name of the dataplane resource to remove
- *                         IAM policy, in the following form:
- *
- *                         `projects/{project_id}/locations/{location_id}/services/{service_id}/databases/{database_id}`
- *                         or
- *                         `projects/{project_id}/locations/{location_id}/services/{service_id}/databases/{database_id}/tables/{table_id}`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function remove_iam_policy_sample(string $resource): void
+function remove_iam_policy_sample(): void
 {
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
@@ -45,26 +44,10 @@ function remove_iam_policy_sample(string $resource): void
     // Call the API and handle any network failures.
     try {
         /** @var RemoveIamPolicyResponse $response */
-        $response = $dataprocMetastoreClient->removeIamPolicy($resource);
+        $response = $dataprocMetastoreClient->removeIamPolicy();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $resource = '[RESOURCE]';
-
-    remove_iam_policy_sample($resource);
 }
 // [END metastore_v1beta_generated_DataprocMetastore_RemoveIamPolicy_sync]

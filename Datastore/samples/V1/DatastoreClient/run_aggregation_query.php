@@ -31,16 +31,19 @@ use Google\Cloud\Datastore\V1\RunAggregationQueryResponse;
 /**
  * Runs an aggregation query.
  *
- * @param string $projectId The ID of the project against which to make the request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function run_aggregation_query_sample(string $projectId): void
+function run_aggregation_query_sample(): void
 {
     // Create a client.
     $datastoreClient = new DatastoreClient();
 
     // Prepare the request message.
-    $request = (new RunAggregationQueryRequest())
-        ->setProjectId($projectId);
+    $request = new RunAggregationQueryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -50,21 +53,5 @@ function run_aggregation_query_sample(string $projectId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $projectId = '[PROJECT_ID]';
-
-    run_aggregation_query_sample($projectId);
 }
 // [END datastore_v1_generated_Datastore_RunAggregationQuery_sync]

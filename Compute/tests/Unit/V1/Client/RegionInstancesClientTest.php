@@ -26,7 +26,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Compute\V1\BulkInsertInstanceResource;
 use Google\Cloud\Compute\V1\BulkInsertRegionInstanceRequest;
 use Google\Cloud\Compute\V1\Client\RegionInstancesClient;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
@@ -89,14 +88,7 @@ class RegionInstancesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/bulkInsertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $bulkInsertInstanceResourceResource = new BulkInsertInstanceResource();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new BulkInsertRegionInstanceRequest())
-            ->setBulkInsertInstanceResourceResource($bulkInsertInstanceResourceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new BulkInsertRegionInstanceRequest();
         $response = $gapicClient->bulkInsert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -106,16 +98,8 @@ class RegionInstancesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstances/BulkInsert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBulkInsertInstanceResourceResource();
-        $this->assertProtobufEquals($bulkInsertInstanceResourceResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -163,14 +147,7 @@ class RegionInstancesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $bulkInsertInstanceResourceResource = new BulkInsertInstanceResource();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new BulkInsertRegionInstanceRequest())
-            ->setBulkInsertInstanceResourceResource($bulkInsertInstanceResourceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new BulkInsertRegionInstanceRequest();
         $response = $gapicClient->bulkInsert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -216,14 +193,7 @@ class RegionInstancesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/bulkInsertAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $bulkInsertInstanceResourceResource = new BulkInsertInstanceResource();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new BulkInsertRegionInstanceRequest())
-            ->setBulkInsertInstanceResourceResource($bulkInsertInstanceResourceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new BulkInsertRegionInstanceRequest();
         $response = $gapicClient->bulkInsert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -233,16 +203,8 @@ class RegionInstancesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstances/BulkInsert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBulkInsertInstanceResourceResource();
-        $this->assertProtobufEquals($bulkInsertInstanceResourceResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

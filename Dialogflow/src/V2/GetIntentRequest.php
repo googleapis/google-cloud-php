@@ -42,8 +42,7 @@ class GetIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the intent.
-     *                     Format: `projects/<Project ID>/agent/intents/<Intent ID>`. Please see
-     *                     {@see IntentsClient::intentName()} for help formatting this field.
+     *                     Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
      * @return \Google\Cloud\Dialogflow\V2\GetIntentRequest
      *
@@ -57,8 +56,7 @@ class GetIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name         Required. The name of the intent.
-     *                             Format: `projects/<Project ID>/agent/intents/<Intent ID>`. Please see
-     *                             {@see IntentsClient::intentName()} for help formatting this field.
+     *                             Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      * @param string $languageCode Optional. The language used to access language-specific data.
      *                             If not specified, the agent's default language is used.
      *                             For more information, see

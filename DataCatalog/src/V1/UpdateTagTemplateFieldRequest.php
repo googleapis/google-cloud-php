@@ -48,8 +48,7 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
-     * @param string                                        $name             Required. The name of the tag template field. Please see
-     *                                                                        {@see DataCatalogClient::tagTemplateFieldName()} for help formatting this field.
+     * @param string                                        $name             Required. The name of the tag template field.
      * @param \Google\Cloud\DataCatalog\V1\TagTemplateField $tagTemplateField Required. The template to update.
      *
      * @return \Google\Cloud\DataCatalog\V1\UpdateTagTemplateFieldRequest
@@ -64,8 +63,7 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * @param string                                        $name             Required. The name of the tag template field. Please see
-     *                                                                        {@see DataCatalogClient::tagTemplateFieldName()} for help formatting this field.
+     * @param string                                        $name             Required. The name of the tag template field.
      * @param \Google\Cloud\DataCatalog\V1\TagTemplateField $tagTemplateField Required. The template to update.
      * @param \Google\Protobuf\FieldMask                    $updateMask       Optional. Names of fields whose values to overwrite on an individual field
      *                                                                        of a tag template. The following fields are modifiable:

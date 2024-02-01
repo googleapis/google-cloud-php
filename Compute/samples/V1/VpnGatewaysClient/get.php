@@ -30,11 +30,13 @@ use Google\Cloud\Compute\V1\VpnGatewaysClient;
 /**
  * Returns the specified VPN gateway.
  *
- * @param string $project    Project ID for this request.
- * @param string $region     Name of the region for this request.
- * @param string $vpnGateway Name of the VPN gateway to return.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_sample(string $project, string $region, string $vpnGateway): void
+function get_sample(): void
 {
     // Create a client.
     $vpnGatewaysClient = new VpnGatewaysClient();
@@ -42,28 +44,10 @@ function get_sample(string $project, string $region, string $vpnGateway): void
     // Call the API and handle any network failures.
     try {
         /** @var VpnGateway $response */
-        $response = $vpnGatewaysClient->get($project, $region, $vpnGateway);
+        $response = $vpnGatewaysClient->get();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-    $vpnGateway = '[VPN_GATEWAY]';
-
-    get_sample($project, $region, $vpnGateway);
 }
 // [END compute_v1_generated_VpnGateways_Get_sync]

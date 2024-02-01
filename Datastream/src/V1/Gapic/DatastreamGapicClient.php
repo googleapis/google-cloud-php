@@ -95,10 +95,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $datastreamClient = new DatastreamClient();
  * try {
- *     $formattedParent = $datastreamClient->locationName('[PROJECT]', '[LOCATION]');
- *     $connectionProfileId = 'connection_profile_id';
- *     $connectionProfile = new ConnectionProfile();
- *     $operationResponse = $datastreamClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
+ *     $operationResponse = $datastreamClient->createConnectionProfile();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -109,7 +106,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $datastreamClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
+ *     $operationResponse = $datastreamClient->createConnectionProfile();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $datastreamClient->resumeOperation($operationName, 'createConnectionProfile');
@@ -602,10 +599,7 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedParent = $datastreamClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $connectionProfileId = 'connection_profile_id';
-     *     $connectionProfile = new ConnectionProfile();
-     *     $operationResponse = $datastreamClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
+     *     $operationResponse = $datastreamClient->createConnectionProfile();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -616,7 +610,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datastreamClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
+     *     $operationResponse = $datastreamClient->createConnectionProfile();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datastreamClient->resumeOperation($operationName, 'createConnectionProfile');
@@ -636,12 +630,15 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string            $parent              Required. The parent that owns the collection of ConnectionProfiles.
-     * @param string            $connectionProfileId Required. The connection profile identifier.
-     * @param ConnectionProfile $connectionProfile   Required. The connection profile resource to create.
-     * @param array             $optionalArgs        {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent that owns the collection of ConnectionProfiles.
+     *     @type string $connectionProfileId
+     *           Required. The connection profile identifier.
+     *     @type ConnectionProfile $connectionProfile
+     *           Required. The connection profile resource to create.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -671,18 +668,25 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createConnectionProfile(
-        $parent,
-        $connectionProfileId,
-        $connectionProfile,
-        array $optionalArgs = []
-    ) {
+    public function createConnectionProfile(array $optionalArgs = [])
+    {
         $request = new CreateConnectionProfileRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setConnectionProfileId($connectionProfileId);
-        $request->setConnectionProfile($connectionProfile);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['connectionProfileId'])) {
+            $request->setConnectionProfileId(
+                $optionalArgs['connectionProfileId']
+            );
+        }
+
+        if (isset($optionalArgs['connectionProfile'])) {
+            $request->setConnectionProfile($optionalArgs['connectionProfile']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -716,10 +720,7 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedParent = $datastreamClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $privateConnectionId = 'private_connection_id';
-     *     $privateConnection = new PrivateConnection();
-     *     $operationResponse = $datastreamClient->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
+     *     $operationResponse = $datastreamClient->createPrivateConnection();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -730,7 +731,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datastreamClient->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
+     *     $operationResponse = $datastreamClient->createPrivateConnection();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datastreamClient->resumeOperation($operationName, 'createPrivateConnection');
@@ -750,12 +751,15 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string            $parent              Required. The parent that owns the collection of PrivateConnections.
-     * @param string            $privateConnectionId Required. The private connectivity identifier.
-     * @param PrivateConnection $privateConnection   Required. The Private Connectivity resource to create.
-     * @param array             $optionalArgs        {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent that owns the collection of PrivateConnections.
+     *     @type string $privateConnectionId
+     *           Required. The private connectivity identifier.
+     *     @type PrivateConnection $privateConnection
+     *           Required. The Private Connectivity resource to create.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -782,18 +786,25 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createPrivateConnection(
-        $parent,
-        $privateConnectionId,
-        $privateConnection,
-        array $optionalArgs = []
-    ) {
+    public function createPrivateConnection(array $optionalArgs = [])
+    {
         $request = new CreatePrivateConnectionRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setPrivateConnectionId($privateConnectionId);
-        $request->setPrivateConnection($privateConnection);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['privateConnectionId'])) {
+            $request->setPrivateConnectionId(
+                $optionalArgs['privateConnectionId']
+            );
+        }
+
+        if (isset($optionalArgs['privateConnection'])) {
+            $request->setPrivateConnection($optionalArgs['privateConnection']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -824,10 +835,7 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedParent = $datastreamClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-     *     $routeId = 'route_id';
-     *     $route = new Route();
-     *     $operationResponse = $datastreamClient->createRoute($formattedParent, $routeId, $route);
+     *     $operationResponse = $datastreamClient->createRoute();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -838,7 +846,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datastreamClient->createRoute($formattedParent, $routeId, $route);
+     *     $operationResponse = $datastreamClient->createRoute();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datastreamClient->resumeOperation($operationName, 'createRoute');
@@ -858,12 +866,15 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent that owns the collection of Routes.
-     * @param string $routeId      Required. The Route identifier.
-     * @param Route  $route        Required. The Route resource to create.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent that owns the collection of Routes.
+     *     @type string $routeId
+     *           Required. The Route identifier.
+     *     @type Route $route
+     *           Required. The Route resource to create.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -888,18 +899,23 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createRoute(
-        $parent,
-        $routeId,
-        $route,
-        array $optionalArgs = []
-    ) {
+    public function createRoute(array $optionalArgs = [])
+    {
         $request = new CreateRouteRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setRouteId($routeId);
-        $request->setRoute($route);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['routeId'])) {
+            $request->setRouteId($optionalArgs['routeId']);
+        }
+
+        if (isset($optionalArgs['route'])) {
+            $request->setRoute($optionalArgs['route']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -925,10 +941,7 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedParent = $datastreamClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $streamId = 'stream_id';
-     *     $stream = new Stream();
-     *     $operationResponse = $datastreamClient->createStream($formattedParent, $streamId, $stream);
+     *     $operationResponse = $datastreamClient->createStream();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -939,7 +952,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datastreamClient->createStream($formattedParent, $streamId, $stream);
+     *     $operationResponse = $datastreamClient->createStream();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datastreamClient->resumeOperation($operationName, 'createStream');
@@ -959,12 +972,15 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent that owns the collection of streams.
-     * @param string $streamId     Required. The stream identifier.
-     * @param Stream $stream       Required. The stream resource to create.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent that owns the collection of streams.
+     *     @type string $streamId
+     *           Required. The stream identifier.
+     *     @type Stream $stream
+     *           Required. The stream resource to create.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -994,18 +1010,23 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createStream(
-        $parent,
-        $streamId,
-        $stream,
-        array $optionalArgs = []
-    ) {
+    public function createStream(array $optionalArgs = [])
+    {
         $request = new CreateStreamRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setStreamId($streamId);
-        $request->setStream($stream);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['streamId'])) {
+            $request->setStreamId($optionalArgs['streamId']);
+        }
+
+        if (isset($optionalArgs['stream'])) {
+            $request->setStream($optionalArgs['stream']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1039,8 +1060,7 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedName = $datastreamClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-     *     $operationResponse = $datastreamClient->deleteConnectionProfile($formattedName);
+     *     $operationResponse = $datastreamClient->deleteConnectionProfile();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1050,7 +1070,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datastreamClient->deleteConnectionProfile($formattedName);
+     *     $operationResponse = $datastreamClient->deleteConnectionProfile();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datastreamClient->resumeOperation($operationName, 'deleteConnectionProfile');
@@ -1069,10 +1089,11 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the connection profile resource to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the connection profile resource to delete.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -1097,12 +1118,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteConnectionProfile($name, array $optionalArgs = [])
+    public function deleteConnectionProfile(array $optionalArgs = [])
     {
         $request = new DeleteConnectionProfileRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1128,8 +1152,7 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedName = $datastreamClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-     *     $operationResponse = $datastreamClient->deletePrivateConnection($formattedName);
+     *     $operationResponse = $datastreamClient->deletePrivateConnection();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1139,7 +1162,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datastreamClient->deletePrivateConnection($formattedName);
+     *     $operationResponse = $datastreamClient->deletePrivateConnection();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datastreamClient->resumeOperation($operationName, 'deletePrivateConnection');
@@ -1158,10 +1181,11 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the private connectivity configuration to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the private connectivity configuration to delete.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -1189,12 +1213,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deletePrivateConnection($name, array $optionalArgs = [])
+    public function deletePrivateConnection(array $optionalArgs = [])
     {
         $request = new DeletePrivateConnectionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1224,8 +1251,7 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedName = $datastreamClient->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
-     *     $operationResponse = $datastreamClient->deleteRoute($formattedName);
+     *     $operationResponse = $datastreamClient->deleteRoute();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1235,7 +1261,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datastreamClient->deleteRoute($formattedName);
+     *     $operationResponse = $datastreamClient->deleteRoute();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datastreamClient->resumeOperation($operationName, 'deleteRoute');
@@ -1254,10 +1280,11 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Route resource to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Route resource to delete.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -1282,12 +1309,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteRoute($name, array $optionalArgs = [])
+    public function deleteRoute(array $optionalArgs = [])
     {
         $request = new DeleteRouteRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1313,8 +1343,7 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedName = $datastreamClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
-     *     $operationResponse = $datastreamClient->deleteStream($formattedName);
+     *     $operationResponse = $datastreamClient->deleteStream();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1324,7 +1353,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datastreamClient->deleteStream($formattedName);
+     *     $operationResponse = $datastreamClient->deleteStream();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datastreamClient->resumeOperation($operationName, 'deleteStream');
@@ -1343,10 +1372,11 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the stream resource to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the stream resource to delete.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -1371,12 +1401,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteStream($name, array $optionalArgs = [])
+    public function deleteStream(array $optionalArgs = [])
     {
         $request = new DeleteStreamRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1405,18 +1438,18 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedParent = $datastreamClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $response = $datastreamClient->discoverConnectionProfile($formattedParent);
+     *     $response = $datastreamClient->discoverConnectionProfile();
      * } finally {
      *     $datastreamClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource of the connection profile type. Must be in
-     *                             the format `projects/&#42;/locations/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the connection profile type. Must be in
+     *           the format `projects/&#42;/locations/*`.
      *     @type ConnectionProfile $connectionProfile
      *           An ad-hoc connection profile configuration.
      *     @type string $connectionProfileName
@@ -1442,12 +1475,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function discoverConnectionProfile($parent, array $optionalArgs = [])
+    public function discoverConnectionProfile(array $optionalArgs = [])
     {
         $request = new DiscoverConnectionProfileRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['connectionProfile'])) {
             $request->setConnectionProfile($optionalArgs['connectionProfile']);
         }
@@ -1500,9 +1536,8 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedName = $datastreamClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $datastreamClient->fetchStaticIps($formattedName);
+     *     $pagedResponse = $datastreamClient->fetchStaticIps();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1510,7 +1545,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $datastreamClient->fetchStaticIps($formattedName);
+     *     $pagedResponse = $datastreamClient->fetchStaticIps();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1519,11 +1554,12 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for the location for which static IPs should be
-     *                             returned. Must be in the format `projects/&#42;/locations/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name for the location for which static IPs should be
+     *           returned. Must be in the format `projects/&#42;/locations/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1543,12 +1579,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function fetchStaticIps($name, array $optionalArgs = [])
+    public function fetchStaticIps(array $optionalArgs = [])
     {
         $request = new FetchStaticIpsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1578,17 +1617,17 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedName = $datastreamClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-     *     $response = $datastreamClient->getConnectionProfile($formattedName);
+     *     $response = $datastreamClient->getConnectionProfile();
      * } finally {
      *     $datastreamClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the connection profile resource to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the connection profile resource to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1599,12 +1638,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getConnectionProfile($name, array $optionalArgs = [])
+    public function getConnectionProfile(array $optionalArgs = [])
     {
         $request = new GetConnectionProfileRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1626,17 +1668,17 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedName = $datastreamClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-     *     $response = $datastreamClient->getPrivateConnection($formattedName);
+     *     $response = $datastreamClient->getPrivateConnection();
      * } finally {
      *     $datastreamClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the  private connectivity configuration to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the  private connectivity configuration to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1647,12 +1689,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getPrivateConnection($name, array $optionalArgs = [])
+    public function getPrivateConnection(array $optionalArgs = [])
     {
         $request = new GetPrivateConnectionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1674,17 +1719,17 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedName = $datastreamClient->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
-     *     $response = $datastreamClient->getRoute($formattedName);
+     *     $response = $datastreamClient->getRoute();
      * } finally {
      *     $datastreamClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Route resource to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Route resource to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1695,12 +1740,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRoute($name, array $optionalArgs = [])
+    public function getRoute(array $optionalArgs = [])
     {
         $request = new GetRouteRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1722,17 +1770,17 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedName = $datastreamClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
-     *     $response = $datastreamClient->getStream($formattedName);
+     *     $response = $datastreamClient->getStream();
      * } finally {
      *     $datastreamClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the stream resource to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the stream resource to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1743,12 +1791,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getStream($name, array $optionalArgs = [])
+    public function getStream(array $optionalArgs = [])
     {
         $request = new GetStreamRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1770,17 +1821,17 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedName = $datastreamClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
-     *     $response = $datastreamClient->getStreamObject($formattedName);
+     *     $response = $datastreamClient->getStreamObject();
      * } finally {
      *     $datastreamClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the stream object resource to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the stream object resource to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1791,12 +1842,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getStreamObject($name, array $optionalArgs = [])
+    public function getStreamObject(array $optionalArgs = [])
     {
         $request = new GetStreamObjectRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1819,9 +1873,8 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedParent = $datastreamClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $datastreamClient->listConnectionProfiles($formattedParent);
+     *     $pagedResponse = $datastreamClient->listConnectionProfiles();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1829,7 +1882,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $datastreamClient->listConnectionProfiles($formattedParent);
+     *     $pagedResponse = $datastreamClient->listConnectionProfiles();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1838,10 +1891,11 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent that owns the collection of connection profiles.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent that owns the collection of connection profiles.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1865,12 +1919,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listConnectionProfiles($parent, array $optionalArgs = [])
+    public function listConnectionProfiles(array $optionalArgs = [])
     {
         $request = new ListConnectionProfilesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1909,9 +1966,8 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedParent = $datastreamClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $datastreamClient->listPrivateConnections($formattedParent);
+     *     $pagedResponse = $datastreamClient->listPrivateConnections();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1919,7 +1975,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $datastreamClient->listPrivateConnections($formattedParent);
+     *     $pagedResponse = $datastreamClient->listPrivateConnections();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1928,11 +1984,12 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent that owns the collection of private connectivity
-     *                             configurations.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent that owns the collection of private connectivity
+     *           configurations.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1956,12 +2013,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPrivateConnections($parent, array $optionalArgs = [])
+    public function listPrivateConnections(array $optionalArgs = [])
     {
         $request = new ListPrivateConnectionsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2000,9 +2060,8 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedParent = $datastreamClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $datastreamClient->listRoutes($formattedParent);
+     *     $pagedResponse = $datastreamClient->listRoutes();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2010,7 +2069,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $datastreamClient->listRoutes($formattedParent);
+     *     $pagedResponse = $datastreamClient->listRoutes();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2019,10 +2078,11 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent that owns the collection of Routess.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent that owns the collection of Routess.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2046,12 +2106,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listRoutes($parent, array $optionalArgs = [])
+    public function listRoutes(array $optionalArgs = [])
     {
         $request = new ListRoutesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2089,9 +2152,8 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedParent = $datastreamClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $datastreamClient->listStreamObjects($formattedParent);
+     *     $pagedResponse = $datastreamClient->listStreamObjects();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2099,7 +2161,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $datastreamClient->listStreamObjects($formattedParent);
+     *     $pagedResponse = $datastreamClient->listStreamObjects();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2108,10 +2170,11 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent stream that owns the collection of objects.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent stream that owns the collection of objects.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2131,12 +2194,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listStreamObjects($parent, array $optionalArgs = [])
+    public function listStreamObjects(array $optionalArgs = [])
     {
         $request = new ListStreamObjectsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2166,9 +2232,8 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedParent = $datastreamClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $datastreamClient->listStreams($formattedParent);
+     *     $pagedResponse = $datastreamClient->listStreams();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2176,7 +2241,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $datastreamClient->listStreams($formattedParent);
+     *     $pagedResponse = $datastreamClient->listStreams();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2185,10 +2250,11 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent that owns the collection of streams.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent that owns the collection of streams.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2212,12 +2278,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listStreams($parent, array $optionalArgs = [])
+    public function listStreams(array $optionalArgs = [])
     {
         $request = new ListStreamsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2255,19 +2324,19 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedParent = $datastreamClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
-     *     $sourceObjectIdentifier = new SourceObjectIdentifier();
-     *     $response = $datastreamClient->lookupStreamObject($formattedParent, $sourceObjectIdentifier);
+     *     $response = $datastreamClient->lookupStreamObject();
      * } finally {
      *     $datastreamClient->close();
      * }
      * ```
      *
-     * @param string                 $parent                 Required. The parent stream that owns the collection of objects.
-     * @param SourceObjectIdentifier $sourceObjectIdentifier Required. The source object identifier which maps to the stream object.
-     * @param array                  $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent stream that owns the collection of objects.
+     *     @type SourceObjectIdentifier $sourceObjectIdentifier
+     *           Required. The source object identifier which maps to the stream object.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2278,16 +2347,21 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function lookupStreamObject(
-        $parent,
-        $sourceObjectIdentifier,
-        array $optionalArgs = []
-    ) {
+    public function lookupStreamObject(array $optionalArgs = [])
+    {
         $request = new LookupStreamObjectRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setSourceObjectIdentifier($sourceObjectIdentifier);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['sourceObjectIdentifier'])) {
+            $request->setSourceObjectIdentifier(
+                $optionalArgs['sourceObjectIdentifier']
+            );
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2309,18 +2383,18 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedObject = $datastreamClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
-     *     $response = $datastreamClient->startBackfillJob($formattedObject);
+     *     $response = $datastreamClient->startBackfillJob();
      * } finally {
      *     $datastreamClient->close();
      * }
      * ```
      *
-     * @param string $object       Required. The name of the stream object resource to start a backfill job
-     *                             for.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $object
+     *           Required. The name of the stream object resource to start a backfill job
+     *           for.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2331,12 +2405,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function startBackfillJob($object, array $optionalArgs = [])
+    public function startBackfillJob(array $optionalArgs = [])
     {
         $request = new StartBackfillJobRequest();
         $requestParamHeaders = [];
-        $request->setObject($object);
-        $requestParamHeaders['object'] = $object;
+        if (isset($optionalArgs['object'])) {
+            $request->setObject($optionalArgs['object']);
+            $requestParamHeaders['object'] = $optionalArgs['object'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2358,18 +2435,18 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $formattedObject = $datastreamClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
-     *     $response = $datastreamClient->stopBackfillJob($formattedObject);
+     *     $response = $datastreamClient->stopBackfillJob();
      * } finally {
      *     $datastreamClient->close();
      * }
      * ```
      *
-     * @param string $object       Required. The name of the stream object resource to stop the backfill job
-     *                             for.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $object
+     *           Required. The name of the stream object resource to stop the backfill job
+     *           for.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2380,12 +2457,15 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function stopBackfillJob($object, array $optionalArgs = [])
+    public function stopBackfillJob(array $optionalArgs = [])
     {
         $request = new StopBackfillJobRequest();
         $requestParamHeaders = [];
-        $request->setObject($object);
-        $requestParamHeaders['object'] = $object;
+        if (isset($optionalArgs['object'])) {
+            $request->setObject($optionalArgs['object']);
+            $requestParamHeaders['object'] = $optionalArgs['object'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2407,8 +2487,7 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $connectionProfile = new ConnectionProfile();
-     *     $operationResponse = $datastreamClient->updateConnectionProfile($connectionProfile);
+     *     $operationResponse = $datastreamClient->updateConnectionProfile();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2419,7 +2498,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datastreamClient->updateConnectionProfile($connectionProfile);
+     *     $operationResponse = $datastreamClient->updateConnectionProfile();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datastreamClient->resumeOperation($operationName, 'updateConnectionProfile');
@@ -2439,8 +2518,7 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param ConnectionProfile $connectionProfile Required. The connection profile to update.
-     * @param array             $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
@@ -2449,6 +2527,8 @@ class DatastreamGapicClient
      *           The fields specified in the update_mask are relative to the resource, not
      *           the full request. A field will be overwritten if it is in the mask. If the
      *           user does not provide a mask then all fields will be overwritten.
+     *     @type ConnectionProfile $connectionProfile
+     *           Required. The connection profile to update.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -2478,18 +2558,16 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateConnectionProfile(
-        $connectionProfile,
-        array $optionalArgs = []
-    ) {
+    public function updateConnectionProfile(array $optionalArgs = [])
+    {
         $request = new UpdateConnectionProfileRequest();
         $requestParamHeaders = [];
-        $request->setConnectionProfile($connectionProfile);
-        $requestParamHeaders[
-            'connection_profile.name'
-        ] = $connectionProfile->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['connectionProfile'])) {
+            $request->setConnectionProfile($optionalArgs['connectionProfile']);
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -2525,8 +2603,7 @@ class DatastreamGapicClient
      * ```
      * $datastreamClient = new DatastreamClient();
      * try {
-     *     $stream = new Stream();
-     *     $operationResponse = $datastreamClient->updateStream($stream);
+     *     $operationResponse = $datastreamClient->updateStream();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2537,7 +2614,7 @@ class DatastreamGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datastreamClient->updateStream($stream);
+     *     $operationResponse = $datastreamClient->updateStream();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datastreamClient->resumeOperation($operationName, 'updateStream');
@@ -2557,8 +2634,7 @@ class DatastreamGapicClient
      * }
      * ```
      *
-     * @param Stream $stream       Required. The stream resource to update.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
@@ -2567,6 +2643,8 @@ class DatastreamGapicClient
      *           The fields specified in the update_mask are relative to the resource, not
      *           the full request. A field will be overwritten if it is in the mask. If the
      *           user does not provide a mask then all fields will be overwritten.
+     *     @type Stream $stream
+     *           Required. The stream resource to update.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -2596,14 +2674,16 @@ class DatastreamGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateStream($stream, array $optionalArgs = [])
+    public function updateStream(array $optionalArgs = [])
     {
         $request = new UpdateStreamRequest();
         $requestParamHeaders = [];
-        $request->setStream($stream);
-        $requestParamHeaders['stream.name'] = $stream->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['stream'])) {
+            $request->setStream($optionalArgs['stream']);
         }
 
         if (isset($optionalArgs['requestId'])) {

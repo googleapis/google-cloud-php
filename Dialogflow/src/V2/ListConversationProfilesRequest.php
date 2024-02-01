@@ -39,8 +39,7 @@ class ListConversationProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The project to list all conversation profiles from.
-     *                       Format: `projects/<Project ID>/locations/<Location ID>`. Please see
-     *                       {@see ConversationProfilesClient::projectName()} for help formatting this field.
+     *                       Format: `projects/<Project ID>/locations/<Location ID>`.
      *
      * @return \Google\Cloud\Dialogflow\V2\ListConversationProfilesRequest
      *

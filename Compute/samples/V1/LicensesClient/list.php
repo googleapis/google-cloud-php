@@ -30,9 +30,13 @@ use Google\Cloud\Compute\V1\LicensesClient;
 /**
  * Retrieves the list of licenses available in the specified project. This method does not get any licenses that belong to other projects, including licenses attached to publicly-available images, like Debian 9. If you want to get a list of publicly-available licenses, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
  *
- * @param string $project Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_sample(string $project): void
+function list_sample(): void
 {
     // Create a client.
     $licensesClient = new LicensesClient();
@@ -40,7 +44,7 @@ function list_sample(string $project): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $licensesClient->list($project);
+        $response = $licensesClient->list();
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -48,21 +52,5 @@ function list_sample(string $project): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-
-    list_sample($project);
 }
 // [END compute_v1_generated_Licenses_List_sync]

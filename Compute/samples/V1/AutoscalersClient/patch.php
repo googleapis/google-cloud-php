@@ -25,28 +25,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Autoscalers_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\Autoscaler;
 use Google\Cloud\Compute\V1\AutoscalersClient;
 use Google\Rpc\Status;
 
 /**
  * Updates an autoscaler in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
  *
- * @param string $project Project ID for this request.
- * @param string $zone    Name of the zone for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function patch_sample(string $project, string $zone): void
+function patch_sample(): void
 {
     // Create a client.
     $autoscalersClient = new AutoscalersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $autoscalerResource = new Autoscaler();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $autoscalersClient->patch($autoscalerResource, $project, $zone);
+        $response = $autoscalersClient->patch();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -59,22 +58,5 @@ function patch_sample(string $project, string $zone): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $zone = '[ZONE]';
-
-    patch_sample($project, $zone);
 }
 // [END compute_v1_generated_Autoscalers_Patch_sync]

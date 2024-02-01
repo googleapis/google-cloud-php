@@ -26,27 +26,17 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Compute\V1\BulkInsertDiskResource;
 use Google\Cloud\Compute\V1\Disk;
 use Google\Cloud\Compute\V1\DiskAggregatedList;
 use Google\Cloud\Compute\V1\DiskList;
-use Google\Cloud\Compute\V1\DisksAddResourcePoliciesRequest;
 use Google\Cloud\Compute\V1\DisksClient;
-use Google\Cloud\Compute\V1\DisksRemoveResourcePoliciesRequest;
-use Google\Cloud\Compute\V1\DisksResizeRequest;
 use Google\Cloud\Compute\V1\DisksScopedList;
-use Google\Cloud\Compute\V1\DisksStartAsyncReplicationRequest;
-use Google\Cloud\Compute\V1\DisksStopGroupAsyncReplicationResource;
 use Google\Cloud\Compute\V1\GetZoneOperationRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\Policy;
-use Google\Cloud\Compute\V1\Snapshot;
-use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
-use Google\Cloud\Compute\V1\ZoneSetLabelsRequest;
-use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -103,12 +93,7 @@ class DisksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addResourcePoliciesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $disk = 'disk3083677';
-        $disksAddResourcePoliciesRequestResource = new DisksAddResourcePoliciesRequest();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->addResourcePolicies($disk, $disksAddResourcePoliciesRequestResource, $project, $zone);
+        $response = $gapicClient->addResourcePolicies();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -117,18 +102,8 @@ class DisksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/AddResourcePolicies', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getDisk();
-        $this->assertProtobufEquals($disk, $actualValue);
-        $actualValue = $actualApiRequestObject->getDisksAddResourcePoliciesRequestResource();
-        $this->assertProtobufEquals($disksAddResourcePoliciesRequestResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -176,12 +151,7 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $disk = 'disk3083677';
-        $disksAddResourcePoliciesRequestResource = new DisksAddResourcePoliciesRequest();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->addResourcePolicies($disk, $disksAddResourcePoliciesRequestResource, $project, $zone);
+        $response = $gapicClient->addResourcePolicies();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -224,9 +194,7 @@ class DisksClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $response = $gapicClient->aggregatedList($project);
+        $response = $gapicClient->aggregatedList();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -238,8 +206,6 @@ class DisksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -261,10 +227,8 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
         try {
-            $gapicClient->aggregatedList($project);
+            $gapicClient->aggregatedList();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -301,11 +265,7 @@ class DisksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/bulkInsertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $bulkInsertDiskResourceResource = new BulkInsertDiskResource();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->bulkInsert($bulkInsertDiskResourceResource, $project, $zone);
+        $response = $gapicClient->bulkInsert();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -314,16 +274,8 @@ class DisksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/BulkInsert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBulkInsertDiskResourceResource();
-        $this->assertProtobufEquals($bulkInsertDiskResourceResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -371,11 +323,7 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $bulkInsertDiskResourceResource = new BulkInsertDiskResource();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->bulkInsert($bulkInsertDiskResourceResource, $project, $zone);
+        $response = $gapicClient->bulkInsert();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -420,12 +368,7 @@ class DisksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/createSnapshotTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $disk = 'disk3083677';
-        $project = 'project-309310695';
-        $snapshotResource = new Snapshot();
-        $zone = 'zone3744684';
-        $response = $gapicClient->createSnapshot($disk, $project, $snapshotResource, $zone);
+        $response = $gapicClient->createSnapshot();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -434,18 +377,8 @@ class DisksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/CreateSnapshot', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getDisk();
-        $this->assertProtobufEquals($disk, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSnapshotResource();
-        $this->assertProtobufEquals($snapshotResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -493,12 +426,7 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $disk = 'disk3083677';
-        $project = 'project-309310695';
-        $snapshotResource = new Snapshot();
-        $zone = 'zone3744684';
-        $response = $gapicClient->createSnapshot($disk, $project, $snapshotResource, $zone);
+        $response = $gapicClient->createSnapshot();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -543,11 +471,7 @@ class DisksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $disk = 'disk3083677';
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->delete($disk, $project, $zone);
+        $response = $gapicClient->delete();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -556,16 +480,8 @@ class DisksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getDisk();
-        $this->assertProtobufEquals($disk, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -613,11 +529,7 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $disk = 'disk3083677';
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->delete($disk, $project, $zone);
+        $response = $gapicClient->delete();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -708,23 +620,13 @@ class DisksClientTest extends GeneratedTest
         $expectedResponse->setType($type);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $disk = 'disk3083677';
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->get($disk, $project, $zone);
+        $response = $gapicClient->get();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDisk();
-        $this->assertProtobufEquals($disk, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -746,12 +648,8 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $disk = 'disk3083677';
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
         try {
-            $gapicClient->get($disk, $project, $zone);
+            $gapicClient->get();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -780,23 +678,13 @@ class DisksClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $zone = 'zone3744684';
-        $response = $gapicClient->getIamPolicy($project, $resource, $zone);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -818,12 +706,8 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $zone = 'zone3744684';
         try {
-            $gapicClient->getIamPolicy($project, $resource, $zone);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -860,11 +744,7 @@ class DisksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $diskResource = new Disk();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->insert($diskResource, $project, $zone);
+        $response = $gapicClient->insert();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -873,16 +753,8 @@ class DisksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getDiskResource();
-        $this->assertProtobufEquals($diskResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -930,11 +802,7 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $diskResource = new Disk();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->insert($diskResource, $project, $zone);
+        $response = $gapicClient->insert();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -978,10 +846,7 @@ class DisksClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->list($project, $zone);
+        $response = $gapicClient->list();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -991,10 +856,6 @@ class DisksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1016,11 +877,8 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
         try {
-            $gapicClient->list($project, $zone);
+            $gapicClient->list();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1057,12 +915,7 @@ class DisksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/removeResourcePoliciesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $disk = 'disk3083677';
-        $disksRemoveResourcePoliciesRequestResource = new DisksRemoveResourcePoliciesRequest();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->removeResourcePolicies($disk, $disksRemoveResourcePoliciesRequestResource, $project, $zone);
+        $response = $gapicClient->removeResourcePolicies();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1071,18 +924,8 @@ class DisksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/RemoveResourcePolicies', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getDisk();
-        $this->assertProtobufEquals($disk, $actualValue);
-        $actualValue = $actualApiRequestObject->getDisksRemoveResourcePoliciesRequestResource();
-        $this->assertProtobufEquals($disksRemoveResourcePoliciesRequestResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1130,12 +973,7 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $disk = 'disk3083677';
-        $disksRemoveResourcePoliciesRequestResource = new DisksRemoveResourcePoliciesRequest();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->removeResourcePolicies($disk, $disksRemoveResourcePoliciesRequestResource, $project, $zone);
+        $response = $gapicClient->removeResourcePolicies();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1180,12 +1018,7 @@ class DisksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/resizeTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $disk = 'disk3083677';
-        $disksResizeRequestResource = new DisksResizeRequest();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->resize($disk, $disksResizeRequestResource, $project, $zone);
+        $response = $gapicClient->resize();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1194,18 +1027,8 @@ class DisksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/Resize', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getDisk();
-        $this->assertProtobufEquals($disk, $actualValue);
-        $actualValue = $actualApiRequestObject->getDisksResizeRequestResource();
-        $this->assertProtobufEquals($disksResizeRequestResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1253,12 +1076,7 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $disk = 'disk3083677';
-        $disksResizeRequestResource = new DisksResizeRequest();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->resize($disk, $disksResizeRequestResource, $project, $zone);
+        $response = $gapicClient->resize();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1295,26 +1113,13 @@ class DisksClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $zone = 'zone3744684';
-        $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
-        $response = $gapicClient->setIamPolicy($project, $resource, $zone, $zoneSetPolicyRequestResource);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getZoneSetPolicyRequestResource();
-        $this->assertProtobufEquals($zoneSetPolicyRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1336,13 +1141,8 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $zone = 'zone3744684';
-        $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
         try {
-            $gapicClient->setIamPolicy($project, $resource, $zone, $zoneSetPolicyRequestResource);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1379,12 +1179,7 @@ class DisksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setLabelsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $zone = 'zone3744684';
-        $zoneSetLabelsRequestResource = new ZoneSetLabelsRequest();
-        $response = $gapicClient->setLabels($project, $resource, $zone, $zoneSetLabelsRequestResource);
+        $response = $gapicClient->setLabels();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1393,18 +1188,8 @@ class DisksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/SetLabels', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualApiRequestObject->getZoneSetLabelsRequestResource();
-        $this->assertProtobufEquals($zoneSetLabelsRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1452,12 +1237,7 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $zone = 'zone3744684';
-        $zoneSetLabelsRequestResource = new ZoneSetLabelsRequest();
-        $response = $gapicClient->setLabels($project, $resource, $zone, $zoneSetLabelsRequestResource);
+        $response = $gapicClient->setLabels();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1502,12 +1282,7 @@ class DisksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/startAsyncReplicationTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $disk = 'disk3083677';
-        $disksStartAsyncReplicationRequestResource = new DisksStartAsyncReplicationRequest();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->startAsyncReplication($disk, $disksStartAsyncReplicationRequestResource, $project, $zone);
+        $response = $gapicClient->startAsyncReplication();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1516,18 +1291,8 @@ class DisksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/StartAsyncReplication', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getDisk();
-        $this->assertProtobufEquals($disk, $actualValue);
-        $actualValue = $actualApiRequestObject->getDisksStartAsyncReplicationRequestResource();
-        $this->assertProtobufEquals($disksStartAsyncReplicationRequestResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1575,12 +1340,7 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $disk = 'disk3083677';
-        $disksStartAsyncReplicationRequestResource = new DisksStartAsyncReplicationRequest();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->startAsyncReplication($disk, $disksStartAsyncReplicationRequestResource, $project, $zone);
+        $response = $gapicClient->startAsyncReplication();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1625,11 +1385,7 @@ class DisksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/stopAsyncReplicationTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $disk = 'disk3083677';
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->stopAsyncReplication($disk, $project, $zone);
+        $response = $gapicClient->stopAsyncReplication();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1638,16 +1394,8 @@ class DisksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/StopAsyncReplication', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getDisk();
-        $this->assertProtobufEquals($disk, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1695,11 +1443,7 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $disk = 'disk3083677';
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->stopAsyncReplication($disk, $project, $zone);
+        $response = $gapicClient->stopAsyncReplication();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1744,11 +1488,7 @@ class DisksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/stopGroupAsyncReplicationTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $disksStopGroupAsyncReplicationResourceResource = new DisksStopGroupAsyncReplicationResource();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->stopGroupAsyncReplication($disksStopGroupAsyncReplicationResourceResource, $project, $zone);
+        $response = $gapicClient->stopGroupAsyncReplication();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1757,16 +1497,8 @@ class DisksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/StopGroupAsyncReplication', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getDisksStopGroupAsyncReplicationResourceResource();
-        $this->assertProtobufEquals($disksStopGroupAsyncReplicationResourceResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1814,11 +1546,7 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $disksStopGroupAsyncReplicationResourceResource = new DisksStopGroupAsyncReplicationResource();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->stopGroupAsyncReplication($disksStopGroupAsyncReplicationResourceResource, $project, $zone);
+        $response = $gapicClient->stopGroupAsyncReplication();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1849,26 +1577,13 @@ class DisksClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
-        $zone = 'zone3744684';
-        $response = $gapicClient->testIamPermissions($project, $resource, $testPermissionsRequestResource, $zone);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
-        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1890,13 +1605,8 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
-        $zone = 'zone3744684';
         try {
-            $gapicClient->testIamPermissions($project, $resource, $testPermissionsRequestResource, $zone);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1933,12 +1643,7 @@ class DisksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/updateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $disk = 'disk3083677';
-        $diskResource = new Disk();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->update($disk, $diskResource, $project, $zone);
+        $response = $gapicClient->update();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1947,18 +1652,8 @@ class DisksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Disks/Update', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getDisk();
-        $this->assertProtobufEquals($disk, $actualValue);
-        $actualValue = $actualApiRequestObject->getDiskResource();
-        $this->assertProtobufEquals($diskResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -2006,12 +1701,7 @@ class DisksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $disk = 'disk3083677';
-        $diskResource = new Disk();
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $response = $gapicClient->update($disk, $diskResource, $project, $zone);
+        $response = $gapicClient->update();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

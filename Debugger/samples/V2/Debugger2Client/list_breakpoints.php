@@ -31,19 +31,19 @@ use Google\Cloud\Debugger\V2\ListBreakpointsResponse;
 /**
  * Lists all breakpoints for the debuggee.
  *
- * @param string $debuggeeId    ID of the debuggee whose breakpoints to list.
- * @param string $clientVersion The client version making the call.
- *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_breakpoints_sample(string $debuggeeId, string $clientVersion): void
+function list_breakpoints_sample(): void
 {
     // Create a client.
     $debugger2Client = new Debugger2Client();
 
     // Prepare the request message.
-    $request = (new ListBreakpointsRequest())
-        ->setDebuggeeId($debuggeeId)
-        ->setClientVersion($clientVersion);
+    $request = new ListBreakpointsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,22 +53,5 @@ function list_breakpoints_sample(string $debuggeeId, string $clientVersion): voi
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $debuggeeId = '[DEBUGGEE_ID]';
-    $clientVersion = '[CLIENT_VERSION]';
-
-    list_breakpoints_sample($debuggeeId, $clientVersion);
 }
 // [END clouddebugger_v2_generated_Debugger2_ListBreakpoints_sync]

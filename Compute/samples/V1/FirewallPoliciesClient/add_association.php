@@ -26,29 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\FirewallPoliciesClient;
-use Google\Cloud\Compute\V1\FirewallPolicyAssociation;
 use Google\Rpc\Status;
 
 /**
  * Inserts an association for the specified firewall policy.
  *
- * @param string $firewallPolicy Name of the firewall policy to update.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function add_association_sample(string $firewallPolicy): void
+function add_association_sample(): void
 {
     // Create a client.
     $firewallPoliciesClient = new FirewallPoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $firewallPoliciesClient->addAssociation(
-            $firewallPolicy,
-            $firewallPolicyAssociationResource
-        );
+        $response = $firewallPoliciesClient->addAssociation();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -61,21 +58,5 @@ function add_association_sample(string $firewallPolicy): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $firewallPolicy = '[FIREWALL_POLICY]';
-
-    add_association_sample($firewallPolicy);
 }
 // [END compute_v1_generated_FirewallPolicies_AddAssociation_sync]

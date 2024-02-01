@@ -32,8 +32,7 @@ class CreateTestCaseRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                  $parent   Required. The agent to create the test case for.
-     *                                                          Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
-     *                                                          {@see TestCasesClient::agentName()} for help formatting this field.
+     *                                                          Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
      * @param \Google\Cloud\Dialogflow\Cx\V3\TestCase $testCase Required. The test case to create.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\CreateTestCaseRequest

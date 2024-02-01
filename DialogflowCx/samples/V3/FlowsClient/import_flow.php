@@ -46,18 +46,19 @@ use Google\Rpc\Status;
  * [training
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
- * @param string $formattedParent The agent to import the flow into.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
- *                                {@see FlowsClient::agentName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function import_flow_sample(string $formattedParent): void
+function import_flow_sample(): void
 {
     // Create a client.
     $flowsClient = new FlowsClient();
 
     // Prepare the request message.
-    $request = (new ImportFlowRequest())
-        ->setParent($formattedParent);
+    $request = new ImportFlowRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -77,21 +78,5 @@ function import_flow_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = FlowsClient::agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
-
-    import_flow_sample($formattedParent);
 }
 // [END dialogflow_v3_generated_Flows_ImportFlow_sync]

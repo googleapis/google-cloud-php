@@ -46,19 +46,19 @@ use Google\Cloud\Dialogflow\V2\StreamingAnalyzeContentResponse;
  * sent to virtual agents. See [Versions and
  * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
  *
- * @param string $formattedParticipant The name of the participant this text comes from.
- *                                     Format: `projects/<Project ID>/locations/<Location
- *                                     ID>/conversations/<Conversation ID>/participants/<Participant ID>`. Please see
- *                                     {@see ParticipantsClient::participantName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function streaming_analyze_content_sample(string $formattedParticipant): void
+function streaming_analyze_content_sample(): void
 {
     // Create a client.
     $participantsClient = new ParticipantsClient();
 
     // Prepare the request message.
-    $request = (new StreamingAnalyzeContentRequest())
-        ->setParticipant($formattedParticipant);
+    $request = new StreamingAnalyzeContentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -73,25 +73,5 @@ function streaming_analyze_content_sample(string $formattedParticipant): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParticipant = ParticipantsClient::participantName(
-        '[PROJECT]',
-        '[CONVERSATION]',
-        '[PARTICIPANT]'
-    );
-
-    streaming_analyze_content_sample($formattedParticipant);
 }
 // [END dialogflow_v2_generated_Participants_StreamingAnalyzeContent_sync]

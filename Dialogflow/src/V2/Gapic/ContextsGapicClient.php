@@ -58,9 +58,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $contextsClient = new ContextsClient();
  * try {
- *     $formattedParent = $contextsClient->sessionName('[PROJECT]', '[SESSION]');
- *     $context = new Context();
- *     $response = $contextsClient->createContext($formattedParent, $context);
+ *     $response = $contextsClient->createContext();
  * } finally {
  *     $contextsClient->close();
  * }
@@ -576,24 +574,24 @@ class ContextsGapicClient
      * ```
      * $contextsClient = new ContextsClient();
      * try {
-     *     $formattedParent = $contextsClient->sessionName('[PROJECT]', '[SESSION]');
-     *     $context = new Context();
-     *     $response = $contextsClient->createContext($formattedParent, $context);
+     *     $response = $contextsClient->createContext();
      * } finally {
      *     $contextsClient->close();
      * }
      * ```
      *
-     * @param string  $parent       Required. The session to create a context for.
-     *                              Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
-     *                              `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     *                              ID>/sessions/<Session ID>`.
-     *                              If `Environment ID` is not specified, we assume default 'draft'
-     *                              environment. If `User ID` is not specified, we assume default '-' user.
-     * @param Context $context      Required. The context to create.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The session to create a context for.
+     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *           `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *           ID>/sessions/<Session ID>`.
+     *           If `Environment ID` is not specified, we assume default 'draft'
+     *           environment. If `User ID` is not specified, we assume default '-' user.
+     *     @type Context $context
+     *           Required. The context to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -604,13 +602,19 @@ class ContextsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createContext($parent, $context, array $optionalArgs = [])
+    public function createContext(array $optionalArgs = [])
     {
         $request = new CreateContextRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setContext($context);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['context'])) {
+            $request->setContext($optionalArgs['context']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateContext', Context::class, $optionalArgs, $request)->wait();
@@ -623,22 +627,22 @@ class ContextsGapicClient
      * ```
      * $contextsClient = new ContextsClient();
      * try {
-     *     $formattedParent = $contextsClient->sessionName('[PROJECT]', '[SESSION]');
-     *     $contextsClient->deleteAllContexts($formattedParent);
+     *     $contextsClient->deleteAllContexts();
      * } finally {
      *     $contextsClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the session to delete all contexts from. Format:
-     *                             `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
-     *                             ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
-     *                             ID>`.
-     *                             If `Environment ID` is not specified we assume default 'draft' environment.
-     *                             If `User ID` is not specified, we assume default '-' user.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the session to delete all contexts from. Format:
+     *           `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project
+     *           ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
+     *           ID>`.
+     *           If `Environment ID` is not specified we assume default 'draft' environment.
+     *           If `User ID` is not specified, we assume default '-' user.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -647,12 +651,15 @@ class ContextsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAllContexts($parent, array $optionalArgs = [])
+    public function deleteAllContexts(array $optionalArgs = [])
     {
         $request = new DeleteAllContextsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteAllContexts', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -665,22 +672,22 @@ class ContextsGapicClient
      * ```
      * $contextsClient = new ContextsClient();
      * try {
-     *     $formattedName = $contextsClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-     *     $contextsClient->deleteContext($formattedName);
+     *     $contextsClient->deleteContext();
      * } finally {
      *     $contextsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the context to delete. Format:
-     *                             `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
-     *                             or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     *                             ID>/sessions/<Session ID>/contexts/<Context ID>`.
-     *                             If `Environment ID` is not specified, we assume default 'draft'
-     *                             environment. If `User ID` is not specified, we assume default '-' user.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the context to delete. Format:
+     *           `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
+     *           or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *           ID>/sessions/<Session ID>/contexts/<Context ID>`.
+     *           If `Environment ID` is not specified, we assume default 'draft'
+     *           environment. If `User ID` is not specified, we assume default '-' user.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -689,12 +696,15 @@ class ContextsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteContext($name, array $optionalArgs = [])
+    public function deleteContext(array $optionalArgs = [])
     {
         $request = new DeleteContextRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteContext', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -707,22 +717,22 @@ class ContextsGapicClient
      * ```
      * $contextsClient = new ContextsClient();
      * try {
-     *     $formattedName = $contextsClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-     *     $response = $contextsClient->getContext($formattedName);
+     *     $response = $contextsClient->getContext();
      * } finally {
      *     $contextsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the context. Format:
-     *                             `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
-     *                             or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     *                             ID>/sessions/<Session ID>/contexts/<Context ID>`.
-     *                             If `Environment ID` is not specified, we assume default 'draft'
-     *                             environment. If `User ID` is not specified, we assume default '-' user.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the context. Format:
+     *           `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`
+     *           or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *           ID>/sessions/<Session ID>/contexts/<Context ID>`.
+     *           If `Environment ID` is not specified, we assume default 'draft'
+     *           environment. If `User ID` is not specified, we assume default '-' user.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -733,12 +743,15 @@ class ContextsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getContext($name, array $optionalArgs = [])
+    public function getContext(array $optionalArgs = [])
     {
         $request = new GetContextRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetContext', Context::class, $optionalArgs, $request)->wait();
@@ -751,9 +764,8 @@ class ContextsGapicClient
      * ```
      * $contextsClient = new ContextsClient();
      * try {
-     *     $formattedParent = $contextsClient->sessionName('[PROJECT]', '[SESSION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $contextsClient->listContexts($formattedParent);
+     *     $pagedResponse = $contextsClient->listContexts();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -761,7 +773,7 @@ class ContextsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $contextsClient->listContexts($formattedParent);
+     *     $pagedResponse = $contextsClient->listContexts();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -770,15 +782,16 @@ class ContextsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The session to list all contexts from.
-     *                             Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
-     *                             `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     *                             ID>/sessions/<Session ID>`.
-     *                             If `Environment ID` is not specified, we assume default 'draft'
-     *                             environment. If `User ID` is not specified, we assume default '-' user.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The session to list all contexts from.
+     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *           `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *           ID>/sessions/<Session ID>`.
+     *           If `Environment ID` is not specified, we assume default 'draft'
+     *           environment. If `User ID` is not specified, we assume default '-' user.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -798,12 +811,15 @@ class ContextsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listContexts($parent, array $optionalArgs = [])
+    public function listContexts(array $optionalArgs = [])
     {
         $request = new ListContextsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -824,17 +840,17 @@ class ContextsGapicClient
      * ```
      * $contextsClient = new ContextsClient();
      * try {
-     *     $context = new Context();
-     *     $response = $contextsClient->updateContext($context);
+     *     $response = $contextsClient->updateContext();
      * } finally {
      *     $contextsClient->close();
      * }
      * ```
      *
-     * @param Context $context      Required. The context to update.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Context $context
+     *           Required. The context to update.
      *     @type FieldMask $updateMask
      *           Optional. The mask to control which fields get updated.
      *     @type RetrySettings|array $retrySettings
@@ -847,12 +863,14 @@ class ContextsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateContext($context, array $optionalArgs = [])
+    public function updateContext(array $optionalArgs = [])
     {
         $request = new UpdateContextRequest();
         $requestParamHeaders = [];
-        $request->setContext($context);
-        $requestParamHeaders['context.name'] = $context->getName();
+        if (isset($optionalArgs['context'])) {
+            $request->setContext($optionalArgs['context']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

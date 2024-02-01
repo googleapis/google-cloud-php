@@ -32,18 +32,19 @@ use Google\Cloud\Deploy\V1\ListCustomTargetTypesRequest;
 /**
  * Lists CustomTargetTypes in a given project and location.
  *
- * @param string $formattedParent The parent that owns this collection of custom target types.
- *                                Format must be `projects/{project_id}/locations/{location_name}`. Please see
- *                                {@see CloudDeployClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_custom_target_types_sample(string $formattedParent): void
+function list_custom_target_types_sample(): void
 {
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = (new ListCustomTargetTypesRequest())
-        ->setParent($formattedParent);
+    $request = new ListCustomTargetTypesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_custom_target_types_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CloudDeployClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_custom_target_types_sample($formattedParent);
 }
 // [END clouddeploy_v1_generated_CloudDeploy_ListCustomTargetTypes_sync]

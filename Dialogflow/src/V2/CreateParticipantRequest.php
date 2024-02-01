@@ -34,8 +34,7 @@ class CreateParticipantRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                  $parent      Required. Resource identifier of the conversation adding the participant.
      *                                                             Format: `projects/<Project ID>/locations/<Location
-     *                                                             ID>/conversations/<Conversation ID>`. Please see
-     *                                                             {@see ParticipantsClient::conversationName()} for help formatting this field.
+     *                                                             ID>/conversations/<Conversation ID>`.
      * @param \Google\Cloud\Dialogflow\V2\Participant $participant Required. The participant to create.
      *
      * @return \Google\Cloud\Dialogflow\V2\CreateParticipantRequest

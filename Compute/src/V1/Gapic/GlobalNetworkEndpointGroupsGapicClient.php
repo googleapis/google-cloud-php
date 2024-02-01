@@ -57,10 +57,7 @@ use Google\Cloud\Compute\V1\Operation;
  * ```
  * $globalNetworkEndpointGroupsClient = new GlobalNetworkEndpointGroupsClient();
  * try {
- *     $globalNetworkEndpointGroupsAttachEndpointsRequestResource = new GlobalNetworkEndpointGroupsAttachEndpointsRequest();
- *     $networkEndpointGroup = 'network_endpoint_group';
- *     $project = 'project';
- *     $operationResponse = $globalNetworkEndpointGroupsClient->attachNetworkEndpoints($globalNetworkEndpointGroupsAttachEndpointsRequestResource, $networkEndpointGroup, $project);
+ *     $operationResponse = $globalNetworkEndpointGroupsClient->attachNetworkEndpoints();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -70,7 +67,7 @@ use Google\Cloud\Compute\V1\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $globalNetworkEndpointGroupsClient->attachNetworkEndpoints($globalNetworkEndpointGroupsAttachEndpointsRequestResource, $networkEndpointGroup, $project);
+ *     $operationResponse = $globalNetworkEndpointGroupsClient->attachNetworkEndpoints();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $globalNetworkEndpointGroupsClient->resumeOperation($operationName, 'attachNetworkEndpoints');
@@ -170,9 +167,7 @@ class GlobalNetworkEndpointGroupsGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -268,10 +263,7 @@ class GlobalNetworkEndpointGroupsGapicClient
      * ```
      * $globalNetworkEndpointGroupsClient = new GlobalNetworkEndpointGroupsClient();
      * try {
-     *     $globalNetworkEndpointGroupsAttachEndpointsRequestResource = new GlobalNetworkEndpointGroupsAttachEndpointsRequest();
-     *     $networkEndpointGroup = 'network_endpoint_group';
-     *     $project = 'project';
-     *     $operationResponse = $globalNetworkEndpointGroupsClient->attachNetworkEndpoints($globalNetworkEndpointGroupsAttachEndpointsRequestResource, $networkEndpointGroup, $project);
+     *     $operationResponse = $globalNetworkEndpointGroupsClient->attachNetworkEndpoints();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -281,7 +273,7 @@ class GlobalNetworkEndpointGroupsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalNetworkEndpointGroupsClient->attachNetworkEndpoints($globalNetworkEndpointGroupsAttachEndpointsRequestResource, $networkEndpointGroup, $project);
+     *     $operationResponse = $globalNetworkEndpointGroupsClient->attachNetworkEndpoints();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalNetworkEndpointGroupsClient->resumeOperation($operationName, 'attachNetworkEndpoints');
@@ -300,12 +292,15 @@ class GlobalNetworkEndpointGroupsGapicClient
      * }
      * ```
      *
-     * @param GlobalNetworkEndpointGroupsAttachEndpointsRequest $globalNetworkEndpointGroupsAttachEndpointsRequestResource The body resource for this request
-     * @param string                                            $networkEndpointGroup                                      The name of the network endpoint group where you are attaching network endpoints to. It should comply with RFC1035.
-     * @param string                                            $project                                                   Project ID for this request.
-     * @param array                                             $optionalArgs                                              {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type GlobalNetworkEndpointGroupsAttachEndpointsRequest $globalNetworkEndpointGroupsAttachEndpointsRequestResource
+     *           The body resource for this request
+     *     @type string $networkEndpointGroup
+     *           The name of the network endpoint group where you are attaching network endpoints to. It should comply with RFC1035.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -318,15 +313,24 @@ class GlobalNetworkEndpointGroupsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function attachNetworkEndpoints($globalNetworkEndpointGroupsAttachEndpointsRequestResource, $networkEndpointGroup, $project, array $optionalArgs = [])
+    public function attachNetworkEndpoints(array $optionalArgs = [])
     {
         $request = new AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest();
         $requestParamHeaders = [];
-        $request->setGlobalNetworkEndpointGroupsAttachEndpointsRequestResource($globalNetworkEndpointGroupsAttachEndpointsRequestResource);
-        $request->setNetworkEndpointGroup($networkEndpointGroup);
-        $request->setProject($project);
-        $requestParamHeaders['network_endpoint_group'] = $networkEndpointGroup;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['globalNetworkEndpointGroupsAttachEndpointsRequestResource'])) {
+            $request->setGlobalNetworkEndpointGroupsAttachEndpointsRequestResource($optionalArgs['globalNetworkEndpointGroupsAttachEndpointsRequestResource']);
+        }
+
+        if (isset($optionalArgs['networkEndpointGroup'])) {
+            $request->setNetworkEndpointGroup($optionalArgs['networkEndpointGroup']);
+            $requestParamHeaders['network_endpoint_group'] = $optionalArgs['networkEndpointGroup'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -343,9 +347,7 @@ class GlobalNetworkEndpointGroupsGapicClient
      * ```
      * $globalNetworkEndpointGroupsClient = new GlobalNetworkEndpointGroupsClient();
      * try {
-     *     $networkEndpointGroup = 'network_endpoint_group';
-     *     $project = 'project';
-     *     $operationResponse = $globalNetworkEndpointGroupsClient->delete($networkEndpointGroup, $project);
+     *     $operationResponse = $globalNetworkEndpointGroupsClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -355,7 +357,7 @@ class GlobalNetworkEndpointGroupsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalNetworkEndpointGroupsClient->delete($networkEndpointGroup, $project);
+     *     $operationResponse = $globalNetworkEndpointGroupsClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalNetworkEndpointGroupsClient->resumeOperation($operationName, 'delete');
@@ -374,11 +376,13 @@ class GlobalNetworkEndpointGroupsGapicClient
      * }
      * ```
      *
-     * @param string $networkEndpointGroup The name of the network endpoint group to delete. It should comply with RFC1035.
-     * @param string $project              Project ID for this request.
-     * @param array  $optionalArgs         {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $networkEndpointGroup
+     *           The name of the network endpoint group to delete. It should comply with RFC1035.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -391,14 +395,20 @@ class GlobalNetworkEndpointGroupsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($networkEndpointGroup, $project, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteGlobalNetworkEndpointGroupRequest();
         $requestParamHeaders = [];
-        $request->setNetworkEndpointGroup($networkEndpointGroup);
-        $request->setProject($project);
-        $requestParamHeaders['network_endpoint_group'] = $networkEndpointGroup;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['networkEndpointGroup'])) {
+            $request->setNetworkEndpointGroup($optionalArgs['networkEndpointGroup']);
+            $requestParamHeaders['network_endpoint_group'] = $optionalArgs['networkEndpointGroup'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -415,10 +425,7 @@ class GlobalNetworkEndpointGroupsGapicClient
      * ```
      * $globalNetworkEndpointGroupsClient = new GlobalNetworkEndpointGroupsClient();
      * try {
-     *     $globalNetworkEndpointGroupsDetachEndpointsRequestResource = new GlobalNetworkEndpointGroupsDetachEndpointsRequest();
-     *     $networkEndpointGroup = 'network_endpoint_group';
-     *     $project = 'project';
-     *     $operationResponse = $globalNetworkEndpointGroupsClient->detachNetworkEndpoints($globalNetworkEndpointGroupsDetachEndpointsRequestResource, $networkEndpointGroup, $project);
+     *     $operationResponse = $globalNetworkEndpointGroupsClient->detachNetworkEndpoints();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -428,7 +435,7 @@ class GlobalNetworkEndpointGroupsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalNetworkEndpointGroupsClient->detachNetworkEndpoints($globalNetworkEndpointGroupsDetachEndpointsRequestResource, $networkEndpointGroup, $project);
+     *     $operationResponse = $globalNetworkEndpointGroupsClient->detachNetworkEndpoints();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalNetworkEndpointGroupsClient->resumeOperation($operationName, 'detachNetworkEndpoints');
@@ -447,12 +454,15 @@ class GlobalNetworkEndpointGroupsGapicClient
      * }
      * ```
      *
-     * @param GlobalNetworkEndpointGroupsDetachEndpointsRequest $globalNetworkEndpointGroupsDetachEndpointsRequestResource The body resource for this request
-     * @param string                                            $networkEndpointGroup                                      The name of the network endpoint group where you are removing network endpoints. It should comply with RFC1035.
-     * @param string                                            $project                                                   Project ID for this request.
-     * @param array                                             $optionalArgs                                              {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type GlobalNetworkEndpointGroupsDetachEndpointsRequest $globalNetworkEndpointGroupsDetachEndpointsRequestResource
+     *           The body resource for this request
+     *     @type string $networkEndpointGroup
+     *           The name of the network endpoint group where you are removing network endpoints. It should comply with RFC1035.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -465,15 +475,24 @@ class GlobalNetworkEndpointGroupsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function detachNetworkEndpoints($globalNetworkEndpointGroupsDetachEndpointsRequestResource, $networkEndpointGroup, $project, array $optionalArgs = [])
+    public function detachNetworkEndpoints(array $optionalArgs = [])
     {
         $request = new DetachNetworkEndpointsGlobalNetworkEndpointGroupRequest();
         $requestParamHeaders = [];
-        $request->setGlobalNetworkEndpointGroupsDetachEndpointsRequestResource($globalNetworkEndpointGroupsDetachEndpointsRequestResource);
-        $request->setNetworkEndpointGroup($networkEndpointGroup);
-        $request->setProject($project);
-        $requestParamHeaders['network_endpoint_group'] = $networkEndpointGroup;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['globalNetworkEndpointGroupsDetachEndpointsRequestResource'])) {
+            $request->setGlobalNetworkEndpointGroupsDetachEndpointsRequestResource($optionalArgs['globalNetworkEndpointGroupsDetachEndpointsRequestResource']);
+        }
+
+        if (isset($optionalArgs['networkEndpointGroup'])) {
+            $request->setNetworkEndpointGroup($optionalArgs['networkEndpointGroup']);
+            $requestParamHeaders['network_endpoint_group'] = $optionalArgs['networkEndpointGroup'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -490,19 +509,19 @@ class GlobalNetworkEndpointGroupsGapicClient
      * ```
      * $globalNetworkEndpointGroupsClient = new GlobalNetworkEndpointGroupsClient();
      * try {
-     *     $networkEndpointGroup = 'network_endpoint_group';
-     *     $project = 'project';
-     *     $response = $globalNetworkEndpointGroupsClient->get($networkEndpointGroup, $project);
+     *     $response = $globalNetworkEndpointGroupsClient->get();
      * } finally {
      *     $globalNetworkEndpointGroupsClient->close();
      * }
      * ```
      *
-     * @param string $networkEndpointGroup The name of the network endpoint group. It should comply with RFC1035.
-     * @param string $project              Project ID for this request.
-     * @param array  $optionalArgs         {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $networkEndpointGroup
+     *           The name of the network endpoint group. It should comply with RFC1035.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -513,14 +532,20 @@ class GlobalNetworkEndpointGroupsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($networkEndpointGroup, $project, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetGlobalNetworkEndpointGroupRequest();
         $requestParamHeaders = [];
-        $request->setNetworkEndpointGroup($networkEndpointGroup);
-        $request->setProject($project);
-        $requestParamHeaders['network_endpoint_group'] = $networkEndpointGroup;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['networkEndpointGroup'])) {
+            $request->setNetworkEndpointGroup($optionalArgs['networkEndpointGroup']);
+            $requestParamHeaders['network_endpoint_group'] = $optionalArgs['networkEndpointGroup'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', NetworkEndpointGroup::class, $optionalArgs, $request)->wait();
@@ -533,9 +558,7 @@ class GlobalNetworkEndpointGroupsGapicClient
      * ```
      * $globalNetworkEndpointGroupsClient = new GlobalNetworkEndpointGroupsClient();
      * try {
-     *     $networkEndpointGroupResource = new NetworkEndpointGroup();
-     *     $project = 'project';
-     *     $operationResponse = $globalNetworkEndpointGroupsClient->insert($networkEndpointGroupResource, $project);
+     *     $operationResponse = $globalNetworkEndpointGroupsClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -545,7 +568,7 @@ class GlobalNetworkEndpointGroupsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalNetworkEndpointGroupsClient->insert($networkEndpointGroupResource, $project);
+     *     $operationResponse = $globalNetworkEndpointGroupsClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalNetworkEndpointGroupsClient->resumeOperation($operationName, 'insert');
@@ -564,11 +587,13 @@ class GlobalNetworkEndpointGroupsGapicClient
      * }
      * ```
      *
-     * @param NetworkEndpointGroup $networkEndpointGroupResource The body resource for this request
-     * @param string               $project                      Project ID for this request.
-     * @param array                $optionalArgs                 {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type NetworkEndpointGroup $networkEndpointGroupResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -581,13 +606,19 @@ class GlobalNetworkEndpointGroupsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($networkEndpointGroupResource, $project, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertGlobalNetworkEndpointGroupRequest();
         $requestParamHeaders = [];
-        $request->setNetworkEndpointGroupResource($networkEndpointGroupResource);
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['networkEndpointGroupResource'])) {
+            $request->setNetworkEndpointGroupResource($optionalArgs['networkEndpointGroupResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -604,9 +635,8 @@ class GlobalNetworkEndpointGroupsGapicClient
      * ```
      * $globalNetworkEndpointGroupsClient = new GlobalNetworkEndpointGroupsClient();
      * try {
-     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $globalNetworkEndpointGroupsClient->list($project);
+     *     $pagedResponse = $globalNetworkEndpointGroupsClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -614,7 +644,7 @@ class GlobalNetworkEndpointGroupsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $globalNetworkEndpointGroupsClient->list($project);
+     *     $pagedResponse = $globalNetworkEndpointGroupsClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -623,8 +653,7 @@ class GlobalNetworkEndpointGroupsGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -638,6 +667,8 @@ class GlobalNetworkEndpointGroupsGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -650,12 +681,10 @@ class GlobalNetworkEndpointGroupsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListGlobalNetworkEndpointGroupsRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -670,6 +699,11 @@ class GlobalNetworkEndpointGroupsGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -688,10 +722,8 @@ class GlobalNetworkEndpointGroupsGapicClient
      * ```
      * $globalNetworkEndpointGroupsClient = new GlobalNetworkEndpointGroupsClient();
      * try {
-     *     $networkEndpointGroup = 'network_endpoint_group';
-     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $globalNetworkEndpointGroupsClient->listNetworkEndpoints($networkEndpointGroup, $project);
+     *     $pagedResponse = $globalNetworkEndpointGroupsClient->listNetworkEndpoints();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -699,7 +731,7 @@ class GlobalNetworkEndpointGroupsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $globalNetworkEndpointGroupsClient->listNetworkEndpoints($networkEndpointGroup, $project);
+     *     $pagedResponse = $globalNetworkEndpointGroupsClient->listNetworkEndpoints();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -708,15 +740,15 @@ class GlobalNetworkEndpointGroupsGapicClient
      * }
      * ```
      *
-     * @param string $networkEndpointGroup The name of the network endpoint group from which you want to generate a list of included network endpoints. It should comply with RFC1035.
-     * @param string $project              Project ID for this request.
-     * @param array  $optionalArgs         {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
      *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
      *     @type int $maxResults
      *           The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
+     *     @type string $networkEndpointGroup
+     *           The name of the network endpoint group from which you want to generate a list of included network endpoints. It should comply with RFC1035.
      *     @type string $orderBy
      *           Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *     @type string $pageToken
@@ -724,6 +756,8 @@ class GlobalNetworkEndpointGroupsGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -736,14 +770,10 @@ class GlobalNetworkEndpointGroupsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listNetworkEndpoints($networkEndpointGroup, $project, array $optionalArgs = [])
+    public function listNetworkEndpoints(array $optionalArgs = [])
     {
         $request = new ListNetworkEndpointsGlobalNetworkEndpointGroupsRequest();
         $requestParamHeaders = [];
-        $request->setNetworkEndpointGroup($networkEndpointGroup);
-        $request->setProject($project);
-        $requestParamHeaders['network_endpoint_group'] = $networkEndpointGroup;
-        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -752,12 +782,22 @@ class GlobalNetworkEndpointGroupsGapicClient
             $request->setMaxResults($optionalArgs['maxResults']);
         }
 
+        if (isset($optionalArgs['networkEndpointGroup'])) {
+            $request->setNetworkEndpointGroup($optionalArgs['networkEndpointGroup']);
+            $requestParamHeaders['network_endpoint_group'] = $optionalArgs['networkEndpointGroup'];
+        }
+
         if (isset($optionalArgs['orderBy'])) {
             $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {

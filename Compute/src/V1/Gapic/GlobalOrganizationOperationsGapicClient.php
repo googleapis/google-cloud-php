@@ -48,8 +48,7 @@ use Google\Cloud\Compute\V1\OperationList;
  * ```
  * $globalOrganizationOperationsClient = new GlobalOrganizationOperationsClient();
  * try {
- *     $operation = 'operation';
- *     $response = $globalOrganizationOperationsClient->delete($operation);
+ *     $response = $globalOrganizationOperationsClient->delete();
  * } finally {
  *     $globalOrganizationOperationsClient->close();
  * }
@@ -183,17 +182,17 @@ class GlobalOrganizationOperationsGapicClient
      * ```
      * $globalOrganizationOperationsClient = new GlobalOrganizationOperationsClient();
      * try {
-     *     $operation = 'operation';
-     *     $response = $globalOrganizationOperationsClient->delete($operation);
+     *     $response = $globalOrganizationOperationsClient->delete();
      * } finally {
      *     $globalOrganizationOperationsClient->close();
      * }
      * ```
      *
-     * @param string $operation    Name of the Operations resource to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $operation
+     *           Name of the Operations resource to delete.
      *     @type string $parentId
      *           Parent ID for this request.
      *     @type RetrySettings|array $retrySettings
@@ -206,12 +205,15 @@ class GlobalOrganizationOperationsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($operation, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteGlobalOrganizationOperationRequest();
         $requestParamHeaders = [];
-        $request->setOperation($operation);
-        $requestParamHeaders['operation'] = $operation;
+        if (isset($optionalArgs['operation'])) {
+            $request->setOperation($optionalArgs['operation']);
+            $requestParamHeaders['operation'] = $optionalArgs['operation'];
+        }
+
         if (isset($optionalArgs['parentId'])) {
             $request->setParentId($optionalArgs['parentId']);
         }
@@ -228,17 +230,17 @@ class GlobalOrganizationOperationsGapicClient
      * ```
      * $globalOrganizationOperationsClient = new GlobalOrganizationOperationsClient();
      * try {
-     *     $operation = 'operation';
-     *     $response = $globalOrganizationOperationsClient->get($operation);
+     *     $response = $globalOrganizationOperationsClient->get();
      * } finally {
      *     $globalOrganizationOperationsClient->close();
      * }
      * ```
      *
-     * @param string $operation    Name of the Operations resource to return.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $operation
+     *           Name of the Operations resource to return.
      *     @type string $parentId
      *           Parent ID for this request.
      *     @type RetrySettings|array $retrySettings
@@ -251,12 +253,15 @@ class GlobalOrganizationOperationsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($operation, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetGlobalOrganizationOperationRequest();
         $requestParamHeaders = [];
-        $request->setOperation($operation);
-        $requestParamHeaders['operation'] = $operation;
+        if (isset($optionalArgs['operation'])) {
+            $request->setOperation($optionalArgs['operation']);
+            $requestParamHeaders['operation'] = $optionalArgs['operation'];
+        }
+
         if (isset($optionalArgs['parentId'])) {
             $request->setParentId($optionalArgs['parentId']);
         }

@@ -36,19 +36,19 @@ use Google\Cloud\Dialogflow\V2\Message;
  * `create_time_epoch_microseconds >
  * [first item's create_time of previous request]` and empty page_token.
  *
- * @param string $formattedParent The name of the conversation to list messages for.
- *                                Format: `projects/<Project ID>/locations/<Location
- *                                ID>/conversations/<Conversation ID>`
- *                                Please see {@see ConversationsClient::conversationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_messages_sample(string $formattedParent): void
+function list_messages_sample(): void
 {
     // Create a client.
     $conversationsClient = new ConversationsClient();
 
     // Prepare the request message.
-    $request = (new ListMessagesRequest())
-        ->setParent($formattedParent);
+    $request = new ListMessagesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,21 +62,5 @@ function list_messages_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ConversationsClient::conversationName('[PROJECT]', '[CONVERSATION]');
-
-    list_messages_sample($formattedParent);
 }
 // [END dialogflow_v2_generated_Conversations_ListMessages_sync]

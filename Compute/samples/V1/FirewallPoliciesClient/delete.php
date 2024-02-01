@@ -31,9 +31,13 @@ use Google\Rpc\Status;
 /**
  * Deletes the specified policy.
  *
- * @param string $firewallPolicy Name of the firewall policy to delete.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_sample(string $firewallPolicy): void
+function delete_sample(): void
 {
     // Create a client.
     $firewallPoliciesClient = new FirewallPoliciesClient();
@@ -41,7 +45,7 @@ function delete_sample(string $firewallPolicy): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $firewallPoliciesClient->delete($firewallPolicy);
+        $response = $firewallPoliciesClient->delete();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -54,21 +58,5 @@ function delete_sample(string $firewallPolicy): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $firewallPolicy = '[FIREWALL_POLICY]';
-
-    delete_sample($firewallPolicy);
 }
 // [END compute_v1_generated_FirewallPolicies_Delete_sync]

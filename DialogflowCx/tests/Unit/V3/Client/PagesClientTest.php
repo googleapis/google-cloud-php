@@ -87,12 +87,7 @@ class PagesClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
-        $page = new Page();
-        $pageDisplayName = 'pageDisplayName-1368703906';
-        $page->setDisplayName($pageDisplayName);
-        $request = (new CreatePageRequest())->setParent($formattedParent)->setPage($page);
+        $request = new CreatePageRequest();
         $response = $gapicClient->createPage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -100,10 +95,6 @@ class PagesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Pages/CreatePage', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getPage();
-        $this->assertProtobufEquals($page, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -128,12 +119,7 @@ class PagesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
-        $page = new Page();
-        $pageDisplayName = 'pageDisplayName-1368703906';
-        $page->setDisplayName($pageDisplayName);
-        $request = (new CreatePageRequest())->setParent($formattedParent)->setPage($page);
+        $request = new CreatePageRequest();
         try {
             $gapicClient->createPage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -158,17 +144,13 @@ class PagesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->pageName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]', '[PAGE]');
-        $request = (new DeletePageRequest())->setName($formattedName);
+        $request = new DeletePageRequest();
         $gapicClient->deletePage($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Pages/DeletePage', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -193,9 +175,7 @@ class PagesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->pageName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]', '[PAGE]');
-        $request = (new DeletePageRequest())->setName($formattedName);
+        $request = new DeletePageRequest();
         try {
             $gapicClient->deletePage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -224,9 +204,7 @@ class PagesClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->pageName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]', '[PAGE]');
-        $request = (new GetPageRequest())->setName($formattedName);
+        $request = new GetPageRequest();
         $response = $gapicClient->getPage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -234,8 +212,6 @@ class PagesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Pages/GetPage', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -260,9 +236,7 @@ class PagesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->pageName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]', '[PAGE]');
-        $request = (new GetPageRequest())->setName($formattedName);
+        $request = new GetPageRequest();
         try {
             $gapicClient->getPage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -292,9 +266,7 @@ class PagesClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPages($pages);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
-        $request = (new ListPagesRequest())->setParent($formattedParent);
+        $request = new ListPagesRequest();
         $response = $gapicClient->listPages($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -305,8 +277,6 @@ class PagesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Pages/ListPages', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -331,9 +301,7 @@ class PagesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
-        $request = (new ListPagesRequest())->setParent($formattedParent);
+        $request = new ListPagesRequest();
         try {
             $gapicClient->listPages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -362,11 +330,7 @@ class PagesClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $page = new Page();
-        $pageDisplayName = 'pageDisplayName-1368703906';
-        $page->setDisplayName($pageDisplayName);
-        $request = (new UpdatePageRequest())->setPage($page);
+        $request = new UpdatePageRequest();
         $response = $gapicClient->updatePage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -374,8 +338,6 @@ class PagesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Pages/UpdatePage', $actualFuncCall);
-        $actualValue = $actualRequestObject->getPage();
-        $this->assertProtobufEquals($page, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -400,11 +362,7 @@ class PagesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $page = new Page();
-        $pageDisplayName = 'pageDisplayName-1368703906';
-        $page->setDisplayName($pageDisplayName);
-        $request = (new UpdatePageRequest())->setPage($page);
+        $request = new UpdatePageRequest();
         try {
             $gapicClient->updatePage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -561,12 +519,7 @@ class PagesClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
-        $page = new Page();
-        $pageDisplayName = 'pageDisplayName-1368703906';
-        $page->setDisplayName($pageDisplayName);
-        $request = (new CreatePageRequest())->setParent($formattedParent)->setPage($page);
+        $request = new CreatePageRequest();
         $response = $gapicClient->createPageAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -574,10 +527,6 @@ class PagesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Pages/CreatePage', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getPage();
-        $this->assertProtobufEquals($page, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

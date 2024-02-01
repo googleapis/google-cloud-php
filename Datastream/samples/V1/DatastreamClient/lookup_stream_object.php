@@ -26,25 +26,24 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Datastream\V1\Client\DatastreamClient;
 use Google\Cloud\Datastream\V1\LookupStreamObjectRequest;
-use Google\Cloud\Datastream\V1\SourceObjectIdentifier;
 use Google\Cloud\Datastream\V1\StreamObject;
 
 /**
  * Use this method to look up a stream object by its source object identifier.
  *
- * @param string $formattedParent The parent stream that owns the collection of objects. Please see
- *                                {@see DatastreamClient::streamName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function lookup_stream_object_sample(string $formattedParent): void
+function lookup_stream_object_sample(): void
 {
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
     // Prepare the request message.
-    $sourceObjectIdentifier = new SourceObjectIdentifier();
-    $request = (new LookupStreamObjectRequest())
-        ->setParent($formattedParent)
-        ->setSourceObjectIdentifier($sourceObjectIdentifier);
+    $request = new LookupStreamObjectRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +53,5 @@ function lookup_stream_object_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DatastreamClient::streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
-
-    lookup_stream_object_sample($formattedParent);
 }
 // [END datastream_v1_generated_Datastream_LookupStreamObject_sync]

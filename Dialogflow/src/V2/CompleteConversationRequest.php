@@ -28,8 +28,7 @@ class CompleteConversationRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Resource identifier of the conversation to close.
      *                     Format: `projects/<Project ID>/locations/<Location
-     *                     ID>/conversations/<Conversation ID>`. Please see
-     *                     {@see ConversationsClient::conversationName()} for help formatting this field.
+     *                     ID>/conversations/<Conversation ID>`.
      *
      * @return \Google\Cloud\Dialogflow\V2\CompleteConversationRequest
      *

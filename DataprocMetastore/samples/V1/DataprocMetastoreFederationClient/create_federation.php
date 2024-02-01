@@ -33,29 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a metastore federation in a project and location.
  *
- * @param string $formattedParent The relative resource name of the location in which to create a
- *                                federation service, in the following form:
- *
- *                                `projects/{project_number}/locations/{location_id}`. Please see
- *                                {@see DataprocMetastoreFederationClient::locationName()} for help formatting this field.
- * @param string $federationId    The ID of the metastore federation, which is used as the final
- *                                component of the metastore federation's name.
- *
- *                                This value must be between 2 and 63 characters long inclusive, begin with a
- *                                letter, end with a letter or number, and consist of alpha-numeric
- *                                ASCII characters or hyphens.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_federation_sample(string $formattedParent, string $federationId): void
+function create_federation_sample(): void
 {
     // Create a client.
     $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
 
     // Prepare the request message.
-    $federation = new Federation();
-    $request = (new CreateFederationRequest())
-        ->setParent($formattedParent)
-        ->setFederationId($federationId)
-        ->setFederation($federation);
+    $request = new CreateFederationRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -75,22 +65,5 @@ function create_federation_sample(string $formattedParent, string $federationId)
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataprocMetastoreFederationClient::locationName('[PROJECT]', '[LOCATION]');
-    $federationId = '[FEDERATION_ID]';
-
-    create_federation_sample($formattedParent, $federationId);
 }
 // [END metastore_v1_generated_DataprocMetastoreFederation_CreateFederation_sync]

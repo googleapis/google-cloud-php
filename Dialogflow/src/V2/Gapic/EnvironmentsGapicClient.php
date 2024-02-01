@@ -59,10 +59,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $environmentsClient = new EnvironmentsClient();
  * try {
- *     $formattedParent = $environmentsClient->agentName('[PROJECT]');
- *     $environment = new Environment();
- *     $environmentId = 'environment_id';
- *     $response = $environmentsClient->createEnvironment($formattedParent, $environment, $environmentId);
+ *     $response = $environmentsClient->createEnvironment();
  * } finally {
  *     $environmentsClient->close();
  * }
@@ -598,25 +595,25 @@ class EnvironmentsGapicClient
      * ```
      * $environmentsClient = new EnvironmentsClient();
      * try {
-     *     $formattedParent = $environmentsClient->agentName('[PROJECT]');
-     *     $environment = new Environment();
-     *     $environmentId = 'environment_id';
-     *     $response = $environmentsClient->createEnvironment($formattedParent, $environment, $environmentId);
+     *     $response = $environmentsClient->createEnvironment();
      * } finally {
      *     $environmentsClient->close();
      * }
      * ```
      *
-     * @param string      $parent        Required. The agent to create an environment for.
-     *                                   Supported formats:
-     *
-     *                                   - `projects/<Project ID>/agent`
-     *                                   - `projects/<Project ID>/locations/<Location ID>/agent`
-     * @param Environment $environment   Required. The environment to create.
-     * @param string      $environmentId Required. The unique id of the new environment.
-     * @param array       $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The agent to create an environment for.
+     *           Supported formats:
+     *
+     *           - `projects/<Project ID>/agent`
+     *           - `projects/<Project ID>/locations/<Location ID>/agent`
+     *     @type Environment $environment
+     *           Required. The environment to create.
+     *     @type string $environmentId
+     *           Required. The unique id of the new environment.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -627,14 +624,23 @@ class EnvironmentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createEnvironment($parent, $environment, $environmentId, array $optionalArgs = [])
+    public function createEnvironment(array $optionalArgs = [])
     {
         $request = new CreateEnvironmentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setEnvironment($environment);
-        $request->setEnvironmentId($environmentId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['environment'])) {
+            $request->setEnvironment($optionalArgs['environment']);
+        }
+
+        if (isset($optionalArgs['environmentId'])) {
+            $request->setEnvironmentId($optionalArgs['environmentId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateEnvironment', Environment::class, $optionalArgs, $request)->wait();
@@ -647,24 +653,24 @@ class EnvironmentsGapicClient
      * ```
      * $environmentsClient = new EnvironmentsClient();
      * try {
-     *     $formattedName = $environmentsClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
-     *     $environmentsClient->deleteEnvironment($formattedName);
+     *     $environmentsClient->deleteEnvironment();
      * } finally {
      *     $environmentsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the environment to delete.
-     *                             / Format:
-     *
-     *                             - `projects/<Project ID>/agent/environments/<Environment ID>`
-     *                             - `projects/<Project ID>/locations/<Location
-     *                             ID>/agent/environments/<Environment ID>`
-     *
-     *                             The environment ID for the default environment is `-`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the environment to delete.
+     *           / Format:
+     *
+     *           - `projects/<Project ID>/agent/environments/<Environment ID>`
+     *           - `projects/<Project ID>/locations/<Location
+     *           ID>/agent/environments/<Environment ID>`
+     *
+     *           The environment ID for the default environment is `-`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -673,12 +679,15 @@ class EnvironmentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteEnvironment($name, array $optionalArgs = [])
+    public function deleteEnvironment(array $optionalArgs = [])
     {
         $request = new DeleteEnvironmentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteEnvironment', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -691,24 +700,24 @@ class EnvironmentsGapicClient
      * ```
      * $environmentsClient = new EnvironmentsClient();
      * try {
-     *     $formattedName = $environmentsClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
-     *     $response = $environmentsClient->getEnvironment($formattedName);
+     *     $response = $environmentsClient->getEnvironment();
      * } finally {
      *     $environmentsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the environment.
-     *                             Supported formats:
-     *
-     *                             - `projects/<Project ID>/agent/environments/<Environment ID>`
-     *                             - `projects/<Project ID>/locations/<Location
-     *                             ID>/agent/environments/<Environment ID>`
-     *
-     *                             The environment ID for the default environment is `-`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the environment.
+     *           Supported formats:
+     *
+     *           - `projects/<Project ID>/agent/environments/<Environment ID>`
+     *           - `projects/<Project ID>/locations/<Location
+     *           ID>/agent/environments/<Environment ID>`
+     *
+     *           The environment ID for the default environment is `-`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -719,12 +728,15 @@ class EnvironmentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEnvironment($name, array $optionalArgs = [])
+    public function getEnvironment(array $optionalArgs = [])
     {
         $request = new GetEnvironmentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetEnvironment', Environment::class, $optionalArgs, $request)->wait();
@@ -737,9 +749,8 @@ class EnvironmentsGapicClient
      * ```
      * $environmentsClient = new EnvironmentsClient();
      * try {
-     *     $formattedParent = $environmentsClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $environmentsClient->getEnvironmentHistory($formattedParent);
+     *     $pagedResponse = $environmentsClient->getEnvironmentHistory();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -747,7 +758,7 @@ class EnvironmentsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $environmentsClient->getEnvironmentHistory($formattedParent);
+     *     $pagedResponse = $environmentsClient->getEnvironmentHistory();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -756,17 +767,18 @@ class EnvironmentsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the environment to retrieve history for.
-     *                             Supported formats:
-     *
-     *                             - `projects/<Project ID>/agent/environments/<Environment ID>`
-     *                             - `projects/<Project ID>/locations/<Location
-     *                             ID>/agent/environments/<Environment ID>`
-     *
-     *                             The environment ID for the default environment is `-`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the environment to retrieve history for.
+     *           Supported formats:
+     *
+     *           - `projects/<Project ID>/agent/environments/<Environment ID>`
+     *           - `projects/<Project ID>/locations/<Location
+     *           ID>/agent/environments/<Environment ID>`
+     *
+     *           The environment ID for the default environment is `-`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -786,12 +798,15 @@ class EnvironmentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEnvironmentHistory($parent, array $optionalArgs = [])
+    public function getEnvironmentHistory(array $optionalArgs = [])
     {
         $request = new GetEnvironmentHistoryRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -812,9 +827,8 @@ class EnvironmentsGapicClient
      * ```
      * $environmentsClient = new EnvironmentsClient();
      * try {
-     *     $formattedParent = $environmentsClient->agentName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $environmentsClient->listEnvironments($formattedParent);
+     *     $pagedResponse = $environmentsClient->listEnvironments();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -822,7 +836,7 @@ class EnvironmentsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $environmentsClient->listEnvironments($formattedParent);
+     *     $pagedResponse = $environmentsClient->listEnvironments();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -831,14 +845,15 @@ class EnvironmentsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The agent to list all environments from.
-     *                             Format:
-     *
-     *                             - `projects/<Project ID>/agent`
-     *                             - `projects/<Project ID>/locations/<Location ID>/agent`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The agent to list all environments from.
+     *           Format:
+     *
+     *           - `projects/<Project ID>/agent`
+     *           - `projects/<Project ID>/locations/<Location ID>/agent`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -858,12 +873,15 @@ class EnvironmentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listEnvironments($parent, array $optionalArgs = [])
+    public function listEnvironments(array $optionalArgs = [])
     {
         $request = new ListEnvironmentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -895,19 +913,19 @@ class EnvironmentsGapicClient
      * ```
      * $environmentsClient = new EnvironmentsClient();
      * try {
-     *     $environment = new Environment();
-     *     $updateMask = new FieldMask();
-     *     $response = $environmentsClient->updateEnvironment($environment, $updateMask);
+     *     $response = $environmentsClient->updateEnvironment();
      * } finally {
      *     $environmentsClient->close();
      * }
      * ```
      *
-     * @param Environment $environment  Required. The environment to update.
-     * @param FieldMask   $updateMask   Required. The mask to control which fields get updated.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Environment $environment
+     *           Required. The environment to update.
+     *     @type FieldMask $updateMask
+     *           Required. The mask to control which fields get updated.
      *     @type bool $allowLoadToDraftAndDiscardChanges
      *           Optional. This field is used to prevent accidental overwrite of the default
      *           environment, which is an operation that cannot be undone. To confirm that
@@ -923,13 +941,18 @@ class EnvironmentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateEnvironment($environment, $updateMask, array $optionalArgs = [])
+    public function updateEnvironment(array $optionalArgs = [])
     {
         $request = new UpdateEnvironmentRequest();
         $requestParamHeaders = [];
-        $request->setEnvironment($environment);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['environment.name'] = $environment->getName();
+        if (isset($optionalArgs['environment'])) {
+            $request->setEnvironment($optionalArgs['environment']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         if (isset($optionalArgs['allowLoadToDraftAndDiscardChanges'])) {
             $request->setAllowLoadToDraftAndDiscardChanges($optionalArgs['allowLoadToDraftAndDiscardChanges']);
         }

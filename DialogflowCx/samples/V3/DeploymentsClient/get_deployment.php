@@ -32,20 +32,19 @@ use Google\Cloud\Dialogflow\Cx\V3\GetDeploymentRequest;
  * Retrieves the specified
  * [Deployment][google.cloud.dialogflow.cx.v3.Deployment].
  *
- * @param string $formattedName The name of the
- *                              [Deployment][google.cloud.dialogflow.cx.v3.Deployment]. Format:
- *                              `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/environments/<Environment ID>/deployments/<Deployment ID>`. Please see
- *                              {@see DeploymentsClient::deploymentName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_deployment_sample(string $formattedName): void
+function get_deployment_sample(): void
 {
     // Create a client.
     $deploymentsClient = new DeploymentsClient();
 
     // Prepare the request message.
-    $request = (new GetDeploymentRequest())
-        ->setName($formattedName);
+    $request = new GetDeploymentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,27 +54,5 @@ function get_deployment_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DeploymentsClient::deploymentName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AGENT]',
-        '[ENVIRONMENT]',
-        '[DEPLOYMENT]'
-    );
-
-    get_deployment_sample($formattedName);
 }
 // [END dialogflow_v3_generated_Deployments_GetDeployment_sync]

@@ -45,8 +45,7 @@ class IngestConversationsRequest extends \Google\Protobuf\Internal\Message
     protected $object_config;
 
     /**
-     * @param string $parent Required. The parent resource for new conversations. Please see
-     *                       {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent resource for new conversations.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest
      *

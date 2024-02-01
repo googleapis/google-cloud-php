@@ -33,8 +33,7 @@ class BatchDeleteEntityTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string   $parent          Required. The name of the agent to delete all entities types for. Format:
-     *                                  `projects/<Project ID>/agent`. Please see
-     *                                  {@see EntityTypesClient::agentName()} for help formatting this field.
+     *                                  `projects/<Project ID>/agent`.
      * @param string[] $entityTypeNames Required. The names entity types to delete. All names must point to the
      *                                  same agent as `parent`.
      *

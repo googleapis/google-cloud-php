@@ -26,40 +26,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Compute\V1\NodeTemplatesClient;
 use Google\Cloud\Compute\V1\Policy;
-use Google\Cloud\Compute\V1\RegionSetPolicyRequest;
 
 /**
  * Sets the access control policy on the specified resource. Replaces any existing policy.
- *
- * @param string $project  Project ID for this request.
- * @param string $region   The name of the region for this request.
- * @param string $resource Name or id of the resource for this request.
- */
-function set_iam_policy_sample(string $project, string $region, string $resource): void
-{
-    // Create a client.
-    $nodeTemplatesClient = new NodeTemplatesClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var Policy $response */
-        $response = $nodeTemplatesClient->setIamPolicy(
-            $project,
-            $region,
-            $regionSetPolicyRequestResource,
-            $resource
-        );
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -67,12 +36,18 @@ function set_iam_policy_sample(string $project, string $region, string $resource
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function set_iam_policy_sample(): void
 {
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-    $resource = '[RESOURCE]';
+    // Create a client.
+    $nodeTemplatesClient = new NodeTemplatesClient();
 
-    set_iam_policy_sample($project, $region, $resource);
+    // Call the API and handle any network failures.
+    try {
+        /** @var Policy $response */
+        $response = $nodeTemplatesClient->setIamPolicy();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END compute_v1_generated_NodeTemplates_SetIamPolicy_sync]

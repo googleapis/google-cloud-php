@@ -49,8 +49,7 @@ class GetTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Message
      *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
      *                     ID>/flows/<Flow ID>/transitionRouteGroups/<Transition Route Group ID>`
      *                     or `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/transitionRouteGroups/<Transition Route Group ID>`. Please see
-     *                     {@see TransitionRouteGroupsClient::transitionRouteGroupName()} for help formatting this field.
+     *                     ID>/transitionRouteGroups/<Transition Route Group ID>`.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetTransitionRouteGroupRequest
      *

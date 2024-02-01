@@ -34,8 +34,7 @@ class GetFlowValidationResultRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The flow name.
      *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/flows/<Flow ID>/validationResult`. Please see
-     *                     {@see FlowsClient::flowValidationResultName()} for help formatting this field.
+     *                     ID>/flows/<Flow ID>/validationResult`.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetFlowValidationResultRequest
      *

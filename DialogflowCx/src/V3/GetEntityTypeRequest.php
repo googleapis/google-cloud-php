@@ -43,8 +43,7 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the entity type.
      *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/entityTypes/<Entity Type ID>`. Please see
-     *                     {@see EntityTypesClient::entityTypeName()} for help formatting this field.
+     *                     ID>/entityTypes/<Entity Type ID>`.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetEntityTypeRequest
      *

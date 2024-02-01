@@ -62,8 +62,7 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                   $parent             Required. The parent collection in which the `DeliveryPipeline` should be
      *                                                                     created. Format should be
-     *                                                                     `projects/{project_id}/locations/{location_name}`. Please see
-     *                                                                     {@see CloudDeployClient::locationName()} for help formatting this field.
+     *                                                                     `projects/{project_id}/locations/{location_name}`.
      * @param \Google\Cloud\Deploy\V1\DeliveryPipeline $deliveryPipeline   Required. The `DeliveryPipeline` to create.
      * @param string                                   $deliveryPipelineId Required. ID of the `DeliveryPipeline`.
      *

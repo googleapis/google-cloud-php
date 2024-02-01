@@ -42,24 +42,19 @@ use Google\Rpc\Status;
  * [CreateVersionOperationMetadata][google.cloud.dialogflow.cx.v3.CreateVersionOperationMetadata]
  * - `response`: [Version][google.cloud.dialogflow.cx.v3.Version]
  *
- * @param string $formattedParent    The [Flow][google.cloud.dialogflow.cx.v3.Flow] to create an
- *                                   [Version][google.cloud.dialogflow.cx.v3.Version] for. Format:
- *                                   `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                                   ID>/flows/<Flow ID>`. Please see
- *                                   {@see VersionsClient::flowName()} for help formatting this field.
- * @param string $versionDisplayName The human-readable name of the version. Limit of 64 characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_version_sample(string $formattedParent, string $versionDisplayName): void
+function create_version_sample(): void
 {
     // Create a client.
     $versionsClient = new VersionsClient();
 
     // Prepare the request message.
-    $version = (new Version())
-        ->setDisplayName($versionDisplayName);
-    $request = (new CreateVersionRequest())
-        ->setParent($formattedParent)
-        ->setVersion($version);
+    $request = new CreateVersionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -79,22 +74,5 @@ function create_version_sample(string $formattedParent, string $versionDisplayNa
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = VersionsClient::flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
-    $versionDisplayName = '[DISPLAY_NAME]';
-
-    create_version_sample($formattedParent, $versionDisplayName);
 }
 // [END dialogflow_v3_generated_Versions_CreateVersion_sync]

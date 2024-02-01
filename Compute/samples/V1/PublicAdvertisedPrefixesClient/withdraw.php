@@ -31,10 +31,13 @@ use Google\Rpc\Status;
 /**
  * Withdraws the specified PublicAdvertisedPrefix
  *
- * @param string $project                Project ID for this request.
- * @param string $publicAdvertisedPrefix The name of the public advertised prefix. It should comply with RFC1035.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function withdraw_sample(string $project, string $publicAdvertisedPrefix): void
+function withdraw_sample(): void
 {
     // Create a client.
     $publicAdvertisedPrefixesClient = new PublicAdvertisedPrefixesClient();
@@ -42,7 +45,7 @@ function withdraw_sample(string $project, string $publicAdvertisedPrefix): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $publicAdvertisedPrefixesClient->withdraw($project, $publicAdvertisedPrefix);
+        $response = $publicAdvertisedPrefixesClient->withdraw();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -55,22 +58,5 @@ function withdraw_sample(string $project, string $publicAdvertisedPrefix): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $publicAdvertisedPrefix = '[PUBLIC_ADVERTISED_PREFIX]';
-
-    withdraw_sample($project, $publicAdvertisedPrefix);
 }
 // [END compute_v1_generated_PublicAdvertisedPrefixes_Withdraw_sync]

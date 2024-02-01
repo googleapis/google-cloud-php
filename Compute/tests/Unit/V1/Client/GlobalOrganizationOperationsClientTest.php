@@ -75,10 +75,7 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DeleteGlobalOrganizationOperationResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $operation = 'operation1662702951';
-        $request = (new DeleteGlobalOrganizationOperationRequest())
-            ->setOperation($operation);
+        $request = new DeleteGlobalOrganizationOperationRequest();
         $response = $gapicClient->delete($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -86,8 +83,6 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.GlobalOrganizationOperations/Delete', $actualFuncCall);
-        $actualValue = $actualRequestObject->getOperation();
-        $this->assertProtobufEquals($operation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -109,10 +104,7 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $operation = 'operation1662702951';
-        $request = (new DeleteGlobalOrganizationOperationRequest())
-            ->setOperation($operation);
+        $request = new DeleteGlobalOrganizationOperationRequest();
         try {
             $gapicClient->delete($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -179,10 +171,7 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $operation = 'operation1662702951';
-        $request = (new GetGlobalOrganizationOperationRequest())
-            ->setOperation($operation);
+        $request = new GetGlobalOrganizationOperationRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -190,8 +179,6 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.GlobalOrganizationOperations/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getOperation();
-        $this->assertProtobufEquals($operation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -213,10 +200,7 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $operation = 'operation1662702951';
-        $request = (new GetGlobalOrganizationOperationRequest())
-            ->setOperation($operation);
+        $request = new GetGlobalOrganizationOperationRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -311,10 +295,7 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DeleteGlobalOrganizationOperationResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $operation = 'operation1662702951';
-        $request = (new DeleteGlobalOrganizationOperationRequest())
-            ->setOperation($operation);
+        $request = new DeleteGlobalOrganizationOperationRequest();
         $response = $gapicClient->deleteAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -322,8 +303,6 @@ class GlobalOrganizationOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.GlobalOrganizationOperations/Delete', $actualFuncCall);
-        $actualValue = $actualRequestObject->getOperation();
-        $this->assertProtobufEquals($operation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

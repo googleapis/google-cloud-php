@@ -29,7 +29,6 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\Document;
 use Google\Cloud\Dialogflow\V2\DocumentsClient;
-use Google\Cloud\Dialogflow\V2\ImportDocumentTemplate;
 use Google\Cloud\Dialogflow\V2\ImportDocumentsResponse;
 use Google\Cloud\Dialogflow\V2\ListDocumentsResponse;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -108,16 +107,7 @@ class DocumentsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-        $document = new Document();
-        $documentDisplayName = 'documentDisplayName-59212206';
-        $document->setDisplayName($documentDisplayName);
-        $documentMimeType = 'documentMimeType1242814409';
-        $document->setMimeType($documentMimeType);
-        $documentKnowledgeTypes = [];
-        $document->setKnowledgeTypes($documentKnowledgeTypes);
-        $response = $gapicClient->createDocument($formattedParent, $document);
+        $response = $gapicClient->createDocument();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -127,10 +117,6 @@ class DocumentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Documents/CreateDocument', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createDocumentTest');
         $response->pollUntilComplete([
@@ -181,16 +167,7 @@ class DocumentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-        $document = new Document();
-        $documentDisplayName = 'documentDisplayName-59212206';
-        $document->setDisplayName($documentDisplayName);
-        $documentMimeType = 'documentMimeType1242814409';
-        $document->setMimeType($documentMimeType);
-        $documentKnowledgeTypes = [];
-        $document->setKnowledgeTypes($documentKnowledgeTypes);
-        $response = $gapicClient->createDocument($formattedParent, $document);
+        $response = $gapicClient->createDocument();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -241,9 +218,7 @@ class DocumentsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-        $response = $gapicClient->deleteDocument($formattedName);
+        $response = $gapicClient->deleteDocument();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -253,8 +228,6 @@ class DocumentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Documents/DeleteDocument', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteDocumentTest');
         $response->pollUntilComplete([
@@ -305,9 +278,7 @@ class DocumentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-        $response = $gapicClient->deleteDocument($formattedName);
+        $response = $gapicClient->deleteDocument();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -368,9 +339,7 @@ class DocumentsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-        $response = $gapicClient->exportDocument($formattedName);
+        $response = $gapicClient->exportDocument();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -380,8 +349,6 @@ class DocumentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Documents/ExportDocument', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportDocumentTest');
         $response->pollUntilComplete([
@@ -432,9 +399,7 @@ class DocumentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-        $response = $gapicClient->exportDocument($formattedName);
+        $response = $gapicClient->exportDocument();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -477,17 +442,13 @@ class DocumentsClientTest extends GeneratedTest
         $expectedResponse->setContentUri($contentUri);
         $expectedResponse->setEnableAutoReload($enableAutoReload);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-        $response = $gapicClient->getDocument($formattedName);
+        $response = $gapicClient->getDocument();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Documents/GetDocument', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -509,10 +470,8 @@ class DocumentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
         try {
-            $gapicClient->getDocument($formattedName);
+            $gapicClient->getDocument();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -553,14 +512,7 @@ class DocumentsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-        $documentTemplate = new ImportDocumentTemplate();
-        $documentTemplateMimeType = 'documentTemplateMimeType-1300921501';
-        $documentTemplate->setMimeType($documentTemplateMimeType);
-        $documentTemplateKnowledgeTypes = [];
-        $documentTemplate->setKnowledgeTypes($documentTemplateKnowledgeTypes);
-        $response = $gapicClient->importDocuments($formattedParent, $documentTemplate);
+        $response = $gapicClient->importDocuments();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -570,10 +522,6 @@ class DocumentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Documents/ImportDocuments', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getDocumentTemplate();
-        $this->assertProtobufEquals($documentTemplate, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importDocumentsTest');
         $response->pollUntilComplete([
@@ -624,14 +572,7 @@ class DocumentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-        $documentTemplate = new ImportDocumentTemplate();
-        $documentTemplateMimeType = 'documentTemplateMimeType-1300921501';
-        $documentTemplate->setMimeType($documentTemplateMimeType);
-        $documentTemplateKnowledgeTypes = [];
-        $documentTemplate->setKnowledgeTypes($documentTemplateKnowledgeTypes);
-        $response = $gapicClient->importDocuments($formattedParent, $documentTemplate);
+        $response = $gapicClient->importDocuments();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -671,9 +612,7 @@ class DocumentsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDocuments($documents);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-        $response = $gapicClient->listDocuments($formattedParent);
+        $response = $gapicClient->listDocuments();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -683,8 +622,6 @@ class DocumentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Documents/ListDocuments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -706,10 +643,8 @@ class DocumentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
         try {
-            $gapicClient->listDocuments($formattedParent);
+            $gapicClient->listDocuments();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -760,9 +695,7 @@ class DocumentsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-        $response = $gapicClient->reloadDocument($formattedName);
+        $response = $gapicClient->reloadDocument();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -772,8 +705,6 @@ class DocumentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Documents/ReloadDocument', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/reloadDocumentTest');
         $response->pollUntilComplete([
@@ -824,9 +755,7 @@ class DocumentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-        $response = $gapicClient->reloadDocument($formattedName);
+        $response = $gapicClient->reloadDocument();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -887,15 +816,7 @@ class DocumentsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $document = new Document();
-        $documentDisplayName = 'documentDisplayName-59212206';
-        $document->setDisplayName($documentDisplayName);
-        $documentMimeType = 'documentMimeType1242814409';
-        $document->setMimeType($documentMimeType);
-        $documentKnowledgeTypes = [];
-        $document->setKnowledgeTypes($documentKnowledgeTypes);
-        $response = $gapicClient->updateDocument($document);
+        $response = $gapicClient->updateDocument();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -905,8 +826,6 @@ class DocumentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Documents/UpdateDocument', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateDocumentTest');
         $response->pollUntilComplete([
@@ -957,15 +876,7 @@ class DocumentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $document = new Document();
-        $documentDisplayName = 'documentDisplayName-59212206';
-        $document->setDisplayName($documentDisplayName);
-        $documentMimeType = 'documentMimeType1242814409';
-        $document->setMimeType($documentMimeType);
-        $documentKnowledgeTypes = [];
-        $document->setKnowledgeTypes($documentKnowledgeTypes);
-        $response = $gapicClient->updateDocument($document);
+        $response = $gapicClient->updateDocument();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

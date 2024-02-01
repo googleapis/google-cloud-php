@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START clouddebugger_v2_generated_Controller2_RegisterDebuggee_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Debugger\V2\Client\Controller2Client;
-use Google\Cloud\Debugger\V2\Debuggee;
 use Google\Cloud\Debugger\V2\RegisterDebuggeeRequest;
 use Google\Cloud\Debugger\V2\RegisterDebuggeeResponse;
 
@@ -53,9 +52,7 @@ function register_debuggee_sample(): void
     $controller2Client = new Controller2Client();
 
     // Prepare the request message.
-    $debuggee = new Debuggee();
-    $request = (new RegisterDebuggeeRequest())
-        ->setDebuggee($debuggee);
+    $request = new RegisterDebuggeeRequest();
 
     // Call the API and handle any network failures.
     try {

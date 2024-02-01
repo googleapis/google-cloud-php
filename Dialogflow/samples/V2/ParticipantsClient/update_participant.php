@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\V2\Client\ParticipantsClient;
 use Google\Cloud\Dialogflow\V2\Participant;
 use Google\Cloud\Dialogflow\V2\UpdateParticipantRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates the specified participant.
@@ -44,11 +43,7 @@ function update_participant_sample(): void
     $participantsClient = new ParticipantsClient();
 
     // Prepare the request message.
-    $participant = new Participant();
-    $updateMask = new FieldMask();
-    $request = (new UpdateParticipantRequest())
-        ->setParticipant($participant)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateParticipantRequest();
 
     // Call the API and handle any network failures.
     try {

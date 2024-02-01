@@ -24,8 +24,7 @@ class GetLineageEventRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the lineage event to get. Please see
-     *                     {@see LineageClient::lineageEventName()} for help formatting this field.
+     * @param string $name Required. The name of the lineage event to get.
      *
      * @return \Google\Cloud\DataCatalog\Lineage\V1\GetLineageEventRequest
      *

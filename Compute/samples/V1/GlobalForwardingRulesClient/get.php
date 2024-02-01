@@ -30,10 +30,13 @@ use Google\Cloud\Compute\V1\GlobalForwardingRulesClient;
 /**
  * Returns the specified GlobalForwardingRule resource. Gets a list of available forwarding rules by making a list() request.
  *
- * @param string $forwardingRule Name of the ForwardingRule resource to return.
- * @param string $project        Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_sample(string $forwardingRule, string $project): void
+function get_sample(): void
 {
     // Create a client.
     $globalForwardingRulesClient = new GlobalForwardingRulesClient();
@@ -41,27 +44,10 @@ function get_sample(string $forwardingRule, string $project): void
     // Call the API and handle any network failures.
     try {
         /** @var ForwardingRule $response */
-        $response = $globalForwardingRulesClient->get($forwardingRule, $project);
+        $response = $globalForwardingRulesClient->get();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $forwardingRule = '[FORWARDING_RULE]';
-    $project = '[PROJECT]';
-
-    get_sample($forwardingRule, $project);
 }
 // [END compute_v1_generated_GlobalForwardingRules_Get_sync]

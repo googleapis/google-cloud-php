@@ -25,39 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_BackendServices_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Compute\V1\BackendServicesClient;
-use Google\Cloud\Compute\V1\GlobalSetPolicyRequest;
 use Google\Cloud\Compute\V1\Policy;
 
 /**
  * Sets the access control policy on the specified resource. Replaces any existing policy.
- *
- * @param string $project  Project ID for this request.
- * @param string $resource Name or id of the resource for this request.
- */
-function set_iam_policy_sample(string $project, string $resource): void
-{
-    // Create a client.
-    $backendServicesClient = new BackendServicesClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var Policy $response */
-        $response = $backendServicesClient->setIamPolicy(
-            $globalSetPolicyRequestResource,
-            $project,
-            $resource
-        );
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -65,11 +36,18 @@ function set_iam_policy_sample(string $project, string $resource): void
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function set_iam_policy_sample(): void
 {
-    $project = '[PROJECT]';
-    $resource = '[RESOURCE]';
+    // Create a client.
+    $backendServicesClient = new BackendServicesClient();
 
-    set_iam_policy_sample($project, $resource);
+    // Call the API and handle any network failures.
+    try {
+        /** @var Policy $response */
+        $response = $backendServicesClient->setIamPolicy();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END compute_v1_generated_BackendServices_SetIamPolicy_sync]

@@ -24,7 +24,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouddebugger_v2_generated_Controller2_UpdateActiveBreakpoint_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Debugger\V2\Breakpoint;
 use Google\Cloud\Debugger\V2\Client\Controller2Client;
 use Google\Cloud\Debugger\V2\UpdateActiveBreakpointRequest;
 use Google\Cloud\Debugger\V2\UpdateActiveBreakpointResponse;
@@ -39,18 +38,19 @@ use Google\Cloud\Debugger\V2\UpdateActiveBreakpointResponse;
  * semantics. These may only make changes such as canonicalizing a value
  * or snapping the location to the correct line of code.
  *
- * @param string $debuggeeId Identifies the debuggee being debugged.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_active_breakpoint_sample(string $debuggeeId): void
+function update_active_breakpoint_sample(): void
 {
     // Create a client.
     $controller2Client = new Controller2Client();
 
     // Prepare the request message.
-    $breakpoint = new Breakpoint();
-    $request = (new UpdateActiveBreakpointRequest())
-        ->setDebuggeeId($debuggeeId)
-        ->setBreakpoint($breakpoint);
+    $request = new UpdateActiveBreakpointRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +60,5 @@ function update_active_breakpoint_sample(string $debuggeeId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $debuggeeId = '[DEBUGGEE_ID]';
-
-    update_active_breakpoint_sample($debuggeeId);
 }
 // [END clouddebugger_v2_generated_Controller2_UpdateActiveBreakpoint_sync]

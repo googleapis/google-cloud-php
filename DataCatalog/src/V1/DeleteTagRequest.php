@@ -24,8 +24,7 @@ class DeleteTagRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the tag to delete. Please see
-     *                     {@see DataCatalogClient::entryName()} for help formatting this field.
+     * @param string $name Required. The name of the tag to delete.
      *
      * @return \Google\Cloud\DataCatalog\V1\DeleteTagRequest
      *

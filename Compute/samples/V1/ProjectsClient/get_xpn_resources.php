@@ -30,9 +30,13 @@ use Google\Cloud\Compute\V1\ProjectsClient;
 /**
  * Gets service resources (a.k.a service project) associated with this host project.
  *
- * @param string $project Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_xpn_resources_sample(string $project): void
+function get_xpn_resources_sample(): void
 {
     // Create a client.
     $projectsClient = new ProjectsClient();
@@ -40,7 +44,7 @@ function get_xpn_resources_sample(string $project): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $projectsClient->getXpnResources($project);
+        $response = $projectsClient->getXpnResources();
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -48,21 +52,5 @@ function get_xpn_resources_sample(string $project): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-
-    get_xpn_resources_sample($project);
 }
 // [END compute_v1_generated_Projects_GetXpnResources_sync]

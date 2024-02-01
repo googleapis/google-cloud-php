@@ -38,8 +38,7 @@ class CreateWorkspaceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                   $parent      Required. The repository in which to create the workspace. Must be in the
-     *                                                              format `projects/&#42;/locations/&#42;/repositories/*`. Please see
-     *                                                              {@see DataformClient::repositoryName()} for help formatting this field.
+     *                                                              format `projects/&#42;/locations/&#42;/repositories/*`.
      * @param \Google\Cloud\Dataform\V1beta1\Workspace $workspace   Required. The workspace to create.
      * @param string                                   $workspaceId Required. The ID to use for the workspace, which will become the final
      *                                                              component of the workspace's resource name.

@@ -57,8 +57,7 @@ class ListReleasesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The `DeliveryPipeline` which owns this collection of `Release`
-     *                       objects. Please see
-     *                       {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
+     *                       objects.
      *
      * @return \Google\Cloud\Deploy\V1\ListReleasesRequest
      *

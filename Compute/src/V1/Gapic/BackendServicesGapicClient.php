@@ -73,10 +73,7 @@ use Google\Cloud\Compute\V1\UpdateBackendServiceRequest;
  * ```
  * $backendServicesClient = new BackendServicesClient();
  * try {
- *     $backendService = 'backend_service';
- *     $project = 'project';
- *     $signedUrlKeyResource = new SignedUrlKey();
- *     $operationResponse = $backendServicesClient->addSignedUrlKey($backendService, $project, $signedUrlKeyResource);
+ *     $operationResponse = $backendServicesClient->addSignedUrlKey();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -86,7 +83,7 @@ use Google\Cloud\Compute\V1\UpdateBackendServiceRequest;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $backendServicesClient->addSignedUrlKey($backendService, $project, $signedUrlKeyResource);
+ *     $operationResponse = $backendServicesClient->addSignedUrlKey();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $backendServicesClient->resumeOperation($operationName, 'addSignedUrlKey');
@@ -186,9 +183,7 @@ class BackendServicesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -284,10 +279,7 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $backendService = 'backend_service';
-     *     $project = 'project';
-     *     $signedUrlKeyResource = new SignedUrlKey();
-     *     $operationResponse = $backendServicesClient->addSignedUrlKey($backendService, $project, $signedUrlKeyResource);
+     *     $operationResponse = $backendServicesClient->addSignedUrlKey();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -297,7 +289,7 @@ class BackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backendServicesClient->addSignedUrlKey($backendService, $project, $signedUrlKeyResource);
+     *     $operationResponse = $backendServicesClient->addSignedUrlKey();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backendServicesClient->resumeOperation($operationName, 'addSignedUrlKey');
@@ -316,14 +308,17 @@ class BackendServicesGapicClient
      * }
      * ```
      *
-     * @param string       $backendService       Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
-     * @param string       $project              Project ID for this request.
-     * @param SignedUrlKey $signedUrlKeyResource The body resource for this request
-     * @param array        $optionalArgs         {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $backendService
+     *           Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type SignedUrlKey $signedUrlKeyResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -334,17 +329,26 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addSignedUrlKey($backendService, $project, $signedUrlKeyResource, array $optionalArgs = [])
+    public function addSignedUrlKey(array $optionalArgs = [])
     {
         $request = new AddSignedUrlKeyBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendService($backendService);
-        $request->setProject($project);
-        $request->setSignedUrlKeyResource($signedUrlKeyResource);
-        $requestParamHeaders['backend_service'] = $backendService;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['backendService'])) {
+            $request->setBackendService($optionalArgs['backendService']);
+            $requestParamHeaders['backend_service'] = $optionalArgs['backendService'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['signedUrlKeyResource'])) {
+            $request->setSignedUrlKeyResource($optionalArgs['signedUrlKeyResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -359,9 +363,8 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $backendServicesClient->aggregatedList($project);
+     *     $pagedResponse = $backendServicesClient->aggregatedList();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
@@ -369,7 +372,7 @@ class BackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $backendServicesClient->aggregatedList($project);
+     *     $pagedResponse = $backendServicesClient->aggregatedList();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -378,8 +381,7 @@ class BackendServicesGapicClient
      * }
      * ```
      *
-     * @param string $project      Name of the project scoping this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -395,6 +397,8 @@ class BackendServicesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Name of the project scoping this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type int $serviceProjectNumber
@@ -408,12 +412,10 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function aggregatedList($project, array $optionalArgs = [])
+    public function aggregatedList(array $optionalArgs = [])
     {
         $request = new AggregatedListBackendServicesRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -432,6 +434,11 @@ class BackendServicesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -454,9 +461,7 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $backendService = 'backend_service';
-     *     $project = 'project';
-     *     $operationResponse = $backendServicesClient->delete($backendService, $project);
+     *     $operationResponse = $backendServicesClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -466,7 +471,7 @@ class BackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backendServicesClient->delete($backendService, $project);
+     *     $operationResponse = $backendServicesClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backendServicesClient->resumeOperation($operationName, 'delete');
@@ -485,11 +490,13 @@ class BackendServicesGapicClient
      * }
      * ```
      *
-     * @param string $backendService Name of the BackendService resource to delete.
-     * @param string $project        Project ID for this request.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $backendService
+     *           Name of the BackendService resource to delete.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -502,14 +509,20 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($backendService, $project, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendService($backendService);
-        $request->setProject($project);
-        $requestParamHeaders['backend_service'] = $backendService;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['backendService'])) {
+            $request->setBackendService($optionalArgs['backendService']);
+            $requestParamHeaders['backend_service'] = $optionalArgs['backendService'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -526,10 +539,7 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $backendService = 'backend_service';
-     *     $keyName = 'key_name';
-     *     $project = 'project';
-     *     $operationResponse = $backendServicesClient->deleteSignedUrlKey($backendService, $keyName, $project);
+     *     $operationResponse = $backendServicesClient->deleteSignedUrlKey();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -539,7 +549,7 @@ class BackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backendServicesClient->deleteSignedUrlKey($backendService, $keyName, $project);
+     *     $operationResponse = $backendServicesClient->deleteSignedUrlKey();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backendServicesClient->resumeOperation($operationName, 'deleteSignedUrlKey');
@@ -558,12 +568,15 @@ class BackendServicesGapicClient
      * }
      * ```
      *
-     * @param string $backendService Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
-     * @param string $keyName        The name of the Signed URL Key to delete.
-     * @param string $project        Project ID for this request.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $backendService
+     *           Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+     *     @type string $keyName
+     *           The name of the Signed URL Key to delete.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -576,15 +589,24 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSignedUrlKey($backendService, $keyName, $project, array $optionalArgs = [])
+    public function deleteSignedUrlKey(array $optionalArgs = [])
     {
         $request = new DeleteSignedUrlKeyBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendService($backendService);
-        $request->setKeyName($keyName);
-        $request->setProject($project);
-        $requestParamHeaders['backend_service'] = $backendService;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['backendService'])) {
+            $request->setBackendService($optionalArgs['backendService']);
+            $requestParamHeaders['backend_service'] = $optionalArgs['backendService'];
+        }
+
+        if (isset($optionalArgs['keyName'])) {
+            $request->setKeyName($optionalArgs['keyName']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -601,19 +623,19 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $backendService = 'backend_service';
-     *     $project = 'project';
-     *     $response = $backendServicesClient->get($backendService, $project);
+     *     $response = $backendServicesClient->get();
      * } finally {
      *     $backendServicesClient->close();
      * }
      * ```
      *
-     * @param string $backendService Name of the BackendService resource to return.
-     * @param string $project        Project ID for this request.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $backendService
+     *           Name of the BackendService resource to return.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -624,14 +646,20 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($backendService, $project, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendService($backendService);
-        $request->setProject($project);
-        $requestParamHeaders['backend_service'] = $backendService;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['backendService'])) {
+            $request->setBackendService($optionalArgs['backendService']);
+            $requestParamHeaders['backend_service'] = $optionalArgs['backendService'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', BackendService::class, $optionalArgs, $request)->wait();
@@ -644,21 +672,20 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $backendService = 'backend_service';
-     *     $project = 'project';
-     *     $resourceGroupReferenceResource = new ResourceGroupReference();
-     *     $response = $backendServicesClient->getHealth($backendService, $project, $resourceGroupReferenceResource);
+     *     $response = $backendServicesClient->getHealth();
      * } finally {
      *     $backendServicesClient->close();
      * }
      * ```
      *
-     * @param string                 $backendService                 Name of the BackendService resource to which the queried instance belongs.
-     * @param string                 $project
-     * @param ResourceGroupReference $resourceGroupReferenceResource The body resource for this request
-     * @param array                  $optionalArgs                   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $backendService
+     *           Name of the BackendService resource to which the queried instance belongs.
+     *     @type string $project
+     *     @type ResourceGroupReference $resourceGroupReferenceResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -669,15 +696,24 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getHealth($backendService, $project, $resourceGroupReferenceResource, array $optionalArgs = [])
+    public function getHealth(array $optionalArgs = [])
     {
         $request = new GetHealthBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendService($backendService);
-        $request->setProject($project);
-        $request->setResourceGroupReferenceResource($resourceGroupReferenceResource);
-        $requestParamHeaders['backend_service'] = $backendService;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['backendService'])) {
+            $request->setBackendService($optionalArgs['backendService']);
+            $requestParamHeaders['backend_service'] = $optionalArgs['backendService'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['resourceGroupReferenceResource'])) {
+            $request->setResourceGroupReferenceResource($optionalArgs['resourceGroupReferenceResource']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetHealth', BackendServiceGroupHealth::class, $optionalArgs, $request)->wait();
@@ -690,21 +726,21 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $project = 'project';
-     *     $resource = 'resource';
-     *     $response = $backendServicesClient->getIamPolicy($project, $resource);
+     *     $response = $backendServicesClient->getIamPolicy();
      * } finally {
      *     $backendServicesClient->close();
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param string $resource     Name or id of the resource for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type int $optionsRequestedPolicyVersion
      *           Requested IAM Policy version.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $resource
+     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -715,16 +751,22 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($project, $resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setResource($resource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['optionsRequestedPolicyVersion'])) {
             $request->setOptionsRequestedPolicyVersion($optionalArgs['optionsRequestedPolicyVersion']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -739,9 +781,7 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $backendServiceResource = new BackendService();
-     *     $project = 'project';
-     *     $operationResponse = $backendServicesClient->insert($backendServiceResource, $project);
+     *     $operationResponse = $backendServicesClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -751,7 +791,7 @@ class BackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backendServicesClient->insert($backendServiceResource, $project);
+     *     $operationResponse = $backendServicesClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backendServicesClient->resumeOperation($operationName, 'insert');
@@ -770,11 +810,13 @@ class BackendServicesGapicClient
      * }
      * ```
      *
-     * @param BackendService $backendServiceResource The body resource for this request
-     * @param string         $project                Project ID for this request.
-     * @param array          $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type BackendService $backendServiceResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -787,13 +829,19 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($backendServiceResource, $project, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendServiceResource($backendServiceResource);
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['backendServiceResource'])) {
+            $request->setBackendServiceResource($optionalArgs['backendServiceResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -810,9 +858,8 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $backendServicesClient->list($project);
+     *     $pagedResponse = $backendServicesClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -820,7 +867,7 @@ class BackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $backendServicesClient->list($project);
+     *     $pagedResponse = $backendServicesClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -829,8 +876,7 @@ class BackendServicesGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -844,6 +890,8 @@ class BackendServicesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -856,12 +904,10 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListBackendServicesRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -876,6 +922,11 @@ class BackendServicesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -894,9 +945,8 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $backendServicesClient->listUsable($project);
+     *     $pagedResponse = $backendServicesClient->listUsable();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -904,7 +954,7 @@ class BackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $backendServicesClient->listUsable($project);
+     *     $pagedResponse = $backendServicesClient->listUsable();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -913,8 +963,7 @@ class BackendServicesGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -928,6 +977,8 @@ class BackendServicesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -940,12 +991,10 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listUsable($project, array $optionalArgs = [])
+    public function listUsable(array $optionalArgs = [])
     {
         $request = new ListUsableBackendServicesRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -960,6 +1009,11 @@ class BackendServicesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -978,10 +1032,7 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $backendService = 'backend_service';
-     *     $backendServiceResource = new BackendService();
-     *     $project = 'project';
-     *     $operationResponse = $backendServicesClient->patch($backendService, $backendServiceResource, $project);
+     *     $operationResponse = $backendServicesClient->patch();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -991,7 +1042,7 @@ class BackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backendServicesClient->patch($backendService, $backendServiceResource, $project);
+     *     $operationResponse = $backendServicesClient->patch();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backendServicesClient->resumeOperation($operationName, 'patch');
@@ -1010,12 +1061,15 @@ class BackendServicesGapicClient
      * }
      * ```
      *
-     * @param string         $backendService         Name of the BackendService resource to patch.
-     * @param BackendService $backendServiceResource The body resource for this request
-     * @param string         $project                Project ID for this request.
-     * @param array          $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $backendService
+     *           Name of the BackendService resource to patch.
+     *     @type BackendService $backendServiceResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -1028,15 +1082,24 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch($backendService, $backendServiceResource, $project, array $optionalArgs = [])
+    public function patch(array $optionalArgs = [])
     {
         $request = new PatchBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendService($backendService);
-        $request->setBackendServiceResource($backendServiceResource);
-        $request->setProject($project);
-        $requestParamHeaders['backend_service'] = $backendService;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['backendService'])) {
+            $request->setBackendService($optionalArgs['backendService']);
+            $requestParamHeaders['backend_service'] = $optionalArgs['backendService'];
+        }
+
+        if (isset($optionalArgs['backendServiceResource'])) {
+            $request->setBackendServiceResource($optionalArgs['backendServiceResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1053,10 +1116,7 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $backendService = 'backend_service';
-     *     $project = 'project';
-     *     $securityPolicyReferenceResource = new SecurityPolicyReference();
-     *     $operationResponse = $backendServicesClient->setEdgeSecurityPolicy($backendService, $project, $securityPolicyReferenceResource);
+     *     $operationResponse = $backendServicesClient->setEdgeSecurityPolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1066,7 +1126,7 @@ class BackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backendServicesClient->setEdgeSecurityPolicy($backendService, $project, $securityPolicyReferenceResource);
+     *     $operationResponse = $backendServicesClient->setEdgeSecurityPolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backendServicesClient->resumeOperation($operationName, 'setEdgeSecurityPolicy');
@@ -1085,14 +1145,17 @@ class BackendServicesGapicClient
      * }
      * ```
      *
-     * @param string                  $backendService                  Name of the BackendService resource to which the edge security policy should be set. The name should conform to RFC1035.
-     * @param string                  $project                         Project ID for this request.
-     * @param SecurityPolicyReference $securityPolicyReferenceResource The body resource for this request
-     * @param array                   $optionalArgs                    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $backendService
+     *           Name of the BackendService resource to which the edge security policy should be set. The name should conform to RFC1035.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type SecurityPolicyReference $securityPolicyReferenceResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1103,17 +1166,26 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setEdgeSecurityPolicy($backendService, $project, $securityPolicyReferenceResource, array $optionalArgs = [])
+    public function setEdgeSecurityPolicy(array $optionalArgs = [])
     {
         $request = new SetEdgeSecurityPolicyBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendService($backendService);
-        $request->setProject($project);
-        $request->setSecurityPolicyReferenceResource($securityPolicyReferenceResource);
-        $requestParamHeaders['backend_service'] = $backendService;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['backendService'])) {
+            $request->setBackendService($optionalArgs['backendService']);
+            $requestParamHeaders['backend_service'] = $optionalArgs['backendService'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['securityPolicyReferenceResource'])) {
+            $request->setSecurityPolicyReferenceResource($optionalArgs['securityPolicyReferenceResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1128,21 +1200,21 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
-     *     $project = 'project';
-     *     $resource = 'resource';
-     *     $response = $backendServicesClient->setIamPolicy($globalSetPolicyRequestResource, $project, $resource);
+     *     $response = $backendServicesClient->setIamPolicy();
      * } finally {
      *     $backendServicesClient->close();
      * }
      * ```
      *
-     * @param GlobalSetPolicyRequest $globalSetPolicyRequestResource The body resource for this request
-     * @param string                 $project                        Project ID for this request.
-     * @param string                 $resource                       Name or id of the resource for this request.
-     * @param array                  $optionalArgs                   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type GlobalSetPolicyRequest $globalSetPolicyRequestResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $resource
+     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1153,15 +1225,24 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($globalSetPolicyRequestResource, $project, $resource, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setGlobalSetPolicyRequestResource($globalSetPolicyRequestResource);
-        $request->setProject($project);
-        $request->setResource($resource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['globalSetPolicyRequestResource'])) {
+            $request->setGlobalSetPolicyRequestResource($optionalArgs['globalSetPolicyRequestResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
@@ -1174,10 +1255,7 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $backendService = 'backend_service';
-     *     $project = 'project';
-     *     $securityPolicyReferenceResource = new SecurityPolicyReference();
-     *     $operationResponse = $backendServicesClient->setSecurityPolicy($backendService, $project, $securityPolicyReferenceResource);
+     *     $operationResponse = $backendServicesClient->setSecurityPolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1187,7 +1265,7 @@ class BackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backendServicesClient->setSecurityPolicy($backendService, $project, $securityPolicyReferenceResource);
+     *     $operationResponse = $backendServicesClient->setSecurityPolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backendServicesClient->resumeOperation($operationName, 'setSecurityPolicy');
@@ -1206,14 +1284,17 @@ class BackendServicesGapicClient
      * }
      * ```
      *
-     * @param string                  $backendService                  Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.
-     * @param string                  $project                         Project ID for this request.
-     * @param SecurityPolicyReference $securityPolicyReferenceResource The body resource for this request
-     * @param array                   $optionalArgs                    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $backendService
+     *           Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type SecurityPolicyReference $securityPolicyReferenceResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1224,17 +1305,26 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setSecurityPolicy($backendService, $project, $securityPolicyReferenceResource, array $optionalArgs = [])
+    public function setSecurityPolicy(array $optionalArgs = [])
     {
         $request = new SetSecurityPolicyBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendService($backendService);
-        $request->setProject($project);
-        $request->setSecurityPolicyReferenceResource($securityPolicyReferenceResource);
-        $requestParamHeaders['backend_service'] = $backendService;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['backendService'])) {
+            $request->setBackendService($optionalArgs['backendService']);
+            $requestParamHeaders['backend_service'] = $optionalArgs['backendService'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['securityPolicyReferenceResource'])) {
+            $request->setSecurityPolicyReferenceResource($optionalArgs['securityPolicyReferenceResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1249,21 +1339,21 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $project = 'project';
-     *     $resource = 'resource';
-     *     $testPermissionsRequestResource = new TestPermissionsRequest();
-     *     $response = $backendServicesClient->testIamPermissions($project, $resource, $testPermissionsRequestResource);
+     *     $response = $backendServicesClient->testIamPermissions();
      * } finally {
      *     $backendServicesClient->close();
      * }
      * ```
      *
-     * @param string                 $project                        Project ID for this request.
-     * @param string                 $resource                       Name or id of the resource for this request.
-     * @param TestPermissionsRequest $testPermissionsRequestResource The body resource for this request
-     * @param array                  $optionalArgs                   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $resource
+     *           Name or id of the resource for this request.
+     *     @type TestPermissionsRequest $testPermissionsRequestResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1274,15 +1364,24 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($project, $resource, $testPermissionsRequestResource, array $optionalArgs = [])
+    public function testIamPermissions(array $optionalArgs = [])
     {
         $request = new TestIamPermissionsBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setResource($resource);
-        $request->setTestPermissionsRequestResource($testPermissionsRequestResource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['testPermissionsRequestResource'])) {
+            $request->setTestPermissionsRequestResource($optionalArgs['testPermissionsRequestResource']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestPermissionsResponse::class, $optionalArgs, $request)->wait();
@@ -1295,10 +1394,7 @@ class BackendServicesGapicClient
      * ```
      * $backendServicesClient = new BackendServicesClient();
      * try {
-     *     $backendService = 'backend_service';
-     *     $backendServiceResource = new BackendService();
-     *     $project = 'project';
-     *     $operationResponse = $backendServicesClient->update($backendService, $backendServiceResource, $project);
+     *     $operationResponse = $backendServicesClient->update();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1308,7 +1404,7 @@ class BackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backendServicesClient->update($backendService, $backendServiceResource, $project);
+     *     $operationResponse = $backendServicesClient->update();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backendServicesClient->resumeOperation($operationName, 'update');
@@ -1327,12 +1423,15 @@ class BackendServicesGapicClient
      * }
      * ```
      *
-     * @param string         $backendService         Name of the BackendService resource to update.
-     * @param BackendService $backendServiceResource The body resource for this request
-     * @param string         $project                Project ID for this request.
-     * @param array          $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $backendService
+     *           Name of the BackendService resource to update.
+     *     @type BackendService $backendServiceResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -1345,15 +1444,24 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function update($backendService, $backendServiceResource, $project, array $optionalArgs = [])
+    public function update(array $optionalArgs = [])
     {
         $request = new UpdateBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendService($backendService);
-        $request->setBackendServiceResource($backendServiceResource);
-        $request->setProject($project);
-        $requestParamHeaders['backend_service'] = $backendService;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['backendService'])) {
+            $request->setBackendService($optionalArgs['backendService']);
+            $requestParamHeaders['backend_service'] = $optionalArgs['backendService'];
+        }
+
+        if (isset($optionalArgs['backendServiceResource'])) {
+            $request->setBackendServiceResource($optionalArgs['backendServiceResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }

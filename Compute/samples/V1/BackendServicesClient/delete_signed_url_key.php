@@ -31,22 +31,21 @@ use Google\Rpc\Status;
 /**
  * Deletes a key for validating requests with signed URLs for this backend service.
  *
- * @param string $backendService Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
- * @param string $keyName        The name of the Signed URL Key to delete.
- * @param string $project        Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_signed_url_key_sample(
-    string $backendService,
-    string $keyName,
-    string $project
-): void {
+function delete_signed_url_key_sample(): void
+{
     // Create a client.
     $backendServicesClient = new BackendServicesClient();
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backendServicesClient->deleteSignedUrlKey($backendService, $keyName, $project);
+        $response = $backendServicesClient->deleteSignedUrlKey();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -59,23 +58,5 @@ function delete_signed_url_key_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $backendService = '[BACKEND_SERVICE]';
-    $keyName = '[KEY_NAME]';
-    $project = '[PROJECT]';
-
-    delete_signed_url_key_sample($backendService, $keyName, $project);
 }
 // [END compute_v1_generated_BackendServices_DeleteSignedUrlKey_sync]

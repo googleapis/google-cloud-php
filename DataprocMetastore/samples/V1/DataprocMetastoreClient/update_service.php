@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Metastore\V1\Client\DataprocMetastoreClient;
 use Google\Cloud\Metastore\V1\Service;
 use Google\Cloud\Metastore\V1\UpdateServiceRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_service_sample(): void
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $service = new Service();
-    $request = (new UpdateServiceRequest())
-        ->setUpdateMask($updateMask)
-        ->setService($service);
+    $request = new UpdateServiceRequest();
 
     // Call the API and handle any network failures.
     try {

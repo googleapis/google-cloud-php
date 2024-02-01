@@ -30,26 +30,21 @@ use Google\Cloud\Compute\V1\RegionNetworkEndpointGroupsClient;
 /**
  * Lists the network endpoints in the specified network endpoint group.
  *
- * @param string $networkEndpointGroup The name of the network endpoint group from which you want to generate a list of included network endpoints. It should comply with RFC1035.
- * @param string $project              Project ID for this request.
- * @param string $region               The name of the region where the network endpoint group is located. It should comply with RFC1035.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_network_endpoints_sample(
-    string $networkEndpointGroup,
-    string $project,
-    string $region
-): void {
+function list_network_endpoints_sample(): void
+{
     // Create a client.
     $regionNetworkEndpointGroupsClient = new RegionNetworkEndpointGroupsClient();
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionNetworkEndpointGroupsClient->listNetworkEndpoints(
-            $networkEndpointGroup,
-            $project,
-            $region
-        );
+        $response = $regionNetworkEndpointGroupsClient->listNetworkEndpoints();
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -57,23 +52,5 @@ function list_network_endpoints_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $networkEndpointGroup = '[NETWORK_ENDPOINT_GROUP]';
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-
-    list_network_endpoints_sample($networkEndpointGroup, $project, $region);
 }
 // [END compute_v1_generated_RegionNetworkEndpointGroups_ListNetworkEndpoints_sync]

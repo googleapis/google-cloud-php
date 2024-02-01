@@ -26,40 +26,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Compute\V1\BackendServiceGroupHealth;
 use Google\Cloud\Compute\V1\RegionBackendServicesClient;
-use Google\Cloud\Compute\V1\ResourceGroupReference;
 
 /**
  * Gets the most recent health check results for this regional BackendService.
- *
- * @param string $backendService Name of the BackendService resource for which to get health.
- * @param string $project
- * @param string $region         Name of the region scoping this request.
- */
-function get_health_sample(string $backendService, string $project, string $region): void
-{
-    // Create a client.
-    $regionBackendServicesClient = new RegionBackendServicesClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $resourceGroupReferenceResource = new ResourceGroupReference();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var BackendServiceGroupHealth $response */
-        $response = $regionBackendServicesClient->getHealth(
-            $backendService,
-            $project,
-            $region,
-            $resourceGroupReferenceResource
-        );
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -67,12 +36,18 @@ function get_health_sample(string $backendService, string $project, string $regi
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function get_health_sample(): void
 {
-    $backendService = '[BACKEND_SERVICE]';
-    $project = '[PROJECT]';
-    $region = '[REGION]';
+    // Create a client.
+    $regionBackendServicesClient = new RegionBackendServicesClient();
 
-    get_health_sample($backendService, $project, $region);
+    // Call the API and handle any network failures.
+    try {
+        /** @var BackendServiceGroupHealth $response */
+        $response = $regionBackendServicesClient->getHealth();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END compute_v1_generated_RegionBackendServices_GetHealth_sync]

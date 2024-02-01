@@ -33,20 +33,19 @@ use Google\Cloud\Dialogflow\Cx\V3\TestCaseResult;
  * Fetches the list of run results for the given test case. A maximum of 100
  * results are kept for each test case.
  *
- * @param string $formattedParent The test case to list results for.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
- *                                testCases/<TestCase ID>`. Specify a `-` as a wildcard for TestCase ID to
- *                                list results across multiple test cases. Please see
- *                                {@see TestCasesClient::testCaseName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_test_case_results_sample(string $formattedParent): void
+function list_test_case_results_sample(): void
 {
     // Create a client.
     $testCasesClient = new TestCasesClient();
 
     // Prepare the request message.
-    $request = (new ListTestCaseResultsRequest())
-        ->setParent($formattedParent);
+    $request = new ListTestCaseResultsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,26 +59,5 @@ function list_test_case_results_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = TestCasesClient::testCaseName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AGENT]',
-        '[TEST_CASE]'
-    );
-
-    list_test_case_results_sample($formattedParent);
 }
 // [END dialogflow_v3_generated_TestCases_ListTestCaseResults_sync]

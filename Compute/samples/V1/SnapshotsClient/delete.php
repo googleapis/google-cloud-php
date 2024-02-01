@@ -31,10 +31,13 @@ use Google\Rpc\Status;
 /**
  * Deletes the specified Snapshot resource. Keep in mind that deleting a single snapshot might not necessarily delete all the data on that snapshot. If any data on the snapshot that is marked for deletion is needed for subsequent snapshots, the data will be moved to the next corresponding snapshot. For more information, see Deleting snapshots.
  *
- * @param string $project  Project ID for this request.
- * @param string $snapshot Name of the Snapshot resource to delete.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_sample(string $project, string $snapshot): void
+function delete_sample(): void
 {
     // Create a client.
     $snapshotsClient = new SnapshotsClient();
@@ -42,7 +45,7 @@ function delete_sample(string $project, string $snapshot): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $snapshotsClient->delete($project, $snapshot);
+        $response = $snapshotsClient->delete();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -55,22 +58,5 @@ function delete_sample(string $project, string $snapshot): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $snapshot = '[SNAPSHOT]';
-
-    delete_sample($project, $snapshot);
 }
 // [END compute_v1_generated_Snapshots_Delete_sync]

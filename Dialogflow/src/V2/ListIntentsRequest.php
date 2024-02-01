@@ -70,8 +70,7 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
      *                       or `projects/<Project ID>/locations/<Location
      *                       ID>/agent/environments/<Environment ID>`.
      *                       Note: training phrases of the intents will not be returned for non-draft
-     *                       environment. Please see
-     *                       {@see IntentsClient::agentName()} for help formatting this field.
+     *                       environment.
      *
      * @return \Google\Cloud\Dialogflow\V2\ListIntentsRequest
      *
@@ -93,8 +92,7 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
      *                             or `projects/<Project ID>/locations/<Location
      *                             ID>/agent/environments/<Environment ID>`.
      *                             Note: training phrases of the intents will not be returned for non-draft
-     *                             environment. Please see
-     *                             {@see IntentsClient::agentName()} for help formatting this field.
+     *                             environment.
      * @param string $languageCode Optional. The language used to access language-specific data.
      *                             If not specified, the agent's default language is used.
      *                             For more information, see

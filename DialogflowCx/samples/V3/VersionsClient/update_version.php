@@ -27,25 +27,23 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\Cx\V3\Client\VersionsClient;
 use Google\Cloud\Dialogflow\Cx\V3\UpdateVersionRequest;
 use Google\Cloud\Dialogflow\Cx\V3\Version;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates the specified [Version][google.cloud.dialogflow.cx.v3.Version].
  *
- * @param string $versionDisplayName The human-readable name of the version. Limit of 64 characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_version_sample(string $versionDisplayName): void
+function update_version_sample(): void
 {
     // Create a client.
     $versionsClient = new VersionsClient();
 
     // Prepare the request message.
-    $version = (new Version())
-        ->setDisplayName($versionDisplayName);
-    $updateMask = new FieldMask();
-    $request = (new UpdateVersionRequest())
-        ->setVersion($version)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateVersionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,21 +53,5 @@ function update_version_sample(string $versionDisplayName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $versionDisplayName = '[DISPLAY_NAME]';
-
-    update_version_sample($versionDisplayName);
 }
 // [END dialogflow_v3_generated_Versions_UpdateVersion_sync]

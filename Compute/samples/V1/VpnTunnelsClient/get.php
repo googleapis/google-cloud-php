@@ -30,11 +30,13 @@ use Google\Cloud\Compute\V1\VpnTunnelsClient;
 /**
  * Returns the specified VpnTunnel resource.
  *
- * @param string $project   Project ID for this request.
- * @param string $region    Name of the region for this request.
- * @param string $vpnTunnel Name of the VpnTunnel resource to return.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_sample(string $project, string $region, string $vpnTunnel): void
+function get_sample(): void
 {
     // Create a client.
     $vpnTunnelsClient = new VpnTunnelsClient();
@@ -42,28 +44,10 @@ function get_sample(string $project, string $region, string $vpnTunnel): void
     // Call the API and handle any network failures.
     try {
         /** @var VpnTunnel $response */
-        $response = $vpnTunnelsClient->get($project, $region, $vpnTunnel);
+        $response = $vpnTunnelsClient->get();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-    $vpnTunnel = '[VPN_TUNNEL]';
-
-    get_sample($project, $region, $vpnTunnel);
 }
 // [END compute_v1_generated_VpnTunnels_Get_sync]

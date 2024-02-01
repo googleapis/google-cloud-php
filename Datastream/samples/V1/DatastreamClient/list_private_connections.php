@@ -33,18 +33,19 @@ use Google\Cloud\Datastream\V1\PrivateConnection;
  * Use this method to list private connectivity configurations in a project
  * and location.
  *
- * @param string $formattedParent The parent that owns the collection of private connectivity
- *                                configurations. Please see
- *                                {@see DatastreamClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_private_connections_sample(string $formattedParent): void
+function list_private_connections_sample(): void
 {
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
     // Prepare the request message.
-    $request = (new ListPrivateConnectionsRequest())
-        ->setParent($formattedParent);
+    $request = new ListPrivateConnectionsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +59,5 @@ function list_private_connections_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DatastreamClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_private_connections_sample($formattedParent);
 }
 // [END datastream_v1_generated_Datastream_ListPrivateConnections_sync]

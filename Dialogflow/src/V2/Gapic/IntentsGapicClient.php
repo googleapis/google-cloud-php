@@ -65,9 +65,7 @@ use Google\Protobuf\Struct;
  * ```
  * $intentsClient = new IntentsClient();
  * try {
- *     $formattedParent = $intentsClient->agentName('[PROJECT]');
- *     $intents = [];
- *     $operationResponse = $intentsClient->batchDeleteIntents($formattedParent, $intents);
+ *     $operationResponse = $intentsClient->batchDeleteIntents();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // operation succeeded and returns no value
@@ -77,7 +75,7 @@ use Google\Protobuf\Struct;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $intentsClient->batchDeleteIntents($formattedParent, $intents);
+ *     $operationResponse = $intentsClient->batchDeleteIntents();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $intentsClient->resumeOperation($operationName, 'batchDeleteIntents');
@@ -827,9 +825,7 @@ class IntentsGapicClient
      * ```
      * $intentsClient = new IntentsClient();
      * try {
-     *     $formattedParent = $intentsClient->agentName('[PROJECT]');
-     *     $intents = [];
-     *     $operationResponse = $intentsClient->batchDeleteIntents($formattedParent, $intents);
+     *     $operationResponse = $intentsClient->batchDeleteIntents();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -839,7 +835,7 @@ class IntentsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $intentsClient->batchDeleteIntents($formattedParent, $intents);
+     *     $operationResponse = $intentsClient->batchDeleteIntents();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $intentsClient->resumeOperation($operationName, 'batchDeleteIntents');
@@ -858,13 +854,15 @@ class IntentsGapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. The name of the agent to delete all entities types for. Format:
-     *                               `projects/<Project ID>/agent`.
-     * @param Intent[] $intents      Required. The collection of intents to delete. Only intent `name` must be
-     *                               filled in.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the agent to delete all entities types for. Format:
+     *           `projects/<Project ID>/agent`.
+     *     @type Intent[] $intents
+     *           Required. The collection of intents to delete. Only intent `name` must be
+     *           filled in.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -875,13 +873,19 @@ class IntentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchDeleteIntents($parent, $intents, array $optionalArgs = [])
+    public function batchDeleteIntents(array $optionalArgs = [])
     {
         $request = new BatchDeleteIntentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setIntents($intents);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['intents'])) {
+            $request->setIntents($optionalArgs['intents']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('BatchDeleteIntents', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -907,8 +911,7 @@ class IntentsGapicClient
      * ```
      * $intentsClient = new IntentsClient();
      * try {
-     *     $formattedParent = $intentsClient->agentName('[PROJECT]');
-     *     $operationResponse = $intentsClient->batchUpdateIntents($formattedParent);
+     *     $operationResponse = $intentsClient->batchUpdateIntents();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -919,7 +922,7 @@ class IntentsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $intentsClient->batchUpdateIntents($formattedParent);
+     *     $operationResponse = $intentsClient->batchUpdateIntents();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $intentsClient->resumeOperation($operationName, 'batchUpdateIntents');
@@ -939,11 +942,12 @@ class IntentsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the agent to update or create intents in.
-     *                             Format: `projects/<Project ID>/agent`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the agent to update or create intents in.
+     *           Format: `projects/<Project ID>/agent`.
      *     @type string $intentBatchUri
      *           The URI to a Google Cloud Storage file containing intents to update or
      *           create. The file format can either be a serialized proto (of IntentBatch
@@ -971,12 +975,15 @@ class IntentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchUpdateIntents($parent, array $optionalArgs = [])
+    public function batchUpdateIntents(array $optionalArgs = [])
     {
         $request = new BatchUpdateIntentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['intentBatchUri'])) {
             $request->setIntentBatchUri($optionalArgs['intentBatchUri']);
         }
@@ -1013,20 +1020,20 @@ class IntentsGapicClient
      * ```
      * $intentsClient = new IntentsClient();
      * try {
-     *     $formattedParent = $intentsClient->agentName('[PROJECT]');
-     *     $intent = new Intent();
-     *     $response = $intentsClient->createIntent($formattedParent, $intent);
+     *     $response = $intentsClient->createIntent();
      * } finally {
      *     $intentsClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The agent to create a intent for.
-     *                             Format: `projects/<Project ID>/agent`.
-     * @param Intent $intent       Required. The intent to create.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The agent to create a intent for.
+     *           Format: `projects/<Project ID>/agent`.
+     *     @type Intent $intent
+     *           Required. The intent to create.
      *     @type string $languageCode
      *           Optional. The language used to access language-specific data.
      *           If not specified, the agent's default language is used.
@@ -1046,13 +1053,19 @@ class IntentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createIntent($parent, $intent, array $optionalArgs = [])
+    public function createIntent(array $optionalArgs = [])
     {
         $request = new CreateIntentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setIntent($intent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['intent'])) {
+            $request->setIntent($optionalArgs['intent']);
+        }
+
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
         }
@@ -1077,19 +1090,19 @@ class IntentsGapicClient
      * ```
      * $intentsClient = new IntentsClient();
      * try {
-     *     $formattedName = $intentsClient->intentName('[PROJECT]', '[INTENT]');
-     *     $intentsClient->deleteIntent($formattedName);
+     *     $intentsClient->deleteIntent();
      * } finally {
      *     $intentsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the intent to delete. If this intent has direct or
-     *                             indirect followup intents, we also delete them.
-     *                             Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the intent to delete. If this intent has direct or
+     *           indirect followup intents, we also delete them.
+     *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1098,12 +1111,15 @@ class IntentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteIntent($name, array $optionalArgs = [])
+    public function deleteIntent(array $optionalArgs = [])
     {
         $request = new DeleteIntentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteIntent', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1116,18 +1132,18 @@ class IntentsGapicClient
      * ```
      * $intentsClient = new IntentsClient();
      * try {
-     *     $formattedName = $intentsClient->intentName('[PROJECT]', '[INTENT]');
-     *     $response = $intentsClient->getIntent($formattedName);
+     *     $response = $intentsClient->getIntent();
      * } finally {
      *     $intentsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the intent.
-     *                             Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the intent.
+     *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *     @type string $languageCode
      *           Optional. The language used to access language-specific data.
      *           If not specified, the agent's default language is used.
@@ -1147,12 +1163,15 @@ class IntentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIntent($name, array $optionalArgs = [])
+    public function getIntent(array $optionalArgs = [])
     {
         $request = new GetIntentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
         }
@@ -1173,9 +1192,8 @@ class IntentsGapicClient
      * ```
      * $intentsClient = new IntentsClient();
      * try {
-     *     $formattedParent = $intentsClient->agentName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $intentsClient->listIntents($formattedParent);
+     *     $pagedResponse = $intentsClient->listIntents();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1183,7 +1201,7 @@ class IntentsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $intentsClient->listIntents($formattedParent);
+     *     $pagedResponse = $intentsClient->listIntents();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1192,19 +1210,20 @@ class IntentsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The agent to list all intents from.
-     *                             Format: `projects/<Project ID>/agent` or `projects/<Project
-     *                             ID>/locations/<Location ID>/agent`.
-     *
-     *                             Alternatively, you can specify the environment to list intents for.
-     *                             Format: `projects/<Project ID>/agent/environments/<Environment ID>`
-     *                             or `projects/<Project ID>/locations/<Location
-     *                             ID>/agent/environments/<Environment ID>`.
-     *                             Note: training phrases of the intents will not be returned for non-draft
-     *                             environment.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The agent to list all intents from.
+     *           Format: `projects/<Project ID>/agent` or `projects/<Project
+     *           ID>/locations/<Location ID>/agent`.
+     *
+     *           Alternatively, you can specify the environment to list intents for.
+     *           Format: `projects/<Project ID>/agent/environments/<Environment ID>`
+     *           or `projects/<Project ID>/locations/<Location
+     *           ID>/agent/environments/<Environment ID>`.
+     *           Note: training phrases of the intents will not be returned for non-draft
+     *           environment.
      *     @type string $languageCode
      *           Optional. The language used to access language-specific data.
      *           If not specified, the agent's default language is used.
@@ -1233,12 +1252,15 @@ class IntentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listIntents($parent, array $optionalArgs = [])
+    public function listIntents(array $optionalArgs = [])
     {
         $request = new ListIntentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
         }
@@ -1271,17 +1293,17 @@ class IntentsGapicClient
      * ```
      * $intentsClient = new IntentsClient();
      * try {
-     *     $intent = new Intent();
-     *     $response = $intentsClient->updateIntent($intent);
+     *     $response = $intentsClient->updateIntent();
      * } finally {
      *     $intentsClient->close();
      * }
      * ```
      *
-     * @param Intent $intent       Required. The intent to update.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Intent $intent
+     *           Required. The intent to update.
      *     @type string $languageCode
      *           Optional. The language used to access language-specific data.
      *           If not specified, the agent's default language is used.
@@ -1303,12 +1325,14 @@ class IntentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateIntent($intent, array $optionalArgs = [])
+    public function updateIntent(array $optionalArgs = [])
     {
         $request = new UpdateIntentRequest();
         $requestParamHeaders = [];
-        $request->setIntent($intent);
-        $requestParamHeaders['intent.name'] = $intent->getName();
+        if (isset($optionalArgs['intent'])) {
+            $request->setIntent($optionalArgs['intent']);
+        }
+
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
         }

@@ -23,8 +23,7 @@ class GetRepositoryRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The repository's name. Please see
-     *                     {@see DataformClient::repositoryName()} for help formatting this field.
+     * @param string $name Required. The repository's name.
      *
      * @return \Google\Cloud\Dataform\V1beta1\GetRepositoryRequest
      *

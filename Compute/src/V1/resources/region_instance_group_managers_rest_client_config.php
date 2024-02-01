@@ -337,9 +337,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'size',
-                ],
             ],
             'SetInstanceTemplate' => [
                 'method' => 'post',

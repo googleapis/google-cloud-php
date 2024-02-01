@@ -25,28 +25,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_BulkInsert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\BulkInsertInstanceResource;
 use Google\Cloud\Compute\V1\InstancesClient;
 use Google\Rpc\Status;
 
 /**
  * Creates multiple instances. Count specifies the number of instances to create. For more information, see About bulk creation of VMs.
  *
- * @param string $project Project ID for this request.
- * @param string $zone    The name of the zone for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function bulk_insert_sample(string $project, string $zone): void
+function bulk_insert_sample(): void
 {
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $bulkInsertInstanceResourceResource = new BulkInsertInstanceResource();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->bulkInsert($bulkInsertInstanceResourceResource, $project, $zone);
+        $response = $instancesClient->bulkInsert();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -59,22 +58,5 @@ function bulk_insert_sample(string $project, string $zone): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $zone = '[ZONE]';
-
-    bulk_insert_sample($project, $zone);
 }
 // [END compute_v1_generated_Instances_BulkInsert_sync]

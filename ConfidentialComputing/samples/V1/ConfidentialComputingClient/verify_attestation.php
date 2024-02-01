@@ -25,28 +25,25 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START confidentialcomputing_v1_generated_ConfidentialComputing_VerifyAttestation_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\ConfidentialComputing\V1\Client\ConfidentialComputingClient;
-use Google\Cloud\ConfidentialComputing\V1\TpmAttestation;
 use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationRequest;
 use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationResponse;
 
 /**
  * Verifies the provided attestation info, returning a signed OIDC token.
  *
- * @param string $formattedChallenge The name of the Challenge whose nonce was used to generate the
- *                                   attestation, in the format `projects/&#42;/locations/&#42;/challenges/*`. The
- *                                   provided Challenge will be consumed, and cannot be used again. Please see
- *                                   {@see ConfidentialComputingClient::challengeName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function verify_attestation_sample(string $formattedChallenge): void
+function verify_attestation_sample(): void
 {
     // Create a client.
     $confidentialComputingClient = new ConfidentialComputingClient();
 
     // Prepare the request message.
-    $tpmAttestation = new TpmAttestation();
-    $request = (new VerifyAttestationRequest())
-        ->setChallenge($formattedChallenge)
-        ->setTpmAttestation($tpmAttestation);
+    $request = new VerifyAttestationRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,25 +53,5 @@ function verify_attestation_sample(string $formattedChallenge): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedChallenge = ConfidentialComputingClient::challengeName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[UUID]'
-    );
-
-    verify_attestation_sample($formattedChallenge);
 }
 // [END confidentialcomputing_v1_generated_ConfidentialComputing_VerifyAttestation_sync]

@@ -29,8 +29,7 @@ class GetConversationRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
-     * @param string $name Required. The name of the conversation to get. Please see
-     *                     {@see ContactCenterInsightsClient::conversationName()} for help formatting this field.
+     * @param string $name Required. The name of the conversation to get.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\GetConversationRequest
      *

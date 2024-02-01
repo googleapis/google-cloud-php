@@ -40,35 +40,19 @@ use Google\Rpc\Status;
  * cancelled before completion it may leave partial data behind in Google
  * Cloud Storage.
  *
- * @param string $projectId       Project ID against which to make the request.
- * @param string $outputUrlPrefix Location for the export metadata and data files.
- *
- *                                The full resource URL of the external storage location. Currently, only
- *                                Google Cloud Storage is supported. So output_url_prefix should be of the
- *                                form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the
- *                                name of the Cloud Storage bucket and `NAMESPACE_PATH` is an optional Cloud
- *                                Storage namespace path (this is not a Cloud Datastore namespace). For more
- *                                information about Cloud Storage namespace paths, see
- *                                [Object name
- *                                considerations](https://cloud.google.com/storage/docs/naming#object-considerations).
- *
- *                                The resulting files will be nested deeper than the specified URL prefix.
- *                                The final output URL will be provided in the
- *                                [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url]
- *                                field. That value should be used for subsequent ImportEntities operations.
- *
- *                                By nesting the data files deeper, the same Cloud Storage bucket can be used
- *                                in multiple ExportEntities operations without conflict.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function export_entities_sample(string $projectId, string $outputUrlPrefix): void
+function export_entities_sample(): void
 {
     // Create a client.
     $datastoreAdminClient = new DatastoreAdminClient();
 
     // Prepare the request message.
-    $request = (new ExportEntitiesRequest())
-        ->setProjectId($projectId)
-        ->setOutputUrlPrefix($outputUrlPrefix);
+    $request = new ExportEntitiesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -88,22 +72,5 @@ function export_entities_sample(string $projectId, string $outputUrlPrefix): voi
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $projectId = '[PROJECT_ID]';
-    $outputUrlPrefix = '[OUTPUT_URL_PREFIX]';
-
-    export_entities_sample($projectId, $outputUrlPrefix);
 }
 // [END datastore_v1_generated_DatastoreAdmin_ExportEntities_sync]

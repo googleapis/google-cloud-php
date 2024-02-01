@@ -82,9 +82,6 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v2/{version.name=projects/*/locations/*/agent/versions/*}',
                         'body' => 'version',
-                        'queryParams' => [
-                            'update_mask',
-                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -94,9 +91,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

@@ -105,10 +105,7 @@ class RoutersClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListRoutersRequest())
-            ->setProject($project);
+        $request = new AggregatedListRoutersRequest();
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -121,8 +118,6 @@ class RoutersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routers/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -144,10 +139,7 @@ class RoutersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListRoutersRequest())
-            ->setProject($project);
+        $request = new AggregatedListRoutersRequest();
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -186,14 +178,7 @@ class RoutersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $request = (new DeleteRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router);
+        $request = new DeleteRouterRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -203,16 +188,8 @@ class RoutersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routers/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getRouter();
-        $this->assertProtobufEquals($router, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -260,14 +237,7 @@ class RoutersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $request = (new DeleteRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router);
+        $request = new DeleteRouterRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -317,14 +287,7 @@ class RoutersClientTest extends GeneratedTest
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $request = (new GetRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router);
+        $request = new GetRouterRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -332,12 +295,6 @@ class RoutersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routers/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getRouter();
-        $this->assertProtobufEquals($router, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -359,14 +316,7 @@ class RoutersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $request = (new GetRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router);
+        $request = new GetRouterRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -391,14 +341,7 @@ class RoutersClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new NatIpInfoResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $request = (new GetNatIpInfoRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router);
+        $request = new GetNatIpInfoRouterRequest();
         $response = $gapicClient->getNatIpInfo($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -406,12 +349,6 @@ class RoutersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routers/GetNatIpInfo', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getRouter();
-        $this->assertProtobufEquals($router, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -433,14 +370,7 @@ class RoutersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $request = (new GetNatIpInfoRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router);
+        $request = new GetNatIpInfoRouterRequest();
         try {
             $gapicClient->getNatIpInfo($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -478,14 +408,7 @@ class RoutersClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setResult($result);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $request = (new GetNatMappingInfoRoutersRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router);
+        $request = new GetNatMappingInfoRoutersRequest();
         $response = $gapicClient->getNatMappingInfo($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -496,12 +419,6 @@ class RoutersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routers/GetNatMappingInfo', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getRouter();
-        $this->assertProtobufEquals($router, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -523,14 +440,7 @@ class RoutersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $request = (new GetNatMappingInfoRoutersRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router);
+        $request = new GetNatMappingInfoRoutersRequest();
         try {
             $gapicClient->getNatMappingInfo($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -557,14 +467,7 @@ class RoutersClientTest extends GeneratedTest
         $expectedResponse = new RouterStatusResponse();
         $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $request = (new GetRouterStatusRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router);
+        $request = new GetRouterStatusRouterRequest();
         $response = $gapicClient->getRouterStatus($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -572,12 +475,6 @@ class RoutersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routers/GetRouterStatus', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getRouter();
-        $this->assertProtobufEquals($router, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -599,14 +496,7 @@ class RoutersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $request = (new GetRouterStatusRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router);
+        $request = new GetRouterStatusRouterRequest();
         try {
             $gapicClient->getRouterStatus($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -645,14 +535,7 @@ class RoutersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $routerResource = new Router();
-        $request = (new InsertRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouterResource($routerResource);
+        $request = new InsertRouterRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -662,16 +545,8 @@ class RoutersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routers/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getRouterResource();
-        $this->assertProtobufEquals($routerResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -719,14 +594,7 @@ class RoutersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $routerResource = new Router();
-        $request = (new InsertRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouterResource($routerResource);
+        $request = new InsertRouterRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -771,12 +639,7 @@ class RoutersClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListRoutersRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListRoutersRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -787,10 +650,6 @@ class RoutersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routers/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -812,12 +671,7 @@ class RoutersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListRoutersRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListRoutersRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -856,16 +710,7 @@ class RoutersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $routerResource = new Router();
-        $request = (new PatchRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router)
-            ->setRouterResource($routerResource);
+        $request = new PatchRouterRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -875,18 +720,8 @@ class RoutersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routers/Patch', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getRouter();
-        $this->assertProtobufEquals($router, $actualValue);
-        $actualValue = $actualApiRequestObject->getRouterResource();
-        $this->assertProtobufEquals($routerResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -934,16 +769,7 @@ class RoutersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $routerResource = new Router();
-        $request = (new PatchRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router)
-            ->setRouterResource($routerResource);
+        $request = new PatchRouterRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -975,16 +801,7 @@ class RoutersClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new RoutersPreviewResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $routerResource = new Router();
-        $request = (new PreviewRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router)
-            ->setRouterResource($routerResource);
+        $request = new PreviewRouterRequest();
         $response = $gapicClient->preview($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -992,14 +809,6 @@ class RoutersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routers/Preview', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getRouter();
-        $this->assertProtobufEquals($router, $actualValue);
-        $actualValue = $actualRequestObject->getRouterResource();
-        $this->assertProtobufEquals($routerResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1021,16 +830,7 @@ class RoutersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $routerResource = new Router();
-        $request = (new PreviewRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router)
-            ->setRouterResource($routerResource);
+        $request = new PreviewRouterRequest();
         try {
             $gapicClient->preview($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1069,16 +869,7 @@ class RoutersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/updateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $routerResource = new Router();
-        $request = (new UpdateRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router)
-            ->setRouterResource($routerResource);
+        $request = new UpdateRouterRequest();
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1088,18 +879,8 @@ class RoutersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routers/Update', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getRouter();
-        $this->assertProtobufEquals($router, $actualValue);
-        $actualValue = $actualApiRequestObject->getRouterResource();
-        $this->assertProtobufEquals($routerResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1147,16 +928,7 @@ class RoutersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $router = 'router-925132983';
-        $routerResource = new Router();
-        $request = (new UpdateRouterRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRouter($router)
-            ->setRouterResource($routerResource);
+        $request = new UpdateRouterRequest();
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1200,10 +972,7 @@ class RoutersClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListRoutersRequest())
-            ->setProject($project);
+        $request = new AggregatedListRoutersRequest();
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1216,8 +985,6 @@ class RoutersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routers/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

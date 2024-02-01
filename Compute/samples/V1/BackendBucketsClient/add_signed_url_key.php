@@ -26,27 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\BackendBucketsClient;
-use Google\Cloud\Compute\V1\SignedUrlKey;
 use Google\Rpc\Status;
 
 /**
  * Adds a key for validating requests with signed URLs for this backend bucket.
  *
- * @param string $backendBucket Name of the BackendBucket resource to which the Signed URL Key should be added. The name should conform to RFC1035.
- * @param string $project       Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function add_signed_url_key_sample(string $backendBucket, string $project): void
+function add_signed_url_key_sample(): void
 {
     // Create a client.
     $backendBucketsClient = new BackendBucketsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $signedUrlKeyResource = new SignedUrlKey();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backendBucketsClient->addSignedUrlKey($backendBucket, $project, $signedUrlKeyResource);
+        $response = $backendBucketsClient->addSignedUrlKey();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -59,22 +58,5 @@ function add_signed_url_key_sample(string $backendBucket, string $project): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $backendBucket = '[BACKEND_BUCKET]';
-    $project = '[PROJECT]';
-
-    add_signed_url_key_sample($backendBucket, $project);
 }
 // [END compute_v1_generated_BackendBuckets_AddSignedUrlKey_sync]

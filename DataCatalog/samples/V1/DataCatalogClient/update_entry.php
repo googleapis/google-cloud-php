@@ -48,9 +48,7 @@ function update_entry_sample(): void
     $dataCatalogClient = new DataCatalogClient();
 
     // Prepare the request message.
-    $entry = new Entry();
-    $request = (new UpdateEntryRequest())
-        ->setEntry($entry);
+    $request = new UpdateEntryRequest();
 
     // Call the API and handle any network failures.
     try {

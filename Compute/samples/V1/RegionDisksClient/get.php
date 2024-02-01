@@ -30,11 +30,13 @@ use Google\Cloud\Compute\V1\RegionDisksClient;
 /**
  * Returns a specified regional persistent disk.
  *
- * @param string $disk    Name of the regional persistent disk to return.
- * @param string $project Project ID for this request.
- * @param string $region  Name of the region for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_sample(string $disk, string $project, string $region): void
+function get_sample(): void
 {
     // Create a client.
     $regionDisksClient = new RegionDisksClient();
@@ -42,28 +44,10 @@ function get_sample(string $disk, string $project, string $region): void
     // Call the API and handle any network failures.
     try {
         /** @var Disk $response */
-        $response = $regionDisksClient->get($disk, $project, $region);
+        $response = $regionDisksClient->get();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $disk = '[DISK]';
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-
-    get_sample($disk, $project, $region);
 }
 // [END compute_v1_generated_RegionDisks_Get_sync]

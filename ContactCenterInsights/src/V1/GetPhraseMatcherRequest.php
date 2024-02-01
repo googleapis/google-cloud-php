@@ -23,8 +23,7 @@ class GetPhraseMatcherRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the phrase matcher to get. Please see
-     *                     {@see ContactCenterInsightsClient::phraseMatcherName()} for help formatting this field.
+     * @param string $name Required. The name of the phrase matcher to get.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\GetPhraseMatcherRequest
      *

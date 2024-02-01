@@ -31,29 +31,19 @@ use Google\Cloud\Dialogflow\Cx\V3\CompareVersionsResponse;
 /**
  * Compares the specified base version with target version.
  *
- * @param string $formattedBaseVersion   Name of the base flow version to compare with the target version.
- *                                       Use version ID `0` to indicate the draft version of the specified flow.
- *
- *                                       Format: `projects/<Project ID>/locations/<Location ID>/agents/
- *                                       <Agent ID>/flows/<Flow ID>/versions/<Version ID>`. Please see
- *                                       {@see VersionsClient::versionName()} for help formatting this field.
- * @param string $formattedTargetVersion Name of the target flow version to compare with the
- *                                       base version. Use version ID `0` to indicate the draft version of the
- *                                       specified flow. Format: `projects/<Project ID>/locations/<Location
- *                                       ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`. Please see
- *                                       {@see VersionsClient::versionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function compare_versions_sample(
-    string $formattedBaseVersion,
-    string $formattedTargetVersion
-): void {
+function compare_versions_sample(): void
+{
     // Create a client.
     $versionsClient = new VersionsClient();
 
     // Prepare the request message.
-    $request = (new CompareVersionsRequest())
-        ->setBaseVersion($formattedBaseVersion)
-        ->setTargetVersion($formattedTargetVersion);
+    $request = new CompareVersionsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,34 +53,5 @@ function compare_versions_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedBaseVersion = VersionsClient::versionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AGENT]',
-        '[FLOW]',
-        '[VERSION]'
-    );
-    $formattedTargetVersion = VersionsClient::versionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AGENT]',
-        '[FLOW]',
-        '[VERSION]'
-    );
-
-    compare_versions_sample($formattedBaseVersion, $formattedTargetVersion);
 }
 // [END dialogflow_v3_generated_Versions_CompareVersions_sync]

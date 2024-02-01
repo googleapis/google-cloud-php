@@ -30,10 +30,13 @@ use Google\Cloud\Compute\V1\InterconnectsClient;
 /**
  * Returns the specified Interconnect. Get a list of available Interconnects by making a list() request.
  *
- * @param string $interconnect Name of the interconnect to return.
- * @param string $project      Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_sample(string $interconnect, string $project): void
+function get_sample(): void
 {
     // Create a client.
     $interconnectsClient = new InterconnectsClient();
@@ -41,27 +44,10 @@ function get_sample(string $interconnect, string $project): void
     // Call the API and handle any network failures.
     try {
         /** @var Interconnect $response */
-        $response = $interconnectsClient->get($interconnect, $project);
+        $response = $interconnectsClient->get();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $interconnect = '[INTERCONNECT]';
-    $project = '[PROJECT]';
-
-    get_sample($interconnect, $project);
 }
 // [END compute_v1_generated_Interconnects_Get_sync]

@@ -32,18 +32,15 @@ use Google\Cloud\DataCatalog\V1\DataCatalogClient;
 use Google\Cloud\DataCatalog\V1\Entry;
 use Google\Cloud\DataCatalog\V1\EntryGroup;
 use Google\Cloud\DataCatalog\V1\EntryOverview;
-use Google\Cloud\DataCatalog\V1\FieldType;
 use Google\Cloud\DataCatalog\V1\ImportEntriesResponse;
 use Google\Cloud\DataCatalog\V1\ListEntriesResponse;
 use Google\Cloud\DataCatalog\V1\ListEntryGroupsResponse;
 use Google\Cloud\DataCatalog\V1\ListTagsResponse;
 use Google\Cloud\DataCatalog\V1\ReconcileTagsResponse;
-use Google\Cloud\DataCatalog\V1\SearchCatalogRequest\Scope;
 use Google\Cloud\DataCatalog\V1\SearchCatalogResponse;
 use Google\Cloud\DataCatalog\V1\SearchCatalogResult;
 use Google\Cloud\DataCatalog\V1\StarEntryResponse;
 use Google\Cloud\DataCatalog\V1\Tag;
-use Google\Cloud\DataCatalog\V1\TagField;
 use Google\Cloud\DataCatalog\V1\TagTemplate;
 use Google\Cloud\DataCatalog\V1\TagTemplateField;
 use Google\Cloud\DataCatalog\V1\UnstarEntryResponse;
@@ -109,23 +106,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
-        $entryId = 'entryId-2093663224';
-        $entry = new Entry();
-        $response = $gapicClient->createEntry($formattedParent, $entryId, $entry);
+        $response = $gapicClient->createEntry();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/CreateEntry', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getEntryId();
-        $this->assertProtobufEquals($entryId, $actualValue);
-        $actualValue = $actualRequestObject->getEntry();
-        $this->assertProtobufEquals($entry, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -147,12 +134,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
-        $entryId = 'entryId-2093663224';
-        $entry = new Entry();
         try {
-            $gapicClient->createEntry($formattedParent, $entryId, $entry);
+            $gapicClient->createEntry();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -181,20 +164,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $entryGroupId = 'entryGroupId-43122680';
-        $response = $gapicClient->createEntryGroup($formattedParent, $entryGroupId);
+        $response = $gapicClient->createEntryGroup();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/CreateEntryGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getEntryGroupId();
-        $this->assertProtobufEquals($entryGroupId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -216,11 +192,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $entryGroupId = 'entryGroupId-43122680';
         try {
-            $gapicClient->createEntryGroup($formattedParent, $entryGroupId);
+            $gapicClient->createEntryGroup();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -251,27 +224,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setTemplateDisplayName($templateDisplayName);
         $expectedResponse->setColumn($column);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $tag = new Tag();
-        $tagTemplate = 'tagTemplate1678947892';
-        $tag->setTemplate($tagTemplate);
-        $fieldsValue = new TagField();
-        $tagFields = [
-            'fieldsKey' => $fieldsValue,
-        ];
-        $tag->setFields($tagFields);
-        $response = $gapicClient->createTag($formattedParent, $tag);
+        $response = $gapicClient->createTag();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/CreateTag', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getTag();
-        $this->assertProtobufEquals($tag, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -293,18 +252,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $tag = new Tag();
-        $tagTemplate = 'tagTemplate1678947892';
-        $tag->setTemplate($tagTemplate);
-        $fieldsValue = new TagField();
-        $tagFields = [
-            'fieldsKey' => $fieldsValue,
-        ];
-        $tag->setFields($tagFields);
         try {
-            $gapicClient->createTag($formattedParent, $tag);
+            $gapicClient->createTag();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -333,30 +282,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setIsPubliclyReadable($isPubliclyReadable);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $tagTemplateId = 'tagTemplateId-2020335141';
-        $tagTemplate = new TagTemplate();
-        $fieldsValue = new TagTemplateField();
-        $valueType = new FieldType();
-        $fieldsValue->setType($valueType);
-        $tagTemplateFields = [
-            'fieldsKey' => $fieldsValue,
-        ];
-        $tagTemplate->setFields($tagTemplateFields);
-        $response = $gapicClient->createTagTemplate($formattedParent, $tagTemplateId, $tagTemplate);
+        $response = $gapicClient->createTagTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/CreateTagTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getTagTemplateId();
-        $this->assertProtobufEquals($tagTemplateId, $actualValue);
-        $actualValue = $actualRequestObject->getTagTemplate();
-        $this->assertProtobufEquals($tagTemplate, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -378,19 +310,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $tagTemplateId = 'tagTemplateId-2020335141';
-        $tagTemplate = new TagTemplate();
-        $fieldsValue = new TagTemplateField();
-        $valueType = new FieldType();
-        $fieldsValue->setType($valueType);
-        $tagTemplateFields = [
-            'fieldsKey' => $fieldsValue,
-        ];
-        $tagTemplate->setFields($tagTemplateFields);
         try {
-            $gapicClient->createTagTemplate($formattedParent, $tagTemplateId, $tagTemplate);
+            $gapicClient->createTagTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -423,25 +344,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setOrder($order);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
-        $tagTemplateFieldId = 'tagTemplateFieldId-92144832';
-        $tagTemplateField = new TagTemplateField();
-        $tagTemplateFieldType = new FieldType();
-        $tagTemplateField->setType($tagTemplateFieldType);
-        $response = $gapicClient->createTagTemplateField($formattedParent, $tagTemplateFieldId, $tagTemplateField);
+        $response = $gapicClient->createTagTemplateField();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/CreateTagTemplateField', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getTagTemplateFieldId();
-        $this->assertProtobufEquals($tagTemplateFieldId, $actualValue);
-        $actualValue = $actualRequestObject->getTagTemplateField();
-        $this->assertProtobufEquals($tagTemplateField, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -463,14 +372,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
-        $tagTemplateFieldId = 'tagTemplateFieldId-92144832';
-        $tagTemplateField = new TagTemplateField();
-        $tagTemplateFieldType = new FieldType();
-        $tagTemplateField->setType($tagTemplateFieldType);
         try {
-            $gapicClient->createTagTemplateField($formattedParent, $tagTemplateFieldId, $tagTemplateField);
+            $gapicClient->createTagTemplateField();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -493,16 +396,12 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $gapicClient->deleteEntry($formattedName);
+        $gapicClient->deleteEntry();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/DeleteEntry', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -524,10 +423,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         try {
-            $gapicClient->deleteEntry($formattedName);
+            $gapicClient->deleteEntry();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -550,16 +447,12 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
-        $gapicClient->deleteEntryGroup($formattedName);
+        $gapicClient->deleteEntryGroup();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/DeleteEntryGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -581,10 +474,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
         try {
-            $gapicClient->deleteEntryGroup($formattedName);
+            $gapicClient->deleteEntryGroup();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -607,16 +498,12 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $gapicClient->deleteTag($formattedName);
+        $gapicClient->deleteTag();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/DeleteTag', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -638,10 +525,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         try {
-            $gapicClient->deleteTag($formattedName);
+            $gapicClient->deleteTag();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -664,19 +549,12 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
-        $force = false;
-        $gapicClient->deleteTagTemplate($formattedName, $force);
+        $gapicClient->deleteTagTemplate();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/DeleteTagTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getForce();
-        $this->assertProtobufEquals($force, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -698,11 +576,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
-        $force = false;
         try {
-            $gapicClient->deleteTagTemplate($formattedName, $force);
+            $gapicClient->deleteTagTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -725,19 +600,12 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
-        $force = false;
-        $gapicClient->deleteTagTemplateField($formattedName, $force);
+        $gapicClient->deleteTagTemplateField();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/DeleteTagTemplateField', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getForce();
-        $this->assertProtobufEquals($force, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -759,11 +627,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
-        $force = false;
         try {
-            $gapicClient->deleteTagTemplateField($formattedName, $force);
+            $gapicClient->deleteTagTemplateField();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -800,17 +665,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $response = $gapicClient->getEntry($formattedName);
+        $response = $gapicClient->getEntry();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/GetEntry', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -832,10 +693,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         try {
-            $gapicClient->getEntry($formattedName);
+            $gapicClient->getEntry();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -864,17 +723,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
-        $response = $gapicClient->getEntryGroup($formattedName);
+        $response = $gapicClient->getEntryGroup();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/GetEntryGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -896,10 +751,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
         try {
-            $gapicClient->getEntryGroup($formattedName);
+            $gapicClient->getEntryGroup();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -926,17 +779,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -958,10 +807,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -990,17 +837,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setIsPubliclyReadable($isPubliclyReadable);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
-        $response = $gapicClient->getTagTemplate($formattedName);
+        $response = $gapicClient->getTagTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/GetTagTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1022,10 +865,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
         try {
-            $gapicClient->getTagTemplate($formattedName);
+            $gapicClient->getTagTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1070,9 +911,7 @@ class DataCatalogClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
-        $response = $gapicClient->importEntries($formattedParent);
+        $response = $gapicClient->importEntries();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1082,8 +921,6 @@ class DataCatalogClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/ImportEntries', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importEntriesTest');
         $response->pollUntilComplete([
@@ -1134,9 +971,7 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
-        $response = $gapicClient->importEntries($formattedParent);
+        $response = $gapicClient->importEntries();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1176,9 +1011,7 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEntries($entries);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
-        $response = $gapicClient->listEntries($formattedParent);
+        $response = $gapicClient->listEntries();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1188,8 +1021,6 @@ class DataCatalogClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/ListEntries', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1211,10 +1042,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
         try {
-            $gapicClient->listEntries($formattedParent);
+            $gapicClient->listEntries();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1244,9 +1073,7 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEntryGroups($entryGroups);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listEntryGroups($formattedParent);
+        $response = $gapicClient->listEntryGroups();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1256,8 +1083,6 @@ class DataCatalogClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/ListEntryGroups', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1279,10 +1104,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listEntryGroups($formattedParent);
+            $gapicClient->listEntryGroups();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1312,9 +1135,7 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTags($tags);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $response = $gapicClient->listTags($formattedParent);
+        $response = $gapicClient->listTags();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1324,8 +1145,6 @@ class DataCatalogClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/ListTags', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1347,10 +1166,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         try {
-            $gapicClient->listTags($formattedParent);
+            $gapicClient->listTags();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1439,20 +1256,13 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new Contacts();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $contacts = new Contacts();
-        $response = $gapicClient->modifyEntryContacts($formattedName, $contacts);
+        $response = $gapicClient->modifyEntryContacts();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/ModifyEntryContacts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getContacts();
-        $this->assertProtobufEquals($contacts, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1474,11 +1284,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $contacts = new Contacts();
         try {
-            $gapicClient->modifyEntryContacts($formattedName, $contacts);
+            $gapicClient->modifyEntryContacts();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1503,20 +1310,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse = new EntryOverview();
         $expectedResponse->setOverview($overview);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $entryOverview = new EntryOverview();
-        $response = $gapicClient->modifyEntryOverview($formattedName, $entryOverview);
+        $response = $gapicClient->modifyEntryOverview();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/ModifyEntryOverview', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getEntryOverview();
-        $this->assertProtobufEquals($entryOverview, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1538,11 +1338,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $entryOverview = new EntryOverview();
         try {
-            $gapicClient->modifyEntryOverview($formattedName, $entryOverview);
+            $gapicClient->modifyEntryOverview();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1589,10 +1386,7 @@ class DataCatalogClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $formattedTagTemplate = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
-        $response = $gapicClient->reconcileTags($formattedParent, $formattedTagTemplate);
+        $response = $gapicClient->reconcileTags();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1602,10 +1396,6 @@ class DataCatalogClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/ReconcileTags', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getTagTemplate();
-        $this->assertProtobufEquals($formattedTagTemplate, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/reconcileTagsTest');
         $response->pollUntilComplete([
@@ -1656,10 +1446,7 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $formattedTagTemplate = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
-        $response = $gapicClient->reconcileTags($formattedParent, $formattedTagTemplate);
+        $response = $gapicClient->reconcileTags();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1702,20 +1489,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setOrder($order);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
-        $newTagTemplateFieldId = 'newTagTemplateFieldId-1668354591';
-        $response = $gapicClient->renameTagTemplateField($formattedName, $newTagTemplateFieldId);
+        $response = $gapicClient->renameTagTemplateField();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/RenameTagTemplateField', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getNewTagTemplateFieldId();
-        $this->assertProtobufEquals($newTagTemplateFieldId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1737,11 +1517,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
-        $newTagTemplateFieldId = 'newTagTemplateFieldId-1668354591';
         try {
-            $gapicClient->renameTagTemplateField($formattedName, $newTagTemplateFieldId);
+            $gapicClient->renameTagTemplateField();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1774,20 +1551,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setOrder($order);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->tagTemplateFieldEnumValueName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[TAG_TEMPLATE_FIELD_ID]', '[ENUM_VALUE_DISPLAY_NAME]');
-        $newEnumValueDisplayName = 'newEnumValueDisplayName2138960469';
-        $response = $gapicClient->renameTagTemplateFieldEnumValue($formattedName, $newEnumValueDisplayName);
+        $response = $gapicClient->renameTagTemplateFieldEnumValue();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/RenameTagTemplateFieldEnumValue', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getNewEnumValueDisplayName();
-        $this->assertProtobufEquals($newEnumValueDisplayName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1809,11 +1579,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tagTemplateFieldEnumValueName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[TAG_TEMPLATE_FIELD_ID]', '[ENUM_VALUE_DISPLAY_NAME]');
-        $newEnumValueDisplayName = 'newEnumValueDisplayName2138960469';
         try {
-            $gapicClient->renameTagTemplateFieldEnumValue($formattedName, $newEnumValueDisplayName);
+            $gapicClient->renameTagTemplateFieldEnumValue();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1846,9 +1613,8 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $scope = new Scope();
         $query = 'query107944136';
-        $response = $gapicClient->searchCatalog($scope, $query);
+        $response = $gapicClient->searchCatalog($query);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1858,8 +1624,6 @@ class DataCatalogClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/SearchCatalog', $actualFuncCall);
-        $actualValue = $actualRequestObject->getScope();
-        $this->assertProtobufEquals($scope, $actualValue);
         $actualValue = $actualRequestObject->getQuery();
         $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1884,10 +1648,9 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $scope = new Scope();
         $query = 'query107944136';
         try {
-            $gapicClient->searchCatalog($scope, $query);
+            $gapicClient->searchCatalog($query);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1914,20 +1677,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1949,11 +1705,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1976,17 +1729,13 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new StarEntryResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $response = $gapicClient->starEntry($formattedName);
+        $response = $gapicClient->starEntry();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/StarEntry', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2008,10 +1757,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         try {
-            $gapicClient->starEntry($formattedName);
+            $gapicClient->starEntry();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2034,20 +1781,13 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2069,11 +1809,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2096,17 +1833,13 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new UnstarEntryResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $response = $gapicClient->unstarEntry($formattedName);
+        $response = $gapicClient->unstarEntry();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/UnstarEntry', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2128,10 +1861,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         try {
-            $gapicClient->unstarEntry($formattedName);
+            $gapicClient->unstarEntry();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2168,17 +1899,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $entry = new Entry();
-        $response = $gapicClient->updateEntry($entry);
+        $response = $gapicClient->updateEntry();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/UpdateEntry', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEntry();
-        $this->assertProtobufEquals($entry, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2200,10 +1927,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $entry = new Entry();
         try {
-            $gapicClient->updateEntry($entry);
+            $gapicClient->updateEntry();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2232,17 +1957,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $entryGroup = new EntryGroup();
-        $response = $gapicClient->updateEntryGroup($entryGroup);
+        $response = $gapicClient->updateEntryGroup();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/UpdateEntryGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEntryGroup();
-        $this->assertProtobufEquals($entryGroup, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2264,10 +1985,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $entryGroup = new EntryGroup();
         try {
-            $gapicClient->updateEntryGroup($entryGroup);
+            $gapicClient->updateEntryGroup();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2298,24 +2017,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setTemplateDisplayName($templateDisplayName);
         $expectedResponse->setColumn($column);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $tag = new Tag();
-        $tagTemplate = 'tagTemplate1678947892';
-        $tag->setTemplate($tagTemplate);
-        $fieldsValue = new TagField();
-        $tagFields = [
-            'fieldsKey' => $fieldsValue,
-        ];
-        $tag->setFields($tagFields);
-        $response = $gapicClient->updateTag($tag);
+        $response = $gapicClient->updateTag();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/UpdateTag', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTag();
-        $this->assertProtobufEquals($tag, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2337,17 +2045,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $tag = new Tag();
-        $tagTemplate = 'tagTemplate1678947892';
-        $tag->setTemplate($tagTemplate);
-        $fieldsValue = new TagField();
-        $tagFields = [
-            'fieldsKey' => $fieldsValue,
-        ];
-        $tag->setFields($tagFields);
         try {
-            $gapicClient->updateTag($tag);
+            $gapicClient->updateTag();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2376,24 +2075,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setIsPubliclyReadable($isPubliclyReadable);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $tagTemplate = new TagTemplate();
-        $fieldsValue = new TagTemplateField();
-        $valueType = new FieldType();
-        $fieldsValue->setType($valueType);
-        $tagTemplateFields = [
-            'fieldsKey' => $fieldsValue,
-        ];
-        $tagTemplate->setFields($tagTemplateFields);
-        $response = $gapicClient->updateTagTemplate($tagTemplate);
+        $response = $gapicClient->updateTagTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/UpdateTagTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTagTemplate();
-        $this->assertProtobufEquals($tagTemplate, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2415,17 +2103,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $tagTemplate = new TagTemplate();
-        $fieldsValue = new TagTemplateField();
-        $valueType = new FieldType();
-        $fieldsValue->setType($valueType);
-        $tagTemplateFields = [
-            'fieldsKey' => $fieldsValue,
-        ];
-        $tagTemplate->setFields($tagTemplateFields);
         try {
-            $gapicClient->updateTagTemplate($tagTemplate);
+            $gapicClient->updateTagTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2458,22 +2137,13 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setOrder($order);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
-        $tagTemplateField = new TagTemplateField();
-        $tagTemplateFieldType = new FieldType();
-        $tagTemplateField->setType($tagTemplateFieldType);
-        $response = $gapicClient->updateTagTemplateField($formattedName, $tagTemplateField);
+        $response = $gapicClient->updateTagTemplateField();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/UpdateTagTemplateField', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getTagTemplateField();
-        $this->assertProtobufEquals($tagTemplateField, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2495,13 +2165,8 @@ class DataCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
-        $tagTemplateField = new TagTemplateField();
-        $tagTemplateFieldType = new FieldType();
-        $tagTemplateField->setType($tagTemplateFieldType);
         try {
-            $gapicClient->updateTagTemplateField($formattedName, $tagTemplateField);
+            $gapicClient->updateTagTemplateField();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

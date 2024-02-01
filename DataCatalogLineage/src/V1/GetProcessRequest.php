@@ -24,8 +24,7 @@ class GetProcessRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the process to get. Please see
-     *                     {@see LineageClient::processName()} for help formatting this field.
+     * @param string $name Required. The name of the process to get.
      *
      * @return \Google\Cloud\DataCatalog\Lineage\V1\GetProcessRequest
      *

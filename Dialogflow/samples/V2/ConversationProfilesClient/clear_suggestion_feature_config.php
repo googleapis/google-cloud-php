@@ -28,8 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dialogflow\V2\ClearSuggestionFeatureConfigRequest;
 use Google\Cloud\Dialogflow\V2\Client\ConversationProfilesClient;
 use Google\Cloud\Dialogflow\V2\ConversationProfile;
-use Google\Cloud\Dialogflow\V2\Participant\Role;
-use Google\Cloud\Dialogflow\V2\SuggestionFeature\Type;
 use Google\Rpc\Status;
 
 /**
@@ -45,26 +43,19 @@ use Google\Rpc\Status;
  * - `response`:
  * [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
  *
- * @param string $conversationProfile   The Conversation Profile to add or update the suggestion feature
- *                                      config. Format: `projects/<Project ID>/locations/<Location
- *                                      ID>/conversationProfiles/<Conversation Profile ID>`.
- * @param int    $participantRole       The participant role to remove the suggestion feature
- *                                      config. Only HUMAN_AGENT or END_USER can be used.
- * @param int    $suggestionFeatureType The type of the suggestion feature to remove.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function clear_suggestion_feature_config_sample(
-    string $conversationProfile,
-    int $participantRole,
-    int $suggestionFeatureType
-): void {
+function clear_suggestion_feature_config_sample(): void
+{
     // Create a client.
     $conversationProfilesClient = new ConversationProfilesClient();
 
     // Prepare the request message.
-    $request = (new ClearSuggestionFeatureConfigRequest())
-        ->setConversationProfile($conversationProfile)
-        ->setParticipantRole($participantRole)
-        ->setSuggestionFeatureType($suggestionFeatureType);
+    $request = new ClearSuggestionFeatureConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -84,27 +75,5 @@ function clear_suggestion_feature_config_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $conversationProfile = '[CONVERSATION_PROFILE]';
-    $participantRole = Role::ROLE_UNSPECIFIED;
-    $suggestionFeatureType = Type::TYPE_UNSPECIFIED;
-
-    clear_suggestion_feature_config_sample(
-        $conversationProfile,
-        $participantRole,
-        $suggestionFeatureType
-    );
 }
 // [END dialogflow_v2_generated_ConversationProfiles_ClearSuggestionFeatureConfig_sync]

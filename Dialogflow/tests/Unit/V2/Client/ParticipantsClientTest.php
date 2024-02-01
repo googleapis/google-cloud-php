@@ -48,7 +48,6 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -93,10 +92,7 @@ class ParticipantsClientTest extends GeneratedTest
         $expectedResponse = new AnalyzeContentResponse();
         $expectedResponse->setReplyText($replyText);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParticipant = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new AnalyzeContentRequest())
-            ->setParticipant($formattedParticipant);
+        $request = new AnalyzeContentRequest();
         $response = $gapicClient->analyzeContent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -104,8 +100,6 @@ class ParticipantsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Participants/AnalyzeContent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParticipant();
-        $this->assertProtobufEquals($formattedParticipant, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -127,10 +121,7 @@ class ParticipantsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParticipant = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new AnalyzeContentRequest())
-            ->setParticipant($formattedParticipant);
+        $request = new AnalyzeContentRequest();
         try {
             $gapicClient->analyzeContent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -161,12 +152,7 @@ class ParticipantsClientTest extends GeneratedTest
         $expectedResponse->setSipRecordingMediaLabel($sipRecordingMediaLabel);
         $expectedResponse->setObfuscatedExternalUserId($obfuscatedExternalUserId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
-        $participant = new Participant();
-        $request = (new CreateParticipantRequest())
-            ->setParent($formattedParent)
-            ->setParticipant($participant);
+        $request = new CreateParticipantRequest();
         $response = $gapicClient->createParticipant($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -174,10 +160,6 @@ class ParticipantsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Participants/CreateParticipant', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getParticipant();
-        $this->assertProtobufEquals($participant, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -199,12 +181,7 @@ class ParticipantsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
-        $participant = new Participant();
-        $request = (new CreateParticipantRequest())
-            ->setParent($formattedParent)
-            ->setParticipant($participant);
+        $request = new CreateParticipantRequest();
         try {
             $gapicClient->createParticipant($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -235,10 +212,7 @@ class ParticipantsClientTest extends GeneratedTest
         $expectedResponse->setSipRecordingMediaLabel($sipRecordingMediaLabel);
         $expectedResponse->setObfuscatedExternalUserId($obfuscatedExternalUserId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new GetParticipantRequest())
-            ->setName($formattedName);
+        $request = new GetParticipantRequest();
         $response = $gapicClient->getParticipant($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -246,8 +220,6 @@ class ParticipantsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Participants/GetParticipant', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -269,10 +241,7 @@ class ParticipantsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new GetParticipantRequest())
-            ->setName($formattedName);
+        $request = new GetParticipantRequest();
         try {
             $gapicClient->getParticipant($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -304,10 +273,7 @@ class ParticipantsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setParticipants($participants);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
-        $request = (new ListParticipantsRequest())
-            ->setParent($formattedParent);
+        $request = new ListParticipantsRequest();
         $response = $gapicClient->listParticipants($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -318,8 +284,6 @@ class ParticipantsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Participants/ListParticipants', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -341,10 +305,7 @@ class ParticipantsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
-        $request = (new ListParticipantsRequest())
-            ->setParent($formattedParent);
+        $request = new ListParticipantsRequest();
         try {
             $gapicClient->listParticipants($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -380,15 +341,9 @@ class ParticipantsClientTest extends GeneratedTest
         $expectedResponse3->setReplyText($replyText3);
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $formattedParticipant = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
         $request = new StreamingAnalyzeContentRequest();
-        $request->setParticipant($formattedParticipant);
-        $formattedParticipant2 = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
         $request2 = new StreamingAnalyzeContentRequest();
-        $request2->setParticipant($formattedParticipant2);
-        $formattedParticipant3 = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
         $request3 = new StreamingAnalyzeContentRequest();
-        $request3->setParticipant($formattedParticipant3);
         $bidi = $gapicClient->streamingAnalyzeContent();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
@@ -473,10 +428,7 @@ class ParticipantsClientTest extends GeneratedTest
         $expectedResponse->setLatestMessage($latestMessage2);
         $expectedResponse->setContextSize($contextSize2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new SuggestArticlesRequest())
-            ->setParent($formattedParent);
+        $request = new SuggestArticlesRequest();
         $response = $gapicClient->suggestArticles($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -484,8 +436,6 @@ class ParticipantsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Participants/SuggestArticles', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -507,10 +457,7 @@ class ParticipantsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new SuggestArticlesRequest())
-            ->setParent($formattedParent);
+        $request = new SuggestArticlesRequest();
         try {
             $gapicClient->suggestArticles($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -539,10 +486,7 @@ class ParticipantsClientTest extends GeneratedTest
         $expectedResponse->setLatestMessage($latestMessage2);
         $expectedResponse->setContextSize($contextSize2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new SuggestFaqAnswersRequest())
-            ->setParent($formattedParent);
+        $request = new SuggestFaqAnswersRequest();
         $response = $gapicClient->suggestFaqAnswers($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -550,8 +494,6 @@ class ParticipantsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Participants/SuggestFaqAnswers', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -573,10 +515,7 @@ class ParticipantsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new SuggestFaqAnswersRequest())
-            ->setParent($formattedParent);
+        $request = new SuggestFaqAnswersRequest();
         try {
             $gapicClient->suggestFaqAnswers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -605,10 +544,7 @@ class ParticipantsClientTest extends GeneratedTest
         $expectedResponse->setLatestMessage($latestMessage2);
         $expectedResponse->setContextSize($contextSize2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new SuggestSmartRepliesRequest())
-            ->setParent($formattedParent);
+        $request = new SuggestSmartRepliesRequest();
         $response = $gapicClient->suggestSmartReplies($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -616,8 +552,6 @@ class ParticipantsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Participants/SuggestSmartReplies', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -639,10 +573,7 @@ class ParticipantsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new SuggestSmartRepliesRequest())
-            ->setParent($formattedParent);
+        $request = new SuggestSmartRepliesRequest();
         try {
             $gapicClient->suggestSmartReplies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -673,12 +604,7 @@ class ParticipantsClientTest extends GeneratedTest
         $expectedResponse->setSipRecordingMediaLabel($sipRecordingMediaLabel);
         $expectedResponse->setObfuscatedExternalUserId($obfuscatedExternalUserId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $participant = new Participant();
-        $updateMask = new FieldMask();
-        $request = (new UpdateParticipantRequest())
-            ->setParticipant($participant)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateParticipantRequest();
         $response = $gapicClient->updateParticipant($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -686,10 +612,6 @@ class ParticipantsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Participants/UpdateParticipant', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParticipant();
-        $this->assertProtobufEquals($participant, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -711,12 +633,7 @@ class ParticipantsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $participant = new Participant();
-        $updateMask = new FieldMask();
-        $request = (new UpdateParticipantRequest())
-            ->setParticipant($participant)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateParticipantRequest();
         try {
             $gapicClient->updateParticipant($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -867,10 +784,7 @@ class ParticipantsClientTest extends GeneratedTest
         $expectedResponse = new AnalyzeContentResponse();
         $expectedResponse->setReplyText($replyText);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParticipant = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-        $request = (new AnalyzeContentRequest())
-            ->setParticipant($formattedParticipant);
+        $request = new AnalyzeContentRequest();
         $response = $gapicClient->analyzeContentAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -878,8 +792,6 @@ class ParticipantsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Participants/AnalyzeContent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParticipant();
-        $this->assertProtobufEquals($formattedParticipant, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

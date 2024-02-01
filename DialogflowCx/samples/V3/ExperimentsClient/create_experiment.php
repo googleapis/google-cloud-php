@@ -32,25 +32,19 @@ use Google\Cloud\Dialogflow\Cx\V3\Experiment;
  * Creates an [Experiment][google.cloud.dialogflow.cx.v3.Experiment] in the
  * specified [Environment][google.cloud.dialogflow.cx.v3.Environment].
  *
- * @param string $formattedParent       The [Agent][google.cloud.dialogflow.cx.v3.Agent] to create an
- *                                      [Environment][google.cloud.dialogflow.cx.v3.Environment] for. Format:
- *                                      `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                                      ID>/environments/<Environment ID>`. Please see
- *                                      {@see ExperimentsClient::environmentName()} for help formatting this field.
- * @param string $experimentDisplayName The human-readable name of the experiment (unique in an
- *                                      environment). Limit of 64 characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_experiment_sample(string $formattedParent, string $experimentDisplayName): void
+function create_experiment_sample(): void
 {
     // Create a client.
     $experimentsClient = new ExperimentsClient();
 
     // Prepare the request message.
-    $experiment = (new Experiment())
-        ->setDisplayName($experimentDisplayName);
-    $request = (new CreateExperimentRequest())
-        ->setParent($formattedParent)
-        ->setExperiment($experiment);
+    $request = new CreateExperimentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,27 +54,5 @@ function create_experiment_sample(string $formattedParent, string $experimentDis
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ExperimentsClient::environmentName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AGENT]',
-        '[ENVIRONMENT]'
-    );
-    $experimentDisplayName = '[DISPLAY_NAME]';
-
-    create_experiment_sample($formattedParent, $experimentDisplayName);
 }
 // [END dialogflow_v3_generated_Experiments_CreateExperiment_sync]

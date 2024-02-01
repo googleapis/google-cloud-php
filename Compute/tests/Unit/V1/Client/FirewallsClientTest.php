@@ -95,12 +95,7 @@ class FirewallsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $firewall = 'firewall-562725632';
-        $project = 'project-309310695';
-        $request = (new DeleteFirewallRequest())
-            ->setFirewall($firewall)
-            ->setProject($project);
+        $request = new DeleteFirewallRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -110,13 +105,8 @@ class FirewallsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Firewalls/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFirewall();
-        $this->assertProtobufEquals($firewall, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -164,12 +154,7 @@ class FirewallsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $firewall = 'firewall-562725632';
-        $project = 'project-309310695';
-        $request = (new DeleteFirewallRequest())
-            ->setFirewall($firewall)
-            ->setProject($project);
+        $request = new DeleteFirewallRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -221,12 +206,7 @@ class FirewallsClientTest extends GeneratedTest
         $expectedResponse->setPriority($priority);
         $expectedResponse->setSelfLink($selfLink);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $firewall = 'firewall-562725632';
-        $project = 'project-309310695';
-        $request = (new GetFirewallRequest())
-            ->setFirewall($firewall)
-            ->setProject($project);
+        $request = new GetFirewallRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -234,10 +214,6 @@ class FirewallsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Firewalls/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getFirewall();
-        $this->assertProtobufEquals($firewall, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -259,12 +235,7 @@ class FirewallsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $firewall = 'firewall-562725632';
-        $project = 'project-309310695';
-        $request = (new GetFirewallRequest())
-            ->setFirewall($firewall)
-            ->setProject($project);
+        $request = new GetFirewallRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -303,12 +274,7 @@ class FirewallsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $firewallResource = new Firewall();
-        $project = 'project-309310695';
-        $request = (new InsertFirewallRequest())
-            ->setFirewallResource($firewallResource)
-            ->setProject($project);
+        $request = new InsertFirewallRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -318,13 +284,8 @@ class FirewallsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Firewalls/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFirewallResource();
-        $this->assertProtobufEquals($firewallResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -372,12 +333,7 @@ class FirewallsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $firewallResource = new Firewall();
-        $project = 'project-309310695';
-        $request = (new InsertFirewallRequest())
-            ->setFirewallResource($firewallResource)
-            ->setProject($project);
+        $request = new InsertFirewallRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -422,10 +378,7 @@ class FirewallsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListFirewallsRequest())
-            ->setProject($project);
+        $request = new ListFirewallsRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -436,8 +389,6 @@ class FirewallsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Firewalls/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -459,10 +410,7 @@ class FirewallsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListFirewallsRequest())
-            ->setProject($project);
+        $request = new ListFirewallsRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -501,14 +449,7 @@ class FirewallsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $firewall = 'firewall-562725632';
-        $firewallResource = new Firewall();
-        $project = 'project-309310695';
-        $request = (new PatchFirewallRequest())
-            ->setFirewall($firewall)
-            ->setFirewallResource($firewallResource)
-            ->setProject($project);
+        $request = new PatchFirewallRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -518,15 +459,8 @@ class FirewallsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Firewalls/Patch', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFirewall();
-        $this->assertProtobufEquals($firewall, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallResource();
-        $this->assertProtobufEquals($firewallResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -574,14 +508,7 @@ class FirewallsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $firewall = 'firewall-562725632';
-        $firewallResource = new Firewall();
-        $project = 'project-309310695';
-        $request = (new PatchFirewallRequest())
-            ->setFirewall($firewall)
-            ->setFirewallResource($firewallResource)
-            ->setProject($project);
+        $request = new PatchFirewallRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -627,14 +554,7 @@ class FirewallsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/updateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $firewall = 'firewall-562725632';
-        $firewallResource = new Firewall();
-        $project = 'project-309310695';
-        $request = (new UpdateFirewallRequest())
-            ->setFirewall($firewall)
-            ->setFirewallResource($firewallResource)
-            ->setProject($project);
+        $request = new UpdateFirewallRequest();
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -644,15 +564,8 @@ class FirewallsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Firewalls/Update', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFirewall();
-        $this->assertProtobufEquals($firewall, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallResource();
-        $this->assertProtobufEquals($firewallResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -700,14 +613,7 @@ class FirewallsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $firewall = 'firewall-562725632';
-        $firewallResource = new Firewall();
-        $project = 'project-309310695';
-        $request = (new UpdateFirewallRequest())
-            ->setFirewall($firewall)
-            ->setFirewallResource($firewallResource)
-            ->setProject($project);
+        $request = new UpdateFirewallRequest();
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -753,12 +659,7 @@ class FirewallsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $firewall = 'firewall-562725632';
-        $project = 'project-309310695';
-        $request = (new DeleteFirewallRequest())
-            ->setFirewall($firewall)
-            ->setProject($project);
+        $request = new DeleteFirewallRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -768,13 +669,8 @@ class FirewallsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Firewalls/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFirewall();
-        $this->assertProtobufEquals($firewall, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

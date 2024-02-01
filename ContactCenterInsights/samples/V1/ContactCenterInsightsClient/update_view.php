@@ -43,9 +43,7 @@ function update_view_sample(): void
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $view = new View();
-    $request = (new UpdateViewRequest())
-        ->setView($view);
+    $request = new UpdateViewRequest();
 
     // Call the API and handle any network failures.
     try {

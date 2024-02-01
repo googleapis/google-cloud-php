@@ -95,10 +95,7 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListNetworkEdgeSecurityServicesRequest())
-            ->setProject($project);
+        $request = new AggregatedListNetworkEdgeSecurityServicesRequest();
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -111,8 +108,6 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NetworkEdgeSecurityServices/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -134,10 +129,7 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListNetworkEdgeSecurityServicesRequest())
-            ->setProject($project);
+        $request = new AggregatedListNetworkEdgeSecurityServicesRequest();
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -176,14 +168,7 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $networkEdgeSecurityService = 'networkEdgeSecurityService693882791';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new DeleteNetworkEdgeSecurityServiceRequest())
-            ->setNetworkEdgeSecurityService($networkEdgeSecurityService)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new DeleteNetworkEdgeSecurityServiceRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -193,16 +178,8 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NetworkEdgeSecurityServices/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getNetworkEdgeSecurityService();
-        $this->assertProtobufEquals($networkEdgeSecurityService, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -250,14 +227,7 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $networkEdgeSecurityService = 'networkEdgeSecurityService693882791';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new DeleteNetworkEdgeSecurityServiceRequest())
-            ->setNetworkEdgeSecurityService($networkEdgeSecurityService)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new DeleteNetworkEdgeSecurityServiceRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -309,14 +279,7 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSelfLinkWithId($selfLinkWithId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $networkEdgeSecurityService = 'networkEdgeSecurityService693882791';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetNetworkEdgeSecurityServiceRequest())
-            ->setNetworkEdgeSecurityService($networkEdgeSecurityService)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetNetworkEdgeSecurityServiceRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -324,12 +287,6 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NetworkEdgeSecurityServices/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getNetworkEdgeSecurityService();
-        $this->assertProtobufEquals($networkEdgeSecurityService, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -351,14 +308,7 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $networkEdgeSecurityService = 'networkEdgeSecurityService693882791';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetNetworkEdgeSecurityServiceRequest())
-            ->setNetworkEdgeSecurityService($networkEdgeSecurityService)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetNetworkEdgeSecurityServiceRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -397,14 +347,7 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $networkEdgeSecurityServiceResource = new NetworkEdgeSecurityService();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new InsertNetworkEdgeSecurityServiceRequest())
-            ->setNetworkEdgeSecurityServiceResource($networkEdgeSecurityServiceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new InsertNetworkEdgeSecurityServiceRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -414,16 +357,8 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NetworkEdgeSecurityServices/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getNetworkEdgeSecurityServiceResource();
-        $this->assertProtobufEquals($networkEdgeSecurityServiceResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -471,14 +406,7 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $networkEdgeSecurityServiceResource = new NetworkEdgeSecurityService();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new InsertNetworkEdgeSecurityServiceRequest())
-            ->setNetworkEdgeSecurityServiceResource($networkEdgeSecurityServiceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new InsertNetworkEdgeSecurityServiceRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -524,16 +452,7 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $networkEdgeSecurityService = 'networkEdgeSecurityService693882791';
-        $networkEdgeSecurityServiceResource = new NetworkEdgeSecurityService();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new PatchNetworkEdgeSecurityServiceRequest())
-            ->setNetworkEdgeSecurityService($networkEdgeSecurityService)
-            ->setNetworkEdgeSecurityServiceResource($networkEdgeSecurityServiceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new PatchNetworkEdgeSecurityServiceRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -543,18 +462,8 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NetworkEdgeSecurityServices/Patch', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getNetworkEdgeSecurityService();
-        $this->assertProtobufEquals($networkEdgeSecurityService, $actualValue);
-        $actualValue = $actualApiRequestObject->getNetworkEdgeSecurityServiceResource();
-        $this->assertProtobufEquals($networkEdgeSecurityServiceResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -602,16 +511,7 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $networkEdgeSecurityService = 'networkEdgeSecurityService693882791';
-        $networkEdgeSecurityServiceResource = new NetworkEdgeSecurityService();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new PatchNetworkEdgeSecurityServiceRequest())
-            ->setNetworkEdgeSecurityService($networkEdgeSecurityService)
-            ->setNetworkEdgeSecurityServiceResource($networkEdgeSecurityServiceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new PatchNetworkEdgeSecurityServiceRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -657,10 +557,7 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListNetworkEdgeSecurityServicesRequest())
-            ->setProject($project);
+        $request = new AggregatedListNetworkEdgeSecurityServicesRequest();
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -673,8 +570,6 @@ class NetworkEdgeSecurityServicesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NetworkEdgeSecurityServices/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

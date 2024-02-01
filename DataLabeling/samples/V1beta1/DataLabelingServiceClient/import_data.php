@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
 use Google\Cloud\DataLabeling\V1beta1\ImportDataOperationResponse;
 use Google\Cloud\DataLabeling\V1beta1\ImportDataRequest;
-use Google\Cloud\DataLabeling\V1beta1\InputConfig;
 use Google\Rpc\Status;
 
 /**
@@ -38,20 +37,19 @@ use Google\Rpc\Status;
  * labeling task (also long running operation) can be started while
  * importing is still ongoing. Vice versa.
  *
- * @param string $formattedName Dataset resource name, format:
- *                              projects/{project_id}/datasets/{dataset_id}
- *                              Please see {@see DataLabelingServiceClient::datasetName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function import_data_sample(string $formattedName): void
+function import_data_sample(): void
 {
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
     // Prepare the request message.
-    $inputConfig = new InputConfig();
-    $request = (new ImportDataRequest())
-        ->setName($formattedName)
-        ->setInputConfig($inputConfig);
+    $request = new ImportDataRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,21 +69,5 @@ function import_data_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DataLabelingServiceClient::datasetName('[PROJECT]', '[DATASET]');
-
-    import_data_sample($formattedName);
 }
 // [END datalabeling_v1beta1_generated_DataLabelingService_ImportData_sync]

@@ -24,11 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_AnswerRecords_UpdateAnswerRecord_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\V2\AnswerFeedback;
 use Google\Cloud\Dialogflow\V2\AnswerRecord;
 use Google\Cloud\Dialogflow\V2\Client\AnswerRecordsClient;
 use Google\Cloud\Dialogflow\V2\UpdateAnswerRecordRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates the specified answer record.
@@ -45,13 +43,7 @@ function update_answer_record_sample(): void
     $answerRecordsClient = new AnswerRecordsClient();
 
     // Prepare the request message.
-    $answerRecordAnswerFeedback = new AnswerFeedback();
-    $answerRecord = (new AnswerRecord())
-        ->setAnswerFeedback($answerRecordAnswerFeedback);
-    $updateMask = new FieldMask();
-    $request = (new UpdateAnswerRecordRequest())
-        ->setAnswerRecord($answerRecord)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateAnswerRecordRequest();
 
     // Call the API and handle any network failures.
     try {

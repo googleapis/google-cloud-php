@@ -42,8 +42,7 @@ class ListRunsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. The name of process that owns this collection of runs. Please see
-     *                       {@see LineageClient::processName()} for help formatting this field.
+     * @param string $parent Required. The name of process that owns this collection of runs.
      *
      * @return \Google\Cloud\DataCatalog\Lineage\V1\ListRunsRequest
      *

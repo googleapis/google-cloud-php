@@ -48,8 +48,7 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                             $parent Required. The agent to create a intent for.
-     *                                                   Format: `projects/<Project ID>/agent`. Please see
-     *                                                   {@see IntentsClient::agentName()} for help formatting this field.
+     *                                                   Format: `projects/<Project ID>/agent`.
      * @param \Google\Cloud\Dialogflow\V2\Intent $intent Required. The intent to create.
      *
      * @return \Google\Cloud\Dialogflow\V2\CreateIntentRequest
@@ -65,8 +64,7 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                             $parent       Required. The agent to create a intent for.
-     *                                                         Format: `projects/<Project ID>/agent`. Please see
-     *                                                         {@see IntentsClient::agentName()} for help formatting this field.
+     *                                                         Format: `projects/<Project ID>/agent`.
      * @param \Google\Cloud\Dialogflow\V2\Intent $intent       Required. The intent to create.
      * @param string                             $languageCode Optional. The language used to access language-specific data.
      *                                                         If not specified, the agent's default language is used.

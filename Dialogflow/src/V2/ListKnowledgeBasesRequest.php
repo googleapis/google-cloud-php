@@ -63,8 +63,7 @@ class ListKnowledgeBasesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The project to list of knowledge bases for.
-     *                       Format: `projects/<Project ID>/locations/<Location ID>`. Please see
-     *                       {@see KnowledgeBasesClient::projectName()} for help formatting this field.
+     *                       Format: `projects/<Project ID>/locations/<Location ID>`.
      *
      * @return \Google\Cloud\Dialogflow\V2\ListKnowledgeBasesRequest
      *

@@ -94,10 +94,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListRegionCommitmentsRequest())
-            ->setProject($project);
+        $request = new AggregatedListRegionCommitmentsRequest();
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -110,8 +107,6 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionCommitments/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -133,10 +128,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListRegionCommitmentsRequest())
-            ->setProject($project);
+        $request = new AggregatedListRegionCommitmentsRequest();
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -193,14 +185,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setType($type);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $commitment = 'commitment1019005717';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetRegionCommitmentRequest())
-            ->setCommitment($commitment)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetRegionCommitmentRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -208,12 +193,6 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionCommitments/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCommitment();
-        $this->assertProtobufEquals($commitment, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -235,14 +214,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $commitment = 'commitment1019005717';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetRegionCommitmentRequest())
-            ->setCommitment($commitment)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetRegionCommitmentRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -281,14 +253,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $commitmentResource = new Commitment();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new InsertRegionCommitmentRequest())
-            ->setCommitmentResource($commitmentResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new InsertRegionCommitmentRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -298,16 +263,8 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionCommitments/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getCommitmentResource();
-        $this->assertProtobufEquals($commitmentResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -355,14 +312,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $commitmentResource = new Commitment();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new InsertRegionCommitmentRequest())
-            ->setCommitmentResource($commitmentResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new InsertRegionCommitmentRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -407,12 +357,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListRegionCommitmentsRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListRegionCommitmentsRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -423,10 +368,6 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionCommitments/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -448,12 +389,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListRegionCommitmentsRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListRegionCommitmentsRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -492,16 +428,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/updateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $commitment = 'commitment1019005717';
-        $commitmentResource = new Commitment();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new UpdateRegionCommitmentRequest())
-            ->setCommitment($commitment)
-            ->setCommitmentResource($commitmentResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new UpdateRegionCommitmentRequest();
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -511,18 +438,8 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionCommitments/Update', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getCommitment();
-        $this->assertProtobufEquals($commitment, $actualValue);
-        $actualValue = $actualApiRequestObject->getCommitmentResource();
-        $this->assertProtobufEquals($commitmentResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -570,16 +487,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $commitment = 'commitment1019005717';
-        $commitmentResource = new Commitment();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new UpdateRegionCommitmentRequest())
-            ->setCommitment($commitment)
-            ->setCommitmentResource($commitmentResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new UpdateRegionCommitmentRequest();
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -623,10 +531,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListRegionCommitmentsRequest())
-            ->setProject($project);
+        $request = new AggregatedListRegionCommitmentsRequest();
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -639,8 +544,6 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionCommitments/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

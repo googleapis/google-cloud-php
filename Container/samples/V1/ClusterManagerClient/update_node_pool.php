@@ -31,30 +31,19 @@ use Google\Cloud\Container\V1\UpdateNodePoolRequest;
 /**
  * Updates the version and/or image type for the specified node pool.
  *
- * @param string $nodeVersion The Kubernetes version to change the nodes to (typically an
- *                            upgrade).
- *
- *                            Users may specify either explicit versions offered by Kubernetes Engine or
- *                            version aliases, which have the following behavior:
- *
- *                            - "latest": picks the highest valid Kubernetes version
- *                            - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
- *                            - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
- *                            - "1.X.Y-gke.N": picks an explicit Kubernetes version
- *                            - "-": picks the Kubernetes master version
- * @param string $imageType   The desired image type for the node pool. Please see
- *                            https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
- *                            available image types.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_node_pool_sample(string $nodeVersion, string $imageType): void
+function update_node_pool_sample(): void
 {
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
     // Prepare the request message.
-    $request = (new UpdateNodePoolRequest())
-        ->setNodeVersion($nodeVersion)
-        ->setImageType($imageType);
+    $request = new UpdateNodePoolRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -64,22 +53,5 @@ function update_node_pool_sample(string $nodeVersion, string $imageType): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $nodeVersion = '[NODE_VERSION]';
-    $imageType = '[IMAGE_TYPE]';
-
-    update_node_pool_sample($nodeVersion, $imageType);
 }
 // [END container_v1_generated_ClusterManager_UpdateNodePool_sync]

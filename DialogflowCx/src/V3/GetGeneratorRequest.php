@@ -34,8 +34,7 @@ class GetGeneratorRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the generator.
      *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/generators/<Generator ID>`. Please see
-     *                     {@see GeneratorsClient::generatorName()} for help formatting this field.
+     *                     ID>/generators/<Generator ID>`.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetGeneratorRequest
      *

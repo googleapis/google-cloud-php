@@ -26,7 +26,6 @@ class GetDataItemRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the data item to get, format:
      *                     projects/{project_id}/datasets/{dataset_id}/dataItems/{data_item_id}
-     *                     Please see {@see DataLabelingServiceClient::dataItemName()} for help formatting this field.
      *
      * @return \Google\Cloud\DataLabeling\V1beta1\GetDataItemRequest
      *

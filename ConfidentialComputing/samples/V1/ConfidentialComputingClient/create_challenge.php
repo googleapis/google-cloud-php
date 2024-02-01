@@ -31,20 +31,19 @@ use Google\Cloud\ConfidentialComputing\V1\CreateChallengeRequest;
 /**
  * Creates a new Challenge in a given project and location.
  *
- * @param string $formattedParent The resource name of the location where the Challenge will be
- *                                used, in the format `projects/&#42;/locations/*`. Please see
- *                                {@see ConfidentialComputingClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_challenge_sample(string $formattedParent): void
+function create_challenge_sample(): void
 {
     // Create a client.
     $confidentialComputingClient = new ConfidentialComputingClient();
 
     // Prepare the request message.
-    $challenge = new Challenge();
-    $request = (new CreateChallengeRequest())
-        ->setParent($formattedParent)
-        ->setChallenge($challenge);
+    $request = new CreateChallengeRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +53,5 @@ function create_challenge_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ConfidentialComputingClient::locationName('[PROJECT]', '[LOCATION]');
-
-    create_challenge_sample($formattedParent);
 }
 // [END confidentialcomputing_v1_generated_ConfidentialComputing_CreateChallenge_sync]

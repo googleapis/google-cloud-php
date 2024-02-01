@@ -23,8 +23,7 @@ class GetCompilationResultRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The compilation result's name. Please see
-     *                     {@see DataformClient::compilationResultName()} for help formatting this field.
+     * @param string $name Required. The compilation result's name.
      *
      * @return \Google\Cloud\Dataform\V1beta1\GetCompilationResultRequest
      *

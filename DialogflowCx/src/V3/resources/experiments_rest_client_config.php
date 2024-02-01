@@ -84,9 +84,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
         ],
         'google.cloud.location.Locations' => [

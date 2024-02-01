@@ -63,10 +63,7 @@ use Google\Cloud\Compute\V1\SetLabelsSecurityPolicyRequest;
  * ```
  * $securityPoliciesClient = new SecurityPoliciesClient();
  * try {
- *     $project = 'project';
- *     $securityPolicy = 'security_policy';
- *     $securityPolicyRuleResource = new SecurityPolicyRule();
- *     $operationResponse = $securityPoliciesClient->addRule($project, $securityPolicy, $securityPolicyRuleResource);
+ *     $operationResponse = $securityPoliciesClient->addRule();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -76,7 +73,7 @@ use Google\Cloud\Compute\V1\SetLabelsSecurityPolicyRequest;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $securityPoliciesClient->addRule($project, $securityPolicy, $securityPolicyRuleResource);
+ *     $operationResponse = $securityPoliciesClient->addRule();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $securityPoliciesClient->resumeOperation($operationName, 'addRule');
@@ -176,9 +173,7 @@ class SecurityPoliciesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -274,10 +269,7 @@ class SecurityPoliciesGapicClient
      * ```
      * $securityPoliciesClient = new SecurityPoliciesClient();
      * try {
-     *     $project = 'project';
-     *     $securityPolicy = 'security_policy';
-     *     $securityPolicyRuleResource = new SecurityPolicyRule();
-     *     $operationResponse = $securityPoliciesClient->addRule($project, $securityPolicy, $securityPolicyRuleResource);
+     *     $operationResponse = $securityPoliciesClient->addRule();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -287,7 +279,7 @@ class SecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $securityPoliciesClient->addRule($project, $securityPolicy, $securityPolicyRuleResource);
+     *     $operationResponse = $securityPoliciesClient->addRule();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $securityPoliciesClient->resumeOperation($operationName, 'addRule');
@@ -306,12 +298,15 @@ class SecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param string             $project                    Project ID for this request.
-     * @param string             $securityPolicy             Name of the security policy to update.
-     * @param SecurityPolicyRule $securityPolicyRuleResource The body resource for this request
-     * @param array              $optionalArgs               {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $securityPolicy
+     *           Name of the security policy to update.
+     *     @type SecurityPolicyRule $securityPolicyRuleResource
+     *           The body resource for this request
      *     @type bool $validateOnly
      *           If true, the request will not be committed.
      *     @type RetrySettings|array $retrySettings
@@ -324,15 +319,24 @@ class SecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addRule($project, $securityPolicy, $securityPolicyRuleResource, array $optionalArgs = [])
+    public function addRule(array $optionalArgs = [])
     {
         $request = new AddRuleSecurityPolicyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setSecurityPolicy($securityPolicy);
-        $request->setSecurityPolicyRuleResource($securityPolicyRuleResource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['security_policy'] = $securityPolicy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['securityPolicy'])) {
+            $request->setSecurityPolicy($optionalArgs['securityPolicy']);
+            $requestParamHeaders['security_policy'] = $optionalArgs['securityPolicy'];
+        }
+
+        if (isset($optionalArgs['securityPolicyRuleResource'])) {
+            $request->setSecurityPolicyRuleResource($optionalArgs['securityPolicyRuleResource']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -349,9 +353,8 @@ class SecurityPoliciesGapicClient
      * ```
      * $securityPoliciesClient = new SecurityPoliciesClient();
      * try {
-     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityPoliciesClient->aggregatedList($project);
+     *     $pagedResponse = $securityPoliciesClient->aggregatedList();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
@@ -359,7 +362,7 @@ class SecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityPoliciesClient->aggregatedList($project);
+     *     $pagedResponse = $securityPoliciesClient->aggregatedList();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -368,8 +371,7 @@ class SecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param string $project      Name of the project scoping this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -385,6 +387,8 @@ class SecurityPoliciesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Name of the project scoping this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type int $serviceProjectNumber
@@ -398,12 +402,10 @@ class SecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function aggregatedList($project, array $optionalArgs = [])
+    public function aggregatedList(array $optionalArgs = [])
     {
         $request = new AggregatedListSecurityPoliciesRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -422,6 +424,11 @@ class SecurityPoliciesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -444,9 +451,7 @@ class SecurityPoliciesGapicClient
      * ```
      * $securityPoliciesClient = new SecurityPoliciesClient();
      * try {
-     *     $project = 'project';
-     *     $securityPolicy = 'security_policy';
-     *     $operationResponse = $securityPoliciesClient->delete($project, $securityPolicy);
+     *     $operationResponse = $securityPoliciesClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -456,7 +461,7 @@ class SecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $securityPoliciesClient->delete($project, $securityPolicy);
+     *     $operationResponse = $securityPoliciesClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $securityPoliciesClient->resumeOperation($operationName, 'delete');
@@ -475,13 +480,15 @@ class SecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param string $project        Project ID for this request.
-     * @param string $securityPolicy Name of the security policy to delete.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type string $securityPolicy
+     *           Name of the security policy to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -492,16 +499,22 @@ class SecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($project, $securityPolicy, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteSecurityPolicyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setSecurityPolicy($securityPolicy);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['security_policy'] = $securityPolicy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['securityPolicy'])) {
+            $request->setSecurityPolicy($optionalArgs['securityPolicy']);
+            $requestParamHeaders['security_policy'] = $optionalArgs['securityPolicy'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -516,19 +529,19 @@ class SecurityPoliciesGapicClient
      * ```
      * $securityPoliciesClient = new SecurityPoliciesClient();
      * try {
-     *     $project = 'project';
-     *     $securityPolicy = 'security_policy';
-     *     $response = $securityPoliciesClient->get($project, $securityPolicy);
+     *     $response = $securityPoliciesClient->get();
      * } finally {
      *     $securityPoliciesClient->close();
      * }
      * ```
      *
-     * @param string $project        Project ID for this request.
-     * @param string $securityPolicy Name of the security policy to get.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $securityPolicy
+     *           Name of the security policy to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -539,14 +552,20 @@ class SecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($project, $securityPolicy, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetSecurityPolicyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setSecurityPolicy($securityPolicy);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['security_policy'] = $securityPolicy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['securityPolicy'])) {
+            $request->setSecurityPolicy($optionalArgs['securityPolicy']);
+            $requestParamHeaders['security_policy'] = $optionalArgs['securityPolicy'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', SecurityPolicy::class, $optionalArgs, $request)->wait();
@@ -559,21 +578,21 @@ class SecurityPoliciesGapicClient
      * ```
      * $securityPoliciesClient = new SecurityPoliciesClient();
      * try {
-     *     $project = 'project';
-     *     $securityPolicy = 'security_policy';
-     *     $response = $securityPoliciesClient->getRule($project, $securityPolicy);
+     *     $response = $securityPoliciesClient->getRule();
      * } finally {
      *     $securityPoliciesClient->close();
      * }
      * ```
      *
-     * @param string $project        Project ID for this request.
-     * @param string $securityPolicy Name of the security policy to which the queried rule belongs.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type int $priority
      *           The priority of the rule to get from the security policy.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $securityPolicy
+     *           Name of the security policy to which the queried rule belongs.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -584,16 +603,22 @@ class SecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRule($project, $securityPolicy, array $optionalArgs = [])
+    public function getRule(array $optionalArgs = [])
     {
         $request = new GetRuleSecurityPolicyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setSecurityPolicy($securityPolicy);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['security_policy'] = $securityPolicy;
         if (isset($optionalArgs['priority'])) {
             $request->setPriority($optionalArgs['priority']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['securityPolicy'])) {
+            $request->setSecurityPolicy($optionalArgs['securityPolicy']);
+            $requestParamHeaders['security_policy'] = $optionalArgs['securityPolicy'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -608,9 +633,7 @@ class SecurityPoliciesGapicClient
      * ```
      * $securityPoliciesClient = new SecurityPoliciesClient();
      * try {
-     *     $project = 'project';
-     *     $securityPolicyResource = new SecurityPolicy();
-     *     $operationResponse = $securityPoliciesClient->insert($project, $securityPolicyResource);
+     *     $operationResponse = $securityPoliciesClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -620,7 +643,7 @@ class SecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $securityPoliciesClient->insert($project, $securityPolicyResource);
+     *     $operationResponse = $securityPoliciesClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $securityPoliciesClient->resumeOperation($operationName, 'insert');
@@ -639,13 +662,15 @@ class SecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param string         $project                Project ID for this request.
-     * @param SecurityPolicy $securityPolicyResource The body resource for this request
-     * @param array          $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type SecurityPolicy $securityPolicyResource
+     *           The body resource for this request
      *     @type bool $validateOnly
      *           If true, the request will not be committed.
      *     @type RetrySettings|array $retrySettings
@@ -658,15 +683,21 @@ class SecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($project, $securityPolicyResource, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertSecurityPolicyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setSecurityPolicyResource($securityPolicyResource);
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['securityPolicyResource'])) {
+            $request->setSecurityPolicyResource($optionalArgs['securityPolicyResource']);
         }
 
         if (isset($optionalArgs['validateOnly'])) {
@@ -685,9 +716,8 @@ class SecurityPoliciesGapicClient
      * ```
      * $securityPoliciesClient = new SecurityPoliciesClient();
      * try {
-     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityPoliciesClient->list($project);
+     *     $pagedResponse = $securityPoliciesClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -695,7 +725,7 @@ class SecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityPoliciesClient->list($project);
+     *     $pagedResponse = $securityPoliciesClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -704,8 +734,7 @@ class SecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -719,6 +748,8 @@ class SecurityPoliciesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -731,12 +762,10 @@ class SecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListSecurityPoliciesRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -751,6 +780,11 @@ class SecurityPoliciesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -769,15 +803,13 @@ class SecurityPoliciesGapicClient
      * ```
      * $securityPoliciesClient = new SecurityPoliciesClient();
      * try {
-     *     $project = 'project';
-     *     $response = $securityPoliciesClient->listPreconfiguredExpressionSets($project);
+     *     $response = $securityPoliciesClient->listPreconfiguredExpressionSets();
      * } finally {
      *     $securityPoliciesClient->close();
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -788,6 +820,8 @@ class SecurityPoliciesGapicClient
      *           Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *     @type string $pageToken
      *           Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -800,12 +834,10 @@ class SecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPreconfiguredExpressionSets($project, array $optionalArgs = [])
+    public function listPreconfiguredExpressionSets(array $optionalArgs = [])
     {
         $request = new ListPreconfiguredExpressionSetsSecurityPoliciesRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -820,6 +852,11 @@ class SecurityPoliciesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -838,10 +875,7 @@ class SecurityPoliciesGapicClient
      * ```
      * $securityPoliciesClient = new SecurityPoliciesClient();
      * try {
-     *     $project = 'project';
-     *     $securityPolicy = 'security_policy';
-     *     $securityPolicyResource = new SecurityPolicy();
-     *     $operationResponse = $securityPoliciesClient->patch($project, $securityPolicy, $securityPolicyResource);
+     *     $operationResponse = $securityPoliciesClient->patch();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -851,7 +885,7 @@ class SecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $securityPoliciesClient->patch($project, $securityPolicy, $securityPolicyResource);
+     *     $operationResponse = $securityPoliciesClient->patch();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $securityPoliciesClient->resumeOperation($operationName, 'patch');
@@ -870,14 +904,17 @@ class SecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param string         $project                Project ID for this request.
-     * @param string         $securityPolicy         Name of the security policy to update.
-     * @param SecurityPolicy $securityPolicyResource The body resource for this request
-     * @param array          $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type string $securityPolicy
+     *           Name of the security policy to update.
+     *     @type SecurityPolicy $securityPolicyResource
+     *           The body resource for this request
      *     @type string $updateMask
      *           Indicates fields to be cleared as part of this request.
      *     @type RetrySettings|array $retrySettings
@@ -890,17 +927,26 @@ class SecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch($project, $securityPolicy, $securityPolicyResource, array $optionalArgs = [])
+    public function patch(array $optionalArgs = [])
     {
         $request = new PatchSecurityPolicyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setSecurityPolicy($securityPolicy);
-        $request->setSecurityPolicyResource($securityPolicyResource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['security_policy'] = $securityPolicy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['securityPolicy'])) {
+            $request->setSecurityPolicy($optionalArgs['securityPolicy']);
+            $requestParamHeaders['security_policy'] = $optionalArgs['securityPolicy'];
+        }
+
+        if (isset($optionalArgs['securityPolicyResource'])) {
+            $request->setSecurityPolicyResource($optionalArgs['securityPolicyResource']);
         }
 
         if (isset($optionalArgs['updateMask'])) {
@@ -919,10 +965,7 @@ class SecurityPoliciesGapicClient
      * ```
      * $securityPoliciesClient = new SecurityPoliciesClient();
      * try {
-     *     $project = 'project';
-     *     $securityPolicy = 'security_policy';
-     *     $securityPolicyRuleResource = new SecurityPolicyRule();
-     *     $operationResponse = $securityPoliciesClient->patchRule($project, $securityPolicy, $securityPolicyRuleResource);
+     *     $operationResponse = $securityPoliciesClient->patchRule();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -932,7 +975,7 @@ class SecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $securityPoliciesClient->patchRule($project, $securityPolicy, $securityPolicyRuleResource);
+     *     $operationResponse = $securityPoliciesClient->patchRule();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $securityPoliciesClient->resumeOperation($operationName, 'patchRule');
@@ -951,14 +994,17 @@ class SecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param string             $project                    Project ID for this request.
-     * @param string             $securityPolicy             Name of the security policy to update.
-     * @param SecurityPolicyRule $securityPolicyRuleResource The body resource for this request
-     * @param array              $optionalArgs               {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type int $priority
      *           The priority of the rule to patch.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $securityPolicy
+     *           Name of the security policy to update.
+     *     @type SecurityPolicyRule $securityPolicyRuleResource
+     *           The body resource for this request
      *     @type string $updateMask
      *           Indicates fields to be cleared as part of this request.
      *     @type bool $validateOnly
@@ -973,17 +1019,26 @@ class SecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patchRule($project, $securityPolicy, $securityPolicyRuleResource, array $optionalArgs = [])
+    public function patchRule(array $optionalArgs = [])
     {
         $request = new PatchRuleSecurityPolicyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setSecurityPolicy($securityPolicy);
-        $request->setSecurityPolicyRuleResource($securityPolicyRuleResource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['security_policy'] = $securityPolicy;
         if (isset($optionalArgs['priority'])) {
             $request->setPriority($optionalArgs['priority']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['securityPolicy'])) {
+            $request->setSecurityPolicy($optionalArgs['securityPolicy']);
+            $requestParamHeaders['security_policy'] = $optionalArgs['securityPolicy'];
+        }
+
+        if (isset($optionalArgs['securityPolicyRuleResource'])) {
+            $request->setSecurityPolicyRuleResource($optionalArgs['securityPolicyRuleResource']);
         }
 
         if (isset($optionalArgs['updateMask'])) {
@@ -1006,9 +1061,7 @@ class SecurityPoliciesGapicClient
      * ```
      * $securityPoliciesClient = new SecurityPoliciesClient();
      * try {
-     *     $project = 'project';
-     *     $securityPolicy = 'security_policy';
-     *     $operationResponse = $securityPoliciesClient->removeRule($project, $securityPolicy);
+     *     $operationResponse = $securityPoliciesClient->removeRule();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1018,7 +1071,7 @@ class SecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $securityPoliciesClient->removeRule($project, $securityPolicy);
+     *     $operationResponse = $securityPoliciesClient->removeRule();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $securityPoliciesClient->resumeOperation($operationName, 'removeRule');
@@ -1037,13 +1090,15 @@ class SecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param string $project        Project ID for this request.
-     * @param string $securityPolicy Name of the security policy to update.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type int $priority
      *           The priority of the rule to remove from the security policy.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $securityPolicy
+     *           Name of the security policy to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1054,16 +1109,22 @@ class SecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function removeRule($project, $securityPolicy, array $optionalArgs = [])
+    public function removeRule(array $optionalArgs = [])
     {
         $request = new RemoveRuleSecurityPolicyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setSecurityPolicy($securityPolicy);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['security_policy'] = $securityPolicy;
         if (isset($optionalArgs['priority'])) {
             $request->setPriority($optionalArgs['priority']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['securityPolicy'])) {
+            $request->setSecurityPolicy($optionalArgs['securityPolicy']);
+            $requestParamHeaders['security_policy'] = $optionalArgs['securityPolicy'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1078,10 +1139,7 @@ class SecurityPoliciesGapicClient
      * ```
      * $securityPoliciesClient = new SecurityPoliciesClient();
      * try {
-     *     $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
-     *     $project = 'project';
-     *     $resource = 'resource';
-     *     $operationResponse = $securityPoliciesClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+     *     $operationResponse = $securityPoliciesClient->setLabels();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1091,7 +1149,7 @@ class SecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $securityPoliciesClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+     *     $operationResponse = $securityPoliciesClient->setLabels();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $securityPoliciesClient->resumeOperation($operationName, 'setLabels');
@@ -1110,12 +1168,15 @@ class SecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param GlobalSetLabelsRequest $globalSetLabelsRequestResource The body resource for this request
-     * @param string                 $project                        Project ID for this request.
-     * @param string                 $resource                       Name or id of the resource for this request.
-     * @param array                  $optionalArgs                   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type GlobalSetLabelsRequest $globalSetLabelsRequestResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $resource
+     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1126,15 +1187,24 @@ class SecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setLabels($globalSetLabelsRequestResource, $project, $resource, array $optionalArgs = [])
+    public function setLabels(array $optionalArgs = [])
     {
         $request = new SetLabelsSecurityPolicyRequest();
         $requestParamHeaders = [];
-        $request->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource);
-        $request->setProject($project);
-        $request->setResource($resource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['globalSetLabelsRequestResource'])) {
+            $request->setGlobalSetLabelsRequestResource($optionalArgs['globalSetLabelsRequestResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('SetLabels', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();

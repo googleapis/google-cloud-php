@@ -62,8 +62,7 @@ class CreateTargetRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                         $parent   Required. The parent collection in which the `Target` should be created.
      *                                                 Format should be
-     *                                                 `projects/{project_id}/locations/{location_name}`. Please see
-     *                                                 {@see CloudDeployClient::locationName()} for help formatting this field.
+     *                                                 `projects/{project_id}/locations/{location_name}`.
      * @param \Google\Cloud\Deploy\V1\Target $target   Required. The `Target` to create.
      * @param string                         $targetId Required. ID of the `Target`.
      *

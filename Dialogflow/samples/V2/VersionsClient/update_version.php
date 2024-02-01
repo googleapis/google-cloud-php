@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\V2\Client\VersionsClient;
 use Google\Cloud\Dialogflow\V2\UpdateVersionRequest;
 use Google\Cloud\Dialogflow\V2\Version;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates the specified agent version.
@@ -48,11 +47,7 @@ function update_version_sample(): void
     $versionsClient = new VersionsClient();
 
     // Prepare the request message.
-    $version = new Version();
-    $updateMask = new FieldMask();
-    $request = (new UpdateVersionRequest())
-        ->setVersion($version)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateVersionRequest();
 
     // Call the API and handle any network failures.
     try {

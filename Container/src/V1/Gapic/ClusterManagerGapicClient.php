@@ -559,16 +559,13 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $cluster = new Google\Cloud\Container\V1\Cluster();
-     *     $response = $clusterManagerClient->createCluster($cluster);
+     *     $response = $clusterManagerClient->createCluster();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param Cluster $cluster      Required. A [cluster
-     *                              resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $projectId
@@ -580,6 +577,9 @@ class ClusterManagerGapicClient
      *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
      *           cluster resides. This field has been deprecated and replaced by the parent
      *           field.
+     *     @type Cluster $cluster
+     *           Required. A [cluster
+     *           resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)
      *     @type string $parent
      *           The parent (project and location) where the cluster will be created.
      *           Specified in the format `projects/&#42;/locations/*`.
@@ -593,11 +593,10 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCluster($cluster, array $optionalArgs = [])
+    public function createCluster(array $optionalArgs = [])
     {
         $request = new CreateClusterRequest();
         $requestParamHeaders = [];
-        $request->setCluster($cluster);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -606,6 +605,10 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['zone'])) {
             $request->setZone($optionalArgs['zone']);
             $requestParamHeaders['zone'] = $optionalArgs['zone'];
+        }
+
+        if (isset($optionalArgs['cluster'])) {
+            $request->setCluster($optionalArgs['cluster']);
         }
 
         if (isset($optionalArgs['parent'])) {
@@ -625,15 +628,13 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $nodePool = new Google\Cloud\Container\V1\NodePool();
-     *     $response = $clusterManagerClient->createNodePool($nodePool);
+     *     $response = $clusterManagerClient->createNodePool();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param NodePool $nodePool     Required. The node pool to create.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $projectId
@@ -648,6 +649,8 @@ class ClusterManagerGapicClient
      *     @type string $clusterId
      *           Deprecated. The name of the cluster.
      *           This field has been deprecated and replaced by the parent field.
+     *     @type NodePool $nodePool
+     *           Required. The node pool to create.
      *     @type string $parent
      *           The parent (project, location, cluster name) where the node pool will be
      *           created. Specified in the format
@@ -662,11 +665,10 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createNodePool($nodePool, array $optionalArgs = [])
+    public function createNodePool(array $optionalArgs = [])
     {
         $request = new CreateNodePoolRequest();
         $requestParamHeaders = [];
-        $request->setNodePool($nodePool);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -680,6 +682,10 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['clusterId'])) {
             $request->setClusterId($optionalArgs['clusterId']);
             $requestParamHeaders['cluster_id'] = $optionalArgs['clusterId'];
+        }
+
+        if (isset($optionalArgs['nodePool'])) {
+            $request->setNodePool($optionalArgs['nodePool']);
         }
 
         if (isset($optionalArgs['parent'])) {
@@ -1546,16 +1552,13 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $addonsConfig = new Google\Cloud\Container\V1\AddonsConfig();
-     *     $response = $clusterManagerClient->setAddonsConfig($addonsConfig);
+     *     $response = $clusterManagerClient->setAddonsConfig();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param AddonsConfig $addonsConfig Required. The desired configurations for the various addons available to
-     *                                   run in the cluster.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $projectId
@@ -1570,6 +1573,9 @@ class ClusterManagerGapicClient
      *     @type string $clusterId
      *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
+     *     @type AddonsConfig $addonsConfig
+     *           Required. The desired configurations for the various addons available to
+     *           run in the cluster.
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to set addons.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
@@ -1583,11 +1589,10 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setAddonsConfig($addonsConfig, array $optionalArgs = [])
+    public function setAddonsConfig(array $optionalArgs = [])
     {
         $request = new SetAddonsConfigRequest();
         $requestParamHeaders = [];
-        $request->setAddonsConfig($addonsConfig);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -1601,6 +1606,10 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['clusterId'])) {
             $request->setClusterId($optionalArgs['clusterId']);
             $requestParamHeaders['cluster_id'] = $optionalArgs['clusterId'];
+        }
+
+        if (isset($optionalArgs['addonsConfig'])) {
+            $request->setAddonsConfig($optionalArgs['addonsConfig']);
         }
 
         if (isset($optionalArgs['name'])) {
@@ -1620,22 +1629,13 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $resourceLabels = [];
-     *     $labelFingerprint = 'label_fingerprint';
-     *     $response = $clusterManagerClient->setLabels($resourceLabels, $labelFingerprint);
+     *     $response = $clusterManagerClient->setLabels();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param array  $resourceLabels   Required. The labels to set for that cluster.
-     * @param string $labelFingerprint Required. The fingerprint of the previous set of labels for this resource,
-     *                                 used to detect conflicts. The fingerprint is initially generated by
-     *                                 Kubernetes Engine and changes after every request to modify or update
-     *                                 labels. You must always provide an up-to-date fingerprint hash when
-     *                                 updating or changing labels. Make a `get()` request to the
-     *                                 resource to get the latest fingerprint.
-     * @param array  $optionalArgs     {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $projectId
@@ -1650,6 +1650,15 @@ class ClusterManagerGapicClient
      *     @type string $clusterId
      *           Deprecated. The name of the cluster.
      *           This field has been deprecated and replaced by the name field.
+     *     @type array $resourceLabels
+     *           Required. The labels to set for that cluster.
+     *     @type string $labelFingerprint
+     *           Required. The fingerprint of the previous set of labels for this resource,
+     *           used to detect conflicts. The fingerprint is initially generated by
+     *           Kubernetes Engine and changes after every request to modify or update
+     *           labels. You must always provide an up-to-date fingerprint hash when
+     *           updating or changing labels. Make a `get()` request to the
+     *           resource to get the latest fingerprint.
      *     @type string $name
      *           The name (project, location, cluster name) of the cluster to set labels.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
@@ -1663,12 +1672,10 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setLabels($resourceLabels, $labelFingerprint, array $optionalArgs = [])
+    public function setLabels(array $optionalArgs = [])
     {
         $request = new SetLabelsRequest();
         $requestParamHeaders = [];
-        $request->setResourceLabels($resourceLabels);
-        $request->setLabelFingerprint($labelFingerprint);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -1682,6 +1689,14 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['clusterId'])) {
             $request->setClusterId($optionalArgs['clusterId']);
             $requestParamHeaders['cluster_id'] = $optionalArgs['clusterId'];
+        }
+
+        if (isset($optionalArgs['resourceLabels'])) {
+            $request->setResourceLabels($optionalArgs['resourceLabels']);
+        }
+
+        if (isset($optionalArgs['labelFingerprint'])) {
+            $request->setLabelFingerprint($optionalArgs['labelFingerprint']);
         }
 
         if (isset($optionalArgs['name'])) {
@@ -1701,14 +1716,12 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $enabled = false;
-     *     $response = $clusterManagerClient->setLegacyAbac($enabled);
+     *     $response = $clusterManagerClient->setLegacyAbac();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param bool  $enabled      Required. Whether ABAC authorization will be enabled in the cluster.
      * @param array $optionalArgs {
      *     Optional.
      *
@@ -1724,6 +1737,8 @@ class ClusterManagerGapicClient
      *     @type string $clusterId
      *           Deprecated. The name of the cluster to update.
      *           This field has been deprecated and replaced by the name field.
+     *     @type bool $enabled
+     *           Required. Whether ABAC authorization will be enabled in the cluster.
      *     @type string $name
      *           The name (project, location, cluster name) of the cluster to set legacy
      *           abac. Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
@@ -1737,11 +1752,10 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setLegacyAbac($enabled, array $optionalArgs = [])
+    public function setLegacyAbac(array $optionalArgs = [])
     {
         $request = new SetLegacyAbacRequest();
         $requestParamHeaders = [];
-        $request->setEnabled($enabled);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -1755,6 +1769,10 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['clusterId'])) {
             $request->setClusterId($optionalArgs['clusterId']);
             $requestParamHeaders['cluster_id'] = $optionalArgs['clusterId'];
+        }
+
+        if (isset($optionalArgs['enabled'])) {
+            $request->setEnabled($optionalArgs['enabled']);
         }
 
         if (isset($optionalArgs['name'])) {
@@ -1777,21 +1795,13 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $locations = [];
-     *     $response = $clusterManagerClient->setLocations($locations);
+     *     $response = $clusterManagerClient->setLocations();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param string[] $locations    Required. The desired list of Google Compute Engine
-     *                               [zones](https://cloud.google.com/compute/docs/zones#available) in which the
-     *                               cluster's nodes should be located. Changing the locations a cluster is in
-     *                               will result in nodes being either created or removed from the cluster,
-     *                               depending on whether locations are being added or removed.
-     *
-     *                               This list must always include the cluster's primary zone.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $projectId
@@ -1806,6 +1816,14 @@ class ClusterManagerGapicClient
      *     @type string $clusterId
      *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
+     *     @type string[] $locations
+     *           Required. The desired list of Google Compute Engine
+     *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     *           cluster's nodes should be located. Changing the locations a cluster is in
+     *           will result in nodes being either created or removed from the cluster,
+     *           depending on whether locations are being added or removed.
+     *
+     *           This list must always include the cluster's primary zone.
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to set locations.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
@@ -1821,11 +1839,10 @@ class ClusterManagerGapicClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function setLocations($locations, array $optionalArgs = [])
+    public function setLocations(array $optionalArgs = [])
     {
         $request = new SetLocationsRequest();
         $requestParamHeaders = [];
-        $request->setLocations($locations);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -1839,6 +1856,10 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['clusterId'])) {
             $request->setClusterId($optionalArgs['clusterId']);
             $requestParamHeaders['cluster_id'] = $optionalArgs['clusterId'];
+        }
+
+        if (isset($optionalArgs['locations'])) {
+            $request->setLocations($optionalArgs['locations']);
         }
 
         if (isset($optionalArgs['name'])) {
@@ -1858,25 +1879,13 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $loggingService = 'logging_service';
-     *     $response = $clusterManagerClient->setLoggingService($loggingService);
+     *     $response = $clusterManagerClient->setLoggingService();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param string $loggingService Required. The logging service the cluster should use to write logs.
-     *                               Currently available options:
-     *
-     *                               * `logging.googleapis.com/kubernetes` - The Cloud Logging
-     *                               service with a Kubernetes-native resource model
-     *                               * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
-     *                               available as of GKE 1.15).
-     *                               * `none` - no logs will be exported from the cluster.
-     *
-     *                               If left as an empty string,`logging.googleapis.com/kubernetes` will be
-     *                               used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $projectId
@@ -1891,6 +1900,18 @@ class ClusterManagerGapicClient
      *     @type string $clusterId
      *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
+     *     @type string $loggingService
+     *           Required. The logging service the cluster should use to write logs.
+     *           Currently available options:
+     *
+     *           * `logging.googleapis.com/kubernetes` - The Cloud Logging
+     *           service with a Kubernetes-native resource model
+     *           * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
+     *           available as of GKE 1.15).
+     *           * `none` - no logs will be exported from the cluster.
+     *
+     *           If left as an empty string,`logging.googleapis.com/kubernetes` will be
+     *           used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to set logging.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
@@ -1904,11 +1925,10 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setLoggingService($loggingService, array $optionalArgs = [])
+    public function setLoggingService(array $optionalArgs = [])
     {
         $request = new SetLoggingServiceRequest();
         $requestParamHeaders = [];
-        $request->setLoggingService($loggingService);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -1922,6 +1942,10 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['clusterId'])) {
             $request->setClusterId($optionalArgs['clusterId']);
             $requestParamHeaders['cluster_id'] = $optionalArgs['clusterId'];
+        }
+
+        if (isset($optionalArgs['loggingService'])) {
+            $request->setLoggingService($optionalArgs['loggingService']);
         }
 
         if (isset($optionalArgs['name'])) {
@@ -1941,27 +1965,27 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $zone = 'zone';
-     *     $clusterId = 'cluster_id';
-     *     $maintenancePolicy = new Google\Cloud\Container\V1\MaintenancePolicy();
-     *     $response = $clusterManagerClient->setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy);
+     *     $response = $clusterManagerClient->setMaintenancePolicy();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param string            $projectId         Required. The Google Developers Console [project ID or project
-     *                                             number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
-     * @param string            $zone              Required. The name of the Google Compute Engine
-     *                                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the
-     *                                             cluster resides.
-     * @param string            $clusterId         Required. The name of the cluster to update.
-     * @param MaintenancePolicy $maintenancePolicy Required. The maintenance policy to be set for the cluster. An empty field
-     *                                             clears the existing maintenance policy.
-     * @param array             $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectId
+     *           Required. The Google Developers Console [project ID or project
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
+     *     @type string $zone
+     *           Required. The name of the Google Compute Engine
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *           cluster resides.
+     *     @type string $clusterId
+     *           Required. The name of the cluster to update.
+     *     @type MaintenancePolicy $maintenancePolicy
+     *           Required. The maintenance policy to be set for the cluster. An empty field
+     *           clears the existing maintenance policy.
      *     @type string $name
      *           The name (project, location, cluster name) of the cluster to set
      *           maintenance policy.
@@ -1976,17 +2000,29 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy, array $optionalArgs = [])
+    public function setMaintenancePolicy(array $optionalArgs = [])
     {
         $request = new SetMaintenancePolicyRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setZone($zone);
-        $request->setClusterId($clusterId);
-        $request->setMaintenancePolicy($maintenancePolicy);
-        $requestParamHeaders['project_id'] = $projectId;
-        $requestParamHeaders['zone'] = $zone;
-        $requestParamHeaders['cluster_id'] = $clusterId;
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
+        }
+
+        if (isset($optionalArgs['zone'])) {
+            $request->setZone($optionalArgs['zone']);
+            $requestParamHeaders['zone'] = $optionalArgs['zone'];
+        }
+
+        if (isset($optionalArgs['clusterId'])) {
+            $request->setClusterId($optionalArgs['clusterId']);
+            $requestParamHeaders['cluster_id'] = $optionalArgs['clusterId'];
+        }
+
+        if (isset($optionalArgs['maintenancePolicy'])) {
+            $request->setMaintenancePolicy($optionalArgs['maintenancePolicy']);
+        }
+
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
             $requestParamHeaders['name'] = $optionalArgs['name'];
@@ -2006,18 +2042,13 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $action = Google\Cloud\Container\V1\SetMasterAuthRequest\Action::UNKNOWN;
-     *     $update = new Google\Cloud\Container\V1\MasterAuth();
-     *     $response = $clusterManagerClient->setMasterAuth($action, $update);
+     *     $response = $clusterManagerClient->setMasterAuth();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param int        $action       Required. The exact form of action to be taken on the master auth.
-     *                                 For allowed values, use constants defined on {@see \Google\Cloud\Container\V1\SetMasterAuthRequest\Action}
-     * @param MasterAuth $update       Required. A description of the update.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $projectId
@@ -2032,6 +2063,11 @@ class ClusterManagerGapicClient
      *     @type string $clusterId
      *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
+     *     @type int $action
+     *           Required. The exact form of action to be taken on the master auth.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Container\V1\SetMasterAuthRequest\Action}
+     *     @type MasterAuth $update
+     *           Required. A description of the update.
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to set auth.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
@@ -2045,12 +2081,10 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setMasterAuth($action, $update, array $optionalArgs = [])
+    public function setMasterAuth(array $optionalArgs = [])
     {
         $request = new SetMasterAuthRequest();
         $requestParamHeaders = [];
-        $request->setAction($action);
-        $request->setUpdate($update);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -2064,6 +2098,14 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['clusterId'])) {
             $request->setClusterId($optionalArgs['clusterId']);
             $requestParamHeaders['cluster_id'] = $optionalArgs['clusterId'];
+        }
+
+        if (isset($optionalArgs['action'])) {
+            $request->setAction($optionalArgs['action']);
+        }
+
+        if (isset($optionalArgs['update'])) {
+            $request->setUpdate($optionalArgs['update']);
         }
 
         if (isset($optionalArgs['name'])) {
@@ -2083,25 +2125,13 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $monitoringService = 'monitoring_service';
-     *     $response = $clusterManagerClient->setMonitoringService($monitoringService);
+     *     $response = $clusterManagerClient->setMonitoringService();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param string $monitoringService Required. The monitoring service the cluster should use to write metrics.
-     *                                  Currently available options:
-     *
-     *                                  * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
-     *                                  service with a Kubernetes-native resource model
-     *                                  * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
-     *                                  longer available as of GKE 1.15).
-     *                                  * `none` - No metrics will be exported from the cluster.
-     *
-     *                                  If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
-     *                                  used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
-     * @param array  $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $projectId
@@ -2116,6 +2146,18 @@ class ClusterManagerGapicClient
      *     @type string $clusterId
      *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
+     *     @type string $monitoringService
+     *           Required. The monitoring service the cluster should use to write metrics.
+     *           Currently available options:
+     *
+     *           * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     *           service with a Kubernetes-native resource model
+     *           * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
+     *           longer available as of GKE 1.15).
+     *           * `none` - No metrics will be exported from the cluster.
+     *
+     *           If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
+     *           used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to set monitoring.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
@@ -2129,11 +2171,10 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setMonitoringService($monitoringService, array $optionalArgs = [])
+    public function setMonitoringService(array $optionalArgs = [])
     {
         $request = new SetMonitoringServiceRequest();
         $requestParamHeaders = [];
-        $request->setMonitoringService($monitoringService);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -2147,6 +2188,10 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['clusterId'])) {
             $request->setClusterId($optionalArgs['clusterId']);
             $requestParamHeaders['cluster_id'] = $optionalArgs['clusterId'];
+        }
+
+        if (isset($optionalArgs['monitoringService'])) {
+            $request->setMonitoringService($optionalArgs['monitoringService']);
         }
 
         if (isset($optionalArgs['name'])) {
@@ -2166,15 +2211,13 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $networkPolicy = new Google\Cloud\Container\V1\NetworkPolicy();
-     *     $response = $clusterManagerClient->setNetworkPolicy($networkPolicy);
+     *     $response = $clusterManagerClient->setNetworkPolicy();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param NetworkPolicy $networkPolicy Required. Configuration options for the NetworkPolicy feature.
-     * @param array         $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $projectId
@@ -2189,6 +2232,8 @@ class ClusterManagerGapicClient
      *     @type string $clusterId
      *           Deprecated. The name of the cluster.
      *           This field has been deprecated and replaced by the name field.
+     *     @type NetworkPolicy $networkPolicy
+     *           Required. Configuration options for the NetworkPolicy feature.
      *     @type string $name
      *           The name (project, location, cluster name) of the cluster to set networking
      *           policy. Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
@@ -2202,11 +2247,10 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setNetworkPolicy($networkPolicy, array $optionalArgs = [])
+    public function setNetworkPolicy(array $optionalArgs = [])
     {
         $request = new SetNetworkPolicyRequest();
         $requestParamHeaders = [];
-        $request->setNetworkPolicy($networkPolicy);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -2220,6 +2264,10 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['clusterId'])) {
             $request->setClusterId($optionalArgs['clusterId']);
             $requestParamHeaders['cluster_id'] = $optionalArgs['clusterId'];
+        }
+
+        if (isset($optionalArgs['networkPolicy'])) {
+            $request->setNetworkPolicy($optionalArgs['networkPolicy']);
         }
 
         if (isset($optionalArgs['name'])) {
@@ -2239,15 +2287,13 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $autoscaling = new Google\Cloud\Container\V1\NodePoolAutoscaling();
-     *     $response = $clusterManagerClient->setNodePoolAutoscaling($autoscaling);
+     *     $response = $clusterManagerClient->setNodePoolAutoscaling();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param NodePoolAutoscaling $autoscaling  Required. Autoscaling configuration for the node pool.
-     * @param array               $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $projectId
@@ -2265,6 +2311,8 @@ class ClusterManagerGapicClient
      *     @type string $nodePoolId
      *           Deprecated. The name of the node pool to upgrade.
      *           This field has been deprecated and replaced by the name field.
+     *     @type NodePoolAutoscaling $autoscaling
+     *           Required. Autoscaling configuration for the node pool.
      *     @type string $name
      *           The name (project, location, cluster, node pool) of the node pool to set
      *           autoscaler settings. Specified in the format
@@ -2279,11 +2327,10 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setNodePoolAutoscaling($autoscaling, array $optionalArgs = [])
+    public function setNodePoolAutoscaling(array $optionalArgs = [])
     {
         $request = new SetNodePoolAutoscalingRequest();
         $requestParamHeaders = [];
-        $request->setAutoscaling($autoscaling);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -2302,6 +2349,10 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['nodePoolId'])) {
             $request->setNodePoolId($optionalArgs['nodePoolId']);
             $requestParamHeaders['node_pool_id'] = $optionalArgs['nodePoolId'];
+        }
+
+        if (isset($optionalArgs['autoscaling'])) {
+            $request->setAutoscaling($optionalArgs['autoscaling']);
         }
 
         if (isset($optionalArgs['name'])) {
@@ -2321,15 +2372,13 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $management = new Google\Cloud\Container\V1\NodeManagement();
-     *     $response = $clusterManagerClient->setNodePoolManagement($management);
+     *     $response = $clusterManagerClient->setNodePoolManagement();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param NodeManagement $management   Required. NodeManagement configuration for the node pool.
-     * @param array          $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $projectId
@@ -2347,6 +2396,8 @@ class ClusterManagerGapicClient
      *     @type string $nodePoolId
      *           Deprecated. The name of the node pool to update.
      *           This field has been deprecated and replaced by the name field.
+     *     @type NodeManagement $management
+     *           Required. NodeManagement configuration for the node pool.
      *     @type string $name
      *           The name (project, location, cluster, node pool id) of the node pool to set
      *           management properties. Specified in the format
@@ -2361,11 +2412,10 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setNodePoolManagement($management, array $optionalArgs = [])
+    public function setNodePoolManagement(array $optionalArgs = [])
     {
         $request = new SetNodePoolManagementRequest();
         $requestParamHeaders = [];
-        $request->setManagement($management);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -2384,6 +2434,10 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['nodePoolId'])) {
             $request->setNodePoolId($optionalArgs['nodePoolId']);
             $requestParamHeaders['node_pool_id'] = $optionalArgs['nodePoolId'];
+        }
+
+        if (isset($optionalArgs['management'])) {
+            $request->setManagement($optionalArgs['management']);
         }
 
         if (isset($optionalArgs['name'])) {
@@ -2405,14 +2459,12 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $nodeCount = 0;
-     *     $response = $clusterManagerClient->setNodePoolSize($nodeCount);
+     *     $response = $clusterManagerClient->setNodePoolSize();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param int   $nodeCount    Required. The desired node count for the pool.
      * @param array $optionalArgs {
      *     Optional.
      *
@@ -2431,6 +2483,8 @@ class ClusterManagerGapicClient
      *     @type string $nodePoolId
      *           Deprecated. The name of the node pool to update.
      *           This field has been deprecated and replaced by the name field.
+     *     @type int $nodeCount
+     *           Required. The desired node count for the pool.
      *     @type string $name
      *           The name (project, location, cluster, node pool id) of the node pool to set
      *           size.
@@ -2445,11 +2499,10 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setNodePoolSize($nodeCount, array $optionalArgs = [])
+    public function setNodePoolSize(array $optionalArgs = [])
     {
         $request = new SetNodePoolSizeRequest();
         $requestParamHeaders = [];
-        $request->setNodeCount($nodeCount);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -2468,6 +2521,10 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['nodePoolId'])) {
             $request->setNodePoolId($optionalArgs['nodePoolId']);
             $requestParamHeaders['node_pool_id'] = $optionalArgs['nodePoolId'];
+        }
+
+        if (isset($optionalArgs['nodeCount'])) {
+            $request->setNodeCount($optionalArgs['nodeCount']);
         }
 
         if (isset($optionalArgs['name'])) {
@@ -2563,15 +2620,13 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $update = new Google\Cloud\Container\V1\ClusterUpdate();
-     *     $response = $clusterManagerClient->updateCluster($update);
+     *     $response = $clusterManagerClient->updateCluster();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param ClusterUpdate $update       Required. A description of the update.
-     * @param array         $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $projectId
@@ -2586,6 +2641,8 @@ class ClusterManagerGapicClient
      *     @type string $clusterId
      *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
+     *     @type ClusterUpdate $update
+     *           Required. A description of the update.
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to update.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
@@ -2599,11 +2656,10 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCluster($update, array $optionalArgs = [])
+    public function updateCluster(array $optionalArgs = [])
     {
         $request = new UpdateClusterRequest();
         $requestParamHeaders = [];
-        $request->setUpdate($update);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -2617,6 +2673,10 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['clusterId'])) {
             $request->setClusterId($optionalArgs['clusterId']);
             $requestParamHeaders['cluster_id'] = $optionalArgs['clusterId'];
+        }
+
+        if (isset($optionalArgs['update'])) {
+            $request->setUpdate($optionalArgs['update']);
         }
 
         if (isset($optionalArgs['name'])) {
@@ -2636,24 +2696,13 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $masterVersion = 'master_version';
-     *     $response = $clusterManagerClient->updateMaster($masterVersion);
+     *     $response = $clusterManagerClient->updateMaster();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param string $masterVersion Required. The Kubernetes version to change the master to.
-     *
-     *                              Users may specify either explicit versions offered by Kubernetes Engine or
-     *                              version aliases, which have the following behavior:
-     *
-     *                              - "latest": picks the highest valid Kubernetes version
-     *                              - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-     *                              - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-     *                              - "1.X.Y-gke.N": picks an explicit Kubernetes version
-     *                              - "-": picks the default Kubernetes version
-     * @param array  $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $projectId
@@ -2668,6 +2717,17 @@ class ClusterManagerGapicClient
      *     @type string $clusterId
      *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
+     *     @type string $masterVersion
+     *           Required. The Kubernetes version to change the master to.
+     *
+     *           Users may specify either explicit versions offered by Kubernetes Engine or
+     *           version aliases, which have the following behavior:
+     *
+     *           - "latest": picks the highest valid Kubernetes version
+     *           - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     *           - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     *           - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     *           - "-": picks the default Kubernetes version
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to update.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
@@ -2681,11 +2741,10 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateMaster($masterVersion, array $optionalArgs = [])
+    public function updateMaster(array $optionalArgs = [])
     {
         $request = new UpdateMasterRequest();
         $requestParamHeaders = [];
-        $request->setMasterVersion($masterVersion);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -2699,6 +2758,10 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['clusterId'])) {
             $request->setClusterId($optionalArgs['clusterId']);
             $requestParamHeaders['cluster_id'] = $optionalArgs['clusterId'];
+        }
+
+        if (isset($optionalArgs['masterVersion'])) {
+            $request->setMasterVersion($optionalArgs['masterVersion']);
         }
 
         if (isset($optionalArgs['name'])) {
@@ -2718,29 +2781,13 @@ class ClusterManagerGapicClient
      * ```
      * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
-     *     $nodeVersion = 'node_version';
-     *     $imageType = 'image_type';
-     *     $response = $clusterManagerClient->updateNodePool($nodeVersion, $imageType);
+     *     $response = $clusterManagerClient->updateNodePool();
      * } finally {
      *     $clusterManagerClient->close();
      * }
      * ```
      *
-     * @param string $nodeVersion  Required. The Kubernetes version to change the nodes to (typically an
-     *                             upgrade).
-     *
-     *                             Users may specify either explicit versions offered by Kubernetes Engine or
-     *                             version aliases, which have the following behavior:
-     *
-     *                             - "latest": picks the highest valid Kubernetes version
-     *                             - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-     *                             - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-     *                             - "1.X.Y-gke.N": picks an explicit Kubernetes version
-     *                             - "-": picks the Kubernetes master version
-     * @param string $imageType    Required. The desired image type for the node pool. Please see
-     *                             https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
-     *                             available image types.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $projectId
@@ -2758,6 +2805,22 @@ class ClusterManagerGapicClient
      *     @type string $nodePoolId
      *           Deprecated. The name of the node pool to upgrade.
      *           This field has been deprecated and replaced by the name field.
+     *     @type string $nodeVersion
+     *           Required. The Kubernetes version to change the nodes to (typically an
+     *           upgrade).
+     *
+     *           Users may specify either explicit versions offered by Kubernetes Engine or
+     *           version aliases, which have the following behavior:
+     *
+     *           - "latest": picks the highest valid Kubernetes version
+     *           - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     *           - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     *           - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     *           - "-": picks the Kubernetes master version
+     *     @type string $imageType
+     *           Required. The desired image type for the node pool. Please see
+     *           https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
+     *           available image types.
      *     @type string $name
      *           The name (project, location, cluster, node pool) of the node pool to
      *           update. Specified in the format
@@ -2839,12 +2902,10 @@ class ClusterManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateNodePool($nodeVersion, $imageType, array $optionalArgs = [])
+    public function updateNodePool(array $optionalArgs = [])
     {
         $request = new UpdateNodePoolRequest();
         $requestParamHeaders = [];
-        $request->setNodeVersion($nodeVersion);
-        $request->setImageType($imageType);
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
             $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
@@ -2863,6 +2924,14 @@ class ClusterManagerGapicClient
         if (isset($optionalArgs['nodePoolId'])) {
             $request->setNodePoolId($optionalArgs['nodePoolId']);
             $requestParamHeaders['node_pool_id'] = $optionalArgs['nodePoolId'];
+        }
+
+        if (isset($optionalArgs['nodeVersion'])) {
+            $request->setNodeVersion($optionalArgs['nodeVersion']);
+        }
+
+        if (isset($optionalArgs['imageType'])) {
+            $request->setImageType($optionalArgs['imageType']);
         }
 
         if (isset($optionalArgs['name'])) {

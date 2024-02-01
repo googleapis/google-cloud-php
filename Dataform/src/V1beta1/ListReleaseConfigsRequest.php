@@ -42,8 +42,7 @@ class ListReleaseConfigsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The repository in which to list release configs. Must be in the
-     *                       format `projects/&#42;/locations/&#42;/repositories/*`. Please see
-     *                       {@see DataformClient::repositoryName()} for help formatting this field.
+     *                       format `projects/&#42;/locations/&#42;/repositories/*`.
      *
      * @return \Google\Cloud\Dataform\V1beta1\ListReleaseConfigsRequest
      *

@@ -56,8 +56,7 @@ class ListPrivateConnectionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent that owns the collection of private connectivity
-     *                       configurations. Please see
-     *                       {@see DatastreamClient::locationName()} for help formatting this field.
+     *                       configurations.
      *
      * @return \Google\Cloud\Datastream\V1\ListPrivateConnectionsRequest
      *

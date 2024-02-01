@@ -54,9 +54,8 @@ use Google\Protobuf\FieldMask;
  * ```
  * $answerRecordsClient = new AnswerRecordsClient();
  * try {
- *     $formattedParent = $answerRecordsClient->projectName('[PROJECT]');
  *     // Iterate over pages of elements
- *     $pagedResponse = $answerRecordsClient->listAnswerRecords($formattedParent);
+ *     $pagedResponse = $answerRecordsClient->listAnswerRecords();
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -64,7 +63,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // Iterate through all elements
- *     $pagedResponse = $answerRecordsClient->listAnswerRecords($formattedParent);
+ *     $pagedResponse = $answerRecordsClient->listAnswerRecords();
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -910,9 +909,8 @@ class AnswerRecordsGapicClient
      * ```
      * $answerRecordsClient = new AnswerRecordsClient();
      * try {
-     *     $formattedParent = $answerRecordsClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $answerRecordsClient->listAnswerRecords($formattedParent);
+     *     $pagedResponse = $answerRecordsClient->listAnswerRecords();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -920,7 +918,7 @@ class AnswerRecordsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $answerRecordsClient->listAnswerRecords($formattedParent);
+     *     $pagedResponse = $answerRecordsClient->listAnswerRecords();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -929,12 +927,13 @@ class AnswerRecordsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project to list all answer records for in reverse
-     *                             chronological order. Format: `projects/<Project ID>/locations/<Location
-     *                             ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project to list all answer records for in reverse
+     *           chronological order. Format: `projects/<Project ID>/locations/<Location
+     *           ID>`.
      *     @type string $filter
      *           Optional. Filters to restrict results to specific answer records.
      *
@@ -961,12 +960,15 @@ class AnswerRecordsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAnswerRecords($parent, array $optionalArgs = [])
+    public function listAnswerRecords(array $optionalArgs = [])
     {
         $request = new ListAnswerRecordsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -991,19 +993,19 @@ class AnswerRecordsGapicClient
      * ```
      * $answerRecordsClient = new AnswerRecordsClient();
      * try {
-     *     $answerRecord = new AnswerRecord();
-     *     $updateMask = new FieldMask();
-     *     $response = $answerRecordsClient->updateAnswerRecord($answerRecord, $updateMask);
+     *     $response = $answerRecordsClient->updateAnswerRecord();
      * } finally {
      *     $answerRecordsClient->close();
      * }
      * ```
      *
-     * @param AnswerRecord $answerRecord Required. Answer record to update.
-     * @param FieldMask    $updateMask   Required. The mask to control which fields get updated.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type AnswerRecord $answerRecord
+     *           Required. Answer record to update.
+     *     @type FieldMask $updateMask
+     *           Required. The mask to control which fields get updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1014,13 +1016,18 @@ class AnswerRecordsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAnswerRecord($answerRecord, $updateMask, array $optionalArgs = [])
+    public function updateAnswerRecord(array $optionalArgs = [])
     {
         $request = new UpdateAnswerRecordRequest();
         $requestParamHeaders = [];
-        $request->setAnswerRecord($answerRecord);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['answer_record.name'] = $answerRecord->getName();
+        if (isset($optionalArgs['answerRecord'])) {
+            $request->setAnswerRecord($optionalArgs['answerRecord']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateAnswerRecord', AnswerRecord::class, $optionalArgs, $request)->wait();

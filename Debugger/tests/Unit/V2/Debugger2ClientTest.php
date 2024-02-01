@@ -26,7 +26,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Debugger\V2\Breakpoint;
 use Google\Cloud\Debugger\V2\Debugger2Client;
 use Google\Cloud\Debugger\V2\GetBreakpointResponse;
 use Google\Cloud\Debugger\V2\ListBreakpointsResponse;
@@ -75,22 +74,12 @@ class Debugger2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpointId = 'breakpointId498424873';
-        $clientVersion = 'clientVersion-1506231196';
-        $gapicClient->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+        $gapicClient->deleteBreakpoint();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/DeleteBreakpoint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDebuggeeId();
-        $this->assertProtobufEquals($debuggeeId, $actualValue);
-        $actualValue = $actualRequestObject->getBreakpointId();
-        $this->assertProtobufEquals($breakpointId, $actualValue);
-        $actualValue = $actualRequestObject->getClientVersion();
-        $this->assertProtobufEquals($clientVersion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -112,12 +101,8 @@ class Debugger2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpointId = 'breakpointId498424873';
-        $clientVersion = 'clientVersion-1506231196';
         try {
-            $gapicClient->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+            $gapicClient->deleteBreakpoint();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -140,23 +125,13 @@ class Debugger2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GetBreakpointResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpointId = 'breakpointId498424873';
-        $clientVersion = 'clientVersion-1506231196';
-        $response = $gapicClient->getBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+        $response = $gapicClient->getBreakpoint();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/GetBreakpoint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDebuggeeId();
-        $this->assertProtobufEquals($debuggeeId, $actualValue);
-        $actualValue = $actualRequestObject->getBreakpointId();
-        $this->assertProtobufEquals($breakpointId, $actualValue);
-        $actualValue = $actualRequestObject->getClientVersion();
-        $this->assertProtobufEquals($clientVersion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -178,12 +153,8 @@ class Debugger2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpointId = 'breakpointId498424873';
-        $clientVersion = 'clientVersion-1506231196';
         try {
-            $gapicClient->getBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+            $gapicClient->getBreakpoint();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -208,20 +179,13 @@ class Debugger2ClientTest extends GeneratedTest
         $expectedResponse = new ListBreakpointsResponse();
         $expectedResponse->setNextWaitToken($nextWaitToken);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $clientVersion = 'clientVersion-1506231196';
-        $response = $gapicClient->listBreakpoints($debuggeeId, $clientVersion);
+        $response = $gapicClient->listBreakpoints();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/ListBreakpoints', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDebuggeeId();
-        $this->assertProtobufEquals($debuggeeId, $actualValue);
-        $actualValue = $actualRequestObject->getClientVersion();
-        $this->assertProtobufEquals($clientVersion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -243,11 +207,8 @@ class Debugger2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $clientVersion = 'clientVersion-1506231196';
         try {
-            $gapicClient->listBreakpoints($debuggeeId, $clientVersion);
+            $gapicClient->listBreakpoints();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -270,20 +231,13 @@ class Debugger2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ListDebuggeesResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $clientVersion = 'clientVersion-1506231196';
-        $response = $gapicClient->listDebuggees($project, $clientVersion);
+        $response = $gapicClient->listDebuggees();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/ListDebuggees', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getClientVersion();
-        $this->assertProtobufEquals($clientVersion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -305,11 +259,8 @@ class Debugger2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $clientVersion = 'clientVersion-1506231196';
         try {
-            $gapicClient->listDebuggees($project, $clientVersion);
+            $gapicClient->listDebuggees();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -332,23 +283,13 @@ class Debugger2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SetBreakpointResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpoint = new Breakpoint();
-        $clientVersion = 'clientVersion-1506231196';
-        $response = $gapicClient->setBreakpoint($debuggeeId, $breakpoint, $clientVersion);
+        $response = $gapicClient->setBreakpoint();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/SetBreakpoint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDebuggeeId();
-        $this->assertProtobufEquals($debuggeeId, $actualValue);
-        $actualValue = $actualRequestObject->getBreakpoint();
-        $this->assertProtobufEquals($breakpoint, $actualValue);
-        $actualValue = $actualRequestObject->getClientVersion();
-        $this->assertProtobufEquals($clientVersion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -370,12 +311,8 @@ class Debugger2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpoint = new Breakpoint();
-        $clientVersion = 'clientVersion-1506231196';
         try {
-            $gapicClient->setBreakpoint($debuggeeId, $breakpoint, $clientVersion);
+            $gapicClient->setBreakpoint();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

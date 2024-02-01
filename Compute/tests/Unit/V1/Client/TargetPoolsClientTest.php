@@ -35,26 +35,19 @@ use Google\Cloud\Compute\V1\GetHealthTargetPoolRequest;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\GetTargetPoolRequest;
 use Google\Cloud\Compute\V1\InsertTargetPoolRequest;
-use Google\Cloud\Compute\V1\InstanceReference;
 use Google\Cloud\Compute\V1\ListTargetPoolsRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\RemoveHealthCheckTargetPoolRequest;
 use Google\Cloud\Compute\V1\RemoveInstanceTargetPoolRequest;
-use Google\Cloud\Compute\V1\SecurityPolicyReference;
 use Google\Cloud\Compute\V1\SetBackupTargetPoolRequest;
 use Google\Cloud\Compute\V1\SetSecurityPolicyTargetPoolRequest;
 use Google\Cloud\Compute\V1\TargetPool;
 use Google\Cloud\Compute\V1\TargetPoolAggregatedList;
 use Google\Cloud\Compute\V1\TargetPoolInstanceHealth;
 use Google\Cloud\Compute\V1\TargetPoolList;
-use Google\Cloud\Compute\V1\TargetPoolsAddHealthCheckRequest;
-use Google\Cloud\Compute\V1\TargetPoolsAddInstanceRequest;
-use Google\Cloud\Compute\V1\TargetPoolsRemoveHealthCheckRequest;
-use Google\Cloud\Compute\V1\TargetPoolsRemoveInstanceRequest;
 use Google\Cloud\Compute\V1\TargetPoolsScopedList;
-use Google\Cloud\Compute\V1\TargetReference;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -111,16 +104,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addHealthCheckTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $targetPoolsAddHealthCheckRequestResource = new TargetPoolsAddHealthCheckRequest();
-        $request = (new AddHealthCheckTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool)
-            ->setTargetPoolsAddHealthCheckRequestResource($targetPoolsAddHealthCheckRequestResource);
+        $request = new AddHealthCheckTargetPoolRequest();
         $response = $gapicClient->addHealthCheck($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -130,18 +114,8 @@ class TargetPoolsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetPools/AddHealthCheck', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetPool();
-        $this->assertProtobufEquals($targetPool, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetPoolsAddHealthCheckRequestResource();
-        $this->assertProtobufEquals($targetPoolsAddHealthCheckRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -189,16 +163,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $targetPoolsAddHealthCheckRequestResource = new TargetPoolsAddHealthCheckRequest();
-        $request = (new AddHealthCheckTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool)
-            ->setTargetPoolsAddHealthCheckRequestResource($targetPoolsAddHealthCheckRequestResource);
+        $request = new AddHealthCheckTargetPoolRequest();
         $response = $gapicClient->addHealthCheck($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -244,16 +209,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addInstanceTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $targetPoolsAddInstanceRequestResource = new TargetPoolsAddInstanceRequest();
-        $request = (new AddInstanceTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool)
-            ->setTargetPoolsAddInstanceRequestResource($targetPoolsAddInstanceRequestResource);
+        $request = new AddInstanceTargetPoolRequest();
         $response = $gapicClient->addInstance($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -263,18 +219,8 @@ class TargetPoolsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetPools/AddInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetPool();
-        $this->assertProtobufEquals($targetPool, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetPoolsAddInstanceRequestResource();
-        $this->assertProtobufEquals($targetPoolsAddInstanceRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -322,16 +268,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $targetPoolsAddInstanceRequestResource = new TargetPoolsAddInstanceRequest();
-        $request = (new AddInstanceTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool)
-            ->setTargetPoolsAddInstanceRequestResource($targetPoolsAddInstanceRequestResource);
+        $request = new AddInstanceTargetPoolRequest();
         $response = $gapicClient->addInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -375,10 +312,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListTargetPoolsRequest())
-            ->setProject($project);
+        $request = new AggregatedListTargetPoolsRequest();
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -391,8 +325,6 @@ class TargetPoolsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetPools/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -414,10 +346,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListTargetPoolsRequest())
-            ->setProject($project);
+        $request = new AggregatedListTargetPoolsRequest();
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -456,14 +385,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $request = (new DeleteTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool);
+        $request = new DeleteTargetPoolRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -473,16 +395,8 @@ class TargetPoolsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetPools/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetPool();
-        $this->assertProtobufEquals($targetPool, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -530,14 +444,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $request = (new DeleteTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool);
+        $request = new DeleteTargetPoolRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -591,14 +498,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSessionAffinity($sessionAffinity);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $request = (new GetTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool);
+        $request = new GetTargetPoolRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -606,12 +506,6 @@ class TargetPoolsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetPools/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getTargetPool();
-        $this->assertProtobufEquals($targetPool, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -633,14 +527,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $request = (new GetTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool);
+        $request = new GetTargetPoolRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -667,16 +554,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $expectedResponse = new TargetPoolInstanceHealth();
         $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $instanceReferenceResource = new InstanceReference();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $request = (new GetHealthTargetPoolRequest())
-            ->setInstanceReferenceResource($instanceReferenceResource)
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool);
+        $request = new GetHealthTargetPoolRequest();
         $response = $gapicClient->getHealth($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -684,14 +562,6 @@ class TargetPoolsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetPools/GetHealth', $actualFuncCall);
-        $actualValue = $actualRequestObject->getInstanceReferenceResource();
-        $this->assertProtobufEquals($instanceReferenceResource, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getTargetPool();
-        $this->assertProtobufEquals($targetPool, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -713,16 +583,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $instanceReferenceResource = new InstanceReference();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $request = (new GetHealthTargetPoolRequest())
-            ->setInstanceReferenceResource($instanceReferenceResource)
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool);
+        $request = new GetHealthTargetPoolRequest();
         try {
             $gapicClient->getHealth($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -761,14 +622,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPoolResource = new TargetPool();
-        $request = (new InsertTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPoolResource($targetPoolResource);
+        $request = new InsertTargetPoolRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -778,16 +632,8 @@ class TargetPoolsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetPools/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetPoolResource();
-        $this->assertProtobufEquals($targetPoolResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -835,14 +681,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPoolResource = new TargetPool();
-        $request = (new InsertTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPoolResource($targetPoolResource);
+        $request = new InsertTargetPoolRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -887,12 +726,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListTargetPoolsRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListTargetPoolsRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -903,10 +737,6 @@ class TargetPoolsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetPools/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -928,12 +758,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListTargetPoolsRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListTargetPoolsRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -972,16 +797,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/removeHealthCheckTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $targetPoolsRemoveHealthCheckRequestResource = new TargetPoolsRemoveHealthCheckRequest();
-        $request = (new RemoveHealthCheckTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool)
-            ->setTargetPoolsRemoveHealthCheckRequestResource($targetPoolsRemoveHealthCheckRequestResource);
+        $request = new RemoveHealthCheckTargetPoolRequest();
         $response = $gapicClient->removeHealthCheck($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -991,18 +807,8 @@ class TargetPoolsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetPools/RemoveHealthCheck', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetPool();
-        $this->assertProtobufEquals($targetPool, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetPoolsRemoveHealthCheckRequestResource();
-        $this->assertProtobufEquals($targetPoolsRemoveHealthCheckRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1050,16 +856,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $targetPoolsRemoveHealthCheckRequestResource = new TargetPoolsRemoveHealthCheckRequest();
-        $request = (new RemoveHealthCheckTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool)
-            ->setTargetPoolsRemoveHealthCheckRequestResource($targetPoolsRemoveHealthCheckRequestResource);
+        $request = new RemoveHealthCheckTargetPoolRequest();
         $response = $gapicClient->removeHealthCheck($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1105,16 +902,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/removeInstanceTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $targetPoolsRemoveInstanceRequestResource = new TargetPoolsRemoveInstanceRequest();
-        $request = (new RemoveInstanceTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool)
-            ->setTargetPoolsRemoveInstanceRequestResource($targetPoolsRemoveInstanceRequestResource);
+        $request = new RemoveInstanceTargetPoolRequest();
         $response = $gapicClient->removeInstance($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1124,18 +912,8 @@ class TargetPoolsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetPools/RemoveInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetPool();
-        $this->assertProtobufEquals($targetPool, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetPoolsRemoveInstanceRequestResource();
-        $this->assertProtobufEquals($targetPoolsRemoveInstanceRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1183,16 +961,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $targetPoolsRemoveInstanceRequestResource = new TargetPoolsRemoveInstanceRequest();
-        $request = (new RemoveInstanceTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool)
-            ->setTargetPoolsRemoveInstanceRequestResource($targetPoolsRemoveInstanceRequestResource);
+        $request = new RemoveInstanceTargetPoolRequest();
         $response = $gapicClient->removeInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1238,16 +1007,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setBackupTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $targetReferenceResource = new TargetReference();
-        $request = (new SetBackupTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool)
-            ->setTargetReferenceResource($targetReferenceResource);
+        $request = new SetBackupTargetPoolRequest();
         $response = $gapicClient->setBackup($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1257,18 +1017,8 @@ class TargetPoolsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetPools/SetBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetPool();
-        $this->assertProtobufEquals($targetPool, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetReferenceResource();
-        $this->assertProtobufEquals($targetReferenceResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1316,16 +1066,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $targetReferenceResource = new TargetReference();
-        $request = (new SetBackupTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool)
-            ->setTargetReferenceResource($targetReferenceResource);
+        $request = new SetBackupTargetPoolRequest();
         $response = $gapicClient->setBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1371,16 +1112,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setSecurityPolicyTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicyReferenceResource = new SecurityPolicyReference();
-        $targetPool = 'targetPool-2084687350';
-        $request = (new SetSecurityPolicyTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicyReferenceResource($securityPolicyReferenceResource)
-            ->setTargetPool($targetPool);
+        $request = new SetSecurityPolicyTargetPoolRequest();
         $response = $gapicClient->setSecurityPolicy($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1390,18 +1122,8 @@ class TargetPoolsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetPools/SetSecurityPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicyReferenceResource();
-        $this->assertProtobufEquals($securityPolicyReferenceResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetPool();
-        $this->assertProtobufEquals($targetPool, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1449,16 +1171,7 @@ class TargetPoolsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicyReferenceResource = new SecurityPolicyReference();
-        $targetPool = 'targetPool-2084687350';
-        $request = (new SetSecurityPolicyTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicyReferenceResource($securityPolicyReferenceResource)
-            ->setTargetPool($targetPool);
+        $request = new SetSecurityPolicyTargetPoolRequest();
         $response = $gapicClient->setSecurityPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1504,16 +1217,7 @@ class TargetPoolsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addHealthCheckAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetPool = 'targetPool-2084687350';
-        $targetPoolsAddHealthCheckRequestResource = new TargetPoolsAddHealthCheckRequest();
-        $request = (new AddHealthCheckTargetPoolRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetPool($targetPool)
-            ->setTargetPoolsAddHealthCheckRequestResource($targetPoolsAddHealthCheckRequestResource);
+        $request = new AddHealthCheckTargetPoolRequest();
         $response = $gapicClient->addHealthCheck($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1523,18 +1227,8 @@ class TargetPoolsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetPools/AddHealthCheck', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetPool();
-        $this->assertProtobufEquals($targetPool, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetPoolsAddHealthCheckRequestResource();
-        $this->assertProtobufEquals($targetPoolsAddHealthCheckRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

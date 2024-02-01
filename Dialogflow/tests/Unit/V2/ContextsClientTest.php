@@ -78,22 +78,13 @@ class ContextsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setLifespanCount($lifespanCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $context = new Context();
-        $contextName = 'contextName-103041830';
-        $context->setName($contextName);
-        $response = $gapicClient->createContext($formattedParent, $context);
+        $response = $gapicClient->createContext();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Contexts/CreateContext', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getContext();
-        $this->assertProtobufEquals($context, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -115,13 +106,8 @@ class ContextsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $context = new Context();
-        $contextName = 'contextName-103041830';
-        $context->setName($contextName);
         try {
-            $gapicClient->createContext($formattedParent, $context);
+            $gapicClient->createContext();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -144,16 +130,12 @@ class ContextsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $gapicClient->deleteAllContexts($formattedParent);
+        $gapicClient->deleteAllContexts();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Contexts/DeleteAllContexts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -175,10 +157,8 @@ class ContextsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
         try {
-            $gapicClient->deleteAllContexts($formattedParent);
+            $gapicClient->deleteAllContexts();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -201,16 +181,12 @@ class ContextsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-        $gapicClient->deleteContext($formattedName);
+        $gapicClient->deleteContext();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Contexts/DeleteContext', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -232,10 +208,8 @@ class ContextsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
         try {
-            $gapicClient->deleteContext($formattedName);
+            $gapicClient->deleteContext();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -262,17 +236,13 @@ class ContextsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setLifespanCount($lifespanCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-        $response = $gapicClient->getContext($formattedName);
+        $response = $gapicClient->getContext();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Contexts/GetContext', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -294,10 +264,8 @@ class ContextsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
         try {
-            $gapicClient->getContext($formattedName);
+            $gapicClient->getContext();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -327,9 +295,7 @@ class ContextsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setContexts($contexts);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $response = $gapicClient->listContexts($formattedParent);
+        $response = $gapicClient->listContexts();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -339,8 +305,6 @@ class ContextsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Contexts/ListContexts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -362,10 +326,8 @@ class ContextsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
         try {
-            $gapicClient->listContexts($formattedParent);
+            $gapicClient->listContexts();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -392,19 +354,13 @@ class ContextsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setLifespanCount($lifespanCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $context = new Context();
-        $contextName = 'contextName-103041830';
-        $context->setName($contextName);
-        $response = $gapicClient->updateContext($context);
+        $response = $gapicClient->updateContext();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Contexts/UpdateContext', $actualFuncCall);
-        $actualValue = $actualRequestObject->getContext();
-        $this->assertProtobufEquals($context, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -426,12 +382,8 @@ class ContextsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $context = new Context();
-        $contextName = 'contextName-103041830';
-        $context->setName($contextName);
         try {
-            $gapicClient->updateContext($context);
+            $gapicClient->updateContext();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

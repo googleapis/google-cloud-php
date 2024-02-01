@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\V2\Client\EnvironmentsClient;
 use Google\Cloud\Dialogflow\V2\Environment;
 use Google\Cloud\Dialogflow\V2\UpdateEnvironmentRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates the specified agent environment.
@@ -55,11 +54,7 @@ function update_environment_sample(): void
     $environmentsClient = new EnvironmentsClient();
 
     // Prepare the request message.
-    $environment = new Environment();
-    $updateMask = new FieldMask();
-    $request = (new UpdateEnvironmentRequest())
-        ->setEnvironment($environment)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateEnvironmentRequest();
 
     // Call the API and handle any network failures.
     try {

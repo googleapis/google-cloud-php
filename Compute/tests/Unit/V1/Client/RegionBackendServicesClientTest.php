@@ -44,13 +44,9 @@ use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
-use Google\Cloud\Compute\V1\RegionSetPolicyRequest;
-use Google\Cloud\Compute\V1\ResourceGroupReference;
-use Google\Cloud\Compute\V1\SecurityPolicyReference;
 use Google\Cloud\Compute\V1\SetIamPolicyRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\SetSecurityPolicyRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsRegionBackendServiceRequest;
-use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateRegionBackendServiceRequest;
 use Google\Rpc\Code;
@@ -109,14 +105,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new DeleteRegionBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new DeleteRegionBackendServiceRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -126,16 +115,8 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionBackendServices/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -183,14 +164,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new DeleteRegionBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new DeleteRegionBackendServiceRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -264,14 +238,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $expectedResponse->setSessionAffinity($sessionAffinity);
         $expectedResponse->setTimeoutSec($timeoutSec);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetRegionBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetRegionBackendServiceRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -279,12 +246,6 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionBackendServices/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -306,14 +267,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetRegionBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetRegionBackendServiceRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -340,16 +294,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $expectedResponse = new BackendServiceGroupHealth();
         $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $resourceGroupReferenceResource = new ResourceGroupReference();
-        $request = (new GetHealthRegionBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setRegion($region)
-            ->setResourceGroupReferenceResource($resourceGroupReferenceResource);
+        $request = new GetHealthRegionBackendServiceRequest();
         $response = $gapicClient->getHealth($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -357,14 +302,6 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionBackendServices/GetHealth', $actualFuncCall);
-        $actualValue = $actualRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getResourceGroupReferenceResource();
-        $this->assertProtobufEquals($resourceGroupReferenceResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -386,16 +323,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $resourceGroupReferenceResource = new ResourceGroupReference();
-        $request = (new GetHealthRegionBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setRegion($region)
-            ->setResourceGroupReferenceResource($resourceGroupReferenceResource);
+        $request = new GetHealthRegionBackendServiceRequest();
         try {
             $gapicClient->getHealth($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -426,14 +354,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRegionBackendServiceRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setResource($resource);
+        $request = new GetIamPolicyRegionBackendServiceRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -441,12 +362,6 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionBackendServices/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -468,14 +383,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRegionBackendServiceRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setResource($resource);
+        $request = new GetIamPolicyRegionBackendServiceRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -514,14 +422,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backendServiceResource = new BackendService();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new InsertRegionBackendServiceRequest())
-            ->setBackendServiceResource($backendServiceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new InsertRegionBackendServiceRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -531,16 +432,8 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionBackendServices/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendServiceResource();
-        $this->assertProtobufEquals($backendServiceResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -588,14 +481,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backendServiceResource = new BackendService();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new InsertRegionBackendServiceRequest())
-            ->setBackendServiceResource($backendServiceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new InsertRegionBackendServiceRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -640,12 +526,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListRegionBackendServicesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListRegionBackendServicesRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -656,10 +537,6 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionBackendServices/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -681,12 +558,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListRegionBackendServicesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListRegionBackendServicesRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -724,12 +596,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListUsableRegionBackendServicesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListUsableRegionBackendServicesRequest();
         $response = $gapicClient->listUsable($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -740,10 +607,6 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionBackendServices/ListUsable', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -765,12 +628,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListUsableRegionBackendServicesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListUsableRegionBackendServicesRequest();
         try {
             $gapicClient->listUsable($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -809,16 +667,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backendService = 'backendService306946058';
-        $backendServiceResource = new BackendService();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new PatchRegionBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setBackendServiceResource($backendServiceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new PatchRegionBackendServiceRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -828,18 +677,8 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionBackendServices/Patch', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackendServiceResource();
-        $this->assertProtobufEquals($backendServiceResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -887,16 +726,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backendService = 'backendService306946058';
-        $backendServiceResource = new BackendService();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new PatchRegionBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setBackendServiceResource($backendServiceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new PatchRegionBackendServiceRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -934,16 +764,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
-        $resource = 'resource-341064690';
-        $request = (new SetIamPolicyRegionBackendServiceRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRegionSetPolicyRequestResource($regionSetPolicyRequestResource)
-            ->setResource($resource);
+        $request = new SetIamPolicyRegionBackendServiceRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -951,14 +772,6 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionBackendServices/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getRegionSetPolicyRequestResource();
-        $this->assertProtobufEquals($regionSetPolicyRequestResource, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -980,16 +793,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
-        $resource = 'resource-341064690';
-        $request = (new SetIamPolicyRegionBackendServiceRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRegionSetPolicyRequestResource($regionSetPolicyRequestResource)
-            ->setResource($resource);
+        $request = new SetIamPolicyRegionBackendServiceRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1028,16 +832,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setSecurityPolicyTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicyReferenceResource = new SecurityPolicyReference();
-        $request = (new SetSecurityPolicyRegionBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicyReferenceResource($securityPolicyReferenceResource);
+        $request = new SetSecurityPolicyRegionBackendServiceRequest();
         $response = $gapicClient->setSecurityPolicy($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1047,18 +842,8 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionBackendServices/SetSecurityPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicyReferenceResource();
-        $this->assertProtobufEquals($securityPolicyReferenceResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1106,16 +891,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicyReferenceResource = new SecurityPolicyReference();
-        $request = (new SetSecurityPolicyRegionBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicyReferenceResource($securityPolicyReferenceResource);
+        $request = new SetSecurityPolicyRegionBackendServiceRequest();
         $response = $gapicClient->setSecurityPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1147,16 +923,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
-        $request = (new TestIamPermissionsRegionBackendServiceRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setResource($resource)
-            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
+        $request = new TestIamPermissionsRegionBackendServiceRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1164,14 +931,6 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionBackendServices/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
-        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1193,16 +952,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
-        $request = (new TestIamPermissionsRegionBackendServiceRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setResource($resource)
-            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
+        $request = new TestIamPermissionsRegionBackendServiceRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1241,16 +991,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/updateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backendService = 'backendService306946058';
-        $backendServiceResource = new BackendService();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new UpdateRegionBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setBackendServiceResource($backendServiceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new UpdateRegionBackendServiceRequest();
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1260,18 +1001,8 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionBackendServices/Update', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackendServiceResource();
-        $this->assertProtobufEquals($backendServiceResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1319,16 +1050,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backendService = 'backendService306946058';
-        $backendServiceResource = new BackendService();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new UpdateRegionBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setBackendServiceResource($backendServiceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new UpdateRegionBackendServiceRequest();
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1374,14 +1096,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backendService = 'backendService306946058';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new DeleteRegionBackendServiceRequest())
-            ->setBackendService($backendService)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new DeleteRegionBackendServiceRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1391,16 +1106,8 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionBackendServices/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackendService();
-        $this->assertProtobufEquals($backendService, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

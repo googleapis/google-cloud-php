@@ -56,7 +56,6 @@ class ListEvaluationJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. Evaluation job resource parent. Format:
      *                       "projects/<var>{project_id}</var>"
-     *                       Please see {@see DataLabelingServiceClient::projectName()} for help formatting this field.
      * @param string $filter Optional. You can filter the jobs to list by model_id (also known as
      *                       model_name, as described in
      *                       [EvaluationJob.modelVersion][google.cloud.datalabeling.v1beta1.EvaluationJob.model_version]) or by

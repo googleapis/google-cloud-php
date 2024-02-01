@@ -28,8 +28,7 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the document to retrieve.
      *                     Format `projects/<Project ID>/locations/<Location
-     *                     ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`. Please see
-     *                     {@see DocumentsClient::documentName()} for help formatting this field.
+     *                     ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      *
      * @return \Google\Cloud\Dialogflow\V2\GetDocumentRequest
      *

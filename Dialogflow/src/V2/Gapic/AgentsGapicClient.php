@@ -67,8 +67,7 @@ use Google\Protobuf\Struct;
  * ```
  * $agentsClient = new AgentsClient();
  * try {
- *     $formattedParent = $agentsClient->projectName('[PROJECT]');
- *     $agentsClient->deleteAgent($formattedParent);
+ *     $agentsClient->deleteAgent();
  * } finally {
  *     $agentsClient->close();
  * }
@@ -424,18 +423,18 @@ class AgentsGapicClient
      * ```
      * $agentsClient = new AgentsClient();
      * try {
-     *     $formattedParent = $agentsClient->projectName('[PROJECT]');
-     *     $agentsClient->deleteAgent($formattedParent);
+     *     $agentsClient->deleteAgent();
      * } finally {
      *     $agentsClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The project that the agent to delete is associated with.
-     *                             Format: `projects/<Project ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project that the agent to delete is associated with.
+     *           Format: `projects/<Project ID>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -444,12 +443,15 @@ class AgentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAgent($parent, array $optionalArgs = [])
+    public function deleteAgent(array $optionalArgs = [])
     {
         $request = new DeleteAgentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteAgent', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -471,9 +473,7 @@ class AgentsGapicClient
      * ```
      * $agentsClient = new AgentsClient();
      * try {
-     *     $formattedParent = $agentsClient->projectName('[PROJECT]');
-     *     $agentUri = 'agent_uri';
-     *     $operationResponse = $agentsClient->exportAgent($formattedParent, $agentUri);
+     *     $operationResponse = $agentsClient->exportAgent();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -484,7 +484,7 @@ class AgentsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $agentsClient->exportAgent($formattedParent, $agentUri);
+     *     $operationResponse = $agentsClient->exportAgent();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $agentsClient->resumeOperation($operationName, 'exportAgent');
@@ -504,21 +504,23 @@ class AgentsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project that the agent to export is associated with.
-     *                             Format: `projects/<Project ID>`.
-     * @param string $agentUri     Required. The [Google Cloud
-     *                             Storage](https://cloud.google.com/storage/docs/) URI to export the agent
-     *                             to. The format of this URI must be `gs://<bucket-name>/<object-name>`. If
-     *                             left unspecified, the serialized agent is returned inline.
-     *
-     *                             Dialogflow performs a write operation for the Cloud Storage object
-     *                             on the caller's behalf, so your request authentication must
-     *                             have write permissions for the object. For more information, see
-     *                             [Dialogflow access
-     *                             control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project that the agent to export is associated with.
+     *           Format: `projects/<Project ID>`.
+     *     @type string $agentUri
+     *           Required. The [Google Cloud
+     *           Storage](https://cloud.google.com/storage/docs/) URI to export the agent
+     *           to. The format of this URI must be `gs://<bucket-name>/<object-name>`. If
+     *           left unspecified, the serialized agent is returned inline.
+     *
+     *           Dialogflow performs a write operation for the Cloud Storage object
+     *           on the caller's behalf, so your request authentication must
+     *           have write permissions for the object. For more information, see
+     *           [Dialogflow access
+     *           control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -529,13 +531,19 @@ class AgentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function exportAgent($parent, $agentUri, array $optionalArgs = [])
+    public function exportAgent(array $optionalArgs = [])
     {
         $request = new ExportAgentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAgentUri($agentUri);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['agentUri'])) {
+            $request->setAgentUri($optionalArgs['agentUri']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('ExportAgent', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -548,18 +556,18 @@ class AgentsGapicClient
      * ```
      * $agentsClient = new AgentsClient();
      * try {
-     *     $formattedParent = $agentsClient->projectName('[PROJECT]');
-     *     $response = $agentsClient->getAgent($formattedParent);
+     *     $response = $agentsClient->getAgent();
      * } finally {
      *     $agentsClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The project that the agent to fetch is associated with.
-     *                             Format: `projects/<Project ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project that the agent to fetch is associated with.
+     *           Format: `projects/<Project ID>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -570,12 +578,15 @@ class AgentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAgent($parent, array $optionalArgs = [])
+    public function getAgent(array $optionalArgs = [])
     {
         $request = new GetAgentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetAgent', Agent::class, $optionalArgs, $request)->wait();
@@ -589,18 +600,18 @@ class AgentsGapicClient
      * ```
      * $agentsClient = new AgentsClient();
      * try {
-     *     $formattedParent = $agentsClient->projectName('[PROJECT]');
-     *     $response = $agentsClient->getValidationResult($formattedParent);
+     *     $response = $agentsClient->getValidationResult();
      * } finally {
      *     $agentsClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The project that the agent is associated with.
-     *                             Format: `projects/<Project ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project that the agent is associated with.
+     *           Format: `projects/<Project ID>`.
      *     @type string $languageCode
      *           Optional. The language for which you want a validation result. If not
      *           specified, the agent's default language is used. [Many
@@ -617,12 +628,15 @@ class AgentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getValidationResult($parent, array $optionalArgs = [])
+    public function getValidationResult(array $optionalArgs = [])
     {
         $request = new GetValidationResultRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
         }
@@ -665,8 +679,7 @@ class AgentsGapicClient
      * ```
      * $agentsClient = new AgentsClient();
      * try {
-     *     $formattedParent = $agentsClient->projectName('[PROJECT]');
-     *     $operationResponse = $agentsClient->importAgent($formattedParent);
+     *     $operationResponse = $agentsClient->importAgent();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -676,7 +689,7 @@ class AgentsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $agentsClient->importAgent($formattedParent);
+     *     $operationResponse = $agentsClient->importAgent();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $agentsClient->resumeOperation($operationName, 'importAgent');
@@ -695,11 +708,12 @@ class AgentsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project that the agent to import is associated with.
-     *                             Format: `projects/<Project ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project that the agent to import is associated with.
+     *           Format: `projects/<Project ID>`.
      *     @type string $agentUri
      *           The URI to a Google Cloud Storage file containing the agent to import.
      *           Note: The URI must start with "gs://".
@@ -721,12 +735,15 @@ class AgentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importAgent($parent, array $optionalArgs = [])
+    public function importAgent(array $optionalArgs = [])
     {
         $request = new ImportAgentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['agentUri'])) {
             $request->setAgentUri($optionalArgs['agentUri']);
         }
@@ -771,8 +788,7 @@ class AgentsGapicClient
      * ```
      * $agentsClient = new AgentsClient();
      * try {
-     *     $formattedParent = $agentsClient->projectName('[PROJECT]');
-     *     $operationResponse = $agentsClient->restoreAgent($formattedParent);
+     *     $operationResponse = $agentsClient->restoreAgent();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -782,7 +798,7 @@ class AgentsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $agentsClient->restoreAgent($formattedParent);
+     *     $operationResponse = $agentsClient->restoreAgent();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $agentsClient->resumeOperation($operationName, 'restoreAgent');
@@ -801,11 +817,12 @@ class AgentsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project that the agent to restore is associated with.
-     *                             Format: `projects/<Project ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project that the agent to restore is associated with.
+     *           Format: `projects/<Project ID>`.
      *     @type string $agentUri
      *           The URI to a Google Cloud Storage file containing the agent to restore.
      *           Note: The URI must start with "gs://".
@@ -827,12 +844,15 @@ class AgentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function restoreAgent($parent, array $optionalArgs = [])
+    public function restoreAgent(array $optionalArgs = [])
     {
         $request = new RestoreAgentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['agentUri'])) {
             $request->setAgentUri($optionalArgs['agentUri']);
         }
@@ -859,9 +879,8 @@ class AgentsGapicClient
      * ```
      * $agentsClient = new AgentsClient();
      * try {
-     *     $formattedParent = $agentsClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $agentsClient->searchAgents($formattedParent);
+     *     $pagedResponse = $agentsClient->searchAgents();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -869,7 +888,7 @@ class AgentsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $agentsClient->searchAgents($formattedParent);
+     *     $pagedResponse = $agentsClient->searchAgents();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -878,11 +897,12 @@ class AgentsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project to list agents from.
-     *                             Format: `projects/<Project ID or '-'>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project to list agents from.
+     *           Format: `projects/<Project ID or '-'>`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -902,12 +922,15 @@ class AgentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function searchAgents($parent, array $optionalArgs = [])
+    public function searchAgents(array $optionalArgs = [])
     {
         $request = new SearchAgentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -932,17 +955,17 @@ class AgentsGapicClient
      * ```
      * $agentsClient = new AgentsClient();
      * try {
-     *     $agent = new Agent();
-     *     $response = $agentsClient->setAgent($agent);
+     *     $response = $agentsClient->setAgent();
      * } finally {
      *     $agentsClient->close();
      * }
      * ```
      *
-     * @param Agent $agent        Required. The agent to update.
      * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Agent $agent
+     *           Required. The agent to update.
      *     @type FieldMask $updateMask
      *           Optional. The mask to control which fields get updated.
      *     @type RetrySettings|array $retrySettings
@@ -955,12 +978,14 @@ class AgentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setAgent($agent, array $optionalArgs = [])
+    public function setAgent(array $optionalArgs = [])
     {
         $request = new SetAgentRequest();
         $requestParamHeaders = [];
-        $request->setAgent($agent);
-        $requestParamHeaders['agent.parent'] = $agent->getParent();
+        if (isset($optionalArgs['agent'])) {
+            $request->setAgent($optionalArgs['agent']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -990,8 +1015,7 @@ class AgentsGapicClient
      * ```
      * $agentsClient = new AgentsClient();
      * try {
-     *     $formattedParent = $agentsClient->projectName('[PROJECT]');
-     *     $operationResponse = $agentsClient->trainAgent($formattedParent);
+     *     $operationResponse = $agentsClient->trainAgent();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1001,7 +1025,7 @@ class AgentsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $agentsClient->trainAgent($formattedParent);
+     *     $operationResponse = $agentsClient->trainAgent();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $agentsClient->resumeOperation($operationName, 'trainAgent');
@@ -1020,11 +1044,12 @@ class AgentsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project that the agent to train is associated with.
-     *                             Format: `projects/<Project ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project that the agent to train is associated with.
+     *           Format: `projects/<Project ID>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1035,12 +1060,15 @@ class AgentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function trainAgent($parent, array $optionalArgs = [])
+    public function trainAgent(array $optionalArgs = [])
     {
         $request = new TrainAgentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('TrainAgent', $optionalArgs, $request, $this->getOperationsClient())->wait();

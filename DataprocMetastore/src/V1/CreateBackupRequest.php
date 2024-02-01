@@ -61,8 +61,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      * @param string                            $parent   Required. The relative resource name of the service in which to create a
      *                                                    backup of the following form:
      *
-     *                                                    `projects/{project_number}/locations/{location_id}/services/{service_id}`. Please see
-     *                                                    {@see DataprocMetastoreClient::serviceName()} for help formatting this field.
+     *                                                    `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      * @param \Google\Cloud\Metastore\V1\Backup $backup   Required. The backup to create. The `name` field is ignored. The ID of the
      *                                                    created backup must be provided in the request's `backup_id` field.
      * @param string                            $backupId Required. The ID of the backup, which is used as the final component of the

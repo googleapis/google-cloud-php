@@ -25,29 +25,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Disks_Update_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\Disk;
 use Google\Cloud\Compute\V1\DisksClient;
 use Google\Rpc\Status;
 
 /**
  * Updates the specified disk with the data included in the request. The update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: user_license.
  *
- * @param string $disk    The disk name for this request.
- * @param string $project Project ID for this request.
- * @param string $zone    The name of the zone for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_sample(string $disk, string $project, string $zone): void
+function update_sample(): void
 {
     // Create a client.
     $disksClient = new DisksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $diskResource = new Disk();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $disksClient->update($disk, $diskResource, $project, $zone);
+        $response = $disksClient->update();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -60,23 +58,5 @@ function update_sample(string $disk, string $project, string $zone): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $disk = '[DISK]';
-    $project = '[PROJECT]';
-    $zone = '[ZONE]';
-
-    update_sample($disk, $project, $zone);
 }
 // [END compute_v1_generated_Disks_Update_sync]

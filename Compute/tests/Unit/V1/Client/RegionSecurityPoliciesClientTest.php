@@ -99,16 +99,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addRuleTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
-        $securityPolicyRuleResource = new SecurityPolicyRule();
-        $request = (new AddRuleRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicy($securityPolicy)
-            ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $request = new AddRuleRegionSecurityPolicyRequest();
         $response = $gapicClient->addRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -118,18 +109,8 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionSecurityPolicies/AddRule', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicyRuleResource();
-        $this->assertProtobufEquals($securityPolicyRuleResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -177,16 +158,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
-        $securityPolicyRuleResource = new SecurityPolicyRule();
-        $request = (new AddRuleRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicy($securityPolicy)
-            ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $request = new AddRuleRegionSecurityPolicyRequest();
         $response = $gapicClient->addRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -232,14 +204,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new DeleteRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new DeleteRegionSecurityPolicyRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -249,16 +214,8 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionSecurityPolicies/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -306,14 +263,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new DeleteRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new DeleteRegionSecurityPolicyRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -365,14 +315,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setType($type);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new GetRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new GetRegionSecurityPolicyRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -380,12 +323,6 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionSecurityPolicies/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -407,14 +344,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new GetRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new GetRegionSecurityPolicyRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -449,14 +379,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $expectedResponse->setPreview($preview);
         $expectedResponse->setPriority($priority2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new GetRuleRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new GetRuleRegionSecurityPolicyRequest();
         $response = $gapicClient->getRule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -464,12 +387,6 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionSecurityPolicies/GetRule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -491,14 +408,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new GetRuleRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new GetRuleRegionSecurityPolicyRequest();
         try {
             $gapicClient->getRule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -537,14 +447,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicyResource = new SecurityPolicy();
-        $request = (new InsertRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicyResource($securityPolicyResource);
+        $request = new InsertRegionSecurityPolicyRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -554,16 +457,8 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionSecurityPolicies/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicyResource();
-        $this->assertProtobufEquals($securityPolicyResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -611,14 +506,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicyResource = new SecurityPolicy();
-        $request = (new InsertRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicyResource($securityPolicyResource);
+        $request = new InsertRegionSecurityPolicyRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -661,12 +549,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListRegionSecurityPoliciesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListRegionSecurityPoliciesRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -677,10 +560,6 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionSecurityPolicies/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -702,12 +581,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListRegionSecurityPoliciesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListRegionSecurityPoliciesRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -746,16 +620,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
-        $securityPolicyResource = new SecurityPolicy();
-        $request = (new PatchRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicy($securityPolicy)
-            ->setSecurityPolicyResource($securityPolicyResource);
+        $request = new PatchRegionSecurityPolicyRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -765,18 +630,8 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionSecurityPolicies/Patch', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicyResource();
-        $this->assertProtobufEquals($securityPolicyResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -824,16 +679,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
-        $securityPolicyResource = new SecurityPolicy();
-        $request = (new PatchRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicy($securityPolicy)
-            ->setSecurityPolicyResource($securityPolicyResource);
+        $request = new PatchRegionSecurityPolicyRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -879,16 +725,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchRuleTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
-        $securityPolicyRuleResource = new SecurityPolicyRule();
-        $request = (new PatchRuleRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicy($securityPolicy)
-            ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $request = new PatchRuleRegionSecurityPolicyRequest();
         $response = $gapicClient->patchRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -898,18 +735,8 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionSecurityPolicies/PatchRule', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicyRuleResource();
-        $this->assertProtobufEquals($securityPolicyRuleResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -957,16 +784,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
-        $securityPolicyRuleResource = new SecurityPolicyRule();
-        $request = (new PatchRuleRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicy($securityPolicy)
-            ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $request = new PatchRuleRegionSecurityPolicyRequest();
         $response = $gapicClient->patchRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1012,14 +830,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/removeRuleTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new RemoveRuleRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new RemoveRuleRegionSecurityPolicyRequest();
         $response = $gapicClient->removeRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1029,16 +840,8 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionSecurityPolicies/RemoveRule', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1086,14 +889,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new RemoveRuleRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new RemoveRuleRegionSecurityPolicyRequest();
         $response = $gapicClient->removeRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1139,16 +935,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addRuleAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $securityPolicy = 'securityPolicy1781695249';
-        $securityPolicyRuleResource = new SecurityPolicyRule();
-        $request = (new AddRuleRegionSecurityPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSecurityPolicy($securityPolicy)
-            ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $request = new AddRuleRegionSecurityPolicyRequest();
         $response = $gapicClient->addRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1158,18 +945,8 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionSecurityPolicies/AddRule', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicyRuleResource();
-        $this->assertProtobufEquals($securityPolicyRuleResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

@@ -30,10 +30,13 @@ use Google\Cloud\Compute\V1\RoutesClient;
 /**
  * Returns the specified Route resource.
  *
- * @param string $project Project ID for this request.
- * @param string $route   Name of the Route resource to return.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_sample(string $project, string $route): void
+function get_sample(): void
 {
     // Create a client.
     $routesClient = new RoutesClient();
@@ -41,27 +44,10 @@ function get_sample(string $project, string $route): void
     // Call the API and handle any network failures.
     try {
         /** @var Route $response */
-        $response = $routesClient->get($project, $route);
+        $response = $routesClient->get();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $route = '[ROUTE]';
-
-    get_sample($project, $route);
 }
 // [END compute_v1_generated_Routes_Get_sync]

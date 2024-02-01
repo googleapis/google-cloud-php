@@ -40,8 +40,7 @@ class ListStreamObjectsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent Required. The parent stream that owns the collection of objects. Please see
-     *                       {@see DatastreamClient::streamName()} for help formatting this field.
+     * @param string $parent Required. The parent stream that owns the collection of objects.
      *
      * @return \Google\Cloud\Datastream\V1\ListStreamObjectsRequest
      *

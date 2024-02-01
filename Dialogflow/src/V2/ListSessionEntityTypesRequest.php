@@ -47,8 +47,7 @@ class ListSessionEntityTypesRequest extends \Google\Protobuf\Internal\Message
      *                       `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
      *                       sessions/<Session ID>`.
      *                       If `Environment ID` is not specified, we assume default 'draft'
-     *                       environment. If `User ID` is not specified, we assume default '-' user. Please see
-     *                       {@see SessionEntityTypesClient::sessionName()} for help formatting this field.
+     *                       environment. If `User ID` is not specified, we assume default '-' user.
      *
      * @return \Google\Cloud\Dialogflow\V2\ListSessionEntityTypesRequest
      *

@@ -17,11 +17,11 @@ class Gcs
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ž
-$google/cloud/dialogflow/v2/gcs.protogoogle.cloud.dialogflow.v2"
+Ÿ
+$google/cloud/dialogflow/v2/gcs.protogoogle.cloud.dialogflow.v2" 
 
-GcsSources
-uris (	BàA"
+GcsSources
+uris (	BâA"
 GcsDestination
 uri (	B‘
 com.google.cloud.dialogflow.v2BGcsProtoPZ>cloud.google.com/go/dialogflow/apiv2/dialogflowpb;dialogflowpbø¢DFªGoogle.Cloud.Dialogflow.V2bproto3'

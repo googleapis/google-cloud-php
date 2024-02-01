@@ -34,23 +34,19 @@ use Google\Cloud\Container\V1\SetLocationsRequest;
  * [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/update)
  * instead.
  *
- * @param string $locationsElement The desired list of Google Compute Engine
- *                                 [zones](https://cloud.google.com/compute/docs/zones#available) in which the
- *                                 cluster's nodes should be located. Changing the locations a cluster is in
- *                                 will result in nodes being either created or removed from the cluster,
- *                                 depending on whether locations are being added or removed.
- *
- *                                 This list must always include the cluster's primary zone.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function set_locations_sample(string $locationsElement): void
+function set_locations_sample(): void
 {
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
     // Prepare the request message.
-    $locations = [$locationsElement,];
-    $request = (new SetLocationsRequest())
-        ->setLocations($locations);
+    $request = new SetLocationsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +56,5 @@ function set_locations_sample(string $locationsElement): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $locationsElement = '[LOCATIONS]';
-
-    set_locations_sample($locationsElement);
 }
 // [END container_v1_generated_ClusterManager_SetLocations_sync]

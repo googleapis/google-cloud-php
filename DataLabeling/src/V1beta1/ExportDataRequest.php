@@ -55,13 +55,11 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                          $name             Required. Dataset resource name, format:
      *                                                                          projects/{project_id}/datasets/{dataset_id}
-     *                                                                          Please see {@see DataLabelingServiceClient::datasetName()} for help formatting this field.
      * @param string                                          $annotatedDataset Required. Annotated dataset resource name. DataItem in
      *                                                                          Dataset and their annotations in specified annotated dataset will be
      *                                                                          exported. It's in format of
      *                                                                          projects/{project_id}/datasets/{dataset_id}/annotatedDatasets/
      *                                                                          {annotated_dataset_id}
-     *                                                                          Please see {@see DataLabelingServiceClient::annotatedDatasetName()} for help formatting this field.
      * @param string                                          $filter           Optional. Filter is not supported at this moment.
      * @param \Google\Cloud\DataLabeling\V1beta1\OutputConfig $outputConfig     Required. Specify the output destination.
      *

@@ -30,11 +30,13 @@ use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
 /**
  * Returns all of the details about the specified managed instance group.
  *
- * @param string $instanceGroupManager The name of the managed instance group.
- * @param string $project              Project ID for this request.
- * @param string $zone                 The name of the zone where the managed instance group is located.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_sample(string $instanceGroupManager, string $project, string $zone): void
+function get_sample(): void
 {
     // Create a client.
     $instanceGroupManagersClient = new InstanceGroupManagersClient();
@@ -42,28 +44,10 @@ function get_sample(string $instanceGroupManager, string $project, string $zone)
     // Call the API and handle any network failures.
     try {
         /** @var InstanceGroupManager $response */
-        $response = $instanceGroupManagersClient->get($instanceGroupManager, $project, $zone);
+        $response = $instanceGroupManagersClient->get();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $instanceGroupManager = '[INSTANCE_GROUP_MANAGER]';
-    $project = '[PROJECT]';
-    $zone = '[ZONE]';
-
-    get_sample($instanceGroupManager, $project, $zone);
 }
 // [END compute_v1_generated_InstanceGroupManagers_Get_sync]

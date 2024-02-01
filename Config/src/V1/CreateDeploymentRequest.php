@@ -52,8 +52,7 @@ class CreateDeploymentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                             $parent       Required. The parent in whose context the Deployment is created. The parent
-     *                                                         value is in the format: 'projects/{project_id}/locations/{location}'. Please see
-     *                                                         {@see ConfigClient::locationName()} for help formatting this field.
+     *                                                         value is in the format: 'projects/{project_id}/locations/{location}'.
      * @param \Google\Cloud\Config\V1\Deployment $deployment   Required. [Deployment][google.cloud.config.v1.Deployment] resource to be
      *                                                         created.
      * @param string                             $deploymentId Required. The Deployment ID.

@@ -26,25 +26,17 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Container\V1\AddonsConfig;
 use Google\Cloud\Container\V1\CheckAutopilotCompatibilityResponse;
 use Google\Cloud\Container\V1\Cluster;
 use Google\Cloud\Container\V1\ClusterManagerClient;
-use Google\Cloud\Container\V1\ClusterUpdate;
 use Google\Cloud\Container\V1\GetJSONWebKeysResponse;
 use Google\Cloud\Container\V1\ListClustersResponse;
 use Google\Cloud\Container\V1\ListNodePoolsResponse;
 use Google\Cloud\Container\V1\ListOperationsResponse;
 use Google\Cloud\Container\V1\ListUsableSubnetworksResponse;
-use Google\Cloud\Container\V1\MaintenancePolicy;
-use Google\Cloud\Container\V1\MasterAuth;
-use Google\Cloud\Container\V1\NetworkPolicy;
-use Google\Cloud\Container\V1\NodeManagement;
 use Google\Cloud\Container\V1\NodePool;
-use Google\Cloud\Container\V1\NodePoolAutoscaling;
 use Google\Cloud\Container\V1\Operation;
 use Google\Cloud\Container\V1\ServerConfig;
-use Google\Cloud\Container\V1\SetMasterAuthRequest\Action;
 use Google\Cloud\Container\V1\UsableSubnetwork;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
@@ -333,17 +325,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $cluster = new Cluster();
-        $response = $gapicClient->createCluster($cluster);
+        $response = $gapicClient->createCluster();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/CreateCluster', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -365,10 +353,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $cluster = new Cluster();
         try {
-            $gapicClient->createCluster($cluster);
+            $gapicClient->createCluster();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -409,17 +395,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $nodePool = new NodePool();
-        $response = $gapicClient->createNodePool($nodePool);
+        $response = $gapicClient->createNodePool();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/CreateNodePool', $actualFuncCall);
-        $actualValue = $actualRequestObject->getNodePool();
-        $this->assertProtobufEquals($nodePool, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -441,10 +423,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $nodePool = new NodePool();
         try {
-            $gapicClient->createNodePool($nodePool);
+            $gapicClient->createNodePool();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1263,17 +1243,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $addonsConfig = new AddonsConfig();
-        $response = $gapicClient->setAddonsConfig($addonsConfig);
+        $response = $gapicClient->setAddonsConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetAddonsConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAddonsConfig();
-        $this->assertProtobufEquals($addonsConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1295,10 +1271,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $addonsConfig = new AddonsConfig();
         try {
-            $gapicClient->setAddonsConfig($addonsConfig);
+            $gapicClient->setAddonsConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1339,23 +1313,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resourceLabelsValue = 'resourceLabelsValue-1244473404';
-        $resourceLabels = [
-            'resourceLabelsKey' => $resourceLabelsValue,
-        ];
-        $labelFingerprint = 'labelFingerprint714995737';
-        $response = $gapicClient->setLabels($resourceLabels, $labelFingerprint);
+        $response = $gapicClient->setLabels();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetLabels', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResourceLabels();
-        $this->assertProtobufEquals($resourceLabels, $actualValue);
-        $actualValue = $actualRequestObject->getLabelFingerprint();
-        $this->assertProtobufEquals($labelFingerprint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1377,14 +1341,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resourceLabelsValue = 'resourceLabelsValue-1244473404';
-        $resourceLabels = [
-            'resourceLabelsKey' => $resourceLabelsValue,
-        ];
-        $labelFingerprint = 'labelFingerprint714995737';
         try {
-            $gapicClient->setLabels($resourceLabels, $labelFingerprint);
+            $gapicClient->setLabels();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1425,17 +1383,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $enabled = false;
-        $response = $gapicClient->setLegacyAbac($enabled);
+        $response = $gapicClient->setLegacyAbac();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetLegacyAbac', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEnabled();
-        $this->assertProtobufEquals($enabled, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1457,10 +1411,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $enabled = false;
         try {
-            $gapicClient->setLegacyAbac($enabled);
+            $gapicClient->setLegacyAbac();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1501,17 +1453,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $locations = [];
-        $response = $gapicClient->setLocations($locations);
+        $response = $gapicClient->setLocations();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetLocations', $actualFuncCall);
-        $actualValue = $actualRequestObject->getLocations();
-        $this->assertProtobufEquals($locations, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1533,10 +1481,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $locations = [];
         try {
-            $gapicClient->setLocations($locations);
+            $gapicClient->setLocations();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1577,17 +1523,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $loggingService = 'loggingService-1700501035';
-        $response = $gapicClient->setLoggingService($loggingService);
+        $response = $gapicClient->setLoggingService();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetLoggingService', $actualFuncCall);
-        $actualValue = $actualRequestObject->getLoggingService();
-        $this->assertProtobufEquals($loggingService, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1609,10 +1551,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $loggingService = 'loggingService-1700501035';
         try {
-            $gapicClient->setLoggingService($loggingService);
+            $gapicClient->setLoggingService();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1653,26 +1593,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $maintenancePolicy = new MaintenancePolicy();
-        $response = $gapicClient->setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy);
+        $response = $gapicClient->setMaintenancePolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetMaintenancePolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getClusterId();
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualRequestObject->getMaintenancePolicy();
-        $this->assertProtobufEquals($maintenancePolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1694,13 +1621,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $zone = 'zone3744684';
-        $clusterId = 'clusterId240280960';
-        $maintenancePolicy = new MaintenancePolicy();
         try {
-            $gapicClient->setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy);
+            $gapicClient->setMaintenancePolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1741,20 +1663,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $action = Action::UNKNOWN;
-        $update = new MasterAuth();
-        $response = $gapicClient->setMasterAuth($action, $update);
+        $response = $gapicClient->setMasterAuth();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetMasterAuth', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAction();
-        $this->assertProtobufEquals($action, $actualValue);
-        $actualValue = $actualRequestObject->getUpdate();
-        $this->assertProtobufEquals($update, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1776,11 +1691,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $action = Action::UNKNOWN;
-        $update = new MasterAuth();
         try {
-            $gapicClient->setMasterAuth($action, $update);
+            $gapicClient->setMasterAuth();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1821,17 +1733,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $monitoringService = 'monitoringService1469270462';
-        $response = $gapicClient->setMonitoringService($monitoringService);
+        $response = $gapicClient->setMonitoringService();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetMonitoringService', $actualFuncCall);
-        $actualValue = $actualRequestObject->getMonitoringService();
-        $this->assertProtobufEquals($monitoringService, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1853,10 +1761,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $monitoringService = 'monitoringService1469270462';
         try {
-            $gapicClient->setMonitoringService($monitoringService);
+            $gapicClient->setMonitoringService();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1897,17 +1803,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $networkPolicy = new NetworkPolicy();
-        $response = $gapicClient->setNetworkPolicy($networkPolicy);
+        $response = $gapicClient->setNetworkPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetNetworkPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getNetworkPolicy();
-        $this->assertProtobufEquals($networkPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1929,10 +1831,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $networkPolicy = new NetworkPolicy();
         try {
-            $gapicClient->setNetworkPolicy($networkPolicy);
+            $gapicClient->setNetworkPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1973,17 +1873,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $autoscaling = new NodePoolAutoscaling();
-        $response = $gapicClient->setNodePoolAutoscaling($autoscaling);
+        $response = $gapicClient->setNodePoolAutoscaling();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetNodePoolAutoscaling', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAutoscaling();
-        $this->assertProtobufEquals($autoscaling, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2005,10 +1901,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $autoscaling = new NodePoolAutoscaling();
         try {
-            $gapicClient->setNodePoolAutoscaling($autoscaling);
+            $gapicClient->setNodePoolAutoscaling();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2049,17 +1943,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $management = new NodeManagement();
-        $response = $gapicClient->setNodePoolManagement($management);
+        $response = $gapicClient->setNodePoolManagement();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetNodePoolManagement', $actualFuncCall);
-        $actualValue = $actualRequestObject->getManagement();
-        $this->assertProtobufEquals($management, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2081,10 +1971,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $management = new NodeManagement();
         try {
-            $gapicClient->setNodePoolManagement($management);
+            $gapicClient->setNodePoolManagement();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2125,17 +2013,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $nodeCount = 1539922066;
-        $response = $gapicClient->setNodePoolSize($nodeCount);
+        $response = $gapicClient->setNodePoolSize();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/SetNodePoolSize', $actualFuncCall);
-        $actualValue = $actualRequestObject->getNodeCount();
-        $this->assertProtobufEquals($nodeCount, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2157,10 +2041,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $nodeCount = 1539922066;
         try {
-            $gapicClient->setNodePoolSize($nodeCount);
+            $gapicClient->setNodePoolSize();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2271,17 +2153,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $update = new ClusterUpdate();
-        $response = $gapicClient->updateCluster($update);
+        $response = $gapicClient->updateCluster();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/UpdateCluster', $actualFuncCall);
-        $actualValue = $actualRequestObject->getUpdate();
-        $this->assertProtobufEquals($update, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2303,10 +2181,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $update = new ClusterUpdate();
         try {
-            $gapicClient->updateCluster($update);
+            $gapicClient->updateCluster();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2347,17 +2223,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $masterVersion = 'masterVersion-2139460613';
-        $response = $gapicClient->updateMaster($masterVersion);
+        $response = $gapicClient->updateMaster();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/UpdateMaster', $actualFuncCall);
-        $actualValue = $actualRequestObject->getMasterVersion();
-        $this->assertProtobufEquals($masterVersion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2379,10 +2251,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $masterVersion = 'masterVersion-2139460613';
         try {
-            $gapicClient->updateMaster($masterVersion);
+            $gapicClient->updateMaster();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2423,20 +2293,13 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $nodeVersion = 'nodeVersion1790136219';
-        $imageType = 'imageType-1442758754';
-        $response = $gapicClient->updateNodePool($nodeVersion, $imageType);
+        $response = $gapicClient->updateNodePool();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.container.v1.ClusterManager/UpdateNodePool', $actualFuncCall);
-        $actualValue = $actualRequestObject->getNodeVersion();
-        $this->assertProtobufEquals($nodeVersion, $actualValue);
-        $actualValue = $actualRequestObject->getImageType();
-        $this->assertProtobufEquals($imageType, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2458,11 +2321,8 @@ class ClusterManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $nodeVersion = 'nodeVersion1790136219';
-        $imageType = 'imageType-1442758754';
         try {
-            $gapicClient->updateNodePool($nodeVersion, $imageType);
+            $gapicClient->updateNodePool();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

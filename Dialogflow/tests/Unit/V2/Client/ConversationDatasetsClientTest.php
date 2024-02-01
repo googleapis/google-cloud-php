@@ -34,7 +34,6 @@ use Google\Cloud\Dialogflow\V2\DeleteConversationDatasetRequest;
 use Google\Cloud\Dialogflow\V2\GetConversationDatasetRequest;
 use Google\Cloud\Dialogflow\V2\ImportConversationDataOperationResponse;
 use Google\Cloud\Dialogflow\V2\ImportConversationDataRequest;
-use Google\Cloud\Dialogflow\V2\InputConfig;
 use Google\Cloud\Dialogflow\V2\ListConversationDatasetsRequest;
 use Google\Cloud\Dialogflow\V2\ListConversationDatasetsResponse;
 use Google\Cloud\Location\GetLocationRequest;
@@ -113,14 +112,7 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $conversationDataset = new ConversationDataset();
-        $conversationDatasetDisplayName = 'conversationDatasetDisplayName-925930312';
-        $conversationDataset->setDisplayName($conversationDatasetDisplayName);
-        $request = (new CreateConversationDatasetRequest())
-            ->setParent($parent)
-            ->setConversationDataset($conversationDataset);
+        $request = new CreateConversationDatasetRequest();
         $response = $gapicClient->createConversationDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -131,10 +123,6 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationDatasets/CreateConversationDataset', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getConversationDataset();
-        $this->assertProtobufEquals($conversationDataset, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createConversationDatasetTest');
         $response->pollUntilComplete([
@@ -185,14 +173,7 @@ class ConversationDatasetsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $conversationDataset = new ConversationDataset();
-        $conversationDatasetDisplayName = 'conversationDatasetDisplayName-925930312';
-        $conversationDataset->setDisplayName($conversationDatasetDisplayName);
-        $request = (new CreateConversationDatasetRequest())
-            ->setParent($parent)
-            ->setConversationDataset($conversationDataset);
+        $request = new CreateConversationDatasetRequest();
         $response = $gapicClient->createConversationDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -244,10 +225,7 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
-        $request = (new DeleteConversationDatasetRequest())
-            ->setName($formattedName);
+        $request = new DeleteConversationDatasetRequest();
         $response = $gapicClient->deleteConversationDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -258,8 +236,6 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationDatasets/DeleteConversationDataset', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteConversationDatasetTest');
         $response->pollUntilComplete([
@@ -310,10 +286,7 @@ class ConversationDatasetsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
-        $request = (new DeleteConversationDatasetRequest())
-            ->setName($formattedName);
+        $request = new DeleteConversationDatasetRequest();
         $response = $gapicClient->deleteConversationDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -355,10 +328,7 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setConversationCount($conversationCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
-        $request = (new GetConversationDatasetRequest())
-            ->setName($formattedName);
+        $request = new GetConversationDatasetRequest();
         $response = $gapicClient->getConversationDataset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -366,8 +336,6 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationDatasets/GetConversationDataset', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -389,10 +357,7 @@ class ConversationDatasetsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
-        $request = (new GetConversationDatasetRequest())
-            ->setName($formattedName);
+        $request = new GetConversationDatasetRequest();
         try {
             $gapicClient->getConversationDataset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -439,12 +404,7 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
-        $inputConfig = new InputConfig();
-        $request = (new ImportConversationDataRequest())
-            ->setName($formattedName)
-            ->setInputConfig($inputConfig);
+        $request = new ImportConversationDataRequest();
         $response = $gapicClient->importConversationData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -455,10 +415,6 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationDatasets/ImportConversationData', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getInputConfig();
-        $this->assertProtobufEquals($inputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importConversationDataTest');
         $response->pollUntilComplete([
@@ -509,12 +465,7 @@ class ConversationDatasetsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
-        $inputConfig = new InputConfig();
-        $request = (new ImportConversationDataRequest())
-            ->setName($formattedName)
-            ->setInputConfig($inputConfig);
+        $request = new ImportConversationDataRequest();
         $response = $gapicClient->importConversationData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -555,10 +506,7 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConversationDatasets($conversationDatasets);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConversationDatasetsRequest())
-            ->setParent($formattedParent);
+        $request = new ListConversationDatasetsRequest();
         $response = $gapicClient->listConversationDatasets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -569,8 +517,6 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationDatasets/ListConversationDatasets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -592,10 +538,7 @@ class ConversationDatasetsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConversationDatasetsRequest())
-            ->setParent($formattedParent);
+        $request = new ListConversationDatasetsRequest();
         try {
             $gapicClient->listConversationDatasets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -770,14 +713,7 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $conversationDataset = new ConversationDataset();
-        $conversationDatasetDisplayName = 'conversationDatasetDisplayName-925930312';
-        $conversationDataset->setDisplayName($conversationDatasetDisplayName);
-        $request = (new CreateConversationDatasetRequest())
-            ->setParent($parent)
-            ->setConversationDataset($conversationDataset);
+        $request = new CreateConversationDatasetRequest();
         $response = $gapicClient->createConversationDatasetAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -788,10 +724,6 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationDatasets/CreateConversationDataset', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getConversationDataset();
-        $this->assertProtobufEquals($conversationDataset, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createConversationDatasetTest');
         $response->pollUntilComplete([

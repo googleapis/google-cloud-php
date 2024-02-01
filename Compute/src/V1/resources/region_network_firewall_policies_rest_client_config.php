@@ -146,9 +146,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'network',
-                ],
             ],
             'GetIamPolicy' => [
                 'method' => 'get',

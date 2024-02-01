@@ -32,18 +32,19 @@ use Google\Cloud\DataLabeling\V1beta1\ListAnnotationSpecSetsRequest;
 /**
  * Lists annotation spec sets for a project. Pagination is supported.
  *
- * @param string $formattedParent Parent of AnnotationSpecSet resource, format:
- *                                projects/{project_id}
- *                                Please see {@see DataLabelingServiceClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_annotation_spec_sets_sample(string $formattedParent): void
+function list_annotation_spec_sets_sample(): void
 {
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
     // Prepare the request message.
-    $request = (new ListAnnotationSpecSetsRequest())
-        ->setParent($formattedParent);
+    $request = new ListAnnotationSpecSetsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_annotation_spec_sets_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataLabelingServiceClient::projectName('[PROJECT]');
-
-    list_annotation_spec_sets_sample($formattedParent);
 }
 // [END datalabeling_v1beta1_generated_DataLabelingService_ListAnnotationSpecSets_sync]

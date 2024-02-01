@@ -42,23 +42,19 @@ use Google\Rpc\Status;
  * - `response`:
  * [ConversationDataset][google.cloud.dialogflow.v2.ConversationDataset]
  *
- * @param string $parent                         The project to create conversation dataset for. Format:
- *                                               `projects/<Project ID>/locations/<Location ID>`
- * @param string $conversationDatasetDisplayName The display name of the dataset. Maximum of 64 bytes.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_conversation_dataset_sample(
-    string $parent,
-    string $conversationDatasetDisplayName
-): void {
+function create_conversation_dataset_sample(): void
+{
     // Create a client.
     $conversationDatasetsClient = new ConversationDatasetsClient();
 
     // Prepare the request message.
-    $conversationDataset = (new ConversationDataset())
-        ->setDisplayName($conversationDatasetDisplayName);
-    $request = (new CreateConversationDatasetRequest())
-        ->setParent($parent)
-        ->setConversationDataset($conversationDataset);
+    $request = new CreateConversationDatasetRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -78,22 +74,5 @@ function create_conversation_dataset_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-    $conversationDatasetDisplayName = '[DISPLAY_NAME]';
-
-    create_conversation_dataset_sample($parent, $conversationDatasetDisplayName);
 }
 // [END dialogflow_v2_generated_ConversationDatasets_CreateConversationDataset_sync]

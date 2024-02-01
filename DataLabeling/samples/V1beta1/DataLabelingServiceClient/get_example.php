@@ -31,19 +31,19 @@ use Google\Cloud\DataLabeling\V1beta1\GetExampleRequest;
 /**
  * Gets an example by resource name, including both data and annotation.
  *
- * @param string $formattedName Name of example, format:
- *                              projects/{project_id}/datasets/{dataset_id}/annotatedDatasets/
- *                              {annotated_dataset_id}/examples/{example_id}
- *                              Please see {@see DataLabelingServiceClient::exampleName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_example_sample(string $formattedName): void
+function get_example_sample(): void
 {
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
     // Prepare the request message.
-    $request = (new GetExampleRequest())
-        ->setName($formattedName);
+    $request = new GetExampleRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,26 +53,5 @@ function get_example_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DataLabelingServiceClient::exampleName(
-        '[PROJECT]',
-        '[DATASET]',
-        '[ANNOTATED_DATASET]',
-        '[EXAMPLE]'
-    );
-
-    get_example_sample($formattedName);
 }
 // [END datalabeling_v1beta1_generated_DataLabelingService_GetExample_sync]

@@ -25,28 +25,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Firewalls_Update_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\Firewall;
 use Google\Cloud\Compute\V1\FirewallsClient;
 use Google\Rpc\Status;
 
 /**
  * Updates the specified firewall rule with the data included in the request. Note that all fields will be updated if using PUT, even fields that are not specified. To update individual fields, please use PATCH instead.
  *
- * @param string $firewall Name of the firewall rule to update.
- * @param string $project  Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_sample(string $firewall, string $project): void
+function update_sample(): void
 {
     // Create a client.
     $firewallsClient = new FirewallsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $firewallResource = new Firewall();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $firewallsClient->update($firewall, $firewallResource, $project);
+        $response = $firewallsClient->update();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -59,22 +58,5 @@ function update_sample(string $firewall, string $project): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $firewall = '[FIREWALL]';
-    $project = '[PROJECT]';
-
-    update_sample($firewall, $project);
 }
 // [END compute_v1_generated_Firewalls_Update_sync]

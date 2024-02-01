@@ -31,8 +31,7 @@ class DeleteConversationRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
-     * @param string $name Required. The name of the conversation to delete. Please see
-     *                     {@see ContactCenterInsightsClient::conversationName()} for help formatting this field.
+     * @param string $name Required. The name of the conversation to delete.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\DeleteConversationRequest
      *
