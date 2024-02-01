@@ -1,0 +1,63 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.gsuiteaddons.v1",
+    "libraryPackage": "Google\\Cloud\\GSuiteAddOns\\V1",
+    "services": {
+        "GSuiteAddOns": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GSuiteAddOnsGapicClient",
+                    "rpcs": {
+                        "CreateDeployment": {
+                            "methods": [
+                                "createDeployment"
+                            ]
+                        },
+                        "DeleteDeployment": {
+                            "methods": [
+                                "deleteDeployment"
+                            ]
+                        },
+                        "GetAuthorization": {
+                            "methods": [
+                                "getAuthorization"
+                            ]
+                        },
+                        "GetDeployment": {
+                            "methods": [
+                                "getDeployment"
+                            ]
+                        },
+                        "GetInstallStatus": {
+                            "methods": [
+                                "getInstallStatus"
+                            ]
+                        },
+                        "InstallDeployment": {
+                            "methods": [
+                                "installDeployment"
+                            ]
+                        },
+                        "ListDeployments": {
+                            "methods": [
+                                "listDeployments"
+                            ]
+                        },
+                        "ReplaceDeployment": {
+                            "methods": [
+                                "replaceDeployment"
+                            ]
+                        },
+                        "UninstallDeployment": {
+                            "methods": [
+                                "uninstallDeployment"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
