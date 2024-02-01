@@ -127,9 +127,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
  * try {
- *     $formattedProperty = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
- *     $acknowledgement = 'acknowledgement';
- *     $response = $analyticsAdminServiceClient->acknowledgeUserDataCollection($formattedProperty, $acknowledgement);
+ *     $response = $analyticsAdminServiceClient->acknowledgeUserDataCollection();
  * } finally {
  *     $analyticsAdminServiceClient->close();
  * }
@@ -665,26 +663,26 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedProperty = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
-     *     $acknowledgement = 'acknowledgement';
-     *     $response = $analyticsAdminServiceClient->acknowledgeUserDataCollection($formattedProperty, $acknowledgement);
+     *     $response = $analyticsAdminServiceClient->acknowledgeUserDataCollection();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $property        Required. The property for which to acknowledge user data collection.
-     * @param string $acknowledgement Required. An acknowledgement that the caller of this method understands the
-     *                                terms of user data collection.
-     *
-     *                                This field must contain the exact value:
-     *                                "I acknowledge that I have the necessary privacy disclosures and rights
-     *                                from my end users for the collection and processing of their data,
-     *                                including the association of such data with the visitation information
-     *                                Google Analytics collects from my site and/or app property."
-     * @param array  $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $property
+     *           Required. The property for which to acknowledge user data collection.
+     *     @type string $acknowledgement
+     *           Required. An acknowledgement that the caller of this method understands the
+     *           terms of user data collection.
+     *
+     *           This field must contain the exact value:
+     *           "I acknowledge that I have the necessary privacy disclosures and rights
+     *           from my end users for the collection and processing of their data,
+     *           including the association of such data with the visitation information
+     *           Google Analytics collects from my site and/or app property."
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -697,13 +695,19 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function acknowledgeUserDataCollection($property, $acknowledgement, array $optionalArgs = [])
+    public function acknowledgeUserDataCollection(array $optionalArgs = [])
     {
         $request = new AcknowledgeUserDataCollectionRequest();
         $requestParamHeaders = [];
-        $request->setProperty($property);
-        $request->setAcknowledgement($acknowledgement);
-        $requestParamHeaders['property'] = $property;
+        if (isset($optionalArgs['property'])) {
+            $request->setProperty($optionalArgs['property']);
+            $requestParamHeaders['property'] = $optionalArgs['property'];
+        }
+
+        if (isset($optionalArgs['acknowledgement'])) {
+            $request->setAcknowledgement($optionalArgs['acknowledgement']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('AcknowledgeUserDataCollection', AcknowledgeUserDataCollectionResponse::class, $optionalArgs, $request)->wait();
@@ -716,18 +720,18 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
-     *     $analyticsAdminServiceClient->archiveCustomDimension($formattedName);
+     *     $analyticsAdminServiceClient->archiveCustomDimension();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the CustomDimension to archive.
-     *                             Example format: properties/1234/customDimensions/5678
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the CustomDimension to archive.
+     *           Example format: properties/1234/customDimensions/5678
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -738,12 +742,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function archiveCustomDimension($name, array $optionalArgs = [])
+    public function archiveCustomDimension(array $optionalArgs = [])
     {
         $request = new ArchiveCustomDimensionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ArchiveCustomDimension', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -756,18 +763,18 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
-     *     $analyticsAdminServiceClient->archiveCustomMetric($formattedName);
+     *     $analyticsAdminServiceClient->archiveCustomMetric();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the CustomMetric to archive.
-     *                             Example format: properties/1234/customMetrics/5678
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the CustomMetric to archive.
+     *           Example format: properties/1234/customMetrics/5678
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -778,12 +785,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function archiveCustomMetric($name, array $optionalArgs = [])
+    public function archiveCustomMetric(array $optionalArgs = [])
     {
         $request = new ArchiveCustomMetricRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ArchiveCustomMetric', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -796,20 +806,20 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $conversionEvent = new ConversionEvent();
-     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
-     *     $response = $analyticsAdminServiceClient->createConversionEvent($conversionEvent, $formattedParent);
+     *     $response = $analyticsAdminServiceClient->createConversionEvent();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param ConversionEvent $conversionEvent Required. The conversion event to create.
-     * @param string          $parent          Required. The resource name of the parent property where this conversion
-     *                                         event will be created. Format: properties/123
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type ConversionEvent $conversionEvent
+     *           Required. The conversion event to create.
+     *     @type string $parent
+     *           Required. The resource name of the parent property where this conversion
+     *           event will be created. Format: properties/123
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -822,13 +832,19 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function createConversionEvent($conversionEvent, $parent, array $optionalArgs = [])
+    public function createConversionEvent(array $optionalArgs = [])
     {
         $request = new CreateConversionEventRequest();
         $requestParamHeaders = [];
-        $request->setConversionEvent($conversionEvent);
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['conversionEvent'])) {
+            $request->setConversionEvent($optionalArgs['conversionEvent']);
+        }
+
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateConversionEvent', ConversionEvent::class, $optionalArgs, $request)->wait();
@@ -841,19 +857,19 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
-     *     $customDimension = new CustomDimension();
-     *     $response = $analyticsAdminServiceClient->createCustomDimension($formattedParent, $customDimension);
+     *     $response = $analyticsAdminServiceClient->createCustomDimension();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string          $parent          Required. Example format: properties/1234
-     * @param CustomDimension $customDimension Required. The CustomDimension to create.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Example format: properties/1234
+     *     @type CustomDimension $customDimension
+     *           Required. The CustomDimension to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -866,13 +882,19 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function createCustomDimension($parent, $customDimension, array $optionalArgs = [])
+    public function createCustomDimension(array $optionalArgs = [])
     {
         $request = new CreateCustomDimensionRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setCustomDimension($customDimension);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['customDimension'])) {
+            $request->setCustomDimension($optionalArgs['customDimension']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateCustomDimension', CustomDimension::class, $optionalArgs, $request)->wait();
@@ -885,19 +907,19 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
-     *     $customMetric = new CustomMetric();
-     *     $response = $analyticsAdminServiceClient->createCustomMetric($formattedParent, $customMetric);
+     *     $response = $analyticsAdminServiceClient->createCustomMetric();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string       $parent       Required. Example format: properties/1234
-     * @param CustomMetric $customMetric Required. The CustomMetric to create.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Example format: properties/1234
+     *     @type CustomMetric $customMetric
+     *           Required. The CustomMetric to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -910,13 +932,19 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function createCustomMetric($parent, $customMetric, array $optionalArgs = [])
+    public function createCustomMetric(array $optionalArgs = [])
     {
         $request = new CreateCustomMetricRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setCustomMetric($customMetric);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['customMetric'])) {
+            $request->setCustomMetric($optionalArgs['customMetric']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateCustomMetric', CustomMetric::class, $optionalArgs, $request)->wait();
@@ -929,19 +957,19 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
-     *     $dataStream = new DataStream();
-     *     $response = $analyticsAdminServiceClient->createDataStream($formattedParent, $dataStream);
+     *     $response = $analyticsAdminServiceClient->createDataStream();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string     $parent       Required. Example format: properties/1234
-     * @param DataStream $dataStream   Required. The DataStream to create.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Example format: properties/1234
+     *     @type DataStream $dataStream
+     *           Required. The DataStream to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -954,13 +982,19 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function createDataStream($parent, $dataStream, array $optionalArgs = [])
+    public function createDataStream(array $optionalArgs = [])
     {
         $request = new CreateDataStreamRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDataStream($dataStream);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['dataStream'])) {
+            $request->setDataStream($optionalArgs['dataStream']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateDataStream', DataStream::class, $optionalArgs, $request)->wait();
@@ -975,20 +1009,20 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
-     *     $firebaseLink = new FirebaseLink();
-     *     $response = $analyticsAdminServiceClient->createFirebaseLink($formattedParent, $firebaseLink);
+     *     $response = $analyticsAdminServiceClient->createFirebaseLink();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string       $parent       Required. Format: properties/{property_id}
-     *                                   Example: properties/1234
-     * @param FirebaseLink $firebaseLink Required. The Firebase link to create.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Format: properties/{property_id}
+     *           Example: properties/1234
+     *     @type FirebaseLink $firebaseLink
+     *           Required. The Firebase link to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1001,13 +1035,19 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function createFirebaseLink($parent, $firebaseLink, array $optionalArgs = [])
+    public function createFirebaseLink(array $optionalArgs = [])
     {
         $request = new CreateFirebaseLinkRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setFirebaseLink($firebaseLink);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['firebaseLink'])) {
+            $request->setFirebaseLink($optionalArgs['firebaseLink']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateFirebaseLink', FirebaseLink::class, $optionalArgs, $request)->wait();
@@ -1020,19 +1060,19 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
-     *     $googleAdsLink = new GoogleAdsLink();
-     *     $response = $analyticsAdminServiceClient->createGoogleAdsLink($formattedParent, $googleAdsLink);
+     *     $response = $analyticsAdminServiceClient->createGoogleAdsLink();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string        $parent        Required. Example format: properties/1234
-     * @param GoogleAdsLink $googleAdsLink Required. The GoogleAdsLink to create.
-     * @param array         $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Example format: properties/1234
+     *     @type GoogleAdsLink $googleAdsLink
+     *           Required. The GoogleAdsLink to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1045,13 +1085,19 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function createGoogleAdsLink($parent, $googleAdsLink, array $optionalArgs = [])
+    public function createGoogleAdsLink(array $optionalArgs = [])
     {
         $request = new CreateGoogleAdsLinkRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setGoogleAdsLink($googleAdsLink);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['googleAdsLink'])) {
+            $request->setGoogleAdsLink($optionalArgs['googleAdsLink']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateGoogleAdsLink', GoogleAdsLink::class, $optionalArgs, $request)->wait();
@@ -1064,20 +1110,20 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedParent = $analyticsAdminServiceClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-     *     $measurementProtocolSecret = new MeasurementProtocolSecret();
-     *     $response = $analyticsAdminServiceClient->createMeasurementProtocolSecret($formattedParent, $measurementProtocolSecret);
+     *     $response = $analyticsAdminServiceClient->createMeasurementProtocolSecret();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string                    $parent                    Required. The parent resource where this secret will be created.
-     *                                                             Format: properties/{property}/dataStreams/{dataStream}
-     * @param MeasurementProtocolSecret $measurementProtocolSecret Required. The measurement protocol secret to create.
-     * @param array                     $optionalArgs              {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource where this secret will be created.
+     *           Format: properties/{property}/dataStreams/{dataStream}
+     *     @type MeasurementProtocolSecret $measurementProtocolSecret
+     *           Required. The measurement protocol secret to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1090,13 +1136,19 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function createMeasurementProtocolSecret($parent, $measurementProtocolSecret, array $optionalArgs = [])
+    public function createMeasurementProtocolSecret(array $optionalArgs = [])
     {
         $request = new CreateMeasurementProtocolSecretRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setMeasurementProtocolSecret($measurementProtocolSecret);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['measurementProtocolSecret'])) {
+            $request->setMeasurementProtocolSecret($optionalArgs['measurementProtocolSecret']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateMeasurementProtocolSecret', MeasurementProtocolSecret::class, $optionalArgs, $request)->wait();
@@ -1109,18 +1161,18 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $property = new Property();
-     *     $response = $analyticsAdminServiceClient->createProperty($property);
+     *     $response = $analyticsAdminServiceClient->createProperty();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param Property $property     Required. The property to create.
-     *                               Note: the supplied property must specify its parent.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Property $property
+     *           Required. The property to create.
+     *           Note: the supplied property must specify its parent.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1133,10 +1185,13 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function createProperty($property, array $optionalArgs = [])
+    public function createProperty(array $optionalArgs = [])
     {
         $request = new CreatePropertyRequest();
-        $request->setProperty($property);
+        if (isset($optionalArgs['property'])) {
+            $request->setProperty($optionalArgs['property']);
+        }
+
         return $this->startCall('CreateProperty', Property::class, $optionalArgs, $request)->wait();
     }
 
@@ -1157,19 +1212,19 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
-     *     $analyticsAdminServiceClient->deleteAccount($formattedName);
+     *     $analyticsAdminServiceClient->deleteAccount();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Account to soft-delete.
-     *                             Format: accounts/{account}
-     *                             Example: "accounts/100"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Account to soft-delete.
+     *           Format: accounts/{account}
+     *           Example: "accounts/100"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1180,12 +1235,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function deleteAccount($name, array $optionalArgs = [])
+    public function deleteAccount(array $optionalArgs = [])
     {
         $request = new DeleteAccountRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteAccount', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1198,19 +1256,19 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->conversionEventName('[PROPERTY]', '[CONVERSION_EVENT]');
-     *     $analyticsAdminServiceClient->deleteConversionEvent($formattedName);
+     *     $analyticsAdminServiceClient->deleteConversionEvent();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the conversion event to delete.
-     *                             Format: properties/{property}/conversionEvents/{conversion_event}
-     *                             Example: "properties/123/conversionEvents/456"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the conversion event to delete.
+     *           Format: properties/{property}/conversionEvents/{conversion_event}
+     *           Example: "properties/123/conversionEvents/456"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1221,12 +1279,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function deleteConversionEvent($name, array $optionalArgs = [])
+    public function deleteConversionEvent(array $optionalArgs = [])
     {
         $request = new DeleteConversionEventRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteConversionEvent', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1239,18 +1300,18 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-     *     $analyticsAdminServiceClient->deleteDataStream($formattedName);
+     *     $analyticsAdminServiceClient->deleteDataStream();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the DataStream to delete.
-     *                             Example format: properties/1234/dataStreams/5678
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the DataStream to delete.
+     *           Example format: properties/1234/dataStreams/5678
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1261,12 +1322,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function deleteDataStream($name, array $optionalArgs = [])
+    public function deleteDataStream(array $optionalArgs = [])
     {
         $request = new DeleteDataStreamRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteDataStream', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1279,18 +1343,18 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->firebaseLinkName('[PROPERTY]', '[FIREBASE_LINK]');
-     *     $analyticsAdminServiceClient->deleteFirebaseLink($formattedName);
+     *     $analyticsAdminServiceClient->deleteFirebaseLink();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
-     *                             Example: properties/1234/firebaseLinks/5678
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
+     *           Example: properties/1234/firebaseLinks/5678
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1301,12 +1365,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function deleteFirebaseLink($name, array $optionalArgs = [])
+    public function deleteFirebaseLink(array $optionalArgs = [])
     {
         $request = new DeleteFirebaseLinkRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteFirebaseLink', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1319,17 +1386,17 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->googleAdsLinkName('[PROPERTY]', '[GOOGLE_ADS_LINK]');
-     *     $analyticsAdminServiceClient->deleteGoogleAdsLink($formattedName);
+     *     $analyticsAdminServiceClient->deleteGoogleAdsLink();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Example format: properties/1234/googleAdsLinks/5678
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Example format: properties/1234/googleAdsLinks/5678
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1340,12 +1407,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function deleteGoogleAdsLink($name, array $optionalArgs = [])
+    public function deleteGoogleAdsLink(array $optionalArgs = [])
     {
         $request = new DeleteGoogleAdsLinkRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteGoogleAdsLink', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1358,19 +1428,19 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->measurementProtocolSecretName('[PROPERTY]', '[DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
-     *     $analyticsAdminServiceClient->deleteMeasurementProtocolSecret($formattedName);
+     *     $analyticsAdminServiceClient->deleteMeasurementProtocolSecret();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the MeasurementProtocolSecret to delete.
-     *                             Format:
-     *                             properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the MeasurementProtocolSecret to delete.
+     *           Format:
+     *           properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1381,12 +1451,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function deleteMeasurementProtocolSecret($name, array $optionalArgs = [])
+    public function deleteMeasurementProtocolSecret(array $optionalArgs = [])
     {
         $request = new DeleteMeasurementProtocolSecretRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteMeasurementProtocolSecret', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1409,19 +1482,19 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
-     *     $response = $analyticsAdminServiceClient->deleteProperty($formattedName);
+     *     $response = $analyticsAdminServiceClient->deleteProperty();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Property to soft-delete.
-     *                             Format: properties/{property_id}
-     *                             Example: "properties/1000"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Property to soft-delete.
+     *           Format: properties/{property_id}
+     *           Example: "properties/1000"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1434,12 +1507,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function deleteProperty($name, array $optionalArgs = [])
+    public function deleteProperty(array $optionalArgs = [])
     {
         $request = new DeletePropertyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteProperty', Property::class, $optionalArgs, $request)->wait();
@@ -1452,19 +1528,19 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
-     *     $response = $analyticsAdminServiceClient->getAccount($formattedName);
+     *     $response = $analyticsAdminServiceClient->getAccount();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the account to lookup.
-     *                             Format: accounts/{account}
-     *                             Example: "accounts/100"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the account to lookup.
+     *           Format: accounts/{account}
+     *           Example: "accounts/100"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1477,12 +1553,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function getAccount($name, array $optionalArgs = [])
+    public function getAccount(array $optionalArgs = [])
     {
         $request = new GetAccountRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetAccount', Account::class, $optionalArgs, $request)->wait();
@@ -1495,19 +1574,19 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->conversionEventName('[PROPERTY]', '[CONVERSION_EVENT]');
-     *     $response = $analyticsAdminServiceClient->getConversionEvent($formattedName);
+     *     $response = $analyticsAdminServiceClient->getConversionEvent();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the conversion event to retrieve.
-     *                             Format: properties/{property}/conversionEvents/{conversion_event}
-     *                             Example: "properties/123/conversionEvents/456"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the conversion event to retrieve.
+     *           Format: properties/{property}/conversionEvents/{conversion_event}
+     *           Example: "properties/123/conversionEvents/456"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1520,12 +1599,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function getConversionEvent($name, array $optionalArgs = [])
+    public function getConversionEvent(array $optionalArgs = [])
     {
         $request = new GetConversionEventRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetConversionEvent', ConversionEvent::class, $optionalArgs, $request)->wait();
@@ -1538,18 +1620,18 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
-     *     $response = $analyticsAdminServiceClient->getCustomDimension($formattedName);
+     *     $response = $analyticsAdminServiceClient->getCustomDimension();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the CustomDimension to get.
-     *                             Example format: properties/1234/customDimensions/5678
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the CustomDimension to get.
+     *           Example format: properties/1234/customDimensions/5678
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1562,12 +1644,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function getCustomDimension($name, array $optionalArgs = [])
+    public function getCustomDimension(array $optionalArgs = [])
     {
         $request = new GetCustomDimensionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCustomDimension', CustomDimension::class, $optionalArgs, $request)->wait();
@@ -1580,18 +1665,18 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
-     *     $response = $analyticsAdminServiceClient->getCustomMetric($formattedName);
+     *     $response = $analyticsAdminServiceClient->getCustomMetric();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the CustomMetric to get.
-     *                             Example format: properties/1234/customMetrics/5678
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the CustomMetric to get.
+     *           Example format: properties/1234/customMetrics/5678
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1604,12 +1689,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function getCustomMetric($name, array $optionalArgs = [])
+    public function getCustomMetric(array $optionalArgs = [])
     {
         $request = new GetCustomMetricRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCustomMetric', CustomMetric::class, $optionalArgs, $request)->wait();
@@ -1622,20 +1710,20 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->dataRetentionSettingsName('[PROPERTY]');
-     *     $response = $analyticsAdminServiceClient->getDataRetentionSettings($formattedName);
+     *     $response = $analyticsAdminServiceClient->getDataRetentionSettings();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the settings to lookup.
-     *                             Format:
-     *                             properties/{property}/dataRetentionSettings
-     *                             Example: "properties/1000/dataRetentionSettings"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the settings to lookup.
+     *           Format:
+     *           properties/{property}/dataRetentionSettings
+     *           Example: "properties/1000/dataRetentionSettings"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1648,12 +1736,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function getDataRetentionSettings($name, array $optionalArgs = [])
+    public function getDataRetentionSettings(array $optionalArgs = [])
     {
         $request = new GetDataRetentionSettingsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetDataRetentionSettings', DataRetentionSettings::class, $optionalArgs, $request)->wait();
@@ -1667,19 +1758,19 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->dataSharingSettingsName('[ACCOUNT]');
-     *     $response = $analyticsAdminServiceClient->getDataSharingSettings($formattedName);
+     *     $response = $analyticsAdminServiceClient->getDataSharingSettings();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the settings to lookup.
-     *                             Format: accounts/{account}/dataSharingSettings
-     *                             Example: "accounts/1000/dataSharingSettings"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the settings to lookup.
+     *           Format: accounts/{account}/dataSharingSettings
+     *           Example: "accounts/1000/dataSharingSettings"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1692,12 +1783,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function getDataSharingSettings($name, array $optionalArgs = [])
+    public function getDataSharingSettings(array $optionalArgs = [])
     {
         $request = new GetDataSharingSettingsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetDataSharingSettings', DataSharingSettings::class, $optionalArgs, $request)->wait();
@@ -1710,18 +1804,18 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-     *     $response = $analyticsAdminServiceClient->getDataStream($formattedName);
+     *     $response = $analyticsAdminServiceClient->getDataStream();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the DataStream to get.
-     *                             Example format: properties/1234/dataStreams/5678
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the DataStream to get.
+     *           Example format: properties/1234/dataStreams/5678
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1734,12 +1828,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function getDataStream($name, array $optionalArgs = [])
+    public function getDataStream(array $optionalArgs = [])
     {
         $request = new GetDataStreamRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetDataStream', DataStream::class, $optionalArgs, $request)->wait();
@@ -1752,19 +1849,19 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->measurementProtocolSecretName('[PROPERTY]', '[DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
-     *     $response = $analyticsAdminServiceClient->getMeasurementProtocolSecret($formattedName);
+     *     $response = $analyticsAdminServiceClient->getMeasurementProtocolSecret();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the measurement protocol secret to lookup.
-     *                             Format:
-     *                             properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the measurement protocol secret to lookup.
+     *           Format:
+     *           properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1777,12 +1874,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function getMeasurementProtocolSecret($name, array $optionalArgs = [])
+    public function getMeasurementProtocolSecret(array $optionalArgs = [])
     {
         $request = new GetMeasurementProtocolSecretRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetMeasurementProtocolSecret', MeasurementProtocolSecret::class, $optionalArgs, $request)->wait();
@@ -1795,19 +1895,19 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
-     *     $response = $analyticsAdminServiceClient->getProperty($formattedName);
+     *     $response = $analyticsAdminServiceClient->getProperty();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the property to lookup.
-     *                             Format: properties/{property_id}
-     *                             Example: "properties/1000"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the property to lookup.
+     *           Format: properties/{property_id}
+     *           Example: "properties/1000"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1820,12 +1920,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function getProperty($name, array $optionalArgs = [])
+    public function getProperty(array $optionalArgs = [])
     {
         $request = new GetPropertyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetProperty', Property::class, $optionalArgs, $request)->wait();
@@ -1978,9 +2081,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listConversionEvents($formattedParent);
+     *     $pagedResponse = $analyticsAdminServiceClient->listConversionEvents();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1988,7 +2090,7 @@ class AnalyticsAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listConversionEvents($formattedParent);
+     *     $pagedResponse = $analyticsAdminServiceClient->listConversionEvents();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1997,11 +2099,12 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent property.
-     *                             Example: 'properties/123'
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent property.
+     *           Example: 'properties/123'
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2023,12 +2126,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function listConversionEvents($parent, array $optionalArgs = [])
+    public function listConversionEvents(array $optionalArgs = [])
     {
         $request = new ListConversionEventsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2049,9 +2155,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listCustomDimensions($formattedParent);
+     *     $pagedResponse = $analyticsAdminServiceClient->listCustomDimensions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2059,7 +2164,7 @@ class AnalyticsAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listCustomDimensions($formattedParent);
+     *     $pagedResponse = $analyticsAdminServiceClient->listCustomDimensions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2068,10 +2173,11 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Example format: properties/1234
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Example format: properties/1234
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2093,12 +2199,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function listCustomDimensions($parent, array $optionalArgs = [])
+    public function listCustomDimensions(array $optionalArgs = [])
     {
         $request = new ListCustomDimensionsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2119,9 +2228,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listCustomMetrics($formattedParent);
+     *     $pagedResponse = $analyticsAdminServiceClient->listCustomMetrics();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2129,7 +2237,7 @@ class AnalyticsAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listCustomMetrics($formattedParent);
+     *     $pagedResponse = $analyticsAdminServiceClient->listCustomMetrics();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2138,10 +2246,11 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Example format: properties/1234
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Example format: properties/1234
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2163,12 +2272,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function listCustomMetrics($parent, array $optionalArgs = [])
+    public function listCustomMetrics(array $optionalArgs = [])
     {
         $request = new ListCustomMetricsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2189,9 +2301,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listDataStreams($formattedParent);
+     *     $pagedResponse = $analyticsAdminServiceClient->listDataStreams();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2199,7 +2310,7 @@ class AnalyticsAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listDataStreams($formattedParent);
+     *     $pagedResponse = $analyticsAdminServiceClient->listDataStreams();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2208,10 +2319,11 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Example format: properties/1234
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Example format: properties/1234
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2233,12 +2345,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function listDataStreams($parent, array $optionalArgs = [])
+    public function listDataStreams(array $optionalArgs = [])
     {
         $request = new ListDataStreamsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2260,9 +2375,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listFirebaseLinks($formattedParent);
+     *     $pagedResponse = $analyticsAdminServiceClient->listFirebaseLinks();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2270,7 +2384,7 @@ class AnalyticsAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listFirebaseLinks($formattedParent);
+     *     $pagedResponse = $analyticsAdminServiceClient->listFirebaseLinks();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2279,11 +2393,12 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Format: properties/{property_id}
-     *                             Example: properties/1234
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Format: properties/{property_id}
+     *           Example: properties/1234
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2305,12 +2420,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function listFirebaseLinks($parent, array $optionalArgs = [])
+    public function listFirebaseLinks(array $optionalArgs = [])
     {
         $request = new ListFirebaseLinksRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2331,9 +2449,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listGoogleAdsLinks($formattedParent);
+     *     $pagedResponse = $analyticsAdminServiceClient->listGoogleAdsLinks();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2341,7 +2458,7 @@ class AnalyticsAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listGoogleAdsLinks($formattedParent);
+     *     $pagedResponse = $analyticsAdminServiceClient->listGoogleAdsLinks();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2350,10 +2467,11 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Example format: properties/1234
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Example format: properties/1234
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2375,12 +2493,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function listGoogleAdsLinks($parent, array $optionalArgs = [])
+    public function listGoogleAdsLinks(array $optionalArgs = [])
     {
         $request = new ListGoogleAdsLinksRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2402,9 +2523,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedParent = $analyticsAdminServiceClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listMeasurementProtocolSecrets($formattedParent);
+     *     $pagedResponse = $analyticsAdminServiceClient->listMeasurementProtocolSecrets();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2412,7 +2532,7 @@ class AnalyticsAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listMeasurementProtocolSecrets($formattedParent);
+     *     $pagedResponse = $analyticsAdminServiceClient->listMeasurementProtocolSecrets();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2421,12 +2541,13 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent stream.
-     *                             Format:
-     *                             properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent stream.
+     *           Format:
+     *           properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2448,12 +2569,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function listMeasurementProtocolSecrets($parent, array $optionalArgs = [])
+    public function listMeasurementProtocolSecrets(array $optionalArgs = [])
     {
         $request = new ListMeasurementProtocolSecretsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2479,9 +2603,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $filter = 'filter';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listProperties($filter);
+     *     $pagedResponse = $analyticsAdminServiceClient->listProperties();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2489,7 +2612,7 @@ class AnalyticsAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $analyticsAdminServiceClient->listProperties($filter);
+     *     $pagedResponse = $analyticsAdminServiceClient->listProperties();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2498,25 +2621,26 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string $filter       Required. An expression for filtering the results of the request.
-     *                             Fields eligible for filtering are:
-     *                             `parent:`(The resource name of the parent account/property) or
-     *                             `ancestor:`(The resource name of the parent account) or
-     *                             `firebase_project:`(The id or number of the linked firebase project).
-     *                             Some examples of filters:
-     *
-     *                             ```
-     *                             | Filter                      | Description                               |
-     *                             |-----------------------------|-------------------------------------------|
-     *                             | parent:accounts/123         | The account with account id: 123.       |
-     *                             | parent:properties/123       | The property with property id: 123.       |
-     *                             | ancestor:accounts/123       | The account with account id: 123.         |
-     *                             | firebase_project:project-id | The firebase project with id: project-id. |
-     *                             | firebase_project:123        | The firebase project with number: 123.    |
-     *                             ```
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $filter
+     *           Required. An expression for filtering the results of the request.
+     *           Fields eligible for filtering are:
+     *           `parent:`(The resource name of the parent account/property) or
+     *           `ancestor:`(The resource name of the parent account) or
+     *           `firebase_project:`(The id or number of the linked firebase project).
+     *           Some examples of filters:
+     *
+     *           ```
+     *           | Filter                      | Description                               |
+     *           |-----------------------------|-------------------------------------------|
+     *           | parent:accounts/123         | The account with account id: 123.       |
+     *           | parent:properties/123       | The property with property id: 123.       |
+     *           | ancestor:accounts/123       | The account with account id: 123.         |
+     *           | firebase_project:project-id | The firebase project with id: project-id. |
+     *           | firebase_project:123        | The firebase project with number: 123.    |
+     *           ```
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2542,10 +2666,13 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function listProperties($filter, array $optionalArgs = [])
+    public function listProperties(array $optionalArgs = [])
     {
         $request = new ListPropertiesRequest();
-        $request->setFilter($filter);
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2776,9 +2903,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedAccount = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $analyticsAdminServiceClient->searchChangeHistoryEvents($formattedAccount);
+     *     $pagedResponse = $analyticsAdminServiceClient->searchChangeHistoryEvents();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2786,7 +2912,7 @@ class AnalyticsAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $analyticsAdminServiceClient->searchChangeHistoryEvents($formattedAccount);
+     *     $pagedResponse = $analyticsAdminServiceClient->searchChangeHistoryEvents();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2795,11 +2921,12 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string $account      Required. The account resource for which to return change history
-     *                             resources.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $account
+     *           Required. The account resource for which to return change history
+     *           resources.
      *     @type string $property
      *           Optional. Resource name for a child property. If set, only return changes
      *           made to this property or its child resources.
@@ -2839,12 +2966,15 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function searchChangeHistoryEvents($account, array $optionalArgs = [])
+    public function searchChangeHistoryEvents(array $optionalArgs = [])
     {
         $request = new SearchChangeHistoryEventsRequest();
         $requestParamHeaders = [];
-        $request->setAccount($account);
-        $requestParamHeaders['account'] = $account;
+        if (isset($optionalArgs['account'])) {
+            $request->setAccount($optionalArgs['account']);
+            $requestParamHeaders['account'] = $optionalArgs['account'];
+        }
+
         if (isset($optionalArgs['property'])) {
             $request->setProperty($optionalArgs['property']);
         }
@@ -2889,23 +3019,23 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $account = new Account();
-     *     $updateMask = new FieldMask();
-     *     $response = $analyticsAdminServiceClient->updateAccount($account, $updateMask);
+     *     $response = $analyticsAdminServiceClient->updateAccount();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param Account   $account      Required. The account to update.
-     *                                The account's `name` field is used to identify the account.
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake
-     *                                case (for example, "field_to_update"). Omitted fields will not be updated.
-     *                                To replace the entire entity, use one path with the string "*" to match all
-     *                                fields.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Account $account
+     *           Required. The account to update.
+     *           The account's `name` field is used to identify the account.
+     *     @type FieldMask $updateMask
+     *           Required. The list of fields to be updated. Field names must be in snake
+     *           case (for example, "field_to_update"). Omitted fields will not be updated.
+     *           To replace the entire entity, use one path with the string "*" to match all
+     *           fields.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2918,13 +3048,18 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function updateAccount($account, $updateMask, array $optionalArgs = [])
+    public function updateAccount(array $optionalArgs = [])
     {
         $request = new UpdateAccountRequest();
         $requestParamHeaders = [];
-        $request->setAccount($account);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['account.name'] = $account->getName();
+        if (isset($optionalArgs['account'])) {
+            $request->setAccount($optionalArgs['account']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateAccount', Account::class, $optionalArgs, $request)->wait();
@@ -2937,23 +3072,23 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $conversionEvent = new ConversionEvent();
-     *     $updateMask = new FieldMask();
-     *     $response = $analyticsAdminServiceClient->updateConversionEvent($conversionEvent, $updateMask);
+     *     $response = $analyticsAdminServiceClient->updateConversionEvent();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param ConversionEvent $conversionEvent Required. The conversion event to update.
-     *                                         The `name` field is used to identify the settings to be updated.
-     * @param FieldMask       $updateMask      Required. The list of fields to be updated. Field names must be in snake
-     *                                         case (e.g., "field_to_update"). Omitted fields will not be updated. To
-     *                                         replace the entire entity, use one path with the string "*" to match all
-     *                                         fields.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type ConversionEvent $conversionEvent
+     *           Required. The conversion event to update.
+     *           The `name` field is used to identify the settings to be updated.
+     *     @type FieldMask $updateMask
+     *           Required. The list of fields to be updated. Field names must be in snake
+     *           case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *           replace the entire entity, use one path with the string "*" to match all
+     *           fields.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2966,13 +3101,18 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function updateConversionEvent($conversionEvent, $updateMask, array $optionalArgs = [])
+    public function updateConversionEvent(array $optionalArgs = [])
     {
         $request = new UpdateConversionEventRequest();
         $requestParamHeaders = [];
-        $request->setConversionEvent($conversionEvent);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['conversion_event.name'] = $conversionEvent->getName();
+        if (isset($optionalArgs['conversionEvent'])) {
+            $request->setConversionEvent($optionalArgs['conversionEvent']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateConversionEvent', ConversionEvent::class, $optionalArgs, $request)->wait();
@@ -2985,21 +3125,21 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $response = $analyticsAdminServiceClient->updateCustomDimension($updateMask);
+     *     $response = $analyticsAdminServiceClient->updateCustomDimension();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
-     *                                updated. To replace the entire entity, use one path with the string "*" to
-     *                                match all fields.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type CustomDimension $customDimension
      *           The CustomDimension to update
+     *     @type FieldMask $updateMask
+     *           Required. The list of fields to be updated. Omitted fields will not be
+     *           updated. To replace the entire entity, use one path with the string "*" to
+     *           match all fields.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3012,13 +3152,16 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function updateCustomDimension($updateMask, array $optionalArgs = [])
+    public function updateCustomDimension(array $optionalArgs = [])
     {
         $request = new UpdateCustomDimensionRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
         if (isset($optionalArgs['customDimension'])) {
             $request->setCustomDimension($optionalArgs['customDimension']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3033,21 +3176,21 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $response = $analyticsAdminServiceClient->updateCustomMetric($updateMask);
+     *     $response = $analyticsAdminServiceClient->updateCustomMetric();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
-     *                                updated. To replace the entire entity, use one path with the string "*" to
-     *                                match all fields.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type CustomMetric $customMetric
      *           The CustomMetric to update
+     *     @type FieldMask $updateMask
+     *           Required. The list of fields to be updated. Omitted fields will not be
+     *           updated. To replace the entire entity, use one path with the string "*" to
+     *           match all fields.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3060,13 +3203,16 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function updateCustomMetric($updateMask, array $optionalArgs = [])
+    public function updateCustomMetric(array $optionalArgs = [])
     {
         $request = new UpdateCustomMetricRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
         if (isset($optionalArgs['customMetric'])) {
             $request->setCustomMetric($optionalArgs['customMetric']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3081,23 +3227,23 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $dataRetentionSettings = new DataRetentionSettings();
-     *     $updateMask = new FieldMask();
-     *     $response = $analyticsAdminServiceClient->updateDataRetentionSettings($dataRetentionSettings, $updateMask);
+     *     $response = $analyticsAdminServiceClient->updateDataRetentionSettings();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param DataRetentionSettings $dataRetentionSettings Required. The settings to update.
-     *                                                     The `name` field is used to identify the settings to be updated.
-     * @param FieldMask             $updateMask            Required. The list of fields to be updated. Field names must be in snake
-     *                                                     case (e.g., "field_to_update"). Omitted fields will not be updated. To
-     *                                                     replace the entire entity, use one path with the string "*" to match all
-     *                                                     fields.
-     * @param array                 $optionalArgs          {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type DataRetentionSettings $dataRetentionSettings
+     *           Required. The settings to update.
+     *           The `name` field is used to identify the settings to be updated.
+     *     @type FieldMask $updateMask
+     *           Required. The list of fields to be updated. Field names must be in snake
+     *           case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *           replace the entire entity, use one path with the string "*" to match all
+     *           fields.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3110,13 +3256,18 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function updateDataRetentionSettings($dataRetentionSettings, $updateMask, array $optionalArgs = [])
+    public function updateDataRetentionSettings(array $optionalArgs = [])
     {
         $request = new UpdateDataRetentionSettingsRequest();
         $requestParamHeaders = [];
-        $request->setDataRetentionSettings($dataRetentionSettings);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['data_retention_settings.name'] = $dataRetentionSettings->getName();
+        if (isset($optionalArgs['dataRetentionSettings'])) {
+            $request->setDataRetentionSettings($optionalArgs['dataRetentionSettings']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateDataRetentionSettings', DataRetentionSettings::class, $optionalArgs, $request)->wait();
@@ -3129,21 +3280,21 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $response = $analyticsAdminServiceClient->updateDataStream($updateMask);
+     *     $response = $analyticsAdminServiceClient->updateDataStream();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be
-     *                                updated. To replace the entire entity, use one path with the string "*" to
-     *                                match all fields.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type DataStream $dataStream
      *           The DataStream to update
+     *     @type FieldMask $updateMask
+     *           Required. The list of fields to be updated. Omitted fields will not be
+     *           updated. To replace the entire entity, use one path with the string "*" to
+     *           match all fields.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3156,13 +3307,16 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function updateDataStream($updateMask, array $optionalArgs = [])
+    public function updateDataStream(array $optionalArgs = [])
     {
         $request = new UpdateDataStreamRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
         if (isset($optionalArgs['dataStream'])) {
             $request->setDataStream($optionalArgs['dataStream']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3177,22 +3331,22 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $response = $analyticsAdminServiceClient->updateGoogleAdsLink($updateMask);
+     *     $response = $analyticsAdminServiceClient->updateGoogleAdsLink();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake
-     *                                case (e.g., "field_to_update"). Omitted fields will not be updated. To
-     *                                replace the entire entity, use one path with the string "*" to match all
-     *                                fields.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type GoogleAdsLink $googleAdsLink
      *           The GoogleAdsLink to update
+     *     @type FieldMask $updateMask
+     *           Required. The list of fields to be updated. Field names must be in snake
+     *           case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *           replace the entire entity, use one path with the string "*" to match all
+     *           fields.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3205,13 +3359,16 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function updateGoogleAdsLink($updateMask, array $optionalArgs = [])
+    public function updateGoogleAdsLink(array $optionalArgs = [])
     {
         $request = new UpdateGoogleAdsLinkRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
         if (isset($optionalArgs['googleAdsLink'])) {
             $request->setGoogleAdsLink($optionalArgs['googleAdsLink']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3226,20 +3383,20 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $measurementProtocolSecret = new MeasurementProtocolSecret();
-     *     $updateMask = new FieldMask();
-     *     $response = $analyticsAdminServiceClient->updateMeasurementProtocolSecret($measurementProtocolSecret, $updateMask);
+     *     $response = $analyticsAdminServiceClient->updateMeasurementProtocolSecret();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param MeasurementProtocolSecret $measurementProtocolSecret Required. The measurement protocol secret to update.
-     * @param FieldMask                 $updateMask                Required. The list of fields to be updated. Omitted fields will not be
-     *                                                             updated.
-     * @param array                     $optionalArgs              {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type MeasurementProtocolSecret $measurementProtocolSecret
+     *           Required. The measurement protocol secret to update.
+     *     @type FieldMask $updateMask
+     *           Required. The list of fields to be updated. Omitted fields will not be
+     *           updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3252,13 +3409,18 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function updateMeasurementProtocolSecret($measurementProtocolSecret, $updateMask, array $optionalArgs = [])
+    public function updateMeasurementProtocolSecret(array $optionalArgs = [])
     {
         $request = new UpdateMeasurementProtocolSecretRequest();
         $requestParamHeaders = [];
-        $request->setMeasurementProtocolSecret($measurementProtocolSecret);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['measurement_protocol_secret.name'] = $measurementProtocolSecret->getName();
+        if (isset($optionalArgs['measurementProtocolSecret'])) {
+            $request->setMeasurementProtocolSecret($optionalArgs['measurementProtocolSecret']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateMeasurementProtocolSecret', MeasurementProtocolSecret::class, $optionalArgs, $request)->wait();
@@ -3271,24 +3433,24 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $property = new Property();
-     *     $updateMask = new FieldMask();
-     *     $response = $analyticsAdminServiceClient->updateProperty($property, $updateMask);
+     *     $response = $analyticsAdminServiceClient->updateProperty();
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param Property  $property     Required. The property to update.
-     *                                The property's `name` field is used to identify the property to be
-     *                                updated.
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake
-     *                                case (e.g., "field_to_update"). Omitted fields will not be updated. To
-     *                                replace the entire entity, use one path with the string "*" to match all
-     *                                fields.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Property $property
+     *           Required. The property to update.
+     *           The property's `name` field is used to identify the property to be
+     *           updated.
+     *     @type FieldMask $updateMask
+     *           Required. The list of fields to be updated. Field names must be in snake
+     *           case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *           replace the entire entity, use one path with the string "*" to match all
+     *           fields.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3301,13 +3463,18 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function updateProperty($property, $updateMask, array $optionalArgs = [])
+    public function updateProperty(array $optionalArgs = [])
     {
         $request = new UpdatePropertyRequest();
         $requestParamHeaders = [];
-        $request->setProperty($property);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['property.name'] = $property->getName();
+        if (isset($optionalArgs['property'])) {
+            $request->setProperty($optionalArgs['property']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateProperty', Property::class, $optionalArgs, $request)->wait();

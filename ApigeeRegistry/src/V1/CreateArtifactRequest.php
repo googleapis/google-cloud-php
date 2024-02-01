@@ -42,7 +42,6 @@ class CreateArtifactRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                   $parent     Required. The parent, which owns this collection of artifacts.
      *                                                             Format: `{parent}`
-     *                                                             Please see {@see RegistryClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\ApigeeRegistry\V1\Artifact $artifact   Required. The artifact to create.
      * @param string                                   $artifactId Required. The ID to use for the artifact, which will become the final component of
      *                                                             the artifact's resource name.

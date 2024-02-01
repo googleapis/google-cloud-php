@@ -31,20 +31,19 @@ use Google\ApiCore\ApiException;
 /**
  * Gets information about an access binding.
  *
- * @param string $formattedName The name of the access binding to retrieve.
- *                              Formats:
- *                              - accounts/{account}/accessBindings/{accessBinding}
- *                              - properties/{property}/accessBindings/{accessBinding}
- *                              Please see {@see AnalyticsAdminServiceClient::accessBindingName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_access_binding_sample(string $formattedName): void
+function get_access_binding_sample(): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new GetAccessBindingRequest())
-        ->setName($formattedName);
+    $request = new GetAccessBindingRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +53,5 @@ function get_access_binding_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AnalyticsAdminServiceClient::accessBindingName('[ACCOUNT]', '[ACCESS_BINDING]');
-
-    get_access_binding_sample($formattedName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetAccessBinding_sync]

@@ -47,23 +47,19 @@ use Google\Rpc\Status;
  * CommitServicePerimetersResponse. The `dry_run` and the `spec` fields are
  * cleared after a successful commit operation.
  *
- * @param string $formattedParent Resource name for the parent [Access Policy]
- *                                [google.identity.accesscontextmanager.v1.AccessPolicy] which owns all
- *                                [Service Perimeters]
- *                                [google.identity.accesscontextmanager.v1.ServicePerimeter] in scope for
- *                                the commit operation.
- *
- *                                Format: `accessPolicies/{policy_id}`
- *                                Please see {@see AccessContextManagerClient::accessPolicyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function commit_service_perimeters_sample(string $formattedParent): void
+function commit_service_perimeters_sample(): void
 {
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
     // Prepare the request message.
-    $request = (new CommitServicePerimetersRequest())
-        ->setParent($formattedParent);
+    $request = new CommitServicePerimetersRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -83,21 +79,5 @@ function commit_service_perimeters_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AccessContextManagerClient::accessPolicyName('[ACCESS_POLICY]');
-
-    commit_service_perimeters_sample($formattedParent);
 }
 // [END accesscontextmanager_v1_generated_AccessContextManager_CommitServicePerimeters_sync]

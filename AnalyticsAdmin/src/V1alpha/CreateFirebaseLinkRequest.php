@@ -32,7 +32,6 @@ class CreateFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                       $parent       Required. Format: properties/{property_id}
      *                                                                   Example: properties/1234
-     *                                                                   Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      * @param \Google\Analytics\Admin\V1alpha\FirebaseLink $firebaseLink Required. The Firebase link to create.
      *
      * @return \Google\Analytics\Admin\V1alpha\CreateFirebaseLinkRequest

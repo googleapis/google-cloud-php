@@ -19,27 +19,27 @@ class Package
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-È
+Ë
 1google/devtools/artifactregistry/v1/package.proto#google.devtools.artifactregistry.v1google/api/resource.protogoogle/protobuf/timestamp.proto"”
 Package
 name (	
 display_name (	/
 create_time (2.google.protobuf.Timestamp/
 update_time (2.google.protobuf.Timestamp:‚êA
-\'artifactregistry.googleapis.com/PackageTprojects/{project}/locations/{location}/repositories/{repository}/packages/{package}"}
-ListPackagesRequest?
-parent (	B/àAúA)\'artifactregistry.googleapis.com/Package
+\'artifactregistry.googleapis.com/PackageTprojects/{project}/locations/{location}/repositories/{repository}/packages/{package}"~
+ListPackagesRequest@
+parent (	B0âAúA)\'artifactregistry.googleapis.com/Package
 	page_size (
 
 page_token (	"o
 ListPackagesResponse>
 packages (2,.google.devtools.artifactregistry.v1.Package
-next_page_token (	"R
-GetPackageRequest=
-name (	B/àAúA)
-\'artifactregistry.googleapis.com/Package"U
-DeletePackageRequest=
-name (	B/àAúA)
+next_page_token (	"S
+GetPackageRequest>
+name (	B0âAúA)
+\'artifactregistry.googleapis.com/Package"V
+DeletePackageRequest>
+name (	B0âAúA)
 \'artifactregistry.googleapis.com/PackageB÷
 \'com.google.devtools.artifactregistry.v1BPackageProtoPZPcloud.google.com/go/artifactregistry/apiv1/artifactregistrypb;artifactregistrypbª Google.Cloud.ArtifactRegistry.V1Ê Google\\Cloud\\ArtifactRegistry\\V1ê#Google::Cloud::ArtifactRegistry::V1bproto3'
         , true);

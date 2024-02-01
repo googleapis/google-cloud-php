@@ -23,84 +23,84 @@ class Service
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ş,
+•-
 %google/apps/meet/v2beta/service.protogoogle.apps.meet.v2betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/apps/meet/v2beta/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"C
 CreateSpaceRequest-
-space (2.google.apps.meet.v2beta.Space"B
-GetSpaceRequest/
-name (	B!àAúA
-meet.googleapis.com/Space"~
-UpdateSpaceRequest2
-space (2.google.apps.meet.v2beta.SpaceBàA4
-update_mask (2.google.protobuf.FieldMaskBàA"M
-EndActiveConferenceRequest/
-name (	B!àAúA
-meet.googleapis.com/Space"X
-GetConferenceRecordRequest:
-name (	B,àAúA&
-$meet.googleapis.com/ConferenceRecord"d
-ListConferenceRecordsRequest
-	page_size (BàA
+space (2.google.apps.meet.v2beta.Space"C
+GetSpaceRequest0
+name (	B"âAúA
+meet.googleapis.com/Space"€
+UpdateSpaceRequest3
+space (2.google.apps.meet.v2beta.SpaceBâA5
+update_mask (2.google.protobuf.FieldMaskBâA"N
+EndActiveConferenceRequest0
+name (	B"âAúA
+meet.googleapis.com/Space"Y
+GetConferenceRecordRequest;
+name (	B-âAúA&
+$meet.googleapis.com/ConferenceRecord"g
+ListConferenceRecordsRequest
+	page_size (BâA
 
-page_token (	BàA
-filter (	BàA"
+page_token (	BâA
+filter (	BâA"
 ListConferenceRecordsResponseE
 conference_records (2).google.apps.meet.v2beta.ConferenceRecord
-next_page_token (	"N
-GetParticipantRequest5
-name (	B\'àAúA!
-meet.googleapis.com/Participant"
-ListParticipantsRequest7
-parent (	B\'àAúA!meet.googleapis.com/Participant
+next_page_token (	"O
+GetParticipantRequest6
+name (	B(âAúA!
+meet.googleapis.com/Participant"
+ListParticipantsRequest8
+parent (	B(âAúA!meet.googleapis.com/Participant
 	page_size (
 
-page_token (	
-filter (	BàA"ƒ
+page_token (	
+filter (	BâA"ƒ
 ListParticipantsResponse:
 participants (2$.google.apps.meet.v2beta.Participant
 next_page_token (	
 
-total_size ("\\
-GetParticipantSessionRequest<
-name (	B.àAúA(
-&meet.googleapis.com/ParticipantSession"¦
-ListParticipantSessionsRequest>
-parent (	B.àAúA(&meet.googleapis.com/ParticipantSession
-	page_size (BàA
+total_size ("]
+GetParticipantSessionRequest=
+name (	B/âAúA(
+&meet.googleapis.com/ParticipantSession"ª
+ListParticipantSessionsRequest?
+parent (	B/âAúA(&meet.googleapis.com/ParticipantSession
+	page_size (BâA
 
-page_token (	BàA
-filter (	BàA"…
+page_token (	BâA
+filter (	BâA"…
 ListParticipantSessionsResponseI
 participant_sessions (2+.google.apps.meet.v2beta.ParticipantSession
-next_page_token (	"J
-GetRecordingRequest3
-name (	B%àAúA
-meet.googleapis.com/Recording"u
-ListRecordingsRequest5
-parent (	B%àAúAmeet.googleapis.com/Recording
+next_page_token (	"K
+GetRecordingRequest4
+name (	B&âAúA
+meet.googleapis.com/Recording"v
+ListRecordingsRequest6
+parent (	B&âAúAmeet.googleapis.com/Recording
 	page_size (
 
 page_token (	"i
 ListRecordingsResponse6
 
 recordings (2".google.apps.meet.v2beta.Recording
-next_page_token (	"L
-GetTranscriptRequest4
-name (	B&àAúA 
-meet.googleapis.com/Transcript"w
-ListTranscriptsRequest6
-parent (	B&àAúA meet.googleapis.com/Transcript
+next_page_token (	"M
+GetTranscriptRequest5
+name (	B\'âAúA 
+meet.googleapis.com/Transcript"x
+ListTranscriptsRequest7
+parent (	B\'âAúA meet.googleapis.com/Transcript
 	page_size (
 
 page_token (	"l
 ListTranscriptsResponse8
 transcripts (2#.google.apps.meet.v2beta.Transcript
-next_page_token (	"V
-GetTranscriptEntryRequest9
-name (	B+àAúA%
-#meet.googleapis.com/TranscriptEntry"‚
-ListTranscriptEntriesRequest;
-parent (	B+àAúA%#meet.googleapis.com/TranscriptEntry
+next_page_token (	"W
+GetTranscriptEntryRequest:
+name (	B,âAúA%
+#meet.googleapis.com/TranscriptEntry"ƒ
+ListTranscriptEntriesRequest<
+parent (	B,âAúA%#meet.googleapis.com/TranscriptEntry
 	page_size (
 
 page_token (	"~
@@ -108,23 +108,23 @@ page_token (	"~
 transcript_entries (2(.google.apps.meet.v2beta.TranscriptEntry
 next_page_token (	2ì
 SpacesService
-CreateSpace+.google.apps.meet.v2beta.CreateSpaceRequest.google.apps.meet.v2beta.Space"%‚Óä“"/v2beta/spaces:spaceÚAspace|
-GetSpace(.google.apps.meet.v2beta.GetSpaceRequest.google.apps.meet.v2beta.Space"&‚Óä“/v2beta/{name=spaces/*}ÚAnameœ
-UpdateSpace+.google.apps.meet.v2beta.UpdateSpaceRequest.google.apps.meet.v2beta.Space"@‚Óä“&2/v2beta/{space.name=spaces/*}:spaceÚAspace,update_mask¡
-EndActiveConference3.google.apps.meet.v2beta.EndActiveConferenceRequest.google.protobuf.Empty"=‚Óä“0"+/v2beta/{name=spaces/*}:endActiveConference:*ÚAnameÊAmeet.googleapis.com2
+CreateSpace+.google.apps.meet.v2beta.CreateSpaceRequest.google.apps.meet.v2beta.Space"%ÚAspace‚Óä“"/v2beta/spaces:space|
+GetSpace(.google.apps.meet.v2beta.GetSpaceRequest.google.apps.meet.v2beta.Space"&ÚAname‚Óä“/v2beta/{name=spaces/*}œ
+UpdateSpace+.google.apps.meet.v2beta.UpdateSpaceRequest.google.apps.meet.v2beta.Space"@ÚAspace,update_mask‚Óä“&2/v2beta/{space.name=spaces/*}:space¡
+EndActiveConference3.google.apps.meet.v2beta.EndActiveConferenceRequest.google.protobuf.Empty"=ÚAname‚Óä“0"+/v2beta/{name=spaces/*}:endActiveConference:*ÊAmeet.googleapis.com2
 ConferenceRecordsService¨
-GetConferenceRecord3.google.apps.meet.v2beta.GetConferenceRecordRequest).google.apps.meet.v2beta.ConferenceRecord"1‚Óä“$"/v2beta/{name=conferenceRecords/*}ÚAname©
+GetConferenceRecord3.google.apps.meet.v2beta.GetConferenceRecordRequest).google.apps.meet.v2beta.ConferenceRecord"1ÚAname‚Óä“$"/v2beta/{name=conferenceRecords/*}©
 ListConferenceRecords5.google.apps.meet.v2beta.ListConferenceRecordsRequest6.google.apps.meet.v2beta.ListConferenceRecordsResponse"!‚Óä“/v2beta/conferenceRecords¨
-GetParticipant..google.apps.meet.v2beta.GetParticipantRequest$.google.apps.meet.v2beta.Participant"@‚Óä“31/v2beta/{name=conferenceRecords/*/participants/*}ÚAname»
-ListParticipants0.google.apps.meet.v2beta.ListParticipantsRequest1.google.apps.meet.v2beta.ListParticipantsResponse"B‚Óä“31/v2beta/{parent=conferenceRecords/*}/participantsÚAparentÓ
-GetParticipantSession5.google.apps.meet.v2beta.GetParticipantSessionRequest+.google.apps.meet.v2beta.ParticipantSession"V‚Óä“IG/v2beta/{name=conferenceRecords/*/participants/*/participantSessions/*}ÚAnameæ
-ListParticipantSessions7.google.apps.meet.v2beta.ListParticipantSessionsRequest8.google.apps.meet.v2beta.ListParticipantSessionsResponse"X‚Óä“IG/v2beta/{parent=conferenceRecords/*/participants/*}/participantSessionsÚAparent 
-GetRecording,.google.apps.meet.v2beta.GetRecordingRequest".google.apps.meet.v2beta.Recording">‚Óä“1//v2beta/{name=conferenceRecords/*/recordings/*}ÚAname³
-ListRecordings..google.apps.meet.v2beta.ListRecordingsRequest/.google.apps.meet.v2beta.ListRecordingsResponse"@‚Óä“1//v2beta/{parent=conferenceRecords/*}/recordingsÚAparent¤
-GetTranscript-.google.apps.meet.v2beta.GetTranscriptRequest#.google.apps.meet.v2beta.Transcript"?‚Óä“20/v2beta/{name=conferenceRecords/*/transcripts/*}ÚAname·
-ListTranscripts/.google.apps.meet.v2beta.ListTranscriptsRequest0.google.apps.meet.v2beta.ListTranscriptsResponse"A‚Óä“20/v2beta/{parent=conferenceRecords/*}/transcriptsÚAparent½
-GetTranscriptEntry2.google.apps.meet.v2beta.GetTranscriptEntryRequest(.google.apps.meet.v2beta.TranscriptEntry"I‚Óä“<:/v2beta/{name=conferenceRecords/*/transcripts/*/entries/*}ÚAnameÓ
-ListTranscriptEntries5.google.apps.meet.v2beta.ListTranscriptEntriesRequest6.google.apps.meet.v2beta.ListTranscriptEntriesResponse"K‚Óä“<:/v2beta/{parent=conferenceRecords/*/transcripts/*}/entriesÚAparentÊAmeet.googleapis.comBµ
+GetParticipant..google.apps.meet.v2beta.GetParticipantRequest$.google.apps.meet.v2beta.Participant"@ÚAname‚Óä“31/v2beta/{name=conferenceRecords/*/participants/*}»
+ListParticipants0.google.apps.meet.v2beta.ListParticipantsRequest1.google.apps.meet.v2beta.ListParticipantsResponse"BÚAparent‚Óä“31/v2beta/{parent=conferenceRecords/*}/participantsÓ
+GetParticipantSession5.google.apps.meet.v2beta.GetParticipantSessionRequest+.google.apps.meet.v2beta.ParticipantSession"VÚAname‚Óä“IG/v2beta/{name=conferenceRecords/*/participants/*/participantSessions/*}æ
+ListParticipantSessions7.google.apps.meet.v2beta.ListParticipantSessionsRequest8.google.apps.meet.v2beta.ListParticipantSessionsResponse"XÚAparent‚Óä“IG/v2beta/{parent=conferenceRecords/*/participants/*}/participantSessions 
+GetRecording,.google.apps.meet.v2beta.GetRecordingRequest".google.apps.meet.v2beta.Recording">ÚAname‚Óä“1//v2beta/{name=conferenceRecords/*/recordings/*}³
+ListRecordings..google.apps.meet.v2beta.ListRecordingsRequest/.google.apps.meet.v2beta.ListRecordingsResponse"@ÚAparent‚Óä“1//v2beta/{parent=conferenceRecords/*}/recordings¤
+GetTranscript-.google.apps.meet.v2beta.GetTranscriptRequest#.google.apps.meet.v2beta.Transcript"?ÚAname‚Óä“20/v2beta/{name=conferenceRecords/*/transcripts/*}·
+ListTranscripts/.google.apps.meet.v2beta.ListTranscriptsRequest0.google.apps.meet.v2beta.ListTranscriptsResponse"AÚAparent‚Óä“20/v2beta/{parent=conferenceRecords/*}/transcripts½
+GetTranscriptEntry2.google.apps.meet.v2beta.GetTranscriptEntryRequest(.google.apps.meet.v2beta.TranscriptEntry"IÚAname‚Óä“<:/v2beta/{name=conferenceRecords/*/transcripts/*/entries/*}Ó
+ListTranscriptEntries5.google.apps.meet.v2beta.ListTranscriptEntriesRequest6.google.apps.meet.v2beta.ListTranscriptEntriesResponse"KÚAparent‚Óä“<:/v2beta/{parent=conferenceRecords/*/transcripts/*}/entriesÊAmeet.googleapis.comBµ
 com.google.apps.meet.v2betaBServiceProtoPZ5cloud.google.com/go/apps/meet/apiv2beta/meetpb;meetpbªGoogle.Apps.Meet.V2BetaÊGoogle\\Apps\\Meet\\V2betaêGoogle::Apps::Meet::V2betabproto3'
         , true);
 

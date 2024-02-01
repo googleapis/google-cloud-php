@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AutoMl\V1beta1\AutoMlClient;
-use Google\Cloud\AutoMl\V1beta1\OutputConfig;
 use Google\Rpc\Status;
 
 /**
@@ -34,21 +33,21 @@ use Google\Rpc\Status;
  * Returns an empty response in the
  * [response][google.longrunning.Operation.response] field when it completes.
  *
- * @param string $formattedName The resource name of the dataset. Please see
- *                              {@see AutoMlClient::datasetName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function export_data_sample(string $formattedName): void
+function export_data_sample(): void
 {
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $outputConfig = new OutputConfig();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $autoMlClient->exportData($formattedName, $outputConfig);
+        $response = $autoMlClient->exportData();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -61,21 +60,5 @@ function export_data_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AutoMlClient::datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-
-    export_data_sample($formattedName);
 }
 // [END automl_v1beta1_generated_AutoMl_ExportData_sync]

@@ -50,7 +50,6 @@ class ListApiConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. Parent resource of the API Config, of the form:
      *                       `projects/&#42;/locations/global/apis/*`
-     *                       Please see {@see ApiGatewayServiceClient::apiName()} for help formatting this field.
      *
      * @return \Google\Cloud\ApiGateway\V1\ListApiConfigsRequest
      *

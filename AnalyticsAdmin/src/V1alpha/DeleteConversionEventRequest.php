@@ -28,7 +28,6 @@ class DeleteConversionEventRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The resource name of the conversion event to delete.
      *                     Format: properties/{property}/conversionEvents/{conversion_event}
      *                     Example: "properties/123/conversionEvents/456"
-     *                     Please see {@see AnalyticsAdminServiceClient::conversionEventName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\DeleteConversionEventRequest
      *

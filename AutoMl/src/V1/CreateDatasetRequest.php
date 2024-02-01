@@ -29,8 +29,7 @@ class CreateDatasetRequest extends \Google\Protobuf\Internal\Message
     private $dataset = null;
 
     /**
-     * @param string                          $parent  Required. The resource name of the project to create the dataset for. Please see
-     *                                                 {@see AutoMlClient::locationName()} for help formatting this field.
+     * @param string                          $parent  Required. The resource name of the project to create the dataset for.
      * @param \Google\Cloud\AutoMl\V1\Dataset $dataset Required. The dataset to create.
      *
      * @return \Google\Cloud\AutoMl\V1\CreateDatasetRequest

@@ -34,18 +34,19 @@ use Google\Rpc\Status;
  * Creates a repository. The returned Operation will finish once the
  * repository has been created. Its response will be the created Repository.
  *
- * @param string $formattedParent The name of the parent resource where the repository will be
- *                                created. Please see
- *                                {@see ArtifactRegistryClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_repository_sample(string $formattedParent): void
+function create_repository_sample(): void
 {
     // Create a client.
     $artifactRegistryClient = new ArtifactRegistryClient();
 
     // Prepare the request message.
-    $request = (new CreateRepositoryRequest())
-        ->setParent($formattedParent);
+    $request = new CreateRepositoryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,21 +66,5 @@ function create_repository_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ArtifactRegistryClient::locationName('[PROJECT]', '[LOCATION]');
-
-    create_repository_sample($formattedParent);
 }
 // [END artifactregistry_v1_generated_ArtifactRegistry_CreateRepository_sync]

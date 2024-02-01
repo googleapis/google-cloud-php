@@ -32,20 +32,19 @@ use Google\Cloud\BareMetalSolution\V2\RenameNetworkRequest;
  * RenameNetwork sets a new name for a network.
  * Use with caution, previous names become immediately invalidated.
  *
- * @param string $formattedName The `name` field is used to identify the network.
- *                              Format: projects/{project}/locations/{location}/networks/{network}
- *                              Please see {@see BareMetalSolutionClient::networkName()} for help formatting this field.
- * @param string $newNetworkId  The new `id` of the network.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function rename_network_sample(string $formattedName, string $newNetworkId): void
+function rename_network_sample(): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = (new RenameNetworkRequest())
-        ->setName($formattedName)
-        ->setNewNetworkId($newNetworkId);
+    $request = new RenameNetworkRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,22 +54,5 @@ function rename_network_sample(string $formattedName, string $newNetworkId): voi
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = BareMetalSolutionClient::networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
-    $newNetworkId = '[NEW_NETWORK_ID]';
-
-    rename_network_sample($formattedName, $newNetworkId);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_RenameNetwork_sync]

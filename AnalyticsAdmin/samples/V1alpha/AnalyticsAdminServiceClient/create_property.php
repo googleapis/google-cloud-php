@@ -31,30 +31,19 @@ use Google\ApiCore\ApiException;
 /**
  * Creates an "GA4" property with the specified location and attributes.
  *
- * @param string $propertyDisplayName Human-readable display name for this property.
- *
- *                                    The max allowed display name length is 100 UTF-16 code units.
- * @param string $propertyTimeZone    Reporting Time Zone, used as the day boundary for reports,
- *                                    regardless of where the data originates. If the time zone honors DST,
- *                                    Analytics will automatically adjust for the changes.
- *
- *                                    NOTE: Changing the time zone only affects data going forward, and is not
- *                                    applied retroactively.
- *
- *                                    Format: https://www.iana.org/time-zones
- *                                    Example: "America/Los_Angeles"
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_property_sample(string $propertyDisplayName, string $propertyTimeZone): void
+function create_property_sample(): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $property = (new Property())
-        ->setDisplayName($propertyDisplayName)
-        ->setTimeZone($propertyTimeZone);
-    $request = (new CreatePropertyRequest())
-        ->setProperty($property);
+    $request = new CreatePropertyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -64,22 +53,5 @@ function create_property_sample(string $propertyDisplayName, string $propertyTim
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $propertyDisplayName = '[DISPLAY_NAME]';
-    $propertyTimeZone = '[TIME_ZONE]';
-
-    create_property_sample($propertyDisplayName, $propertyTimeZone);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateProperty_sync]

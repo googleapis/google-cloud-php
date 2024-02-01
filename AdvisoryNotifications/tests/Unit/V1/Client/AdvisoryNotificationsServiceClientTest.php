@@ -32,7 +32,6 @@ use Google\Cloud\AdvisoryNotifications\V1\GetSettingsRequest;
 use Google\Cloud\AdvisoryNotifications\V1\ListNotificationsRequest;
 use Google\Cloud\AdvisoryNotifications\V1\ListNotificationsResponse;
 use Google\Cloud\AdvisoryNotifications\V1\Notification;
-use Google\Cloud\AdvisoryNotifications\V1\NotificationSettings;
 use Google\Cloud\AdvisoryNotifications\V1\Settings;
 use Google\Cloud\AdvisoryNotifications\V1\UpdateSettingsRequest;
 use Google\Rpc\Code;
@@ -79,10 +78,7 @@ class AdvisoryNotificationsServiceClientTest extends GeneratedTest
         $expectedResponse = new Notification();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->notificationName('[ORGANIZATION]', '[LOCATION]', '[NOTIFICATION]');
-        $request = (new GetNotificationRequest())
-            ->setName($formattedName);
+        $request = new GetNotificationRequest();
         $response = $gapicClient->getNotification($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -90,8 +86,6 @@ class AdvisoryNotificationsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.advisorynotifications.v1.AdvisoryNotificationsService/GetNotification', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -113,10 +107,7 @@ class AdvisoryNotificationsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->notificationName('[ORGANIZATION]', '[LOCATION]', '[NOTIFICATION]');
-        $request = (new GetNotificationRequest())
-            ->setName($formattedName);
+        $request = new GetNotificationRequest();
         try {
             $gapicClient->getNotification($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -145,10 +136,7 @@ class AdvisoryNotificationsServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->settingsName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new GetSettingsRequest())
-            ->setName($formattedName);
+        $request = new GetSettingsRequest();
         $response = $gapicClient->getSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -156,8 +144,6 @@ class AdvisoryNotificationsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.advisorynotifications.v1.AdvisoryNotificationsService/GetSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -179,10 +165,7 @@ class AdvisoryNotificationsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->settingsName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new GetSettingsRequest())
-            ->setName($formattedName);
+        $request = new GetSettingsRequest();
         try {
             $gapicClient->getSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -216,10 +199,7 @@ class AdvisoryNotificationsServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setNotifications($notifications);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListNotificationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListNotificationsRequest();
         $response = $gapicClient->listNotifications($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -230,8 +210,6 @@ class AdvisoryNotificationsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.advisorynotifications.v1.AdvisoryNotificationsService/ListNotifications', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -253,10 +231,7 @@ class AdvisoryNotificationsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListNotificationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListNotificationsRequest();
         try {
             $gapicClient->listNotifications($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -285,17 +260,7 @@ class AdvisoryNotificationsServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $settings = new Settings();
-        $notificationSettingsValue = new NotificationSettings();
-        $settingsNotificationSettings = [
-            'notificationSettingsKey' => $notificationSettingsValue,
-        ];
-        $settings->setNotificationSettings($settingsNotificationSettings);
-        $settingsEtag = 'settingsEtag533925848';
-        $settings->setEtag($settingsEtag);
-        $request = (new UpdateSettingsRequest())
-            ->setSettings($settings);
+        $request = new UpdateSettingsRequest();
         $response = $gapicClient->updateSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -303,8 +268,6 @@ class AdvisoryNotificationsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.advisorynotifications.v1.AdvisoryNotificationsService/UpdateSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSettings();
-        $this->assertProtobufEquals($settings, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -326,17 +289,7 @@ class AdvisoryNotificationsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $settings = new Settings();
-        $notificationSettingsValue = new NotificationSettings();
-        $settingsNotificationSettings = [
-            'notificationSettingsKey' => $notificationSettingsValue,
-        ];
-        $settings->setNotificationSettings($settingsNotificationSettings);
-        $settingsEtag = 'settingsEtag533925848';
-        $settings->setEtag($settingsEtag);
-        $request = (new UpdateSettingsRequest())
-            ->setSettings($settings);
+        $request = new UpdateSettingsRequest();
         try {
             $gapicClient->updateSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -363,10 +316,7 @@ class AdvisoryNotificationsServiceClientTest extends GeneratedTest
         $expectedResponse = new Notification();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->notificationName('[ORGANIZATION]', '[LOCATION]', '[NOTIFICATION]');
-        $request = (new GetNotificationRequest())
-            ->setName($formattedName);
+        $request = new GetNotificationRequest();
         $response = $gapicClient->getNotificationAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -374,8 +324,6 @@ class AdvisoryNotificationsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.advisorynotifications.v1.AdvisoryNotificationsService/GetNotification', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

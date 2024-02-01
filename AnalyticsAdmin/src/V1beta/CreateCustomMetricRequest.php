@@ -30,7 +30,6 @@ class CreateCustomMetricRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                      $parent       Required. Example format: properties/1234
-     *                                                                  Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      * @param \Google\Analytics\Admin\V1beta\CustomMetric $customMetric Required. The CustomMetric to create.
      *
      * @return \Google\Analytics\Admin\V1beta\CreateCustomMetricRequest

@@ -31,8 +31,7 @@ class GetWorkloadRequest extends \Google\Protobuf\Internal\Message
      *                     relative path in the API, formatted as
      *                     "organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}".
      *                     For example,
-     *                     "organizations/123/locations/us-east1/workloads/assured-workload-1". Please see
-     *                     {@see AssuredWorkloadsServiceClient::workloadName()} for help formatting this field.
+     *                     "organizations/123/locations/us-east1/workloads/assured-workload-1".
      *
      * @return \Google\Cloud\AssuredWorkloads\V1\GetWorkloadRequest
      *

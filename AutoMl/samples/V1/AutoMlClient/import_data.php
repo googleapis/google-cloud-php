@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
 use Google\Cloud\AutoMl\V1\ImportDataRequest;
-use Google\Cloud\AutoMl\V1\InputConfig;
 use Google\Rpc\Status;
 
 /**
@@ -41,20 +40,19 @@ use Google\Rpc\Status;
  * Returns an empty response in the
  * [response][google.longrunning.Operation.response] field when it completes.
  *
- * @param string $formattedName Dataset name. Dataset must already exist. All imported
- *                              annotations and examples will be added. Please see
- *                              {@see AutoMlClient::datasetName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function import_data_sample(string $formattedName): void
+function import_data_sample(): void
 {
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
     // Prepare the request message.
-    $inputConfig = new InputConfig();
-    $request = (new ImportDataRequest())
-        ->setName($formattedName)
-        ->setInputConfig($inputConfig);
+    $request = new ImportDataRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,21 +70,5 @@ function import_data_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AutoMlClient::datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-
-    import_data_sample($formattedName);
 }
 // [END automl_v1_generated_AutoMl_ImportData_sync]

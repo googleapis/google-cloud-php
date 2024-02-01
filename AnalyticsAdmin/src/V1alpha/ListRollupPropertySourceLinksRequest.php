@@ -45,7 +45,6 @@ class ListRollupPropertySourceLinksRequest extends \Google\Protobuf\Internal\Mes
     /**
      * @param string $parent Required. The name of the roll-up property to list roll-up property source
      *                       links under. Format: properties/{property_id} Example: properties/1234
-     *                       Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\ListRollupPropertySourceLinksRequest
      *

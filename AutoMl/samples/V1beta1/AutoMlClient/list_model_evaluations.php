@@ -31,12 +31,13 @@ use Google\Cloud\AutoMl\V1beta1\ModelEvaluation;
 /**
  * Lists model evaluations.
  *
- * @param string $formattedParent Resource name of the model to list the model evaluations for.
- *                                If modelId is set as "-", this will list model evaluations from across all
- *                                models of the parent location. Please see
- *                                {@see AutoMlClient::modelName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_model_evaluations_sample(string $formattedParent): void
+function list_model_evaluations_sample(): void
 {
     // Create a client.
     $autoMlClient = new AutoMlClient();
@@ -44,7 +45,7 @@ function list_model_evaluations_sample(string $formattedParent): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $autoMlClient->listModelEvaluations($formattedParent);
+        $response = $autoMlClient->listModelEvaluations();
 
         /** @var ModelEvaluation $element */
         foreach ($response as $element) {
@@ -53,21 +54,5 @@ function list_model_evaluations_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AutoMlClient::modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-
-    list_model_evaluations_sample($formattedParent);
 }
 // [END automl_v1beta1_generated_AutoMl_ListModelEvaluations_sync]

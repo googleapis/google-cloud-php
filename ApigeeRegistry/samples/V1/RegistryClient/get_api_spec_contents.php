@@ -34,18 +34,19 @@ use Google\Cloud\ApigeeRegistry\V1\GetApiSpecContentsRequest;
  * is to return the spec uncompressed (the mime_type response field
  * indicates the exact format returned).
  *
- * @param string $formattedName The name of the spec whose contents should be retrieved.
- *                              Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
- *                              Please see {@see RegistryClient::apiSpecName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_api_spec_contents_sample(string $formattedName): void
+function get_api_spec_contents_sample(): void
 {
     // Create a client.
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $request = (new GetApiSpecContentsRequest())
-        ->setName($formattedName);
+    $request = new GetApiSpecContentsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,27 +56,5 @@ function get_api_spec_contents_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = RegistryClient::apiSpecName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[API]',
-        '[VERSION]',
-        '[SPEC]'
-    );
-
-    get_api_spec_contents_sample($formattedName);
 }
 // [END apigeeregistry_v1_generated_Registry_GetApiSpecContents_sync]

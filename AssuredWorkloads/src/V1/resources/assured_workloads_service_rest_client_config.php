@@ -72,9 +72,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
         ],
         'google.longrunning.Operations' => [

@@ -55,7 +55,6 @@ class ReportStatusRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                                 $appConnector Required. BeyondCorp Connector name using the form:
      *                                                                             `projects/{project_id}/locations/{location_id}/connectors/{connector}`
-     *                                                                             Please see {@see AppConnectorsServiceClient::appConnectorName()} for help formatting this field.
      * @param \Google\Cloud\BeyondCorp\AppConnectors\V1\ResourceInfo $resourceInfo Required. Resource info of the connector.
      *
      * @return \Google\Cloud\BeyondCorp\AppConnectors\V1\ReportStatusRequest

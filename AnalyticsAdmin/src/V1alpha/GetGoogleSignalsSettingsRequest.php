@@ -26,7 +26,6 @@ class GetGoogleSignalsSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the google signals settings to retrieve.
      *                     Format: properties/{property}/googleSignalsSettings
-     *                     Please see {@see AnalyticsAdminServiceClient::googleSignalsSettingsName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetGoogleSignalsSettingsRequest
      *

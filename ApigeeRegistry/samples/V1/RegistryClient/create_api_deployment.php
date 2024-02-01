@@ -31,28 +31,19 @@ use Google\Cloud\ApigeeRegistry\V1\CreateApiDeploymentRequest;
 /**
  * Creates a specified deployment.
  *
- * @param string $formattedParent The parent, which owns this collection of deployments.
- *                                Format: `projects/&#42;/locations/&#42;/apis/*`
- *                                Please see {@see RegistryClient::apiName()} for help formatting this field.
- * @param string $apiDeploymentId The ID to use for the deployment, which will become the final component of
- *                                the deployment's resource name.
- *
- *                                This value should be 4-63 characters, and valid characters
- *                                are /[a-z][0-9]-/.
- *
- *                                Following AIP-162, IDs must not have the form of a UUID.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_api_deployment_sample(string $formattedParent, string $apiDeploymentId): void
+function create_api_deployment_sample(): void
 {
     // Create a client.
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $apiDeployment = new ApiDeployment();
-    $request = (new CreateApiDeploymentRequest())
-        ->setParent($formattedParent)
-        ->setApiDeployment($apiDeployment)
-        ->setApiDeploymentId($apiDeploymentId);
+    $request = new CreateApiDeploymentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,22 +53,5 @@ function create_api_deployment_sample(string $formattedParent, string $apiDeploy
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = RegistryClient::apiName('[PROJECT]', '[LOCATION]', '[API]');
-    $apiDeploymentId = '[API_DEPLOYMENT_ID]';
-
-    create_api_deployment_sample($formattedParent, $apiDeploymentId);
 }
 // [END apigeeregistry_v1_generated_Registry_CreateApiDeployment_sync]

@@ -33,18 +33,19 @@ use Google\ApiCore\ApiException;
  * Audiences created before 2020 may not be supported.
  * Default audiences will not show filter definitions.
  *
- * @param string $formattedName The name of the Audience to get.
- *                              Example format: properties/1234/audiences/5678
- *                              Please see {@see AnalyticsAdminServiceClient::audienceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_audience_sample(string $formattedName): void
+function get_audience_sample(): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new GetAudienceRequest())
-        ->setName($formattedName);
+    $request = new GetAudienceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +55,5 @@ function get_audience_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AnalyticsAdminServiceClient::audienceName('[PROPERTY]', '[AUDIENCE]');
-
-    get_audience_sample($formattedName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetAudience_sync]

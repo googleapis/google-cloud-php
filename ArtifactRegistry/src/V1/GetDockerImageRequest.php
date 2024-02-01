@@ -23,8 +23,7 @@ class GetDockerImageRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the docker images. Please see
-     *                     {@see ArtifactRegistryClient::dockerImageName()} for help formatting this field.
+     * @param string $name Required. The name of the docker images.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\GetDockerImageRequest
      *

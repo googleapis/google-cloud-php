@@ -25,12 +25,12 @@ class PredictionService
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-å
-4google/cloud/automl/v1beta1/prediction_service.protogoogle.cloud.automl.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto4google/cloud/automl/v1beta1/annotation_payload.proto,google/cloud/automl/v1beta1/data_items.proto$google/cloud/automl/v1beta1/io.proto,google/cloud/automl/v1beta1/operations.proto#google/longrunning/operations.proto"˛
-PredictRequest1
-name (	B#‡A˙A
-automl.googleapis.com/ModelA
-payload (2+.google.cloud.automl.v1beta1.ExamplePayloadB‡AG
+í
+4google/cloud/automl/v1beta1/prediction_service.protogoogle.cloud.automl.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto4google/cloud/automl/v1beta1/annotation_payload.proto,google/cloud/automl/v1beta1/data_items.proto$google/cloud/automl/v1beta1/io.proto,google/cloud/automl/v1beta1/operations.proto#google/longrunning/operations.proto"Ä
+PredictRequest2
+name (	B$‚A˙A
+automl.googleapis.com/ModelB
+payload (2+.google.cloud.automl.v1beta1.ExamplePayloadB‚AG
 params (27.google.cloud.automl.v1beta1.PredictRequest.ParamsEntry-
 ParamsEntry
 key (	
@@ -41,13 +41,13 @@ class PredictionService
 metadata (2:.google.cloud.automl.v1beta1.PredictResponse.MetadataEntry/
 MetadataEntry
 key (	
-value (	:8"Ó
-BatchPredictRequest1
-name (	B#‡A˙A
-automl.googleapis.com/ModelO
-input_config (24.google.cloud.automl.v1beta1.BatchPredictInputConfigB‡AQ
-output_config (25.google.cloud.automl.v1beta1.BatchPredictOutputConfigB‡AQ
-params (2<.google.cloud.automl.v1beta1.BatchPredictRequest.ParamsEntryB‡A-
+value (	:8"Ú
+BatchPredictRequest2
+name (	B$‚A˙A
+automl.googleapis.com/ModelP
+input_config (24.google.cloud.automl.v1beta1.BatchPredictInputConfigB‚AR
+output_config (25.google.cloud.automl.v1beta1.BatchPredictOutputConfigB‚AR
+params (2<.google.cloud.automl.v1beta1.BatchPredictRequest.ParamsEntryB‚A-
 ParamsEntry
 key (	
 value (	:8"ñ
@@ -57,9 +57,9 @@ class PredictionService
 key (	
 value (	:82û
 PredictionServiceæ
-Predict+.google.cloud.automl.v1beta1.PredictRequest,.google.cloud.automl.v1beta1.PredictResponse"XÇ”‰ì<"7/v1beta1/{name=projects/*/locations/*/models/*}:predict:*⁄Aname,payload,params¸
-BatchPredict0.google.cloud.automl.v1beta1.BatchPredictRequest.google.longrunning.Operation"öÇ”‰ìA"</v1beta1/{name=projects/*/locations/*/models/*}:batchPredict:*⁄A&name,input_config,output_config,params A\'
-BatchPredictResultOperationMetadataI Aautoml.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB≥
+Predict+.google.cloud.automl.v1beta1.PredictRequest,.google.cloud.automl.v1beta1.PredictResponse"X⁄Aname,payload,paramsÇ”‰ì<"7/v1beta1/{name=projects/*/locations/*/models/*}:predict:*¸
+BatchPredict0.google.cloud.automl.v1beta1.BatchPredictRequest.google.longrunning.Operation"ö A\'
+BatchPredictResultOperationMetadata⁄A&name,input_config,output_config,paramsÇ”‰ìA"</v1beta1/{name=projects/*/locations/*/models/*}:batchPredict:*I Aautoml.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB≥
 com.google.cloud.automl.v1beta1BPredictionServiceProtoPZ7cloud.google.com/go/automl/apiv1beta1/automlpb;automlpb Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
         , true);
 

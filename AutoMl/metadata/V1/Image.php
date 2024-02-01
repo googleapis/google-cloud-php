@@ -18,36 +18,36 @@ class Image
         \GPBMetadata\Google\Cloud\Automl\V1\Classification::initOnce();
         $pool->internalAddGeneratedFile(
             '
-£
-"google/cloud/automl/v1/image.protogoogle.cloud.automl.v1+google/cloud/automl/v1/classification.proto"r
-"ImageClassificationDatasetMetadataL
-classification_type (2*.google.cloud.automl.v1.ClassificationTypeB‡A"%
-#ImageObjectDetectionDatasetMetadata"˜
- ImageClassificationModelMetadata
-base_model_id (	B‡A*
-train_budget_milli_node_hours (B‡A(
-train_cost_milli_node_hours (B‡A
-stop_reason (	B‡A
+≥
+"google/cloud/automl/v1/image.protogoogle.cloud.automl.v1+google/cloud/automl/v1/classification.proto"s
+"ImageClassificationDatasetMetadataM
+classification_type (2*.google.cloud.automl.v1.ClassificationTypeB‚A"%
+#ImageObjectDetectionDatasetMetadata"˛
+ ImageClassificationModelMetadata
+base_model_id (	B‚A+
+train_budget_milli_node_hours (B‚A)
+train_cost_milli_node_hours (B‚A
+stop_reason (	B‚A
 
-model_type (	B‡A
-node_qps (B‡A
+model_type (	B‚A
+node_qps (B‚A
 
-node_count (B‡A"‹
-!ImageObjectDetectionModelMetadata
+node_count (B‚A"‚
+!ImageObjectDetectionModelMetadata
 
-model_type (	B‡A
+model_type (	B‚A
 
-node_count (B‡A
-node_qps (B‡A
-stop_reason (	B‡A*
-train_budget_milli_node_hours (B‡A(
-train_cost_milli_node_hours (B‡A"E
-*ImageClassificationModelDeploymentMetadata
+node_count (B‚A
+node_qps (B‚A
+stop_reason (	B‚A+
+train_budget_milli_node_hours (B‚A)
+train_cost_milli_node_hours (B‚A"F
+*ImageClassificationModelDeploymentMetadata
 
-node_count (B‡A"F
-+ImageObjectDetectionModelDeploymentMetadata
+node_count (B‚A"G
++ImageObjectDetectionModelDeploymentMetadata
 
-node_count (B‡AB¨
+node_count (B‚AB¨
 com.google.cloud.automl.v1B
 ImageProtoPZ2cloud.google.com/go/automl/apiv1/automlpb;automlpb™Google.Cloud.AutoML.V1 Google\\Cloud\\AutoMl\\V1ÍGoogle::Cloud::AutoML::V1bproto3'
         , true);

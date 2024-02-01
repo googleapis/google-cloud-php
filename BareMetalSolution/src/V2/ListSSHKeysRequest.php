@@ -37,8 +37,7 @@ class ListSSHKeysRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent containing the SSH keys.
-     *                       Currently, the only valid value for the location is "global". Please see
-     *                       {@see BareMetalSolutionClient::locationName()} for help formatting this field.
+     *                       Currently, the only valid value for the location is "global".
      *
      * @return \Google\Cloud\BareMetalSolution\V2\ListSSHKeysRequest
      *

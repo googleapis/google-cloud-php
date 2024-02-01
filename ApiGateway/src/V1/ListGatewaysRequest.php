@@ -50,7 +50,6 @@ class ListGatewaysRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. Parent resource of the Gateway, of the form:
      *                       `projects/&#42;/locations/*`
-     *                       Please see {@see ApiGatewayServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\ApiGateway\V1\ListGatewaysRequest
      *

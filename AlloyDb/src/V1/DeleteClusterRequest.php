@@ -62,8 +62,7 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the resource. For the required format, see the
-     *                     comment on the Cluster.name field. Please see
-     *                     {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
+     *                     comment on the Cluster.name field.
      *
      * @return \Google\Cloud\AlloyDb\V1\DeleteClusterRequest
      *

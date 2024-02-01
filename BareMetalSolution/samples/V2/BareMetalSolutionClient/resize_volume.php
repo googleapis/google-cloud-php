@@ -33,17 +33,19 @@ use Google\Rpc\Status;
 /**
  * Emergency Volume resize.
  *
- * @param string $formattedVolume Volume to resize. Please see
- *                                {@see BareMetalSolutionClient::volumeName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function resize_volume_sample(string $formattedVolume): void
+function resize_volume_sample(): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = (new ResizeVolumeRequest())
-        ->setVolume($formattedVolume);
+    $request = new ResizeVolumeRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,21 +65,5 @@ function resize_volume_sample(string $formattedVolume): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedVolume = BareMetalSolutionClient::volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-
-    resize_volume_sample($formattedVolume);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_ResizeVolume_sync]

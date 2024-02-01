@@ -41,8 +41,7 @@ class GetMetadataRequest extends \Google\Protobuf\Internal\Message
      *
      *                     Set the Property ID to 0 for dimensions and metrics common to all
      *                     properties. In this special mode, this method will not return custom
-     *                     dimensions and metrics. Please see
-     *                     {@see BetaAnalyticsDataClient::metadataName()} for help formatting this field.
+     *                     dimensions and metrics.
      *
      * @return \Google\Analytics\Data\V1beta\GetMetadataRequest
      *

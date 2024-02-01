@@ -33,18 +33,19 @@ use Google\Cloud\BareMetalSolution\V2\SSHKey;
  * Lists the public SSH keys registered for the specified project.
  * These SSH keys are used only for the interactive serial console feature.
  *
- * @param string $formattedParent The parent containing the SSH keys.
- *                                Currently, the only valid value for the location is "global". Please see
- *                                {@see BareMetalSolutionClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_ssh_keys_sample(string $formattedParent): void
+function list_ssh_keys_sample(): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = (new ListSSHKeysRequest())
-        ->setParent($formattedParent);
+    $request = new ListSSHKeysRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +59,5 @@ function list_ssh_keys_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = BareMetalSolutionClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_ssh_keys_sample($formattedParent);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_ListSSHKeys_sync]

@@ -104,10 +104,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $registryClient = new RegistryClient();
  * try {
- *     $formattedParent = $registryClient->locationName('[PROJECT]', '[LOCATION]');
- *     $api = new Api();
- *     $apiId = 'api_id';
- *     $response = $registryClient->createApi($formattedParent, $api, $apiId);
+ *     $response = $registryClient->createApi();
  * } finally {
  *     $registryClient->close();
  * }
@@ -730,28 +727,28 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedParent = $registryClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $api = new Api();
-     *     $apiId = 'api_id';
-     *     $response = $registryClient->createApi($formattedParent, $api, $apiId);
+     *     $response = $registryClient->createApi();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of APIs.
-     *                             Format: `projects/&#42;/locations/*`
-     * @param Api    $api          Required. The API to create.
-     * @param string $apiId        Required. The ID to use for the API, which will become the final component of
-     *                             the API's resource name.
-     *
-     *                             This value should be 4-63 characters, and valid characters
-     *                             are /[a-z][0-9]-/.
-     *
-     *                             Following AIP-162, IDs must not have the form of a UUID.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of APIs.
+     *           Format: `projects/&#42;/locations/*`
+     *     @type Api $api
+     *           Required. The API to create.
+     *     @type string $apiId
+     *           Required. The ID to use for the API, which will become the final component of
+     *           the API's resource name.
+     *
+     *           This value should be 4-63 characters, and valid characters
+     *           are /[a-z][0-9]-/.
+     *
+     *           Following AIP-162, IDs must not have the form of a UUID.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -762,14 +759,23 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createApi($parent, $api, $apiId, array $optionalArgs = [])
+    public function createApi(array $optionalArgs = [])
     {
         $request = new CreateApiRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setApi($api);
-        $request->setApiId($apiId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['api'])) {
+            $request->setApi($optionalArgs['api']);
+        }
+
+        if (isset($optionalArgs['apiId'])) {
+            $request->setApiId($optionalArgs['apiId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -791,28 +797,28 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedParent = $registryClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
-     *     $apiDeployment = new ApiDeployment();
-     *     $apiDeploymentId = 'api_deployment_id';
-     *     $response = $registryClient->createApiDeployment($formattedParent, $apiDeployment, $apiDeploymentId);
+     *     $response = $registryClient->createApiDeployment();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string        $parent          Required. The parent, which owns this collection of deployments.
-     *                                       Format: `projects/&#42;/locations/&#42;/apis/*`
-     * @param ApiDeployment $apiDeployment   Required. The deployment to create.
-     * @param string        $apiDeploymentId Required. The ID to use for the deployment, which will become the final component of
-     *                                       the deployment's resource name.
-     *
-     *                                       This value should be 4-63 characters, and valid characters
-     *                                       are /[a-z][0-9]-/.
-     *
-     *                                       Following AIP-162, IDs must not have the form of a UUID.
-     * @param array         $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of deployments.
+     *           Format: `projects/&#42;/locations/&#42;/apis/*`
+     *     @type ApiDeployment $apiDeployment
+     *           Required. The deployment to create.
+     *     @type string $apiDeploymentId
+     *           Required. The ID to use for the deployment, which will become the final component of
+     *           the deployment's resource name.
+     *
+     *           This value should be 4-63 characters, and valid characters
+     *           are /[a-z][0-9]-/.
+     *
+     *           Following AIP-162, IDs must not have the form of a UUID.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -823,18 +829,23 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createApiDeployment(
-        $parent,
-        $apiDeployment,
-        $apiDeploymentId,
-        array $optionalArgs = []
-    ) {
+    public function createApiDeployment(array $optionalArgs = [])
+    {
         $request = new CreateApiDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setApiDeployment($apiDeployment);
-        $request->setApiDeploymentId($apiDeploymentId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['apiDeployment'])) {
+            $request->setApiDeployment($optionalArgs['apiDeployment']);
+        }
+
+        if (isset($optionalArgs['apiDeploymentId'])) {
+            $request->setApiDeploymentId($optionalArgs['apiDeploymentId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -856,28 +867,28 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedParent = $registryClient->apiVersionName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]');
-     *     $apiSpec = new ApiSpec();
-     *     $apiSpecId = 'api_spec_id';
-     *     $response = $registryClient->createApiSpec($formattedParent, $apiSpec, $apiSpecId);
+     *     $response = $registryClient->createApiSpec();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string  $parent       Required. The parent, which owns this collection of specs.
-     *                              Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
-     * @param ApiSpec $apiSpec      Required. The spec to create.
-     * @param string  $apiSpecId    Required. The ID to use for the spec, which will become the final component of
-     *                              the spec's resource name.
-     *
-     *                              This value should be 4-63 characters, and valid characters
-     *                              are /[a-z][0-9]-/.
-     *
-     *                              Following AIP-162, IDs must not have the form of a UUID.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of specs.
+     *           Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
+     *     @type ApiSpec $apiSpec
+     *           Required. The spec to create.
+     *     @type string $apiSpecId
+     *           Required. The ID to use for the spec, which will become the final component of
+     *           the spec's resource name.
+     *
+     *           This value should be 4-63 characters, and valid characters
+     *           are /[a-z][0-9]-/.
+     *
+     *           Following AIP-162, IDs must not have the form of a UUID.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -888,18 +899,23 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createApiSpec(
-        $parent,
-        $apiSpec,
-        $apiSpecId,
-        array $optionalArgs = []
-    ) {
+    public function createApiSpec(array $optionalArgs = [])
+    {
         $request = new CreateApiSpecRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setApiSpec($apiSpec);
-        $request->setApiSpecId($apiSpecId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['apiSpec'])) {
+            $request->setApiSpec($optionalArgs['apiSpec']);
+        }
+
+        if (isset($optionalArgs['apiSpecId'])) {
+            $request->setApiSpecId($optionalArgs['apiSpecId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -921,28 +937,28 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedParent = $registryClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
-     *     $apiVersion = new ApiVersion();
-     *     $apiVersionId = 'api_version_id';
-     *     $response = $registryClient->createApiVersion($formattedParent, $apiVersion, $apiVersionId);
+     *     $response = $registryClient->createApiVersion();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string     $parent       Required. The parent, which owns this collection of versions.
-     *                                 Format: `projects/&#42;/locations/&#42;/apis/*`
-     * @param ApiVersion $apiVersion   Required. The version to create.
-     * @param string     $apiVersionId Required. The ID to use for the version, which will become the final component of
-     *                                 the version's resource name.
-     *
-     *                                 This value should be 1-63 characters, and valid characters
-     *                                 are /[a-z][0-9]-/.
-     *
-     *                                 Following AIP-162, IDs must not have the form of a UUID.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of versions.
+     *           Format: `projects/&#42;/locations/&#42;/apis/*`
+     *     @type ApiVersion $apiVersion
+     *           Required. The version to create.
+     *     @type string $apiVersionId
+     *           Required. The ID to use for the version, which will become the final component of
+     *           the version's resource name.
+     *
+     *           This value should be 1-63 characters, and valid characters
+     *           are /[a-z][0-9]-/.
+     *
+     *           Following AIP-162, IDs must not have the form of a UUID.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -953,18 +969,23 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createApiVersion(
-        $parent,
-        $apiVersion,
-        $apiVersionId,
-        array $optionalArgs = []
-    ) {
+    public function createApiVersion(array $optionalArgs = [])
+    {
         $request = new CreateApiVersionRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setApiVersion($apiVersion);
-        $request->setApiVersionId($apiVersionId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['apiVersion'])) {
+            $request->setApiVersion($optionalArgs['apiVersion']);
+        }
+
+        if (isset($optionalArgs['apiVersionId'])) {
+            $request->setApiVersionId($optionalArgs['apiVersionId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -986,28 +1007,28 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedParent = $registryClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $artifact = new Artifact();
-     *     $artifactId = 'artifact_id';
-     *     $response = $registryClient->createArtifact($formattedParent, $artifact, $artifactId);
+     *     $response = $registryClient->createArtifact();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string   $parent       Required. The parent, which owns this collection of artifacts.
-     *                               Format: `{parent}`
-     * @param Artifact $artifact     Required. The artifact to create.
-     * @param string   $artifactId   Required. The ID to use for the artifact, which will become the final component of
-     *                               the artifact's resource name.
-     *
-     *                               This value should be 4-63 characters, and valid characters
-     *                               are /[a-z][0-9]-/.
-     *
-     *                               Following AIP-162, IDs must not have the form of a UUID.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of artifacts.
+     *           Format: `{parent}`
+     *     @type Artifact $artifact
+     *           Required. The artifact to create.
+     *     @type string $artifactId
+     *           Required. The ID to use for the artifact, which will become the final component of
+     *           the artifact's resource name.
+     *
+     *           This value should be 4-63 characters, and valid characters
+     *           are /[a-z][0-9]-/.
+     *
+     *           Following AIP-162, IDs must not have the form of a UUID.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1018,18 +1039,23 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createArtifact(
-        $parent,
-        $artifact,
-        $artifactId,
-        array $optionalArgs = []
-    ) {
+    public function createArtifact(array $optionalArgs = [])
+    {
         $request = new CreateArtifactRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setArtifact($artifact);
-        $request->setArtifactId($artifactId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['artifact'])) {
+            $request->setArtifact($optionalArgs['artifact']);
+        }
+
+        if (isset($optionalArgs['artifactId'])) {
+            $request->setArtifactId($optionalArgs['artifactId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1052,18 +1078,18 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
-     *     $registryClient->deleteApi($formattedName);
+     *     $registryClient->deleteApi();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the API to delete.
-     *                             Format: `projects/&#42;/locations/&#42;/apis/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the API to delete.
+     *           Format: `projects/&#42;/locations/&#42;/apis/*`
      *     @type bool $force
      *           If set to true, any child resources will also be deleted.
      *           (Otherwise, the request will only work if there are no child resources.)
@@ -1075,12 +1101,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteApi($name, array $optionalArgs = [])
+    public function deleteApi(array $optionalArgs = [])
     {
         $request = new DeleteApiRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -1107,18 +1136,18 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
-     *     $registryClient->deleteApiDeployment($formattedName);
+     *     $registryClient->deleteApiDeployment();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the deployment to delete.
-     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/deployments/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the deployment to delete.
+     *           Format: `projects/&#42;/locations/&#42;/apis/&#42;/deployments/*`
      *     @type bool $force
      *           If set to true, any child resources will also be deleted.
      *           (Otherwise, the request will only work if there are no child resources.)
@@ -1130,12 +1159,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteApiDeployment($name, array $optionalArgs = [])
+    public function deleteApiDeployment(array $optionalArgs = [])
     {
         $request = new DeleteApiDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -1161,21 +1193,21 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
-     *     $response = $registryClient->deleteApiDeploymentRevision($formattedName);
+     *     $response = $registryClient->deleteApiDeploymentRevision();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the deployment revision to be deleted,
-     *                             with a revision ID explicitly included.
-     *
-     *                             Example:
-     *                             `projects/sample/locations/global/apis/petstore/deployments/prod&#64;c7cfa2a8`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the deployment revision to be deleted,
+     *           with a revision ID explicitly included.
+     *
+     *           Example:
+     *           `projects/sample/locations/global/apis/petstore/deployments/prod&#64;c7cfa2a8`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1186,12 +1218,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteApiDeploymentRevision($name, array $optionalArgs = [])
+    public function deleteApiDeploymentRevision(array $optionalArgs = [])
     {
         $request = new DeleteApiDeploymentRevisionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1214,18 +1249,18 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
-     *     $registryClient->deleteApiSpec($formattedName);
+     *     $registryClient->deleteApiSpec();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the spec to delete.
-     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the spec to delete.
+     *           Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
      *     @type bool $force
      *           If set to true, any child resources will also be deleted.
      *           (Otherwise, the request will only work if there are no child resources.)
@@ -1237,12 +1272,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteApiSpec($name, array $optionalArgs = [])
+    public function deleteApiSpec(array $optionalArgs = [])
     {
         $request = new DeleteApiSpecRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -1268,21 +1306,21 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
-     *     $response = $registryClient->deleteApiSpecRevision($formattedName);
+     *     $response = $registryClient->deleteApiSpecRevision();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the spec revision to be deleted,
-     *                             with a revision ID explicitly included.
-     *
-     *                             Example:
-     *                             `projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml&#64;c7cfa2a8`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the spec revision to be deleted,
+     *           with a revision ID explicitly included.
+     *
+     *           Example:
+     *           `projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml&#64;c7cfa2a8`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1293,12 +1331,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteApiSpecRevision($name, array $optionalArgs = [])
+    public function deleteApiSpecRevision(array $optionalArgs = [])
     {
         $request = new DeleteApiSpecRevisionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1321,18 +1362,18 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiVersionName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]');
-     *     $registryClient->deleteApiVersion($formattedName);
+     *     $registryClient->deleteApiVersion();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the version to delete.
-     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the version to delete.
+     *           Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
      *     @type bool $force
      *           If set to true, any child resources will also be deleted.
      *           (Otherwise, the request will only work if there are no child resources.)
@@ -1344,12 +1385,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteApiVersion($name, array $optionalArgs = [])
+    public function deleteApiVersion(array $optionalArgs = [])
     {
         $request = new DeleteApiVersionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -1375,18 +1419,18 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->artifactName('[PROJECT]', '[LOCATION]', '[ARTIFACT]');
-     *     $registryClient->deleteArtifact($formattedName);
+     *     $registryClient->deleteArtifact();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the artifact to delete.
-     *                             Format: `{parent}/artifacts/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the artifact to delete.
+     *           Format: `{parent}/artifacts/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1395,12 +1439,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteArtifact($name, array $optionalArgs = [])
+    public function deleteArtifact(array $optionalArgs = [])
     {
         $request = new DeleteArtifactRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1422,18 +1469,18 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
-     *     $response = $registryClient->getApi($formattedName);
+     *     $response = $registryClient->getApi();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the API to retrieve.
-     *                             Format: `projects/&#42;/locations/&#42;/apis/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the API to retrieve.
+     *           Format: `projects/&#42;/locations/&#42;/apis/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1444,12 +1491,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getApi($name, array $optionalArgs = [])
+    public function getApi(array $optionalArgs = [])
     {
         $request = new GetApiRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1471,18 +1521,18 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
-     *     $response = $registryClient->getApiDeployment($formattedName);
+     *     $response = $registryClient->getApiDeployment();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the deployment to retrieve.
-     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/deployments/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the deployment to retrieve.
+     *           Format: `projects/&#42;/locations/&#42;/apis/&#42;/deployments/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1493,12 +1543,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getApiDeployment($name, array $optionalArgs = [])
+    public function getApiDeployment(array $optionalArgs = [])
     {
         $request = new GetApiDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1520,18 +1573,18 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
-     *     $response = $registryClient->getApiSpec($formattedName);
+     *     $response = $registryClient->getApiSpec();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the spec to retrieve.
-     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the spec to retrieve.
+     *           Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1542,12 +1595,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getApiSpec($name, array $optionalArgs = [])
+    public function getApiSpec(array $optionalArgs = [])
     {
         $request = new GetApiSpecRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1572,18 +1628,18 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
-     *     $response = $registryClient->getApiSpecContents($formattedName);
+     *     $response = $registryClient->getApiSpecContents();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the spec whose contents should be retrieved.
-     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the spec whose contents should be retrieved.
+     *           Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1594,12 +1650,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getApiSpecContents($name, array $optionalArgs = [])
+    public function getApiSpecContents(array $optionalArgs = [])
     {
         $request = new GetApiSpecContentsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1621,18 +1680,18 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiVersionName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]');
-     *     $response = $registryClient->getApiVersion($formattedName);
+     *     $response = $registryClient->getApiVersion();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the version to retrieve.
-     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the version to retrieve.
+     *           Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1643,12 +1702,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getApiVersion($name, array $optionalArgs = [])
+    public function getApiVersion(array $optionalArgs = [])
     {
         $request = new GetApiVersionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1670,18 +1732,18 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->artifactName('[PROJECT]', '[LOCATION]', '[ARTIFACT]');
-     *     $response = $registryClient->getArtifact($formattedName);
+     *     $response = $registryClient->getArtifact();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the artifact to retrieve.
-     *                             Format: `{parent}/artifacts/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the artifact to retrieve.
+     *           Format: `{parent}/artifacts/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1692,12 +1754,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getArtifact($name, array $optionalArgs = [])
+    public function getArtifact(array $optionalArgs = [])
     {
         $request = new GetArtifactRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1722,18 +1787,18 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->artifactName('[PROJECT]', '[LOCATION]', '[ARTIFACT]');
-     *     $response = $registryClient->getArtifactContents($formattedName);
+     *     $response = $registryClient->getArtifactContents();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the artifact whose contents should be retrieved.
-     *                             Format: `{parent}/artifacts/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the artifact whose contents should be retrieved.
+     *           Format: `{parent}/artifacts/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1744,12 +1809,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getArtifactContents($name, array $optionalArgs = [])
+    public function getArtifactContents(array $optionalArgs = [])
     {
         $request = new GetArtifactContentsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1772,9 +1840,8 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $registryClient->listApiDeploymentRevisions($formattedName);
+     *     $pagedResponse = $registryClient->listApiDeploymentRevisions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1782,7 +1849,7 @@ class RegistryGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $registryClient->listApiDeploymentRevisions($formattedName);
+     *     $pagedResponse = $registryClient->listApiDeploymentRevisions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1791,10 +1858,11 @@ class RegistryGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the deployment to list revisions for.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the deployment to list revisions for.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1814,12 +1882,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listApiDeploymentRevisions($name, array $optionalArgs = [])
+    public function listApiDeploymentRevisions(array $optionalArgs = [])
     {
         $request = new ListApiDeploymentRevisionsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1849,9 +1920,8 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedParent = $registryClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $registryClient->listApiDeployments($formattedParent);
+     *     $pagedResponse = $registryClient->listApiDeployments();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1859,7 +1929,7 @@ class RegistryGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $registryClient->listApiDeployments($formattedParent);
+     *     $pagedResponse = $registryClient->listApiDeployments();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1868,11 +1938,12 @@ class RegistryGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of deployments.
-     *                             Format: `projects/&#42;/locations/&#42;/apis/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of deployments.
+     *           Format: `projects/&#42;/locations/&#42;/apis/*`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1895,12 +1966,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listApiDeployments($parent, array $optionalArgs = [])
+    public function listApiDeployments(array $optionalArgs = [])
     {
         $request = new ListApiDeploymentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1935,9 +2009,8 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $registryClient->listApiSpecRevisions($formattedName);
+     *     $pagedResponse = $registryClient->listApiSpecRevisions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1945,7 +2018,7 @@ class RegistryGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $registryClient->listApiSpecRevisions($formattedName);
+     *     $pagedResponse = $registryClient->listApiSpecRevisions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1954,10 +2027,11 @@ class RegistryGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the spec to list revisions for.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the spec to list revisions for.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1977,12 +2051,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listApiSpecRevisions($name, array $optionalArgs = [])
+    public function listApiSpecRevisions(array $optionalArgs = [])
     {
         $request = new ListApiSpecRevisionsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2012,9 +2089,8 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedParent = $registryClient->apiVersionName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $registryClient->listApiSpecs($formattedParent);
+     *     $pagedResponse = $registryClient->listApiSpecs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2022,7 +2098,7 @@ class RegistryGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $registryClient->listApiSpecs($formattedParent);
+     *     $pagedResponse = $registryClient->listApiSpecs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2031,11 +2107,12 @@ class RegistryGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of specs.
-     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of specs.
+     *           Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2058,12 +2135,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listApiSpecs($parent, array $optionalArgs = [])
+    public function listApiSpecs(array $optionalArgs = [])
     {
         $request = new ListApiSpecsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2097,9 +2177,8 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedParent = $registryClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $registryClient->listApiVersions($formattedParent);
+     *     $pagedResponse = $registryClient->listApiVersions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2107,7 +2186,7 @@ class RegistryGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $registryClient->listApiVersions($formattedParent);
+     *     $pagedResponse = $registryClient->listApiVersions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2116,11 +2195,12 @@ class RegistryGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of versions.
-     *                             Format: `projects/&#42;/locations/&#42;/apis/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of versions.
+     *           Format: `projects/&#42;/locations/&#42;/apis/*`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2143,12 +2223,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listApiVersions($parent, array $optionalArgs = [])
+    public function listApiVersions(array $optionalArgs = [])
     {
         $request = new ListApiVersionsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2182,9 +2265,8 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedParent = $registryClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $registryClient->listApis($formattedParent);
+     *     $pagedResponse = $registryClient->listApis();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2192,7 +2274,7 @@ class RegistryGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $registryClient->listApis($formattedParent);
+     *     $pagedResponse = $registryClient->listApis();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2201,11 +2283,12 @@ class RegistryGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of APIs.
-     *                             Format: `projects/&#42;/locations/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of APIs.
+     *           Format: `projects/&#42;/locations/*`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2228,12 +2311,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listApis($parent, array $optionalArgs = [])
+    public function listApis(array $optionalArgs = [])
     {
         $request = new ListApisRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2267,9 +2353,8 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedParent = $registryClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $registryClient->listArtifacts($formattedParent);
+     *     $pagedResponse = $registryClient->listArtifacts();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2277,7 +2362,7 @@ class RegistryGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $registryClient->listArtifacts($formattedParent);
+     *     $pagedResponse = $registryClient->listArtifacts();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2286,11 +2371,12 @@ class RegistryGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of artifacts.
-     *                             Format: `{parent}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of artifacts.
+     *           Format: `{parent}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2313,12 +2399,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listArtifacts($parent, array $optionalArgs = [])
+    public function listArtifacts(array $optionalArgs = [])
     {
         $request = new ListArtifactsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2352,20 +2441,20 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $artifact = new Artifact();
-     *     $response = $registryClient->replaceArtifact($artifact);
+     *     $response = $registryClient->replaceArtifact();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param Artifact $artifact     Required. The artifact to replace.
-     *
-     *                               The `name` field is used to identify the artifact to replace.
-     *                               Format: `{parent}/artifacts/*`
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Artifact $artifact
+     *           Required. The artifact to replace.
+     *
+     *           The `name` field is used to identify the artifact to replace.
+     *           Format: `{parent}/artifacts/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2376,12 +2465,14 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function replaceArtifact($artifact, array $optionalArgs = [])
+    public function replaceArtifact(array $optionalArgs = [])
     {
         $request = new ReplaceArtifactRequest();
         $requestParamHeaders = [];
-        $request->setArtifact($artifact);
-        $requestParamHeaders['artifact.name'] = $artifact->getName();
+        if (isset($optionalArgs['artifact'])) {
+            $request->setArtifact($optionalArgs['artifact']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2404,22 +2495,22 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
-     *     $revisionId = 'revision_id';
-     *     $response = $registryClient->rollbackApiDeployment($formattedName, $revisionId);
+     *     $response = $registryClient->rollbackApiDeployment();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The deployment being rolled back.
-     * @param string $revisionId   Required. The revision ID to roll back to.
-     *                             It must be a revision of the same deployment.
-     *
-     *                             Example: `c7cfa2a8`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The deployment being rolled back.
+     *     @type string $revisionId
+     *           Required. The revision ID to roll back to.
+     *           It must be a revision of the same deployment.
+     *
+     *           Example: `c7cfa2a8`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2430,16 +2521,19 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function rollbackApiDeployment(
-        $name,
-        $revisionId,
-        array $optionalArgs = []
-    ) {
+    public function rollbackApiDeployment(array $optionalArgs = [])
+    {
         $request = new RollbackApiDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setRevisionId($revisionId);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['revisionId'])) {
+            $request->setRevisionId($optionalArgs['revisionId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2462,22 +2556,22 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
-     *     $revisionId = 'revision_id';
-     *     $response = $registryClient->rollbackApiSpec($formattedName, $revisionId);
+     *     $response = $registryClient->rollbackApiSpec();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The spec being rolled back.
-     * @param string $revisionId   Required. The revision ID to roll back to.
-     *                             It must be a revision of the same spec.
-     *
-     *                             Example: `c7cfa2a8`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The spec being rolled back.
+     *     @type string $revisionId
+     *           Required. The revision ID to roll back to.
+     *           It must be a revision of the same spec.
+     *
+     *           Example: `c7cfa2a8`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2488,16 +2582,19 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function rollbackApiSpec(
-        $name,
-        $revisionId,
-        array $optionalArgs = []
-    ) {
+    public function rollbackApiSpec(array $optionalArgs = [])
+    {
         $request = new RollbackApiSpecRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setRevisionId($revisionId);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['revisionId'])) {
+            $request->setRevisionId($optionalArgs['revisionId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2520,20 +2617,20 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
-     *     $tag = 'tag';
-     *     $response = $registryClient->tagApiDeploymentRevision($formattedName, $tag);
+     *     $response = $registryClient->tagApiDeploymentRevision();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the deployment to be tagged, including the revision ID.
-     * @param string $tag          Required. The tag to apply.
-     *                             The tag should be at most 40 characters, and match `[a-z][a-z0-9-]{3,39}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the deployment to be tagged, including the revision ID.
+     *     @type string $tag
+     *           Required. The tag to apply.
+     *           The tag should be at most 40 characters, and match `[a-z][a-z0-9-]{3,39}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2544,16 +2641,19 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function tagApiDeploymentRevision(
-        $name,
-        $tag,
-        array $optionalArgs = []
-    ) {
+    public function tagApiDeploymentRevision(array $optionalArgs = [])
+    {
         $request = new TagApiDeploymentRevisionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setTag($tag);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['tag'])) {
+            $request->setTag($optionalArgs['tag']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2575,20 +2675,20 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $formattedName = $registryClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
-     *     $tag = 'tag';
-     *     $response = $registryClient->tagApiSpecRevision($formattedName, $tag);
+     *     $response = $registryClient->tagApiSpecRevision();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the spec to be tagged, including the revision ID.
-     * @param string $tag          Required. The tag to apply.
-     *                             The tag should be at most 40 characters, and match `[a-z][a-z0-9-]{3,39}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the spec to be tagged, including the revision ID.
+     *     @type string $tag
+     *           Required. The tag to apply.
+     *           The tag should be at most 40 characters, and match `[a-z][a-z0-9-]{3,39}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2599,13 +2699,19 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function tagApiSpecRevision($name, $tag, array $optionalArgs = [])
+    public function tagApiSpecRevision(array $optionalArgs = [])
     {
         $request = new TagApiSpecRevisionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setTag($tag);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['tag'])) {
+            $request->setTag($optionalArgs['tag']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2627,20 +2733,20 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $api = new Api();
-     *     $response = $registryClient->updateApi($api);
+     *     $response = $registryClient->updateApi();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param Api   $api          Required. The API to update.
-     *
-     *                            The `name` field is used to identify the API to update.
-     *                            Format: `projects/&#42;/locations/&#42;/apis/*`
      * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Api $api
+     *           Required. The API to update.
+     *
+     *           The `name` field is used to identify the API to update.
+     *           Format: `projects/&#42;/locations/&#42;/apis/*`
      *     @type FieldMask $updateMask
      *           The list of fields to be updated. If omitted, all fields are updated that
      *           are set in the request message (fields set to default values are ignored).
@@ -2659,12 +2765,14 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateApi($api, array $optionalArgs = [])
+    public function updateApi(array $optionalArgs = [])
     {
         $request = new UpdateApiRequest();
         $requestParamHeaders = [];
-        $request->setApi($api);
-        $requestParamHeaders['api.name'] = $api->getName();
+        if (isset($optionalArgs['api'])) {
+            $request->setApi($optionalArgs['api']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2694,20 +2802,20 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $apiDeployment = new ApiDeployment();
-     *     $response = $registryClient->updateApiDeployment($apiDeployment);
+     *     $response = $registryClient->updateApiDeployment();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param ApiDeployment $apiDeployment Required. The deployment to update.
-     *
-     *                                     The `name` field is used to identify the deployment to update.
-     *                                     Format: `projects/&#42;/locations/&#42;/apis/&#42;/deployments/*`
-     * @param array         $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type ApiDeployment $apiDeployment
+     *           Required. The deployment to update.
+     *
+     *           The `name` field is used to identify the deployment to update.
+     *           Format: `projects/&#42;/locations/&#42;/apis/&#42;/deployments/*`
      *     @type FieldMask $updateMask
      *           The list of fields to be updated. If omitted, all fields are updated that
      *           are set in the request message (fields set to default values are ignored).
@@ -2726,14 +2834,14 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateApiDeployment(
-        $apiDeployment,
-        array $optionalArgs = []
-    ) {
+    public function updateApiDeployment(array $optionalArgs = [])
+    {
         $request = new UpdateApiDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setApiDeployment($apiDeployment);
-        $requestParamHeaders['api_deployment.name'] = $apiDeployment->getName();
+        if (isset($optionalArgs['apiDeployment'])) {
+            $request->setApiDeployment($optionalArgs['apiDeployment']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2763,20 +2871,20 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $apiSpec = new ApiSpec();
-     *     $response = $registryClient->updateApiSpec($apiSpec);
+     *     $response = $registryClient->updateApiSpec();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param ApiSpec $apiSpec      Required. The spec to update.
-     *
-     *                              The `name` field is used to identify the spec to update.
-     *                              Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type ApiSpec $apiSpec
+     *           Required. The spec to update.
+     *
+     *           The `name` field is used to identify the spec to update.
+     *           Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
      *     @type FieldMask $updateMask
      *           The list of fields to be updated. If omitted, all fields are updated that
      *           are set in the request message (fields set to default values are ignored).
@@ -2795,12 +2903,14 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateApiSpec($apiSpec, array $optionalArgs = [])
+    public function updateApiSpec(array $optionalArgs = [])
     {
         $request = new UpdateApiSpecRequest();
         $requestParamHeaders = [];
-        $request->setApiSpec($apiSpec);
-        $requestParamHeaders['api_spec.name'] = $apiSpec->getName();
+        if (isset($optionalArgs['apiSpec'])) {
+            $request->setApiSpec($optionalArgs['apiSpec']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2830,20 +2940,20 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $apiVersion = new ApiVersion();
-     *     $response = $registryClient->updateApiVersion($apiVersion);
+     *     $response = $registryClient->updateApiVersion();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param ApiVersion $apiVersion   Required. The version to update.
-     *
-     *                                 The `name` field is used to identify the version to update.
-     *                                 Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type ApiVersion $apiVersion
+     *           Required. The version to update.
+     *
+     *           The `name` field is used to identify the version to update.
+     *           Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
      *     @type FieldMask $updateMask
      *           The list of fields to be updated. If omitted, all fields are updated that
      *           are set in the request message (fields set to default values are ignored).
@@ -2862,12 +2972,14 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateApiVersion($apiVersion, array $optionalArgs = [])
+    public function updateApiVersion(array $optionalArgs = [])
     {
         $request = new UpdateApiVersionRequest();
         $requestParamHeaders = [];
-        $request->setApiVersion($apiVersion);
-        $requestParamHeaders['api_version.name'] = $apiVersion->getName();
+        if (isset($optionalArgs['apiVersion'])) {
+            $request->setApiVersion($optionalArgs['apiVersion']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -3038,18 +3150,18 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $registryClient->getIamPolicy($resource);
+     *     $response = $registryClient->getIamPolicy();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -3063,12 +3175,15 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -3100,23 +3215,23 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $registryClient->setIamPolicy($resource, $policy);
+     *     $response = $registryClient->setIamPolicy();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -3133,13 +3248,19 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -3173,23 +3294,23 @@ class RegistryGapicClient
      * ```
      * $registryClient = new RegistryClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $registryClient->testIamPermissions($resource, $permissions);
+     *     $response = $registryClient->testIamPermissions();
      * } finally {
      *     $registryClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3200,16 +3321,19 @@ class RegistryGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

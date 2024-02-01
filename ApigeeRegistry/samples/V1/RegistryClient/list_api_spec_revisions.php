@@ -33,17 +33,19 @@ use Google\Cloud\ApigeeRegistry\V1\ListApiSpecRevisionsRequest;
  * Lists all revisions of a spec.
  * Revisions are returned in descending order of revision creation time.
  *
- * @param string $formattedName The name of the spec to list revisions for. Please see
- *                              {@see RegistryClient::apiSpecName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_api_spec_revisions_sample(string $formattedName): void
+function list_api_spec_revisions_sample(): void
 {
     // Create a client.
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $request = (new ListApiSpecRevisionsRequest())
-        ->setName($formattedName);
+    $request = new ListApiSpecRevisionsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,27 +59,5 @@ function list_api_spec_revisions_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = RegistryClient::apiSpecName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[API]',
-        '[VERSION]',
-        '[SPEC]'
-    );
-
-    list_api_spec_revisions_sample($formattedName);
 }
 // [END apigeeregistry_v1_generated_Registry_ListApiSpecRevisions_sync]

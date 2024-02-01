@@ -32,23 +32,19 @@ use Google\Cloud\Asset\V1\Client\AssetServiceClient;
 /**
  * Analyzes organization policies under a scope.
  *
- * @param string $scope      The organization to scope the request. Only organization
- *                           policies within the scope will be analyzed.
- *
- *                           * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
- * @param string $constraint The name of the constraint to analyze organization policies for.
- *                           The response only contains analyzed organization policies for the provided
- *                           constraint.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function analyze_org_policies_sample(string $scope, string $constraint): void
+function analyze_org_policies_sample(): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $request = (new AnalyzeOrgPoliciesRequest())
-        ->setScope($scope)
-        ->setConstraint($constraint);
+    $request = new AnalyzeOrgPoliciesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,22 +58,5 @@ function analyze_org_policies_sample(string $scope, string $constraint): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $scope = '[SCOPE]';
-    $constraint = '[CONSTRAINT]';
-
-    analyze_org_policies_sample($scope, $constraint);
 }
 // [END cloudasset_v1_generated_AssetService_AnalyzeOrgPolicies_sync]

@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'api_id',
-                ],
             ],
             'CreateApiDeployment' => [
                 'method' => 'post',
@@ -28,9 +25,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'api_deployment_id',
                 ],
             ],
             'CreateApiSpec' => [
@@ -44,9 +38,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'api_spec_id',
-                ],
             ],
             'CreateApiVersion' => [
                 'method' => 'post',
@@ -59,9 +50,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'api_version_id',
-                ],
             ],
             'CreateArtifact' => [
                 'method' => 'post',
@@ -72,33 +60,21 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{parent=projects/*/locations/*/apis/*}/artifacts',
                         'body' => 'artifact',
-                        'queryParams' => [
-                            'artifact_id',
-                        ],
                     ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{parent=projects/*/locations/*/apis/*/versions/*}/artifacts',
                         'body' => 'artifact',
-                        'queryParams' => [
-                            'artifact_id',
-                        ],
                     ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{parent=projects/*/locations/*/apis/*/versions/*/specs/*}/artifacts',
                         'body' => 'artifact',
-                        'queryParams' => [
-                            'artifact_id',
-                        ],
                     ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{parent=projects/*/locations/*/apis/*/deployments/*}/artifacts',
                         'body' => 'artifact',
-                        'queryParams' => [
-                            'artifact_id',
-                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -107,9 +83,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'artifact_id',
                 ],
             ],
             'DeleteApi' => [

@@ -26,7 +26,6 @@ class GetAppConnectionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. BeyondCorp AppConnection name using the form:
      *                     `projects/{project_id}/locations/{location_id}/appConnections/{app_connection_id}`
-     *                     Please see {@see AppConnectionsServiceClient::appConnectionName()} for help formatting this field.
      *
      * @return \Google\Cloud\BeyondCorp\AppConnections\V1\GetAppConnectionRequest
      *

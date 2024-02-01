@@ -170,9 +170,6 @@ return [
             'ListAccessPolicies' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/accessPolicies',
-                'queryParams' => [
-                    'parent',
-                ],
             ],
             'ListGcpUserAccessBindings' => [
                 'method' => 'get',
@@ -268,9 +265,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateAccessPolicy' => [
                 'method' => 'patch',
@@ -283,9 +277,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'UpdateGcpUserAccessBinding' => [
@@ -300,9 +291,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateServicePerimeter' => [
                 'method' => 'patch',
@@ -315,9 +303,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

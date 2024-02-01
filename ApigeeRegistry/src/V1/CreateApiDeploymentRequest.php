@@ -42,7 +42,6 @@ class CreateApiDeploymentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                        $parent          Required. The parent, which owns this collection of deployments.
      *                                                                       Format: `projects/&#42;/locations/&#42;/apis/*`
-     *                                                                       Please see {@see RegistryClient::apiName()} for help formatting this field.
      * @param \Google\Cloud\ApigeeRegistry\V1\ApiDeployment $apiDeployment   Required. The deployment to create.
      * @param string                                        $apiDeploymentId Required. The ID to use for the deployment, which will become the final component of
      *                                                                       the deployment's resource name.

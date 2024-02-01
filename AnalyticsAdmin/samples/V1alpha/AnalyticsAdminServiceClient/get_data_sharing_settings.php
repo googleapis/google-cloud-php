@@ -32,19 +32,19 @@ use Google\ApiCore\ApiException;
  * Get data sharing settings on an account.
  * Data sharing settings are singletons.
  *
- * @param string $formattedName The name of the settings to lookup.
- *                              Format: accounts/{account}/dataSharingSettings
- *                              Example: "accounts/1000/dataSharingSettings"
- *                              Please see {@see AnalyticsAdminServiceClient::dataSharingSettingsName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_data_sharing_settings_sample(string $formattedName): void
+function get_data_sharing_settings_sample(): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new GetDataSharingSettingsRequest())
-        ->setName($formattedName);
+    $request = new GetDataSharingSettingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +54,5 @@ function get_data_sharing_settings_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AnalyticsAdminServiceClient::dataSharingSettingsName('[ACCOUNT]');
-
-    get_data_sharing_settings_sample($formattedName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetDataSharingSettings_sync]

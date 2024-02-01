@@ -23,8 +23,7 @@ class GetMavenArtifactRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the maven artifact. Please see
-     *                     {@see ArtifactRegistryClient::mavenArtifactName()} for help formatting this field.
+     * @param string $name Required. The name of the maven artifact.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\GetMavenArtifactRequest
      *

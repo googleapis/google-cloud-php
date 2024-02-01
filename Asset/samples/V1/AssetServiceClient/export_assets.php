@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Asset\V1\Client\AssetServiceClient;
 use Google\Cloud\Asset\V1\ExportAssetsRequest;
 use Google\Cloud\Asset\V1\ExportAssetsResponse;
-use Google\Cloud\Asset\V1\OutputConfig;
 use Google\Rpc\Status;
 
 /**
@@ -44,21 +43,19 @@ use Google\Rpc\Status;
  * regular-size resource parent, the export operation usually finishes within
  * 5 minutes.
  *
- * @param string $parent The relative name of the root asset. This can only be an
- *                       organization number (such as "organizations/123"), a project ID (such as
- *                       "projects/my-project-id"), or a project number (such as "projects/12345"),
- *                       or a folder number (such as "folders/123").
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function export_assets_sample(string $parent): void
+function export_assets_sample(): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $outputConfig = new OutputConfig();
-    $request = (new ExportAssetsRequest())
-        ->setParent($parent)
-        ->setOutputConfig($outputConfig);
+    $request = new ExportAssetsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -78,21 +75,5 @@ function export_assets_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    export_assets_sample($parent);
 }
 // [END cloudasset_v1_generated_AssetService_ExportAssets_sync]

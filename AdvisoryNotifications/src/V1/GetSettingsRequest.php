@@ -27,8 +27,7 @@ class GetSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The resource name of the settings to retrieve.
      *                     Format:
-     *                     organizations/{organization}/locations/{location}/settings. Please see
-     *                     {@see AdvisoryNotificationsServiceClient::settingsName()} for help formatting this field.
+     *                     organizations/{organization}/locations/{location}/settings.
      *
      * @return \Google\Cloud\AdvisoryNotifications\V1\GetSettingsRequest
      *

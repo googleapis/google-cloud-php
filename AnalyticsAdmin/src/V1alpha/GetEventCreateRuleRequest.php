@@ -26,7 +26,6 @@ class GetEventCreateRuleRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the EventCreateRule to get.
      *                     Example format: properties/123/dataStreams/456/eventCreateRules/789
-     *                     Please see {@see AnalyticsAdminServiceClient::eventCreateRuleName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetEventCreateRuleRequest
      *

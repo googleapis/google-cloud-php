@@ -23,8 +23,7 @@ class GetModelRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. Resource name of the model. Please see
-     *                     {@see AutoMlClient::modelName()} for help formatting this field.
+     * @param string $name Required. Resource name of the model.
      *
      * @return \Google\Cloud\AutoMl\V1\GetModelRequest
      *

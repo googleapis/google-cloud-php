@@ -43,9 +43,7 @@ function update_api_spec_sample(): void
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $apiSpec = new ApiSpec();
-    $request = (new UpdateApiSpecRequest())
-        ->setApiSpec($apiSpec);
+    $request = new UpdateApiSpecRequest();
 
     // Call the API and handle any network failures.
     try {

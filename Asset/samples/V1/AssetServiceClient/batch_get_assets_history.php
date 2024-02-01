@@ -39,12 +39,9 @@ use Google\Cloud\Asset\V1\TimeWindow;
  * If a specified asset does not exist, this API returns an INVALID_ARGUMENT
  * error.
  *
- * @param string $parent      The relative name of the root asset. It can only be an
- *                            organization number (such as "organizations/123"), a project ID (such as
- *                            "projects/my-project-id")", or a project number (such as "projects/12345").
- * @param int    $contentType Optional. The content type.
+ * @param int $contentType Optional. The content type.
  */
-function batch_get_assets_history_sample(string $parent, int $contentType): void
+function batch_get_assets_history_sample(int $contentType): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
@@ -52,7 +49,6 @@ function batch_get_assets_history_sample(string $parent, int $contentType): void
     // Prepare the request message.
     $readTimeWindow = new TimeWindow();
     $request = (new BatchGetAssetsHistoryRequest())
-        ->setParent($parent)
         ->setContentType($contentType)
         ->setReadTimeWindow($readTimeWindow);
 
@@ -77,9 +73,8 @@ function batch_get_assets_history_sample(string $parent, int $contentType): void
  */
 function callSample(): void
 {
-    $parent = '[PARENT]';
     $contentType = ContentType::CONTENT_TYPE_UNSPECIFIED;
 
-    batch_get_assets_history_sample($parent, $contentType);
+    batch_get_assets_history_sample($contentType);
 }
 // [END cloudasset_v1_generated_AssetService_BatchGetAssetsHistory_sync]

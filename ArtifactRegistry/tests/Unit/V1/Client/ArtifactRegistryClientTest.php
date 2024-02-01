@@ -156,12 +156,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedNames = [
-            $gapicClient->versionName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]', '[VERSION]'),
-        ];
-        $request = (new BatchDeleteVersionsRequest())
-            ->setNames($formattedNames);
+        $request = new BatchDeleteVersionsRequest();
         $response = $gapicClient->batchDeleteVersions($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -172,8 +167,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/BatchDeleteVersions', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getNames();
-        $this->assertProtobufEquals($formattedNames, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchDeleteVersionsTest');
         $response->pollUntilComplete([
@@ -224,12 +217,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedNames = [
-            $gapicClient->versionName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]', '[VERSION]'),
-        ];
-        $request = (new BatchDeleteVersionsRequest())
-            ->setNames($formattedNames);
+        $request = new BatchDeleteVersionsRequest();
         $response = $gapicClient->batchDeleteVersions($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -293,10 +281,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreateRepositoryRequest())
-            ->setParent($formattedParent);
+        $request = new CreateRepositoryRequest();
         $response = $gapicClient->createRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -307,8 +292,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/CreateRepository', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createRepositoryTest');
         $response->pollUntilComplete([
@@ -359,10 +342,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreateRepositoryRequest())
-            ->setParent($formattedParent);
+        $request = new CreateRepositoryRequest();
         $response = $gapicClient->createRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -472,10 +452,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->packageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]');
-        $request = (new DeletePackageRequest())
-            ->setName($formattedName);
+        $request = new DeletePackageRequest();
         $response = $gapicClient->deletePackage($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -486,8 +463,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/DeletePackage', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deletePackageTest');
         $response->pollUntilComplete([
@@ -538,10 +513,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->packageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]');
-        $request = (new DeletePackageRequest())
-            ->setName($formattedName);
+        $request = new DeletePackageRequest();
         $response = $gapicClient->deletePackage($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -593,10 +565,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new DeleteRepositoryRequest())
-            ->setName($formattedName);
+        $request = new DeleteRepositoryRequest();
         $response = $gapicClient->deleteRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -607,8 +576,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/DeleteRepository', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteRepositoryTest');
         $response->pollUntilComplete([
@@ -659,10 +626,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new DeleteRepositoryRequest())
-            ->setName($formattedName);
+        $request = new DeleteRepositoryRequest();
         $response = $gapicClient->deleteRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -870,10 +834,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setImageSizeBytes($imageSizeBytes);
         $expectedResponse->setMediaType($mediaType);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->dockerImageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[DOCKER_IMAGE]');
-        $request = (new GetDockerImageRequest())
-            ->setName($formattedName);
+        $request = new GetDockerImageRequest();
         $response = $gapicClient->getDockerImage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -881,8 +842,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/GetDockerImage', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -904,10 +863,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->dockerImageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[DOCKER_IMAGE]');
-        $request = (new GetDockerImageRequest())
-            ->setName($formattedName);
+        $request = new GetDockerImageRequest();
         try {
             $gapicClient->getDockerImage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -938,10 +894,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setSizeBytes($sizeBytes);
         $expectedResponse->setOwner($owner);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->fileName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[FILE]');
-        $request = (new GetFileRequest())
-            ->setName($formattedName);
+        $request = new GetFileRequest();
         $response = $gapicClient->getFile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -949,8 +902,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/GetFile', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -972,10 +923,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->fileName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[FILE]');
-        $request = (new GetFileRequest())
-            ->setName($formattedName);
+        $request = new GetFileRequest();
         try {
             $gapicClient->getFile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1076,10 +1024,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setArtifactId($artifactId);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->mavenArtifactName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[MAVEN_ARTIFACT]');
-        $request = (new GetMavenArtifactRequest())
-            ->setName($formattedName);
+        $request = new GetMavenArtifactRequest();
         $response = $gapicClient->getMavenArtifact($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1087,8 +1032,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/GetMavenArtifact', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1110,10 +1053,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->mavenArtifactName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[MAVEN_ARTIFACT]');
-        $request = (new GetMavenArtifactRequest())
-            ->setName($formattedName);
+        $request = new GetMavenArtifactRequest();
         try {
             $gapicClient->getMavenArtifact($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1144,10 +1084,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setPackageName($packageName);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->npmPackageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[NPM_PACKAGE]');
-        $request = (new GetNpmPackageRequest())
-            ->setName($formattedName);
+        $request = new GetNpmPackageRequest();
         $response = $gapicClient->getNpmPackage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1155,8 +1092,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/GetNpmPackage', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1178,10 +1113,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->npmPackageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[NPM_PACKAGE]');
-        $request = (new GetNpmPackageRequest())
-            ->setName($formattedName);
+        $request = new GetNpmPackageRequest();
         try {
             $gapicClient->getNpmPackage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1210,10 +1142,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->packageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]');
-        $request = (new GetPackageRequest())
-            ->setName($formattedName);
+        $request = new GetPackageRequest();
         $response = $gapicClient->getPackage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1221,8 +1150,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/GetPackage', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1244,10 +1171,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->packageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]');
-        $request = (new GetPackageRequest())
-            ->setName($formattedName);
+        $request = new GetPackageRequest();
         try {
             $gapicClient->getPackage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1274,10 +1198,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse = new ProjectSettings();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->projectSettingsName('[PROJECT]');
-        $request = (new GetProjectSettingsRequest())
-            ->setName($formattedName);
+        $request = new GetProjectSettingsRequest();
         $response = $gapicClient->getProjectSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1285,8 +1206,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/GetProjectSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1308,10 +1227,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->projectSettingsName('[PROJECT]');
-        $request = (new GetProjectSettingsRequest())
-            ->setName($formattedName);
+        $request = new GetProjectSettingsRequest();
         try {
             $gapicClient->getProjectSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1344,10 +1260,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setPackageName($packageName);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->pythonPackageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PYTHON_PACKAGE]');
-        $request = (new GetPythonPackageRequest())
-            ->setName($formattedName);
+        $request = new GetPythonPackageRequest();
         $response = $gapicClient->getPythonPackage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1355,8 +1268,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/GetPythonPackage', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1378,10 +1289,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->pythonPackageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PYTHON_PACKAGE]');
-        $request = (new GetPythonPackageRequest())
-            ->setName($formattedName);
+        $request = new GetPythonPackageRequest();
         try {
             $gapicClient->getPythonPackage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1418,10 +1326,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setCleanupPolicyDryRun($cleanupPolicyDryRun);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new GetRepositoryRequest())
-            ->setName($formattedName);
+        $request = new GetRepositoryRequest();
         $response = $gapicClient->getRepository($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1429,8 +1334,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/GetRepository', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1452,10 +1355,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new GetRepositoryRequest())
-            ->setName($formattedName);
+        $request = new GetRepositoryRequest();
         try {
             $gapicClient->getRepository($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1540,10 +1440,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse = new VPCSCConfig();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->vpcscConfigName('[PROJECT]', '[LOCATION]');
-        $request = (new GetVPCSCConfigRequest())
-            ->setName($formattedName);
+        $request = new GetVPCSCConfigRequest();
         $response = $gapicClient->getVPCSCConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1551,8 +1448,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/GetVPCSCConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1574,10 +1469,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->vpcscConfigName('[PROJECT]', '[LOCATION]');
-        $request = (new GetVPCSCConfigRequest())
-            ->setName($formattedName);
+        $request = new GetVPCSCConfigRequest();
         try {
             $gapicClient->getVPCSCConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1893,10 +1785,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDockerImages($dockerImages);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListDockerImagesRequest())
-            ->setParent($parent);
+        $request = new ListDockerImagesRequest();
         $response = $gapicClient->listDockerImages($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1907,8 +1796,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/ListDockerImages', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1930,10 +1817,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListDockerImagesRequest())
-            ->setParent($parent);
+        $request = new ListDockerImagesRequest();
         try {
             $gapicClient->listDockerImages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1965,10 +1849,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFiles($files);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListFilesRequest())
-            ->setParent($formattedParent);
+        $request = new ListFilesRequest();
         $response = $gapicClient->listFiles($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1979,8 +1860,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/ListFiles', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2002,10 +1881,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListFilesRequest())
-            ->setParent($formattedParent);
+        $request = new ListFilesRequest();
         try {
             $gapicClient->listFiles($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2037,10 +1913,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMavenArtifacts($mavenArtifacts);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListMavenArtifactsRequest())
-            ->setParent($formattedParent);
+        $request = new ListMavenArtifactsRequest();
         $response = $gapicClient->listMavenArtifacts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2051,8 +1924,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/ListMavenArtifacts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2074,10 +1945,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListMavenArtifactsRequest())
-            ->setParent($formattedParent);
+        $request = new ListMavenArtifactsRequest();
         try {
             $gapicClient->listMavenArtifacts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2109,10 +1977,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNpmPackages($npmPackages);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListNpmPackagesRequest())
-            ->setParent($formattedParent);
+        $request = new ListNpmPackagesRequest();
         $response = $gapicClient->listNpmPackages($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2123,8 +1988,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/ListNpmPackages', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2146,10 +2009,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListNpmPackagesRequest())
-            ->setParent($formattedParent);
+        $request = new ListNpmPackagesRequest();
         try {
             $gapicClient->listNpmPackages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2181,10 +2041,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPackages($packages);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListPackagesRequest())
-            ->setParent($formattedParent);
+        $request = new ListPackagesRequest();
         $response = $gapicClient->listPackages($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2195,8 +2052,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/ListPackages', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2218,10 +2073,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListPackagesRequest())
-            ->setParent($formattedParent);
+        $request = new ListPackagesRequest();
         try {
             $gapicClient->listPackages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2253,10 +2105,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPythonPackages($pythonPackages);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListPythonPackagesRequest())
-            ->setParent($formattedParent);
+        $request = new ListPythonPackagesRequest();
         $response = $gapicClient->listPythonPackages($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2267,8 +2116,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/ListPythonPackages', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2290,10 +2137,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListPythonPackagesRequest())
-            ->setParent($formattedParent);
+        $request = new ListPythonPackagesRequest();
         try {
             $gapicClient->listPythonPackages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2325,10 +2169,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRepositories($repositories);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRepositoriesRequest())
-            ->setParent($formattedParent);
+        $request = new ListRepositoriesRequest();
         $response = $gapicClient->listRepositories($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2339,8 +2180,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/ListRepositories', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2362,10 +2201,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRepositoriesRequest())
-            ->setParent($formattedParent);
+        $request = new ListRepositoriesRequest();
         try {
             $gapicClient->listRepositories($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3036,12 +2872,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedNames = [
-            $gapicClient->versionName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]', '[VERSION]'),
-        ];
-        $request = (new BatchDeleteVersionsRequest())
-            ->setNames($formattedNames);
+        $request = new BatchDeleteVersionsRequest();
         $response = $gapicClient->batchDeleteVersionsAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3052,8 +2883,6 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/BatchDeleteVersions', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getNames();
-        $this->assertProtobufEquals($formattedNames, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchDeleteVersionsTest');
         $response->pollUntilComplete([

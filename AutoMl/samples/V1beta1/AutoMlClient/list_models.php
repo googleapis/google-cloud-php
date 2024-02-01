@@ -31,10 +31,13 @@ use Google\Cloud\AutoMl\V1beta1\Model;
 /**
  * Lists models.
  *
- * @param string $formattedParent Resource name of the project, from which to list the models. Please see
- *                                {@see AutoMlClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_models_sample(string $formattedParent): void
+function list_models_sample(): void
 {
     // Create a client.
     $autoMlClient = new AutoMlClient();
@@ -42,7 +45,7 @@ function list_models_sample(string $formattedParent): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $autoMlClient->listModels($formattedParent);
+        $response = $autoMlClient->listModels();
 
         /** @var Model $element */
         foreach ($response as $element) {
@@ -51,21 +54,5 @@ function list_models_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AutoMlClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_models_sample($formattedParent);
 }
 // [END automl_v1beta1_generated_AutoMl_ListModels_sync]

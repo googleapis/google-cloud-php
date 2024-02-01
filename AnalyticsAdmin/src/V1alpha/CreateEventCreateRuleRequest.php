@@ -30,7 +30,6 @@ class CreateEventCreateRuleRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                          $parent          Required. Example format: properties/123/dataStreams/456
-     *                                                                         Please see {@see AnalyticsAdminServiceClient::dataStreamName()} for help formatting this field.
      * @param \Google\Analytics\Admin\V1alpha\EventCreateRule $eventCreateRule Required. The EventCreateRule to create.
      *
      * @return \Google\Analytics\Admin\V1alpha\CreateEventCreateRuleRequest

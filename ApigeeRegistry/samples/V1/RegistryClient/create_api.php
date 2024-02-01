@@ -31,28 +31,19 @@ use Google\Cloud\ApigeeRegistry\V1\CreateApiRequest;
 /**
  * Creates a specified API.
  *
- * @param string $formattedParent The parent, which owns this collection of APIs.
- *                                Format: `projects/&#42;/locations/*`
- *                                Please see {@see RegistryClient::locationName()} for help formatting this field.
- * @param string $apiId           The ID to use for the API, which will become the final component of
- *                                the API's resource name.
- *
- *                                This value should be 4-63 characters, and valid characters
- *                                are /[a-z][0-9]-/.
- *
- *                                Following AIP-162, IDs must not have the form of a UUID.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_api_sample(string $formattedParent, string $apiId): void
+function create_api_sample(): void
 {
     // Create a client.
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $api = new Api();
-    $request = (new CreateApiRequest())
-        ->setParent($formattedParent)
-        ->setApi($api)
-        ->setApiId($apiId);
+    $request = new CreateApiRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,22 +53,5 @@ function create_api_sample(string $formattedParent, string $apiId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = RegistryClient::locationName('[PROJECT]', '[LOCATION]');
-    $apiId = '[API_ID]';
-
-    create_api_sample($formattedParent, $apiId);
 }
 // [END apigeeregistry_v1_generated_Registry_CreateApi_sync]

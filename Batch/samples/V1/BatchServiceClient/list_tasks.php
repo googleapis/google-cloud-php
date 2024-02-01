@@ -32,19 +32,19 @@ use Google\Cloud\Batch\V1\Task;
 /**
  * List Tasks associated with a job.
  *
- * @param string $formattedParent Name of a TaskGroup from which Tasks are being requested.
- *                                Pattern:
- *                                "projects/{project}/locations/{location}/jobs/{job}/taskGroups/{task_group}"
- *                                Please see {@see BatchServiceClient::taskGroupName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_tasks_sample(string $formattedParent): void
+function list_tasks_sample(): void
 {
     // Create a client.
     $batchServiceClient = new BatchServiceClient();
 
     // Prepare the request message.
-    $request = (new ListTasksRequest())
-        ->setParent($formattedParent);
+    $request = new ListTasksRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,26 +58,5 @@ function list_tasks_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = BatchServiceClient::taskGroupName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[JOB]',
-        '[TASK_GROUP]'
-    );
-
-    list_tasks_sample($formattedParent);
 }
 // [END batch_v1_generated_BatchService_ListTasks_sync]

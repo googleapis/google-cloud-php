@@ -32,7 +32,6 @@ class CreateAudienceListRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                      $parent       Required. The parent resource where this audience list will be created.
      *                                                                  Format: `properties/{property}`
-     *                                                                  Please see {@see AlphaAnalyticsDataClient::propertyName()} for help formatting this field.
      * @param \Google\Analytics\Data\V1alpha\AudienceList $audienceList Required. The audience list to create.
      *
      * @return \Google\Analytics\Data\V1alpha\CreateAudienceListRequest

@@ -30,11 +30,13 @@ use Google\Cloud\AlloyDb\V1alpha\User;
 /**
  * Gets details of a single User.
  *
- * @param string $formattedName The name of the resource. For the required format, see the
- *                              comment on the User.name field. Please see
- *                              {@see AlloyDBAdminClient::userName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_user_sample(string $formattedName): void
+function get_user_sample(): void
 {
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
@@ -42,26 +44,10 @@ function get_user_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var User $response */
-        $response = $alloyDBAdminClient->getUser($formattedName);
+        $response = $alloyDBAdminClient->getUser();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AlloyDBAdminClient::userName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[USER]');
-
-    get_user_sample($formattedName);
 }
 // [END alloydb_v1alpha_generated_AlloyDBAdmin_GetUser_sync]

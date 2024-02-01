@@ -23,8 +23,7 @@ class GetModelEvaluationRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. Resource name for the model evaluation. Please see
-     *                     {@see AutoMlClient::modelEvaluationName()} for help formatting this field.
+     * @param string $name Required. Resource name for the model evaluation.
      *
      * @return \Google\Cloud\AutoMl\V1\GetModelEvaluationRequest
      *

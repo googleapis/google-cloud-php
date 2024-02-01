@@ -31,79 +31,79 @@ class Baremetalsolution
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¨U
-9google/cloud/baremetalsolution/v2/baremetalsolution.proto!google.cloud.baremetalsolution.v2google/api/client.protogoogle/api/field_behavior.proto0google/cloud/baremetalsolution/v2/instance.proto+google/cloud/baremetalsolution/v2/lun.proto/google/cloud/baremetalsolution/v2/network.proto1google/cloud/baremetalsolution/v2/nfs_share.proto/google/cloud/baremetalsolution/v2/osimage.proto4google/cloud/baremetalsolution/v2/provisioning.proto/google/cloud/baremetalsolution/v2/ssh_key.proto.google/cloud/baremetalsolution/v2/volume.proto7google/cloud/baremetalsolution/v2/volume_snapshot.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"€
-OperationMetadata4
-create_time (2.google.protobuf.TimestampBàA1
-end_time (2.google.protobuf.TimestampBàA
-target (	BàA
-verb (	BàA
-status_message (	BàA#
-requested_cancellation (BàA
-api_version (	BàA"
+¯U
+9google/cloud/baremetalsolution/v2/baremetalsolution.proto!google.cloud.baremetalsolution.v2google/api/client.protogoogle/api/field_behavior.proto0google/cloud/baremetalsolution/v2/instance.proto+google/cloud/baremetalsolution/v2/lun.proto/google/cloud/baremetalsolution/v2/network.proto1google/cloud/baremetalsolution/v2/nfs_share.proto/google/cloud/baremetalsolution/v2/osimage.proto4google/cloud/baremetalsolution/v2/provisioning.proto/google/cloud/baremetalsolution/v2/ssh_key.proto.google/cloud/baremetalsolution/v2/volume.proto7google/cloud/baremetalsolution/v2/volume_snapshot.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"‡
+OperationMetadata5
+create_time (2.google.protobuf.TimestampBâA2
+end_time (2.google.protobuf.TimestampBâA
+target (	BâA
+verb (	BâA
+status_message (	BâA$
+requested_cancellation (BâA
+api_version (	BâA"
 ResetInstanceResponse2ºK
 BareMetalSolutionÂ
-ListInstances7.google.cloud.baremetalsolution.v2.ListInstancesRequest8.google.cloud.baremetalsolution.v2.ListInstancesResponse">‚Óä“/-/v2/{parent=projects/*/locations/*}/instancesÚAparent¯
-GetInstance5.google.cloud.baremetalsolution.v2.GetInstanceRequest+.google.cloud.baremetalsolution.v2.Instance"<‚Óä“/-/v2/{name=projects/*/locations/*/instances/*}ÚAnameê
-UpdateInstance8.google.cloud.baremetalsolution.v2.UpdateInstanceRequest.google.longrunning.Operation"‚Óä“B26/v2/{instance.name=projects/*/locations/*/instances/*}:instanceÚAinstance,update_maskÊA
-InstanceOperationMetadataÏ
-RenameInstance8.google.cloud.baremetalsolution.v2.RenameInstanceRequest+.google.cloud.baremetalsolution.v2.Instance"V‚Óä“9"4/v2/{name=projects/*/locations/*/instances/*}:rename:*ÚAname,new_instance_idÛ
-ResetInstance7.google.cloud.baremetalsolution.v2.ResetInstanceRequest.google.longrunning.Operation"r‚Óä“8"3/v2/{name=projects/*/locations/*/instances/*}:reset:*ÚAnameÊA*
-ResetInstanceResponseOperationMetadataÛ
-StartInstance7.google.cloud.baremetalsolution.v2.StartInstanceRequest.google.longrunning.Operation"r‚Óä“8"3/v2/{name=projects/*/locations/*/instances/*}:start:*ÚAnameÊA*
-StartInstanceResponseOperationMetadata×
-StopInstance6.google.cloud.baremetalsolution.v2.StopInstanceRequest.google.longrunning.Operation"p‚Óä“7"2/v2/{name=projects/*/locations/*/instances/*}:stop:*ÚAnameÊA)
-StopInstanceResponseOperationMetadata¨
-EnableInteractiveSerialConsoleH.google.cloud.baremetalsolution.v2.EnableInteractiveSerialConsoleRequest.google.longrunning.Operation"œ‚Óä“Q"L/v2/{name=projects/*/locations/*/instances/*}:enableInteractiveSerialConsole:*ÚAnameÊA;
-&EnableInteractiveSerialConsoleResponseOperationMetadata¬
-DisableInteractiveSerialConsoleI.google.cloud.baremetalsolution.v2.DisableInteractiveSerialConsoleRequest.google.longrunning.Operation"ž‚Óä“R"M/v2/{name=projects/*/locations/*/instances/*}:disableInteractiveSerialConsole:*ÚAnameÊA<
-\'DisableInteractiveSerialConsoleResponseOperationMetadataÖ
-	DetachLun3.google.cloud.baremetalsolution.v2.DetachLunRequest.google.longrunning.Operation"u‚Óä“@";/v2/{instance=projects/*/locations/*/instances/*}:detachLun:*ÚAinstance,lunÊA
-InstanceOperationMetadataº
-ListSSHKeys5.google.cloud.baremetalsolution.v2.ListSSHKeysRequest6.google.cloud.baremetalsolution.v2.ListSSHKeysResponse"<‚Óä“-+/v2/{parent=projects/*/locations/*}/sshKeysÚAparentË
-CreateSSHKey6.google.cloud.baremetalsolution.v2.CreateSSHKeyRequest).google.cloud.baremetalsolution.v2.SSHKey"X‚Óä“6"+/v2/{parent=projects/*/locations/*}/sshKeys:ssh_keyÚAparent,ssh_key,ssh_key_idš
-DeleteSSHKey6.google.cloud.baremetalsolution.v2.DeleteSSHKeyRequest.google.protobuf.Empty":‚Óä“-*+/v2/{name=projects/*/locations/*/sshKeys/*}ÚAnameº
-ListVolumes5.google.cloud.baremetalsolution.v2.ListVolumesRequest6.google.cloud.baremetalsolution.v2.ListVolumesResponse"<‚Óä“-+/v2/{parent=projects/*/locations/*}/volumesÚAparent§
-	GetVolume3.google.cloud.baremetalsolution.v2.GetVolumeRequest).google.cloud.baremetalsolution.v2.Volume":‚Óä“-+/v2/{name=projects/*/locations/*/volumes/*}ÚAnameÜ
-UpdateVolume6.google.cloud.baremetalsolution.v2.UpdateVolumeRequest.google.longrunning.Operation"u‚Óä“<22/v2/{volume.name=projects/*/locations/*/volumes/*}:volumeÚAvolume,update_maskÊA
-VolumeOperationMetadataÅ
-RenameVolume6.google.cloud.baremetalsolution.v2.RenameVolumeRequest).google.cloud.baremetalsolution.v2.Volume"R‚Óä“7"2/v2/{name=projects/*/locations/*/volumes/*}:rename:*ÚAname,new_volume_idÕ
-EvictVolume5.google.cloud.baremetalsolution.v2.EvictVolumeRequest.google.longrunning.Operation"p‚Óä“6"1/v2/{name=projects/*/locations/*/volumes/*}:evict:*ÚAnameÊA*
-google.protobuf.EmptyOperationMetadataÖ
-ResizeVolume6.google.cloud.baremetalsolution.v2.ResizeVolumeRequest.google.longrunning.Operation"o‚Óä“9"4/v2/{volume=projects/*/locations/*/volumes/*}:resize:*ÚAvolume,size_gibÊA
-VolumeOperationMetadata¾
-ListNetworks6.google.cloud.baremetalsolution.v2.ListNetworksRequest7.google.cloud.baremetalsolution.v2.ListNetworksResponse"=‚Óä“.,/v2/{parent=projects/*/locations/*}/networksÚAparentß
-ListNetworkUsage:.google.cloud.baremetalsolution.v2.ListNetworkUsageRequest;.google.cloud.baremetalsolution.v2.ListNetworkUsageResponse"R‚Óä“A?/v2/{location=projects/*/locations/*}/networks:listNetworkUsageÚAlocation«
+ListInstances7.google.cloud.baremetalsolution.v2.ListInstancesRequest8.google.cloud.baremetalsolution.v2.ListInstancesResponse">ÚAparent‚Óä“/-/v2/{parent=projects/*/locations/*}/instances¯
+GetInstance5.google.cloud.baremetalsolution.v2.GetInstanceRequest+.google.cloud.baremetalsolution.v2.Instance"<ÚAname‚Óä“/-/v2/{name=projects/*/locations/*/instances/*}ê
+UpdateInstance8.google.cloud.baremetalsolution.v2.UpdateInstanceRequest.google.longrunning.Operation"ÊA
+InstanceOperationMetadataÚAinstance,update_mask‚Óä“B26/v2/{instance.name=projects/*/locations/*/instances/*}:instanceÏ
+RenameInstance8.google.cloud.baremetalsolution.v2.RenameInstanceRequest+.google.cloud.baremetalsolution.v2.Instance"VÚAname,new_instance_id‚Óä“9"4/v2/{name=projects/*/locations/*/instances/*}:rename:*Û
+ResetInstance7.google.cloud.baremetalsolution.v2.ResetInstanceRequest.google.longrunning.Operation"rÊA*
+ResetInstanceResponseOperationMetadataÚAname‚Óä“8"3/v2/{name=projects/*/locations/*/instances/*}:reset:*Û
+StartInstance7.google.cloud.baremetalsolution.v2.StartInstanceRequest.google.longrunning.Operation"rÊA*
+StartInstanceResponseOperationMetadataÚAname‚Óä“8"3/v2/{name=projects/*/locations/*/instances/*}:start:*×
+StopInstance6.google.cloud.baremetalsolution.v2.StopInstanceRequest.google.longrunning.Operation"pÊA)
+StopInstanceResponseOperationMetadataÚAname‚Óä“7"2/v2/{name=projects/*/locations/*/instances/*}:stop:*¨
+EnableInteractiveSerialConsoleH.google.cloud.baremetalsolution.v2.EnableInteractiveSerialConsoleRequest.google.longrunning.Operation"œÊA;
+&EnableInteractiveSerialConsoleResponseOperationMetadataÚAname‚Óä“Q"L/v2/{name=projects/*/locations/*/instances/*}:enableInteractiveSerialConsole:*¬
+DisableInteractiveSerialConsoleI.google.cloud.baremetalsolution.v2.DisableInteractiveSerialConsoleRequest.google.longrunning.Operation"žÊA<
+\'DisableInteractiveSerialConsoleResponseOperationMetadataÚAname‚Óä“R"M/v2/{name=projects/*/locations/*/instances/*}:disableInteractiveSerialConsole:*Ö
+	DetachLun3.google.cloud.baremetalsolution.v2.DetachLunRequest.google.longrunning.Operation"uÊA
+InstanceOperationMetadataÚAinstance,lun‚Óä“@";/v2/{instance=projects/*/locations/*/instances/*}:detachLun:*º
+ListSSHKeys5.google.cloud.baremetalsolution.v2.ListSSHKeysRequest6.google.cloud.baremetalsolution.v2.ListSSHKeysResponse"<ÚAparent‚Óä“-+/v2/{parent=projects/*/locations/*}/sshKeysË
+CreateSSHKey6.google.cloud.baremetalsolution.v2.CreateSSHKeyRequest).google.cloud.baremetalsolution.v2.SSHKey"XÚAparent,ssh_key,ssh_key_id‚Óä“6"+/v2/{parent=projects/*/locations/*}/sshKeys:ssh_keyš
+DeleteSSHKey6.google.cloud.baremetalsolution.v2.DeleteSSHKeyRequest.google.protobuf.Empty":ÚAname‚Óä“-*+/v2/{name=projects/*/locations/*/sshKeys/*}º
+ListVolumes5.google.cloud.baremetalsolution.v2.ListVolumesRequest6.google.cloud.baremetalsolution.v2.ListVolumesResponse"<ÚAparent‚Óä“-+/v2/{parent=projects/*/locations/*}/volumes§
+	GetVolume3.google.cloud.baremetalsolution.v2.GetVolumeRequest).google.cloud.baremetalsolution.v2.Volume":ÚAname‚Óä“-+/v2/{name=projects/*/locations/*/volumes/*}Ü
+UpdateVolume6.google.cloud.baremetalsolution.v2.UpdateVolumeRequest.google.longrunning.Operation"uÊA
+VolumeOperationMetadataÚAvolume,update_mask‚Óä“<22/v2/{volume.name=projects/*/locations/*/volumes/*}:volumeÅ
+RenameVolume6.google.cloud.baremetalsolution.v2.RenameVolumeRequest).google.cloud.baremetalsolution.v2.Volume"RÚAname,new_volume_id‚Óä“7"2/v2/{name=projects/*/locations/*/volumes/*}:rename:*Õ
+EvictVolume5.google.cloud.baremetalsolution.v2.EvictVolumeRequest.google.longrunning.Operation"pÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“6"1/v2/{name=projects/*/locations/*/volumes/*}:evict:*Ö
+ResizeVolume6.google.cloud.baremetalsolution.v2.ResizeVolumeRequest.google.longrunning.Operation"oÊA
+VolumeOperationMetadataÚAvolume,size_gib‚Óä“9"4/v2/{volume=projects/*/locations/*/volumes/*}:resize:*¾
+ListNetworks6.google.cloud.baremetalsolution.v2.ListNetworksRequest7.google.cloud.baremetalsolution.v2.ListNetworksResponse"=ÚAparent‚Óä“.,/v2/{parent=projects/*/locations/*}/networksß
+ListNetworkUsage:.google.cloud.baremetalsolution.v2.ListNetworkUsageRequest;.google.cloud.baremetalsolution.v2.ListNetworkUsageResponse"RÚAlocation‚Óä“A?/v2/{location=projects/*/locations/*}/networks:listNetworkUsage«
 
-GetNetwork4.google.cloud.baremetalsolution.v2.GetNetworkRequest*.google.cloud.baremetalsolution.v2.Network";‚Óä“.,/v2/{name=projects/*/locations/*/networks/*}ÚAnameã
-UpdateNetwork7.google.cloud.baremetalsolution.v2.UpdateNetworkRequest.google.longrunning.Operation"z‚Óä“?24/v2/{network.name=projects/*/locations/*/networks/*}:networkÚAnetwork,update_maskÊA
-NetworkOperationMetadataô
-CreateVolumeSnapshot>.google.cloud.baremetalsolution.v2.CreateVolumeSnapshotRequest1.google.cloud.baremetalsolution.v2.VolumeSnapshot"i‚Óä“J"7/v2/{parent=projects/*/locations/*/volumes/*}/snapshots:volume_snapshotÚAparent,volume_snapshot•
-RestoreVolumeSnapshot?.google.cloud.baremetalsolution.v2.RestoreVolumeSnapshotRequest.google.longrunning.Operation"›‚Óä“]"X/v2/{volume_snapshot=projects/*/locations/*/volumes/*/snapshots/*}:restoreVolumeSnapshot:*ÚAvolume_snapshotÊA#
-VolumeSnapshotOperationMetadata¶
-DeleteVolumeSnapshot>.google.cloud.baremetalsolution.v2.DeleteVolumeSnapshotRequest.google.protobuf.Empty"F‚Óä“9*7/v2/{name=projects/*/locations/*/volumes/*/snapshots/*}ÚAnameË
-GetVolumeSnapshot;.google.cloud.baremetalsolution.v2.GetVolumeSnapshotRequest1.google.cloud.baremetalsolution.v2.VolumeSnapshot"F‚Óä“97/v2/{name=projects/*/locations/*/volumes/*/snapshots/*}ÚAnameÞ
-ListVolumeSnapshots=.google.cloud.baremetalsolution.v2.ListVolumeSnapshotsRequest>.google.cloud.baremetalsolution.v2.ListVolumeSnapshotsResponse"H‚Óä“97/v2/{parent=projects/*/locations/*/volumes/*}/snapshotsÚAparent¥
-GetLun0.google.cloud.baremetalsolution.v2.GetLunRequest&.google.cloud.baremetalsolution.v2.Lun"A‚Óä“42/v2/{name=projects/*/locations/*/volumes/*/luns/*}ÚAname¸
-ListLuns2.google.cloud.baremetalsolution.v2.ListLunsRequest3.google.cloud.baremetalsolution.v2.ListLunsResponse"C‚Óä“42/v2/{parent=projects/*/locations/*/volumes/*}/lunsÚAparentÖ
-EvictLun2.google.cloud.baremetalsolution.v2.EvictLunRequest.google.longrunning.Operation"w‚Óä“="8/v2/{name=projects/*/locations/*/volumes/*/luns/*}:evict:*ÚAnameÊA*
-google.protobuf.EmptyOperationMetadata¯
-GetNfsShare5.google.cloud.baremetalsolution.v2.GetNfsShareRequest+.google.cloud.baremetalsolution.v2.NfsShare"<‚Óä“/-/v2/{name=projects/*/locations/*/nfsShares/*}ÚAnameÂ
-ListNfsShares7.google.cloud.baremetalsolution.v2.ListNfsSharesRequest8.google.cloud.baremetalsolution.v2.ListNfsSharesResponse">‚Óä“/-/v2/{parent=projects/*/locations/*}/nfsSharesÚAparentî
-UpdateNfsShare8.google.cloud.baremetalsolution.v2.UpdateNfsShareRequest.google.longrunning.Operation"‚‚Óä“D27/v2/{nfs_share.name=projects/*/locations/*/nfsShares/*}:	nfs_shareÚAnfs_share,update_maskÊA
-NfsShareOperationMetadataÞ
-CreateNfsShare8.google.cloud.baremetalsolution.v2.CreateNfsShareRequest.google.longrunning.Operation"s‚Óä“:"-/v2/{parent=projects/*/locations/*}/nfsShares:	nfs_shareÚAparent,nfs_shareÊA
-NfsShareOperationMetadataÏ
-RenameNfsShare8.google.cloud.baremetalsolution.v2.RenameNfsShareRequest+.google.cloud.baremetalsolution.v2.NfsShare"V‚Óä“9"4/v2/{name=projects/*/locations/*/nfsShares/*}:rename:*ÚAname,new_nfsshare_idÔ
-DeleteNfsShare8.google.cloud.baremetalsolution.v2.DeleteNfsShareRequest.google.longrunning.Operation"i‚Óä“/*-/v2/{name=projects/*/locations/*/nfsShares/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadataæ
-ListProvisioningQuotas@.google.cloud.baremetalsolution.v2.ListProvisioningQuotasRequestA.google.cloud.baremetalsolution.v2.ListProvisioningQuotasResponse"G‚Óä“86/v2/{parent=projects/*/locations/*}/provisioningQuotasÚAparent‹
-SubmitProvisioningConfigB.google.cloud.baremetalsolution.v2.SubmitProvisioningConfigRequestC.google.cloud.baremetalsolution.v2.SubmitProvisioningConfigResponse"f‚Óä“C">/v2/{parent=projects/*/locations/*}/provisioningConfigs:submit:*ÚAparent,provisioning_config×
-GetProvisioningConfig?.google.cloud.baremetalsolution.v2.GetProvisioningConfigRequest5.google.cloud.baremetalsolution.v2.ProvisioningConfig"F‚Óä“97/v2/{name=projects/*/locations/*/provisioningConfigs/*}ÚAnameˆ
-CreateProvisioningConfigB.google.cloud.baremetalsolution.v2.CreateProvisioningConfigRequest5.google.cloud.baremetalsolution.v2.ProvisioningConfig"q‚Óä“N"7/v2/{parent=projects/*/locations/*}/provisioningConfigs:provisioning_configÚAparent,provisioning_config¢
-UpdateProvisioningConfigB.google.cloud.baremetalsolution.v2.UpdateProvisioningConfigRequest5.google.cloud.baremetalsolution.v2.ProvisioningConfig"Š‚Óä“b2K/v2/{provisioning_config.name=projects/*/locations/*/provisioningConfigs/*}:provisioning_configÚAprovisioning_config,update_maskÊ
-RenameNetwork7.google.cloud.baremetalsolution.v2.RenameNetworkRequest*.google.cloud.baremetalsolution.v2.Network"T‚Óä“8"3/v2/{name=projects/*/locations/*/networks/*}:rename:*ÚAname,new_network_id¾
-ListOSImages6.google.cloud.baremetalsolution.v2.ListOSImagesRequest7.google.cloud.baremetalsolution.v2.ListOSImagesResponse"=‚Óä“.,/v2/{parent=projects/*/locations/*}/osImagesÚAparentTÊA baremetalsolution.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB…
+GetNetwork4.google.cloud.baremetalsolution.v2.GetNetworkRequest*.google.cloud.baremetalsolution.v2.Network";ÚAname‚Óä“.,/v2/{name=projects/*/locations/*/networks/*}ã
+UpdateNetwork7.google.cloud.baremetalsolution.v2.UpdateNetworkRequest.google.longrunning.Operation"zÊA
+NetworkOperationMetadataÚAnetwork,update_mask‚Óä“?24/v2/{network.name=projects/*/locations/*/networks/*}:networkô
+CreateVolumeSnapshot>.google.cloud.baremetalsolution.v2.CreateVolumeSnapshotRequest1.google.cloud.baremetalsolution.v2.VolumeSnapshot"iÚAparent,volume_snapshot‚Óä“J"7/v2/{parent=projects/*/locations/*/volumes/*}/snapshots:volume_snapshot•
+RestoreVolumeSnapshot?.google.cloud.baremetalsolution.v2.RestoreVolumeSnapshotRequest.google.longrunning.Operation"›ÊA#
+VolumeSnapshotOperationMetadataÚAvolume_snapshot‚Óä“]"X/v2/{volume_snapshot=projects/*/locations/*/volumes/*/snapshots/*}:restoreVolumeSnapshot:*¶
+DeleteVolumeSnapshot>.google.cloud.baremetalsolution.v2.DeleteVolumeSnapshotRequest.google.protobuf.Empty"FÚAname‚Óä“9*7/v2/{name=projects/*/locations/*/volumes/*/snapshots/*}Ë
+GetVolumeSnapshot;.google.cloud.baremetalsolution.v2.GetVolumeSnapshotRequest1.google.cloud.baremetalsolution.v2.VolumeSnapshot"FÚAname‚Óä“97/v2/{name=projects/*/locations/*/volumes/*/snapshots/*}Þ
+ListVolumeSnapshots=.google.cloud.baremetalsolution.v2.ListVolumeSnapshotsRequest>.google.cloud.baremetalsolution.v2.ListVolumeSnapshotsResponse"HÚAparent‚Óä“97/v2/{parent=projects/*/locations/*/volumes/*}/snapshots¥
+GetLun0.google.cloud.baremetalsolution.v2.GetLunRequest&.google.cloud.baremetalsolution.v2.Lun"AÚAname‚Óä“42/v2/{name=projects/*/locations/*/volumes/*/luns/*}¸
+ListLuns2.google.cloud.baremetalsolution.v2.ListLunsRequest3.google.cloud.baremetalsolution.v2.ListLunsResponse"CÚAparent‚Óä“42/v2/{parent=projects/*/locations/*/volumes/*}/lunsÖ
+EvictLun2.google.cloud.baremetalsolution.v2.EvictLunRequest.google.longrunning.Operation"wÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“="8/v2/{name=projects/*/locations/*/volumes/*/luns/*}:evict:*¯
+GetNfsShare5.google.cloud.baremetalsolution.v2.GetNfsShareRequest+.google.cloud.baremetalsolution.v2.NfsShare"<ÚAname‚Óä“/-/v2/{name=projects/*/locations/*/nfsShares/*}Â
+ListNfsShares7.google.cloud.baremetalsolution.v2.ListNfsSharesRequest8.google.cloud.baremetalsolution.v2.ListNfsSharesResponse">ÚAparent‚Óä“/-/v2/{parent=projects/*/locations/*}/nfsSharesî
+UpdateNfsShare8.google.cloud.baremetalsolution.v2.UpdateNfsShareRequest.google.longrunning.Operation"‚ÊA
+NfsShareOperationMetadataÚAnfs_share,update_mask‚Óä“D27/v2/{nfs_share.name=projects/*/locations/*/nfsShares/*}:	nfs_shareÞ
+CreateNfsShare8.google.cloud.baremetalsolution.v2.CreateNfsShareRequest.google.longrunning.Operation"sÊA
+NfsShareOperationMetadataÚAparent,nfs_share‚Óä“:"-/v2/{parent=projects/*/locations/*}/nfsShares:	nfs_shareÏ
+RenameNfsShare8.google.cloud.baremetalsolution.v2.RenameNfsShareRequest+.google.cloud.baremetalsolution.v2.NfsShare"VÚAname,new_nfsshare_id‚Óä“9"4/v2/{name=projects/*/locations/*/nfsShares/*}:rename:*Ô
+DeleteNfsShare8.google.cloud.baremetalsolution.v2.DeleteNfsShareRequest.google.longrunning.Operation"iÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“/*-/v2/{name=projects/*/locations/*/nfsShares/*}æ
+ListProvisioningQuotas@.google.cloud.baremetalsolution.v2.ListProvisioningQuotasRequestA.google.cloud.baremetalsolution.v2.ListProvisioningQuotasResponse"GÚAparent‚Óä“86/v2/{parent=projects/*/locations/*}/provisioningQuotas‹
+SubmitProvisioningConfigB.google.cloud.baremetalsolution.v2.SubmitProvisioningConfigRequestC.google.cloud.baremetalsolution.v2.SubmitProvisioningConfigResponse"fÚAparent,provisioning_config‚Óä“C">/v2/{parent=projects/*/locations/*}/provisioningConfigs:submit:*×
+GetProvisioningConfig?.google.cloud.baremetalsolution.v2.GetProvisioningConfigRequest5.google.cloud.baremetalsolution.v2.ProvisioningConfig"FÚAname‚Óä“97/v2/{name=projects/*/locations/*/provisioningConfigs/*}ˆ
+CreateProvisioningConfigB.google.cloud.baremetalsolution.v2.CreateProvisioningConfigRequest5.google.cloud.baremetalsolution.v2.ProvisioningConfig"qÚAparent,provisioning_config‚Óä“N"7/v2/{parent=projects/*/locations/*}/provisioningConfigs:provisioning_config¢
+UpdateProvisioningConfigB.google.cloud.baremetalsolution.v2.UpdateProvisioningConfigRequest5.google.cloud.baremetalsolution.v2.ProvisioningConfig"ŠÚAprovisioning_config,update_mask‚Óä“b2K/v2/{provisioning_config.name=projects/*/locations/*/provisioningConfigs/*}:provisioning_configÊ
+RenameNetwork7.google.cloud.baremetalsolution.v2.RenameNetworkRequest*.google.cloud.baremetalsolution.v2.Network"TÚAname,new_network_id‚Óä“8"3/v2/{name=projects/*/locations/*/networks/*}:rename:*¾
+ListOSImages6.google.cloud.baremetalsolution.v2.ListOSImagesRequest7.google.cloud.baremetalsolution.v2.ListOSImagesResponse"=ÚAparent‚Óä“.,/v2/{parent=projects/*/locations/*}/osImagesTÊA baremetalsolution.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB…
 %com.google.cloud.baremetalsolution.v2BBareMetalSolutionProtoPZScloud.google.com/go/baremetalsolution/apiv2/baremetalsolutionpb;baremetalsolutionpbª!Google.Cloud.BareMetalSolution.V2Ê!Google\\Cloud\\BareMetalSolution\\V2ê$Google::Cloud::BareMetalSolution::V2bproto3'
         , true);
 

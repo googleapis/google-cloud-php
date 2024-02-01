@@ -27,14 +27,9 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\AutoMl\V1\BatchPredictInputConfig;
-use Google\Cloud\AutoMl\V1\BatchPredictOutputConfig;
 use Google\Cloud\AutoMl\V1\BatchPredictRequest;
 use Google\Cloud\AutoMl\V1\BatchPredictResult;
 use Google\Cloud\AutoMl\V1\Client\PredictionServiceClient;
-use Google\Cloud\AutoMl\V1\ExamplePayload;
-use Google\Cloud\AutoMl\V1\GcsDestination;
-use Google\Cloud\AutoMl\V1\GcsSource;
 use Google\Cloud\AutoMl\V1\PredictRequest;
 use Google\Cloud\AutoMl\V1\PredictResponse;
 use Google\LongRunning\GetOperationRequest;
@@ -100,22 +95,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $inputConfig = new BatchPredictInputConfig();
-        $inputConfigGcsSource = new GcsSource();
-        $gcsSourceInputUris = [];
-        $inputConfigGcsSource->setInputUris($gcsSourceInputUris);
-        $inputConfig->setGcsSource($inputConfigGcsSource);
-        $outputConfig = new BatchPredictOutputConfig();
-        $outputConfigGcsDestination = new GcsDestination();
-        $gcsDestinationOutputUriPrefix = 'gcsDestinationOutputUriPrefix-335790682';
-        $outputConfigGcsDestination->setOutputUriPrefix($gcsDestinationOutputUriPrefix);
-        $outputConfig->setGcsDestination($outputConfigGcsDestination);
-        $request = (new BatchPredictRequest())
-            ->setName($formattedName)
-            ->setInputConfig($inputConfig)
-            ->setOutputConfig($outputConfig);
+        $request = new BatchPredictRequest();
         $response = $gapicClient->batchPredict($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -126,12 +106,6 @@ class PredictionServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1.PredictionService/BatchPredict', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getInputConfig();
-        $this->assertProtobufEquals($inputConfig, $actualValue);
-        $actualValue = $actualApiRequestObject->getOutputConfig();
-        $this->assertProtobufEquals($outputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchPredictTest');
         $response->pollUntilComplete([
@@ -182,22 +156,7 @@ class PredictionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $inputConfig = new BatchPredictInputConfig();
-        $inputConfigGcsSource = new GcsSource();
-        $gcsSourceInputUris = [];
-        $inputConfigGcsSource->setInputUris($gcsSourceInputUris);
-        $inputConfig->setGcsSource($inputConfigGcsSource);
-        $outputConfig = new BatchPredictOutputConfig();
-        $outputConfigGcsDestination = new GcsDestination();
-        $gcsDestinationOutputUriPrefix = 'gcsDestinationOutputUriPrefix-335790682';
-        $outputConfigGcsDestination->setOutputUriPrefix($gcsDestinationOutputUriPrefix);
-        $outputConfig->setGcsDestination($outputConfigGcsDestination);
-        $request = (new BatchPredictRequest())
-            ->setName($formattedName)
-            ->setInputConfig($inputConfig)
-            ->setOutputConfig($outputConfig);
+        $request = new BatchPredictRequest();
         $response = $gapicClient->batchPredict($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -231,12 +190,7 @@ class PredictionServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new PredictResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $payload = new ExamplePayload();
-        $request = (new PredictRequest())
-            ->setName($formattedName)
-            ->setPayload($payload);
+        $request = new PredictRequest();
         $response = $gapicClient->predict($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -244,10 +198,6 @@ class PredictionServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1.PredictionService/Predict', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getPayload();
-        $this->assertProtobufEquals($payload, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -269,12 +219,7 @@ class PredictionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $payload = new ExamplePayload();
-        $request = (new PredictRequest())
-            ->setName($formattedName)
-            ->setPayload($payload);
+        $request = new PredictRequest();
         try {
             $gapicClient->predict($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -317,22 +262,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $inputConfig = new BatchPredictInputConfig();
-        $inputConfigGcsSource = new GcsSource();
-        $gcsSourceInputUris = [];
-        $inputConfigGcsSource->setInputUris($gcsSourceInputUris);
-        $inputConfig->setGcsSource($inputConfigGcsSource);
-        $outputConfig = new BatchPredictOutputConfig();
-        $outputConfigGcsDestination = new GcsDestination();
-        $gcsDestinationOutputUriPrefix = 'gcsDestinationOutputUriPrefix-335790682';
-        $outputConfigGcsDestination->setOutputUriPrefix($gcsDestinationOutputUriPrefix);
-        $outputConfig->setGcsDestination($outputConfigGcsDestination);
-        $request = (new BatchPredictRequest())
-            ->setName($formattedName)
-            ->setInputConfig($inputConfig)
-            ->setOutputConfig($outputConfig);
+        $request = new BatchPredictRequest();
         $response = $gapicClient->batchPredictAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -343,12 +273,6 @@ class PredictionServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1.PredictionService/BatchPredict', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getInputConfig();
-        $this->assertProtobufEquals($inputConfig, $actualValue);
-        $actualValue = $actualApiRequestObject->getOutputConfig();
-        $this->assertProtobufEquals($outputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchPredictTest');
         $response->pollUntilComplete([

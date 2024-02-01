@@ -37,8 +37,7 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                       $parent       Required. The name of the parent resource where the repository will be
-     *                                                                   created. Please see
-     *                                                                   {@see ArtifactRegistryClient::locationName()} for help formatting this field.
+     *                                                                   created.
      * @param \Google\Cloud\ArtifactRegistry\V1\Repository $repository   Required. The repository to be created.
      * @param string                                       $repositoryId Required. The repository id to use for this repository.
      *

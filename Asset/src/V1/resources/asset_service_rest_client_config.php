@@ -117,9 +117,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'saved_query_id',
-                ],
             ],
             'DeleteFeed' => [
                 'method' => 'delete',
@@ -268,9 +265,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

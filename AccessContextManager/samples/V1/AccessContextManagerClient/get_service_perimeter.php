@@ -33,21 +33,19 @@ use Google\Identity\AccessContextManager\V1\ServicePerimeter;
  * [google.identity.accesscontextmanager.v1.ServicePerimeter] based on the
  * resource name.
  *
- * @param string $formattedName Resource name for the [Service Perimeter]
- *                              [google.identity.accesscontextmanager.v1.ServicePerimeter].
- *
- *                              Format:
- *                              `accessPolicies/{policy_id}/servicePerimeters/{service_perimeters_id}`
- *                              Please see {@see AccessContextManagerClient::servicePerimeterName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_service_perimeter_sample(string $formattedName): void
+function get_service_perimeter_sample(): void
 {
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
     // Prepare the request message.
-    $request = (new GetServicePerimeterRequest())
-        ->setName($formattedName);
+    $request = new GetServicePerimeterRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,24 +55,5 @@ function get_service_perimeter_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AccessContextManagerClient::servicePerimeterName(
-        '[ACCESS_POLICY]',
-        '[SERVICE_PERIMETER]'
-    );
-
-    get_service_perimeter_sample($formattedName);
 }
 // [END accesscontextmanager_v1_generated_AccessContextManager_GetServicePerimeter_sync]

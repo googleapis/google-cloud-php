@@ -28,7 +28,6 @@ class GetMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\Mess
      * @param string $name Required. The name of the measurement protocol secret to lookup.
      *                     Format:
      *                     properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
-     *                     Please see {@see AnalyticsAdminServiceClient::measurementProtocolSecretName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetMeasurementProtocolSecretRequest
      *

@@ -31,31 +31,19 @@ use Google\ApiCore\ApiException;
 /**
  * Gets information about multiple access bindings to an account or property.
  *
- * @param string $formattedParent       The account or property that owns the access bindings. The parent
- *                                      of all provided values for the 'names' field must match this field.
- *                                      Formats:
- *                                      - accounts/{account}
- *                                      - properties/{property}
- *                                      Please see {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.
- * @param string $formattedNamesElement The names of the access bindings to retrieve.
- *                                      A maximum of 1000 access bindings can be retrieved in a batch.
- *                                      Formats:
- *                                      - accounts/{account}/accessBindings/{accessBinding}
- *                                      - properties/{property}/accessBindings/{accessBinding}
- *                                      Please see {@see AnalyticsAdminServiceClient::accessBindingName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function batch_get_access_bindings_sample(
-    string $formattedParent,
-    string $formattedNamesElement
-): void {
+function batch_get_access_bindings_sample(): void
+{
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
-    $request = (new BatchGetAccessBindingsRequest())
-        ->setParent($formattedParent)
-        ->setNames($formattedNames);
+    $request = new BatchGetAccessBindingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,25 +53,5 @@ function batch_get_access_bindings_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AnalyticsAdminServiceClient::accountName('[ACCOUNT]');
-    $formattedNamesElement = AnalyticsAdminServiceClient::accessBindingName(
-        '[ACCOUNT]',
-        '[ACCESS_BINDING]'
-    );
-
-    batch_get_access_bindings_sample($formattedParent, $formattedNamesElement);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_BatchGetAccessBindings_sync]

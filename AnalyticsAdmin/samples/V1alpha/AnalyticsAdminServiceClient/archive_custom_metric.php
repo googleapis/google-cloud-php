@@ -30,18 +30,19 @@ use Google\ApiCore\ApiException;
 /**
  * Archives a CustomMetric on a property.
  *
- * @param string $formattedName The name of the CustomMetric to archive.
- *                              Example format: properties/1234/customMetrics/5678
- *                              Please see {@see AnalyticsAdminServiceClient::customMetricName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function archive_custom_metric_sample(string $formattedName): void
+function archive_custom_metric_sample(): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new ArchiveCustomMetricRequest())
-        ->setName($formattedName);
+    $request = new ArchiveCustomMetricRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -50,21 +51,5 @@ function archive_custom_metric_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AnalyticsAdminServiceClient::customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
-
-    archive_custom_metric_sample($formattedName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_ArchiveCustomMetric_sync]

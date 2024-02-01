@@ -28,28 +28,24 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\Client\AppConnectorsServiceClient;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\ReportStatusRequest;
-use Google\Cloud\BeyondCorp\AppConnectors\V1\ResourceInfo;
 use Google\Rpc\Status;
 
 /**
  * Report status for a given connector.
  *
- * @param string $formattedAppConnector BeyondCorp Connector name using the form:
- *                                      `projects/{project_id}/locations/{location_id}/connectors/{connector}`
- *                                      Please see {@see AppConnectorsServiceClient::appConnectorName()} for help formatting this field.
- * @param string $resourceInfoId        Unique Id for the resource.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function report_status_sample(string $formattedAppConnector, string $resourceInfoId): void
+function report_status_sample(): void
 {
     // Create a client.
     $appConnectorsServiceClient = new AppConnectorsServiceClient();
 
     // Prepare the request message.
-    $resourceInfo = (new ResourceInfo())
-        ->setId($resourceInfoId);
-    $request = (new ReportStatusRequest())
-        ->setAppConnector($formattedAppConnector)
-        ->setResourceInfo($resourceInfo);
+    $request = new ReportStatusRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,26 +65,5 @@ function report_status_sample(string $formattedAppConnector, string $resourceInf
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedAppConnector = AppConnectorsServiceClient::appConnectorName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[APP_CONNECTOR]'
-    );
-    $resourceInfoId = '[ID]';
-
-    report_status_sample($formattedAppConnector, $resourceInfoId);
 }
 // [END beyondcorp_v1_generated_AppConnectorsService_ReportStatus_sync]

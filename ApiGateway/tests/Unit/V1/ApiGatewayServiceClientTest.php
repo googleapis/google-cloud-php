@@ -104,11 +104,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $apiId = 'apiId-1411282592';
-        $api = new Api();
-        $response = $gapicClient->createApi($formattedParent, $apiId, $api);
+        $response = $gapicClient->createApi();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -118,12 +114,6 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigateway.v1.ApiGatewayService/CreateApi', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getApiId();
-        $this->assertProtobufEquals($apiId, $actualValue);
-        $actualValue = $actualApiRequestObject->getApi();
-        $this->assertProtobufEquals($api, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createApiTest');
         $response->pollUntilComplete([
@@ -174,11 +164,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $apiId = 'apiId-1411282592';
-        $api = new Api();
-        $response = $gapicClient->createApi($formattedParent, $apiId, $api);
+        $response = $gapicClient->createApi();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -237,11 +223,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->apiName('[PROJECT]', '[API]');
-        $apiConfigId = 'apiConfigId1182346067';
-        $apiConfig = new ApiConfig();
-        $response = $gapicClient->createApiConfig($formattedParent, $apiConfigId, $apiConfig);
+        $response = $gapicClient->createApiConfig();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -251,12 +233,6 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigateway.v1.ApiGatewayService/CreateApiConfig', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getApiConfigId();
-        $this->assertProtobufEquals($apiConfigId, $actualValue);
-        $actualValue = $actualApiRequestObject->getApiConfig();
-        $this->assertProtobufEquals($apiConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createApiConfigTest');
         $response->pollUntilComplete([
@@ -307,11 +283,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->apiName('[PROJECT]', '[API]');
-        $apiConfigId = 'apiConfigId1182346067';
-        $apiConfig = new ApiConfig();
-        $response = $gapicClient->createApiConfig($formattedParent, $apiConfigId, $apiConfig);
+        $response = $gapicClient->createApiConfig();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -370,13 +342,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $gatewayId = 'gatewayId955798774';
-        $gateway = new Gateway();
-        $gatewayApiConfig = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-        $gateway->setApiConfig($gatewayApiConfig);
-        $response = $gapicClient->createGateway($formattedParent, $gatewayId, $gateway);
+        $response = $gapicClient->createGateway();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -386,12 +352,6 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigateway.v1.ApiGatewayService/CreateGateway', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getGatewayId();
-        $this->assertProtobufEquals($gatewayId, $actualValue);
-        $actualValue = $actualApiRequestObject->getGateway();
-        $this->assertProtobufEquals($gateway, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createGatewayTest');
         $response->pollUntilComplete([
@@ -442,13 +402,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $gatewayId = 'gatewayId955798774';
-        $gateway = new Gateway();
-        $gatewayApiConfig = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-        $gateway->setApiConfig($gatewayApiConfig);
-        $response = $gapicClient->createGateway($formattedParent, $gatewayId, $gateway);
+        $response = $gapicClient->createGateway();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -499,9 +453,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->apiName('[PROJECT]', '[API]');
-        $response = $gapicClient->deleteApi($formattedName);
+        $response = $gapicClient->deleteApi();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -511,8 +463,6 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigateway.v1.ApiGatewayService/DeleteApi', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteApiTest');
         $response->pollUntilComplete([
@@ -563,9 +513,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->apiName('[PROJECT]', '[API]');
-        $response = $gapicClient->deleteApi($formattedName);
+        $response = $gapicClient->deleteApi();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -616,9 +564,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-        $response = $gapicClient->deleteApiConfig($formattedName);
+        $response = $gapicClient->deleteApiConfig();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -628,8 +574,6 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigateway.v1.ApiGatewayService/DeleteApiConfig', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteApiConfigTest');
         $response->pollUntilComplete([
@@ -680,9 +624,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-        $response = $gapicClient->deleteApiConfig($formattedName);
+        $response = $gapicClient->deleteApiConfig();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -733,9 +675,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
-        $response = $gapicClient->deleteGateway($formattedName);
+        $response = $gapicClient->deleteGateway();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -745,8 +685,6 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigateway.v1.ApiGatewayService/DeleteGateway', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteGatewayTest');
         $response->pollUntilComplete([
@@ -797,9 +735,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
-        $response = $gapicClient->deleteGateway($formattedName);
+        $response = $gapicClient->deleteGateway();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -838,17 +774,13 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setManagedService($managedService);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->apiName('[PROJECT]', '[API]');
-        $response = $gapicClient->getApi($formattedName);
+        $response = $gapicClient->getApi();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigateway.v1.ApiGatewayService/GetApi', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -870,10 +802,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->apiName('[PROJECT]', '[API]');
         try {
-            $gapicClient->getApi($formattedName);
+            $gapicClient->getApi();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -904,17 +834,13 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setGatewayServiceAccount($gatewayServiceAccount);
         $expectedResponse->setServiceConfigId($serviceConfigId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-        $response = $gapicClient->getApiConfig($formattedName);
+        $response = $gapicClient->getApiConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigateway.v1.ApiGatewayService/GetApiConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -936,10 +862,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
         try {
-            $gapicClient->getApiConfig($formattedName);
+            $gapicClient->getApiConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -970,17 +894,13 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setApiConfig($apiConfig);
         $expectedResponse->setDefaultHostname($defaultHostname);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
-        $response = $gapicClient->getGateway($formattedName);
+        $response = $gapicClient->getGateway();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigateway.v1.ApiGatewayService/GetGateway', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1002,10 +922,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
         try {
-            $gapicClient->getGateway($formattedName);
+            $gapicClient->getGateway();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1035,9 +953,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setApiConfigs($apiConfigs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->apiName('[PROJECT]', '[API]');
-        $response = $gapicClient->listApiConfigs($formattedParent);
+        $response = $gapicClient->listApiConfigs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1047,8 +963,6 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigateway.v1.ApiGatewayService/ListApiConfigs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1070,10 +984,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->apiName('[PROJECT]', '[API]');
         try {
-            $gapicClient->listApiConfigs($formattedParent);
+            $gapicClient->listApiConfigs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1103,9 +1015,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setApis($apis);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listApis($formattedParent);
+        $response = $gapicClient->listApis();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1115,8 +1025,6 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigateway.v1.ApiGatewayService/ListApis', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1138,10 +1046,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listApis($formattedParent);
+            $gapicClient->listApis();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1171,9 +1077,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGateways($gateways);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listGateways($formattedParent);
+        $response = $gapicClient->listGateways();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1183,8 +1087,6 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigateway.v1.ApiGatewayService/ListGateways', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1206,10 +1108,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listGateways($formattedParent);
+            $gapicClient->listGateways();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1256,9 +1156,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $api = new Api();
-        $response = $gapicClient->updateApi($api);
+        $response = $gapicClient->updateApi();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1268,8 +1166,6 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigateway.v1.ApiGatewayService/UpdateApi', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getApi();
-        $this->assertProtobufEquals($api, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateApiTest');
         $response->pollUntilComplete([
@@ -1320,9 +1216,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $api = new Api();
-        $response = $gapicClient->updateApi($api);
+        $response = $gapicClient->updateApi();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1381,9 +1275,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $apiConfig = new ApiConfig();
-        $response = $gapicClient->updateApiConfig($apiConfig);
+        $response = $gapicClient->updateApiConfig();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1393,8 +1285,6 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigateway.v1.ApiGatewayService/UpdateApiConfig', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getApiConfig();
-        $this->assertProtobufEquals($apiConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateApiConfigTest');
         $response->pollUntilComplete([
@@ -1445,9 +1335,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $apiConfig = new ApiConfig();
-        $response = $gapicClient->updateApiConfig($apiConfig);
+        $response = $gapicClient->updateApiConfig();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1506,11 +1394,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $gateway = new Gateway();
-        $gatewayApiConfig = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-        $gateway->setApiConfig($gatewayApiConfig);
-        $response = $gapicClient->updateGateway($gateway);
+        $response = $gapicClient->updateGateway();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1520,8 +1404,6 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigateway.v1.ApiGatewayService/UpdateGateway', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getGateway();
-        $this->assertProtobufEquals($gateway, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateGatewayTest');
         $response->pollUntilComplete([
@@ -1572,11 +1454,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $gateway = new Gateway();
-        $gatewayApiConfig = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-        $gateway->setApiConfig($gatewayApiConfig);
-        $response = $gapicClient->updateGateway($gateway);
+        $response = $gapicClient->updateGateway();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

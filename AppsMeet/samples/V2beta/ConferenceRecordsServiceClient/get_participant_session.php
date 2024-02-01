@@ -32,17 +32,19 @@ use Google\Apps\Meet\V2beta\ParticipantSession;
  * [Developer Preview](https://developers.google.com/workspace/preview).
  * Gets a participant session by participant session ID.
  *
- * @param string $formattedName Resource name of the participant. Please see
- *                              {@see ConferenceRecordsServiceClient::participantSessionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_participant_session_sample(string $formattedName): void
+function get_participant_session_sample(): void
 {
     // Create a client.
     $conferenceRecordsServiceClient = new ConferenceRecordsServiceClient();
 
     // Prepare the request message.
-    $request = (new GetParticipantSessionRequest())
-        ->setName($formattedName);
+    $request = new GetParticipantSessionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,25 +54,5 @@ function get_participant_session_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ConferenceRecordsServiceClient::participantSessionName(
-        '[CONFERENCE_RECORD]',
-        '[PARTICIPANT]',
-        '[PARTICIPANT_SESSION]'
-    );
-
-    get_participant_session_sample($formattedName);
 }
 // [END meet_v2beta_generated_ConferenceRecordsService_GetParticipantSession_sync]

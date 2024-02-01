@@ -50,8 +50,7 @@ class CreateSavedQueryRequest extends \Google\Protobuf\Internal\Message
      *                                                        saved_query should be created in. It can only be an organization number
      *                                                        (such as "organizations/123"), a folder number (such as "folders/123"), a
      *                                                        project ID (such as "projects/my-project-id"), or a project number (such as
-     *                                                        "projects/12345"). Please see
-     *                                                        {@see AssetServiceClient::projectName()} for help formatting this field.
+     *                                                        "projects/12345").
      * @param \Google\Cloud\Asset\V1\SavedQuery $savedQuery   Required. The saved_query details. The `name` field must be empty as it
      *                                                        will be generated based on the parent and saved_query_id.
      * @param string                            $savedQueryId Required. The ID to use for the saved query, which must be unique in the

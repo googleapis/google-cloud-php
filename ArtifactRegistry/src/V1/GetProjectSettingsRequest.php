@@ -23,8 +23,7 @@ class GetProjectSettingsRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the projectSettings resource. Please see
-     *                     {@see ArtifactRegistryClient::projectSettingsName()} for help formatting this field.
+     * @param string $name Required. The name of the projectSettings resource.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\GetProjectSettingsRequest
      *

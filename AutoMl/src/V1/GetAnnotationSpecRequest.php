@@ -23,8 +23,7 @@ class GetAnnotationSpecRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The resource name of the annotation spec to retrieve. Please see
-     *                     {@see AutoMlClient::annotationSpecName()} for help formatting this field.
+     * @param string $name Required. The resource name of the annotation spec to retrieve.
      *
      * @return \Google\Cloud\AutoMl\V1\GetAnnotationSpecRequest
      *

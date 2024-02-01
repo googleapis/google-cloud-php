@@ -31,18 +31,19 @@ use Google\ApiCore\ApiException;
 /**
  * Lookup for a single CustomDimension.
  *
- * @param string $formattedName The name of the CustomDimension to get.
- *                              Example format: properties/1234/customDimensions/5678
- *                              Please see {@see AnalyticsAdminServiceClient::customDimensionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_custom_dimension_sample(string $formattedName): void
+function get_custom_dimension_sample(): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new GetCustomDimensionRequest())
-        ->setName($formattedName);
+    $request = new GetCustomDimensionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,24 +53,5 @@ function get_custom_dimension_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AnalyticsAdminServiceClient::customDimensionName(
-        '[PROPERTY]',
-        '[CUSTOM_DIMENSION]'
-    );
-
-    get_custom_dimension_sample($formattedName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetCustomDimension_sync]

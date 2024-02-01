@@ -29,8 +29,7 @@ class ResizeVolumeRequest extends \Google\Protobuf\Internal\Message
     private $size_gib = 0;
 
     /**
-     * @param string $volume  Required. Volume to resize. Please see
-     *                        {@see BareMetalSolutionClient::volumeName()} for help formatting this field.
+     * @param string $volume  Required. Volume to resize.
      * @param int    $sizeGib New Volume size, in GiB.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\ResizeVolumeRequest

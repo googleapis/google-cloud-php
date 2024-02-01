@@ -44,7 +44,6 @@ class CreateCalculatedMetricRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                           $parent             Required. Format: properties/{property_id}
      *                                                                             Example: properties/1234
-     *                                                                             Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      * @param \Google\Analytics\Admin\V1alpha\CalculatedMetric $calculatedMetric   Required. The CalculatedMetric to create.
      * @param string                                           $calculatedMetricId Required. The ID to use for the calculated metric which will become the
      *                                                                             final component of the calculated metric's resource name.

@@ -27,8 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
 use Google\Cloud\AutoMl\V1\ExportModelRequest;
-use Google\Cloud\AutoMl\V1\GcsDestination;
-use Google\Cloud\AutoMl\V1\ModelExportOutputConfig;
 use Google\Rpc\Status;
 
 /**
@@ -40,30 +38,19 @@ use Google\Rpc\Status;
  * Returns an empty response in the
  * [response][google.longrunning.Operation.response] field when it completes.
  *
- * @param string $formattedName                             The resource name of the model to export. Please see
- *                                                          {@see AutoMlClient::modelName()} for help formatting this field.
- * @param string $outputConfigGcsDestinationOutputUriPrefix Google Cloud Storage URI to output directory, up to 2000
- *                                                          characters long.
- *                                                          Accepted forms:
- *                                                          * Prefix path: gs://bucket/directory
- *                                                          The requesting user must have write permission to the bucket.
- *                                                          The directory is created if it doesn't exist.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function export_model_sample(
-    string $formattedName,
-    string $outputConfigGcsDestinationOutputUriPrefix
-): void {
+function export_model_sample(): void
+{
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
     // Prepare the request message.
-    $outputConfigGcsDestination = (new GcsDestination())
-        ->setOutputUriPrefix($outputConfigGcsDestinationOutputUriPrefix);
-    $outputConfig = (new ModelExportOutputConfig())
-        ->setGcsDestination($outputConfigGcsDestination);
-    $request = (new ExportModelRequest())
-        ->setName($formattedName)
-        ->setOutputConfig($outputConfig);
+    $request = new ExportModelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -81,22 +68,5 @@ function export_model_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AutoMlClient::modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-    $outputConfigGcsDestinationOutputUriPrefix = '[OUTPUT_URI_PREFIX]';
-
-    export_model_sample($formattedName, $outputConfigGcsDestinationOutputUriPrefix);
 }
 // [END automl_v1_generated_AutoMl_ExportModel_sync]

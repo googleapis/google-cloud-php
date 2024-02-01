@@ -38,8 +38,7 @@ class SubmitProvisioningConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                                $parent             Required. The parent project and location containing the
-     *                                                                                  ProvisioningConfig. Please see
-     *                                                                                  {@see BareMetalSolutionClient::locationName()} for help formatting this field.
+     *                                                                                  ProvisioningConfig.
      * @param \Google\Cloud\BareMetalSolution\V2\ProvisioningConfig $provisioningConfig Required. The ProvisioningConfig to create.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\SubmitProvisioningConfigRequest

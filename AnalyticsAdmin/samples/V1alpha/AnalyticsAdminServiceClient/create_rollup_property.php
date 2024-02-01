@@ -26,38 +26,24 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\CreateRollupPropertyRequest;
 use Google\Analytics\Admin\V1alpha\CreateRollupPropertyResponse;
-use Google\Analytics\Admin\V1alpha\Property;
 use Google\ApiCore\ApiException;
 
 /**
  * Create a roll-up property and all roll-up property source links.
  *
- * @param string $rollupPropertyDisplayName Human-readable display name for this property.
- *
- *                                          The max allowed display name length is 100 UTF-16 code units.
- * @param string $rollupPropertyTimeZone    Reporting Time Zone, used as the day boundary for reports,
- *                                          regardless of where the data originates. If the time zone honors DST,
- *                                          Analytics will automatically adjust for the changes.
- *
- *                                          NOTE: Changing the time zone only affects data going forward, and is not
- *                                          applied retroactively.
- *
- *                                          Format: https://www.iana.org/time-zones
- *                                          Example: "America/Los_Angeles"
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_rollup_property_sample(
-    string $rollupPropertyDisplayName,
-    string $rollupPropertyTimeZone
-): void {
+function create_rollup_property_sample(): void
+{
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $rollupProperty = (new Property())
-        ->setDisplayName($rollupPropertyDisplayName)
-        ->setTimeZone($rollupPropertyTimeZone);
-    $request = (new CreateRollupPropertyRequest())
-        ->setRollupProperty($rollupProperty);
+    $request = new CreateRollupPropertyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -67,22 +53,5 @@ function create_rollup_property_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $rollupPropertyDisplayName = '[DISPLAY_NAME]';
-    $rollupPropertyTimeZone = '[TIME_ZONE]';
-
-    create_rollup_property_sample($rollupPropertyDisplayName, $rollupPropertyTimeZone);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateRollupProperty_sync]

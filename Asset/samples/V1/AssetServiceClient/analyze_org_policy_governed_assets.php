@@ -50,25 +50,19 @@ use Google\Cloud\Asset\V1\Client\AssetServiceClient;
  * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types),
  * or IAM policies.
  *
- * @param string $scope      The organization to scope the request. Only organization
- *                           policies within the scope will be analyzed. The output assets will
- *                           also be limited to the ones governed by those in-scope organization
- *                           policies.
- *
- *                           * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
- * @param string $constraint The name of the constraint to analyze governed assets for. The
- *                           analysis only contains analyzed organization policies for the provided
- *                           constraint.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function analyze_org_policy_governed_assets_sample(string $scope, string $constraint): void
+function analyze_org_policy_governed_assets_sample(): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $request = (new AnalyzeOrgPolicyGovernedAssetsRequest())
-        ->setScope($scope)
-        ->setConstraint($constraint);
+    $request = new AnalyzeOrgPolicyGovernedAssetsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -82,22 +76,5 @@ function analyze_org_policy_governed_assets_sample(string $scope, string $constr
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $scope = '[SCOPE]';
-    $constraint = '[CONSTRAINT]';
-
-    analyze_org_policy_governed_assets_sample($scope, $constraint);
 }
 // [END cloudasset_v1_generated_AssetService_AnalyzeOrgPolicyGovernedAssets_sync]

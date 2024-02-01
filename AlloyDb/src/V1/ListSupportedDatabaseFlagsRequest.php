@@ -47,8 +47,7 @@ class ListSupportedDatabaseFlagsRequest extends \Google\Protobuf\Internal\Messag
      *                       Regardless of the parent specified here, as long it is contains a valid
      *                       project and location, the service will return a static list of supported
      *                       flags resources. Note that we do not yet support region-specific
-     *                       flags. Please see
-     *                       {@see AlloyDBAdminClient::locationName()} for help formatting this field.
+     *                       flags.
      *
      * @return \Google\Cloud\AlloyDb\V1\ListSupportedDatabaseFlagsRequest
      *

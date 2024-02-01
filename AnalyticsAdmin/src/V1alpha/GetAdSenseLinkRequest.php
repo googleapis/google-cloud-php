@@ -28,7 +28,6 @@ class GetAdSenseLinkRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. Unique identifier for the AdSense Link requested.
      *                     Format: properties/{propertyId}/adSenseLinks/{linkId}
      *                     Example: properties/1234/adSenseLinks/5678
-     *                     Please see {@see AnalyticsAdminServiceClient::adSenseLinkName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetAdSenseLinkRequest
      *

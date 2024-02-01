@@ -26,7 +26,6 @@ class DeleteChannelGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The ChannelGroup to delete.
      *                     Example format: properties/1234/channelGroups/5678
-     *                     Please see {@see AnalyticsAdminServiceClient::channelGroupName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\DeleteChannelGroupRequest
      *

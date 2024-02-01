@@ -43,7 +43,6 @@ class ListChannelGroupsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The property for which to list ChannelGroups.
      *                       Example format: properties/1234
-     *                       Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\ListChannelGroupsRequest
      *

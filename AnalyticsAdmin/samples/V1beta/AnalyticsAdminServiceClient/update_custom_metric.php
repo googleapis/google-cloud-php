@@ -27,7 +27,6 @@ use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1beta\CustomMetric;
 use Google\Analytics\Admin\V1beta\UpdateCustomMetricRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates a CustomMetric on a property.
@@ -44,9 +43,7 @@ function update_custom_metric_sample(): void
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $request = (new UpdateCustomMetricRequest())
-        ->setUpdateMask($updateMask);
+    $request = new UpdateCustomMetricRequest();
 
     // Call the API and handle any network failures.
     try {

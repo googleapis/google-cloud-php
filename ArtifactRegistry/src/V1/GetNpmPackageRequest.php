@@ -23,8 +23,7 @@ class GetNpmPackageRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the npm package. Please see
-     *                     {@see ArtifactRegistryClient::npmPackageName()} for help formatting this field.
+     * @param string $name Required. The name of the npm package.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\GetNpmPackageRequest
      *

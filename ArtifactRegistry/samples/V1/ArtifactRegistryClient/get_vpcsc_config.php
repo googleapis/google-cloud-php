@@ -31,17 +31,19 @@ use Google\Cloud\ArtifactRegistry\V1\VPCSCConfig;
 /**
  * Retrieves the VPCSC Config for the Project.
  *
- * @param string $formattedName The name of the VPCSCConfig resource. Please see
- *                              {@see ArtifactRegistryClient::vpcscConfigName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_vpcsc_config_sample(string $formattedName): void
+function get_vpcsc_config_sample(): void
 {
     // Create a client.
     $artifactRegistryClient = new ArtifactRegistryClient();
 
     // Prepare the request message.
-    $request = (new GetVPCSCConfigRequest())
-        ->setName($formattedName);
+    $request = new GetVPCSCConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,21 +53,5 @@ function get_vpcsc_config_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ArtifactRegistryClient::vpcscConfigName('[PROJECT]', '[LOCATION]');
-
-    get_vpcsc_config_sample($formattedName);
 }
 // [END artifactregistry_v1_generated_ArtifactRegistry_GetVPCSCConfig_sync]

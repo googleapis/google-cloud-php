@@ -114,14 +114,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $audienceList = new AudienceList();
-        $audienceListAudience = 'audienceListAudience867162342';
-        $audienceList->setAudience($audienceListAudience);
-        $audienceListDimensions = [];
-        $audienceList->setDimensions($audienceListDimensions);
-        $response = $gapicClient->createAudienceList($formattedParent, $audienceList);
+        $response = $gapicClient->createAudienceList();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -131,10 +124,6 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/CreateAudienceList', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getAudienceList();
-        $this->assertProtobufEquals($audienceList, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createAudienceListTest');
         $response->pollUntilComplete([
@@ -185,14 +174,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $audienceList = new AudienceList();
-        $audienceListAudience = 'audienceListAudience867162342';
-        $audienceList->setAudience($audienceListAudience);
-        $audienceListDimensions = [];
-        $audienceList->setDimensions($audienceListDimensions);
-        $response = $gapicClient->createAudienceList($formattedParent, $audienceList);
+        $response = $gapicClient->createAudienceList();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -233,24 +215,13 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse->setAudienceDisplayName($audienceDisplayName);
         $expectedResponse->setActiveDaysRemaining($activeDaysRemaining);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $recurringAudienceList = new RecurringAudienceList();
-        $recurringAudienceListAudience = 'recurringAudienceListAudience230288227';
-        $recurringAudienceList->setAudience($recurringAudienceListAudience);
-        $recurringAudienceListDimensions = [];
-        $recurringAudienceList->setDimensions($recurringAudienceListDimensions);
-        $response = $gapicClient->createRecurringAudienceList($formattedParent, $recurringAudienceList);
+        $response = $gapicClient->createRecurringAudienceList();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/CreateRecurringAudienceList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getRecurringAudienceList();
-        $this->assertProtobufEquals($recurringAudienceList, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -272,15 +243,8 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $recurringAudienceList = new RecurringAudienceList();
-        $recurringAudienceListAudience = 'recurringAudienceListAudience230288227';
-        $recurringAudienceList->setAudience($recurringAudienceListAudience);
-        $recurringAudienceListDimensions = [];
-        $recurringAudienceList->setDimensions($recurringAudienceListDimensions);
         try {
-            $gapicClient->createRecurringAudienceList($formattedParent, $recurringAudienceList);
+            $gapicClient->createRecurringAudienceList();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -319,17 +283,13 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse->setPercentageCompleted($percentageCompleted);
         $expectedResponse->setRecurringAudienceList($recurringAudienceList);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->audienceListName('[PROPERTY]', '[AUDIENCE_LIST]');
-        $response = $gapicClient->getAudienceList($formattedName);
+        $response = $gapicClient->getAudienceList();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/GetAudienceList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -351,10 +311,8 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->audienceListName('[PROPERTY]', '[AUDIENCE_LIST]');
         try {
-            $gapicClient->getAudienceList($formattedName);
+            $gapicClient->getAudienceList();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -385,17 +343,13 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse->setAudienceDisplayName($audienceDisplayName);
         $expectedResponse->setActiveDaysRemaining($activeDaysRemaining);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->recurringAudienceListName('[PROPERTY]', '[RECURRING_AUDIENCE_LIST]');
-        $response = $gapicClient->getRecurringAudienceList($formattedName);
+        $response = $gapicClient->getRecurringAudienceList();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/GetRecurringAudienceList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -417,10 +371,8 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->recurringAudienceListName('[PROPERTY]', '[RECURRING_AUDIENCE_LIST]');
         try {
-            $gapicClient->getRecurringAudienceList($formattedName);
+            $gapicClient->getRecurringAudienceList();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -450,9 +402,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAudienceLists($audienceLists);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listAudienceLists($formattedParent);
+        $response = $gapicClient->listAudienceLists();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -462,8 +412,6 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/ListAudienceLists', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -485,10 +433,8 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listAudienceLists($formattedParent);
+            $gapicClient->listAudienceLists();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -518,9 +464,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRecurringAudienceLists($recurringAudienceLists);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listRecurringAudienceLists($formattedParent);
+        $response = $gapicClient->listRecurringAudienceLists();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -530,8 +474,6 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/ListRecurringAudienceLists', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -553,10 +495,8 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listRecurringAudienceLists($formattedParent);
+            $gapicClient->listRecurringAudienceLists();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -581,17 +521,13 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse = new QueryAudienceListResponse();
         $expectedResponse->setRowCount($rowCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $response = $gapicClient->queryAudienceList($name);
+        $response = $gapicClient->queryAudienceList();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/QueryAudienceList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -613,10 +549,8 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
         try {
-            $gapicClient->queryAudienceList($name);
+            $gapicClient->queryAudienceList();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -699,17 +633,13 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse->setSpreadsheetId($spreadsheetId);
         $expectedResponse->setRowCount($rowCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->audienceListName('[PROPERTY]', '[AUDIENCE_LIST]');
-        $response = $gapicClient->sheetExportAudienceList($formattedName);
+        $response = $gapicClient->sheetExportAudienceList();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/SheetExportAudienceList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -731,10 +661,8 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->audienceListName('[PROPERTY]', '[AUDIENCE_LIST]');
         try {
-            $gapicClient->sheetExportAudienceList($formattedName);
+            $gapicClient->sheetExportAudienceList();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

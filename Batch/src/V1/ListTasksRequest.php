@@ -48,7 +48,6 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. Name of a TaskGroup from which Tasks are being requested.
      *                       Pattern:
      *                       "projects/{project}/locations/{location}/jobs/{job}/taskGroups/{task_group}"
-     *                       Please see {@see BatchServiceClient::taskGroupName()} for help formatting this field.
      *
      * @return \Google\Cloud\Batch\V1\ListTasksRequest
      *

@@ -42,39 +42,19 @@ use Google\Rpc\Status;
  * the new binding is deployed onto all affected users, which may take more
  * time.
  *
- * @param string $formattedParent                                  Example: "organizations/256"
- *                                                                 Please see {@see AccessContextManagerClient::organizationName()} for help formatting this field.
- * @param string $gcpUserAccessBindingGroupKey                     Immutable. Google Group id whose members are subject to this binding's restrictions.
- *                                                                 See "id" in the [G Suite Directory API's Groups resource]
- *                                                                 (https://developers.google.com/admin-sdk/directory/v1/reference/groups#resource).
- *                                                                 If a group's email address/alias is changed, this resource will continue
- *                                                                 to point at the changed group. This field does not accept group email
- *                                                                 addresses or aliases.
- *                                                                 Example: "01d520gv4vjcrht"
- * @param string $formattedGcpUserAccessBindingAccessLevelsElement Access level that a user must have to be granted access. Only one access
- *                                                                 level is supported, not multiple. This repeated field must have exactly
- *                                                                 one element.
- *                                                                 Example: "accessPolicies/9522/accessLevels/device_trusted"
- *                                                                 Please see {@see AccessContextManagerClient::accessLevelName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_gcp_user_access_binding_sample(
-    string $formattedParent,
-    string $gcpUserAccessBindingGroupKey,
-    string $formattedGcpUserAccessBindingAccessLevelsElement
-): void {
+function create_gcp_user_access_binding_sample(): void
+{
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
     // Prepare the request message.
-    $formattedGcpUserAccessBindingAccessLevels = [
-        $formattedGcpUserAccessBindingAccessLevelsElement,
-    ];
-    $gcpUserAccessBinding = (new GcpUserAccessBinding())
-        ->setGroupKey($gcpUserAccessBindingGroupKey)
-        ->setAccessLevels($formattedGcpUserAccessBindingAccessLevels);
-    $request = (new CreateGcpUserAccessBindingRequest())
-        ->setParent($formattedParent)
-        ->setGcpUserAccessBinding($gcpUserAccessBinding);
+    $request = new CreateGcpUserAccessBindingRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -94,30 +74,5 @@ function create_gcp_user_access_binding_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AccessContextManagerClient::organizationName('[ORGANIZATION]');
-    $gcpUserAccessBindingGroupKey = '[GROUP_KEY]';
-    $formattedGcpUserAccessBindingAccessLevelsElement = AccessContextManagerClient::accessLevelName(
-        '[ACCESS_POLICY]',
-        '[ACCESS_LEVEL]'
-    );
-
-    create_gcp_user_access_binding_sample(
-        $formattedParent,
-        $gcpUserAccessBindingGroupKey,
-        $formattedGcpUserAccessBindingAccessLevelsElement
-    );
 }
 // [END accesscontextmanager_v1_generated_AccessContextManager_CreateGcpUserAccessBinding_sync]

@@ -41,13 +41,10 @@ function update_dataset_sample(): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $dataset = new Dataset();
-
     // Call the API and handle any network failures.
     try {
         /** @var Dataset $response */
-        $response = $autoMlClient->updateDataset($dataset);
+        $response = $autoMlClient->updateDataset();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

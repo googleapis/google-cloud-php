@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
 use Google\Cloud\AutoMl\V1\Model;
 use Google\Cloud\AutoMl\V1\UpdateModelRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates a model.
@@ -44,11 +43,7 @@ function update_model_sample(): void
     $autoMlClient = new AutoMlClient();
 
     // Prepare the request message.
-    $model = new Model();
-    $updateMask = new FieldMask();
-    $request = (new UpdateModelRequest())
-        ->setModel($model)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateModelRequest();
 
     // Call the API and handle any network failures.
     try {

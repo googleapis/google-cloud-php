@@ -23,8 +23,7 @@ class DeleteDatasetRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The resource name of the dataset to delete. Please see
-     *                     {@see AutoMlClient::datasetName()} for help formatting this field.
+     * @param string $name Required. The resource name of the dataset to delete.
      *
      * @return \Google\Cloud\AutoMl\V1\DeleteDatasetRequest
      *

@@ -59,9 +59,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $apiKeysClient = new ApiKeysClient();
  * try {
- *     $formattedParent = $apiKeysClient->locationName('[PROJECT]', '[LOCATION]');
- *     $key = new Key();
- *     $operationResponse = $apiKeysClient->createKey($formattedParent, $key);
+ *     $operationResponse = $apiKeysClient->createKey();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -72,7 +70,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $apiKeysClient->createKey($formattedParent, $key);
+ *     $operationResponse = $apiKeysClient->createKey();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $apiKeysClient->resumeOperation($operationName, 'createKey');
@@ -383,9 +381,7 @@ class ApiKeysGapicClient
      * ```
      * $apiKeysClient = new ApiKeysClient();
      * try {
-     *     $formattedParent = $apiKeysClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $key = new Key();
-     *     $operationResponse = $apiKeysClient->createKey($formattedParent, $key);
+     *     $operationResponse = $apiKeysClient->createKey();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -396,7 +392,7 @@ class ApiKeysGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $apiKeysClient->createKey($formattedParent, $key);
+     *     $operationResponse = $apiKeysClient->createKey();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $apiKeysClient->resumeOperation($operationName, 'createKey');
@@ -416,13 +412,15 @@ class ApiKeysGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project in which the API key is created.
-     * @param Key    $key          Required. The API key fields to set at creation time.
-     *                             You can configure only the `display_name`, `restrictions`, and
-     *                             `annotations` fields.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project in which the API key is created.
+     *     @type Key $key
+     *           Required. The API key fields to set at creation time.
+     *           You can configure only the `display_name`, `restrictions`, and
+     *           `annotations` fields.
      *     @type string $keyId
      *           User specified key id (optional). If specified, it will become the final
      *           component of the key resource name.
@@ -443,13 +441,19 @@ class ApiKeysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createKey($parent, $key, array $optionalArgs = [])
+    public function createKey(array $optionalArgs = [])
     {
         $request = new CreateKeyRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setKey($key);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['key'])) {
+            $request->setKey($optionalArgs['key']);
+        }
+
         if (isset($optionalArgs['keyId'])) {
             $request->setKeyId($optionalArgs['keyId']);
         }
@@ -479,8 +483,7 @@ class ApiKeysGapicClient
      * ```
      * $apiKeysClient = new ApiKeysClient();
      * try {
-     *     $formattedName = $apiKeysClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-     *     $operationResponse = $apiKeysClient->deleteKey($formattedName);
+     *     $operationResponse = $apiKeysClient->deleteKey();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -491,7 +494,7 @@ class ApiKeysGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $apiKeysClient->deleteKey($formattedName);
+     *     $operationResponse = $apiKeysClient->deleteKey();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $apiKeysClient->resumeOperation($operationName, 'deleteKey');
@@ -511,10 +514,11 @@ class ApiKeysGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the API key to be deleted.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the API key to be deleted.
      *     @type string $etag
      *           Optional. The etag known to the client for the expected state of the key.
      *           This is to be used for optimistic concurrency.
@@ -528,12 +532,15 @@ class ApiKeysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteKey($name, array $optionalArgs = [])
+    public function deleteKey(array $optionalArgs = [])
     {
         $request = new DeleteKeyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -563,17 +570,17 @@ class ApiKeysGapicClient
      * ```
      * $apiKeysClient = new ApiKeysClient();
      * try {
-     *     $formattedName = $apiKeysClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-     *     $response = $apiKeysClient->getKey($formattedName);
+     *     $response = $apiKeysClient->getKey();
      * } finally {
      *     $apiKeysClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the API key to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the API key to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -584,12 +591,15 @@ class ApiKeysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getKey($name, array $optionalArgs = [])
+    public function getKey(array $optionalArgs = [])
     {
         $request = new GetKeyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -614,17 +624,17 @@ class ApiKeysGapicClient
      * ```
      * $apiKeysClient = new ApiKeysClient();
      * try {
-     *     $formattedName = $apiKeysClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-     *     $response = $apiKeysClient->getKeyString($formattedName);
+     *     $response = $apiKeysClient->getKeyString();
      * } finally {
      *     $apiKeysClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the API key to be retrieved.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the API key to be retrieved.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -635,12 +645,15 @@ class ApiKeysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getKeyString($name, array $optionalArgs = [])
+    public function getKeyString(array $optionalArgs = [])
     {
         $request = new GetKeyStringRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -666,9 +679,8 @@ class ApiKeysGapicClient
      * ```
      * $apiKeysClient = new ApiKeysClient();
      * try {
-     *     $formattedParent = $apiKeysClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $apiKeysClient->listKeys($formattedParent);
+     *     $pagedResponse = $apiKeysClient->listKeys();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -676,7 +688,7 @@ class ApiKeysGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $apiKeysClient->listKeys($formattedParent);
+     *     $pagedResponse = $apiKeysClient->listKeys();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -685,10 +697,11 @@ class ApiKeysGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Lists all API keys associated with this project.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Lists all API keys associated with this project.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -711,12 +724,15 @@ class ApiKeysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listKeys($parent, array $optionalArgs = [])
+    public function listKeys(array $optionalArgs = [])
     {
         $request = new ListKeysRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -754,17 +770,17 @@ class ApiKeysGapicClient
      * ```
      * $apiKeysClient = new ApiKeysClient();
      * try {
-     *     $keyString = 'key_string';
-     *     $response = $apiKeysClient->lookupKey($keyString);
+     *     $response = $apiKeysClient->lookupKey();
      * } finally {
      *     $apiKeysClient->close();
      * }
      * ```
      *
-     * @param string $keyString    Required. Finds the project that owns the key string value.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $keyString
+     *           Required. Finds the project that owns the key string value.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -775,10 +791,13 @@ class ApiKeysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function lookupKey($keyString, array $optionalArgs = [])
+    public function lookupKey(array $optionalArgs = [])
     {
         $request = new LookupKeyRequest();
-        $request->setKeyString($keyString);
+        if (isset($optionalArgs['keyString'])) {
+            $request->setKeyString($optionalArgs['keyString']);
+        }
+
         return $this->startCall(
             'LookupKey',
             LookupKeyResponse::class,
@@ -797,8 +816,7 @@ class ApiKeysGapicClient
      * ```
      * $apiKeysClient = new ApiKeysClient();
      * try {
-     *     $formattedName = $apiKeysClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-     *     $operationResponse = $apiKeysClient->undeleteKey($formattedName);
+     *     $operationResponse = $apiKeysClient->undeleteKey();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -809,7 +827,7 @@ class ApiKeysGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $apiKeysClient->undeleteKey($formattedName);
+     *     $operationResponse = $apiKeysClient->undeleteKey();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $apiKeysClient->resumeOperation($operationName, 'undeleteKey');
@@ -829,10 +847,11 @@ class ApiKeysGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the API key to be undeleted.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the API key to be undeleted.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -843,12 +862,15 @@ class ApiKeysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function undeleteKey($name, array $optionalArgs = [])
+    public function undeleteKey(array $optionalArgs = [])
     {
         $request = new UndeleteKeyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -874,8 +896,7 @@ class ApiKeysGapicClient
      * ```
      * $apiKeysClient = new ApiKeysClient();
      * try {
-     *     $key = new Key();
-     *     $operationResponse = $apiKeysClient->updateKey($key);
+     *     $operationResponse = $apiKeysClient->updateKey();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -886,7 +907,7 @@ class ApiKeysGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $apiKeysClient->updateKey($key);
+     *     $operationResponse = $apiKeysClient->updateKey();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $apiKeysClient->resumeOperation($operationName, 'updateKey');
@@ -906,12 +927,13 @@ class ApiKeysGapicClient
      * }
      * ```
      *
-     * @param Key   $key          Required. Set the `name` field to the resource name of the API key to be
-     *                            updated. You can update only the `display_name`, `restrictions`, and
-     *                            `annotations` fields.
      * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Key $key
+     *           Required. Set the `name` field to the resource name of the API key to be
+     *           updated. You can update only the `display_name`, `restrictions`, and
+     *           `annotations` fields.
      *     @type FieldMask $updateMask
      *           The field mask specifies which fields to be updated as part of this
      *           request. All other fields are ignored.
@@ -930,12 +952,14 @@ class ApiKeysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateKey($key, array $optionalArgs = [])
+    public function updateKey(array $optionalArgs = [])
     {
         $request = new UpdateKeyRequest();
         $requestParamHeaders = [];
-        $request->setKey($key);
-        $requestParamHeaders['key.name'] = $key->getName();
+        if (isset($optionalArgs['key'])) {
+            $request->setKey($optionalArgs['key']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

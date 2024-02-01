@@ -59,7 +59,6 @@ class ListAppConnectorsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name of the AppConnector location using the form:
      *                       `projects/{project_id}/locations/{location_id}`
-     *                       Please see {@see AppConnectorsServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\BeyondCorp\AppConnectors\V1\ListAppConnectorsRequest
      *

@@ -27,26 +27,23 @@ use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1beta\MeasurementProtocolSecret;
 use Google\Analytics\Admin\V1beta\UpdateMeasurementProtocolSecretRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates a measurement protocol secret.
  *
- * @param string $measurementProtocolSecretDisplayName Human-readable display name for this secret.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_measurement_protocol_secret_sample(
-    string $measurementProtocolSecretDisplayName
-): void {
+function update_measurement_protocol_secret_sample(): void
+{
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $measurementProtocolSecret = (new MeasurementProtocolSecret())
-        ->setDisplayName($measurementProtocolSecretDisplayName);
-    $updateMask = new FieldMask();
-    $request = (new UpdateMeasurementProtocolSecretRequest())
-        ->setMeasurementProtocolSecret($measurementProtocolSecret)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateMeasurementProtocolSecretRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +53,5 @@ function update_measurement_protocol_secret_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $measurementProtocolSecretDisplayName = '[DISPLAY_NAME]';
-
-    update_measurement_protocol_secret_sample($measurementProtocolSecretDisplayName);
 }
 // [END analyticsadmin_v1beta_generated_AnalyticsAdminService_UpdateMeasurementProtocolSecret_sync]

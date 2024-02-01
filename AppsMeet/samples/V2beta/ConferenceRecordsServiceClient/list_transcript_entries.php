@@ -38,18 +38,19 @@ use Google\Apps\Meet\V2beta\TranscriptEntry;
  * match the transcription found in the Google Docs transcript file. This can
  * occur when the Google Docs transcript file is modified after generation.
  *
- * @param string $formattedParent Format:
- *                                `conferenceRecords/{conference_record}/transcripts/{transcript}`
- *                                Please see {@see ConferenceRecordsServiceClient::transcriptName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_transcript_entries_sample(string $formattedParent): void
+function list_transcript_entries_sample(): void
 {
     // Create a client.
     $conferenceRecordsServiceClient = new ConferenceRecordsServiceClient();
 
     // Prepare the request message.
-    $request = (new ListTranscriptEntriesRequest())
-        ->setParent($formattedParent);
+    $request = new ListTranscriptEntriesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,24 +64,5 @@ function list_transcript_entries_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ConferenceRecordsServiceClient::transcriptName(
-        '[CONFERENCE_RECORD]',
-        '[TRANSCRIPT]'
-    );
-
-    list_transcript_entries_sample($formattedParent);
 }
 // [END meet_v2beta_generated_ConferenceRecordsService_ListTranscriptEntries_sync]

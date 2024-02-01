@@ -33,20 +33,19 @@ use Google\ApiCore\ApiException;
  * Only roll-up properties can have source links, so this method will throw an
  * error if used on other types of properties.
  *
- * @param string $formattedParent Format: properties/{property_id}
- *                                Example: properties/1234
- *                                Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_rollup_property_source_link_sample(string $formattedParent): void
+function create_rollup_property_source_link_sample(): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $rollupPropertySourceLink = new RollupPropertySourceLink();
-    $request = (new CreateRollupPropertySourceLinkRequest())
-        ->setParent($formattedParent)
-        ->setRollupPropertySourceLink($rollupPropertySourceLink);
+    $request = new CreateRollupPropertySourceLinkRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +55,5 @@ function create_rollup_property_source_link_sample(string $formattedParent): voi
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AnalyticsAdminServiceClient::propertyName('[PROPERTY]');
-
-    create_rollup_property_source_link_sample($formattedParent);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateRollupPropertySourceLink_sync]

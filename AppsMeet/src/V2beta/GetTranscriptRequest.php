@@ -23,8 +23,7 @@ class GetTranscriptRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. Resource name of the transcript. Please see
-     *                     {@see ConferenceRecordsServiceClient::transcriptName()} for help formatting this field.
+     * @param string $name Required. Resource name of the transcript.
      *
      * @return \Google\Apps\Meet\V2beta\GetTranscriptRequest
      *

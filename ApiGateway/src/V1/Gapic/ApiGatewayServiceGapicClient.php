@@ -68,10 +68,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $apiGatewayServiceClient = new ApiGatewayServiceClient();
  * try {
- *     $formattedParent = $apiGatewayServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     $apiId = 'api_id';
- *     $api = new Api();
- *     $operationResponse = $apiGatewayServiceClient->createApi($formattedParent, $apiId, $api);
+ *     $operationResponse = $apiGatewayServiceClient->createApi();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -82,7 +79,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $apiGatewayServiceClient->createApi($formattedParent, $apiId, $api);
+ *     $operationResponse = $apiGatewayServiceClient->createApi();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $apiGatewayServiceClient->resumeOperation($operationName, 'createApi');
@@ -519,10 +516,7 @@ class ApiGatewayServiceGapicClient
      * ```
      * $apiGatewayServiceClient = new ApiGatewayServiceClient();
      * try {
-     *     $formattedParent = $apiGatewayServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $apiId = 'api_id';
-     *     $api = new Api();
-     *     $operationResponse = $apiGatewayServiceClient->createApi($formattedParent, $apiId, $api);
+     *     $operationResponse = $apiGatewayServiceClient->createApi();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -533,7 +527,7 @@ class ApiGatewayServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $apiGatewayServiceClient->createApi($formattedParent, $apiId, $api);
+     *     $operationResponse = $apiGatewayServiceClient->createApi();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $apiGatewayServiceClient->resumeOperation($operationName, 'createApi');
@@ -553,14 +547,17 @@ class ApiGatewayServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource of the API, of the form:
-     *                             `projects/&#42;/locations/global`
-     * @param string $apiId        Required. Identifier to assign to the API. Must be unique within scope of
-     *                             the parent resource.
-     * @param Api    $api          Required. API resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource of the API, of the form:
+     *           `projects/&#42;/locations/global`
+     *     @type string $apiId
+     *           Required. Identifier to assign to the API. Must be unique within scope of
+     *           the parent resource.
+     *     @type Api $api
+     *           Required. API resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -571,14 +568,23 @@ class ApiGatewayServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createApi($parent, $apiId, $api, array $optionalArgs = [])
+    public function createApi(array $optionalArgs = [])
     {
         $request = new CreateApiRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setApiId($apiId);
-        $request->setApi($api);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['apiId'])) {
+            $request->setApiId($optionalArgs['apiId']);
+        }
+
+        if (isset($optionalArgs['api'])) {
+            $request->setApi($optionalArgs['api']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateApi', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -591,10 +597,7 @@ class ApiGatewayServiceGapicClient
      * ```
      * $apiGatewayServiceClient = new ApiGatewayServiceClient();
      * try {
-     *     $formattedParent = $apiGatewayServiceClient->apiName('[PROJECT]', '[API]');
-     *     $apiConfigId = 'api_config_id';
-     *     $apiConfig = new ApiConfig();
-     *     $operationResponse = $apiGatewayServiceClient->createApiConfig($formattedParent, $apiConfigId, $apiConfig);
+     *     $operationResponse = $apiGatewayServiceClient->createApiConfig();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -605,7 +608,7 @@ class ApiGatewayServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $apiGatewayServiceClient->createApiConfig($formattedParent, $apiConfigId, $apiConfig);
+     *     $operationResponse = $apiGatewayServiceClient->createApiConfig();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $apiGatewayServiceClient->resumeOperation($operationName, 'createApiConfig');
@@ -625,14 +628,17 @@ class ApiGatewayServiceGapicClient
      * }
      * ```
      *
-     * @param string    $parent       Required. Parent resource of the API Config, of the form:
-     *                                `projects/&#42;/locations/global/apis/*`
-     * @param string    $apiConfigId  Required. Identifier to assign to the API Config. Must be unique within scope of
-     *                                the parent resource.
-     * @param ApiConfig $apiConfig    Required. API resource.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource of the API Config, of the form:
+     *           `projects/&#42;/locations/global/apis/*`
+     *     @type string $apiConfigId
+     *           Required. Identifier to assign to the API Config. Must be unique within scope of
+     *           the parent resource.
+     *     @type ApiConfig $apiConfig
+     *           Required. API resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -643,14 +649,23 @@ class ApiGatewayServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createApiConfig($parent, $apiConfigId, $apiConfig, array $optionalArgs = [])
+    public function createApiConfig(array $optionalArgs = [])
     {
         $request = new CreateApiConfigRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setApiConfigId($apiConfigId);
-        $request->setApiConfig($apiConfig);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['apiConfigId'])) {
+            $request->setApiConfigId($optionalArgs['apiConfigId']);
+        }
+
+        if (isset($optionalArgs['apiConfig'])) {
+            $request->setApiConfig($optionalArgs['apiConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateApiConfig', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -663,10 +678,7 @@ class ApiGatewayServiceGapicClient
      * ```
      * $apiGatewayServiceClient = new ApiGatewayServiceClient();
      * try {
-     *     $formattedParent = $apiGatewayServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $gatewayId = 'gateway_id';
-     *     $gateway = new Gateway();
-     *     $operationResponse = $apiGatewayServiceClient->createGateway($formattedParent, $gatewayId, $gateway);
+     *     $operationResponse = $apiGatewayServiceClient->createGateway();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -677,7 +689,7 @@ class ApiGatewayServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $apiGatewayServiceClient->createGateway($formattedParent, $gatewayId, $gateway);
+     *     $operationResponse = $apiGatewayServiceClient->createGateway();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $apiGatewayServiceClient->resumeOperation($operationName, 'createGateway');
@@ -697,14 +709,17 @@ class ApiGatewayServiceGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. Parent resource of the Gateway, of the form:
-     *                              `projects/&#42;/locations/*`
-     * @param string  $gatewayId    Required. Identifier to assign to the Gateway. Must be unique within scope of
-     *                              the parent resource.
-     * @param Gateway $gateway      Required. Gateway resource.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource of the Gateway, of the form:
+     *           `projects/&#42;/locations/*`
+     *     @type string $gatewayId
+     *           Required. Identifier to assign to the Gateway. Must be unique within scope of
+     *           the parent resource.
+     *     @type Gateway $gateway
+     *           Required. Gateway resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -715,14 +730,23 @@ class ApiGatewayServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createGateway($parent, $gatewayId, $gateway, array $optionalArgs = [])
+    public function createGateway(array $optionalArgs = [])
     {
         $request = new CreateGatewayRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setGatewayId($gatewayId);
-        $request->setGateway($gateway);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['gatewayId'])) {
+            $request->setGatewayId($optionalArgs['gatewayId']);
+        }
+
+        if (isset($optionalArgs['gateway'])) {
+            $request->setGateway($optionalArgs['gateway']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateGateway', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -735,8 +759,7 @@ class ApiGatewayServiceGapicClient
      * ```
      * $apiGatewayServiceClient = new ApiGatewayServiceClient();
      * try {
-     *     $formattedName = $apiGatewayServiceClient->apiName('[PROJECT]', '[API]');
-     *     $operationResponse = $apiGatewayServiceClient->deleteApi($formattedName);
+     *     $operationResponse = $apiGatewayServiceClient->deleteApi();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -746,7 +769,7 @@ class ApiGatewayServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $apiGatewayServiceClient->deleteApi($formattedName);
+     *     $operationResponse = $apiGatewayServiceClient->deleteApi();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $apiGatewayServiceClient->resumeOperation($operationName, 'deleteApi');
@@ -765,11 +788,12 @@ class ApiGatewayServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the form:
-     *                             `projects/&#42;/locations/global/apis/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the form:
+     *           `projects/&#42;/locations/global/apis/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -780,12 +804,15 @@ class ApiGatewayServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteApi($name, array $optionalArgs = [])
+    public function deleteApi(array $optionalArgs = [])
     {
         $request = new DeleteApiRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteApi', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -798,8 +825,7 @@ class ApiGatewayServiceGapicClient
      * ```
      * $apiGatewayServiceClient = new ApiGatewayServiceClient();
      * try {
-     *     $formattedName = $apiGatewayServiceClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-     *     $operationResponse = $apiGatewayServiceClient->deleteApiConfig($formattedName);
+     *     $operationResponse = $apiGatewayServiceClient->deleteApiConfig();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -809,7 +835,7 @@ class ApiGatewayServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $apiGatewayServiceClient->deleteApiConfig($formattedName);
+     *     $operationResponse = $apiGatewayServiceClient->deleteApiConfig();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $apiGatewayServiceClient->resumeOperation($operationName, 'deleteApiConfig');
@@ -828,11 +854,12 @@ class ApiGatewayServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the form:
-     *                             `projects/&#42;/locations/global/apis/&#42;/configs/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the form:
+     *           `projects/&#42;/locations/global/apis/&#42;/configs/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -843,12 +870,15 @@ class ApiGatewayServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteApiConfig($name, array $optionalArgs = [])
+    public function deleteApiConfig(array $optionalArgs = [])
     {
         $request = new DeleteApiConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteApiConfig', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -861,8 +891,7 @@ class ApiGatewayServiceGapicClient
      * ```
      * $apiGatewayServiceClient = new ApiGatewayServiceClient();
      * try {
-     *     $formattedName = $apiGatewayServiceClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
-     *     $operationResponse = $apiGatewayServiceClient->deleteGateway($formattedName);
+     *     $operationResponse = $apiGatewayServiceClient->deleteGateway();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -872,7 +901,7 @@ class ApiGatewayServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $apiGatewayServiceClient->deleteGateway($formattedName);
+     *     $operationResponse = $apiGatewayServiceClient->deleteGateway();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $apiGatewayServiceClient->resumeOperation($operationName, 'deleteGateway');
@@ -891,11 +920,12 @@ class ApiGatewayServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the form:
-     *                             `projects/&#42;/locations/&#42;/gateways/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the form:
+     *           `projects/&#42;/locations/&#42;/gateways/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -906,12 +936,15 @@ class ApiGatewayServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteGateway($name, array $optionalArgs = [])
+    public function deleteGateway(array $optionalArgs = [])
     {
         $request = new DeleteGatewayRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteGateway', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -924,18 +957,18 @@ class ApiGatewayServiceGapicClient
      * ```
      * $apiGatewayServiceClient = new ApiGatewayServiceClient();
      * try {
-     *     $formattedName = $apiGatewayServiceClient->apiName('[PROJECT]', '[API]');
-     *     $response = $apiGatewayServiceClient->getApi($formattedName);
+     *     $response = $apiGatewayServiceClient->getApi();
      * } finally {
      *     $apiGatewayServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the form:
-     *                             `projects/&#42;/locations/global/apis/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the form:
+     *           `projects/&#42;/locations/global/apis/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -946,12 +979,15 @@ class ApiGatewayServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getApi($name, array $optionalArgs = [])
+    public function getApi(array $optionalArgs = [])
     {
         $request = new GetApiRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetApi', Api::class, $optionalArgs, $request)->wait();
@@ -964,18 +1000,18 @@ class ApiGatewayServiceGapicClient
      * ```
      * $apiGatewayServiceClient = new ApiGatewayServiceClient();
      * try {
-     *     $formattedName = $apiGatewayServiceClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-     *     $response = $apiGatewayServiceClient->getApiConfig($formattedName);
+     *     $response = $apiGatewayServiceClient->getApiConfig();
      * } finally {
      *     $apiGatewayServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the form:
-     *                             `projects/&#42;/locations/global/apis/&#42;/configs/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the form:
+     *           `projects/&#42;/locations/global/apis/&#42;/configs/*`
      *     @type int $view
      *           Specifies which fields of the API Config are returned in the response.
      *           Defaults to `BASIC` view.
@@ -990,12 +1026,15 @@ class ApiGatewayServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getApiConfig($name, array $optionalArgs = [])
+    public function getApiConfig(array $optionalArgs = [])
     {
         $request = new GetApiConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -1012,18 +1051,18 @@ class ApiGatewayServiceGapicClient
      * ```
      * $apiGatewayServiceClient = new ApiGatewayServiceClient();
      * try {
-     *     $formattedName = $apiGatewayServiceClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
-     *     $response = $apiGatewayServiceClient->getGateway($formattedName);
+     *     $response = $apiGatewayServiceClient->getGateway();
      * } finally {
      *     $apiGatewayServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the form:
-     *                             `projects/&#42;/locations/&#42;/gateways/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the form:
+     *           `projects/&#42;/locations/&#42;/gateways/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1034,12 +1073,15 @@ class ApiGatewayServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getGateway($name, array $optionalArgs = [])
+    public function getGateway(array $optionalArgs = [])
     {
         $request = new GetGatewayRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetGateway', Gateway::class, $optionalArgs, $request)->wait();
@@ -1052,9 +1094,8 @@ class ApiGatewayServiceGapicClient
      * ```
      * $apiGatewayServiceClient = new ApiGatewayServiceClient();
      * try {
-     *     $formattedParent = $apiGatewayServiceClient->apiName('[PROJECT]', '[API]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $apiGatewayServiceClient->listApiConfigs($formattedParent);
+     *     $pagedResponse = $apiGatewayServiceClient->listApiConfigs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1062,7 +1103,7 @@ class ApiGatewayServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $apiGatewayServiceClient->listApiConfigs($formattedParent);
+     *     $pagedResponse = $apiGatewayServiceClient->listApiConfigs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1071,11 +1112,12 @@ class ApiGatewayServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource of the API Config, of the form:
-     *                             `projects/&#42;/locations/global/apis/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource of the API Config, of the form:
+     *           `projects/&#42;/locations/global/apis/*`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1099,12 +1141,15 @@ class ApiGatewayServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listApiConfigs($parent, array $optionalArgs = [])
+    public function listApiConfigs(array $optionalArgs = [])
     {
         $request = new ListApiConfigsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1133,9 +1178,8 @@ class ApiGatewayServiceGapicClient
      * ```
      * $apiGatewayServiceClient = new ApiGatewayServiceClient();
      * try {
-     *     $formattedParent = $apiGatewayServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $apiGatewayServiceClient->listApis($formattedParent);
+     *     $pagedResponse = $apiGatewayServiceClient->listApis();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1143,7 +1187,7 @@ class ApiGatewayServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $apiGatewayServiceClient->listApis($formattedParent);
+     *     $pagedResponse = $apiGatewayServiceClient->listApis();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1152,11 +1196,12 @@ class ApiGatewayServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource of the API, of the form:
-     *                             `projects/&#42;/locations/global`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource of the API, of the form:
+     *           `projects/&#42;/locations/global`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1180,12 +1225,15 @@ class ApiGatewayServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listApis($parent, array $optionalArgs = [])
+    public function listApis(array $optionalArgs = [])
     {
         $request = new ListApisRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1214,9 +1262,8 @@ class ApiGatewayServiceGapicClient
      * ```
      * $apiGatewayServiceClient = new ApiGatewayServiceClient();
      * try {
-     *     $formattedParent = $apiGatewayServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $apiGatewayServiceClient->listGateways($formattedParent);
+     *     $pagedResponse = $apiGatewayServiceClient->listGateways();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1224,7 +1271,7 @@ class ApiGatewayServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $apiGatewayServiceClient->listGateways($formattedParent);
+     *     $pagedResponse = $apiGatewayServiceClient->listGateways();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1233,11 +1280,12 @@ class ApiGatewayServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource of the Gateway, of the form:
-     *                             `projects/&#42;/locations/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource of the Gateway, of the form:
+     *           `projects/&#42;/locations/*`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1261,12 +1309,15 @@ class ApiGatewayServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listGateways($parent, array $optionalArgs = [])
+    public function listGateways(array $optionalArgs = [])
     {
         $request = new ListGatewaysRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1295,8 +1346,7 @@ class ApiGatewayServiceGapicClient
      * ```
      * $apiGatewayServiceClient = new ApiGatewayServiceClient();
      * try {
-     *     $api = new Api();
-     *     $operationResponse = $apiGatewayServiceClient->updateApi($api);
+     *     $operationResponse = $apiGatewayServiceClient->updateApi();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1307,7 +1357,7 @@ class ApiGatewayServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $apiGatewayServiceClient->updateApi($api);
+     *     $operationResponse = $apiGatewayServiceClient->updateApi();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $apiGatewayServiceClient->resumeOperation($operationName, 'updateApi');
@@ -1327,7 +1377,6 @@ class ApiGatewayServiceGapicClient
      * }
      * ```
      *
-     * @param Api   $api          Required. API resource.
      * @param array $optionalArgs {
      *     Optional.
      *
@@ -1337,6 +1386,8 @@ class ApiGatewayServiceGapicClient
      *           The fields specified in the update_mask are relative to the resource, not
      *           the full request. A field will be overwritten if it is in the mask. If the
      *           user does not provide a mask then all fields will be overwritten.
+     *     @type Api $api
+     *           Required. API resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1347,14 +1398,16 @@ class ApiGatewayServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateApi($api, array $optionalArgs = [])
+    public function updateApi(array $optionalArgs = [])
     {
         $request = new UpdateApiRequest();
         $requestParamHeaders = [];
-        $request->setApi($api);
-        $requestParamHeaders['api.name'] = $api->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['api'])) {
+            $request->setApi($optionalArgs['api']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1369,8 +1422,7 @@ class ApiGatewayServiceGapicClient
      * ```
      * $apiGatewayServiceClient = new ApiGatewayServiceClient();
      * try {
-     *     $apiConfig = new ApiConfig();
-     *     $operationResponse = $apiGatewayServiceClient->updateApiConfig($apiConfig);
+     *     $operationResponse = $apiGatewayServiceClient->updateApiConfig();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1381,7 +1433,7 @@ class ApiGatewayServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $apiGatewayServiceClient->updateApiConfig($apiConfig);
+     *     $operationResponse = $apiGatewayServiceClient->updateApiConfig();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $apiGatewayServiceClient->resumeOperation($operationName, 'updateApiConfig');
@@ -1401,8 +1453,7 @@ class ApiGatewayServiceGapicClient
      * }
      * ```
      *
-     * @param ApiConfig $apiConfig    Required. API Config resource.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
@@ -1411,6 +1462,8 @@ class ApiGatewayServiceGapicClient
      *           The fields specified in the update_mask are relative to the resource, not
      *           the full request. A field will be overwritten if it is in the mask. If the
      *           user does not provide a mask then all fields will be overwritten.
+     *     @type ApiConfig $apiConfig
+     *           Required. API Config resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1421,14 +1474,16 @@ class ApiGatewayServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateApiConfig($apiConfig, array $optionalArgs = [])
+    public function updateApiConfig(array $optionalArgs = [])
     {
         $request = new UpdateApiConfigRequest();
         $requestParamHeaders = [];
-        $request->setApiConfig($apiConfig);
-        $requestParamHeaders['api_config.name'] = $apiConfig->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['apiConfig'])) {
+            $request->setApiConfig($optionalArgs['apiConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1443,8 +1498,7 @@ class ApiGatewayServiceGapicClient
      * ```
      * $apiGatewayServiceClient = new ApiGatewayServiceClient();
      * try {
-     *     $gateway = new Gateway();
-     *     $operationResponse = $apiGatewayServiceClient->updateGateway($gateway);
+     *     $operationResponse = $apiGatewayServiceClient->updateGateway();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1455,7 +1509,7 @@ class ApiGatewayServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $apiGatewayServiceClient->updateGateway($gateway);
+     *     $operationResponse = $apiGatewayServiceClient->updateGateway();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $apiGatewayServiceClient->resumeOperation($operationName, 'updateGateway');
@@ -1475,8 +1529,7 @@ class ApiGatewayServiceGapicClient
      * }
      * ```
      *
-     * @param Gateway $gateway      Required. Gateway resource.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
@@ -1485,6 +1538,8 @@ class ApiGatewayServiceGapicClient
      *           The fields specified in the update_mask are relative to the resource, not
      *           the full request. A field will be overwritten if it is in the mask. If the
      *           user does not provide a mask then all fields will be overwritten.
+     *     @type Gateway $gateway
+     *           Required. Gateway resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1495,14 +1550,16 @@ class ApiGatewayServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateGateway($gateway, array $optionalArgs = [])
+    public function updateGateway(array $optionalArgs = [])
     {
         $request = new UpdateGatewayRequest();
         $requestParamHeaders = [];
-        $request->setGateway($gateway);
-        $requestParamHeaders['gateway.name'] = $gateway->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['gateway'])) {
+            $request->setGateway($optionalArgs['gateway']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

@@ -32,7 +32,6 @@ class CreateSubpropertyEventFilterRequest extends \Google\Protobuf\Internal\Mess
     /**
      * @param string                                                 $parent                 Required. The ordinary property for which to create a subproperty event
      *                                                                                       filter. Format: properties/property_id Example: properties/123
-     *                                                                                       Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      * @param \Google\Analytics\Admin\V1alpha\SubpropertyEventFilter $subpropertyEventFilter Required. The subproperty event filter to create.
      *
      * @return \Google\Analytics\Admin\V1alpha\CreateSubpropertyEventFilterRequest

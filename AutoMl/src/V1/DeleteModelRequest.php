@@ -23,8 +23,7 @@ class DeleteModelRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. Resource name of the model being deleted. Please see
-     *                     {@see AutoMlClient::modelName()} for help formatting this field.
+     * @param string $name Required. Resource name of the model being deleted.
      *
      * @return \Google\Cloud\AutoMl\V1\DeleteModelRequest
      *

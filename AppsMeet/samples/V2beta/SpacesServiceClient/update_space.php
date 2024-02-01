@@ -44,9 +44,7 @@ function update_space_sample(): void
     $spacesServiceClient = new SpacesServiceClient();
 
     // Prepare the request message.
-    $space = new Space();
-    $request = (new UpdateSpaceRequest())
-        ->setSpace($space);
+    $request = new UpdateSpaceRequest();
 
     // Call the API and handle any network failures.
     try {

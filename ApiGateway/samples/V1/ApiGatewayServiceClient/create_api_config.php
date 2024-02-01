@@ -33,23 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new ApiConfig in a given project and location.
  *
- * @param string $formattedParent Parent resource of the API Config, of the form:
- *                                `projects/&#42;/locations/global/apis/*`
- *                                Please see {@see ApiGatewayServiceClient::apiName()} for help formatting this field.
- * @param string $apiConfigId     Identifier to assign to the API Config. Must be unique within scope of
- *                                the parent resource.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_api_config_sample(string $formattedParent, string $apiConfigId): void
+function create_api_config_sample(): void
 {
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
     // Prepare the request message.
-    $apiConfig = new ApiConfig();
-    $request = (new CreateApiConfigRequest())
-        ->setParent($formattedParent)
-        ->setApiConfigId($apiConfigId)
-        ->setApiConfig($apiConfig);
+    $request = new CreateApiConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,22 +65,5 @@ function create_api_config_sample(string $formattedParent, string $apiConfigId):
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ApiGatewayServiceClient::apiName('[PROJECT]', '[API]');
-    $apiConfigId = '[API_CONFIG_ID]';
-
-    create_api_config_sample($formattedParent, $apiConfigId);
 }
 // [END apigateway_v1_generated_ApiGatewayService_CreateApiConfig_sync]

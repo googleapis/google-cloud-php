@@ -80,9 +80,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $appConnectorsServiceClient = new AppConnectorsServiceClient();
  * try {
- *     $formattedParent = $appConnectorsServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     $appConnector = new AppConnector();
- *     $operationResponse = $appConnectorsServiceClient->createAppConnector($formattedParent, $appConnector);
+ *     $operationResponse = $appConnectorsServiceClient->createAppConnector();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -93,7 +91,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $appConnectorsServiceClient->createAppConnector($formattedParent, $appConnector);
+ *     $operationResponse = $appConnectorsServiceClient->createAppConnector();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $appConnectorsServiceClient->resumeOperation($operationName, 'createAppConnector');
@@ -403,9 +401,7 @@ class AppConnectorsServiceGapicClient
      * ```
      * $appConnectorsServiceClient = new AppConnectorsServiceClient();
      * try {
-     *     $formattedParent = $appConnectorsServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $appConnector = new AppConnector();
-     *     $operationResponse = $appConnectorsServiceClient->createAppConnector($formattedParent, $appConnector);
+     *     $operationResponse = $appConnectorsServiceClient->createAppConnector();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -416,7 +412,7 @@ class AppConnectorsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $appConnectorsServiceClient->createAppConnector($formattedParent, $appConnector);
+     *     $operationResponse = $appConnectorsServiceClient->createAppConnector();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $appConnectorsServiceClient->resumeOperation($operationName, 'createAppConnector');
@@ -436,18 +432,20 @@ class AppConnectorsServiceGapicClient
      * }
      * ```
      *
-     * @param string       $parent       Required. The resource project name of the AppConnector location using the
-     *                                   form: `projects/{project_id}/locations/{location_id}`
-     * @param AppConnector $appConnector Required. A BeyondCorp AppConnector resource.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource project name of the AppConnector location using the
+     *           form: `projects/{project_id}/locations/{location_id}`
      *     @type string $appConnectorId
      *           Optional. User-settable AppConnector resource ID.
      *
      *           * Must start with a letter.
      *           * Must contain between 4-63 characters from `/[a-z][0-9]-/`.
      *           * Must end with a number or a letter.
+     *     @type AppConnector $appConnector
+     *           Required. A BeyondCorp AppConnector resource.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -475,18 +473,21 @@ class AppConnectorsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAppConnector(
-        $parent,
-        $appConnector,
-        array $optionalArgs = []
-    ) {
+    public function createAppConnector(array $optionalArgs = [])
+    {
         $request = new CreateAppConnectorRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAppConnector($appConnector);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['appConnectorId'])) {
             $request->setAppConnectorId($optionalArgs['appConnectorId']);
+        }
+
+        if (isset($optionalArgs['appConnector'])) {
+            $request->setAppConnector($optionalArgs['appConnector']);
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -518,8 +519,7 @@ class AppConnectorsServiceGapicClient
      * ```
      * $appConnectorsServiceClient = new AppConnectorsServiceClient();
      * try {
-     *     $formattedName = $appConnectorsServiceClient->appConnectorName('[PROJECT]', '[LOCATION]', '[APP_CONNECTOR]');
-     *     $operationResponse = $appConnectorsServiceClient->deleteAppConnector($formattedName);
+     *     $operationResponse = $appConnectorsServiceClient->deleteAppConnector();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -529,7 +529,7 @@ class AppConnectorsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $appConnectorsServiceClient->deleteAppConnector($formattedName);
+     *     $operationResponse = $appConnectorsServiceClient->deleteAppConnector();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $appConnectorsServiceClient->resumeOperation($operationName, 'deleteAppConnector');
@@ -548,11 +548,12 @@ class AppConnectorsServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. BeyondCorp AppConnector name using the form:
-     *                             `projects/{project_id}/locations/{location_id}/appConnectors/{app_connector_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. BeyondCorp AppConnector name using the form:
+     *           `projects/{project_id}/locations/{location_id}/appConnectors/{app_connector_id}`
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -580,12 +581,15 @@ class AppConnectorsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAppConnector($name, array $optionalArgs = [])
+    public function deleteAppConnector(array $optionalArgs = [])
     {
         $request = new DeleteAppConnectorRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -615,18 +619,18 @@ class AppConnectorsServiceGapicClient
      * ```
      * $appConnectorsServiceClient = new AppConnectorsServiceClient();
      * try {
-     *     $formattedName = $appConnectorsServiceClient->appConnectorName('[PROJECT]', '[LOCATION]', '[APP_CONNECTOR]');
-     *     $response = $appConnectorsServiceClient->getAppConnector($formattedName);
+     *     $response = $appConnectorsServiceClient->getAppConnector();
      * } finally {
      *     $appConnectorsServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. BeyondCorp AppConnector name using the form:
-     *                             `projects/{project_id}/locations/{location_id}/appConnectors/{app_connector_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. BeyondCorp AppConnector name using the form:
+     *           `projects/{project_id}/locations/{location_id}/appConnectors/{app_connector_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -637,12 +641,15 @@ class AppConnectorsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAppConnector($name, array $optionalArgs = [])
+    public function getAppConnector(array $optionalArgs = [])
     {
         $request = new GetAppConnectorRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -664,9 +671,8 @@ class AppConnectorsServiceGapicClient
      * ```
      * $appConnectorsServiceClient = new AppConnectorsServiceClient();
      * try {
-     *     $formattedParent = $appConnectorsServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $appConnectorsServiceClient->listAppConnectors($formattedParent);
+     *     $pagedResponse = $appConnectorsServiceClient->listAppConnectors();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -674,7 +680,7 @@ class AppConnectorsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $appConnectorsServiceClient->listAppConnectors($formattedParent);
+     *     $pagedResponse = $appConnectorsServiceClient->listAppConnectors();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -683,11 +689,12 @@ class AppConnectorsServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the AppConnector location using the form:
-     *                             `projects/{project_id}/locations/{location_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the AppConnector location using the form:
+     *           `projects/{project_id}/locations/{location_id}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -714,12 +721,15 @@ class AppConnectorsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAppConnectors($parent, array $optionalArgs = [])
+    public function listAppConnectors(array $optionalArgs = [])
     {
         $request = new ListAppConnectorsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -757,9 +767,7 @@ class AppConnectorsServiceGapicClient
      * ```
      * $appConnectorsServiceClient = new AppConnectorsServiceClient();
      * try {
-     *     $formattedAppConnector = $appConnectorsServiceClient->appConnectorName('[PROJECT]', '[LOCATION]', '[APP_CONNECTOR]');
-     *     $resourceInfo = new ResourceInfo();
-     *     $operationResponse = $appConnectorsServiceClient->reportStatus($formattedAppConnector, $resourceInfo);
+     *     $operationResponse = $appConnectorsServiceClient->reportStatus();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -770,7 +778,7 @@ class AppConnectorsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $appConnectorsServiceClient->reportStatus($formattedAppConnector, $resourceInfo);
+     *     $operationResponse = $appConnectorsServiceClient->reportStatus();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $appConnectorsServiceClient->resumeOperation($operationName, 'reportStatus');
@@ -790,12 +798,14 @@ class AppConnectorsServiceGapicClient
      * }
      * ```
      *
-     * @param string       $appConnector Required. BeyondCorp Connector name using the form:
-     *                                   `projects/{project_id}/locations/{location_id}/connectors/{connector}`
-     * @param ResourceInfo $resourceInfo Required. Resource info of the connector.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $appConnector
+     *           Required. BeyondCorp Connector name using the form:
+     *           `projects/{project_id}/locations/{location_id}/connectors/{connector}`
+     *     @type ResourceInfo $resourceInfo
+     *           Required. Resource info of the connector.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -823,16 +833,20 @@ class AppConnectorsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function reportStatus(
-        $appConnector,
-        $resourceInfo,
-        array $optionalArgs = []
-    ) {
+    public function reportStatus(array $optionalArgs = [])
+    {
         $request = new ReportStatusRequest();
         $requestParamHeaders = [];
-        $request->setAppConnector($appConnector);
-        $request->setResourceInfo($resourceInfo);
-        $requestParamHeaders['app_connector'] = $appConnector;
+        if (isset($optionalArgs['appConnector'])) {
+            $request->setAppConnector($optionalArgs['appConnector']);
+            $requestParamHeaders['app_connector'] =
+                $optionalArgs['appConnector'];
+        }
+
+        if (isset($optionalArgs['resourceInfo'])) {
+            $request->setResourceInfo($optionalArgs['resourceInfo']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -862,9 +876,7 @@ class AppConnectorsServiceGapicClient
      * ```
      * $appConnectorsServiceClient = new AppConnectorsServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $appConnector = new AppConnector();
-     *     $operationResponse = $appConnectorsServiceClient->updateAppConnector($updateMask, $appConnector);
+     *     $operationResponse = $appConnectorsServiceClient->updateAppConnector();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -875,7 +887,7 @@ class AppConnectorsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $appConnectorsServiceClient->updateAppConnector($updateMask, $appConnector);
+     *     $operationResponse = $appConnectorsServiceClient->updateAppConnector();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $appConnectorsServiceClient->resumeOperation($operationName, 'updateAppConnector');
@@ -895,16 +907,18 @@ class AppConnectorsServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask    $updateMask   Required. Mask of fields to update. At least one path must be supplied in
-     *                                   this field. The elements of the repeated paths field may only include these
-     *                                   fields from [BeyondCorp.AppConnector]:
-     *                                   * `labels`
-     *                                   * `display_name`
-     * @param AppConnector $appConnector Required. AppConnector message with updated fields. Only supported fields
-     *                                   specified in update_mask are updated.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update. At least one path must be supplied in
+     *           this field. The elements of the repeated paths field may only include these
+     *           fields from [BeyondCorp.AppConnector]:
+     *           * `labels`
+     *           * `display_name`
+     *     @type AppConnector $appConnector
+     *           Required. AppConnector message with updated fields. Only supported fields
+     *           specified in update_mask are updated.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -932,16 +946,18 @@ class AppConnectorsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAppConnector(
-        $updateMask,
-        $appConnector,
-        array $optionalArgs = []
-    ) {
+    public function updateAppConnector(array $optionalArgs = [])
+    {
         $request = new UpdateAppConnectorRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setAppConnector($appConnector);
-        $requestParamHeaders['app_connector.name'] = $appConnector->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['appConnector'])) {
+            $request->setAppConnector($optionalArgs['appConnector']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1112,18 +1128,18 @@ class AppConnectorsServiceGapicClient
      * ```
      * $appConnectorsServiceClient = new AppConnectorsServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $appConnectorsServiceClient->getIamPolicy($resource);
+     *     $response = $appConnectorsServiceClient->getIamPolicy();
      * } finally {
      *     $appConnectorsServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1137,12 +1153,15 @@ class AppConnectorsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1174,23 +1193,23 @@ class AppConnectorsServiceGapicClient
      * ```
      * $appConnectorsServiceClient = new AppConnectorsServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $appConnectorsServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $appConnectorsServiceClient->setIamPolicy();
      * } finally {
      *     $appConnectorsServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1207,13 +1226,19 @@ class AppConnectorsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1247,23 +1272,23 @@ class AppConnectorsServiceGapicClient
      * ```
      * $appConnectorsServiceClient = new AppConnectorsServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $appConnectorsServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $appConnectorsServiceClient->testIamPermissions();
      * } finally {
      *     $appConnectorsServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1274,16 +1299,19 @@ class AppConnectorsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

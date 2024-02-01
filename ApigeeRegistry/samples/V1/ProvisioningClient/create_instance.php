@@ -28,38 +28,24 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\ApigeeRegistry\V1\Client\ProvisioningClient;
 use Google\Cloud\ApigeeRegistry\V1\CreateInstanceRequest;
 use Google\Cloud\ApigeeRegistry\V1\Instance;
-use Google\Cloud\ApigeeRegistry\V1\Instance\Config;
 use Google\Rpc\Status;
 
 /**
  * Provisions instance resources for the Registry.
  *
- * @param string $formattedParent           Parent resource of the Instance, of the form: `projects/&#42;/locations/*`
- *                                          Please see {@see ProvisioningClient::locationName()} for help formatting this field.
- * @param string $instanceId                Identifier to assign to the Instance. Must be unique within scope of the
- *                                          parent resource.
- * @param string $instanceConfigCmekKeyName The Customer Managed Encryption Key (CMEK) used for data encryption.
- *                                          The CMEK name should follow the format of
- *                                          `projects/([^/]+)/locations/([^/]+)/keyRings/([^/]+)/cryptoKeys/([^/]+)`,
- *                                          where the `location` must match InstanceConfig.location.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_instance_sample(
-    string $formattedParent,
-    string $instanceId,
-    string $instanceConfigCmekKeyName
-): void {
+function create_instance_sample(): void
+{
     // Create a client.
     $provisioningClient = new ProvisioningClient();
 
     // Prepare the request message.
-    $instanceConfig = (new Config())
-        ->setCmekKeyName($instanceConfigCmekKeyName);
-    $instance = (new Instance())
-        ->setConfig($instanceConfig);
-    $request = (new CreateInstanceRequest())
-        ->setParent($formattedParent)
-        ->setInstanceId($instanceId)
-        ->setInstance($instance);
+    $request = new CreateInstanceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -79,23 +65,5 @@ function create_instance_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ProvisioningClient::locationName('[PROJECT]', '[LOCATION]');
-    $instanceId = '[INSTANCE_ID]';
-    $instanceConfigCmekKeyName = '[CMEK_KEY_NAME]';
-
-    create_instance_sample($formattedParent, $instanceId, $instanceConfigCmekKeyName);
 }
 // [END apigeeregistry_v1_generated_Provisioning_CreateInstance_sync]

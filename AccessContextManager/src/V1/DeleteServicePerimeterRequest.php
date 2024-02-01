@@ -31,7 +31,6 @@ class DeleteServicePerimeterRequest extends \Google\Protobuf\Internal\Message
      *
      *                     Format:
      *                     `accessPolicies/{policy_id}/servicePerimeters/{service_perimeter_id}`
-     *                     Please see {@see AccessContextManagerClient::servicePerimeterName()} for help formatting this field.
      *
      * @return \Google\Identity\AccessContextManager\V1\DeleteServicePerimeterRequest
      *

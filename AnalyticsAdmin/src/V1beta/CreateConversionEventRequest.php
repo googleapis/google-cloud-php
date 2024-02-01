@@ -32,7 +32,6 @@ class CreateConversionEventRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                         $parent          Required. The resource name of the parent property where this conversion
      *                                                                        event will be created. Format: properties/123
-     *                                                                        Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      * @param \Google\Analytics\Admin\V1beta\ConversionEvent $conversionEvent Required. The conversion event to create.
      *
      * @return \Google\Analytics\Admin\V1beta\CreateConversionEventRequest

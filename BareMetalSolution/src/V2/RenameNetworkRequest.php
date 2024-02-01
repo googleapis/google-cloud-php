@@ -32,7 +32,6 @@ class RenameNetworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name         Required. The `name` field is used to identify the network.
      *                             Format: projects/{project}/locations/{location}/networks/{network}
-     *                             Please see {@see BareMetalSolutionClient::networkName()} for help formatting this field.
      * @param string $newNetworkId Required. The new `id` of the network.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\RenameNetworkRequest

@@ -32,23 +32,21 @@ use Google\Rpc\Status;
 /**
  * Updates the parameters of a single Backup.
  *
- * @param string $formattedBackupClusterName The full resource name of the backup source cluster
- *                                           (e.g., projects/{project}/locations/{region}/clusters/{cluster_id}). Please see
- *                                           {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_backup_sample(string $formattedBackupClusterName): void
+function update_backup_sample(): void
 {
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $backup = (new Backup())
-        ->setClusterName($formattedBackupClusterName);
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $alloyDBAdminClient->updateBackup($backup);
+        $response = $alloyDBAdminClient->updateBackup();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -63,25 +61,5 @@ function update_backup_sample(string $formattedBackupClusterName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedBackupClusterName = AlloyDBAdminClient::clusterName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CLUSTER]'
-    );
-
-    update_backup_sample($formattedBackupClusterName);
 }
 // [END alloydb_v1alpha_generated_AlloyDBAdmin_UpdateBackup_sync]

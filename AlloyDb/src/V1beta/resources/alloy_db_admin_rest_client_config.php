@@ -26,9 +26,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'backup_id',
-                ],
             ],
             'CreateCluster' => [
                 'method' => 'post',
@@ -41,9 +38,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'cluster_id',
-                ],
             ],
             'CreateInstance' => [
                 'method' => 'post',
@@ -55,9 +49,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'instance_id',
                 ],
             ],
             'CreateSecondaryCluster' => [
@@ -94,9 +85,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'user_id',
                 ],
             ],
             'DeleteBackup' => [

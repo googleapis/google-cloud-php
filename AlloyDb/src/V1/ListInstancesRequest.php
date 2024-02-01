@@ -59,7 +59,6 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *                       formats:
      *                       * projects/{project}/locations/-/clusters/-
      *                       * projects/{project}/locations/{region}/clusters/-
-     *                       Please see {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
      *
      * @return \Google\Cloud\AlloyDb\V1\ListInstancesRequest
      *
