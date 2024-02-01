@@ -40,7 +40,6 @@ class DeleteInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Mess
 
     /**
      * @param string $name Required. Name of the resource
-     *                     Please see {@see EdgeNetworkClient::interconnectAttachmentName()} for help formatting this field.
      *
      * @return \Google\Cloud\EdgeNetwork\V1\DeleteInterconnectAttachmentRequest
      *

@@ -32,17 +32,19 @@ use Google\Cloud\Eventarc\V1\Provider;
 /**
  * List providers.
  *
- * @param string $formattedParent The parent of the provider to get. Please see
- *                                {@see EventarcClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_providers_sample(string $formattedParent): void
+function list_providers_sample(): void
 {
     // Create a client.
     $eventarcClient = new EventarcClient();
 
     // Prepare the request message.
-    $request = (new ListProvidersRequest())
-        ->setParent($formattedParent);
+    $request = new ListProvidersRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +58,5 @@ function list_providers_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = EventarcClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_providers_sample($formattedParent);
 }
 // [END eventarc_v1_generated_Eventarc_ListProviders_sync]

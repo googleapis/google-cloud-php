@@ -78,10 +78,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $azureClustersClient = new AzureClustersClient();
  * try {
- *     $formattedParent = $azureClustersClient->locationName('[PROJECT]', '[LOCATION]');
- *     $azureClient = new AzureClient();
- *     $azureClientId = 'azure_client_id';
- *     $operationResponse = $azureClustersClient->createAzureClient($formattedParent, $azureClient, $azureClientId);
+ *     $operationResponse = $azureClustersClient->createAzureClient();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -92,7 +89,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $azureClustersClient->createAzureClient($formattedParent, $azureClient, $azureClientId);
+ *     $operationResponse = $azureClustersClient->createAzureClient();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $azureClustersClient->resumeOperation($operationName, 'createAzureClient');
@@ -514,10 +511,7 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedParent = $azureClustersClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $azureClient = new AzureClient();
-     *     $azureClientId = 'azure_client_id';
-     *     $operationResponse = $azureClustersClient->createAzureClient($formattedParent, $azureClient, $azureClientId);
+     *     $operationResponse = $azureClustersClient->createAzureClient();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -528,7 +522,7 @@ class AzureClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $azureClustersClient->createAzureClient($formattedParent, $azureClient, $azureClientId);
+     *     $operationResponse = $azureClustersClient->createAzureClient();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $azureClustersClient->resumeOperation($operationName, 'createAzureClient');
@@ -548,28 +542,31 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string      $parent        Required. The parent location where this
-     *                                   [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource will be
-     *                                   created.
-     *
-     *                                   Location names are formatted as `projects/<project-id>/locations/<region>`.
-     *
-     *                                   See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                                   for more details on Google Cloud resource names.
-     * @param AzureClient $azureClient   Required. The specification of the
-     *                                   [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to create.
-     * @param string      $azureClientId Required. A client provided ID the resource. Must be unique within the
-     *                                   parent resource.
-     *
-     *                                   The provided ID will be part of the
-     *                                   [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource name
-     *                                   formatted as
-     *                                   `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
-     *
-     *                                   Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
-     * @param array       $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent location where this
+     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource will be
+     *           created.
+     *
+     *           Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
+     *     @type AzureClient $azureClient
+     *           Required. The specification of the
+     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to create.
+     *     @type string $azureClientId
+     *           Required. A client provided ID the resource. Must be unique within the
+     *           parent resource.
+     *
+     *           The provided ID will be part of the
+     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource name
+     *           formatted as
+     *           `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
+     *
+     *           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually create the client.
      *     @type RetrySettings|array $retrySettings
@@ -582,18 +579,23 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAzureClient(
-        $parent,
-        $azureClient,
-        $azureClientId,
-        array $optionalArgs = []
-    ) {
+    public function createAzureClient(array $optionalArgs = [])
+    {
         $request = new CreateAzureClientRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAzureClient($azureClient);
-        $request->setAzureClientId($azureClientId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['azureClient'])) {
+            $request->setAzureClient($optionalArgs['azureClient']);
+        }
+
+        if (isset($optionalArgs['azureClientId'])) {
+            $request->setAzureClientId($optionalArgs['azureClientId']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -624,10 +626,7 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedParent = $azureClustersClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $azureCluster = new AzureCluster();
-     *     $azureClusterId = 'azure_cluster_id';
-     *     $operationResponse = $azureClustersClient->createAzureCluster($formattedParent, $azureCluster, $azureClusterId);
+     *     $operationResponse = $azureClustersClient->createAzureCluster();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -638,7 +637,7 @@ class AzureClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $azureClustersClient->createAzureCluster($formattedParent, $azureCluster, $azureClusterId);
+     *     $operationResponse = $azureClustersClient->createAzureCluster();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $azureClustersClient->resumeOperation($operationName, 'createAzureCluster');
@@ -658,28 +657,31 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string       $parent         Required. The parent location where this
-     *                                     [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource will be
-     *                                     created.
-     *
-     *                                     Location names are formatted as `projects/<project-id>/locations/<region>`.
-     *
-     *                                     See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                                     for more details on Google Cloud resource names.
-     * @param AzureCluster $azureCluster   Required. The specification of the
-     *                                     [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to create.
-     * @param string       $azureClusterId Required. A client provided ID the resource. Must be unique within the
-     *                                     parent resource.
-     *
-     *                                     The provided ID will be part of the
-     *                                     [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource name
-     *                                     formatted as
-     *                                     `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
-     *
-     *                                     Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
-     * @param array        $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent location where this
+     *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource will be
+     *           created.
+     *
+     *           Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
+     *     @type AzureCluster $azureCluster
+     *           Required. The specification of the
+     *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to create.
+     *     @type string $azureClusterId
+     *           Required. A client provided ID the resource. Must be unique within the
+     *           parent resource.
+     *
+     *           The provided ID will be part of the
+     *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource name
+     *           formatted as
+     *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
+     *
+     *           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually create the cluster.
      *     @type RetrySettings|array $retrySettings
@@ -692,18 +694,23 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAzureCluster(
-        $parent,
-        $azureCluster,
-        $azureClusterId,
-        array $optionalArgs = []
-    ) {
+    public function createAzureCluster(array $optionalArgs = [])
+    {
         $request = new CreateAzureClusterRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAzureCluster($azureCluster);
-        $request->setAzureClusterId($azureClusterId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['azureCluster'])) {
+            $request->setAzureCluster($optionalArgs['azureCluster']);
+        }
+
+        if (isset($optionalArgs['azureClusterId'])) {
+            $request->setAzureClusterId($optionalArgs['azureClusterId']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -735,10 +742,7 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedParent = $azureClustersClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-     *     $azureNodePool = new AzureNodePool();
-     *     $azureNodePoolId = 'azure_node_pool_id';
-     *     $operationResponse = $azureClustersClient->createAzureNodePool($formattedParent, $azureNodePool, $azureNodePoolId);
+     *     $operationResponse = $azureClustersClient->createAzureNodePool();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -749,7 +753,7 @@ class AzureClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $azureClustersClient->createAzureNodePool($formattedParent, $azureNodePool, $azureNodePoolId);
+     *     $operationResponse = $azureClustersClient->createAzureNodePool();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $azureClustersClient->resumeOperation($operationName, 'createAzureNodePool');
@@ -769,28 +773,31 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string        $parent          Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
-     *                                       resource where this node pool will be created.
-     *
-     *                                       `AzureCluster` names are formatted as
-     *                                       `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
-     *
-     *                                       See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                                       for more details on Google Cloud resource names.
-     * @param AzureNodePool $azureNodePool   Required. The specification of the
-     *                                       [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to create.
-     * @param string        $azureNodePoolId Required. A client provided ID the resource. Must be unique within the
-     *                                       parent resource.
-     *
-     *                                       The provided ID will be part of the
-     *                                       [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource name
-     *                                       formatted as
-     *                                       `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
-     *
-     *                                       Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
-     * @param array         $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     *           resource where this node pool will be created.
+     *
+     *           `AzureCluster` names are formatted as
+     *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
+     *     @type AzureNodePool $azureNodePool
+     *           Required. The specification of the
+     *           [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to create.
+     *     @type string $azureNodePoolId
+     *           Required. A client provided ID the resource. Must be unique within the
+     *           parent resource.
+     *
+     *           The provided ID will be part of the
+     *           [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource name
+     *           formatted as
+     *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
+     *
+     *           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually create the node
      *           pool.
@@ -804,18 +811,23 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAzureNodePool(
-        $parent,
-        $azureNodePool,
-        $azureNodePoolId,
-        array $optionalArgs = []
-    ) {
+    public function createAzureNodePool(array $optionalArgs = [])
+    {
         $request = new CreateAzureNodePoolRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAzureNodePool($azureNodePool);
-        $request->setAzureNodePoolId($azureNodePoolId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['azureNodePool'])) {
+            $request->setAzureNodePool($optionalArgs['azureNodePool']);
+        }
+
+        if (isset($optionalArgs['azureNodePoolId'])) {
+            $request->setAzureNodePoolId($optionalArgs['azureNodePoolId']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -849,8 +861,7 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedName = $azureClustersClient->azureClientName('[PROJECT]', '[LOCATION]', '[AZURE_CLIENT]');
-     *     $operationResponse = $azureClustersClient->deleteAzureClient($formattedName);
+     *     $operationResponse = $azureClustersClient->deleteAzureClient();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -860,7 +871,7 @@ class AzureClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $azureClustersClient->deleteAzureClient($formattedName);
+     *     $operationResponse = $azureClustersClient->deleteAzureClient();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $azureClustersClient->resumeOperation($operationName, 'deleteAzureClient');
@@ -879,18 +890,19 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name the
-     *                             [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to delete.
-     *
-     *                             [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are
-     *                             formatted as
-     *                             `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name the
+     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to delete.
+     *
+     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are
+     *           formatted as
+     *           `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
      *     @type bool $allowMissing
      *           If set to true, and the
      *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource is not
@@ -910,12 +922,15 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAzureClient($name, array $optionalArgs = [])
+    public function deleteAzureClient(array $optionalArgs = [])
     {
         $request = new DeleteAzureClientRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['allowMissing'])) {
             $request->setAllowMissing($optionalArgs['allowMissing']);
         }
@@ -953,8 +968,7 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedName = $azureClustersClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-     *     $operationResponse = $azureClustersClient->deleteAzureCluster($formattedName);
+     *     $operationResponse = $azureClustersClient->deleteAzureCluster();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -964,7 +978,7 @@ class AzureClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $azureClustersClient->deleteAzureCluster($formattedName);
+     *     $operationResponse = $azureClustersClient->deleteAzureCluster();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $azureClustersClient->resumeOperation($operationName, 'deleteAzureCluster');
@@ -983,17 +997,18 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name the
-     *                             [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to delete.
-     *
-     *                             `AzureCluster` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud Platform resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name the
+     *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to delete.
+     *
+     *           `AzureCluster` names are formatted as
+     *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud Platform resource names.
      *     @type bool $allowMissing
      *           If set to true, and the
      *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource is not
@@ -1021,12 +1036,15 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAzureCluster($name, array $optionalArgs = [])
+    public function deleteAzureCluster(array $optionalArgs = [])
     {
         $request = new DeleteAzureClusterRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['allowMissing'])) {
             $request->setAllowMissing($optionalArgs['allowMissing']);
         }
@@ -1065,8 +1083,7 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedName = $azureClustersClient->azureNodePoolName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]', '[AZURE_NODE_POOL]');
-     *     $operationResponse = $azureClustersClient->deleteAzureNodePool($formattedName);
+     *     $operationResponse = $azureClustersClient->deleteAzureNodePool();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1076,7 +1093,7 @@ class AzureClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $azureClustersClient->deleteAzureNodePool($formattedName);
+     *     $operationResponse = $azureClustersClient->deleteAzureNodePool();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $azureClustersClient->resumeOperation($operationName, 'deleteAzureNodePool');
@@ -1095,17 +1112,18 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name the
-     *                             [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to delete.
-     *
-     *                             `AzureNodePool` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name the
+     *           [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to delete.
+     *
+     *           `AzureNodePool` names are formatted as
+     *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually delete the node
      *           pool.
@@ -1135,12 +1153,15 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAzureNodePool($name, array $optionalArgs = [])
+    public function deleteAzureNodePool(array $optionalArgs = [])
     {
         $request = new DeleteAzureNodePoolRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1175,25 +1196,25 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedAzureCluster = $azureClustersClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-     *     $response = $azureClustersClient->generateAzureAccessToken($formattedAzureCluster);
+     *     $response = $azureClustersClient->generateAzureAccessToken();
      * } finally {
      *     $azureClustersClient->close();
      * }
      * ```
      *
-     * @param string $azureCluster Required. The name of the
-     *                             [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to
-     *                             authenticate to.
-     *
-     *                             `AzureCluster` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $azureCluster
+     *           Required. The name of the
+     *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to
+     *           authenticate to.
+     *
+     *           `AzureCluster` names are formatted as
+     *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1204,14 +1225,16 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateAzureAccessToken(
-        $azureCluster,
-        array $optionalArgs = []
-    ) {
+    public function generateAzureAccessToken(array $optionalArgs = [])
+    {
         $request = new GenerateAzureAccessTokenRequest();
         $requestParamHeaders = [];
-        $request->setAzureCluster($azureCluster);
-        $requestParamHeaders['azure_cluster'] = $azureCluster;
+        if (isset($optionalArgs['azureCluster'])) {
+            $request->setAzureCluster($optionalArgs['azureCluster']);
+            $requestParamHeaders['azure_cluster'] =
+                $optionalArgs['azureCluster'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1233,23 +1256,23 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedAzureCluster = $azureClustersClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-     *     $subjectToken = 'subject_token';
-     *     $subjectTokenType = 'subject_token_type';
-     *     $version = 'version';
-     *     $response = $azureClustersClient->generateAzureClusterAgentToken($formattedAzureCluster, $subjectToken, $subjectTokenType, $version);
+     *     $response = $azureClustersClient->generateAzureClusterAgentToken();
      * } finally {
      *     $azureClustersClient->close();
      * }
      * ```
      *
-     * @param string $azureCluster     Required.
-     * @param string $subjectToken     Required.
-     * @param string $subjectTokenType Required.
-     * @param string $version          Required.
-     * @param array  $optionalArgs     {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $azureCluster
+     *           Required.
+     *     @type string $subjectToken
+     *           Required.
+     *     @type string $subjectTokenType
+     *           Required.
+     *     @type string $version
+     *           Required.
      *     @type string $nodePoolId
      *           Optional.
      *     @type string $grantType
@@ -1272,20 +1295,28 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateAzureClusterAgentToken(
-        $azureCluster,
-        $subjectToken,
-        $subjectTokenType,
-        $version,
-        array $optionalArgs = []
-    ) {
+    public function generateAzureClusterAgentToken(array $optionalArgs = [])
+    {
         $request = new GenerateAzureClusterAgentTokenRequest();
         $requestParamHeaders = [];
-        $request->setAzureCluster($azureCluster);
-        $request->setSubjectToken($subjectToken);
-        $request->setSubjectTokenType($subjectTokenType);
-        $request->setVersion($version);
-        $requestParamHeaders['azure_cluster'] = $azureCluster;
+        if (isset($optionalArgs['azureCluster'])) {
+            $request->setAzureCluster($optionalArgs['azureCluster']);
+            $requestParamHeaders['azure_cluster'] =
+                $optionalArgs['azureCluster'];
+        }
+
+        if (isset($optionalArgs['subjectToken'])) {
+            $request->setSubjectToken($optionalArgs['subjectToken']);
+        }
+
+        if (isset($optionalArgs['subjectTokenType'])) {
+            $request->setSubjectTokenType($optionalArgs['subjectTokenType']);
+        }
+
+        if (isset($optionalArgs['version'])) {
+            $request->setVersion($optionalArgs['version']);
+        }
+
         if (isset($optionalArgs['nodePoolId'])) {
             $request->setNodePoolId($optionalArgs['nodePoolId']);
         }
@@ -1334,26 +1365,26 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedName = $azureClustersClient->azureClientName('[PROJECT]', '[LOCATION]', '[AZURE_CLIENT]');
-     *     $response = $azureClustersClient->getAzureClient($formattedName);
+     *     $response = $azureClustersClient->getAzureClient();
      * } finally {
      *     $azureClustersClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the
-     *                             [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource to
-     *                             describe.
-     *
-     *                             [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are
-     *                             formatted as
-     *                             `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the
+     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource to
+     *           describe.
+     *
+     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] names are
+     *           formatted as
+     *           `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1364,12 +1395,15 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAzureClient($name, array $optionalArgs = [])
+    public function getAzureClient(array $optionalArgs = [])
     {
         $request = new GetAzureClientRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1392,25 +1426,25 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedName = $azureClustersClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-     *     $response = $azureClustersClient->getAzureCluster($formattedName);
+     *     $response = $azureClustersClient->getAzureCluster();
      * } finally {
      *     $azureClustersClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the
-     *                             [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to
-     *                             describe.
-     *
-     *                             `AzureCluster` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud Platform resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the
+     *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to
+     *           describe.
+     *
+     *           `AzureCluster` names are formatted as
+     *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud Platform resource names.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1421,12 +1455,15 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAzureCluster($name, array $optionalArgs = [])
+    public function getAzureCluster(array $optionalArgs = [])
     {
         $request = new GetAzureClusterRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1449,19 +1486,19 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedAzureCluster = $azureClustersClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-     *     $response = $azureClustersClient->getAzureJsonWebKeys($formattedAzureCluster);
+     *     $response = $azureClustersClient->getAzureJsonWebKeys();
      * } finally {
      *     $azureClustersClient->close();
      * }
      * ```
      *
-     * @param string $azureCluster Required. The AzureCluster, which owns the JsonWebKeys.
-     *                             Format:
-     *                             projects/<project-id>/locations/<region>/azureClusters/<cluster-id>
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $azureCluster
+     *           Required. The AzureCluster, which owns the JsonWebKeys.
+     *           Format:
+     *           projects/<project-id>/locations/<region>/azureClusters/<cluster-id>
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1472,12 +1509,16 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAzureJsonWebKeys($azureCluster, array $optionalArgs = [])
+    public function getAzureJsonWebKeys(array $optionalArgs = [])
     {
         $request = new GetAzureJsonWebKeysRequest();
         $requestParamHeaders = [];
-        $request->setAzureCluster($azureCluster);
-        $requestParamHeaders['azure_cluster'] = $azureCluster;
+        if (isset($optionalArgs['azureCluster'])) {
+            $request->setAzureCluster($optionalArgs['azureCluster']);
+            $requestParamHeaders['azure_cluster'] =
+                $optionalArgs['azureCluster'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1500,25 +1541,25 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedName = $azureClustersClient->azureNodePoolName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]', '[AZURE_NODE_POOL]');
-     *     $response = $azureClustersClient->getAzureNodePool($formattedName);
+     *     $response = $azureClustersClient->getAzureNodePool();
      * } finally {
      *     $azureClustersClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the
-     *                             [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to
-     *                             describe.
-     *
-     *                             `AzureNodePool` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the
+     *           [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource to
+     *           describe.
+     *
+     *           `AzureNodePool` names are formatted as
+     *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>/azureNodePools/<node-pool-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1529,12 +1570,15 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAzureNodePool($name, array $optionalArgs = [])
+    public function getAzureNodePool(array $optionalArgs = [])
     {
         $request = new GetAzureNodePoolRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1560,19 +1604,19 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedAzureCluster = $azureClustersClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
-     *     $response = $azureClustersClient->getAzureOpenIdConfig($formattedAzureCluster);
+     *     $response = $azureClustersClient->getAzureOpenIdConfig();
      * } finally {
      *     $azureClustersClient->close();
      * }
      * ```
      *
-     * @param string $azureCluster Required. The AzureCluster, which owns the OIDC discovery document.
-     *                             Format:
-     *                             projects/<project-id>/locations/<region>/azureClusters/<cluster-id>
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $azureCluster
+     *           Required. The AzureCluster, which owns the OIDC discovery document.
+     *           Format:
+     *           projects/<project-id>/locations/<region>/azureClusters/<cluster-id>
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1583,14 +1627,16 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAzureOpenIdConfig(
-        $azureCluster,
-        array $optionalArgs = []
-    ) {
+    public function getAzureOpenIdConfig(array $optionalArgs = [])
+    {
         $request = new GetAzureOpenIdConfigRequest();
         $requestParamHeaders = [];
-        $request->setAzureCluster($azureCluster);
-        $requestParamHeaders['azure_cluster'] = $azureCluster;
+        if (isset($optionalArgs['azureCluster'])) {
+            $request->setAzureCluster($optionalArgs['azureCluster']);
+            $requestParamHeaders['azure_cluster'] =
+                $optionalArgs['azureCluster'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1613,25 +1659,25 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedName = $azureClustersClient->azureServerConfigName('[PROJECT]', '[LOCATION]');
-     *     $response = $azureClustersClient->getAzureServerConfig($formattedName);
+     *     $response = $azureClustersClient->getAzureServerConfig();
      * } finally {
      *     $azureClustersClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the
-     *                             [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig]
-     *                             resource to describe.
-     *
-     *                             `AzureServerConfig` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/azureServerConfig`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the
+     *           [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig]
+     *           resource to describe.
+     *
+     *           `AzureServerConfig` names are formatted as
+     *           `projects/<project-id>/locations/<region>/azureServerConfig`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1642,12 +1688,15 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAzureServerConfig($name, array $optionalArgs = [])
+    public function getAzureServerConfig(array $optionalArgs = [])
     {
         $request = new GetAzureServerConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1670,9 +1719,8 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedParent = $azureClustersClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $azureClustersClient->listAzureClients($formattedParent);
+     *     $pagedResponse = $azureClustersClient->listAzureClients();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1680,7 +1728,7 @@ class AzureClustersGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $azureClustersClient->listAzureClients($formattedParent);
+     *     $pagedResponse = $azureClustersClient->listAzureClients();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1689,16 +1737,17 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent location which owns this collection of
-     *                             [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resources.
-     *
-     *                             Location names are formatted as `projects/<project-id>/locations/<region>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud Platform resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent location which owns this collection of
+     *           [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resources.
+     *
+     *           Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud Platform resource names.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1718,12 +1767,15 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAzureClients($parent, array $optionalArgs = [])
+    public function listAzureClients(array $optionalArgs = [])
     {
         $request = new ListAzureClientsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1754,9 +1806,8 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedParent = $azureClustersClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $azureClustersClient->listAzureClusters($formattedParent);
+     *     $pagedResponse = $azureClustersClient->listAzureClusters();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1764,7 +1815,7 @@ class AzureClustersGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $azureClustersClient->listAzureClusters($formattedParent);
+     *     $pagedResponse = $azureClustersClient->listAzureClusters();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1773,16 +1824,17 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent location which owns this collection of
-     *                             [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resources.
-     *
-     *                             Location names are formatted as `projects/<project-id>/locations/<region>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud Platform resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent location which owns this collection of
+     *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resources.
+     *
+     *           Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud Platform resource names.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1802,12 +1854,15 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAzureClusters($parent, array $optionalArgs = [])
+    public function listAzureClusters(array $optionalArgs = [])
     {
         $request = new ListAzureClustersRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1839,9 +1894,8 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $formattedParent = $azureClustersClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $azureClustersClient->listAzureNodePools($formattedParent);
+     *     $pagedResponse = $azureClustersClient->listAzureNodePools();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1849,7 +1903,7 @@ class AzureClustersGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $azureClustersClient->listAzureNodePools($formattedParent);
+     *     $pagedResponse = $azureClustersClient->listAzureNodePools();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1858,17 +1912,18 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent `AzureCluster` which owns this collection of
-     *                             [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources.
-     *
-     *                             `AzureCluster` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent `AzureCluster` which owns this collection of
+     *           [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources.
+     *
+     *           `AzureCluster` names are formatted as
+     *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1888,12 +1943,15 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAzureNodePools($parent, array $optionalArgs = [])
+    public function listAzureNodePools(array $optionalArgs = [])
     {
         $request = new ListAzureNodePoolsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1923,9 +1981,7 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $azureCluster = new AzureCluster();
-     *     $updateMask = new FieldMask();
-     *     $operationResponse = $azureClustersClient->updateAzureCluster($azureCluster, $updateMask);
+     *     $operationResponse = $azureClustersClient->updateAzureCluster();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1936,7 +1992,7 @@ class AzureClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $azureClustersClient->updateAzureCluster($azureCluster, $updateMask);
+     *     $operationResponse = $azureClustersClient->updateAzureCluster();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $azureClustersClient->resumeOperation($operationName, 'updateAzureCluster');
@@ -1956,34 +2012,36 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param AzureCluster $azureCluster Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
-     *                                   resource to update.
-     * @param FieldMask    $updateMask   Required. Mask of fields to update. At least one path must be supplied in
-     *                                   this field. The elements of the repeated paths field can only include these
-     *                                   fields from [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]:
-     *
-     *                                   *   `description`.
-     *                                   *   `azureClient`.
-     *                                   *   `control_plane.version`.
-     *                                   *   `control_plane.vm_size`.
-     *                                   *   `annotations`.
-     *                                   *   `authorization.admin_users`.
-     *                                   *   `authorization.admin_groups`.
-     *                                   *   `control_plane.root_volume.size_gib`.
-     *                                   *   `azure_services_authentication`.
-     *                                   *   `azure_services_authentication.tenant_id`.
-     *                                   *   `azure_services_authentication.application_id`.
-     *                                   *   `control_plane.proxy_config`.
-     *                                   *   `control_plane.proxy_config.resource_group_id`.
-     *                                   *   `control_plane.proxy_config.secret_id`.
-     *                                   *   `control_plane.ssh_config.authorized_key`.
-     *                                   *   `logging_config.component_config.enable_components`
-     *                                   *   `monitoring_config.managed_prometheus_config.enabled`.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type AzureCluster $azureCluster
+     *           Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
+     *           resource to update.
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually update the cluster.
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update. At least one path must be supplied in
+     *           this field. The elements of the repeated paths field can only include these
+     *           fields from [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]:
+     *
+     *           *   `description`.
+     *           *   `azureClient`.
+     *           *   `control_plane.version`.
+     *           *   `control_plane.vm_size`.
+     *           *   `annotations`.
+     *           *   `authorization.admin_users`.
+     *           *   `authorization.admin_groups`.
+     *           *   `control_plane.root_volume.size_gib`.
+     *           *   `azure_services_authentication`.
+     *           *   `azure_services_authentication.tenant_id`.
+     *           *   `azure_services_authentication.application_id`.
+     *           *   `control_plane.proxy_config`.
+     *           *   `control_plane.proxy_config.resource_group_id`.
+     *           *   `control_plane.proxy_config.secret_id`.
+     *           *   `control_plane.ssh_config.authorized_key`.
+     *           *   `logging_config.component_config.enable_components`
+     *           *   `monitoring_config.managed_prometheus_config.enabled`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1994,18 +2052,20 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAzureCluster(
-        $azureCluster,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateAzureCluster(array $optionalArgs = [])
+    {
         $request = new UpdateAzureClusterRequest();
         $requestParamHeaders = [];
-        $request->setAzureCluster($azureCluster);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['azure_cluster.name'] = $azureCluster->getName();
+        if (isset($optionalArgs['azureCluster'])) {
+            $request->setAzureCluster($optionalArgs['azureCluster']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -2029,9 +2089,7 @@ class AzureClustersGapicClient
      * ```
      * $azureClustersClient = new AzureClustersClient();
      * try {
-     *     $azureNodePool = new AzureNodePool();
-     *     $updateMask = new FieldMask();
-     *     $operationResponse = $azureClustersClient->updateAzureNodePool($azureNodePool, $updateMask);
+     *     $operationResponse = $azureClustersClient->updateAzureNodePool();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2042,7 +2100,7 @@ class AzureClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $azureClustersClient->updateAzureNodePool($azureNodePool, $updateMask);
+     *     $operationResponse = $azureClustersClient->updateAzureNodePool();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $azureClustersClient->resumeOperation($operationName, 'updateAzureNodePool');
@@ -2062,24 +2120,26 @@ class AzureClustersGapicClient
      * }
      * ```
      *
-     * @param AzureNodePool $azureNodePool Required. The [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
-     *                                     resource to update.
-     * @param FieldMask     $updateMask    Required. Mask of fields to update. At least one path must be supplied in
-     *                                     this field. The elements of the repeated paths field can only include these
-     *                                     fields from [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]:
-     *
-     *                                     *.  `annotations`.
-     *                                     *   `version`.
-     *                                     *   `autoscaling.min_node_count`.
-     *                                     *   `autoscaling.max_node_count`.
-     *                                     *   `config.ssh_config.authorized_key`.
-     *                                     *   `management.auto_repair`.
-     *                                     *   `management`.
-     * @param array         $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type AzureNodePool $azureNodePool
+     *           Required. The [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
+     *           resource to update.
      *     @type bool $validateOnly
      *           If set, only validate the request, but don't actually update the node pool.
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update. At least one path must be supplied in
+     *           this field. The elements of the repeated paths field can only include these
+     *           fields from [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]:
+     *
+     *           *.  `annotations`.
+     *           *   `version`.
+     *           *   `autoscaling.min_node_count`.
+     *           *   `autoscaling.max_node_count`.
+     *           *   `config.ssh_config.authorized_key`.
+     *           *   `management.auto_repair`.
+     *           *   `management`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2090,20 +2150,20 @@ class AzureClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAzureNodePool(
-        $azureNodePool,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateAzureNodePool(array $optionalArgs = [])
+    {
         $request = new UpdateAzureNodePoolRequest();
         $requestParamHeaders = [];
-        $request->setAzureNodePool($azureNodePool);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders[
-            'azure_node_pool.name'
-        ] = $azureNodePool->getName();
+        if (isset($optionalArgs['azureNodePool'])) {
+            $request->setAzureNodePool($optionalArgs['azureNodePool']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

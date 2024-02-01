@@ -32,18 +32,19 @@ use Google\Cloud\Iap\V1\IdentityAwareProxyClient;
  * Retrieves an Identity Aware Proxy (IAP) OAuth client.
  * Requires that the client is owned by IAP.
  *
- * @param string $name Name of the Identity Aware Proxy client to be fetched.
- *                     In the following format:
- *                     projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_identity_aware_proxy_client_sample(string $name): void
+function get_identity_aware_proxy_client_sample(): void
 {
     // Create a client.
     $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
 
     // Prepare the request message.
-    $request = (new GetIdentityAwareProxyClientRequest())
-        ->setName($name);
+    $request = new GetIdentityAwareProxyClientRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +54,5 @@ function get_identity_aware_proxy_client_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    get_identity_aware_proxy_client_sample($name);
 }
 // [END iap_v1_generated_IdentityAwareProxyOAuthService_GetIdentityAwareProxyClient_sync]

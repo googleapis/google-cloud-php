@@ -86,10 +86,9 @@ use Google\Protobuf\Timestamp;
  * ```
  * $firestoreClient = new FirestoreClient();
  * try {
- *     $database = 'database';
  *     $documents = [];
  *     // Read all responses until the stream is complete
- *     $stream = $firestoreClient->batchGetDocuments($database, $documents);
+ *     $stream = $firestoreClient->batchGetDocuments($documents);
  *     foreach ($stream->readAll() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -218,10 +217,9 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $database = 'database';
      *     $documents = [];
      *     // Read all responses until the stream is complete
-     *     $stream = $firestoreClient->batchGetDocuments($database, $documents);
+     *     $stream = $firestoreClient->batchGetDocuments($documents);
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -230,8 +228,6 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string   $database     Required. The database name. In the format:
-     *                               `projects/{project_id}/databases/{database_id}`.
      * @param string[] $documents    The names of the documents to retrieve. In the format:
      *                               `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *                               The request will fail if any of the document is not a child resource of the
@@ -239,6 +235,9 @@ class FirestoreGapicClient
      * @param array    $optionalArgs {
      *     Optional.
      *
+     *     @type string $database
+     *           Required. The database name. In the format:
+     *           `projects/{project_id}/databases/{database_id}`.
      *     @type DocumentMask $mask
      *           The fields to return. If not set, returns all fields.
      *
@@ -265,13 +264,16 @@ class FirestoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchGetDocuments($database, $documents, array $optionalArgs = [])
+    public function batchGetDocuments($documents, array $optionalArgs = [])
     {
         $request = new BatchGetDocumentsRequest();
         $requestParamHeaders = [];
-        $request->setDatabase($database);
         $request->setDocuments($documents);
-        $requestParamHeaders['database'] = $database;
+        if (isset($optionalArgs['database'])) {
+            $request->setDatabase($optionalArgs['database']);
+            $requestParamHeaders['database'] = $optionalArgs['database'];
+        }
+
         if (isset($optionalArgs['mask'])) {
             $request->setMask($optionalArgs['mask']);
         }
@@ -368,18 +370,18 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $database = 'database';
-     *     $response = $firestoreClient->beginTransaction($database);
+     *     $response = $firestoreClient->beginTransaction();
      * } finally {
      *     $firestoreClient->close();
      * }
      * ```
      *
-     * @param string $database     Required. The database name. In the format:
-     *                             `projects/{project_id}/databases/{database_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $database
+     *           Required. The database name. In the format:
+     *           `projects/{project_id}/databases/{database_id}`.
      *     @type TransactionOptions $options
      *           The options for the transaction.
      *           Defaults to a read-write transaction.
@@ -393,12 +395,15 @@ class FirestoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function beginTransaction($database, array $optionalArgs = [])
+    public function beginTransaction(array $optionalArgs = [])
     {
         $request = new BeginTransactionRequest();
         $requestParamHeaders = [];
-        $request->setDatabase($database);
-        $requestParamHeaders['database'] = $database;
+        if (isset($optionalArgs['database'])) {
+            $request->setDatabase($optionalArgs['database']);
+            $requestParamHeaders['database'] = $optionalArgs['database'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -415,22 +420,22 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $database = 'database';
      *     $writes = [];
-     *     $response = $firestoreClient->commit($database, $writes);
+     *     $response = $firestoreClient->commit($writes);
      * } finally {
      *     $firestoreClient->close();
      * }
      * ```
      *
-     * @param string  $database     Required. The database name. In the format:
-     *                              `projects/{project_id}/databases/{database_id}`.
      * @param Write[] $writes       The writes to apply.
      *
      *                              Always executed atomically and in order.
      * @param array   $optionalArgs {
      *     Optional.
      *
+     *     @type string $database
+     *           Required. The database name. In the format:
+     *           `projects/{project_id}/databases/{database_id}`.
      *     @type string $transaction
      *           If set, applies all writes in this transaction, and commits it.
      *     @type RetrySettings|array $retrySettings
@@ -443,13 +448,16 @@ class FirestoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function commit($database, $writes, array $optionalArgs = [])
+    public function commit($writes, array $optionalArgs = [])
     {
         $request = new CommitRequest();
         $requestParamHeaders = [];
-        $request->setDatabase($database);
         $request->setWrites($writes);
-        $requestParamHeaders['database'] = $database;
+        if (isset($optionalArgs['database'])) {
+            $request->setDatabase($optionalArgs['database']);
+            $requestParamHeaders['database'] = $optionalArgs['database'];
+        }
+
         if (isset($optionalArgs['transaction'])) {
             $request->setTransaction($optionalArgs['transaction']);
         }
@@ -466,28 +474,28 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $parent = 'parent';
-     *     $collectionId = 'collection_id';
      *     $documentId = 'document_id';
-     *     $document = new Document();
-     *     $response = $firestoreClient->createDocument($parent, $collectionId, $documentId, $document);
+     *     $response = $firestoreClient->createDocument($documentId);
      * } finally {
      *     $firestoreClient->close();
      * }
      * ```
      *
-     * @param string   $parent       Required. The parent resource. For example:
-     *                               `projects/{project_id}/databases/{database_id}/documents` or
-     *                               `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
-     * @param string   $collectionId Required. The collection ID, relative to `parent`, to list. For example:
-     *                               `chatrooms`.
-     * @param string   $documentId   The client-assigned document ID to use for this document.
+     * @param string $documentId   The client-assigned document ID to use for this document.
      *
-     *                               Optional. If not specified, an ID will be assigned by the service.
-     * @param Document $document     Required. The document to create. `name` must not be set.
-     * @param array    $optionalArgs {
+     *                             Optional. If not specified, an ID will be assigned by the service.
+     * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource. For example:
+     *           `projects/{project_id}/databases/{database_id}/documents` or
+     *           `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
+     *     @type string $collectionId
+     *           Required. The collection ID, relative to `parent`, to list. For example:
+     *           `chatrooms`.
+     *     @type Document $document
+     *           Required. The document to create. `name` must not be set.
      *     @type DocumentMask $mask
      *           The fields to return. If not set, returns all fields.
      *
@@ -503,16 +511,25 @@ class FirestoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDocument($parent, $collectionId, $documentId, $document, array $optionalArgs = [])
+    public function createDocument($documentId, array $optionalArgs = [])
     {
         $request = new CreateDocumentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setCollectionId($collectionId);
         $request->setDocumentId($documentId);
-        $request->setDocument($document);
-        $requestParamHeaders['parent'] = $parent;
-        $requestParamHeaders['collection_id'] = $collectionId;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['collectionId'])) {
+            $request->setCollectionId($optionalArgs['collectionId']);
+            $requestParamHeaders['collection_id'] = $optionalArgs['collectionId'];
+        }
+
+        if (isset($optionalArgs['document'])) {
+            $request->setDocument($optionalArgs['document']);
+        }
+
         if (isset($optionalArgs['mask'])) {
             $request->setMask($optionalArgs['mask']);
         }
@@ -529,18 +546,18 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $name = 'name';
-     *     $firestoreClient->deleteDocument($name);
+     *     $firestoreClient->deleteDocument();
      * } finally {
      *     $firestoreClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the Document to delete. In the format:
-     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the Document to delete. In the format:
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *     @type Precondition $currentDocument
      *           An optional precondition on the document.
      *           The request will fail if this is set and not met by the target document.
@@ -552,12 +569,15 @@ class FirestoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDocument($name, array $optionalArgs = [])
+    public function deleteDocument(array $optionalArgs = [])
     {
         $request = new DeleteDocumentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['currentDocument'])) {
             $request->setCurrentDocument($optionalArgs['currentDocument']);
         }
@@ -574,18 +594,18 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $name = 'name';
-     *     $response = $firestoreClient->getDocument($name);
+     *     $response = $firestoreClient->getDocument();
      * } finally {
      *     $firestoreClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the Document to get. In the format:
-     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the Document to get. In the format:
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *     @type DocumentMask $mask
      *           The fields to return. If not set, returns all fields.
      *
@@ -609,12 +629,15 @@ class FirestoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDocument($name, array $optionalArgs = [])
+    public function getDocument(array $optionalArgs = [])
     {
         $request = new GetDocumentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['mask'])) {
             $request->setMask($optionalArgs['mask']);
         }
@@ -639,9 +662,8 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $firestoreClient->listCollectionIds($parent);
+     *     $pagedResponse = $firestoreClient->listCollectionIds();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -649,7 +671,7 @@ class FirestoreGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $firestoreClient->listCollectionIds($parent);
+     *     $pagedResponse = $firestoreClient->listCollectionIds();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -658,13 +680,14 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent document. In the format:
-     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     *                             For example:
-     *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent document. In the format:
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *           For example:
+     *           `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -690,12 +713,15 @@ class FirestoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCollectionIds($parent, array $optionalArgs = [])
+    public function listCollectionIds(array $optionalArgs = [])
     {
         $request = new ListCollectionIdsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -720,10 +746,9 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $parent = 'parent';
      *     $collectionId = 'collection_id';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $firestoreClient->listDocuments($parent, $collectionId);
+     *     $pagedResponse = $firestoreClient->listDocuments($collectionId);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -731,7 +756,7 @@ class FirestoreGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $firestoreClient->listDocuments($parent, $collectionId);
+     *     $pagedResponse = $firestoreClient->listDocuments($collectionId);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -740,13 +765,6 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource name. In the format:
-     *                             `projects/{project_id}/databases/{database_id}/documents` or
-     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     *
-     *                             For example:
-     *                             `projects/my-project/databases/my-database/documents` or
-     *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      * @param string $collectionId Optional. The collection ID, relative to `parent`, to list.
      *
      *                             For example: `chatrooms` or `messages`.
@@ -756,6 +774,14 @@ class FirestoreGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource name. In the format:
+     *           `projects/{project_id}/databases/{database_id}/documents` or
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *
+     *           For example:
+     *           `projects/my-project/databases/my-database/documents` or
+     *           `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -806,14 +832,17 @@ class FirestoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDocuments($parent, $collectionId, array $optionalArgs = [])
+    public function listDocuments($collectionId, array $optionalArgs = [])
     {
         $request = new ListDocumentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
         $request->setCollectionId($collectionId);
-        $requestParamHeaders['parent'] = $parent;
         $requestParamHeaders['collection_id'] = $collectionId;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -855,9 +884,7 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $database = 'database';
      *     $request = new ListenRequest();
-     *     $request->setDatabase($database);
      *     // Write all requests to the server, then read all responses until the
      *     // stream is complete
      *     $requests = [
@@ -1024,20 +1051,20 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $database = 'database';
-     *     $transaction = '...';
-     *     $firestoreClient->rollback($database, $transaction);
+     *     $firestoreClient->rollback();
      * } finally {
      *     $firestoreClient->close();
      * }
      * ```
      *
-     * @param string $database     Required. The database name. In the format:
-     *                             `projects/{project_id}/databases/{database_id}`.
-     * @param string $transaction  Required. The transaction to roll back.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $database
+     *           Required. The database name. In the format:
+     *           `projects/{project_id}/databases/{database_id}`.
+     *     @type string $transaction
+     *           Required. The transaction to roll back.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1046,13 +1073,19 @@ class FirestoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function rollback($database, $transaction, array $optionalArgs = [])
+    public function rollback(array $optionalArgs = [])
     {
         $request = new RollbackRequest();
         $requestParamHeaders = [];
-        $request->setDatabase($database);
-        $request->setTransaction($transaction);
-        $requestParamHeaders['database'] = $database;
+        if (isset($optionalArgs['database'])) {
+            $request->setDatabase($optionalArgs['database']);
+            $requestParamHeaders['database'] = $optionalArgs['database'];
+        }
+
+        if (isset($optionalArgs['transaction'])) {
+            $request->setTransaction($optionalArgs['transaction']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Rollback', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1077,9 +1110,8 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $parent = 'parent';
      *     // Read all responses until the stream is complete
-     *     $stream = $firestoreClient->runAggregationQuery($parent);
+     *     $stream = $firestoreClient->runAggregationQuery();
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1088,15 +1120,16 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource name. In the format:
-     *                             `projects/{project_id}/databases/{database_id}/documents` or
-     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     *                             For example:
-     *                             `projects/my-project/databases/my-database/documents` or
-     *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource name. In the format:
+     *           `projects/{project_id}/databases/{database_id}/documents` or
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *           For example:
+     *           `projects/my-project/databases/my-database/documents` or
+     *           `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *     @type StructuredAggregationQuery $structuredAggregationQuery
      *           An aggregation query.
      *     @type string $transaction
@@ -1122,12 +1155,15 @@ class FirestoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function runAggregationQuery($parent, array $optionalArgs = [])
+    public function runAggregationQuery(array $optionalArgs = [])
     {
         $request = new RunAggregationQueryRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['structuredAggregationQuery'])) {
             $request->setStructuredAggregationQuery($optionalArgs['structuredAggregationQuery']);
         }
@@ -1156,9 +1192,8 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $parent = 'parent';
      *     // Read all responses until the stream is complete
-     *     $stream = $firestoreClient->runQuery($parent);
+     *     $stream = $firestoreClient->runQuery();
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1167,15 +1202,16 @@ class FirestoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource name. In the format:
-     *                             `projects/{project_id}/databases/{database_id}/documents` or
-     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     *                             For example:
-     *                             `projects/my-project/databases/my-database/documents` or
-     *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource name. In the format:
+     *           `projects/{project_id}/databases/{database_id}/documents` or
+     *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *           For example:
+     *           `projects/my-project/databases/my-database/documents` or
+     *           `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *     @type StructuredQuery $structuredQuery
      *           A structured query.
      *     @type string $transaction
@@ -1201,12 +1237,15 @@ class FirestoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function runQuery($parent, array $optionalArgs = [])
+    public function runQuery(array $optionalArgs = [])
     {
         $request = new RunQueryRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['structuredQuery'])) {
             $request->setStructuredQuery($optionalArgs['structuredQuery']);
         }
@@ -1235,16 +1274,13 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $document = new Document();
      *     $updateMask = new DocumentMask();
-     *     $response = $firestoreClient->updateDocument($document, $updateMask);
+     *     $response = $firestoreClient->updateDocument($updateMask);
      * } finally {
      *     $firestoreClient->close();
      * }
      * ```
      *
-     * @param Document     $document     Required. The updated document.
-     *                                   Creates the document if it does not already exist.
      * @param DocumentMask $updateMask   The fields to update.
      *                                   None of the field paths in the mask may contain a reserved name.
      *
@@ -1255,6 +1291,9 @@ class FirestoreGapicClient
      * @param array        $optionalArgs {
      *     Optional.
      *
+     *     @type Document $document
+     *           Required. The updated document.
+     *           Creates the document if it does not already exist.
      *     @type DocumentMask $mask
      *           The fields to return. If not set, returns all fields.
      *
@@ -1273,13 +1312,15 @@ class FirestoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDocument($document, $updateMask, array $optionalArgs = [])
+    public function updateDocument($updateMask, array $optionalArgs = [])
     {
         $request = new UpdateDocumentRequest();
         $requestParamHeaders = [];
-        $request->setDocument($document);
         $request->setUpdateMask($updateMask);
-        $requestParamHeaders['document.name'] = $document->getName();
+        if (isset($optionalArgs['document'])) {
+            $request->setDocument($optionalArgs['document']);
+        }
+
         if (isset($optionalArgs['mask'])) {
             $request->setMask($optionalArgs['mask']);
         }
@@ -1301,9 +1342,7 @@ class FirestoreGapicClient
      * ```
      * $firestoreClient = new FirestoreClient();
      * try {
-     *     $database = 'database';
      *     $request = new WriteRequest();
-     *     $request->setDatabase($database);
      *     // Write all requests to the server, then read all responses until the
      *     // stream is complete
      *     $requests = [

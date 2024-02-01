@@ -41,8 +41,7 @@ class UpdateDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
      * @param string                                  $name               Required. Resource name of organization and deidentify template to be
      *                                                                    updated, for example
      *                                                                    `organizations/433245324/deidentifyTemplates/432452342` or
-     *                                                                    projects/project-id/deidentifyTemplates/432452342. Please see
-     *                                                                    {@see DlpServiceClient::deidentifyTemplateName()} for help formatting this field.
+     *                                                                    projects/project-id/deidentifyTemplates/432452342.
      * @param \Google\Cloud\Dlp\V2\DeidentifyTemplate $deidentifyTemplate New DeidentifyTemplate value.
      * @param \Google\Protobuf\FieldMask              $updateMask         Mask to control which fields get updated.
      *

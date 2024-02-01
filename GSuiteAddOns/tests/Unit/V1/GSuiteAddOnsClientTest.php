@@ -78,23 +78,13 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $deploymentId = 'deploymentId51250389';
-        $deployment = new Deployment();
-        $response = $gapicClient->createDeployment($formattedParent, $deploymentId, $deployment);
+        $response = $gapicClient->createDeployment();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gsuiteaddons.v1.GSuiteAddOns/CreateDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDeploymentId();
-        $this->assertProtobufEquals($deploymentId, $actualValue);
-        $actualValue = $actualRequestObject->getDeployment();
-        $this->assertProtobufEquals($deployment, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -116,12 +106,8 @@ class GSuiteAddOnsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $deploymentId = 'deploymentId51250389';
-        $deployment = new Deployment();
         try {
-            $gapicClient->createDeployment($formattedParent, $deploymentId, $deployment);
+            $gapicClient->createDeployment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -144,16 +130,12 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-        $gapicClient->deleteDeployment($formattedName);
+        $gapicClient->deleteDeployment();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gsuiteaddons.v1.GSuiteAddOns/DeleteDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -175,10 +157,8 @@ class GSuiteAddOnsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
         try {
-            $gapicClient->deleteDeployment($formattedName);
+            $gapicClient->deleteDeployment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -207,17 +187,13 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $expectedResponse->setServiceAccountEmail($serviceAccountEmail);
         $expectedResponse->setOauthClientId($oauthClientId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->authorizationName('[PROJECT]');
-        $response = $gapicClient->getAuthorization($formattedName);
+        $response = $gapicClient->getAuthorization();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gsuiteaddons.v1.GSuiteAddOns/GetAuthorization', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -239,10 +215,8 @@ class GSuiteAddOnsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->authorizationName('[PROJECT]');
         try {
-            $gapicClient->getAuthorization($formattedName);
+            $gapicClient->getAuthorization();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -269,17 +243,13 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-        $response = $gapicClient->getDeployment($formattedName);
+        $response = $gapicClient->getDeployment();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gsuiteaddons.v1.GSuiteAddOns/GetDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -301,10 +271,8 @@ class GSuiteAddOnsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
         try {
-            $gapicClient->getDeployment($formattedName);
+            $gapicClient->getDeployment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -329,17 +297,13 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $expectedResponse = new InstallStatus();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->installStatusName('[PROJECT]', '[DEPLOYMENT]');
-        $response = $gapicClient->getInstallStatus($formattedName);
+        $response = $gapicClient->getInstallStatus();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gsuiteaddons.v1.GSuiteAddOns/GetInstallStatus', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -361,10 +325,8 @@ class GSuiteAddOnsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->installStatusName('[PROJECT]', '[DEPLOYMENT]');
         try {
-            $gapicClient->getInstallStatus($formattedName);
+            $gapicClient->getInstallStatus();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -387,16 +349,12 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-        $gapicClient->installDeployment($formattedName);
+        $gapicClient->installDeployment();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gsuiteaddons.v1.GSuiteAddOns/InstallDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -418,10 +376,8 @@ class GSuiteAddOnsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
         try {
-            $gapicClient->installDeployment($formattedName);
+            $gapicClient->installDeployment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -451,9 +407,7 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDeployments($deployments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->listDeployments($formattedParent);
+        $response = $gapicClient->listDeployments();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -463,8 +417,6 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gsuiteaddons.v1.GSuiteAddOns/ListDeployments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -486,10 +438,8 @@ class GSuiteAddOnsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listDeployments($formattedParent);
+            $gapicClient->listDeployments();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -516,17 +466,13 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $deployment = new Deployment();
-        $response = $gapicClient->replaceDeployment($deployment);
+        $response = $gapicClient->replaceDeployment();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gsuiteaddons.v1.GSuiteAddOns/ReplaceDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDeployment();
-        $this->assertProtobufEquals($deployment, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -548,10 +494,8 @@ class GSuiteAddOnsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $deployment = new Deployment();
         try {
-            $gapicClient->replaceDeployment($deployment);
+            $gapicClient->replaceDeployment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -574,16 +518,12 @@ class GSuiteAddOnsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-        $gapicClient->uninstallDeployment($formattedName);
+        $gapicClient->uninstallDeployment();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gsuiteaddons.v1.GSuiteAddOns/UninstallDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -605,10 +545,8 @@ class GSuiteAddOnsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
         try {
-            $gapicClient->uninstallDeployment($formattedName);
+            $gapicClient->uninstallDeployment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

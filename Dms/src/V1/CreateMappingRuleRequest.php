@@ -47,8 +47,7 @@ class CreateMappingRuleRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string                                $parent        Required. The parent which owns this collection of mapping rules. Please see
-     *                                                             {@see DataMigrationServiceClient::conversionWorkspaceName()} for help formatting this field.
+     * @param string                                $parent        Required. The parent which owns this collection of mapping rules.
      * @param \Google\Cloud\CloudDms\V1\MappingRule $mappingRule   Required. Represents a [mapping rule]
      *                                                             (https://cloud.google.com/database-migration/reference/rest/v1/projects.locations.mappingRules)
      *                                                             object.

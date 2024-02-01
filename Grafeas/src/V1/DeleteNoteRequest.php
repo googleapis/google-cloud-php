@@ -25,8 +25,7 @@ class DeleteNoteRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name The name of the note in the form of
-     *                     `projects/[PROVIDER_ID]/notes/[NOTE_ID]`. Please see
-     *                     {@see GrafeasClient::noteName()} for help formatting this field.
+     *                     `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      *
      * @return \Grafeas\V1\DeleteNoteRequest
      *

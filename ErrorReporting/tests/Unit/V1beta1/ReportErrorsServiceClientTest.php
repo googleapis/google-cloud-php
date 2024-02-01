@@ -28,8 +28,6 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse;
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
-use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
-use Google\Cloud\ErrorReporting\V1beta1\ServiceContext;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -72,24 +70,13 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ReportErrorEventResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $event = new ReportedErrorEvent();
-        $eventServiceContext = new ServiceContext();
-        $event->setServiceContext($eventServiceContext);
-        $eventMessage = 'eventMessage1863181325';
-        $event->setMessage($eventMessage);
-        $response = $gapicClient->reportErrorEvent($formattedProjectName, $event);
+        $response = $gapicClient->reportErrorEvent();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ReportErrorsService/ReportErrorEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectName();
-        $this->assertProtobufEquals($formattedProjectName, $actualValue);
-        $actualValue = $actualRequestObject->getEvent();
-        $this->assertProtobufEquals($event, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -111,15 +98,8 @@ class ReportErrorsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $event = new ReportedErrorEvent();
-        $eventServiceContext = new ServiceContext();
-        $event->setServiceContext($eventServiceContext);
-        $eventMessage = 'eventMessage1863181325';
-        $event->setMessage($eventMessage);
         try {
-            $gapicClient->reportErrorEvent($formattedProjectName, $event);
+            $gapicClient->reportErrorEvent();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

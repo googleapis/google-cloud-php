@@ -32,25 +32,19 @@ use Google\Cloud\GkeMultiCloud\V1\GetAzureClusterRequest;
  * Describes a specific
  * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
  *
- * @param string $formattedName The name of the
- *                              [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to
- *                              describe.
- *
- *                              `AzureCluster` names are formatted as
- *                              `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
- *
- *                              See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                              for more details on Google Cloud Platform resource names. Please see
- *                              {@see AzureClustersClient::azureClusterName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_azure_cluster_sample(string $formattedName): void
+function get_azure_cluster_sample(): void
 {
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
     // Prepare the request message.
-    $request = (new GetAzureClusterRequest())
-        ->setName($formattedName);
+    $request = new GetAzureClusterRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,25 +54,5 @@ function get_azure_cluster_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AzureClustersClient::azureClusterName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AZURE_CLUSTER]'
-    );
-
-    get_azure_cluster_sample($formattedName);
 }
 // [END gkemulticloud_v1_generated_AzureClusters_GetAzureCluster_sync]

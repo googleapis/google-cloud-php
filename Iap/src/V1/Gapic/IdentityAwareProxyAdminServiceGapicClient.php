@@ -61,10 +61,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
  * try {
- *     $formattedParent = $identityAwareProxyAdminServiceClient->tunnelLocationName('[PROJECT]', '[LOCATION]');
- *     $tunnelDestGroup = new TunnelDestGroup();
- *     $tunnelDestGroupId = 'tunnel_dest_group_id';
- *     $response = $identityAwareProxyAdminServiceClient->createTunnelDestGroup($formattedParent, $tunnelDestGroup, $tunnelDestGroupId);
+ *     $response = $identityAwareProxyAdminServiceClient->createTunnelDestGroup();
  * } finally {
  *     $identityAwareProxyAdminServiceClient->close();
  * }
@@ -322,27 +319,27 @@ class IdentityAwareProxyAdminServiceGapicClient
      * ```
      * $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
      * try {
-     *     $formattedParent = $identityAwareProxyAdminServiceClient->tunnelLocationName('[PROJECT]', '[LOCATION]');
-     *     $tunnelDestGroup = new TunnelDestGroup();
-     *     $tunnelDestGroupId = 'tunnel_dest_group_id';
-     *     $response = $identityAwareProxyAdminServiceClient->createTunnelDestGroup($formattedParent, $tunnelDestGroup, $tunnelDestGroupId);
+     *     $response = $identityAwareProxyAdminServiceClient->createTunnelDestGroup();
      * } finally {
      *     $identityAwareProxyAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string          $parent            Required. Google Cloud Project ID and location.
-     *                                           In the following format:
-     *                                           `projects/{project_number/id}/iap_tunnel/locations/{location}`.
-     * @param TunnelDestGroup $tunnelDestGroup   Required. The TunnelDestGroup to create.
-     * @param string          $tunnelDestGroupId Required. The ID to use for the TunnelDestGroup, which becomes the final
-     *                                           component of the resource name.
-     *
-     *                                           This value must be 4-63 characters, and valid characters
-     *                                           are `[a-z]-`.
-     * @param array           $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Google Cloud Project ID and location.
+     *           In the following format:
+     *           `projects/{project_number/id}/iap_tunnel/locations/{location}`.
+     *     @type TunnelDestGroup $tunnelDestGroup
+     *           Required. The TunnelDestGroup to create.
+     *     @type string $tunnelDestGroupId
+     *           Required. The ID to use for the TunnelDestGroup, which becomes the final
+     *           component of the resource name.
+     *
+     *           This value must be 4-63 characters, and valid characters
+     *           are `[a-z]-`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -353,18 +350,23 @@ class IdentityAwareProxyAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTunnelDestGroup(
-        $parent,
-        $tunnelDestGroup,
-        $tunnelDestGroupId,
-        array $optionalArgs = []
-    ) {
+    public function createTunnelDestGroup(array $optionalArgs = [])
+    {
         $request = new CreateTunnelDestGroupRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setTunnelDestGroup($tunnelDestGroup);
-        $request->setTunnelDestGroupId($tunnelDestGroupId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['tunnelDestGroup'])) {
+            $request->setTunnelDestGroup($optionalArgs['tunnelDestGroup']);
+        }
+
+        if (isset($optionalArgs['tunnelDestGroupId'])) {
+            $request->setTunnelDestGroupId($optionalArgs['tunnelDestGroupId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -386,19 +388,19 @@ class IdentityAwareProxyAdminServiceGapicClient
      * ```
      * $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
      * try {
-     *     $formattedName = $identityAwareProxyAdminServiceClient->tunnelDestGroupName('[PROJECT]', '[LOCATION]', '[DEST_GROUP]');
-     *     $identityAwareProxyAdminServiceClient->deleteTunnelDestGroup($formattedName);
+     *     $identityAwareProxyAdminServiceClient->deleteTunnelDestGroup();
      * } finally {
      *     $identityAwareProxyAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the TunnelDestGroup to delete.
-     *                             In the following format:
-     *                             `projects/{project_number/id}/iap_tunnel/locations/{location}/destGroups/{dest_group}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the TunnelDestGroup to delete.
+     *           In the following format:
+     *           `projects/{project_number/id}/iap_tunnel/locations/{location}/destGroups/{dest_group}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -407,12 +409,15 @@ class IdentityAwareProxyAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTunnelDestGroup($name, array $optionalArgs = [])
+    public function deleteTunnelDestGroup(array $optionalArgs = [])
     {
         $request = new DeleteTunnelDestGroupRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -493,19 +498,19 @@ class IdentityAwareProxyAdminServiceGapicClient
      * ```
      * $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
      * try {
-     *     $name = 'name';
-     *     $response = $identityAwareProxyAdminServiceClient->getIapSettings($name);
+     *     $response = $identityAwareProxyAdminServiceClient->getIapSettings();
      * } finally {
      *     $identityAwareProxyAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for which to retrieve the settings.
-     *                             Authorization: Requires the `getSettings` permission for the associated
-     *                             resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name for which to retrieve the settings.
+     *           Authorization: Requires the `getSettings` permission for the associated
+     *           resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -516,12 +521,15 @@ class IdentityAwareProxyAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIapSettings($name, array $optionalArgs = [])
+    public function getIapSettings(array $optionalArgs = [])
     {
         $request = new GetIapSettingsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -543,19 +551,19 @@ class IdentityAwareProxyAdminServiceGapicClient
      * ```
      * $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
      * try {
-     *     $formattedName = $identityAwareProxyAdminServiceClient->tunnelDestGroupName('[PROJECT]', '[LOCATION]', '[DEST_GROUP]');
-     *     $response = $identityAwareProxyAdminServiceClient->getTunnelDestGroup($formattedName);
+     *     $response = $identityAwareProxyAdminServiceClient->getTunnelDestGroup();
      * } finally {
      *     $identityAwareProxyAdminServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the TunnelDestGroup to be fetched.
-     *                             In the following format:
-     *                             `projects/{project_number/id}/iap_tunnel/locations/{location}/destGroups/{dest_group}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the TunnelDestGroup to be fetched.
+     *           In the following format:
+     *           `projects/{project_number/id}/iap_tunnel/locations/{location}/destGroups/{dest_group}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -566,12 +574,15 @@ class IdentityAwareProxyAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTunnelDestGroup($name, array $optionalArgs = [])
+    public function getTunnelDestGroup(array $optionalArgs = [])
     {
         $request = new GetTunnelDestGroupRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -595,9 +606,8 @@ class IdentityAwareProxyAdminServiceGapicClient
      * ```
      * $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
      * try {
-     *     $formattedParent = $identityAwareProxyAdminServiceClient->tunnelLocationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $identityAwareProxyAdminServiceClient->listTunnelDestGroups($formattedParent);
+     *     $pagedResponse = $identityAwareProxyAdminServiceClient->listTunnelDestGroups();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -605,7 +615,7 @@ class IdentityAwareProxyAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $identityAwareProxyAdminServiceClient->listTunnelDestGroups($formattedParent);
+     *     $pagedResponse = $identityAwareProxyAdminServiceClient->listTunnelDestGroups();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -614,13 +624,14 @@ class IdentityAwareProxyAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Google Cloud Project ID and location.
-     *                             In the following format:
-     *                             `projects/{project_number/id}/iap_tunnel/locations/{location}`.
-     *                             A `-` can be used for the location to group across all locations.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Google Cloud Project ID and location.
+     *           In the following format:
+     *           `projects/{project_number/id}/iap_tunnel/locations/{location}`.
+     *           A `-` can be used for the location to group across all locations.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -640,12 +651,15 @@ class IdentityAwareProxyAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTunnelDestGroups($parent, array $optionalArgs = [])
+    public function listTunnelDestGroups(array $optionalArgs = [])
     {
         $request = new ListTunnelDestGroupsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -805,19 +819,19 @@ class IdentityAwareProxyAdminServiceGapicClient
      * ```
      * $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
      * try {
-     *     $iapSettings = new IapSettings();
-     *     $response = $identityAwareProxyAdminServiceClient->updateIapSettings($iapSettings);
+     *     $response = $identityAwareProxyAdminServiceClient->updateIapSettings();
      * } finally {
      *     $identityAwareProxyAdminServiceClient->close();
      * }
      * ```
      *
-     * @param IapSettings $iapSettings  Required. The new values for the IAP settings to be updated.
-     *                                  Authorization: Requires the `updateSettings` permission for the associated
-     *                                  resource.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type IapSettings $iapSettings
+     *           Required. The new values for the IAP settings to be updated.
+     *           Authorization: Requires the `updateSettings` permission for the associated
+     *           resource.
      *     @type FieldMask $updateMask
      *           The field mask specifying which IAP settings should be updated.
      *           If omitted, then all of the settings are updated. See
@@ -835,12 +849,14 @@ class IdentityAwareProxyAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateIapSettings($iapSettings, array $optionalArgs = [])
+    public function updateIapSettings(array $optionalArgs = [])
     {
         $request = new UpdateIapSettingsRequest();
         $requestParamHeaders = [];
-        $request->setIapSettings($iapSettings);
-        $requestParamHeaders['iap_settings.name'] = $iapSettings->getName();
+        if (isset($optionalArgs['iapSettings'])) {
+            $request->setIapSettings($optionalArgs['iapSettings']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -866,17 +882,17 @@ class IdentityAwareProxyAdminServiceGapicClient
      * ```
      * $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
      * try {
-     *     $tunnelDestGroup = new TunnelDestGroup();
-     *     $response = $identityAwareProxyAdminServiceClient->updateTunnelDestGroup($tunnelDestGroup);
+     *     $response = $identityAwareProxyAdminServiceClient->updateTunnelDestGroup();
      * } finally {
      *     $identityAwareProxyAdminServiceClient->close();
      * }
      * ```
      *
-     * @param TunnelDestGroup $tunnelDestGroup Required. The new values for the TunnelDestGroup.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type TunnelDestGroup $tunnelDestGroup
+     *           Required. The new values for the TunnelDestGroup.
      *     @type FieldMask $updateMask
      *           A field mask that specifies which IAP settings to update.
      *           If omitted, then all of the settings are updated. See
@@ -891,16 +907,14 @@ class IdentityAwareProxyAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTunnelDestGroup(
-        $tunnelDestGroup,
-        array $optionalArgs = []
-    ) {
+    public function updateTunnelDestGroup(array $optionalArgs = [])
+    {
         $request = new UpdateTunnelDestGroupRequest();
         $requestParamHeaders = [];
-        $request->setTunnelDestGroup($tunnelDestGroup);
-        $requestParamHeaders[
-            'tunnel_dest_group.name'
-        ] = $tunnelDestGroup->getName();
+        if (isset($optionalArgs['tunnelDestGroup'])) {
+            $request->setTunnelDestGroup($optionalArgs['tunnelDestGroup']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

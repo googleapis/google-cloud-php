@@ -20,40 +20,40 @@ class Common
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ä
+à
 
-&google/iam/credentials/v1/common.protogoogle.iam.credentials.v1google/api/resource.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"©
-GenerateAccessTokenRequest7
-name (	B)‡A˙A#
+&google/iam/credentials/v1/common.protogoogle.iam.credentials.v1google/api/resource.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"´
+GenerateAccessTokenRequest8
+name (	B*‚A˙A#
 !iam.googleapis.com/ServiceAccount
-	delegates (	
-scope (	B‡A+
+	delegates (	
+scope (	B‚A+
 lifetime (2.google.protobuf.Duration"d
 GenerateAccessTokenResponse
 access_token (	/
-expire_time (2.google.protobuf.Timestamp"s
-SignBlobRequest7
-name (	B)‡A˙A#
+expire_time (2.google.protobuf.Timestamp"u
+SignBlobRequest8
+name (	B*‚A˙A#
 !iam.googleapis.com/ServiceAccount
-	delegates (	
-payload (B‡A"7
+	delegates (	
+payload (B‚A"7
 SignBlobResponse
 key_id (	
-signed_blob ("r
-SignJwtRequest7
-name (	B)‡A˙A#
+signed_blob ("t
+SignJwtRequest8
+name (	B*‚A˙A#
 !iam.googleapis.com/ServiceAccount
-	delegates (	
-payload (	B‡A"5
+	delegates (	
+payload (	B‚A"5
 SignJwtResponse
 key_id (	
 
-signed_jwt (	"í
-GenerateIdTokenRequest7
-name (	B)‡A˙A#
+signed_jwt (	"î
+GenerateIdTokenRequest8
+name (	B*‚A˙A#
 !iam.googleapis.com/ServiceAccount
-	delegates (	
-audience (	B‡A
+	delegates (	
+audience (	B‚A
 include_email ("(
 GenerateIdTokenResponse
 token (	B¨

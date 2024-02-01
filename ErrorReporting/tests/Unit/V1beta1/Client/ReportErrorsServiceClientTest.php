@@ -29,8 +29,6 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ErrorReporting\V1beta1\Client\ReportErrorsServiceClient;
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventRequest;
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse;
-use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
-use Google\Cloud\ErrorReporting\V1beta1\ServiceContext;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -73,16 +71,7 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ReportErrorEventResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $event = new ReportedErrorEvent();
-        $eventServiceContext = new ServiceContext();
-        $event->setServiceContext($eventServiceContext);
-        $eventMessage = 'eventMessage1863181325';
-        $event->setMessage($eventMessage);
-        $request = (new ReportErrorEventRequest())
-            ->setProjectName($formattedProjectName)
-            ->setEvent($event);
+        $request = new ReportErrorEventRequest();
         $response = $gapicClient->reportErrorEvent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -90,10 +79,6 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ReportErrorsService/ReportErrorEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectName();
-        $this->assertProtobufEquals($formattedProjectName, $actualValue);
-        $actualValue = $actualRequestObject->getEvent();
-        $this->assertProtobufEquals($event, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -115,16 +100,7 @@ class ReportErrorsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $event = new ReportedErrorEvent();
-        $eventServiceContext = new ServiceContext();
-        $event->setServiceContext($eventServiceContext);
-        $eventMessage = 'eventMessage1863181325';
-        $event->setMessage($eventMessage);
-        $request = (new ReportErrorEventRequest())
-            ->setProjectName($formattedProjectName)
-            ->setEvent($event);
+        $request = new ReportErrorEventRequest();
         try {
             $gapicClient->reportErrorEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -149,16 +125,7 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ReportErrorEventResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $event = new ReportedErrorEvent();
-        $eventServiceContext = new ServiceContext();
-        $event->setServiceContext($eventServiceContext);
-        $eventMessage = 'eventMessage1863181325';
-        $event->setMessage($eventMessage);
-        $request = (new ReportErrorEventRequest())
-            ->setProjectName($formattedProjectName)
-            ->setEvent($event);
+        $request = new ReportErrorEventRequest();
         $response = $gapicClient->reportErrorEventAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -166,10 +133,6 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ReportErrorsService/ReportErrorEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectName();
-        $this->assertProtobufEquals($formattedProjectName, $actualValue);
-        $actualValue = $actualRequestObject->getEvent();
-        $this->assertProtobufEquals($event, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

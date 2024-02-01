@@ -60,9 +60,7 @@ use Google\Protobuf\Duration;
  * ```
  * $iAMCredentialsClient = new IAMCredentialsClient();
  * try {
- *     $formattedName = $iAMCredentialsClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
- *     $scope = [];
- *     $response = $iAMCredentialsClient->generateAccessToken($formattedName, $scope);
+ *     $response = $iAMCredentialsClient->generateAccessToken();
  * } finally {
  *     $iAMCredentialsClient->close();
  * }
@@ -271,25 +269,20 @@ class IAMCredentialsGapicClient
      * ```
      * $iAMCredentialsClient = new IAMCredentialsClient();
      * try {
-     *     $formattedName = $iAMCredentialsClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
-     *     $scope = [];
-     *     $response = $iAMCredentialsClient->generateAccessToken($formattedName, $scope);
+     *     $response = $iAMCredentialsClient->generateAccessToken();
      * } finally {
      *     $iAMCredentialsClient->close();
      * }
      * ```
      *
-     * @param string   $name         Required. The resource name of the service account for which the credentials
-     *                               are requested, in the following format:
-     *                               `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
-     *                               character is required; replacing it with a project ID is invalid.
-     * @param string[] $scope        Required. Code to identify the scopes to be included in the OAuth 2.0 access token.
-     *                               See https://developers.google.com/identity/protocols/googlescopes for more
-     *                               information.
-     *                               At least one value required.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the service account for which the credentials
+     *           are requested, in the following format:
+     *           `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
+     *           character is required; replacing it with a project ID is invalid.
      *     @type string[] $delegates
      *           The sequence of service accounts in a delegation chain. Each service
      *           account must be granted the `roles/iam.serviceAccountTokenCreator` role
@@ -301,6 +294,11 @@ class IAMCredentialsGapicClient
      *           The delegates must have the following format:
      *           `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
      *           character is required; replacing it with a project ID is invalid.
+     *     @type string[] $scope
+     *           Required. Code to identify the scopes to be included in the OAuth 2.0 access token.
+     *           See https://developers.google.com/identity/protocols/googlescopes for more
+     *           information.
+     *           At least one value required.
      *     @type Duration $lifetime
      *           The desired lifetime duration of the access token in seconds.
      *           Must be set to a value less than or equal to 3600 (1 hour). If a value is
@@ -316,15 +314,21 @@ class IAMCredentialsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateAccessToken($name, $scope, array $optionalArgs = [])
+    public function generateAccessToken(array $optionalArgs = [])
     {
         $request = new GenerateAccessTokenRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setScope($scope);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['delegates'])) {
             $request->setDelegates($optionalArgs['delegates']);
+        }
+
+        if (isset($optionalArgs['scope'])) {
+            $request->setScope($optionalArgs['scope']);
         }
 
         if (isset($optionalArgs['lifetime'])) {
@@ -343,23 +347,20 @@ class IAMCredentialsGapicClient
      * ```
      * $iAMCredentialsClient = new IAMCredentialsClient();
      * try {
-     *     $formattedName = $iAMCredentialsClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
-     *     $audience = 'audience';
-     *     $response = $iAMCredentialsClient->generateIdToken($formattedName, $audience);
+     *     $response = $iAMCredentialsClient->generateIdToken();
      * } finally {
      *     $iAMCredentialsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the service account for which the credentials
-     *                             are requested, in the following format:
-     *                             `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
-     *                             character is required; replacing it with a project ID is invalid.
-     * @param string $audience     Required. The audience for the token, such as the API or account that this token
-     *                             grants access to.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the service account for which the credentials
+     *           are requested, in the following format:
+     *           `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
+     *           character is required; replacing it with a project ID is invalid.
      *     @type string[] $delegates
      *           The sequence of service accounts in a delegation chain. Each service
      *           account must be granted the `roles/iam.serviceAccountTokenCreator` role
@@ -371,6 +372,9 @@ class IAMCredentialsGapicClient
      *           The delegates must have the following format:
      *           `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
      *           character is required; replacing it with a project ID is invalid.
+     *     @type string $audience
+     *           Required. The audience for the token, such as the API or account that this token
+     *           grants access to.
      *     @type bool $includeEmail
      *           Include the service account email in the token. If set to `true`, the
      *           token will contain `email` and `email_verified` claims.
@@ -384,15 +388,21 @@ class IAMCredentialsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateIdToken($name, $audience, array $optionalArgs = [])
+    public function generateIdToken(array $optionalArgs = [])
     {
         $request = new GenerateIdTokenRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setAudience($audience);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['delegates'])) {
             $request->setDelegates($optionalArgs['delegates']);
+        }
+
+        if (isset($optionalArgs['audience'])) {
+            $request->setAudience($optionalArgs['audience']);
         }
 
         if (isset($optionalArgs['includeEmail'])) {
@@ -411,22 +421,20 @@ class IAMCredentialsGapicClient
      * ```
      * $iAMCredentialsClient = new IAMCredentialsClient();
      * try {
-     *     $formattedName = $iAMCredentialsClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
-     *     $payload = '...';
-     *     $response = $iAMCredentialsClient->signBlob($formattedName, $payload);
+     *     $response = $iAMCredentialsClient->signBlob();
      * } finally {
      *     $iAMCredentialsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the service account for which the credentials
-     *                             are requested, in the following format:
-     *                             `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
-     *                             character is required; replacing it with a project ID is invalid.
-     * @param string $payload      Required. The bytes to sign.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the service account for which the credentials
+     *           are requested, in the following format:
+     *           `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
+     *           character is required; replacing it with a project ID is invalid.
      *     @type string[] $delegates
      *           The sequence of service accounts in a delegation chain. Each service
      *           account must be granted the `roles/iam.serviceAccountTokenCreator` role
@@ -438,6 +446,8 @@ class IAMCredentialsGapicClient
      *           The delegates must have the following format:
      *           `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
      *           character is required; replacing it with a project ID is invalid.
+     *     @type string $payload
+     *           Required. The bytes to sign.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -448,15 +458,21 @@ class IAMCredentialsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function signBlob($name, $payload, array $optionalArgs = [])
+    public function signBlob(array $optionalArgs = [])
     {
         $request = new SignBlobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setPayload($payload);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['delegates'])) {
             $request->setDelegates($optionalArgs['delegates']);
+        }
+
+        if (isset($optionalArgs['payload'])) {
+            $request->setPayload($optionalArgs['payload']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -471,22 +487,20 @@ class IAMCredentialsGapicClient
      * ```
      * $iAMCredentialsClient = new IAMCredentialsClient();
      * try {
-     *     $formattedName = $iAMCredentialsClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
-     *     $payload = 'payload';
-     *     $response = $iAMCredentialsClient->signJwt($formattedName, $payload);
+     *     $response = $iAMCredentialsClient->signJwt();
      * } finally {
      *     $iAMCredentialsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the service account for which the credentials
-     *                             are requested, in the following format:
-     *                             `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
-     *                             character is required; replacing it with a project ID is invalid.
-     * @param string $payload      Required. The JWT payload to sign: a JSON object that contains a JWT Claims Set.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the service account for which the credentials
+     *           are requested, in the following format:
+     *           `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
+     *           character is required; replacing it with a project ID is invalid.
      *     @type string[] $delegates
      *           The sequence of service accounts in a delegation chain. Each service
      *           account must be granted the `roles/iam.serviceAccountTokenCreator` role
@@ -498,6 +512,8 @@ class IAMCredentialsGapicClient
      *           The delegates must have the following format:
      *           `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
      *           character is required; replacing it with a project ID is invalid.
+     *     @type string $payload
+     *           Required. The JWT payload to sign: a JSON object that contains a JWT Claims Set.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -508,15 +524,21 @@ class IAMCredentialsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function signJwt($name, $payload, array $optionalArgs = [])
+    public function signJwt(array $optionalArgs = [])
     {
         $request = new SignJwtRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setPayload($payload);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['delegates'])) {
             $request->setDelegates($optionalArgs['delegates']);
+        }
+
+        if (isset($optionalArgs['payload'])) {
+            $request->setPayload($optionalArgs['payload']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

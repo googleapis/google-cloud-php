@@ -60,7 +60,6 @@ class ListVolumeRestoresRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The Restore that contains the VolumeRestores to list.
      *                       Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
-     *                       Please see {@see BackupForGKEClient::restoreName()} for help formatting this field.
      *
      * @return \Google\Cloud\GkeBackup\V1\ListVolumeRestoresRequest
      *

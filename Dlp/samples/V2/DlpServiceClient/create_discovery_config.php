@@ -27,35 +27,23 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
 use Google\Cloud\Dlp\V2\CreateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\DiscoveryConfig;
-use Google\Cloud\Dlp\V2\DiscoveryConfig\Status;
 
 /**
  * Creates a config for discovery to scan and profile storage.
  *
- * @param string $formattedParent       Parent resource name.
- *
- *                                      The format of this value is as follows:
- *                                      `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
- *
- *                                      The following example `parent` string specifies a parent project with the
- *                                      identifier `example-project`, and specifies the `europe-west3` location
- *                                      for processing data:
- *
- *                                      parent=projects/example-project/locations/europe-west3
- *                                      Please see {@see DlpServiceClient::locationName()} for help formatting this field.
- * @param int    $discoveryConfigStatus A status for this configuration.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_discovery_config_sample(string $formattedParent, int $discoveryConfigStatus): void
+function create_discovery_config_sample(): void
 {
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
     // Prepare the request message.
-    $discoveryConfig = (new DiscoveryConfig())
-        ->setStatus($discoveryConfigStatus);
-    $request = (new CreateDiscoveryConfigRequest())
-        ->setParent($formattedParent)
-        ->setDiscoveryConfig($discoveryConfig);
+    $request = new CreateDiscoveryConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,22 +53,5 @@ function create_discovery_config_sample(string $formattedParent, int $discoveryC
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DlpServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $discoveryConfigStatus = Status::STATUS_UNSPECIFIED;
-
-    create_discovery_config_sample($formattedParent, $discoveryConfigStatus);
 }
 // [END dlp_v2_generated_DlpService_CreateDiscoveryConfig_sync]

@@ -56,8 +56,7 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
-     * @param string $parent Required. The parent collection to list triggers on. Please see
-     *                       {@see EventarcClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent collection to list triggers on.
      *
      * @return \Google\Cloud\Eventarc\V1\ListTriggersRequest
      *

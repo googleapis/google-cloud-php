@@ -29,7 +29,6 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Eventarc\V1\Channel;
 use Google\Cloud\Eventarc\V1\ChannelConnection;
-use Google\Cloud\Eventarc\V1\Destination;
 use Google\Cloud\Eventarc\V1\EventarcClient;
 use Google\Cloud\Eventarc\V1\GoogleChannelConfig;
 use Google\Cloud\Eventarc\V1\ListChannelConnectionsResponse;
@@ -117,14 +116,7 @@ class EventarcClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $channel = new Channel();
-        $channelName = 'channelName273953326';
-        $channel->setName($channelName);
-        $channelId = 'channelId-1930808873';
-        $validateOnly = false;
-        $response = $gapicClient->createChannel($formattedParent, $channel, $channelId, $validateOnly);
+        $response = $gapicClient->createChannel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -134,14 +126,6 @@ class EventarcClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/CreateChannel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getChannel();
-        $this->assertProtobufEquals($channel, $actualValue);
-        $actualValue = $actualApiRequestObject->getChannelId();
-        $this->assertProtobufEquals($channelId, $actualValue);
-        $actualValue = $actualApiRequestObject->getValidateOnly();
-        $this->assertProtobufEquals($validateOnly, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createChannelTest');
         $response->pollUntilComplete([
@@ -192,14 +176,7 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $channel = new Channel();
-        $channelName = 'channelName273953326';
-        $channel->setName($channelName);
-        $channelId = 'channelId-1930808873';
-        $validateOnly = false;
-        $response = $gapicClient->createChannel($formattedParent, $channel, $channelId, $validateOnly);
+        $response = $gapicClient->createChannel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -258,15 +235,7 @@ class EventarcClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $channelConnection = new ChannelConnection();
-        $channelConnectionName = 'channelConnectionName-46623124';
-        $channelConnection->setName($channelConnectionName);
-        $channelConnectionChannel = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-        $channelConnection->setChannel($channelConnectionChannel);
-        $channelConnectionId = 'channelConnectionId-1611273248';
-        $response = $gapicClient->createChannelConnection($formattedParent, $channelConnection, $channelConnectionId);
+        $response = $gapicClient->createChannelConnection();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -276,12 +245,6 @@ class EventarcClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/CreateChannelConnection', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getChannelConnection();
-        $this->assertProtobufEquals($channelConnection, $actualValue);
-        $actualValue = $actualApiRequestObject->getChannelConnectionId();
-        $this->assertProtobufEquals($channelConnectionId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createChannelConnectionTest');
         $response->pollUntilComplete([
@@ -332,15 +295,7 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $channelConnection = new ChannelConnection();
-        $channelConnectionName = 'channelConnectionName-46623124';
-        $channelConnection->setName($channelConnectionName);
-        $channelConnectionChannel = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-        $channelConnection->setChannel($channelConnectionChannel);
-        $channelConnectionId = 'channelConnectionId-1611273248';
-        $response = $gapicClient->createChannelConnection($formattedParent, $channelConnection, $channelConnectionId);
+        $response = $gapicClient->createChannelConnection();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -401,18 +356,7 @@ class EventarcClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $trigger = new Trigger();
-        $triggerName = 'triggerName-681138077';
-        $trigger->setName($triggerName);
-        $triggerEventFilters = [];
-        $trigger->setEventFilters($triggerEventFilters);
-        $triggerDestination = new Destination();
-        $trigger->setDestination($triggerDestination);
-        $triggerId = 'triggerId1363517698';
-        $validateOnly = false;
-        $response = $gapicClient->createTrigger($formattedParent, $trigger, $triggerId, $validateOnly);
+        $response = $gapicClient->createTrigger();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -422,14 +366,6 @@ class EventarcClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/CreateTrigger', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getTrigger();
-        $this->assertProtobufEquals($trigger, $actualValue);
-        $actualValue = $actualApiRequestObject->getTriggerId();
-        $this->assertProtobufEquals($triggerId, $actualValue);
-        $actualValue = $actualApiRequestObject->getValidateOnly();
-        $this->assertProtobufEquals($validateOnly, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createTriggerTest');
         $response->pollUntilComplete([
@@ -480,18 +416,7 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $trigger = new Trigger();
-        $triggerName = 'triggerName-681138077';
-        $trigger->setName($triggerName);
-        $triggerEventFilters = [];
-        $trigger->setEventFilters($triggerEventFilters);
-        $triggerDestination = new Destination();
-        $trigger->setDestination($triggerDestination);
-        $triggerId = 'triggerId1363517698';
-        $validateOnly = false;
-        $response = $gapicClient->createTrigger($formattedParent, $trigger, $triggerId, $validateOnly);
+        $response = $gapicClient->createTrigger();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -554,10 +479,7 @@ class EventarcClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-        $validateOnly = false;
-        $response = $gapicClient->deleteChannel($formattedName, $validateOnly);
+        $response = $gapicClient->deleteChannel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -567,10 +489,6 @@ class EventarcClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/DeleteChannel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getValidateOnly();
-        $this->assertProtobufEquals($validateOnly, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteChannelTest');
         $response->pollUntilComplete([
@@ -621,10 +539,7 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-        $validateOnly = false;
-        $response = $gapicClient->deleteChannel($formattedName, $validateOnly);
+        $response = $gapicClient->deleteChannel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -683,9 +598,7 @@ class EventarcClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->channelConnectionName('[PROJECT]', '[LOCATION]', '[CHANNEL_CONNECTION]');
-        $response = $gapicClient->deleteChannelConnection($formattedName);
+        $response = $gapicClient->deleteChannelConnection();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -695,8 +608,6 @@ class EventarcClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/DeleteChannelConnection', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteChannelConnectionTest');
         $response->pollUntilComplete([
@@ -747,9 +658,7 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->channelConnectionName('[PROJECT]', '[LOCATION]', '[CHANNEL_CONNECTION]');
-        $response = $gapicClient->deleteChannelConnection($formattedName);
+        $response = $gapicClient->deleteChannelConnection();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -810,10 +719,7 @@ class EventarcClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->triggerName('[PROJECT]', '[LOCATION]', '[TRIGGER]');
-        $validateOnly = false;
-        $response = $gapicClient->deleteTrigger($formattedName, $validateOnly);
+        $response = $gapicClient->deleteTrigger();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -823,10 +729,6 @@ class EventarcClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/DeleteTrigger', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getValidateOnly();
-        $this->assertProtobufEquals($validateOnly, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteTriggerTest');
         $response->pollUntilComplete([
@@ -877,10 +779,7 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->triggerName('[PROJECT]', '[LOCATION]', '[TRIGGER]');
-        $validateOnly = false;
-        $response = $gapicClient->deleteTrigger($formattedName, $validateOnly);
+        $response = $gapicClient->deleteTrigger();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -925,17 +824,13 @@ class EventarcClientTest extends GeneratedTest
         $expectedResponse->setActivationToken($activationToken);
         $expectedResponse->setCryptoKeyName($cryptoKeyName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-        $response = $gapicClient->getChannel($formattedName);
+        $response = $gapicClient->getChannel();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/GetChannel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -957,10 +852,8 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
         try {
-            $gapicClient->getChannel($formattedName);
+            $gapicClient->getChannel();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -991,17 +884,13 @@ class EventarcClientTest extends GeneratedTest
         $expectedResponse->setChannel($channel);
         $expectedResponse->setActivationToken($activationToken);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->channelConnectionName('[PROJECT]', '[LOCATION]', '[CHANNEL_CONNECTION]');
-        $response = $gapicClient->getChannelConnection($formattedName);
+        $response = $gapicClient->getChannelConnection();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/GetChannelConnection', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1023,10 +912,8 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->channelConnectionName('[PROJECT]', '[LOCATION]', '[CHANNEL_CONNECTION]');
         try {
-            $gapicClient->getChannelConnection($formattedName);
+            $gapicClient->getChannelConnection();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1053,17 +940,13 @@ class EventarcClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setCryptoKeyName($cryptoKeyName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->googleChannelConfigName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->getGoogleChannelConfig($formattedName);
+        $response = $gapicClient->getGoogleChannelConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/GetGoogleChannelConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1085,10 +968,8 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->googleChannelConfigName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->getGoogleChannelConfig($formattedName);
+            $gapicClient->getGoogleChannelConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1115,17 +996,13 @@ class EventarcClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->providerName('[PROJECT]', '[LOCATION]', '[PROVIDER]');
-        $response = $gapicClient->getProvider($formattedName);
+        $response = $gapicClient->getProvider();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/GetProvider', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1147,10 +1024,8 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->providerName('[PROJECT]', '[LOCATION]', '[PROVIDER]');
         try {
-            $gapicClient->getProvider($formattedName);
+            $gapicClient->getProvider();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1183,17 +1058,13 @@ class EventarcClientTest extends GeneratedTest
         $expectedResponse->setChannel($channel);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->triggerName('[PROJECT]', '[LOCATION]', '[TRIGGER]');
-        $response = $gapicClient->getTrigger($formattedName);
+        $response = $gapicClient->getTrigger();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/GetTrigger', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1215,10 +1086,8 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->triggerName('[PROJECT]', '[LOCATION]', '[TRIGGER]');
         try {
-            $gapicClient->getTrigger($formattedName);
+            $gapicClient->getTrigger();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1248,9 +1117,7 @@ class EventarcClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setChannelConnections($channelConnections);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listChannelConnections($formattedParent);
+        $response = $gapicClient->listChannelConnections();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1260,8 +1127,6 @@ class EventarcClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/ListChannelConnections', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1283,10 +1148,8 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listChannelConnections($formattedParent);
+            $gapicClient->listChannelConnections();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1316,9 +1179,7 @@ class EventarcClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setChannels($channels);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listChannels($formattedParent);
+        $response = $gapicClient->listChannels();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1328,8 +1189,6 @@ class EventarcClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/ListChannels', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1351,10 +1210,8 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listChannels($formattedParent);
+            $gapicClient->listChannels();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1384,9 +1241,7 @@ class EventarcClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProviders($providers);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listProviders($formattedParent);
+        $response = $gapicClient->listProviders();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1396,8 +1251,6 @@ class EventarcClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/ListProviders', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1419,10 +1272,8 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listProviders($formattedParent);
+            $gapicClient->listProviders();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1452,9 +1303,7 @@ class EventarcClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTriggers($triggers);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listTriggers($formattedParent);
+        $response = $gapicClient->listTriggers();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1464,8 +1313,6 @@ class EventarcClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/ListTriggers', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1487,10 +1334,8 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listTriggers($formattedParent);
+            $gapicClient->listTriggers();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1543,9 +1388,7 @@ class EventarcClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $validateOnly = false;
-        $response = $gapicClient->updateChannel($validateOnly);
+        $response = $gapicClient->updateChannel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1555,8 +1398,6 @@ class EventarcClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/UpdateChannel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getValidateOnly();
-        $this->assertProtobufEquals($validateOnly, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateChannelTest');
         $response->pollUntilComplete([
@@ -1607,9 +1448,7 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $validateOnly = false;
-        $response = $gapicClient->updateChannel($validateOnly);
+        $response = $gapicClient->updateChannel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1646,19 +1485,13 @@ class EventarcClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setCryptoKeyName($cryptoKeyName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $googleChannelConfig = new GoogleChannelConfig();
-        $googleChannelConfigName = 'googleChannelConfigName-13357801';
-        $googleChannelConfig->setName($googleChannelConfigName);
-        $response = $gapicClient->updateGoogleChannelConfig($googleChannelConfig);
+        $response = $gapicClient->updateGoogleChannelConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/UpdateGoogleChannelConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getGoogleChannelConfig();
-        $this->assertProtobufEquals($googleChannelConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1680,12 +1513,8 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $googleChannelConfig = new GoogleChannelConfig();
-        $googleChannelConfigName = 'googleChannelConfigName-13357801';
-        $googleChannelConfig->setName($googleChannelConfigName);
         try {
-            $gapicClient->updateGoogleChannelConfig($googleChannelConfig);
+            $gapicClient->updateGoogleChannelConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1736,9 +1565,7 @@ class EventarcClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $validateOnly = false;
-        $response = $gapicClient->updateTrigger($validateOnly);
+        $response = $gapicClient->updateTrigger();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1748,8 +1575,6 @@ class EventarcClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.eventarc.v1.Eventarc/UpdateTrigger', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getValidateOnly();
-        $this->assertProtobufEquals($validateOnly, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateTriggerTest');
         $response->pollUntilComplete([
@@ -1800,9 +1625,7 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $validateOnly = false;
-        $response = $gapicClient->updateTrigger($validateOnly);
+        $response = $gapicClient->updateTrigger();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1959,17 +1782,13 @@ class EventarcClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1991,10 +1810,8 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2021,20 +1838,13 @@ class EventarcClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2056,11 +1866,8 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2083,20 +1890,13 @@ class EventarcClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2118,11 +1918,8 @@ class EventarcClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

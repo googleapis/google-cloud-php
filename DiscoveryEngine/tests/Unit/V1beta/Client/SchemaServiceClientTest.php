@@ -105,14 +105,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-        $schema = new Schema();
-        $schemaId = 'schemaId-153006983';
-        $request = (new CreateSchemaRequest())
-            ->setParent($formattedParent)
-            ->setSchema($schema)
-            ->setSchemaId($schemaId);
+        $request = new CreateSchemaRequest();
         $response = $gapicClient->createSchema($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -123,12 +116,6 @@ class SchemaServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.SchemaService/CreateSchema', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getSchema();
-        $this->assertProtobufEquals($schema, $actualValue);
-        $actualValue = $actualApiRequestObject->getSchemaId();
-        $this->assertProtobufEquals($schemaId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createSchemaTest');
         $response->pollUntilComplete([
@@ -182,14 +169,7 @@ class SchemaServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-        $schema = new Schema();
-        $schemaId = 'schemaId-153006983';
-        $request = (new CreateSchemaRequest())
-            ->setParent($formattedParent)
-            ->setSchema($schema)
-            ->setSchemaId($schemaId);
+        $request = new CreateSchemaRequest();
         $response = $gapicClient->createSchema($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -241,9 +221,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->schemaName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SCHEMA]');
-        $request = (new DeleteSchemaRequest())->setName($formattedName);
+        $request = new DeleteSchemaRequest();
         $response = $gapicClient->deleteSchema($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -254,8 +232,6 @@ class SchemaServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.SchemaService/DeleteSchema', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteSchemaTest');
         $response->pollUntilComplete([
@@ -309,9 +285,7 @@ class SchemaServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->schemaName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SCHEMA]');
-        $request = (new DeleteSchemaRequest())->setName($formattedName);
+        $request = new DeleteSchemaRequest();
         $response = $gapicClient->deleteSchema($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -349,9 +323,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $expectedResponse->setJsonSchema($jsonSchema);
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->schemaName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SCHEMA]');
-        $request = (new GetSchemaRequest())->setName($formattedName);
+        $request = new GetSchemaRequest();
         $response = $gapicClient->getSchema($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -359,8 +331,6 @@ class SchemaServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.SchemaService/GetSchema', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -385,9 +355,7 @@ class SchemaServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->schemaName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SCHEMA]');
-        $request = (new GetSchemaRequest())->setName($formattedName);
+        $request = new GetSchemaRequest();
         try {
             $gapicClient->getSchema($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -417,9 +385,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSchemas($schemas);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-        $request = (new ListSchemasRequest())->setParent($formattedParent);
+        $request = new ListSchemasRequest();
         $response = $gapicClient->listSchemas($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -430,8 +396,6 @@ class SchemaServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.SchemaService/ListSchemas', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -456,9 +420,7 @@ class SchemaServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-        $request = (new ListSchemasRequest())->setParent($formattedParent);
+        $request = new ListSchemasRequest();
         try {
             $gapicClient->listSchemas($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -505,9 +467,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $schema = new Schema();
-        $request = (new UpdateSchemaRequest())->setSchema($schema);
+        $request = new UpdateSchemaRequest();
         $response = $gapicClient->updateSchema($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -518,8 +478,6 @@ class SchemaServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.SchemaService/UpdateSchema', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getSchema();
-        $this->assertProtobufEquals($schema, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateSchemaTest');
         $response->pollUntilComplete([
@@ -573,9 +531,7 @@ class SchemaServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $schema = new Schema();
-        $request = (new UpdateSchemaRequest())->setSchema($schema);
+        $request = new UpdateSchemaRequest();
         $response = $gapicClient->updateSchema($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -631,14 +587,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-        $schema = new Schema();
-        $schemaId = 'schemaId-153006983';
-        $request = (new CreateSchemaRequest())
-            ->setParent($formattedParent)
-            ->setSchema($schema)
-            ->setSchemaId($schemaId);
+        $request = new CreateSchemaRequest();
         $response = $gapicClient->createSchemaAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -649,12 +598,6 @@ class SchemaServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.SchemaService/CreateSchema', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getSchema();
-        $this->assertProtobufEquals($schema, $actualValue);
-        $actualValue = $actualApiRequestObject->getSchemaId();
-        $this->assertProtobufEquals($schemaId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createSchemaTest');
         $response->pollUntilComplete([

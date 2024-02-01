@@ -57,9 +57,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
  * try {
- *     $parent = 'parent';
- *     $brand = new Brand();
- *     $response = $identityAwareProxyOAuthServiceClient->createBrand($parent, $brand);
+ *     $response = $identityAwareProxyOAuthServiceClient->createBrand();
  * } finally {
  *     $identityAwareProxyOAuthServiceClient->close();
  * }
@@ -197,20 +195,20 @@ class IdentityAwareProxyOAuthServiceGapicClient
      * ```
      * $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $brand = new Brand();
-     *     $response = $identityAwareProxyOAuthServiceClient->createBrand($parent, $brand);
+     *     $response = $identityAwareProxyOAuthServiceClient->createBrand();
      * } finally {
      *     $identityAwareProxyOAuthServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. GCP Project number/id under which the brand is to be created.
-     *                             In the following format: projects/{project_number/id}.
-     * @param Brand  $brand        Required. The brand to be created.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. GCP Project number/id under which the brand is to be created.
+     *           In the following format: projects/{project_number/id}.
+     *     @type Brand $brand
+     *           Required. The brand to be created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -221,13 +219,19 @@ class IdentityAwareProxyOAuthServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createBrand($parent, $brand, array $optionalArgs = [])
+    public function createBrand(array $optionalArgs = [])
     {
         $request = new CreateBrandRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setBrand($brand);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['brand'])) {
+            $request->setBrand($optionalArgs['brand']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -251,22 +255,22 @@ class IdentityAwareProxyOAuthServiceGapicClient
      * ```
      * $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $identityAwareProxyClient = new IdentityAwareProxyClient();
-     *     $response = $identityAwareProxyOAuthServiceClient->createIdentityAwareProxyClient($parent, $identityAwareProxyClient);
+     *     $response = $identityAwareProxyOAuthServiceClient->createIdentityAwareProxyClient();
      * } finally {
      *     $identityAwareProxyOAuthServiceClient->close();
      * }
      * ```
      *
-     * @param string                   $parent                   Required. Path to create the client in.
-     *                                                           In the following format:
-     *                                                           projects/{project_number/id}/brands/{brand}.
-     *                                                           The project must belong to a G Suite account.
-     * @param IdentityAwareProxyClient $identityAwareProxyClient Required. Identity Aware Proxy Client to be created.
-     * @param array                    $optionalArgs             {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Path to create the client in.
+     *           In the following format:
+     *           projects/{project_number/id}/brands/{brand}.
+     *           The project must belong to a G Suite account.
+     *     @type IdentityAwareProxyClient $identityAwareProxyClient
+     *           Required. Identity Aware Proxy Client to be created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -277,16 +281,21 @@ class IdentityAwareProxyOAuthServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createIdentityAwareProxyClient(
-        $parent,
-        $identityAwareProxyClient,
-        array $optionalArgs = []
-    ) {
+    public function createIdentityAwareProxyClient(array $optionalArgs = [])
+    {
         $request = new CreateIdentityAwareProxyClientRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setIdentityAwareProxyClient($identityAwareProxyClient);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['identityAwareProxyClient'])) {
+            $request->setIdentityAwareProxyClient(
+                $optionalArgs['identityAwareProxyClient']
+            );
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -310,19 +319,19 @@ class IdentityAwareProxyOAuthServiceGapicClient
      * ```
      * $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
      * try {
-     *     $name = 'name';
-     *     $identityAwareProxyOAuthServiceClient->deleteIdentityAwareProxyClient($name);
+     *     $identityAwareProxyOAuthServiceClient->deleteIdentityAwareProxyClient();
      * } finally {
      *     $identityAwareProxyOAuthServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the Identity Aware Proxy client to be deleted.
-     *                             In the following format:
-     *                             projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the Identity Aware Proxy client to be deleted.
+     *           In the following format:
+     *           projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -331,14 +340,15 @@ class IdentityAwareProxyOAuthServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteIdentityAwareProxyClient(
-        $name,
-        array $optionalArgs = []
-    ) {
+    public function deleteIdentityAwareProxyClient(array $optionalArgs = [])
+    {
         $request = new DeleteIdentityAwareProxyClientRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -360,18 +370,18 @@ class IdentityAwareProxyOAuthServiceGapicClient
      * ```
      * $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
      * try {
-     *     $name = 'name';
-     *     $response = $identityAwareProxyOAuthServiceClient->getBrand($name);
+     *     $response = $identityAwareProxyOAuthServiceClient->getBrand();
      * } finally {
      *     $identityAwareProxyOAuthServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the brand to be fetched.
-     *                             In the following format: projects/{project_number/id}/brands/{brand}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the brand to be fetched.
+     *           In the following format: projects/{project_number/id}/brands/{brand}.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -382,12 +392,15 @@ class IdentityAwareProxyOAuthServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getBrand($name, array $optionalArgs = [])
+    public function getBrand(array $optionalArgs = [])
     {
         $request = new GetBrandRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -410,19 +423,19 @@ class IdentityAwareProxyOAuthServiceGapicClient
      * ```
      * $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
      * try {
-     *     $name = 'name';
-     *     $response = $identityAwareProxyOAuthServiceClient->getIdentityAwareProxyClient($name);
+     *     $response = $identityAwareProxyOAuthServiceClient->getIdentityAwareProxyClient();
      * } finally {
      *     $identityAwareProxyOAuthServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the Identity Aware Proxy client to be fetched.
-     *                             In the following format:
-     *                             projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the Identity Aware Proxy client to be fetched.
+     *           In the following format:
+     *           projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -433,12 +446,15 @@ class IdentityAwareProxyOAuthServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIdentityAwareProxyClient($name, array $optionalArgs = [])
+    public function getIdentityAwareProxyClient(array $optionalArgs = [])
     {
         $request = new GetIdentityAwareProxyClientRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -460,18 +476,18 @@ class IdentityAwareProxyOAuthServiceGapicClient
      * ```
      * $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $response = $identityAwareProxyOAuthServiceClient->listBrands($parent);
+     *     $response = $identityAwareProxyOAuthServiceClient->listBrands();
      * } finally {
      *     $identityAwareProxyOAuthServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. GCP Project number/id.
-     *                             In the following format: projects/{project_number/id}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. GCP Project number/id.
+     *           In the following format: projects/{project_number/id}.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -482,12 +498,15 @@ class IdentityAwareProxyOAuthServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listBrands($parent, array $optionalArgs = [])
+    public function listBrands(array $optionalArgs = [])
     {
         $request = new ListBrandsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -509,9 +528,8 @@ class IdentityAwareProxyOAuthServiceGapicClient
      * ```
      * $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $identityAwareProxyOAuthServiceClient->listIdentityAwareProxyClients($parent);
+     *     $pagedResponse = $identityAwareProxyOAuthServiceClient->listIdentityAwareProxyClients();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -519,7 +537,7 @@ class IdentityAwareProxyOAuthServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $identityAwareProxyOAuthServiceClient->listIdentityAwareProxyClients($parent);
+     *     $pagedResponse = $identityAwareProxyOAuthServiceClient->listIdentityAwareProxyClients();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -528,11 +546,12 @@ class IdentityAwareProxyOAuthServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Full brand path.
-     *                             In the following format: projects/{project_number/id}/brands/{brand}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Full brand path.
+     *           In the following format: projects/{project_number/id}/brands/{brand}.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -552,14 +571,15 @@ class IdentityAwareProxyOAuthServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listIdentityAwareProxyClients(
-        $parent,
-        array $optionalArgs = []
-    ) {
+    public function listIdentityAwareProxyClients(array $optionalArgs = [])
+    {
         $request = new ListIdentityAwareProxyClientsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -590,19 +610,19 @@ class IdentityAwareProxyOAuthServiceGapicClient
      * ```
      * $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
      * try {
-     *     $name = 'name';
-     *     $response = $identityAwareProxyOAuthServiceClient->resetIdentityAwareProxyClientSecret($name);
+     *     $response = $identityAwareProxyOAuthServiceClient->resetIdentityAwareProxyClientSecret();
      * } finally {
      *     $identityAwareProxyOAuthServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the Identity Aware Proxy client to that will have its
-     *                             secret reset. In the following format:
-     *                             projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the Identity Aware Proxy client to that will have its
+     *           secret reset. In the following format:
+     *           projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -614,13 +634,15 @@ class IdentityAwareProxyOAuthServiceGapicClient
      * @throws ApiException if the remote call fails
      */
     public function resetIdentityAwareProxyClientSecret(
-        $name,
         array $optionalArgs = []
     ) {
         $request = new ResetIdentityAwareProxyClientSecretRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

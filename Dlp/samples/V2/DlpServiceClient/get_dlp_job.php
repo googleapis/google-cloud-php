@@ -33,17 +33,19 @@ use Google\Cloud\Dlp\V2\GetDlpJobRequest;
  * See https://cloud.google.com/dlp/docs/inspecting-storage and
  * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
  *
- * @param string $formattedName The name of the DlpJob resource. Please see
- *                              {@see DlpServiceClient::dlpJobName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_dlp_job_sample(string $formattedName): void
+function get_dlp_job_sample(): void
 {
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
     // Prepare the request message.
-    $request = (new GetDlpJobRequest())
-        ->setName($formattedName);
+    $request = new GetDlpJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +55,5 @@ function get_dlp_job_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DlpServiceClient::dlpJobName('[PROJECT]', '[DLP_JOB]');
-
-    get_dlp_job_sample($formattedName);
 }
 // [END dlp_v2_generated_DlpService_GetDlpJob_sync]

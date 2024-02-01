@@ -30,19 +30,19 @@ use Google\Cloud\Iap\V1\DeleteTunnelDestGroupRequest;
 /**
  * Deletes a TunnelDestGroup.
  *
- * @param string $formattedName Name of the TunnelDestGroup to delete.
- *                              In the following format:
- *                              `projects/{project_number/id}/iap_tunnel/locations/{location}/destGroups/{dest_group}`. Please see
- *                              {@see IdentityAwareProxyAdminServiceClient::tunnelDestGroupName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_tunnel_dest_group_sample(string $formattedName): void
+function delete_tunnel_dest_group_sample(): void
 {
     // Create a client.
     $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteTunnelDestGroupRequest())
-        ->setName($formattedName);
+    $request = new DeleteTunnelDestGroupRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,25 +51,5 @@ function delete_tunnel_dest_group_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = IdentityAwareProxyAdminServiceClient::tunnelDestGroupName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DEST_GROUP]'
-    );
-
-    delete_tunnel_dest_group_sample($formattedName);
 }
 // [END iap_v1_generated_IdentityAwareProxyAdminService_DeleteTunnelDestGroup_sync]

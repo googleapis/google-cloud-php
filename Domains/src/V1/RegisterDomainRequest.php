@@ -62,8 +62,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                $parent       Required. The parent resource of the `Registration`. Must be in the
-     *                                                            format `projects/&#42;/locations/*`. Please see
-     *                                                            {@see DomainsClient::locationName()} for help formatting this field.
+     *                                                            format `projects/&#42;/locations/*`.
      * @param \Google\Cloud\Domains\V1\Registration $registration Required. The complete `Registration` resource to be created.
      * @param \Google\Type\Money                    $yearlyPrice  Required. Yearly price to register or renew the domain.
      *                                                            The value that should be put here can be obtained from

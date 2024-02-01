@@ -35,8 +35,7 @@ class CreateChannelConnectionRequest extends \Google\Protobuf\Internal\Message
     private $channel_connection_id = '';
 
     /**
-     * @param string                                      $parent              Required. The parent collection in which to add this channel connection. Please see
-     *                                                                         {@see EventarcClient::locationName()} for help formatting this field.
+     * @param string                                      $parent              Required. The parent collection in which to add this channel connection.
      * @param \Google\Cloud\Eventarc\V1\ChannelConnection $channelConnection   Required. Channel connection to create.
      * @param string                                      $channelConnectionId Required. The user-provided ID to be assigned to the channel connection.
      *

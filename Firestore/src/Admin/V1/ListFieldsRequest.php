@@ -52,7 +52,6 @@ class ListFieldsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. A parent name of the form
      *                       `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
-     *                       Please see {@see FirestoreAdminClient::collectionGroupName()} for help formatting this field.
      *
      * @return \Google\Cloud\Firestore\Admin\V1\ListFieldsRequest
      *

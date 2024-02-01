@@ -31,14 +31,13 @@ use Google\Cloud\GkeHub\V1beta1\ValidateExclusivityResponse;
  * ValidateExclusivity validates the state of exclusivity in the cluster.
  * The validation does not depend on an existing Hub membership resource.
  *
- * @param string $formattedParent    The parent (project and location) where the Memberships will be
- *                                   created. Specified in the format `projects/&#42;/locations/*`. Please see
- *                                   {@see GkeHubMembershipServiceClient::locationName()} for help formatting this field.
- * @param string $intendedMembership The intended membership name under the `parent`. This method only
- *                                   does validation in anticipation of a CreateMembership call with the same
- *                                   name.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function validate_exclusivity_sample(string $formattedParent, string $intendedMembership): void
+function validate_exclusivity_sample(): void
 {
     // Create a client.
     $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
@@ -46,30 +45,10 @@ function validate_exclusivity_sample(string $formattedParent, string $intendedMe
     // Call the API and handle any network failures.
     try {
         /** @var ValidateExclusivityResponse $response */
-        $response = $gkeHubMembershipServiceClient->validateExclusivity(
-            $formattedParent,
-            $intendedMembership
-        );
+        $response = $gkeHubMembershipServiceClient->validateExclusivity();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = GkeHubMembershipServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $intendedMembership = '[INTENDED_MEMBERSHIP]';
-
-    validate_exclusivity_sample($formattedParent, $intendedMembership);
 }
 // [END gkehub_v1beta1_generated_GkeHubMembershipService_ValidateExclusivity_sync]

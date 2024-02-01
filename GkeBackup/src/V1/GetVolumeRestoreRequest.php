@@ -26,7 +26,6 @@ class GetVolumeRestoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Full name of the VolumeRestore resource.
      *                     Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/&#42;/volumeRestores/*`
-     *                     Please see {@see BackupForGKEClient::volumeRestoreName()} for help formatting this field.
      *
      * @return \Google\Cloud\GkeBackup\V1\GetVolumeRestoreRequest
      *

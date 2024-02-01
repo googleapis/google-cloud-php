@@ -53,8 +53,7 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                    $parent     Required. The parent resource name, such as
-     *                                                              `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`. Please see
-     *                                                              {@see DocumentServiceClient::branchName()} for help formatting this field.
+     *                                                              `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`.
      * @param \Google\Cloud\DiscoveryEngine\V1\Document $document   Required. The [Document][google.cloud.discoveryengine.v1.Document] to
      *                                                              create.
      * @param string                                    $documentId Required. The ID to use for the

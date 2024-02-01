@@ -123,14 +123,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $database = new Database();
-        $databaseId = 'databaseId816491103';
-        $request = (new CreateDatabaseRequest())
-            ->setParent($formattedParent)
-            ->setDatabase($database)
-            ->setDatabaseId($databaseId);
+        $request = new CreateDatabaseRequest();
         $response = $gapicClient->createDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -141,12 +134,6 @@ class FirestoreAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/CreateDatabase', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getDatabase();
-        $this->assertProtobufEquals($database, $actualValue);
-        $actualValue = $actualApiRequestObject->getDatabaseId();
-        $this->assertProtobufEquals($databaseId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createDatabaseTest');
         $response->pollUntilComplete([
@@ -197,14 +184,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $database = new Database();
-        $databaseId = 'databaseId816491103';
-        $request = (new CreateDatabaseRequest())
-            ->setParent($formattedParent)
-            ->setDatabase($database)
-            ->setDatabaseId($databaseId);
+        $request = new CreateDatabaseRequest();
         $response = $gapicClient->createDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -258,12 +238,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
-        $index = new Index();
-        $request = (new CreateIndexRequest())
-            ->setParent($formattedParent)
-            ->setIndex($index);
+        $request = new CreateIndexRequest();
         $response = $gapicClient->createIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -274,10 +249,6 @@ class FirestoreAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/CreateIndex', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getIndex();
-        $this->assertProtobufEquals($index, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createIndexTest');
         $response->pollUntilComplete([
@@ -328,12 +299,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
-        $index = new Index();
-        $request = (new CreateIndexRequest())
-            ->setParent($formattedParent)
-            ->setIndex($index);
+        $request = new CreateIndexRequest();
         $response = $gapicClient->createIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -395,10 +361,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new DeleteDatabaseRequest())
-            ->setName($formattedName);
+        $request = new DeleteDatabaseRequest();
         $response = $gapicClient->deleteDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -409,8 +372,6 @@ class FirestoreAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/DeleteDatabase', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteDatabaseTest');
         $response->pollUntilComplete([
@@ -461,10 +422,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new DeleteDatabaseRequest())
-            ->setName($formattedName);
+        $request = new DeleteDatabaseRequest();
         $response = $gapicClient->deleteDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -498,18 +456,13 @@ class FirestoreAdminClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
-        $request = (new DeleteIndexRequest())
-            ->setName($formattedName);
+        $request = new DeleteIndexRequest();
         $gapicClient->deleteIndex($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/DeleteIndex', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -531,10 +484,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
-        $request = (new DeleteIndexRequest())
-            ->setName($formattedName);
+        $request = new DeleteIndexRequest();
         try {
             $gapicClient->deleteIndex($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -579,10 +529,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new ExportDocumentsRequest())
-            ->setName($formattedName);
+        $request = new ExportDocumentsRequest();
         $response = $gapicClient->exportDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -593,8 +540,6 @@ class FirestoreAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/ExportDocuments', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportDocumentsTest');
         $response->pollUntilComplete([
@@ -645,10 +590,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new ExportDocumentsRequest())
-            ->setName($formattedName);
+        $request = new ExportDocumentsRequest();
         $response = $gapicClient->exportDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -692,10 +634,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new GetDatabaseRequest())
-            ->setName($formattedName);
+        $request = new GetDatabaseRequest();
         $response = $gapicClient->getDatabase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -703,8 +642,6 @@ class FirestoreAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/GetDatabase', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -726,10 +663,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new GetDatabaseRequest())
-            ->setName($formattedName);
+        $request = new GetDatabaseRequest();
         try {
             $gapicClient->getDatabase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -756,10 +690,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse = new Field();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->fieldName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[FIELD]');
-        $request = (new GetFieldRequest())
-            ->setName($formattedName);
+        $request = new GetFieldRequest();
         $response = $gapicClient->getField($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -767,8 +698,6 @@ class FirestoreAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/GetField', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -790,10 +719,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->fieldName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[FIELD]');
-        $request = (new GetFieldRequest())
-            ->setName($formattedName);
+        $request = new GetFieldRequest();
         try {
             $gapicClient->getField($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -820,10 +746,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse = new Index();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
-        $request = (new GetIndexRequest())
-            ->setName($formattedName);
+        $request = new GetIndexRequest();
         $response = $gapicClient->getIndex($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -831,8 +754,6 @@ class FirestoreAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/GetIndex', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -854,10 +775,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
-        $request = (new GetIndexRequest())
-            ->setName($formattedName);
+        $request = new GetIndexRequest();
         try {
             $gapicClient->getIndex($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -900,10 +818,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new ImportDocumentsRequest())
-            ->setName($formattedName);
+        $request = new ImportDocumentsRequest();
         $response = $gapicClient->importDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -914,8 +829,6 @@ class FirestoreAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/ImportDocuments', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importDocumentsTest');
         $response->pollUntilComplete([
@@ -966,10 +879,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
-        $request = (new ImportDocumentsRequest())
-            ->setName($formattedName);
+        $request = new ImportDocumentsRequest();
         $response = $gapicClient->importDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1003,10 +913,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ListDatabasesResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListDatabasesRequest())
-            ->setParent($formattedParent);
+        $request = new ListDatabasesRequest();
         $response = $gapicClient->listDatabases($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1014,8 +921,6 @@ class FirestoreAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/ListDatabases', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1037,10 +942,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListDatabasesRequest())
-            ->setParent($formattedParent);
+        $request = new ListDatabasesRequest();
         try {
             $gapicClient->listDatabases($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1072,10 +974,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFields($fields);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
-        $request = (new ListFieldsRequest())
-            ->setParent($formattedParent);
+        $request = new ListFieldsRequest();
         $response = $gapicClient->listFields($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1086,8 +985,6 @@ class FirestoreAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/ListFields', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1109,10 +1006,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
-        $request = (new ListFieldsRequest())
-            ->setParent($formattedParent);
+        $request = new ListFieldsRequest();
         try {
             $gapicClient->listFields($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1144,10 +1038,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setIndexes($indexes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
-        $request = (new ListIndexesRequest())
-            ->setParent($formattedParent);
+        $request = new ListIndexesRequest();
         $response = $gapicClient->listIndexes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1158,8 +1049,6 @@ class FirestoreAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/ListIndexes', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1181,10 +1070,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
-        $request = (new ListIndexesRequest())
-            ->setParent($formattedParent);
+        $request = new ListIndexesRequest();
         try {
             $gapicClient->listIndexes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1237,10 +1123,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $database = new Database();
-        $request = (new UpdateDatabaseRequest())
-            ->setDatabase($database);
+        $request = new UpdateDatabaseRequest();
         $response = $gapicClient->updateDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1251,8 +1134,6 @@ class FirestoreAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/UpdateDatabase', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getDatabase();
-        $this->assertProtobufEquals($database, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateDatabaseTest');
         $response->pollUntilComplete([
@@ -1303,10 +1184,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $database = new Database();
-        $request = (new UpdateDatabaseRequest())
-            ->setDatabase($database);
+        $request = new UpdateDatabaseRequest();
         $response = $gapicClient->updateDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1360,12 +1238,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $field = new Field();
-        $fieldName = 'fieldName1265009317';
-        $field->setName($fieldName);
-        $request = (new UpdateFieldRequest())
-            ->setField($field);
+        $request = new UpdateFieldRequest();
         $response = $gapicClient->updateField($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1376,8 +1249,6 @@ class FirestoreAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/UpdateField', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getField();
-        $this->assertProtobufEquals($field, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateFieldTest');
         $response->pollUntilComplete([
@@ -1428,12 +1299,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $field = new Field();
-        $fieldName = 'fieldName1265009317';
-        $field->setName($fieldName);
-        $request = (new UpdateFieldRequest())
-            ->setField($field);
+        $request = new UpdateFieldRequest();
         $response = $gapicClient->updateField($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1495,14 +1361,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $database = new Database();
-        $databaseId = 'databaseId816491103';
-        $request = (new CreateDatabaseRequest())
-            ->setParent($formattedParent)
-            ->setDatabase($database)
-            ->setDatabaseId($databaseId);
+        $request = new CreateDatabaseRequest();
         $response = $gapicClient->createDatabaseAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1513,12 +1372,6 @@ class FirestoreAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/CreateDatabase', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getDatabase();
-        $this->assertProtobufEquals($database, $actualValue);
-        $actualValue = $actualApiRequestObject->getDatabaseId();
-        $this->assertProtobufEquals($databaseId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createDatabaseTest');
         $response->pollUntilComplete([

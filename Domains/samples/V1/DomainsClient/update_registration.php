@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Domains\V1\Client\DomainsClient;
 use Google\Cloud\Domains\V1\Registration;
 use Google\Cloud\Domains\V1\UpdateRegistrationRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -51,9 +50,7 @@ function update_registration_sample(): void
     $domainsClient = new DomainsClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $request = (new UpdateRegistrationRequest())
-        ->setUpdateMask($updateMask);
+    $request = new UpdateRegistrationRequest();
 
     // Call the API and handle any network failures.
     try {

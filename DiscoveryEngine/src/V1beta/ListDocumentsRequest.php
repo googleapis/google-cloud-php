@@ -63,8 +63,7 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      *                       If the caller does not have permission to list
      *                       [Document][google.cloud.discoveryengine.v1beta.Document]s under this
      *                       branch, regardless of whether or not this branch exists, a
-     *                       `PERMISSION_DENIED` error is returned. Please see
-     *                       {@see DocumentServiceClient::branchName()} for help formatting this field.
+     *                       `PERMISSION_DENIED` error is returned.
      *
      * @return \Google\Cloud\DiscoveryEngine\V1beta\ListDocumentsRequest
      *

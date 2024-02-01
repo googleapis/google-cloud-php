@@ -26,28 +26,24 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
 use Google\Cloud\Dlp\V2\DiscoveryConfig;
-use Google\Cloud\Dlp\V2\DiscoveryConfig\Status;
 use Google\Cloud\Dlp\V2\UpdateDiscoveryConfigRequest;
 
 /**
  * Updates a discovery configuration.
  *
- * @param string $formattedName         Resource name of the project and the configuration, for example
- *                                      `projects/dlp-test-project/discoveryConfigs/53234423`. Please see
- *                                      {@see DlpServiceClient::discoveryConfigName()} for help formatting this field.
- * @param int    $discoveryConfigStatus A status for this configuration.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_discovery_config_sample(string $formattedName, int $discoveryConfigStatus): void
+function update_discovery_config_sample(): void
 {
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
     // Prepare the request message.
-    $discoveryConfig = (new DiscoveryConfig())
-        ->setStatus($discoveryConfigStatus);
-    $request = (new UpdateDiscoveryConfigRequest())
-        ->setName($formattedName)
-        ->setDiscoveryConfig($discoveryConfig);
+    $request = new UpdateDiscoveryConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,26 +53,5 @@ function update_discovery_config_sample(string $formattedName, int $discoveryCon
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DlpServiceClient::discoveryConfigName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DISCOVERY_CONFIG]'
-    );
-    $discoveryConfigStatus = Status::STATUS_UNSPECIFIED;
-
-    update_discovery_config_sample($formattedName, $discoveryConfigStatus);
 }
 // [END dlp_v2_generated_DlpService_UpdateDiscoveryConfig_sync]

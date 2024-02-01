@@ -34,24 +34,19 @@ use Google\Cloud\GkeMultiCloud\V1\ListAzureNodePoolsRequest;
  * resources on a given
  * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster].
  *
- * @param string $formattedParent The parent `AzureCluster` which owns this collection of
- *                                [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resources.
- *
- *                                `AzureCluster` names are formatted as
- *                                `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
- *
- *                                See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                                for more details on Google Cloud resource names. Please see
- *                                {@see AzureClustersClient::azureClusterName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_azure_node_pools_sample(string $formattedParent): void
+function list_azure_node_pools_sample(): void
 {
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
     // Prepare the request message.
-    $request = (new ListAzureNodePoolsRequest())
-        ->setParent($formattedParent);
+    $request = new ListAzureNodePoolsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,25 +60,5 @@ function list_azure_node_pools_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AzureClustersClient::azureClusterName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AZURE_CLUSTER]'
-    );
-
-    list_azure_node_pools_sample($formattedParent);
 }
 // [END gkemulticloud_v1_generated_AzureClusters_ListAzureNodePools_sync]

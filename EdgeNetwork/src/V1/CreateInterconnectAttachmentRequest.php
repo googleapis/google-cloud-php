@@ -53,8 +53,7 @@ class CreateInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Mess
     protected $request_id = '';
 
     /**
-     * @param string                                              $parent                   Required. Value for parent. Please see
-     *                                                                                      {@see EdgeNetworkClient::zoneName()} for help formatting this field.
+     * @param string                                              $parent                   Required. Value for parent.
      * @param \Google\Cloud\EdgeNetwork\V1\InterconnectAttachment $interconnectAttachment   Required. The resource being created
      * @param string                                              $interconnectAttachmentId Required. Id of the requesting object
      *                                                                                      If auto-generating Id server-side, remove this field and

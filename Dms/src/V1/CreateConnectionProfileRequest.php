@@ -61,8 +61,7 @@ class CreateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     private $skip_validation = false;
 
     /**
-     * @param string                                      $parent              Required. The parent which owns this collection of connection profiles. Please see
-     *                                                                         {@see DataMigrationServiceClient::locationName()} for help formatting this field.
+     * @param string                                      $parent              Required. The parent which owns this collection of connection profiles.
      * @param \Google\Cloud\CloudDms\V1\ConnectionProfile $connectionProfile   Required. The create request body including the connection profile data
      * @param string                                      $connectionProfileId Required. The connection profile identifier.
      *

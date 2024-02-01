@@ -54,8 +54,7 @@ class ListConversionWorkspacesRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
-     * @param string $parent Required. The parent which owns this collection of conversion workspaces. Please see
-     *                       {@see DataMigrationServiceClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent which owns this collection of conversion workspaces.
      *
      * @return \Google\Cloud\CloudDms\V1\ListConversionWorkspacesRequest
      *

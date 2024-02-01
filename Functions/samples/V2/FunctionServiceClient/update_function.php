@@ -45,9 +45,7 @@ function update_function_sample(): void
     $functionServiceClient = new FunctionServiceClient();
 
     // Prepare the request message.
-    $function = new PBFunction();
-    $request = (new UpdateFunctionRequest())
-        ->setFunction($function);
+    $request = new UpdateFunctionRequest();
 
     // Call the API and handle any network failures.
     try {

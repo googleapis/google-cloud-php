@@ -33,23 +33,19 @@ use Google\Cloud\GkeMultiCloud\V1\ListAttachedClustersRequest;
  * Lists all [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]
  * resources on a given Google Cloud project and region.
  *
- * @param string $formattedParent The parent location which owns this collection of
- *                                [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resources.
- *
- *                                Location names are formatted as `projects/<project-id>/locations/<region>`.
- *
- *                                See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                                for more details on Google Cloud Platform resource names. Please see
- *                                {@see AttachedClustersClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_attached_clusters_sample(string $formattedParent): void
+function list_attached_clusters_sample(): void
 {
     // Create a client.
     $attachedClustersClient = new AttachedClustersClient();
 
     // Prepare the request message.
-    $request = (new ListAttachedClustersRequest())
-        ->setParent($formattedParent);
+    $request = new ListAttachedClustersRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,21 +59,5 @@ function list_attached_clusters_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AttachedClustersClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_attached_clusters_sample($formattedParent);
 }
 // [END gkemulticloud_v1_generated_AttachedClusters_ListAttachedClusters_sync]

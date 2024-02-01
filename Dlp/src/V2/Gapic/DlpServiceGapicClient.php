@@ -120,8 +120,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $dlpServiceClient = new DlpServiceClient();
  * try {
- *     $formattedName = $dlpServiceClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
- *     $response = $dlpServiceClient->activateJobTrigger($formattedName);
+ *     $response = $dlpServiceClient->activateJobTrigger();
  * } finally {
  *     $dlpServiceClient->close();
  * }
@@ -1202,18 +1201,18 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
-     *     $response = $dlpServiceClient->activateJobTrigger($formattedName);
+     *     $response = $dlpServiceClient->activateJobTrigger();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the trigger to activate, for example
-     *                             `projects/dlp-test-project/jobTriggers/53234423`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the trigger to activate, for example
+     *           `projects/dlp-test-project/jobTriggers/53234423`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1224,12 +1223,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function activateJobTrigger($name, array $optionalArgs = [])
+    public function activateJobTrigger(array $optionalArgs = [])
     {
         $request = new ActivateJobTriggerRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1255,17 +1257,17 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
-     *     $dlpServiceClient->cancelDlpJob($formattedName);
+     *     $dlpServiceClient->cancelDlpJob();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the DlpJob resource to be cancelled.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the DlpJob resource to be cancelled.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1274,12 +1276,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelDlpJob($name, array $optionalArgs = [])
+    public function cancelDlpJob(array $optionalArgs = [])
     {
         $request = new CancelDlpJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1304,38 +1309,38 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-     *     $deidentifyTemplate = new DeidentifyTemplate();
-     *     $response = $dlpServiceClient->createDeidentifyTemplate($formattedParent, $deidentifyTemplate);
+     *     $response = $dlpServiceClient->createDeidentifyTemplate();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string             $parent             Required. Parent resource name.
-     *
-     *                                               The format of this value varies depending on the scope of the request
-     *                                               (project or organization) and whether you have [specified a processing
-     *                                               location](https://cloud.google.com/dlp/docs/specifying-location):
-     *
-     *                                               + Projects scope, location specified:<br/>
-     *                                               `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                               + Projects scope, no location specified (defaults to global):<br/>
-     *                                               `projects/`<var>PROJECT_ID</var>
-     *                                               + Organizations scope, location specified:<br/>
-     *                                               `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                               + Organizations scope, no location specified (defaults to global):<br/>
-     *                                               `organizations/`<var>ORG_ID</var>
-     *
-     *                                               The following example `parent` string specifies a parent project with the
-     *                                               identifier `example-project`, and specifies the `europe-west3` location
-     *                                               for processing data:
-     *
-     *                                               parent=projects/example-project/locations/europe-west3
-     * @param DeidentifyTemplate $deidentifyTemplate Required. The DeidentifyTemplate to create.
-     * @param array              $optionalArgs       {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource name.
+     *
+     *           The format of this value varies depending on the scope of the request
+     *           (project or organization) and whether you have [specified a processing
+     *           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *           + Projects scope, location specified:<br/>
+     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           `projects/`<var>PROJECT_ID</var>
+     *           + Organizations scope, location specified:<br/>
+     *           `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Organizations scope, no location specified (defaults to global):<br/>
+     *           `organizations/`<var>ORG_ID</var>
+     *
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *
+     *           parent=projects/example-project/locations/europe-west3
+     *     @type DeidentifyTemplate $deidentifyTemplate
+     *           Required. The DeidentifyTemplate to create.
      *     @type string $templateId
      *           The template id can contain uppercase and lowercase letters,
      *           numbers, and hyphens; that is, it must match the regular
@@ -1353,16 +1358,21 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDeidentifyTemplate(
-        $parent,
-        $deidentifyTemplate,
-        array $optionalArgs = []
-    ) {
+    public function createDeidentifyTemplate(array $optionalArgs = [])
+    {
         $request = new CreateDeidentifyTemplateRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDeidentifyTemplate($deidentifyTemplate);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['deidentifyTemplate'])) {
+            $request->setDeidentifyTemplate(
+                $optionalArgs['deidentifyTemplate']
+            );
+        }
+
         if (isset($optionalArgs['templateId'])) {
             $request->setTemplateId($optionalArgs['templateId']);
         }
@@ -1392,28 +1402,28 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $discoveryConfig = new DiscoveryConfig();
-     *     $response = $dlpServiceClient->createDiscoveryConfig($formattedParent, $discoveryConfig);
+     *     $response = $dlpServiceClient->createDiscoveryConfig();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string          $parent          Required. Parent resource name.
-     *
-     *                                         The format of this value is as follows:
-     *                                         `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *
-     *                                         The following example `parent` string specifies a parent project with the
-     *                                         identifier `example-project`, and specifies the `europe-west3` location
-     *                                         for processing data:
-     *
-     *                                         parent=projects/example-project/locations/europe-west3
-     * @param DiscoveryConfig $discoveryConfig Required. The DiscoveryConfig to create.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource name.
+     *
+     *           The format of this value is as follows:
+     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *
+     *           parent=projects/example-project/locations/europe-west3
+     *     @type DiscoveryConfig $discoveryConfig
+     *           Required. The DiscoveryConfig to create.
      *     @type string $configId
      *           The config ID can contain uppercase and lowercase letters,
      *           numbers, and hyphens; that is, it must match the regular
@@ -1429,16 +1439,19 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDiscoveryConfig(
-        $parent,
-        $discoveryConfig,
-        array $optionalArgs = []
-    ) {
+    public function createDiscoveryConfig(array $optionalArgs = [])
+    {
         $request = new CreateDiscoveryConfigRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDiscoveryConfig($discoveryConfig);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['discoveryConfig'])) {
+            $request->setDiscoveryConfig($optionalArgs['discoveryConfig']);
+        }
+
         if (isset($optionalArgs['configId'])) {
             $request->setConfigId($optionalArgs['configId']);
         }
@@ -1470,32 +1483,32 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->projectName('[PROJECT]');
-     *     $response = $dlpServiceClient->createDlpJob($formattedParent);
+     *     $response = $dlpServiceClient->createDlpJob();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *
-     *                             The format of this value varies depending on whether you have [specified a
-     *                             processing
-     *                             location](https://cloud.google.com/dlp/docs/specifying-location):
-     *
-     *                             + Projects scope, location specified:<br/>
-     *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Projects scope, no location specified (defaults to global):<br/>
-     *                             `projects/`<var>PROJECT_ID</var>
-     *
-     *                             The following example `parent` string specifies a parent project with the
-     *                             identifier `example-project`, and specifies the `europe-west3` location
-     *                             for processing data:
-     *
-     *                             parent=projects/example-project/locations/europe-west3
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource name.
+     *
+     *           The format of this value varies depending on whether you have [specified a
+     *           processing
+     *           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *           + Projects scope, location specified:<br/>
+     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           `projects/`<var>PROJECT_ID</var>
+     *
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *
+     *           parent=projects/example-project/locations/europe-west3
      *     @type InspectJobConfig $inspectJob The configuration details for an inspect
      *          job. Only one of $inspectJob and $riskJob may be provided.
      *           An inspection job scans a storage repository for InfoTypes.
@@ -1520,12 +1533,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDlpJob($parent, array $optionalArgs = [])
+    public function createDlpJob(array $optionalArgs = [])
     {
         $request = new CreateDlpJobRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['inspectJob'])) {
             $request->setInspectJob($optionalArgs['inspectJob']);
         }
@@ -1565,38 +1581,38 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-     *     $inspectTemplate = new InspectTemplate();
-     *     $response = $dlpServiceClient->createInspectTemplate($formattedParent, $inspectTemplate);
+     *     $response = $dlpServiceClient->createInspectTemplate();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string          $parent          Required. Parent resource name.
-     *
-     *                                         The format of this value varies depending on the scope of the request
-     *                                         (project or organization) and whether you have [specified a processing
-     *                                         location](https://cloud.google.com/dlp/docs/specifying-location):
-     *
-     *                                         + Projects scope, location specified:<br/>
-     *                                         `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                         + Projects scope, no location specified (defaults to global):<br/>
-     *                                         `projects/`<var>PROJECT_ID</var>
-     *                                         + Organizations scope, location specified:<br/>
-     *                                         `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                         + Organizations scope, no location specified (defaults to global):<br/>
-     *                                         `organizations/`<var>ORG_ID</var>
-     *
-     *                                         The following example `parent` string specifies a parent project with the
-     *                                         identifier `example-project`, and specifies the `europe-west3` location
-     *                                         for processing data:
-     *
-     *                                         parent=projects/example-project/locations/europe-west3
-     * @param InspectTemplate $inspectTemplate Required. The InspectTemplate to create.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource name.
+     *
+     *           The format of this value varies depending on the scope of the request
+     *           (project or organization) and whether you have [specified a processing
+     *           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *           + Projects scope, location specified:<br/>
+     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           `projects/`<var>PROJECT_ID</var>
+     *           + Organizations scope, location specified:<br/>
+     *           `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Organizations scope, no location specified (defaults to global):<br/>
+     *           `organizations/`<var>ORG_ID</var>
+     *
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *
+     *           parent=projects/example-project/locations/europe-west3
+     *     @type InspectTemplate $inspectTemplate
+     *           Required. The InspectTemplate to create.
      *     @type string $templateId
      *           The template id can contain uppercase and lowercase letters,
      *           numbers, and hyphens; that is, it must match the regular
@@ -1614,16 +1630,19 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createInspectTemplate(
-        $parent,
-        $inspectTemplate,
-        array $optionalArgs = []
-    ) {
+    public function createInspectTemplate(array $optionalArgs = [])
+    {
         $request = new CreateInspectTemplateRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setInspectTemplate($inspectTemplate);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['inspectTemplate'])) {
+            $request->setInspectTemplate($optionalArgs['inspectTemplate']);
+        }
+
         if (isset($optionalArgs['templateId'])) {
             $request->setTemplateId($optionalArgs['templateId']);
         }
@@ -1655,34 +1674,34 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->projectName('[PROJECT]');
-     *     $jobTrigger = new JobTrigger();
-     *     $response = $dlpServiceClient->createJobTrigger($formattedParent, $jobTrigger);
+     *     $response = $dlpServiceClient->createJobTrigger();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string     $parent       Required. Parent resource name.
-     *
-     *                                 The format of this value varies depending on whether you have [specified a
-     *                                 processing
-     *                                 location](https://cloud.google.com/dlp/docs/specifying-location):
-     *
-     *                                 + Projects scope, location specified:<br/>
-     *                                 `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                 + Projects scope, no location specified (defaults to global):<br/>
-     *                                 `projects/`<var>PROJECT_ID</var>
-     *
-     *                                 The following example `parent` string specifies a parent project with the
-     *                                 identifier `example-project`, and specifies the `europe-west3` location
-     *                                 for processing data:
-     *
-     *                                 parent=projects/example-project/locations/europe-west3
-     * @param JobTrigger $jobTrigger   Required. The JobTrigger to create.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource name.
+     *
+     *           The format of this value varies depending on whether you have [specified a
+     *           processing
+     *           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *           + Projects scope, location specified:<br/>
+     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           `projects/`<var>PROJECT_ID</var>
+     *
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *
+     *           parent=projects/example-project/locations/europe-west3
+     *     @type JobTrigger $jobTrigger
+     *           Required. The JobTrigger to create.
      *     @type string $triggerId
      *           The trigger id can contain uppercase and lowercase letters,
      *           numbers, and hyphens; that is, it must match the regular
@@ -1700,16 +1719,19 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createJobTrigger(
-        $parent,
-        $jobTrigger,
-        array $optionalArgs = []
-    ) {
+    public function createJobTrigger(array $optionalArgs = [])
+    {
         $request = new CreateJobTriggerRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setJobTrigger($jobTrigger);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['jobTrigger'])) {
+            $request->setJobTrigger($optionalArgs['jobTrigger']);
+        }
+
         if (isset($optionalArgs['triggerId'])) {
             $request->setTriggerId($optionalArgs['triggerId']);
         }
@@ -1741,38 +1763,38 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-     *     $config = new StoredInfoTypeConfig();
-     *     $response = $dlpServiceClient->createStoredInfoType($formattedParent, $config);
+     *     $response = $dlpServiceClient->createStoredInfoType();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string               $parent       Required. Parent resource name.
-     *
-     *                                           The format of this value varies depending on the scope of the request
-     *                                           (project or organization) and whether you have [specified a processing
-     *                                           location](https://cloud.google.com/dlp/docs/specifying-location):
-     *
-     *                                           + Projects scope, location specified:<br/>
-     *                                           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                           + Projects scope, no location specified (defaults to global):<br/>
-     *                                           `projects/`<var>PROJECT_ID</var>
-     *                                           + Organizations scope, location specified:<br/>
-     *                                           `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                           + Organizations scope, no location specified (defaults to global):<br/>
-     *                                           `organizations/`<var>ORG_ID</var>
-     *
-     *                                           The following example `parent` string specifies a parent project with the
-     *                                           identifier `example-project`, and specifies the `europe-west3` location
-     *                                           for processing data:
-     *
-     *                                           parent=projects/example-project/locations/europe-west3
-     * @param StoredInfoTypeConfig $config       Required. Configuration of the storedInfoType to create.
-     * @param array                $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource name.
+     *
+     *           The format of this value varies depending on the scope of the request
+     *           (project or organization) and whether you have [specified a processing
+     *           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *           + Projects scope, location specified:<br/>
+     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           `projects/`<var>PROJECT_ID</var>
+     *           + Organizations scope, location specified:<br/>
+     *           `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Organizations scope, no location specified (defaults to global):<br/>
+     *           `organizations/`<var>ORG_ID</var>
+     *
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *
+     *           parent=projects/example-project/locations/europe-west3
+     *     @type StoredInfoTypeConfig $config
+     *           Required. Configuration of the storedInfoType to create.
      *     @type string $storedInfoTypeId
      *           The storedInfoType ID can contain uppercase and lowercase letters,
      *           numbers, and hyphens; that is, it must match the regular
@@ -1790,16 +1812,19 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createStoredInfoType(
-        $parent,
-        $config,
-        array $optionalArgs = []
-    ) {
+    public function createStoredInfoType(array $optionalArgs = [])
+    {
         $request = new CreateStoredInfoTypeRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setConfig($config);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['config'])) {
+            $request->setConfig($optionalArgs['config']);
+        }
+
         if (isset($optionalArgs['storedInfoTypeId'])) {
             $request->setStoredInfoTypeId($optionalArgs['storedInfoTypeId']);
         }
@@ -1963,20 +1988,20 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->deidentifyTemplateName('[ORGANIZATION]', '[DEIDENTIFY_TEMPLATE]');
-     *     $dlpServiceClient->deleteDeidentifyTemplate($formattedName);
+     *     $dlpServiceClient->deleteDeidentifyTemplate();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and deidentify template to be
-     *                             deleted, for example
-     *                             `organizations/433245324/deidentifyTemplates/432452342` or
-     *                             projects/project-id/deidentifyTemplates/432452342.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the organization and deidentify template to be
+     *           deleted, for example
+     *           `organizations/433245324/deidentifyTemplates/432452342` or
+     *           projects/project-id/deidentifyTemplates/432452342.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1985,12 +2010,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDeidentifyTemplate($name, array $optionalArgs = [])
+    public function deleteDeidentifyTemplate(array $optionalArgs = [])
     {
         $request = new DeleteDeidentifyTemplateRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2012,18 +2040,18 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->discoveryConfigName('[PROJECT]', '[LOCATION]', '[DISCOVERY_CONFIG]');
-     *     $dlpServiceClient->deleteDiscoveryConfig($formattedName);
+     *     $dlpServiceClient->deleteDiscoveryConfig();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the project and the config, for example
-     *                             `projects/dlp-test-project/discoveryConfigs/53234423`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the project and the config, for example
+     *           `projects/dlp-test-project/discoveryConfigs/53234423`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2032,12 +2060,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDiscoveryConfig($name, array $optionalArgs = [])
+    public function deleteDiscoveryConfig(array $optionalArgs = [])
     {
         $request = new DeleteDiscoveryConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2063,17 +2094,17 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
-     *     $dlpServiceClient->deleteDlpJob($formattedName);
+     *     $dlpServiceClient->deleteDlpJob();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the DlpJob resource to be deleted.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the DlpJob resource to be deleted.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2082,12 +2113,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDlpJob($name, array $optionalArgs = [])
+    public function deleteDlpJob(array $optionalArgs = [])
     {
         $request = new DeleteDlpJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2110,19 +2144,19 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->inspectTemplateName('[ORGANIZATION]', '[INSPECT_TEMPLATE]');
-     *     $dlpServiceClient->deleteInspectTemplate($formattedName);
+     *     $dlpServiceClient->deleteInspectTemplate();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and inspectTemplate to be
-     *                             deleted, for example `organizations/433245324/inspectTemplates/432452342`
-     *                             or projects/project-id/inspectTemplates/432452342.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the organization and inspectTemplate to be
+     *           deleted, for example `organizations/433245324/inspectTemplates/432452342`
+     *           or projects/project-id/inspectTemplates/432452342.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2131,12 +2165,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteInspectTemplate($name, array $optionalArgs = [])
+    public function deleteInspectTemplate(array $optionalArgs = [])
     {
         $request = new DeleteInspectTemplateRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2159,18 +2196,18 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
-     *     $dlpServiceClient->deleteJobTrigger($formattedName);
+     *     $dlpServiceClient->deleteJobTrigger();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the project and the triggeredJob, for example
-     *                             `projects/dlp-test-project/jobTriggers/53234423`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the project and the triggeredJob, for example
+     *           `projects/dlp-test-project/jobTriggers/53234423`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2179,12 +2216,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteJobTrigger($name, array $optionalArgs = [])
+    public function deleteJobTrigger(array $optionalArgs = [])
     {
         $request = new DeleteJobTriggerRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2208,19 +2248,19 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->storedInfoTypeName('[ORGANIZATION]', '[STORED_INFO_TYPE]');
-     *     $dlpServiceClient->deleteStoredInfoType($formattedName);
+     *     $dlpServiceClient->deleteStoredInfoType();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and storedInfoType to be
-     *                             deleted, for example `organizations/433245324/storedInfoTypes/432452342` or
-     *                             projects/project-id/storedInfoTypes/432452342.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the organization and storedInfoType to be
+     *           deleted, for example `organizations/433245324/storedInfoTypes/432452342` or
+     *           projects/project-id/storedInfoTypes/432452342.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2229,12 +2269,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteStoredInfoType($name, array $optionalArgs = [])
+    public function deleteStoredInfoType(array $optionalArgs = [])
     {
         $request = new DeleteStoredInfoTypeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2257,17 +2300,17 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
-     *     $dlpServiceClient->finishDlpJob($formattedName);
+     *     $dlpServiceClient->finishDlpJob();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the DlpJob resource to be cancelled.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the DlpJob resource to be cancelled.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2276,12 +2319,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function finishDlpJob($name, array $optionalArgs = [])
+    public function finishDlpJob(array $optionalArgs = [])
     {
         $request = new FinishDlpJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2305,19 +2351,19 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->deidentifyTemplateName('[ORGANIZATION]', '[DEIDENTIFY_TEMPLATE]');
-     *     $response = $dlpServiceClient->getDeidentifyTemplate($formattedName);
+     *     $response = $dlpServiceClient->getDeidentifyTemplate();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and deidentify template to be
-     *                             read, for example `organizations/433245324/deidentifyTemplates/432452342`
-     *                             or projects/project-id/deidentifyTemplates/432452342.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the organization and deidentify template to be
+     *           read, for example `organizations/433245324/deidentifyTemplates/432452342`
+     *           or projects/project-id/deidentifyTemplates/432452342.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2328,12 +2374,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDeidentifyTemplate($name, array $optionalArgs = [])
+    public function getDeidentifyTemplate(array $optionalArgs = [])
     {
         $request = new GetDeidentifyTemplateRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2355,18 +2404,18 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->discoveryConfigName('[PROJECT]', '[LOCATION]', '[DISCOVERY_CONFIG]');
-     *     $response = $dlpServiceClient->getDiscoveryConfig($formattedName);
+     *     $response = $dlpServiceClient->getDiscoveryConfig();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the project and the configuration, for example
-     *                             `projects/dlp-test-project/discoveryConfigs/53234423`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the project and the configuration, for example
+     *           `projects/dlp-test-project/discoveryConfigs/53234423`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2377,12 +2426,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDiscoveryConfig($name, array $optionalArgs = [])
+    public function getDiscoveryConfig(array $optionalArgs = [])
     {
         $request = new GetDiscoveryConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2406,17 +2458,17 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
-     *     $response = $dlpServiceClient->getDlpJob($formattedName);
+     *     $response = $dlpServiceClient->getDlpJob();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the DlpJob resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the DlpJob resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2427,12 +2479,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDlpJob($name, array $optionalArgs = [])
+    public function getDlpJob(array $optionalArgs = [])
     {
         $request = new GetDlpJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2455,19 +2510,19 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->inspectTemplateName('[ORGANIZATION]', '[INSPECT_TEMPLATE]');
-     *     $response = $dlpServiceClient->getInspectTemplate($formattedName);
+     *     $response = $dlpServiceClient->getInspectTemplate();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and inspectTemplate to be read,
-     *                             for example `organizations/433245324/inspectTemplates/432452342` or
-     *                             projects/project-id/inspectTemplates/432452342.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the organization and inspectTemplate to be read,
+     *           for example `organizations/433245324/inspectTemplates/432452342` or
+     *           projects/project-id/inspectTemplates/432452342.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2478,12 +2533,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getInspectTemplate($name, array $optionalArgs = [])
+    public function getInspectTemplate(array $optionalArgs = [])
     {
         $request = new GetInspectTemplateRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2506,18 +2564,18 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
-     *     $response = $dlpServiceClient->getJobTrigger($formattedName);
+     *     $response = $dlpServiceClient->getJobTrigger();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the project and the triggeredJob, for example
-     *                             `projects/dlp-test-project/jobTriggers/53234423`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the project and the triggeredJob, for example
+     *           `projects/dlp-test-project/jobTriggers/53234423`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2528,12 +2586,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getJobTrigger($name, array $optionalArgs = [])
+    public function getJobTrigger(array $optionalArgs = [])
     {
         $request = new GetJobTriggerRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2557,19 +2618,19 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->storedInfoTypeName('[ORGANIZATION]', '[STORED_INFO_TYPE]');
-     *     $response = $dlpServiceClient->getStoredInfoType($formattedName);
+     *     $response = $dlpServiceClient->getStoredInfoType();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the organization and storedInfoType to be read,
-     *                             for example `organizations/433245324/storedInfoTypes/432452342` or
-     *                             projects/project-id/storedInfoTypes/432452342.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the organization and storedInfoType to be read,
+     *           for example `organizations/433245324/storedInfoTypes/432452342` or
+     *           projects/project-id/storedInfoTypes/432452342.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2580,12 +2641,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getStoredInfoType($name, array $optionalArgs = [])
+    public function getStoredInfoType(array $optionalArgs = [])
     {
         $request = new GetStoredInfoTypeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2609,18 +2673,18 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
-     *     $response = $dlpServiceClient->hybridInspectDlpJob($formattedName);
+     *     $response = $dlpServiceClient->hybridInspectDlpJob();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the job to execute a hybrid inspect on, for
-     *                             example `projects/dlp-test-project/dlpJob/53234423`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the job to execute a hybrid inspect on, for
+     *           example `projects/dlp-test-project/dlpJob/53234423`.
      *     @type HybridContentItem $hybridItem
      *           The item to inspect.
      *     @type RetrySettings|array $retrySettings
@@ -2633,12 +2697,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function hybridInspectDlpJob($name, array $optionalArgs = [])
+    public function hybridInspectDlpJob(array $optionalArgs = [])
     {
         $request = new HybridInspectDlpJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['hybridItem'])) {
             $request->setHybridItem($optionalArgs['hybridItem']);
         }
@@ -2666,18 +2733,18 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
-     *     $response = $dlpServiceClient->hybridInspectJobTrigger($formattedName);
+     *     $response = $dlpServiceClient->hybridInspectJobTrigger();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the trigger to execute a hybrid inspect on, for
-     *                             example `projects/dlp-test-project/jobTriggers/53234423`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the trigger to execute a hybrid inspect on, for
+     *           example `projects/dlp-test-project/jobTriggers/53234423`.
      *     @type HybridContentItem $hybridItem
      *           The item to inspect.
      *     @type RetrySettings|array $retrySettings
@@ -2690,12 +2757,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function hybridInspectJobTrigger($name, array $optionalArgs = [])
+    public function hybridInspectJobTrigger(array $optionalArgs = [])
     {
         $request = new HybridInspectJobTriggerRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['hybridItem'])) {
             $request->setHybridItem($optionalArgs['hybridItem']);
         }
@@ -2828,9 +2898,8 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dlpServiceClient->listDeidentifyTemplates($formattedParent);
+     *     $pagedResponse = $dlpServiceClient->listDeidentifyTemplates();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2838,7 +2907,7 @@ class DlpServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dlpServiceClient->listDeidentifyTemplates($formattedParent);
+     *     $pagedResponse = $dlpServiceClient->listDeidentifyTemplates();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2847,29 +2916,30 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *
-     *                             The format of this value varies depending on the scope of the request
-     *                             (project or organization) and whether you have [specified a processing
-     *                             location](https://cloud.google.com/dlp/docs/specifying-location):
-     *
-     *                             + Projects scope, location specified:<br/>
-     *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Projects scope, no location specified (defaults to global):<br/>
-     *                             `projects/`<var>PROJECT_ID</var>
-     *                             + Organizations scope, location specified:<br/>
-     *                             `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Organizations scope, no location specified (defaults to global):<br/>
-     *                             `organizations/`<var>ORG_ID</var>
-     *
-     *                             The following example `parent` string specifies a parent project with the
-     *                             identifier `example-project`, and specifies the `europe-west3` location
-     *                             for processing data:
-     *
-     *                             parent=projects/example-project/locations/europe-west3
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource name.
+     *
+     *           The format of this value varies depending on the scope of the request
+     *           (project or organization) and whether you have [specified a processing
+     *           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *           + Projects scope, location specified:<br/>
+     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           `projects/`<var>PROJECT_ID</var>
+     *           + Organizations scope, location specified:<br/>
+     *           `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Organizations scope, no location specified (defaults to global):<br/>
+     *           `organizations/`<var>ORG_ID</var>
+     *
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *
+     *           parent=projects/example-project/locations/europe-west3
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -2905,12 +2975,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDeidentifyTemplates($parent, array $optionalArgs = [])
+    public function listDeidentifyTemplates(array $optionalArgs = [])
     {
         $request = new ListDeidentifyTemplatesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -2948,9 +3021,8 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dlpServiceClient->listDiscoveryConfigs($formattedParent);
+     *     $pagedResponse = $dlpServiceClient->listDiscoveryConfigs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2958,7 +3030,7 @@ class DlpServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dlpServiceClient->listDiscoveryConfigs($formattedParent);
+     *     $pagedResponse = $dlpServiceClient->listDiscoveryConfigs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2967,19 +3039,20 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *
-     *                             The format of this value is as follows:
-     *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *
-     *                             The following example `parent` string specifies a parent project with the
-     *                             identifier `example-project`, and specifies the `europe-west3` location
-     *                             for processing data:
-     *
-     *                             parent=projects/example-project/locations/europe-west3
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource name.
+     *
+     *           The format of this value is as follows:
+     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *
+     *           parent=projects/example-project/locations/europe-west3
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -3012,12 +3085,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDiscoveryConfigs($parent, array $optionalArgs = [])
+    public function listDiscoveryConfigs(array $optionalArgs = [])
     {
         $request = new ListDiscoveryConfigsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -3053,9 +3129,8 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dlpServiceClient->listDlpJobs($formattedParent);
+     *     $pagedResponse = $dlpServiceClient->listDlpJobs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3063,7 +3138,7 @@ class DlpServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dlpServiceClient->listDlpJobs($formattedParent);
+     *     $pagedResponse = $dlpServiceClient->listDlpJobs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3072,25 +3147,26 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *
-     *                             The format of this value varies depending on whether you have [specified a
-     *                             processing
-     *                             location](https://cloud.google.com/dlp/docs/specifying-location):
-     *
-     *                             + Projects scope, location specified:<br/>
-     *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Projects scope, no location specified (defaults to global):<br/>
-     *                             `projects/`<var>PROJECT_ID</var>
-     *
-     *                             The following example `parent` string specifies a parent project with the
-     *                             identifier `example-project`, and specifies the `europe-west3` location
-     *                             for processing data:
-     *
-     *                             parent=projects/example-project/locations/europe-west3
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource name.
+     *
+     *           The format of this value varies depending on whether you have [specified a
+     *           processing
+     *           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *           + Projects scope, location specified:<br/>
+     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           `projects/`<var>PROJECT_ID</var>
+     *
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *
+     *           parent=projects/example-project/locations/europe-west3
      *     @type string $filter
      *           Allows filtering.
      *
@@ -3158,12 +3234,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDlpJobs($parent, array $optionalArgs = [])
+    public function listDlpJobs(array $optionalArgs = [])
     {
         $request = new ListDlpJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -3288,9 +3367,8 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dlpServiceClient->listInspectTemplates($formattedParent);
+     *     $pagedResponse = $dlpServiceClient->listInspectTemplates();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3298,7 +3376,7 @@ class DlpServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dlpServiceClient->listInspectTemplates($formattedParent);
+     *     $pagedResponse = $dlpServiceClient->listInspectTemplates();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3307,29 +3385,30 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *
-     *                             The format of this value varies depending on the scope of the request
-     *                             (project or organization) and whether you have [specified a processing
-     *                             location](https://cloud.google.com/dlp/docs/specifying-location):
-     *
-     *                             + Projects scope, location specified:<br/>
-     *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Projects scope, no location specified (defaults to global):<br/>
-     *                             `projects/`<var>PROJECT_ID</var>
-     *                             + Organizations scope, location specified:<br/>
-     *                             `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Organizations scope, no location specified (defaults to global):<br/>
-     *                             `organizations/`<var>ORG_ID</var>
-     *
-     *                             The following example `parent` string specifies a parent project with the
-     *                             identifier `example-project`, and specifies the `europe-west3` location
-     *                             for processing data:
-     *
-     *                             parent=projects/example-project/locations/europe-west3
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource name.
+     *
+     *           The format of this value varies depending on the scope of the request
+     *           (project or organization) and whether you have [specified a processing
+     *           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *           + Projects scope, location specified:<br/>
+     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           `projects/`<var>PROJECT_ID</var>
+     *           + Organizations scope, location specified:<br/>
+     *           `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Organizations scope, no location specified (defaults to global):<br/>
+     *           `organizations/`<var>ORG_ID</var>
+     *
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *
+     *           parent=projects/example-project/locations/europe-west3
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -3365,12 +3444,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listInspectTemplates($parent, array $optionalArgs = [])
+    public function listInspectTemplates(array $optionalArgs = [])
     {
         $request = new ListInspectTemplatesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -3409,9 +3491,8 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dlpServiceClient->listJobTriggers($formattedParent);
+     *     $pagedResponse = $dlpServiceClient->listJobTriggers();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3419,7 +3500,7 @@ class DlpServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dlpServiceClient->listJobTriggers($formattedParent);
+     *     $pagedResponse = $dlpServiceClient->listJobTriggers();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3428,25 +3509,26 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *
-     *                             The format of this value varies depending on whether you have [specified a
-     *                             processing
-     *                             location](https://cloud.google.com/dlp/docs/specifying-location):
-     *
-     *                             + Projects scope, location specified:<br/>
-     *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Projects scope, no location specified (defaults to global):<br/>
-     *                             `projects/`<var>PROJECT_ID</var>
-     *
-     *                             The following example `parent` string specifies a parent project with the
-     *                             identifier `example-project`, and specifies the `europe-west3` location
-     *                             for processing data:
-     *
-     *                             parent=projects/example-project/locations/europe-west3
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource name.
+     *
+     *           The format of this value varies depending on whether you have [specified a
+     *           processing
+     *           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *           + Projects scope, location specified:<br/>
+     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           `projects/`<var>PROJECT_ID</var>
+     *
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *
+     *           parent=projects/example-project/locations/europe-west3
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -3512,12 +3594,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listJobTriggers($parent, array $optionalArgs = [])
+    public function listJobTriggers(array $optionalArgs = [])
     {
         $request = new ListJobTriggersRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -3565,9 +3650,8 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dlpServiceClient->listStoredInfoTypes($formattedParent);
+     *     $pagedResponse = $dlpServiceClient->listStoredInfoTypes();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3575,7 +3659,7 @@ class DlpServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dlpServiceClient->listStoredInfoTypes($formattedParent);
+     *     $pagedResponse = $dlpServiceClient->listStoredInfoTypes();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3584,25 +3668,26 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *
-     *                             The format of this value varies depending on the scope of the request
-     *                             (project or organization) and whether you have [specified a processing
-     *                             location](https://cloud.google.com/dlp/docs/specifying-location):
-     *
-     *                             + Projects scope, location specified:<br/>
-     *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Projects scope, no location specified (defaults to global):<br/>
-     *                             `projects/`<var>PROJECT_ID</var>
-     *
-     *                             The following example `parent` string specifies a parent project with the
-     *                             identifier `example-project`, and specifies the `europe-west3` location
-     *                             for processing data:
-     *
-     *                             parent=projects/example-project/locations/europe-west3
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource name.
+     *
+     *           The format of this value varies depending on the scope of the request
+     *           (project or organization) and whether you have [specified a processing
+     *           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *           + Projects scope, location specified:<br/>
+     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           `projects/`<var>PROJECT_ID</var>
+     *
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *
+     *           parent=projects/example-project/locations/europe-west3
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -3639,12 +3724,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listStoredInfoTypes($parent, array $optionalArgs = [])
+    public function listStoredInfoTypes(array $optionalArgs = [])
     {
         $request = new ListStoredInfoTypesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -3791,32 +3879,32 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->projectName('[PROJECT]');
-     *     $response = $dlpServiceClient->reidentifyContent($formattedParent);
+     *     $response = $dlpServiceClient->reidentifyContent();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. Parent resource name.
-     *
-     *                             The format of this value varies depending on whether you have [specified a
-     *                             processing
-     *                             location](https://cloud.google.com/dlp/docs/specifying-location):
-     *
-     *                             + Projects scope, location specified:<br/>
-     *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Projects scope, no location specified (defaults to global):<br/>
-     *                             `projects/`<var>PROJECT_ID</var>
-     *
-     *                             The following example `parent` string specifies a parent project with the
-     *                             identifier `example-project`, and specifies the `europe-west3` location
-     *                             for processing data:
-     *
-     *                             parent=projects/example-project/locations/europe-west3
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent resource name.
+     *
+     *           The format of this value varies depending on whether you have [specified a
+     *           processing
+     *           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *
+     *           + Projects scope, location specified:<br/>
+     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           `projects/`<var>PROJECT_ID</var>
+     *
+     *           The following example `parent` string specifies a parent project with the
+     *           identifier `example-project`, and specifies the `europe-west3` location
+     *           for processing data:
+     *
+     *           parent=projects/example-project/locations/europe-west3
      *     @type DeidentifyConfig $reidentifyConfig
      *           Configuration for the re-identification of the content item.
      *           This field shares the same proto message type that is used for
@@ -3858,12 +3946,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function reidentifyContent($parent, array $optionalArgs = [])
+    public function reidentifyContent(array $optionalArgs = [])
     {
         $request = new ReidentifyContentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['reidentifyConfig'])) {
             $request->setReidentifyConfig($optionalArgs['reidentifyConfig']);
         }
@@ -3915,20 +4006,20 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->deidentifyTemplateName('[ORGANIZATION]', '[DEIDENTIFY_TEMPLATE]');
-     *     $response = $dlpServiceClient->updateDeidentifyTemplate($formattedName);
+     *     $response = $dlpServiceClient->updateDeidentifyTemplate();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and deidentify template to be
-     *                             updated, for example
-     *                             `organizations/433245324/deidentifyTemplates/432452342` or
-     *                             projects/project-id/deidentifyTemplates/432452342.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of organization and deidentify template to be
+     *           updated, for example
+     *           `organizations/433245324/deidentifyTemplates/432452342` or
+     *           projects/project-id/deidentifyTemplates/432452342.
      *     @type DeidentifyTemplate $deidentifyTemplate
      *           New DeidentifyTemplate value.
      *     @type FieldMask $updateMask
@@ -3943,12 +4034,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDeidentifyTemplate($name, array $optionalArgs = [])
+    public function updateDeidentifyTemplate(array $optionalArgs = [])
     {
         $request = new UpdateDeidentifyTemplateRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['deidentifyTemplate'])) {
             $request->setDeidentifyTemplate(
                 $optionalArgs['deidentifyTemplate']
@@ -3980,20 +4074,20 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->discoveryConfigName('[PROJECT]', '[LOCATION]', '[DISCOVERY_CONFIG]');
-     *     $discoveryConfig = new DiscoveryConfig();
-     *     $response = $dlpServiceClient->updateDiscoveryConfig($formattedName, $discoveryConfig);
+     *     $response = $dlpServiceClient->updateDiscoveryConfig();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string          $name            Required. Resource name of the project and the configuration, for example
-     *                                         `projects/dlp-test-project/discoveryConfigs/53234423`.
-     * @param DiscoveryConfig $discoveryConfig Required. New DiscoveryConfig value.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the project and the configuration, for example
+     *           `projects/dlp-test-project/discoveryConfigs/53234423`.
+     *     @type DiscoveryConfig $discoveryConfig
+     *           Required. New DiscoveryConfig value.
      *     @type FieldMask $updateMask
      *           Mask to control which fields get updated.
      *     @type RetrySettings|array $retrySettings
@@ -4006,16 +4100,19 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDiscoveryConfig(
-        $name,
-        $discoveryConfig,
-        array $optionalArgs = []
-    ) {
+    public function updateDiscoveryConfig(array $optionalArgs = [])
+    {
         $request = new UpdateDiscoveryConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setDiscoveryConfig($discoveryConfig);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['discoveryConfig'])) {
+            $request->setDiscoveryConfig($optionalArgs['discoveryConfig']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -4042,19 +4139,19 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->inspectTemplateName('[ORGANIZATION]', '[INSPECT_TEMPLATE]');
-     *     $response = $dlpServiceClient->updateInspectTemplate($formattedName);
+     *     $response = $dlpServiceClient->updateInspectTemplate();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and inspectTemplate to be updated,
-     *                             for example `organizations/433245324/inspectTemplates/432452342` or
-     *                             projects/project-id/inspectTemplates/432452342.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of organization and inspectTemplate to be updated,
+     *           for example `organizations/433245324/inspectTemplates/432452342` or
+     *           projects/project-id/inspectTemplates/432452342.
      *     @type InspectTemplate $inspectTemplate
      *           New InspectTemplate value.
      *     @type FieldMask $updateMask
@@ -4069,12 +4166,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateInspectTemplate($name, array $optionalArgs = [])
+    public function updateInspectTemplate(array $optionalArgs = [])
     {
         $request = new UpdateInspectTemplateRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['inspectTemplate'])) {
             $request->setInspectTemplate($optionalArgs['inspectTemplate']);
         }
@@ -4105,18 +4205,18 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
-     *     $response = $dlpServiceClient->updateJobTrigger($formattedName);
+     *     $response = $dlpServiceClient->updateJobTrigger();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the project and the triggeredJob, for example
-     *                             `projects/dlp-test-project/jobTriggers/53234423`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the project and the triggeredJob, for example
+     *           `projects/dlp-test-project/jobTriggers/53234423`.
      *     @type JobTrigger $jobTrigger
      *           New JobTrigger value.
      *     @type FieldMask $updateMask
@@ -4131,12 +4231,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateJobTrigger($name, array $optionalArgs = [])
+    public function updateJobTrigger(array $optionalArgs = [])
     {
         $request = new UpdateJobTriggerRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['jobTrigger'])) {
             $request->setJobTrigger($optionalArgs['jobTrigger']);
         }
@@ -4169,19 +4272,19 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->storedInfoTypeName('[ORGANIZATION]', '[STORED_INFO_TYPE]');
-     *     $response = $dlpServiceClient->updateStoredInfoType($formattedName);
+     *     $response = $dlpServiceClient->updateStoredInfoType();
      * } finally {
      *     $dlpServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of organization and storedInfoType to be updated,
-     *                             for example `organizations/433245324/storedInfoTypes/432452342` or
-     *                             projects/project-id/storedInfoTypes/432452342.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of organization and storedInfoType to be updated,
+     *           for example `organizations/433245324/storedInfoTypes/432452342` or
+     *           projects/project-id/storedInfoTypes/432452342.
      *     @type StoredInfoTypeConfig $config
      *           Updated configuration for the storedInfoType. If not provided, a new
      *           version of the storedInfoType will be created with the existing
@@ -4198,12 +4301,15 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateStoredInfoType($name, array $optionalArgs = [])
+    public function updateStoredInfoType(array $optionalArgs = [])
     {
         $request = new UpdateStoredInfoTypeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['config'])) {
             $request->setConfig($optionalArgs['config']);
         }

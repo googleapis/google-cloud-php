@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'interconnect_attachment_id',
-                ],
             ],
             'CreateNetwork' => [
                 'method' => 'post',
@@ -28,9 +25,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'network_id',
                 ],
             ],
             'CreateRouter' => [
@@ -44,9 +38,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'router_id',
-                ],
             ],
             'CreateSubnet' => [
                 'method' => 'post',
@@ -58,9 +49,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'subnet_id',
                 ],
             ],
             'DeleteInterconnectAttachment' => [
@@ -296,9 +284,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateSubnet' => [
                 'method' => 'patch',
@@ -311,9 +296,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

@@ -79,12 +79,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         $expectedResponse = new GenerateAccessTokenResponse();
         $expectedResponse->setAccessToken($accessToken);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
-        $scope = [];
-        $request = (new GenerateAccessTokenRequest())
-            ->setName($formattedName)
-            ->setScope($scope);
+        $request = new GenerateAccessTokenRequest();
         $response = $gapicClient->generateAccessToken($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -92,10 +87,6 @@ class IAMCredentialsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.credentials.v1.IAMCredentials/GenerateAccessToken', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getScope();
-        $this->assertProtobufEquals($scope, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -117,12 +108,7 @@ class IAMCredentialsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
-        $scope = [];
-        $request = (new GenerateAccessTokenRequest())
-            ->setName($formattedName)
-            ->setScope($scope);
+        $request = new GenerateAccessTokenRequest();
         try {
             $gapicClient->generateAccessToken($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -149,12 +135,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         $expectedResponse = new GenerateIdTokenResponse();
         $expectedResponse->setToken($token);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
-        $audience = 'audience975628804';
-        $request = (new GenerateIdTokenRequest())
-            ->setName($formattedName)
-            ->setAudience($audience);
+        $request = new GenerateIdTokenRequest();
         $response = $gapicClient->generateIdToken($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -162,10 +143,6 @@ class IAMCredentialsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.credentials.v1.IAMCredentials/GenerateIdToken', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getAudience();
-        $this->assertProtobufEquals($audience, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -187,12 +164,7 @@ class IAMCredentialsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
-        $audience = 'audience975628804';
-        $request = (new GenerateIdTokenRequest())
-            ->setName($formattedName)
-            ->setAudience($audience);
+        $request = new GenerateIdTokenRequest();
         try {
             $gapicClient->generateIdToken($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -221,12 +193,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         $expectedResponse->setKeyId($keyId);
         $expectedResponse->setSignedBlob($signedBlob);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
-        $payload = '-114';
-        $request = (new SignBlobRequest())
-            ->setName($formattedName)
-            ->setPayload($payload);
+        $request = new SignBlobRequest();
         $response = $gapicClient->signBlob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -234,10 +201,6 @@ class IAMCredentialsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.credentials.v1.IAMCredentials/SignBlob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getPayload();
-        $this->assertProtobufEquals($payload, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -259,12 +222,7 @@ class IAMCredentialsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
-        $payload = '-114';
-        $request = (new SignBlobRequest())
-            ->setName($formattedName)
-            ->setPayload($payload);
+        $request = new SignBlobRequest();
         try {
             $gapicClient->signBlob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -293,12 +251,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         $expectedResponse->setKeyId($keyId);
         $expectedResponse->setSignedJwt($signedJwt);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
-        $payload = 'payload-786701938';
-        $request = (new SignJwtRequest())
-            ->setName($formattedName)
-            ->setPayload($payload);
+        $request = new SignJwtRequest();
         $response = $gapicClient->signJwt($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -306,10 +259,6 @@ class IAMCredentialsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.credentials.v1.IAMCredentials/SignJwt', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getPayload();
-        $this->assertProtobufEquals($payload, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -331,12 +280,7 @@ class IAMCredentialsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
-        $payload = 'payload-786701938';
-        $request = (new SignJwtRequest())
-            ->setName($formattedName)
-            ->setPayload($payload);
+        $request = new SignJwtRequest();
         try {
             $gapicClient->signJwt($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -363,12 +307,7 @@ class IAMCredentialsClientTest extends GeneratedTest
         $expectedResponse = new GenerateAccessTokenResponse();
         $expectedResponse->setAccessToken($accessToken);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
-        $scope = [];
-        $request = (new GenerateAccessTokenRequest())
-            ->setName($formattedName)
-            ->setScope($scope);
+        $request = new GenerateAccessTokenRequest();
         $response = $gapicClient->generateAccessTokenAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -376,10 +315,6 @@ class IAMCredentialsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.credentials.v1.IAMCredentials/GenerateAccessToken', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getScope();
-        $this->assertProtobufEquals($scope, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

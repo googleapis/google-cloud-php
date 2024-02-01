@@ -86,11 +86,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $eventarcClient = new EventarcClient();
  * try {
- *     $formattedParent = $eventarcClient->locationName('[PROJECT]', '[LOCATION]');
- *     $channel = new Channel();
- *     $channelId = 'channel_id';
- *     $validateOnly = false;
- *     $operationResponse = $eventarcClient->createChannel($formattedParent, $channel, $channelId, $validateOnly);
+ *     $operationResponse = $eventarcClient->createChannel();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -101,7 +97,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $eventarcClient->createChannel($formattedParent, $channel, $channelId, $validateOnly);
+ *     $operationResponse = $eventarcClient->createChannel();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'createChannel');
@@ -685,11 +681,7 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $formattedParent = $eventarcClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $channel = new Channel();
-     *     $channelId = 'channel_id';
-     *     $validateOnly = false;
-     *     $operationResponse = $eventarcClient->createChannel($formattedParent, $channel, $channelId, $validateOnly);
+     *     $operationResponse = $eventarcClient->createChannel();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -700,7 +692,7 @@ class EventarcGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $eventarcClient->createChannel($formattedParent, $channel, $channelId, $validateOnly);
+     *     $operationResponse = $eventarcClient->createChannel();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'createChannel');
@@ -720,14 +712,18 @@ class EventarcGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The parent collection in which to add this channel.
-     * @param Channel $channel      Required. The channel to create.
-     * @param string  $channelId    Required. The user-provided ID to be assigned to the channel.
-     * @param bool    $validateOnly Required. If set, validate the request and preview the review, but do not
-     *                              post it.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent collection in which to add this channel.
+     *     @type Channel $channel
+     *           Required. The channel to create.
+     *     @type string $channelId
+     *           Required. The user-provided ID to be assigned to the channel.
+     *     @type bool $validateOnly
+     *           Required. If set, validate the request and preview the review, but do not
+     *           post it.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -738,20 +734,27 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createChannel(
-        $parent,
-        $channel,
-        $channelId,
-        $validateOnly,
-        array $optionalArgs = []
-    ) {
+    public function createChannel(array $optionalArgs = [])
+    {
         $request = new CreateChannelRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setChannel($channel);
-        $request->setChannelId($channelId);
-        $request->setValidateOnly($validateOnly);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['channel'])) {
+            $request->setChannel($optionalArgs['channel']);
+        }
+
+        if (isset($optionalArgs['channelId'])) {
+            $request->setChannelId($optionalArgs['channelId']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -773,10 +776,7 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $formattedParent = $eventarcClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $channelConnection = new ChannelConnection();
-     *     $channelConnectionId = 'channel_connection_id';
-     *     $operationResponse = $eventarcClient->createChannelConnection($formattedParent, $channelConnection, $channelConnectionId);
+     *     $operationResponse = $eventarcClient->createChannelConnection();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -787,7 +787,7 @@ class EventarcGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $eventarcClient->createChannelConnection($formattedParent, $channelConnection, $channelConnectionId);
+     *     $operationResponse = $eventarcClient->createChannelConnection();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'createChannelConnection');
@@ -807,12 +807,15 @@ class EventarcGapicClient
      * }
      * ```
      *
-     * @param string            $parent              Required. The parent collection in which to add this channel connection.
-     * @param ChannelConnection $channelConnection   Required. Channel connection to create.
-     * @param string            $channelConnectionId Required. The user-provided ID to be assigned to the channel connection.
-     * @param array             $optionalArgs        {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent collection in which to add this channel connection.
+     *     @type ChannelConnection $channelConnection
+     *           Required. Channel connection to create.
+     *     @type string $channelConnectionId
+     *           Required. The user-provided ID to be assigned to the channel connection.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -823,18 +826,25 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createChannelConnection(
-        $parent,
-        $channelConnection,
-        $channelConnectionId,
-        array $optionalArgs = []
-    ) {
+    public function createChannelConnection(array $optionalArgs = [])
+    {
         $request = new CreateChannelConnectionRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setChannelConnection($channelConnection);
-        $request->setChannelConnectionId($channelConnectionId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['channelConnection'])) {
+            $request->setChannelConnection($optionalArgs['channelConnection']);
+        }
+
+        if (isset($optionalArgs['channelConnectionId'])) {
+            $request->setChannelConnectionId(
+                $optionalArgs['channelConnectionId']
+            );
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -856,11 +866,7 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $formattedParent = $eventarcClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $trigger = new Trigger();
-     *     $triggerId = 'trigger_id';
-     *     $validateOnly = false;
-     *     $operationResponse = $eventarcClient->createTrigger($formattedParent, $trigger, $triggerId, $validateOnly);
+     *     $operationResponse = $eventarcClient->createTrigger();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -871,7 +877,7 @@ class EventarcGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $eventarcClient->createTrigger($formattedParent, $trigger, $triggerId, $validateOnly);
+     *     $operationResponse = $eventarcClient->createTrigger();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'createTrigger');
@@ -891,14 +897,18 @@ class EventarcGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The parent collection in which to add this trigger.
-     * @param Trigger $trigger      Required. The trigger to create.
-     * @param string  $triggerId    Required. The user-provided ID to be assigned to the trigger.
-     * @param bool    $validateOnly Required. If set, validate the request and preview the review, but do not
-     *                              post it.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent collection in which to add this trigger.
+     *     @type Trigger $trigger
+     *           Required. The trigger to create.
+     *     @type string $triggerId
+     *           Required. The user-provided ID to be assigned to the trigger.
+     *     @type bool $validateOnly
+     *           Required. If set, validate the request and preview the review, but do not
+     *           post it.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -909,20 +919,27 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTrigger(
-        $parent,
-        $trigger,
-        $triggerId,
-        $validateOnly,
-        array $optionalArgs = []
-    ) {
+    public function createTrigger(array $optionalArgs = [])
+    {
         $request = new CreateTriggerRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setTrigger($trigger);
-        $request->setTriggerId($triggerId);
-        $request->setValidateOnly($validateOnly);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['trigger'])) {
+            $request->setTrigger($optionalArgs['trigger']);
+        }
+
+        if (isset($optionalArgs['triggerId'])) {
+            $request->setTriggerId($optionalArgs['triggerId']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -944,9 +961,7 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $formattedName = $eventarcClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-     *     $validateOnly = false;
-     *     $operationResponse = $eventarcClient->deleteChannel($formattedName, $validateOnly);
+     *     $operationResponse = $eventarcClient->deleteChannel();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -957,7 +972,7 @@ class EventarcGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $eventarcClient->deleteChannel($formattedName, $validateOnly);
+     *     $operationResponse = $eventarcClient->deleteChannel();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'deleteChannel');
@@ -977,12 +992,14 @@ class EventarcGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the channel to be deleted.
-     * @param bool   $validateOnly Required. If set, validate the request and preview the review, but do not
-     *                             post it.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the channel to be deleted.
+     *     @type bool $validateOnly
+     *           Required. If set, validate the request and preview the review, but do not
+     *           post it.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -993,16 +1010,19 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteChannel(
-        $name,
-        $validateOnly,
-        array $optionalArgs = []
-    ) {
+    public function deleteChannel(array $optionalArgs = [])
+    {
         $request = new DeleteChannelRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setValidateOnly($validateOnly);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1024,8 +1044,7 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $formattedName = $eventarcClient->channelConnectionName('[PROJECT]', '[LOCATION]', '[CHANNEL_CONNECTION]');
-     *     $operationResponse = $eventarcClient->deleteChannelConnection($formattedName);
+     *     $operationResponse = $eventarcClient->deleteChannelConnection();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1036,7 +1055,7 @@ class EventarcGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $eventarcClient->deleteChannelConnection($formattedName);
+     *     $operationResponse = $eventarcClient->deleteChannelConnection();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'deleteChannelConnection');
@@ -1056,10 +1075,11 @@ class EventarcGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the channel connection to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the channel connection to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1070,12 +1090,15 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteChannelConnection($name, array $optionalArgs = [])
+    public function deleteChannelConnection(array $optionalArgs = [])
     {
         $request = new DeleteChannelConnectionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1097,9 +1120,7 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $formattedName = $eventarcClient->triggerName('[PROJECT]', '[LOCATION]', '[TRIGGER]');
-     *     $validateOnly = false;
-     *     $operationResponse = $eventarcClient->deleteTrigger($formattedName, $validateOnly);
+     *     $operationResponse = $eventarcClient->deleteTrigger();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1110,7 +1131,7 @@ class EventarcGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $eventarcClient->deleteTrigger($formattedName, $validateOnly);
+     *     $operationResponse = $eventarcClient->deleteTrigger();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'deleteTrigger');
@@ -1130,18 +1151,20 @@ class EventarcGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the trigger to be deleted.
-     * @param bool   $validateOnly Required. If set, validate the request and preview the review, but do not
-     *                             post it.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the trigger to be deleted.
      *     @type string $etag
      *           If provided, the trigger will only be deleted if the etag matches the
      *           current etag on the resource.
      *     @type bool $allowMissing
      *           If set to true, and the trigger is not found, the request will succeed
      *           but no action will be taken on the server.
+     *     @type bool $validateOnly
+     *           Required. If set, validate the request and preview the review, but do not
+     *           post it.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1152,22 +1175,25 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTrigger(
-        $name,
-        $validateOnly,
-        array $optionalArgs = []
-    ) {
+    public function deleteTrigger(array $optionalArgs = [])
+    {
         $request = new DeleteTriggerRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setValidateOnly($validateOnly);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
 
         if (isset($optionalArgs['allowMissing'])) {
             $request->setAllowMissing($optionalArgs['allowMissing']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1191,17 +1217,17 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $formattedName = $eventarcClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-     *     $response = $eventarcClient->getChannel($formattedName);
+     *     $response = $eventarcClient->getChannel();
      * } finally {
      *     $eventarcClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the channel to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the channel to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1212,12 +1238,15 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getChannel($name, array $optionalArgs = [])
+    public function getChannel(array $optionalArgs = [])
     {
         $request = new GetChannelRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1239,17 +1268,17 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $formattedName = $eventarcClient->channelConnectionName('[PROJECT]', '[LOCATION]', '[CHANNEL_CONNECTION]');
-     *     $response = $eventarcClient->getChannelConnection($formattedName);
+     *     $response = $eventarcClient->getChannelConnection();
      * } finally {
      *     $eventarcClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the channel connection to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the channel connection to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1260,12 +1289,15 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getChannelConnection($name, array $optionalArgs = [])
+    public function getChannelConnection(array $optionalArgs = [])
     {
         $request = new GetChannelConnectionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1287,17 +1319,17 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $formattedName = $eventarcClient->googleChannelConfigName('[PROJECT]', '[LOCATION]');
-     *     $response = $eventarcClient->getGoogleChannelConfig($formattedName);
+     *     $response = $eventarcClient->getGoogleChannelConfig();
      * } finally {
      *     $eventarcClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the config to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the config to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1308,12 +1340,15 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getGoogleChannelConfig($name, array $optionalArgs = [])
+    public function getGoogleChannelConfig(array $optionalArgs = [])
     {
         $request = new GetGoogleChannelConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1335,17 +1370,17 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $formattedName = $eventarcClient->providerName('[PROJECT]', '[LOCATION]', '[PROVIDER]');
-     *     $response = $eventarcClient->getProvider($formattedName);
+     *     $response = $eventarcClient->getProvider();
      * } finally {
      *     $eventarcClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the provider to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the provider to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1356,12 +1391,15 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getProvider($name, array $optionalArgs = [])
+    public function getProvider(array $optionalArgs = [])
     {
         $request = new GetProviderRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1383,17 +1421,17 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $formattedName = $eventarcClient->triggerName('[PROJECT]', '[LOCATION]', '[TRIGGER]');
-     *     $response = $eventarcClient->getTrigger($formattedName);
+     *     $response = $eventarcClient->getTrigger();
      * } finally {
      *     $eventarcClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the trigger to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the trigger to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1404,12 +1442,15 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTrigger($name, array $optionalArgs = [])
+    public function getTrigger(array $optionalArgs = [])
     {
         $request = new GetTriggerRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1431,9 +1472,8 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $formattedParent = $eventarcClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $eventarcClient->listChannelConnections($formattedParent);
+     *     $pagedResponse = $eventarcClient->listChannelConnections();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1441,7 +1481,7 @@ class EventarcGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $eventarcClient->listChannelConnections($formattedParent);
+     *     $pagedResponse = $eventarcClient->listChannelConnections();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1450,10 +1490,11 @@ class EventarcGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent collection from which to list channel connections.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent collection from which to list channel connections.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1473,12 +1514,15 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listChannelConnections($parent, array $optionalArgs = [])
+    public function listChannelConnections(array $optionalArgs = [])
     {
         $request = new ListChannelConnectionsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1508,9 +1552,8 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $formattedParent = $eventarcClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $eventarcClient->listChannels($formattedParent);
+     *     $pagedResponse = $eventarcClient->listChannels();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1518,7 +1561,7 @@ class EventarcGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $eventarcClient->listChannels($formattedParent);
+     *     $pagedResponse = $eventarcClient->listChannels();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1527,10 +1570,11 @@ class EventarcGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent collection to list channels on.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent collection to list channels on.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1555,12 +1599,15 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listChannels($parent, array $optionalArgs = [])
+    public function listChannels(array $optionalArgs = [])
     {
         $request = new ListChannelsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1594,9 +1641,8 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $formattedParent = $eventarcClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $eventarcClient->listProviders($formattedParent);
+     *     $pagedResponse = $eventarcClient->listProviders();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1604,7 +1650,7 @@ class EventarcGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $eventarcClient->listProviders($formattedParent);
+     *     $pagedResponse = $eventarcClient->listProviders();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1613,10 +1659,11 @@ class EventarcGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent of the provider to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent of the provider to get.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1643,12 +1690,15 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listProviders($parent, array $optionalArgs = [])
+    public function listProviders(array $optionalArgs = [])
     {
         $request = new ListProvidersRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1686,9 +1736,8 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $formattedParent = $eventarcClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $eventarcClient->listTriggers($formattedParent);
+     *     $pagedResponse = $eventarcClient->listTriggers();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1696,7 +1745,7 @@ class EventarcGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $eventarcClient->listTriggers($formattedParent);
+     *     $pagedResponse = $eventarcClient->listTriggers();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1705,10 +1754,11 @@ class EventarcGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent collection to list triggers on.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent collection to list triggers on.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1737,12 +1787,15 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTriggers($parent, array $optionalArgs = [])
+    public function listTriggers(array $optionalArgs = [])
     {
         $request = new ListTriggersRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1780,8 +1833,7 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $validateOnly = false;
-     *     $operationResponse = $eventarcClient->updateChannel($validateOnly);
+     *     $operationResponse = $eventarcClient->updateChannel();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1792,7 +1844,7 @@ class EventarcGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $eventarcClient->updateChannel($validateOnly);
+     *     $operationResponse = $eventarcClient->updateChannel();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'updateChannel');
@@ -1812,8 +1864,6 @@ class EventarcGapicClient
      * }
      * ```
      *
-     * @param bool  $validateOnly Required. If set, validate the request and preview the review, but do not
-     *                            post it.
      * @param array $optionalArgs {
      *     Optional.
      *
@@ -1823,6 +1873,9 @@ class EventarcGapicClient
      *           The fields to be updated; only fields explicitly provided are updated.
      *           If no field mask is provided, all provided fields in the request are
      *           updated. To update all fields, provide a field mask of "*".
+     *     @type bool $validateOnly
+     *           Required. If set, validate the request and preview the review, but do not
+     *           post it.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1833,17 +1886,20 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateChannel($validateOnly, array $optionalArgs = [])
+    public function updateChannel(array $optionalArgs = [])
     {
         $request = new UpdateChannelRequest();
         $requestParamHeaders = [];
-        $request->setValidateOnly($validateOnly);
         if (isset($optionalArgs['channel'])) {
             $request->setChannel($optionalArgs['channel']);
         }
 
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1867,17 +1923,17 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $googleChannelConfig = new GoogleChannelConfig();
-     *     $response = $eventarcClient->updateGoogleChannelConfig($googleChannelConfig);
+     *     $response = $eventarcClient->updateGoogleChannelConfig();
      * } finally {
      *     $eventarcClient->close();
      * }
      * ```
      *
-     * @param GoogleChannelConfig $googleChannelConfig Required. The config to be updated.
-     * @param array               $optionalArgs        {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type GoogleChannelConfig $googleChannelConfig
+     *           Required. The config to be updated.
      *     @type FieldMask $updateMask
      *           The fields to be updated; only fields explicitly provided are updated.
      *           If no field mask is provided, all provided fields in the request are
@@ -1892,16 +1948,16 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateGoogleChannelConfig(
-        $googleChannelConfig,
-        array $optionalArgs = []
-    ) {
+    public function updateGoogleChannelConfig(array $optionalArgs = [])
+    {
         $request = new UpdateGoogleChannelConfigRequest();
         $requestParamHeaders = [];
-        $request->setGoogleChannelConfig($googleChannelConfig);
-        $requestParamHeaders[
-            'google_channel_config.name'
-        ] = $googleChannelConfig->getName();
+        if (isset($optionalArgs['googleChannelConfig'])) {
+            $request->setGoogleChannelConfig(
+                $optionalArgs['googleChannelConfig']
+            );
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1927,8 +1983,7 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $validateOnly = false;
-     *     $operationResponse = $eventarcClient->updateTrigger($validateOnly);
+     *     $operationResponse = $eventarcClient->updateTrigger();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1939,7 +1994,7 @@ class EventarcGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $eventarcClient->updateTrigger($validateOnly);
+     *     $operationResponse = $eventarcClient->updateTrigger();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'updateTrigger');
@@ -1959,8 +2014,6 @@ class EventarcGapicClient
      * }
      * ```
      *
-     * @param bool  $validateOnly Required. If set, validate the request and preview the review, but do not
-     *                            post it.
      * @param array $optionalArgs {
      *     Optional.
      *
@@ -1973,6 +2026,9 @@ class EventarcGapicClient
      *     @type bool $allowMissing
      *           If set to true, and the trigger is not found, a new trigger will be
      *           created. In this situation, `update_mask` is ignored.
+     *     @type bool $validateOnly
+     *           Required. If set, validate the request and preview the review, but do not
+     *           post it.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1983,11 +2039,10 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTrigger($validateOnly, array $optionalArgs = [])
+    public function updateTrigger(array $optionalArgs = [])
     {
         $request = new UpdateTriggerRequest();
         $requestParamHeaders = [];
-        $request->setValidateOnly($validateOnly);
         if (isset($optionalArgs['trigger'])) {
             $request->setTrigger($optionalArgs['trigger']);
         }
@@ -1998,6 +2053,10 @@ class EventarcGapicClient
 
         if (isset($optionalArgs['allowMissing'])) {
             $request->setAllowMissing($optionalArgs['allowMissing']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -2162,18 +2221,18 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $eventarcClient->getIamPolicy($resource);
+     *     $response = $eventarcClient->getIamPolicy();
      * } finally {
      *     $eventarcClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -2187,12 +2246,15 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -2224,23 +2286,23 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $eventarcClient->setIamPolicy($resource, $policy);
+     *     $response = $eventarcClient->setIamPolicy();
      * } finally {
      *     $eventarcClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -2257,13 +2319,19 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2297,23 +2365,23 @@ class EventarcGapicClient
      * ```
      * $eventarcClient = new EventarcClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $eventarcClient->testIamPermissions($resource, $permissions);
+     *     $response = $eventarcClient->testIamPermissions();
      * } finally {
      *     $eventarcClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2324,16 +2392,19 @@ class EventarcGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

@@ -26,7 +26,6 @@ class GetConversationRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The resource name of the Conversation to get. Format:
      *                     `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`
-     *                     Please see {@see ConversationalSearchServiceClient::conversationName()} for help formatting this field.
      *
      * @return \Google\Cloud\DiscoveryEngine\V1beta\GetConversationRequest
      *

@@ -25,8 +25,7 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The backup resource name, in the format
-     *                     `projects/{project_number}/locations/{location}/backups/{backup_id}`. Please see
-     *                     {@see CloudFilestoreManagerClient::backupName()} for help formatting this field.
+     *                     `projects/{project_number}/locations/{location}/backups/{backup_id}`.
      *
      * @return \Google\Cloud\Filestore\V1\GetBackupRequest
      *

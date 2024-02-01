@@ -44,7 +44,6 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                    $parent     Required. A parent name of the form
      *                                                              `projects/{project_id}`
-     *                                                              Please see {@see FirestoreAdminClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\Firestore\Admin\V1\Database $database   Required. The Database to create.
      * @param string                                    $databaseId Required. The ID to use for the database, which will become the final
      *                                                              component of the database's resource name.

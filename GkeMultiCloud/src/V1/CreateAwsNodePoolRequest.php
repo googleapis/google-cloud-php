@@ -61,8 +61,7 @@ class CreateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *                                                                  `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      *
      *                                                                  See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                                                                  for more details on Google Cloud resource names. Please see
-     *                                                                  {@see AwsClustersClient::awsClusterName()} for help formatting this field.
+     *                                                                  for more details on Google Cloud resource names.
      * @param \Google\Cloud\GkeMultiCloud\V1\AwsNodePool $awsNodePool   Required. The specification of the
      *                                                                  [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to create.
      * @param string                                     $awsNodePoolId Required. A client provided ID the resource. Must be unique within the

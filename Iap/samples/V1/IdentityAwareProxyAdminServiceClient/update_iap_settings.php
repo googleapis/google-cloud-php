@@ -32,18 +32,19 @@ use Google\Cloud\Iap\V1\UpdateIapSettingsRequest;
  * Updates the IAP settings on a particular IAP protected resource. It
  * replaces all fields unless the `update_mask` is set.
  *
- * @param string $iapSettingsName The resource name of the IAP protected resource.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_iap_settings_sample(string $iapSettingsName): void
+function update_iap_settings_sample(): void
 {
     // Create a client.
     $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
 
     // Prepare the request message.
-    $iapSettings = (new IapSettings())
-        ->setName($iapSettingsName);
-    $request = (new UpdateIapSettingsRequest())
-        ->setIapSettings($iapSettings);
+    $request = new UpdateIapSettingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +54,5 @@ function update_iap_settings_sample(string $iapSettingsName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $iapSettingsName = '[NAME]';
-
-    update_iap_settings_sample($iapSettingsName);
 }
 // [END iap_v1_generated_IdentityAwareProxyAdminService_UpdateIapSettings_sync]

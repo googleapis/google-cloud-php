@@ -29,8 +29,7 @@ class DeleteDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. Resource name of the organization and deidentify template to be
      *                     deleted, for example
      *                     `organizations/433245324/deidentifyTemplates/432452342` or
-     *                     projects/project-id/deidentifyTemplates/432452342. Please see
-     *                     {@see DlpServiceClient::deidentifyTemplateName()} for help formatting this field.
+     *                     projects/project-id/deidentifyTemplates/432452342.
      *
      * @return \Google\Cloud\Dlp\V2\DeleteDeidentifyTemplateRequest
      *

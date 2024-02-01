@@ -23,8 +23,7 @@ class GetPrivateConnectionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the private connection to get. Please see
-     *                     {@see DataMigrationServiceClient::privateConnectionName()} for help formatting this field.
+     * @param string $name Required. The name of the private connection to get.
      *
      * @return \Google\Cloud\CloudDms\V1\GetPrivateConnectionRequest
      *

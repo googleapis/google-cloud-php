@@ -58,8 +58,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *                       `projects/{project_number}/locations/{location}`. In Filestore, backup
      *                       locations map to Google Cloud regions, for example **us-west1**. To
      *                       retrieve backup information for all locations, use "-" for the
-     *                       `{location}` value. Please see
-     *                       {@see CloudFilestoreManagerClient::locationName()} for help formatting this field.
+     *                       `{location}` value.
      *
      * @return \Google\Cloud\Filestore\V1\ListBackupsRequest
      *

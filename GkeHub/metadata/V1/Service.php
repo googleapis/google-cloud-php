@@ -26,51 +26,51 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-´)
-$google/cloud/gkehub/v1/service.protogoogle.cloud.gkehub.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto$google/cloud/gkehub/v1/feature.proto\'google/cloud/gkehub/v1/membership.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"¯
-ListMembershipsRequest8
-parent (	B(àAúA" gkehub.googleapis.com/Membership
-	page_size (BàA
+Õ)
+$google/cloud/gkehub/v1/service.protogoogle.cloud.gkehub.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto$google/cloud/gkehub/v1/feature.proto\'google/cloud/gkehub/v1/membership.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"´
+ListMembershipsRequest9
+parent (	B)âAúA" gkehub.googleapis.com/Membership
+	page_size (BâA
 
-page_token (	BàA
-filter (	BàA
-order_by (	BàA"~
+page_token (	BâA
+filter (	BâA
+order_by (	BâA"~
 ListMembershipsResponse5
 	resources (2".google.cloud.gkehub.v1.Membership
 next_page_token (	
-unreachable (	"N
-GetMembershipRequest6
-name (	B(àAúA"
- gkehub.googleapis.com/Membership"Ã
-CreateMembershipRequest8
-parent (	B(àAúA" gkehub.googleapis.com/Membership
-membership_id (	BàA9
-resource (2".google.cloud.gkehub.v1.MembershipBàA
+unreachable (	"O
+GetMembershipRequest7
+name (	B)âAúA"
+ gkehub.googleapis.com/Membership"Ç
+CreateMembershipRequest9
+parent (	B)âAúA" gkehub.googleapis.com/Membership
+membership_id (	BâA:
+resource (2".google.cloud.gkehub.v1.MembershipBâA
 
-request_id (	BàA"~
-DeleteMembershipRequest6
-name (	B(àAúA"
+request_id (	BâA"
+DeleteMembershipRequest7
+name (	B)âAúA"
+ gkehub.googleapis.com/Membership
+
+request_id (	BâA
+force (BâA"ß
+UpdateMembershipRequest7
+name (	B)âAúA"
+ gkehub.googleapis.com/Membership5
+update_mask (2.google.protobuf.FieldMaskBâA:
+resource (2".google.cloud.gkehub.v1.MembershipBâA
+
+request_id (	BâA"ù
+GenerateConnectManifestRequest7
+name (	B)âAúA"
  gkehub.googleapis.com/Membership
+	namespace (	BâA
+proxy (BâA
+version (	BâA
 
-request_id (	BàA
-force (BàA"Û
-UpdateMembershipRequest6
-name (	B(àAúA"
- gkehub.googleapis.com/Membership4
-update_mask (2.google.protobuf.FieldMaskBàA9
-resource (2".google.cloud.gkehub.v1.MembershipBàA
-
-request_id (	BàA"ò
-GenerateConnectManifestRequest6
-name (	B(àAúA"
- gkehub.googleapis.com/Membership
-	namespace (	BàA
-proxy (BàA
-version (	BàA
-
-is_upgrade (BàA
-registry (	BàA&
-image_pull_secret_content (BàA"a
+is_upgrade (BâA
+registry (	BâA\'
+image_pull_secret_content (BâA"a
 GenerateConnectManifestResponse>
 manifest (2,.google.cloud.gkehub.v1.ConnectAgentResource"X
 ConnectAgentResource.
@@ -98,48 +98,48 @@ page_token (	
 feature_id (	1
 resource (2.google.cloud.gkehub.v1.Feature
 
-request_id (	"p
+request_id (	"q
 DeleteFeatureRequest0
 name (	B"úA
 gkehub.googleapis.com/Feature
-force (
+force (
 
-request_id (	BàA"À
+request_id (	BâA"À
 UpdateFeatureRequest0
 name (	B"úA
 gkehub.googleapis.com/Feature/
 update_mask (2.google.protobuf.FieldMask1
 resource (2.google.cloud.gkehub.v1.Feature
 
-request_id (	"ù
-OperationMetadata4
-create_time (2.google.protobuf.TimestampBàA1
-end_time (2.google.protobuf.TimestampBàA
-target (	BàA
-verb (	BàA
-status_detail (	BàA
-cancel_requested (BàA
-api_version (	BàA2ğ
+request_id (	"€
+OperationMetadata5
+create_time (2.google.protobuf.TimestampBâA2
+end_time (2.google.protobuf.TimestampBâA
+target (	BâA
+verb (	BâA
+status_detail (	BâA
+cancel_requested (BâA
+api_version (	BâA2ğ
 GkeHub´
-ListMemberships..google.cloud.gkehub.v1.ListMembershipsRequest/.google.cloud.gkehub.v1.ListMembershipsResponse"@‚Óä“1//v1/{parent=projects/*/locations/*}/membershipsÚAparent¨
-ListFeatures+.google.cloud.gkehub.v1.ListFeaturesRequest,.google.cloud.gkehub.v1.ListFeaturesResponse"=‚Óä“.,/v1/{parent=projects/*/locations/*}/featuresÚAparent¡
-GetMembership,.google.cloud.gkehub.v1.GetMembershipRequest".google.cloud.gkehub.v1.Membership">‚Óä“1//v1/{name=projects/*/locations/*/memberships/*}ÚAname•
+ListMemberships..google.cloud.gkehub.v1.ListMembershipsRequest/.google.cloud.gkehub.v1.ListMembershipsResponse"@ÚAparent‚Óä“1//v1/{parent=projects/*/locations/*}/memberships¨
+ListFeatures+.google.cloud.gkehub.v1.ListFeaturesRequest,.google.cloud.gkehub.v1.ListFeaturesResponse"=ÚAparent‚Óä“.,/v1/{parent=projects/*/locations/*}/features¡
+GetMembership,.google.cloud.gkehub.v1.GetMembershipRequest".google.cloud.gkehub.v1.Membership">ÚAname‚Óä“1//v1/{name=projects/*/locations/*/memberships/*}•
 
-GetFeature).google.cloud.gkehub.v1.GetFeatureRequest.google.cloud.gkehub.v1.Feature";‚Óä“.,/v1/{name=projects/*/locations/*/features/*}ÚAnameè
-CreateMembership/.google.cloud.gkehub.v1.CreateMembershipRequest.google.longrunning.Operation"ƒ‚Óä“;"//v1/{parent=projects/*/locations/*}/memberships:resourceÚAparent,resource,membership_idÊA
+GetFeature).google.cloud.gkehub.v1.GetFeatureRequest.google.cloud.gkehub.v1.Feature";ÚAname‚Óä“.,/v1/{name=projects/*/locations/*/features/*}è
+CreateMembership/.google.cloud.gkehub.v1.CreateMembershipRequest.google.longrunning.Operation"ƒÊA
 
-MembershipOperationMetadataØ
-CreateFeature,.google.cloud.gkehub.v1.CreateFeatureRequest.google.longrunning.Operation"z‚Óä“8",/v1/{parent=projects/*/locations/*}/features:resourceÚAparent,resource,feature_idÊA
-FeatureOperationMetadataÏ
-DeleteMembership/.google.cloud.gkehub.v1.DeleteMembershipRequest.google.longrunning.Operation"k‚Óä“1*//v1/{name=projects/*/locations/*/memberships/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadataÆ
-DeleteFeature,.google.cloud.gkehub.v1.DeleteFeatureRequest.google.longrunning.Operation"h‚Óä“.*,/v1/{name=projects/*/locations/*/features/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadataã
-UpdateMembership/.google.cloud.gkehub.v1.UpdateMembershipRequest.google.longrunning.Operation"‚Óä“;2//v1/{name=projects/*/locations/*/memberships/*}:resourceÚAname,resource,update_maskÊA
+MembershipOperationMetadataÚAparent,resource,membership_id‚Óä“;"//v1/{parent=projects/*/locations/*}/memberships:resourceØ
+CreateFeature,.google.cloud.gkehub.v1.CreateFeatureRequest.google.longrunning.Operation"zÊA
+FeatureOperationMetadataÚAparent,resource,feature_id‚Óä“8",/v1/{parent=projects/*/locations/*}/features:resourceÏ
+DeleteMembership/.google.cloud.gkehub.v1.DeleteMembershipRequest.google.longrunning.Operation"kÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“1*//v1/{name=projects/*/locations/*/memberships/*}Æ
+DeleteFeature,.google.cloud.gkehub.v1.DeleteFeatureRequest.google.longrunning.Operation"hÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“.*,/v1/{name=projects/*/locations/*/features/*}ã
+UpdateMembership/.google.cloud.gkehub.v1.UpdateMembershipRequest.google.longrunning.Operation"ÊA
 
-MembershipOperationMetadata×
-UpdateFeature,.google.cloud.gkehub.v1.UpdateFeatureRequest.google.longrunning.Operation"y‚Óä“82,/v1/{name=projects/*/locations/*/features/*}:resourceÚAname,resource,update_maskÊA
-FeatureOperationMetadataÛ
+MembershipOperationMetadataÚAname,resource,update_mask‚Óä“;2//v1/{name=projects/*/locations/*/memberships/*}:resource×
+UpdateFeature,.google.cloud.gkehub.v1.UpdateFeatureRequest.google.longrunning.Operation"yÊA
+FeatureOperationMetadataÚAname,resource,update_mask‚Óä“82,/v1/{name=projects/*/locations/*/features/*}:resourceÛ
 GenerateConnectManifest6.google.cloud.gkehub.v1.GenerateConnectManifestRequest7.google.cloud.gkehub.v1.GenerateConnectManifestResponse"O‚Óä“IG/v1/{name=projects/*/locations/*/memberships/*}:generateConnectManifestIÊAgkehub.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB®
 com.google.cloud.gkehub.v1BServiceProtoPZ2cloud.google.com/go/gkehub/apiv1/gkehubpb;gkehubpbªGoogle.Cloud.GkeHub.V1ÊGoogle\\Cloud\\GkeHub\\V1êGoogle::Cloud::GkeHub::V1bproto3'
         , true);

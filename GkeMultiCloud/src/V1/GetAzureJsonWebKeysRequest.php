@@ -31,7 +31,6 @@ class GetAzureJsonWebKeysRequest extends \Google\Protobuf\Internal\Message
      * @param string $azureCluster Required. The AzureCluster, which owns the JsonWebKeys.
      *                             Format:
      *                             projects/<project-id>/locations/<region>/azureClusters/<cluster-id>
-     *                             Please see {@see AzureClustersClient::azureClusterName()} for help formatting this field.
      *
      * @return \Google\Cloud\GkeMultiCloud\V1\GetAzureJsonWebKeysRequest
      *

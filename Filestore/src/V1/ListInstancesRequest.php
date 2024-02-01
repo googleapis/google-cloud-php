@@ -58,8 +58,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *                       Cloud Filestore, locations map to Google Cloud zones, for example
      *                       **us-west1-b**. To retrieve instance information for all locations, use "-"
      *                       for the
-     *                       `{location}` value. Please see
-     *                       {@see CloudFilestoreManagerClient::locationName()} for help formatting this field.
+     *                       `{location}` value.
      *
      * @return \Google\Cloud\Filestore\V1\ListInstancesRequest
      *

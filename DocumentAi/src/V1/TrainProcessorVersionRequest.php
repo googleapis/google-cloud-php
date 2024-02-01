@@ -57,8 +57,7 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                       $parent           Required. The parent (project, location and processor) to create the new
      *                                                                       version for. Format:
-     *                                                                       `projects/{project}/locations/{location}/processors/{processor}`. Please see
-     *                                                                       {@see DocumentProcessorServiceClient::processorName()} for help formatting this field.
+     *                                                                       `projects/{project}/locations/{location}/processors/{processor}`.
      * @param \Google\Cloud\DocumentAI\V1\ProcessorVersion $processorVersion Required. The processor version to be created.
      *
      * @return \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest

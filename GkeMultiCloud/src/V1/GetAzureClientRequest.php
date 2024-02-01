@@ -39,8 +39,7 @@ class GetAzureClientRequest extends \Google\Protobuf\Internal\Message
      *                     `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
      *
      *                     See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                     for more details on Google Cloud resource names. Please see
-     *                     {@see AzureClustersClient::azureClientName()} for help formatting this field.
+     *                     for more details on Google Cloud resource names.
      *
      * @return \Google\Cloud\GkeMultiCloud\V1\GetAzureClientRequest
      *

@@ -35,7 +35,6 @@ use Google\Cloud\EssentialContacts\V1\DeleteContactRequest;
 use Google\Cloud\EssentialContacts\V1\GetContactRequest;
 use Google\Cloud\EssentialContacts\V1\ListContactsRequest;
 use Google\Cloud\EssentialContacts\V1\ListContactsResponse;
-use Google\Cloud\EssentialContacts\V1\NotificationCategory;
 use Google\Cloud\EssentialContacts\V1\SendTestMessageRequest;
 use Google\Cloud\EssentialContacts\V1\UpdateContactRequest;
 use Google\Protobuf\GPBEmpty;
@@ -88,10 +87,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setContacts($contacts);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ComputeContactsRequest())
-            ->setParent($formattedParent);
+        $request = new ComputeContactsRequest();
         $response = $gapicClient->computeContacts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -102,8 +98,6 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.essentialcontacts.v1.EssentialContactsService/ComputeContacts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -125,10 +119,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ComputeContactsRequest())
-            ->setParent($formattedParent);
+        $request = new ComputeContactsRequest();
         try {
             $gapicClient->computeContacts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -159,18 +150,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $expectedResponse->setEmail($email);
         $expectedResponse->setLanguageTag($languageTag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $contact = new Contact();
-        $contactEmail = 'contactEmail1253690204';
-        $contact->setEmail($contactEmail);
-        $contactNotificationCategorySubscriptions = [];
-        $contact->setNotificationCategorySubscriptions($contactNotificationCategorySubscriptions);
-        $contactLanguageTag = 'contactLanguageTag229803234';
-        $contact->setLanguageTag($contactLanguageTag);
-        $request = (new CreateContactRequest())
-            ->setParent($formattedParent)
-            ->setContact($contact);
+        $request = new CreateContactRequest();
         $response = $gapicClient->createContact($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -178,10 +158,6 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.essentialcontacts.v1.EssentialContactsService/CreateContact', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getContact();
-        $this->assertProtobufEquals($contact, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -203,18 +179,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $contact = new Contact();
-        $contactEmail = 'contactEmail1253690204';
-        $contact->setEmail($contactEmail);
-        $contactNotificationCategorySubscriptions = [];
-        $contact->setNotificationCategorySubscriptions($contactNotificationCategorySubscriptions);
-        $contactLanguageTag = 'contactLanguageTag229803234';
-        $contact->setLanguageTag($contactLanguageTag);
-        $request = (new CreateContactRequest())
-            ->setParent($formattedParent)
-            ->setContact($contact);
+        $request = new CreateContactRequest();
         try {
             $gapicClient->createContact($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -239,18 +204,13 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->contactName('[PROJECT]', '[CONTACT]');
-        $request = (new DeleteContactRequest())
-            ->setName($formattedName);
+        $request = new DeleteContactRequest();
         $gapicClient->deleteContact($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.essentialcontacts.v1.EssentialContactsService/DeleteContact', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -272,10 +232,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->contactName('[PROJECT]', '[CONTACT]');
-        $request = (new DeleteContactRequest())
-            ->setName($formattedName);
+        $request = new DeleteContactRequest();
         try {
             $gapicClient->deleteContact($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -306,10 +263,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $expectedResponse->setEmail($email);
         $expectedResponse->setLanguageTag($languageTag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->contactName('[PROJECT]', '[CONTACT]');
-        $request = (new GetContactRequest())
-            ->setName($formattedName);
+        $request = new GetContactRequest();
         $response = $gapicClient->getContact($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -317,8 +271,6 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.essentialcontacts.v1.EssentialContactsService/GetContact', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -340,10 +292,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->contactName('[PROJECT]', '[CONTACT]');
-        $request = (new GetContactRequest())
-            ->setName($formattedName);
+        $request = new GetContactRequest();
         try {
             $gapicClient->getContact($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -375,10 +324,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setContacts($contacts);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListContactsRequest())
-            ->setParent($formattedParent);
+        $request = new ListContactsRequest();
         $response = $gapicClient->listContacts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -389,8 +335,6 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.essentialcontacts.v1.EssentialContactsService/ListContacts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -412,10 +356,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListContactsRequest())
-            ->setParent($formattedParent);
+        $request = new ListContactsRequest();
         try {
             $gapicClient->listContacts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -440,28 +381,13 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedContacts = [
-            $gapicClient->contactName('[PROJECT]', '[CONTACT]'),
-        ];
-        $formattedResource = $gapicClient->projectName('[PROJECT]');
-        $notificationCategory = NotificationCategory::NOTIFICATION_CATEGORY_UNSPECIFIED;
-        $request = (new SendTestMessageRequest())
-            ->setContacts($formattedContacts)
-            ->setResource($formattedResource)
-            ->setNotificationCategory($notificationCategory);
+        $request = new SendTestMessageRequest();
         $gapicClient->sendTestMessage($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.essentialcontacts.v1.EssentialContactsService/SendTestMessage', $actualFuncCall);
-        $actualValue = $actualRequestObject->getContacts();
-        $this->assertProtobufEquals($formattedContacts, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($formattedResource, $actualValue);
-        $actualValue = $actualRequestObject->getNotificationCategory();
-        $this->assertProtobufEquals($notificationCategory, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -483,16 +409,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedContacts = [
-            $gapicClient->contactName('[PROJECT]', '[CONTACT]'),
-        ];
-        $formattedResource = $gapicClient->projectName('[PROJECT]');
-        $notificationCategory = NotificationCategory::NOTIFICATION_CATEGORY_UNSPECIFIED;
-        $request = (new SendTestMessageRequest())
-            ->setContacts($formattedContacts)
-            ->setResource($formattedResource)
-            ->setNotificationCategory($notificationCategory);
+        $request = new SendTestMessageRequest();
         try {
             $gapicClient->sendTestMessage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -523,16 +440,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $expectedResponse->setEmail($email);
         $expectedResponse->setLanguageTag($languageTag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $contact = new Contact();
-        $contactEmail = 'contactEmail1253690204';
-        $contact->setEmail($contactEmail);
-        $contactNotificationCategorySubscriptions = [];
-        $contact->setNotificationCategorySubscriptions($contactNotificationCategorySubscriptions);
-        $contactLanguageTag = 'contactLanguageTag229803234';
-        $contact->setLanguageTag($contactLanguageTag);
-        $request = (new UpdateContactRequest())
-            ->setContact($contact);
+        $request = new UpdateContactRequest();
         $response = $gapicClient->updateContact($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -540,8 +448,6 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.essentialcontacts.v1.EssentialContactsService/UpdateContact', $actualFuncCall);
-        $actualValue = $actualRequestObject->getContact();
-        $this->assertProtobufEquals($contact, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -563,16 +469,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $contact = new Contact();
-        $contactEmail = 'contactEmail1253690204';
-        $contact->setEmail($contactEmail);
-        $contactNotificationCategorySubscriptions = [];
-        $contact->setNotificationCategorySubscriptions($contactNotificationCategorySubscriptions);
-        $contactLanguageTag = 'contactLanguageTag229803234';
-        $contact->setLanguageTag($contactLanguageTag);
-        $request = (new UpdateContactRequest())
-            ->setContact($contact);
+        $request = new UpdateContactRequest();
         try {
             $gapicClient->updateContact($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -604,10 +501,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setContacts($contacts);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ComputeContactsRequest())
-            ->setParent($formattedParent);
+        $request = new ComputeContactsRequest();
         $response = $gapicClient->computeContactsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -618,8 +512,6 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.essentialcontacts.v1.EssentialContactsService/ComputeContacts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

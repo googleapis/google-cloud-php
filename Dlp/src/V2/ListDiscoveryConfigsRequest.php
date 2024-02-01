@@ -67,7 +67,6 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
      *                       for processing data:
      *
      *                       parent=projects/example-project/locations/europe-west3
-     *                       Please see {@see DlpServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dlp\V2\ListDiscoveryConfigsRequest
      *

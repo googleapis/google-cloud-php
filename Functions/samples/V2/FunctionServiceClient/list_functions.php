@@ -32,22 +32,19 @@ use Google\Cloud\Functions\V2\PBFunction;
 /**
  * Returns a list of functions that belong to the requested project.
  *
- * @param string $formattedParent The project and location from which the function should be
- *                                listed, specified in the format `projects/&#42;/locations/*` If you want to
- *                                list functions in all locations, use "-" in place of a location. When
- *                                listing functions in all locations, if one or more location(s) are
- *                                unreachable, the response will contain functions from all reachable
- *                                locations along with the names of any unreachable locations. Please see
- *                                {@see FunctionServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_functions_sample(string $formattedParent): void
+function list_functions_sample(): void
 {
     // Create a client.
     $functionServiceClient = new FunctionServiceClient();
 
     // Prepare the request message.
-    $request = (new ListFunctionsRequest())
-        ->setParent($formattedParent);
+    $request = new ListFunctionsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,21 +58,5 @@ function list_functions_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = FunctionServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_functions_sample($formattedParent);
 }
 // [END cloudfunctions_v2_generated_FunctionService_ListFunctions_sync]

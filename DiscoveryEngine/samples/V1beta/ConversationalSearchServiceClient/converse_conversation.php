@@ -27,29 +27,23 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\DiscoveryEngine\V1beta\Client\ConversationalSearchServiceClient;
 use Google\Cloud\DiscoveryEngine\V1beta\ConverseConversationRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\ConverseConversationResponse;
-use Google\Cloud\DiscoveryEngine\V1beta\TextInput;
 
 /**
  * Converses a conversation.
  *
- * @param string $formattedName The resource name of the Conversation to get. Format:
- *                              `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`.
- *                              Use
- *                              `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-`
- *                              to activate auto session mode, which automatically creates a new
- *                              conversation inside a ConverseConversation session. Please see
- *                              {@see ConversationalSearchServiceClient::conversationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function converse_conversation_sample(string $formattedName): void
+function converse_conversation_sample(): void
 {
     // Create a client.
     $conversationalSearchServiceClient = new ConversationalSearchServiceClient();
 
     // Prepare the request message.
-    $query = new TextInput();
-    $request = (new ConverseConversationRequest())
-        ->setName($formattedName)
-        ->setQuery($query);
+    $request = new ConverseConversationRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,26 +53,5 @@ function converse_conversation_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ConversationalSearchServiceClient::conversationName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_STORE]',
-        '[CONVERSATION]'
-    );
-
-    converse_conversation_sample($formattedName);
 }
 // [END discoveryengine_v1beta_generated_ConversationalSearchService_ConverseConversation_sync]

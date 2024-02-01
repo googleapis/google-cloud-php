@@ -31,27 +31,19 @@ use Google\Cloud\GkeMultiCloud\V1\GenerateAzureClusterAgentTokenResponse;
 /**
  * Generates an access token for a cluster agent.
  *
- * @param string $formattedAzureCluster Please see
- *                                      {@see AzureClustersClient::azureClusterName()} for help formatting this field.
- * @param string $subjectToken          Required.
- * @param string $subjectTokenType      Required.
- * @param string $version               Required.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function generate_azure_cluster_agent_token_sample(
-    string $formattedAzureCluster,
-    string $subjectToken,
-    string $subjectTokenType,
-    string $version
-): void {
+function generate_azure_cluster_agent_token_sample(): void
+{
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
     // Prepare the request message.
-    $request = (new GenerateAzureClusterAgentTokenRequest())
-        ->setAzureCluster($formattedAzureCluster)
-        ->setSubjectToken($subjectToken)
-        ->setSubjectTokenType($subjectTokenType)
-        ->setVersion($version);
+    $request = new GenerateAzureClusterAgentTokenRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,33 +53,5 @@ function generate_azure_cluster_agent_token_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedAzureCluster = AzureClustersClient::azureClusterName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AZURE_CLUSTER]'
-    );
-    $subjectToken = '[SUBJECT_TOKEN]';
-    $subjectTokenType = '[SUBJECT_TOKEN_TYPE]';
-    $version = '[VERSION]';
-
-    generate_azure_cluster_agent_token_sample(
-        $formattedAzureCluster,
-        $subjectToken,
-        $subjectTokenType,
-        $version
-    );
 }
 // [END gkemulticloud_v1_generated_AzureClusters_GenerateAzureClusterAgentToken_sync]

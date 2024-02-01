@@ -59,8 +59,7 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                             $parent       Required. The parent (project and location) where the Memberships will be
-     *                                                         created. Specified in the format `projects/&#42;/locations/*`. Please see
-     *                                                         {@see GkeHubClient::locationName()} for help formatting this field.
+     *                                                         created. Specified in the format `projects/&#42;/locations/*`.
      * @param \Google\Cloud\GkeHub\V1\Membership $resource     Required. The membership to create.
      * @param string                             $membershipId Required. Client chosen ID for the membership. `membership_id` must be a
      *                                                         valid RFC 1123 compliant DNS label:

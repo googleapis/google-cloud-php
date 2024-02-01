@@ -39,8 +39,7 @@ class UpdateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                               $name            Required. Resource name of organization and inspectTemplate to be updated,
      *                                                              for example `organizations/433245324/inspectTemplates/432452342` or
-     *                                                              projects/project-id/inspectTemplates/432452342. Please see
-     *                                                              {@see DlpServiceClient::inspectTemplateName()} for help formatting this field.
+     *                                                              projects/project-id/inspectTemplates/432452342.
      * @param \Google\Cloud\Dlp\V2\InspectTemplate $inspectTemplate New InspectTemplate value.
      * @param \Google\Protobuf\FieldMask           $updateMask      Mask to control which fields get updated.
      *

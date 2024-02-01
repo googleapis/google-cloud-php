@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Filestore\V1\Client\CloudFilestoreManagerClient;
 use Google\Cloud\Filestore\V1\Snapshot;
 use Google\Cloud\Filestore\V1\UpdateSnapshotRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_snapshot_sample(): void
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $snapshot = new Snapshot();
-    $request = (new UpdateSnapshotRequest())
-        ->setUpdateMask($updateMask)
-        ->setSnapshot($snapshot);
+    $request = new UpdateSnapshotRequest();
 
     // Call the API and handle any network failures.
     try {

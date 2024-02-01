@@ -32,18 +32,19 @@ use Google\Cloud\Domains\V1\Registration;
 /**
  * Lists the `Registration` resources in a project.
  *
- * @param string $formattedParent The project and location from which to list `Registration`s, specified in
- *                                the format `projects/&#42;/locations/*`. Please see
- *                                {@see DomainsClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_registrations_sample(string $formattedParent): void
+function list_registrations_sample(): void
 {
     // Create a client.
     $domainsClient = new DomainsClient();
 
     // Prepare the request message.
-    $request = (new ListRegistrationsRequest())
-        ->setParent($formattedParent);
+    $request = new ListRegistrationsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_registrations_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DomainsClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_registrations_sample($formattedParent);
 }
 // [END domains_v1_generated_Domains_ListRegistrations_sync]

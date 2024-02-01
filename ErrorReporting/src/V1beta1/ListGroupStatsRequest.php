@@ -102,8 +102,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      *                                                                         and `{projectNumber}` can be found in the
      *                                                                         [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
      *
-     *                                                                         Examples: `projects/my-project-123`, `projects/5551234`. Please see
-     *                                                                         {@see ErrorStatsServiceClient::projectName()} for help formatting this field.
+     *                                                                         Examples: `projects/my-project-123`, `projects/5551234`.
      * @param \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange $timeRange   Optional. List data for the given time range.
      *                                                                         If not set, a default time range is used. The field
      *                                                                         <code>time_range_begin</code> in the response will specify the beginning

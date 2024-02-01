@@ -35,21 +35,19 @@ use Google\Cloud\DiscoveryEngine\V1beta\CollectUserEventRequest;
  * This method is used only by the Discovery Engine API JavaScript pixel and
  * Google Tag Manager. Users should not call this method directly.
  *
- * @param string $formattedParent The parent DataStore resource name, such as
- *                                `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`. Please see
- *                                {@see UserEventServiceClient::dataStoreName()} for help formatting this field.
- * @param string $userEvent       URL encoded UserEvent proto with a length limit of 2,000,000
- *                                characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function collect_user_event_sample(string $formattedParent, string $userEvent): void
+function collect_user_event_sample(): void
 {
     // Create a client.
     $userEventServiceClient = new UserEventServiceClient();
 
     // Prepare the request message.
-    $request = (new CollectUserEventRequest())
-        ->setParent($formattedParent)
-        ->setUserEvent($userEvent);
+    $request = new CollectUserEventRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,22 +57,5 @@ function collect_user_event_sample(string $formattedParent, string $userEvent): 
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = UserEventServiceClient::dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-    $userEvent = '[USER_EVENT]';
-
-    collect_user_event_sample($formattedParent, $userEvent);
 }
 // [END discoveryengine_v1beta_generated_UserEventService_CollectUserEvent_sync]

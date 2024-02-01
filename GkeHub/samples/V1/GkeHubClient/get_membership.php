@@ -31,18 +31,19 @@ use Google\Cloud\GkeHub\V1\Membership;
 /**
  * Gets the details of a Membership.
  *
- * @param string $formattedName The Membership resource name in the format
- *                              `projects/&#42;/locations/&#42;/memberships/*`. Please see
- *                              {@see GkeHubClient::membershipName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_membership_sample(string $formattedName): void
+function get_membership_sample(): void
 {
     // Create a client.
     $gkeHubClient = new GkeHubClient();
 
     // Prepare the request message.
-    $request = (new GetMembershipRequest())
-        ->setName($formattedName);
+    $request = new GetMembershipRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +53,5 @@ function get_membership_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = GkeHubClient::membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-
-    get_membership_sample($formattedName);
 }
 // [END gkehub_v1_generated_GkeHub_GetMembership_sync]

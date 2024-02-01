@@ -31,38 +31,19 @@ use Google\Cloud\DiscoveryEngine\V1\Document;
 /**
  * Creates a [Document][google.cloud.discoveryengine.v1.Document].
  *
- * @param string $formattedParent The parent resource name, such as
- *                                `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`. Please see
- *                                {@see DocumentServiceClient::branchName()} for help formatting this field.
- * @param string $documentId      The ID to use for the
- *                                [Document][google.cloud.discoveryengine.v1.Document], which will become the
- *                                final component of the
- *                                [Document.name][google.cloud.discoveryengine.v1.Document.name].
- *
- *                                If the caller does not have permission to create the
- *                                [Document][google.cloud.discoveryengine.v1.Document], regardless of whether
- *                                or not it exists, a `PERMISSION_DENIED` error is returned.
- *
- *                                This field must be unique among all
- *                                [Document][google.cloud.discoveryengine.v1.Document]s with the same
- *                                [parent][google.cloud.discoveryengine.v1.CreateDocumentRequest.parent].
- *                                Otherwise, an `ALREADY_EXISTS` error is returned.
- *
- *                                This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034)
- *                                standard with a length limit of 63 characters. Otherwise, an
- *                                `INVALID_ARGUMENT` error is returned.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_document_sample(string $formattedParent, string $documentId): void
+function create_document_sample(): void
 {
     // Create a client.
     $documentServiceClient = new DocumentServiceClient();
 
     // Prepare the request message.
-    $document = new Document();
-    $request = (new CreateDocumentRequest())
-        ->setParent($formattedParent)
-        ->setDocument($document)
-        ->setDocumentId($documentId);
+    $request = new CreateDocumentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,27 +53,5 @@ function create_document_sample(string $formattedParent, string $documentId): vo
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DocumentServiceClient::branchName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_STORE]',
-        '[BRANCH]'
-    );
-    $documentId = '[DOCUMENT_ID]';
-
-    create_document_sample($formattedParent, $documentId);
 }
 // [END discoveryengine_v1_generated_DocumentService_CreateDocument_sync]

@@ -24,12 +24,12 @@ class ConversationalSearchService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¸!
-Cgoogle/cloud/discoveryengine/v1/conversational_search_service.protogoogle.cloud.discoveryengine.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2google/cloud/discoveryengine/v1/conversation.proto4google/cloud/discoveryengine/v1/search_service.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¿
-ConverseConversationRequestA
-name (	B3àAúA-
-+discoveryengine.googleapis.com/Conversation>
-query (2*.google.cloud.discoveryengine.v1.TextInputBàAI
+À!
+Cgoogle/cloud/discoveryengine/v1/conversational_search_service.protogoogle.cloud.discoveryengine.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2google/cloud/discoveryengine/v1/conversation.proto4google/cloud/discoveryengine/v1/search_service.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Á
+ConverseConversationRequestB
+name (	B4âAúA-
++discoveryengine.googleapis.com/Conversation?
+query (2*.google.cloud.discoveryengine.v1.TextInputBâAI
 serving_config (	B1úA.
 ,discoveryengine.googleapis.com/ServingConfigC
 conversation (2-.google.cloud.discoveryengine.v1.Conversation
@@ -42,22 +42,22 @@ Cgoogle/cloud/discoveryengine/v1/conversational_search_service.protogoogle.clo
 ConverseConversationResponse5
 reply (2&.google.cloud.discoveryengine.v1.ReplyC
 conversation (2-.google.cloud.discoveryengine.v1.ConversationT
-search_results (2<.google.cloud.discoveryengine.v1.SearchResponse.SearchResult"§
-CreateConversationRequest@
-parent (	B0àAúA*
-(discoveryengine.googleapis.com/DataStoreH
-conversation (2-.google.cloud.discoveryengine.v1.ConversationBàA"–
-UpdateConversationRequestH
-conversation (2-.google.cloud.discoveryengine.v1.ConversationBàA/
-update_mask (2.google.protobuf.FieldMask"^
-DeleteConversationRequestA
-name (	B3àAúA-
-+discoveryengine.googleapis.com/Conversation"[
-GetConversationRequestA
-name (	B3àAúA-
-+discoveryengine.googleapis.com/Conversation"¥
-ListConversationsRequest@
-parent (	B0àAúA*
+search_results (2<.google.cloud.discoveryengine.v1.SearchResponse.SearchResult"©
+CreateConversationRequestA
+parent (	B1âAúA*
+(discoveryengine.googleapis.com/DataStoreI
+conversation (2-.google.cloud.discoveryengine.v1.ConversationBâA"—
+UpdateConversationRequestI
+conversation (2-.google.cloud.discoveryengine.v1.ConversationBâA/
+update_mask (2.google.protobuf.FieldMask"_
+DeleteConversationRequestB
+name (	B4âAúA-
++discoveryengine.googleapis.com/Conversation"\\
+GetConversationRequestB
+name (	B4âAúA-
++discoveryengine.googleapis.com/Conversation"¦
+ListConversationsRequestA
+parent (	B1âAúA*
 (discoveryengine.googleapis.com/DataStore
 	page_size (
 
@@ -68,13 +68,13 @@ page_token (	
 conversations (2-.google.cloud.discoveryengine.v1.Conversation
 next_page_token (	2Ú
 ConversationalSearchServiceÒ
-ConverseConversation<.google.cloud.discoveryengine.v1.ConverseConversationRequest=.google.cloud.discoveryengine.v1.ConverseConversationResponse"¼‚Óä“¨"G/v1/{name=projects/*/locations/*/dataStores/*/conversations/*}:converse:*ZZ"U/v1/{name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}:converse:*ÚA
-name,queryË
-CreateConversation:.google.cloud.discoveryengine.v1.CreateConversationRequest-.google.cloud.discoveryengine.v1.Conversation"É‚Óä“¬">/v1/{parent=projects/*/locations/*/dataStores/*}/conversations:conversationZ\\"L/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/conversations:conversationÚAparent,conversation‰
-DeleteConversation:.google.cloud.discoveryengine.v1.DeleteConversationRequest.google.protobuf.Empty"ž‚Óä“*>/v1/{name=projects/*/locations/*/dataStores/*/conversations/*}ZN*L/v1/{name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}ÚAnameê
-UpdateConversation:.google.cloud.discoveryengine.v1.UpdateConversationRequest-.google.cloud.discoveryengine.v1.Conversation"è‚Óä“Æ2K/v1/{conversation.name=projects/*/locations/*/dataStores/*/conversations/*}:conversationZi2Y/v1/{conversation.name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}:conversationÚAconversation,update_maskš
-GetConversation7.google.cloud.discoveryengine.v1.GetConversationRequest-.google.cloud.discoveryengine.v1.Conversation"ž‚Óä“>/v1/{name=projects/*/locations/*/dataStores/*/conversations/*}ZNL/v1/{name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}ÚAname­
-ListConversations9.google.cloud.discoveryengine.v1.ListConversationsRequest:.google.cloud.discoveryengine.v1.ListConversationsResponse" ‚Óä“>/v1/{parent=projects/*/locations/*/dataStores/*}/conversationsZNL/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/conversationsÚAparentRÊAdiscoveryengine.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB“
+ConverseConversation<.google.cloud.discoveryengine.v1.ConverseConversationRequest=.google.cloud.discoveryengine.v1.ConverseConversationResponse"¼ÚA
+name,query‚Óä“¨"G/v1/{name=projects/*/locations/*/dataStores/*/conversations/*}:converse:*ZZ"U/v1/{name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}:converse:*Ë
+CreateConversation:.google.cloud.discoveryengine.v1.CreateConversationRequest-.google.cloud.discoveryengine.v1.Conversation"ÉÚAparent,conversation‚Óä“¬">/v1/{parent=projects/*/locations/*/dataStores/*}/conversations:conversationZ\\"L/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/conversations:conversation‰
+DeleteConversation:.google.cloud.discoveryengine.v1.DeleteConversationRequest.google.protobuf.Empty"žÚAname‚Óä“*>/v1/{name=projects/*/locations/*/dataStores/*/conversations/*}ZN*L/v1/{name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}ê
+UpdateConversation:.google.cloud.discoveryengine.v1.UpdateConversationRequest-.google.cloud.discoveryengine.v1.Conversation"èÚAconversation,update_mask‚Óä“Æ2K/v1/{conversation.name=projects/*/locations/*/dataStores/*/conversations/*}:conversationZi2Y/v1/{conversation.name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}:conversationš
+GetConversation7.google.cloud.discoveryengine.v1.GetConversationRequest-.google.cloud.discoveryengine.v1.Conversation"žÚAname‚Óä“>/v1/{name=projects/*/locations/*/dataStores/*/conversations/*}ZNL/v1/{name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}­
+ListConversations9.google.cloud.discoveryengine.v1.ListConversationsRequest:.google.cloud.discoveryengine.v1.ListConversationsResponse" ÚAparent‚Óä“>/v1/{parent=projects/*/locations/*/dataStores/*}/conversationsZNL/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/conversationsRÊAdiscoveryengine.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB“
 #com.google.cloud.discoveryengine.v1B ConversationalSearchServiceProtoPZMcloud.google.com/go/discoveryengine/apiv1/discoveryenginepb;discoveryenginepb¢DISCOVERYENGINEªGoogle.Cloud.DiscoveryEngine.V1ÊGoogle\\Cloud\\DiscoveryEngine\\V1ê"Google::Cloud::DiscoveryEngine::V1bproto3'
         , true);
 

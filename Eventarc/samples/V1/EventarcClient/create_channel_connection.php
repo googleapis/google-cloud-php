@@ -33,33 +33,19 @@ use Google\Rpc\Status;
 /**
  * Create a new ChannelConnection in a particular project and location.
  *
- * @param string $formattedParent                   The parent collection in which to add this channel connection. Please see
- *                                                  {@see EventarcClient::locationName()} for help formatting this field.
- * @param string $channelConnectionName             The name of the connection.
- * @param string $formattedChannelConnectionChannel The name of the connected subscriber Channel.
- *                                                  This is a weak reference to avoid cross project and cross accounts
- *                                                  references. This must be in
- *                                                  `projects/{project}/location/{location}/channels/{channel_id}` format. Please see
- *                                                  {@see EventarcClient::channelName()} for help formatting this field.
- * @param string $channelConnectionId               The user-provided ID to be assigned to the channel connection.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_channel_connection_sample(
-    string $formattedParent,
-    string $channelConnectionName,
-    string $formattedChannelConnectionChannel,
-    string $channelConnectionId
-): void {
+function create_channel_connection_sample(): void
+{
     // Create a client.
     $eventarcClient = new EventarcClient();
 
     // Prepare the request message.
-    $channelConnection = (new ChannelConnection())
-        ->setName($channelConnectionName)
-        ->setChannel($formattedChannelConnectionChannel);
-    $request = (new CreateChannelConnectionRequest())
-        ->setParent($formattedParent)
-        ->setChannelConnection($channelConnection)
-        ->setChannelConnectionId($channelConnectionId);
+    $request = new CreateChannelConnectionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -79,33 +65,5 @@ function create_channel_connection_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = EventarcClient::locationName('[PROJECT]', '[LOCATION]');
-    $channelConnectionName = '[NAME]';
-    $formattedChannelConnectionChannel = EventarcClient::channelName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CHANNEL]'
-    );
-    $channelConnectionId = '[CHANNEL_CONNECTION_ID]';
-
-    create_channel_connection_sample(
-        $formattedParent,
-        $channelConnectionName,
-        $formattedChannelConnectionChannel,
-        $channelConnectionId
-    );
 }
 // [END eventarc_v1_generated_Eventarc_CreateChannelConnection_sync]

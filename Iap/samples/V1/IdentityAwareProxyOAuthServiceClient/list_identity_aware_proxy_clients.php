@@ -32,17 +32,19 @@ use Google\Cloud\Iap\V1\ListIdentityAwareProxyClientsRequest;
 /**
  * Lists the existing clients for the brand.
  *
- * @param string $parent Full brand path.
- *                       In the following format: projects/{project_number/id}/brands/{brand}.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_identity_aware_proxy_clients_sample(string $parent): void
+function list_identity_aware_proxy_clients_sample(): void
 {
     // Create a client.
     $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
 
     // Prepare the request message.
-    $request = (new ListIdentityAwareProxyClientsRequest())
-        ->setParent($parent);
+    $request = new ListIdentityAwareProxyClientsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +58,5 @@ function list_identity_aware_proxy_clients_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_identity_aware_proxy_clients_sample($parent);
 }
 // [END iap_v1_generated_IdentityAwareProxyOAuthService_ListIdentityAwareProxyClients_sync]

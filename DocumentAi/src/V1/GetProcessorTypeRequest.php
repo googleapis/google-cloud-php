@@ -25,8 +25,7 @@ class GetProcessorTypeRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The processor type resource name. Please see
-     *                     {@see DocumentProcessorServiceClient::processorTypeName()} for help formatting this field.
+     * @param string $name Required. The processor type resource name.
      *
      * @return \Google\Cloud\DocumentAI\V1\GetProcessorTypeRequest
      *

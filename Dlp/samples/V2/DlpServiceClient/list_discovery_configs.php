@@ -32,26 +32,19 @@ use Google\Cloud\Dlp\V2\ListDiscoveryConfigsRequest;
 /**
  * Lists discovery configurations.
  *
- * @param string $formattedParent Parent resource name.
- *
- *                                The format of this value is as follows:
- *                                `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
- *
- *                                The following example `parent` string specifies a parent project with the
- *                                identifier `example-project`, and specifies the `europe-west3` location
- *                                for processing data:
- *
- *                                parent=projects/example-project/locations/europe-west3
- *                                Please see {@see DlpServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_discovery_configs_sample(string $formattedParent): void
+function list_discovery_configs_sample(): void
 {
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
     // Prepare the request message.
-    $request = (new ListDiscoveryConfigsRequest())
-        ->setParent($formattedParent);
+    $request = new ListDiscoveryConfigsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,21 +58,5 @@ function list_discovery_configs_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DlpServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_discovery_configs_sample($formattedParent);
 }
 // [END dlp_v2_generated_DlpService_ListDiscoveryConfigs_sync]

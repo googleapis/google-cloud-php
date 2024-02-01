@@ -49,7 +49,6 @@ class ListZonesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Parent value for ListZonesRequest
-     *                       Please see {@see EdgeNetworkClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\EdgeNetwork\V1\ListZonesRequest
      *

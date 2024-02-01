@@ -35,7 +35,6 @@ class GetMappingRuleRequest extends \Google\Protobuf\Internal\Message
      *                     the revision ID.
      *                     Example:
      *                     conversionWorkspace/123/mappingRules/rule123&#64;c7cfa2a8c7cfa2a8c7cfa2a8c7cfa2a8
-     *                     Please see {@see DataMigrationServiceClient::mappingRuleName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudDms\V1\GetMappingRuleRequest
      *

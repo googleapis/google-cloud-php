@@ -28,31 +28,24 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\EdgeNetwork\V1\Client\EdgeNetworkClient;
 use Google\Cloud\EdgeNetwork\V1\Router;
 use Google\Cloud\EdgeNetwork\V1\UpdateRouterRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates the parameters of a single Router.
  *
- * @param string $routerName             The canonical resource name of the router.
- * @param string $formattedRouterNetwork The canonical name of the network to which this router belongs.
- *                                       The name is in the form of
- *                                       `projects/{project}/locations/{location}/zones/{zone}/networks/{network}`. Please see
- *                                       {@see EdgeNetworkClient::networkName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_router_sample(string $routerName, string $formattedRouterNetwork): void
+function update_router_sample(): void
 {
     // Create a client.
     $edgeNetworkClient = new EdgeNetworkClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $router = (new Router())
-        ->setName($routerName)
-        ->setNetwork($formattedRouterNetwork);
-    $request = (new UpdateRouterRequest())
-        ->setUpdateMask($updateMask)
-        ->setRouter($router);
+    $request = new UpdateRouterRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,27 +65,5 @@ function update_router_sample(string $routerName, string $formattedRouterNetwork
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $routerName = '[NAME]';
-    $formattedRouterNetwork = EdgeNetworkClient::networkName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[ZONE]',
-        '[NETWORK]'
-    );
-
-    update_router_sample($routerName, $formattedRouterNetwork);
 }
 // [END edgenetwork_v1_generated_EdgeNetwork_UpdateRouter_sync]

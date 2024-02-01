@@ -24,9 +24,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'group_id',
-                ],
             ],
             'ListGroupStats' => [
                 'method' => 'get',

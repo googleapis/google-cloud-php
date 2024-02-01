@@ -29,8 +29,7 @@ class RetrieveTransferParametersRequest extends \Google\Protobuf\Internal\Messag
     private $location = '';
 
     /**
-     * @param string $location   Required. The location. Must be in the format `projects/&#42;/locations/*`. Please see
-     *                           {@see DomainsClient::locationName()} for help formatting this field.
+     * @param string $location   Required. The location. Must be in the format `projects/&#42;/locations/*`.
      * @param string $domainName Required. The domain name. Unicode domain names must be expressed in Punycode format.
      *
      * @return \Google\Cloud\Domains\V1\RetrieveTransferParametersRequest

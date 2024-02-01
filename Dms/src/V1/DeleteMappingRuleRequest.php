@@ -33,8 +33,7 @@ class DeleteMappingRuleRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string $name Required. Name of the mapping rule resource to delete. Please see
-     *                     {@see DataMigrationServiceClient::conversionWorkspaceName()} for help formatting this field.
+     * @param string $name Required. Name of the mapping rule resource to delete.
      *
      * @return \Google\Cloud\CloudDms\V1\DeleteMappingRuleRequest
      *

@@ -87,14 +87,7 @@ class SearchServiceClientTest extends GeneratedTest
         $expectedResponse->setCorrectedQuery($correctedQuery);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedServingConfig = $gapicClient->servingConfigName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[DATA_STORE]',
-            '[SERVING_CONFIG]'
-        );
-        $request = (new SearchRequest())->setServingConfig($formattedServingConfig);
+        $request = new SearchRequest();
         $response = $gapicClient->search($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -105,8 +98,6 @@ class SearchServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.SearchService/Search', $actualFuncCall);
-        $actualValue = $actualRequestObject->getServingConfig();
-        $this->assertProtobufEquals($formattedServingConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -131,14 +122,7 @@ class SearchServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedServingConfig = $gapicClient->servingConfigName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[DATA_STORE]',
-            '[SERVING_CONFIG]'
-        );
-        $request = (new SearchRequest())->setServingConfig($formattedServingConfig);
+        $request = new SearchRequest();
         try {
             $gapicClient->search($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -176,14 +160,7 @@ class SearchServiceClientTest extends GeneratedTest
         $expectedResponse->setCorrectedQuery($correctedQuery);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedServingConfig = $gapicClient->servingConfigName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[DATA_STORE]',
-            '[SERVING_CONFIG]'
-        );
-        $request = (new SearchRequest())->setServingConfig($formattedServingConfig);
+        $request = new SearchRequest();
         $response = $gapicClient->searchAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -194,8 +171,6 @@ class SearchServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.SearchService/Search', $actualFuncCall);
-        $actualValue = $actualRequestObject->getServingConfig();
-        $this->assertProtobufEquals($formattedServingConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

@@ -27,7 +27,6 @@ class GetDatabaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. A name of the form
      *                     `projects/{project_id}/databases/{database_id}`
-     *                     Please see {@see FirestoreAdminClient::databaseName()} for help formatting this field.
      *
      * @return \Google\Cloud\Firestore\Admin\V1\GetDatabaseRequest
      *

@@ -44,7 +44,6 @@ class CreateRestoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                             $parent    Required. The RestorePlan within which to create the Restore.
      *                                                      Format: `projects/&#42;/locations/&#42;/restorePlans/*`
-     *                                                      Please see {@see BackupForGKEClient::restorePlanName()} for help formatting this field.
      * @param \Google\Cloud\GkeBackup\V1\Restore $restore   Required. The restore resource to create.
      * @param string                             $restoreId Required. The client-provided short name for the Restore resource.
      *                                                      This name must:

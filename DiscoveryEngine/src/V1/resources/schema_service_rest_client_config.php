@@ -12,9 +12,6 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/schemas',
                         'body' => 'schema',
-                        'queryParams' => [
-                            'schema_id',
-                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -23,9 +20,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'schema_id',
                 ],
             ],
             'DeleteSchema' => [

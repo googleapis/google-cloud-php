@@ -29,16 +29,13 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\GkeMultiCloud\V1\AttachedCluster;
 use Google\Cloud\GkeMultiCloud\V1\AttachedClustersClient;
-use Google\Cloud\GkeMultiCloud\V1\AttachedOidcConfig;
 use Google\Cloud\GkeMultiCloud\V1\AttachedServerConfig;
-use Google\Cloud\GkeMultiCloud\V1\Fleet;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterAgentTokenResponse;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterInstallManifestResponse;
 use Google\Cloud\GkeMultiCloud\V1\ListAttachedClustersResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -118,21 +115,7 @@ class AttachedClustersClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $attachedCluster = new AttachedCluster();
-        $attachedClusterOidcConfig = new AttachedOidcConfig();
-        $attachedCluster->setOidcConfig($attachedClusterOidcConfig);
-        $attachedClusterPlatformVersion = 'attachedClusterPlatformVersion-208126385';
-        $attachedCluster->setPlatformVersion($attachedClusterPlatformVersion);
-        $attachedClusterDistribution = 'attachedClusterDistribution1692601690';
-        $attachedCluster->setDistribution($attachedClusterDistribution);
-        $attachedClusterFleet = new Fleet();
-        $fleetProject = 'fleetProject604893675';
-        $attachedClusterFleet->setProject($fleetProject);
-        $attachedCluster->setFleet($attachedClusterFleet);
-        $attachedClusterId = 'attachedClusterId-249426181';
-        $response = $gapicClient->createAttachedCluster($formattedParent, $attachedCluster, $attachedClusterId);
+        $response = $gapicClient->createAttachedCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -142,12 +125,6 @@ class AttachedClustersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkemulticloud.v1.AttachedClusters/CreateAttachedCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getAttachedCluster();
-        $this->assertProtobufEquals($attachedCluster, $actualValue);
-        $actualValue = $actualApiRequestObject->getAttachedClusterId();
-        $this->assertProtobufEquals($attachedClusterId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createAttachedClusterTest');
         $response->pollUntilComplete([
@@ -198,21 +175,7 @@ class AttachedClustersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $attachedCluster = new AttachedCluster();
-        $attachedClusterOidcConfig = new AttachedOidcConfig();
-        $attachedCluster->setOidcConfig($attachedClusterOidcConfig);
-        $attachedClusterPlatformVersion = 'attachedClusterPlatformVersion-208126385';
-        $attachedCluster->setPlatformVersion($attachedClusterPlatformVersion);
-        $attachedClusterDistribution = 'attachedClusterDistribution1692601690';
-        $attachedCluster->setDistribution($attachedClusterDistribution);
-        $attachedClusterFleet = new Fleet();
-        $fleetProject = 'fleetProject604893675';
-        $attachedClusterFleet->setProject($fleetProject);
-        $attachedCluster->setFleet($attachedClusterFleet);
-        $attachedClusterId = 'attachedClusterId-249426181';
-        $response = $gapicClient->createAttachedCluster($formattedParent, $attachedCluster, $attachedClusterId);
+        $response = $gapicClient->createAttachedCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -263,9 +226,7 @@ class AttachedClustersClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
-        $response = $gapicClient->deleteAttachedCluster($formattedName);
+        $response = $gapicClient->deleteAttachedCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -275,8 +236,6 @@ class AttachedClustersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkemulticloud.v1.AttachedClusters/DeleteAttachedCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteAttachedClusterTest');
         $response->pollUntilComplete([
@@ -327,9 +286,7 @@ class AttachedClustersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
-        $response = $gapicClient->deleteAttachedCluster($formattedName);
+        $response = $gapicClient->deleteAttachedCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -368,26 +325,13 @@ class AttachedClustersClientTest extends GeneratedTest
         $expectedResponse->setExpiresIn($expiresIn);
         $expectedResponse->setTokenType($tokenType);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedAttachedCluster = $gapicClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
-        $subjectToken = 'subjectToken454811942';
-        $subjectTokenType = 'subjectTokenType-697160013';
-        $version = 'version351608024';
-        $response = $gapicClient->generateAttachedClusterAgentToken($formattedAttachedCluster, $subjectToken, $subjectTokenType, $version);
+        $response = $gapicClient->generateAttachedClusterAgentToken();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkemulticloud.v1.AttachedClusters/GenerateAttachedClusterAgentToken', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAttachedCluster();
-        $this->assertProtobufEquals($formattedAttachedCluster, $actualValue);
-        $actualValue = $actualRequestObject->getSubjectToken();
-        $this->assertProtobufEquals($subjectToken, $actualValue);
-        $actualValue = $actualRequestObject->getSubjectTokenType();
-        $this->assertProtobufEquals($subjectTokenType, $actualValue);
-        $actualValue = $actualRequestObject->getVersion();
-        $this->assertProtobufEquals($version, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -409,13 +353,8 @@ class AttachedClustersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedAttachedCluster = $gapicClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
-        $subjectToken = 'subjectToken454811942';
-        $subjectTokenType = 'subjectTokenType-697160013';
-        $version = 'version351608024';
         try {
-            $gapicClient->generateAttachedClusterAgentToken($formattedAttachedCluster, $subjectToken, $subjectTokenType, $version);
+            $gapicClient->generateAttachedClusterAgentToken();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -440,23 +379,13 @@ class AttachedClustersClientTest extends GeneratedTest
         $expectedResponse = new GenerateAttachedClusterInstallManifestResponse();
         $expectedResponse->setManifest($manifest);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $attachedClusterId = 'attachedClusterId-249426181';
-        $platformVersion = 'platformVersion1813514508';
-        $response = $gapicClient->generateAttachedClusterInstallManifest($formattedParent, $attachedClusterId, $platformVersion);
+        $response = $gapicClient->generateAttachedClusterInstallManifest();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkemulticloud.v1.AttachedClusters/GenerateAttachedClusterInstallManifest', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getAttachedClusterId();
-        $this->assertProtobufEquals($attachedClusterId, $actualValue);
-        $actualValue = $actualRequestObject->getPlatformVersion();
-        $this->assertProtobufEquals($platformVersion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -478,12 +407,8 @@ class AttachedClustersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $attachedClusterId = 'attachedClusterId-249426181';
-        $platformVersion = 'platformVersion1813514508';
         try {
-            $gapicClient->generateAttachedClusterInstallManifest($formattedParent, $attachedClusterId, $platformVersion);
+            $gapicClient->generateAttachedClusterInstallManifest();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -524,17 +449,13 @@ class AttachedClustersClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setKubernetesVersion($kubernetesVersion);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
-        $response = $gapicClient->getAttachedCluster($formattedName);
+        $response = $gapicClient->getAttachedCluster();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkemulticloud.v1.AttachedClusters/GetAttachedCluster', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -556,10 +477,8 @@ class AttachedClustersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
         try {
-            $gapicClient->getAttachedCluster($formattedName);
+            $gapicClient->getAttachedCluster();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -584,17 +503,13 @@ class AttachedClustersClientTest extends GeneratedTest
         $expectedResponse = new AttachedServerConfig();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->attachedServerConfigName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->getAttachedServerConfig($formattedName);
+        $response = $gapicClient->getAttachedServerConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkemulticloud.v1.AttachedClusters/GetAttachedServerConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -616,10 +531,8 @@ class AttachedClustersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->attachedServerConfigName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->getAttachedServerConfig($formattedName);
+            $gapicClient->getAttachedServerConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -678,12 +591,7 @@ class AttachedClustersClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $fleetMembership = 'fleetMembership1817977703';
-        $platformVersion = 'platformVersion1813514508';
-        $distribution = 'distribution-1580708220';
-        $response = $gapicClient->importAttachedCluster($formattedParent, $fleetMembership, $platformVersion, $distribution);
+        $response = $gapicClient->importAttachedCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -693,14 +601,6 @@ class AttachedClustersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkemulticloud.v1.AttachedClusters/ImportAttachedCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFleetMembership();
-        $this->assertProtobufEquals($fleetMembership, $actualValue);
-        $actualValue = $actualApiRequestObject->getPlatformVersion();
-        $this->assertProtobufEquals($platformVersion, $actualValue);
-        $actualValue = $actualApiRequestObject->getDistribution();
-        $this->assertProtobufEquals($distribution, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importAttachedClusterTest');
         $response->pollUntilComplete([
@@ -751,12 +651,7 @@ class AttachedClustersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $fleetMembership = 'fleetMembership1817977703';
-        $platformVersion = 'platformVersion1813514508';
-        $distribution = 'distribution-1580708220';
-        $response = $gapicClient->importAttachedCluster($formattedParent, $fleetMembership, $platformVersion, $distribution);
+        $response = $gapicClient->importAttachedCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -796,9 +691,7 @@ class AttachedClustersClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAttachedClusters($attachedClusters);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listAttachedClusters($formattedParent);
+        $response = $gapicClient->listAttachedClusters();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -808,8 +701,6 @@ class AttachedClustersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkemulticloud.v1.AttachedClusters/ListAttachedClusters', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -831,10 +722,8 @@ class AttachedClustersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listAttachedClusters($formattedParent);
+            $gapicClient->listAttachedClusters();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -893,20 +782,7 @@ class AttachedClustersClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $attachedCluster = new AttachedCluster();
-        $attachedClusterOidcConfig = new AttachedOidcConfig();
-        $attachedCluster->setOidcConfig($attachedClusterOidcConfig);
-        $attachedClusterPlatformVersion = 'attachedClusterPlatformVersion-208126385';
-        $attachedCluster->setPlatformVersion($attachedClusterPlatformVersion);
-        $attachedClusterDistribution = 'attachedClusterDistribution1692601690';
-        $attachedCluster->setDistribution($attachedClusterDistribution);
-        $attachedClusterFleet = new Fleet();
-        $fleetProject = 'fleetProject604893675';
-        $attachedClusterFleet->setProject($fleetProject);
-        $attachedCluster->setFleet($attachedClusterFleet);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateAttachedCluster($attachedCluster, $updateMask);
+        $response = $gapicClient->updateAttachedCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -916,10 +792,6 @@ class AttachedClustersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkemulticloud.v1.AttachedClusters/UpdateAttachedCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getAttachedCluster();
-        $this->assertProtobufEquals($attachedCluster, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateAttachedClusterTest');
         $response->pollUntilComplete([
@@ -970,20 +842,7 @@ class AttachedClustersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $attachedCluster = new AttachedCluster();
-        $attachedClusterOidcConfig = new AttachedOidcConfig();
-        $attachedCluster->setOidcConfig($attachedClusterOidcConfig);
-        $attachedClusterPlatformVersion = 'attachedClusterPlatformVersion-208126385';
-        $attachedCluster->setPlatformVersion($attachedClusterPlatformVersion);
-        $attachedClusterDistribution = 'attachedClusterDistribution1692601690';
-        $attachedCluster->setDistribution($attachedClusterDistribution);
-        $attachedClusterFleet = new Fleet();
-        $fleetProject = 'fleetProject604893675';
-        $attachedClusterFleet->setProject($fleetProject);
-        $attachedCluster->setFleet($attachedClusterFleet);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateAttachedCluster($attachedCluster, $updateMask);
+        $response = $gapicClient->updateAttachedCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

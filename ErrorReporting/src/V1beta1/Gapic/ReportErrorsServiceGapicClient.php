@@ -48,9 +48,7 @@ use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
  * ```
  * $reportErrorsServiceClient = new ReportErrorsServiceClient();
  * try {
- *     $formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
- *     $event = new ReportedErrorEvent();
- *     $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
+ *     $response = $reportErrorsServiceClient->reportErrorEvent();
  * } finally {
  *     $reportErrorsServiceClient->close();
  * }
@@ -278,24 +276,24 @@ class ReportErrorsServiceGapicClient
      * ```
      * $reportErrorsServiceClient = new ReportErrorsServiceClient();
      * try {
-     *     $formattedProjectName = $reportErrorsServiceClient->projectName('[PROJECT]');
-     *     $event = new ReportedErrorEvent();
-     *     $response = $reportErrorsServiceClient->reportErrorEvent($formattedProjectName, $event);
+     *     $response = $reportErrorsServiceClient->reportErrorEvent();
      * } finally {
      *     $reportErrorsServiceClient->close();
      * }
      * ```
      *
-     * @param string             $projectName  Required. The resource name of the Google Cloud Platform project. Written
-     *                                         as `projects/{projectId}`, where `{projectId}` is the
-     *                                         [Google Cloud Platform project
-     *                                         ID](https://support.google.com/cloud/answer/6158840).
-     *
-     *                                         Example: // `projects/my-project-123`.
-     * @param ReportedErrorEvent $event        Required. The error event to be reported.
-     * @param array              $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectName
+     *           Required. The resource name of the Google Cloud Platform project. Written
+     *           as `projects/{projectId}`, where `{projectId}` is the
+     *           [Google Cloud Platform project
+     *           ID](https://support.google.com/cloud/answer/6158840).
+     *
+     *           Example: // `projects/my-project-123`.
+     *     @type ReportedErrorEvent $event
+     *           Required. The error event to be reported.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -308,13 +306,19 @@ class ReportErrorsServiceGapicClient
      *
      * @experimental
      */
-    public function reportErrorEvent($projectName, $event, array $optionalArgs = [])
+    public function reportErrorEvent(array $optionalArgs = [])
     {
         $request = new ReportErrorEventRequest();
         $requestParamHeaders = [];
-        $request->setProjectName($projectName);
-        $request->setEvent($event);
-        $requestParamHeaders['project_name'] = $projectName;
+        if (isset($optionalArgs['projectName'])) {
+            $request->setProjectName($optionalArgs['projectName']);
+            $requestParamHeaders['project_name'] = $optionalArgs['projectName'];
+        }
+
+        if (isset($optionalArgs['event'])) {
+            $request->setEvent($optionalArgs['event']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ReportErrorEvent', ReportErrorEventResponse::class, $optionalArgs, $request)->wait();

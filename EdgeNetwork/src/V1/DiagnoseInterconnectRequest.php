@@ -24,8 +24,7 @@ class DiagnoseInterconnectRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the interconnect resource. Please see
-     *                     {@see EdgeNetworkClient::interconnectName()} for help formatting this field.
+     * @param string $name Required. The name of the interconnect resource.
      *
      * @return \Google\Cloud\EdgeNetwork\V1\DiagnoseInterconnectRequest
      *

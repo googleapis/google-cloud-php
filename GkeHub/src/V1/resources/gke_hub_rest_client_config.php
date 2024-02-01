@@ -26,9 +26,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'membership_id',
-                ],
             ],
             'DeleteFeature' => [
                 'method' => 'delete',
@@ -129,9 +126,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'backup_id',
-                ],
             ],
             'CreateInstance' => [
                 'method' => 'post',
@@ -29,9 +26,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'instance_id',
-                ],
             ],
             'CreateSnapshot' => [
                 'method' => 'post',
@@ -43,9 +37,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'snapshot_id',
                 ],
             ],
             'DeleteBackup' => [
@@ -183,9 +174,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateInstance' => [
                 'method' => 'patch',
@@ -211,9 +199,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

@@ -31,23 +31,19 @@ use Google\Cloud\CloudDms\V1\MappingRule;
 /**
  * Gets the details of a mapping rule.
  *
- * @param string $formattedName Name of the mapping rule resource to get.
- *                              Example: conversionWorkspaces/123/mappingRules/rule123
- *
- *                              In order to retrieve a previous revision of the mapping rule, also provide
- *                              the revision ID.
- *                              Example:
- *                              conversionWorkspace/123/mappingRules/rule123&#64;c7cfa2a8c7cfa2a8c7cfa2a8c7cfa2a8
- *                              Please see {@see DataMigrationServiceClient::mappingRuleName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_mapping_rule_sample(string $formattedName): void
+function get_mapping_rule_sample(): void
 {
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
     // Prepare the request message.
-    $request = (new GetMappingRuleRequest())
-        ->setName($formattedName);
+    $request = new GetMappingRuleRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,26 +53,5 @@ function get_mapping_rule_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DataMigrationServiceClient::mappingRuleName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CONVERSION_WORKSPACE]',
-        '[MAPPING_RULE]'
-    );
-
-    get_mapping_rule_sample($formattedName);
 }
 // [END datamigration_v1_generated_DataMigrationService_GetMappingRule_sync]

@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\GkeBackup\V1\Client\BackupForGKEClient;
-use Google\Cloud\GkeBackup\V1\RestoreConfig;
 use Google\Cloud\GkeBackup\V1\RestorePlan;
 use Google\Cloud\GkeBackup\V1\UpdateRestorePlanRequest;
 use Google\Rpc\Status;
@@ -34,34 +33,19 @@ use Google\Rpc\Status;
 /**
  * Update a RestorePlan.
  *
- * @param string $formattedRestorePlanBackupPlan Immutable. A reference to the
- *                                               [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may
- *                                               be used as the source for Restores created via this RestorePlan. Format:
- *                                               `projects/&#42;/locations/&#42;/backupPlans/*`. Please see
- *                                               {@see BackupForGKEClient::backupPlanName()} for help formatting this field.
- * @param string $formattedRestorePlanCluster    Immutable. The target cluster into which Restores created via
- *                                               this RestorePlan will restore data. NOTE: the cluster's region must be the
- *                                               same as the RestorePlan. Valid formats:
- *
- *                                               - `projects/&#42;/locations/&#42;/clusters/*`
- *                                               - `projects/&#42;/zones/&#42;/clusters/*`
- *                                               Please see {@see BackupForGKEClient::clusterName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_restore_plan_sample(
-    string $formattedRestorePlanBackupPlan,
-    string $formattedRestorePlanCluster
-): void {
+function update_restore_plan_sample(): void
+{
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
     // Prepare the request message.
-    $restorePlanRestoreConfig = new RestoreConfig();
-    $restorePlan = (new RestorePlan())
-        ->setBackupPlan($formattedRestorePlanBackupPlan)
-        ->setCluster($formattedRestorePlanCluster)
-        ->setRestoreConfig($restorePlanRestoreConfig);
-    $request = (new UpdateRestorePlanRequest())
-        ->setRestorePlan($restorePlan);
+    $request = new UpdateRestorePlanRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -81,30 +65,5 @@ function update_restore_plan_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedRestorePlanBackupPlan = BackupForGKEClient::backupPlanName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[BACKUP_PLAN]'
-    );
-    $formattedRestorePlanCluster = BackupForGKEClient::clusterName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CLUSTER]'
-    );
-
-    update_restore_plan_sample($formattedRestorePlanBackupPlan, $formattedRestorePlanCluster);
 }
 // [END gkebackup_v1_generated_BackupForGKE_UpdateRestorePlan_sync]

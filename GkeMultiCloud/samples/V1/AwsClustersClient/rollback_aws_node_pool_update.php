@@ -38,25 +38,19 @@ use Google\Rpc\Status;
  * You must first cancel or let it finish unsuccessfully before you can
  * rollback.
  *
- * @param string $formattedName The name of the
- *                              [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to
- *                              rollback.
- *
- *                              `AwsNodePool` names are formatted as
- *                              `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
- *
- *                              See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                              for more details on Google Cloud resource names. Please see
- *                              {@see AwsClustersClient::awsNodePoolName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function rollback_aws_node_pool_update_sample(string $formattedName): void
+function rollback_aws_node_pool_update_sample(): void
 {
     // Create a client.
     $awsClustersClient = new AwsClustersClient();
 
     // Prepare the request message.
-    $request = (new RollbackAwsNodePoolUpdateRequest())
-        ->setName($formattedName);
+    $request = new RollbackAwsNodePoolUpdateRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -76,26 +70,5 @@ function rollback_aws_node_pool_update_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AwsClustersClient::awsNodePoolName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AWS_CLUSTER]',
-        '[AWS_NODE_POOL]'
-    );
-
-    rollback_aws_node_pool_update_sample($formattedName);
 }
 // [END gkemulticloud_v1_generated_AwsClusters_RollbackAwsNodePoolUpdate_sync]

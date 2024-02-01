@@ -79,7 +79,6 @@ class CreateDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
      *                                                                    for processing data:
      *
      *                                                                    parent=projects/example-project/locations/europe-west3
-     *                                                                    Please see {@see DlpServiceClient::organizationLocationName()} for help formatting this field.
      * @param \Google\Cloud\Dlp\V2\DeidentifyTemplate $deidentifyTemplate Required. The DeidentifyTemplate to create.
      *
      * @return \Google\Cloud\Dlp\V2\CreateDeidentifyTemplateRequest

@@ -60,7 +60,6 @@ class ListBackupPlansRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The location that contains the BackupPlans to list.
      *                       Format: `projects/&#42;/locations/*`
-     *                       Please see {@see BackupForGKEClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\GkeBackup\V1\ListBackupPlansRequest
      *

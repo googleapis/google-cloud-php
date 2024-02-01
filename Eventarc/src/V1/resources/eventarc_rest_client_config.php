@@ -14,10 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'channel_id',
-                    'validate_only',
-                ],
             ],
             'CreateChannelConnection' => [
                 'method' => 'post',
@@ -29,9 +25,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'channel_connection_id',
                 ],
             ],
             'CreateTrigger' => [
@@ -45,10 +38,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'trigger_id',
-                    'validate_only',
-                ],
             ],
             'DeleteChannel' => [
                 'method' => 'delete',
@@ -59,9 +48,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'validate_only',
                 ],
             ],
             'DeleteChannelConnection' => [
@@ -84,9 +70,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'validate_only',
                 ],
             ],
             'GetChannel' => [
@@ -200,9 +183,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'validate_only',
-                ],
             ],
             'UpdateGoogleChannelConfig' => [
                 'method' => 'patch',
@@ -228,9 +208,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'validate_only',
                 ],
             ],
         ],

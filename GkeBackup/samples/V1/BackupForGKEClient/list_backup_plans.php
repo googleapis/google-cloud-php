@@ -32,18 +32,19 @@ use Google\Cloud\GkeBackup\V1\ListBackupPlansRequest;
 /**
  * Lists BackupPlans in a given location.
  *
- * @param string $formattedParent The location that contains the BackupPlans to list.
- *                                Format: `projects/&#42;/locations/*`
- *                                Please see {@see BackupForGKEClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_backup_plans_sample(string $formattedParent): void
+function list_backup_plans_sample(): void
 {
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
     // Prepare the request message.
-    $request = (new ListBackupPlansRequest())
-        ->setParent($formattedParent);
+    $request = new ListBackupPlansRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_backup_plans_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = BackupForGKEClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_backup_plans_sample($formattedParent);
 }
 // [END gkebackup_v1_generated_BackupForGKE_ListBackupPlans_sync]

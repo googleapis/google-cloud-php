@@ -41,8 +41,7 @@ class DeleteMigrationJobRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
-     * @param string $name Required. Name of the migration job resource to delete. Please see
-     *                     {@see DataMigrationServiceClient::migrationJobName()} for help formatting this field.
+     * @param string $name Required. Name of the migration job resource to delete.
      *
      * @return \Google\Cloud\CloudDms\V1\DeleteMigrationJobRequest
      *

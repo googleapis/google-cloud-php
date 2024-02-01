@@ -33,18 +33,19 @@ use Google\Cloud\Dlp\V2\HybridInspectResponse;
  * To review the findings, inspect the job. Inspection will occur
  * asynchronously.
  *
- * @param string $formattedName Resource name of the job to execute a hybrid inspect on, for
- *                              example `projects/dlp-test-project/dlpJob/53234423`. Please see
- *                              {@see DlpServiceClient::dlpJobName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function hybrid_inspect_dlp_job_sample(string $formattedName): void
+function hybrid_inspect_dlp_job_sample(): void
 {
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
     // Prepare the request message.
-    $request = (new HybridInspectDlpJobRequest())
-        ->setName($formattedName);
+    $request = new HybridInspectDlpJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +55,5 @@ function hybrid_inspect_dlp_job_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DlpServiceClient::dlpJobName('[PROJECT]', '[DLP_JOB]');
-
-    hybrid_inspect_dlp_job_sample($formattedName);
 }
 // [END dlp_v2_generated_DlpService_HybridInspectDlpJob_sync]

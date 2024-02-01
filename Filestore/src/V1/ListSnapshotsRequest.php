@@ -52,8 +52,7 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The instance for which to retrieve snapshot information,
      *                       in the format
-     *                       `projects/{project_id}/locations/{location}/instances/{instance_id}`. Please see
-     *                       {@see CloudFilestoreManagerClient::instanceName()} for help formatting this field.
+     *                       `projects/{project_id}/locations/{location}/instances/{instance_id}`.
      *
      * @return \Google\Cloud\Filestore\V1\ListSnapshotsRequest
      *

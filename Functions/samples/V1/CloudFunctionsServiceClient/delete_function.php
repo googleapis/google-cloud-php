@@ -33,10 +33,13 @@ use Google\Rpc\Status;
  * given function is used by some trigger, the trigger will be updated to
  * remove this function.
  *
- * @param string $formattedName The name of the function which should be deleted. Please see
- *                              {@see CloudFunctionsServiceClient::cloudFunctionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_function_sample(string $formattedName): void
+function delete_function_sample(): void
 {
     // Create a client.
     $cloudFunctionsServiceClient = new CloudFunctionsServiceClient();
@@ -44,7 +47,7 @@ function delete_function_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudFunctionsServiceClient->deleteFunction($formattedName);
+        $response = $cloudFunctionsServiceClient->deleteFunction();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -57,25 +60,5 @@ function delete_function_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudFunctionsServiceClient::cloudFunctionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[FUNCTION]'
-    );
-
-    delete_function_sample($formattedName);
 }
 // [END cloudfunctions_v1_generated_CloudFunctionsService_DeleteFunction_sync]

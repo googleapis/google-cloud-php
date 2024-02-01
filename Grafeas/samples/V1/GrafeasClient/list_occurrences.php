@@ -32,18 +32,19 @@ use Grafeas\V1\Occurrence;
 /**
  * Lists occurrences for the specified project.
  *
- * @param string $formattedParent The name of the project to list occurrences for in the form of
- *                                `projects/[PROJECT_ID]`. Please see
- *                                {@see GrafeasClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_occurrences_sample(string $formattedParent): void
+function list_occurrences_sample(): void
 {
     // Create a client.
     $grafeasClient = new GrafeasClient();
 
     // Prepare the request message.
-    $request = (new ListOccurrencesRequest())
-        ->setParent($formattedParent);
+    $request = new ListOccurrencesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_occurrences_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = GrafeasClient::projectName('[PROJECT]');
-
-    list_occurrences_sample($formattedParent);
 }
 // [END containeranalysis_v1_generated_Grafeas_ListOccurrences_sync]

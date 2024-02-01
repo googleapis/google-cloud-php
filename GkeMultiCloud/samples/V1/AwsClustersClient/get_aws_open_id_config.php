@@ -35,19 +35,19 @@ use Google\Cloud\GkeMultiCloud\V1\GetAwsOpenIdConfigRequest;
  * specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
  * for details.
  *
- * @param string $formattedAwsCluster The AwsCluster, which owns the OIDC discovery document.
- *                                    Format:
- *                                    projects/{project}/locations/{location}/awsClusters/{cluster}
- *                                    Please see {@see AwsClustersClient::awsClusterName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_aws_open_id_config_sample(string $formattedAwsCluster): void
+function get_aws_open_id_config_sample(): void
 {
     // Create a client.
     $awsClustersClient = new AwsClustersClient();
 
     // Prepare the request message.
-    $request = (new GetAwsOpenIdConfigRequest())
-        ->setAwsCluster($formattedAwsCluster);
+    $request = new GetAwsOpenIdConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,25 +57,5 @@ function get_aws_open_id_config_sample(string $formattedAwsCluster): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedAwsCluster = AwsClustersClient::awsClusterName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AWS_CLUSTER]'
-    );
-
-    get_aws_open_id_config_sample($formattedAwsCluster);
 }
 // [END gkemulticloud_v1_generated_AwsClusters_GetAwsOpenIdConfig_sync]

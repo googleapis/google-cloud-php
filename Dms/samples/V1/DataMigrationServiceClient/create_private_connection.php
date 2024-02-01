@@ -33,23 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new private connection in a given project and location.
  *
- * @param string $formattedParent     The parent that owns the collection of PrivateConnections. Please see
- *                                    {@see DataMigrationServiceClient::locationName()} for help formatting this field.
- * @param string $privateConnectionId The private connection identifier.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_private_connection_sample(
-    string $formattedParent,
-    string $privateConnectionId
-): void {
+function create_private_connection_sample(): void
+{
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
     // Prepare the request message.
-    $privateConnection = new PrivateConnection();
-    $request = (new CreatePrivateConnectionRequest())
-        ->setParent($formattedParent)
-        ->setPrivateConnectionId($privateConnectionId)
-        ->setPrivateConnection($privateConnection);
+    $request = new CreatePrivateConnectionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,22 +65,5 @@ function create_private_connection_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataMigrationServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $privateConnectionId = '[PRIVATE_CONNECTION_ID]';
-
-    create_private_connection_sample($formattedParent, $privateConnectionId);
 }
 // [END datamigration_v1_generated_DataMigrationService_CreatePrivateConnection_sync]

@@ -54,8 +54,7 @@ class ListAwsNodePoolsRequest extends \Google\Protobuf\Internal\Message
      *                       `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
      *
      *                       See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                       for more details on Google Cloud resource names. Please see
-     *                       {@see AwsClustersClient::awsClusterName()} for help formatting this field.
+     *                       for more details on Google Cloud resource names.
      *
      * @return \Google\Cloud\GkeMultiCloud\V1\ListAwsNodePoolsRequest
      *

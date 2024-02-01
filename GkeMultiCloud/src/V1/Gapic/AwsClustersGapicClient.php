@@ -73,10 +73,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $awsClustersClient = new AwsClustersClient();
  * try {
- *     $formattedParent = $awsClustersClient->locationName('[PROJECT]', '[LOCATION]');
- *     $awsCluster = new AwsCluster();
- *     $awsClusterId = 'aws_cluster_id';
- *     $operationResponse = $awsClustersClient->createAwsCluster($formattedParent, $awsCluster, $awsClusterId);
+ *     $operationResponse = $awsClustersClient->createAwsCluster();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -87,7 +84,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $awsClustersClient->createAwsCluster($formattedParent, $awsCluster, $awsClusterId);
+ *     $operationResponse = $awsClustersClient->createAwsCluster();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $awsClustersClient->resumeOperation($operationName, 'createAwsCluster');
@@ -471,10 +468,7 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $formattedParent = $awsClustersClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $awsCluster = new AwsCluster();
-     *     $awsClusterId = 'aws_cluster_id';
-     *     $operationResponse = $awsClustersClient->createAwsCluster($formattedParent, $awsCluster, $awsClusterId);
+     *     $operationResponse = $awsClustersClient->createAwsCluster();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -485,7 +479,7 @@ class AwsClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $awsClustersClient->createAwsCluster($formattedParent, $awsCluster, $awsClusterId);
+     *     $operationResponse = $awsClustersClient->createAwsCluster();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $awsClustersClient->resumeOperation($operationName, 'createAwsCluster');
@@ -505,28 +499,31 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The parent location where this
-     *                                 [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource will be
-     *                                 created.
-     *
-     *                                 Location names are formatted as `projects/<project-id>/locations/<region>`.
-     *
-     *                                 See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                                 for more details on Google Cloud resource names.
-     * @param AwsCluster $awsCluster   Required. The specification of the
-     *                                 [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to create.
-     * @param string     $awsClusterId Required. A client provided ID the resource. Must be unique within the
-     *                                 parent resource.
-     *
-     *                                 The provided ID will be part of the
-     *                                 [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource name
-     *                                 formatted as
-     *                                 `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
-     *
-     *                                 Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent location where this
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource will be
+     *           created.
+     *
+     *           Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
+     *     @type AwsCluster $awsCluster
+     *           Required. The specification of the
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to create.
+     *     @type string $awsClusterId
+     *           Required. A client provided ID the resource. Must be unique within the
+     *           parent resource.
+     *
+     *           The provided ID will be part of the
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource name
+     *           formatted as
+     *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
+     *
+     *           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually create the cluster.
      *     @type RetrySettings|array $retrySettings
@@ -539,18 +536,23 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAwsCluster(
-        $parent,
-        $awsCluster,
-        $awsClusterId,
-        array $optionalArgs = []
-    ) {
+    public function createAwsCluster(array $optionalArgs = [])
+    {
         $request = new CreateAwsClusterRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAwsCluster($awsCluster);
-        $request->setAwsClusterId($awsClusterId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['awsCluster'])) {
+            $request->setAwsCluster($optionalArgs['awsCluster']);
+        }
+
+        if (isset($optionalArgs['awsClusterId'])) {
+            $request->setAwsClusterId($optionalArgs['awsClusterId']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -581,10 +583,7 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $formattedParent = $awsClustersClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-     *     $awsNodePool = new AwsNodePool();
-     *     $awsNodePoolId = 'aws_node_pool_id';
-     *     $operationResponse = $awsClustersClient->createAwsNodePool($formattedParent, $awsNodePool, $awsNodePoolId);
+     *     $operationResponse = $awsClustersClient->createAwsNodePool();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -595,7 +594,7 @@ class AwsClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $awsClustersClient->createAwsNodePool($formattedParent, $awsNodePool, $awsNodePoolId);
+     *     $operationResponse = $awsClustersClient->createAwsNodePool();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $awsClustersClient->resumeOperation($operationName, 'createAwsNodePool');
@@ -615,28 +614,31 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param string      $parent        Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-     *                                   resource where this node pool will be created.
-     *
-     *                                   `AwsCluster` names are formatted as
-     *                                   `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
-     *
-     *                                   See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                                   for more details on Google Cloud resource names.
-     * @param AwsNodePool $awsNodePool   Required. The specification of the
-     *                                   [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to create.
-     * @param string      $awsNodePoolId Required. A client provided ID the resource. Must be unique within the
-     *                                   parent resource.
-     *
-     *                                   The provided ID will be part of the
-     *                                   [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource name
-     *                                   formatted as
-     *                                   `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
-     *
-     *                                   Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
-     * @param array       $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+     *           resource where this node pool will be created.
+     *
+     *           `AwsCluster` names are formatted as
+     *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
+     *     @type AwsNodePool $awsNodePool
+     *           Required. The specification of the
+     *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to create.
+     *     @type string $awsNodePoolId
+     *           Required. A client provided ID the resource. Must be unique within the
+     *           parent resource.
+     *
+     *           The provided ID will be part of the
+     *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource name
+     *           formatted as
+     *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
+     *
+     *           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually create the node
      *           pool.
@@ -650,18 +652,23 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAwsNodePool(
-        $parent,
-        $awsNodePool,
-        $awsNodePoolId,
-        array $optionalArgs = []
-    ) {
+    public function createAwsNodePool(array $optionalArgs = [])
+    {
         $request = new CreateAwsNodePoolRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAwsNodePool($awsNodePool);
-        $request->setAwsNodePoolId($awsNodePoolId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['awsNodePool'])) {
+            $request->setAwsNodePool($optionalArgs['awsNodePool']);
+        }
+
+        if (isset($optionalArgs['awsNodePoolId'])) {
+            $request->setAwsNodePoolId($optionalArgs['awsNodePoolId']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -695,8 +702,7 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $formattedName = $awsClustersClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-     *     $operationResponse = $awsClustersClient->deleteAwsCluster($formattedName);
+     *     $operationResponse = $awsClustersClient->deleteAwsCluster();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -706,7 +712,7 @@ class AwsClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $awsClustersClient->deleteAwsCluster($formattedName);
+     *     $operationResponse = $awsClustersClient->deleteAwsCluster();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $awsClustersClient->resumeOperation($operationName, 'deleteAwsCluster');
@@ -725,17 +731,18 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name the
-     *                             [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to delete.
-     *
-     *                             `AwsCluster` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud Platform resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name the
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to delete.
+     *
+     *           `AwsCluster` names are formatted as
+     *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud Platform resource names.
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually delete the resource.
      *     @type bool $allowMissing
@@ -768,12 +775,15 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAwsCluster($name, array $optionalArgs = [])
+    public function deleteAwsCluster(array $optionalArgs = [])
     {
         $request = new DeleteAwsClusterRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -816,8 +826,7 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $formattedName = $awsClustersClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
-     *     $operationResponse = $awsClustersClient->deleteAwsNodePool($formattedName);
+     *     $operationResponse = $awsClustersClient->deleteAwsNodePool();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -827,7 +836,7 @@ class AwsClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $awsClustersClient->deleteAwsNodePool($formattedName);
+     *     $operationResponse = $awsClustersClient->deleteAwsNodePool();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $awsClustersClient->resumeOperation($operationName, 'deleteAwsNodePool');
@@ -846,17 +855,18 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name the
-     *                             [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to delete.
-     *
-     *                             `AwsNodePool` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name the
+     *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to delete.
+     *
+     *           `AwsNodePool` names are formatted as
+     *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually delete the node
      *           pool.
@@ -890,12 +900,15 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAwsNodePool($name, array $optionalArgs = [])
+    public function deleteAwsNodePool(array $optionalArgs = [])
     {
         $request = new DeleteAwsNodePoolRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -934,25 +947,25 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $formattedAwsCluster = $awsClustersClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-     *     $response = $awsClustersClient->generateAwsAccessToken($formattedAwsCluster);
+     *     $response = $awsClustersClient->generateAwsAccessToken();
      * } finally {
      *     $awsClustersClient->close();
      * }
      * ```
      *
-     * @param string $awsCluster   Required. The name of the
-     *                             [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
-     *                             authenticate to.
-     *
-     *                             `AwsCluster` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $awsCluster
+     *           Required. The name of the
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
+     *           authenticate to.
+     *
+     *           `AwsCluster` names are formatted as
+     *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -963,14 +976,15 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateAwsAccessToken(
-        $awsCluster,
-        array $optionalArgs = []
-    ) {
+    public function generateAwsAccessToken(array $optionalArgs = [])
+    {
         $request = new GenerateAwsAccessTokenRequest();
         $requestParamHeaders = [];
-        $request->setAwsCluster($awsCluster);
-        $requestParamHeaders['aws_cluster'] = $awsCluster;
+        if (isset($optionalArgs['awsCluster'])) {
+            $request->setAwsCluster($optionalArgs['awsCluster']);
+            $requestParamHeaders['aws_cluster'] = $optionalArgs['awsCluster'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -992,23 +1006,23 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $formattedAwsCluster = $awsClustersClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-     *     $subjectToken = 'subject_token';
-     *     $subjectTokenType = 'subject_token_type';
-     *     $version = 'version';
-     *     $response = $awsClustersClient->generateAwsClusterAgentToken($formattedAwsCluster, $subjectToken, $subjectTokenType, $version);
+     *     $response = $awsClustersClient->generateAwsClusterAgentToken();
      * } finally {
      *     $awsClustersClient->close();
      * }
      * ```
      *
-     * @param string $awsCluster       Required.
-     * @param string $subjectToken     Required.
-     * @param string $subjectTokenType Required.
-     * @param string $version          Required.
-     * @param array  $optionalArgs     {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $awsCluster
+     *           Required.
+     *     @type string $subjectToken
+     *           Required.
+     *     @type string $subjectTokenType
+     *           Required.
+     *     @type string $version
+     *           Required.
      *     @type string $nodePoolId
      *           Optional.
      *     @type string $grantType
@@ -1031,20 +1045,27 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateAwsClusterAgentToken(
-        $awsCluster,
-        $subjectToken,
-        $subjectTokenType,
-        $version,
-        array $optionalArgs = []
-    ) {
+    public function generateAwsClusterAgentToken(array $optionalArgs = [])
+    {
         $request = new GenerateAwsClusterAgentTokenRequest();
         $requestParamHeaders = [];
-        $request->setAwsCluster($awsCluster);
-        $request->setSubjectToken($subjectToken);
-        $request->setSubjectTokenType($subjectTokenType);
-        $request->setVersion($version);
-        $requestParamHeaders['aws_cluster'] = $awsCluster;
+        if (isset($optionalArgs['awsCluster'])) {
+            $request->setAwsCluster($optionalArgs['awsCluster']);
+            $requestParamHeaders['aws_cluster'] = $optionalArgs['awsCluster'];
+        }
+
+        if (isset($optionalArgs['subjectToken'])) {
+            $request->setSubjectToken($optionalArgs['subjectToken']);
+        }
+
+        if (isset($optionalArgs['subjectTokenType'])) {
+            $request->setSubjectTokenType($optionalArgs['subjectTokenType']);
+        }
+
+        if (isset($optionalArgs['version'])) {
+            $request->setVersion($optionalArgs['version']);
+        }
+
         if (isset($optionalArgs['nodePoolId'])) {
             $request->setNodePoolId($optionalArgs['nodePoolId']);
         }
@@ -1093,25 +1114,25 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $formattedName = $awsClustersClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-     *     $response = $awsClustersClient->getAwsCluster($formattedName);
+     *     $response = $awsClustersClient->getAwsCluster();
      * } finally {
      *     $awsClustersClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the
-     *                             [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
-     *                             describe.
-     *
-     *                             `AwsCluster` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud Platform resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource to
+     *           describe.
+     *
+     *           `AwsCluster` names are formatted as
+     *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud Platform resource names.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1122,12 +1143,15 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAwsCluster($name, array $optionalArgs = [])
+    public function getAwsCluster(array $optionalArgs = [])
     {
         $request = new GetAwsClusterRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1150,19 +1174,19 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $formattedAwsCluster = $awsClustersClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-     *     $response = $awsClustersClient->getAwsJsonWebKeys($formattedAwsCluster);
+     *     $response = $awsClustersClient->getAwsJsonWebKeys();
      * } finally {
      *     $awsClustersClient->close();
      * }
      * ```
      *
-     * @param string $awsCluster   Required. The AwsCluster, which owns the JsonWebKeys.
-     *                             Format:
-     *                             projects/{project}/locations/{location}/awsClusters/{cluster}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $awsCluster
+     *           Required. The AwsCluster, which owns the JsonWebKeys.
+     *           Format:
+     *           projects/{project}/locations/{location}/awsClusters/{cluster}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1173,12 +1197,15 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAwsJsonWebKeys($awsCluster, array $optionalArgs = [])
+    public function getAwsJsonWebKeys(array $optionalArgs = [])
     {
         $request = new GetAwsJsonWebKeysRequest();
         $requestParamHeaders = [];
-        $request->setAwsCluster($awsCluster);
-        $requestParamHeaders['aws_cluster'] = $awsCluster;
+        if (isset($optionalArgs['awsCluster'])) {
+            $request->setAwsCluster($optionalArgs['awsCluster']);
+            $requestParamHeaders['aws_cluster'] = $optionalArgs['awsCluster'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1201,25 +1228,25 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $formattedName = $awsClustersClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
-     *     $response = $awsClustersClient->getAwsNodePool($formattedName);
+     *     $response = $awsClustersClient->getAwsNodePool();
      * } finally {
      *     $awsClustersClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the
-     *                             [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to
-     *                             describe.
-     *
-     *                             `AwsNodePool` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the
+     *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to
+     *           describe.
+     *
+     *           `AwsNodePool` names are formatted as
+     *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1230,12 +1257,15 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAwsNodePool($name, array $optionalArgs = [])
+    public function getAwsNodePool(array $optionalArgs = [])
     {
         $request = new GetAwsNodePoolRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1261,19 +1291,19 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $formattedAwsCluster = $awsClustersClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-     *     $response = $awsClustersClient->getAwsOpenIdConfig($formattedAwsCluster);
+     *     $response = $awsClustersClient->getAwsOpenIdConfig();
      * } finally {
      *     $awsClustersClient->close();
      * }
      * ```
      *
-     * @param string $awsCluster   Required. The AwsCluster, which owns the OIDC discovery document.
-     *                             Format:
-     *                             projects/{project}/locations/{location}/awsClusters/{cluster}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $awsCluster
+     *           Required. The AwsCluster, which owns the OIDC discovery document.
+     *           Format:
+     *           projects/{project}/locations/{location}/awsClusters/{cluster}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1284,12 +1314,15 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAwsOpenIdConfig($awsCluster, array $optionalArgs = [])
+    public function getAwsOpenIdConfig(array $optionalArgs = [])
     {
         $request = new GetAwsOpenIdConfigRequest();
         $requestParamHeaders = [];
-        $request->setAwsCluster($awsCluster);
-        $requestParamHeaders['aws_cluster'] = $awsCluster;
+        if (isset($optionalArgs['awsCluster'])) {
+            $request->setAwsCluster($optionalArgs['awsCluster']);
+            $requestParamHeaders['aws_cluster'] = $optionalArgs['awsCluster'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1312,25 +1345,25 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $formattedName = $awsClustersClient->awsServerConfigName('[PROJECT]', '[LOCATION]');
-     *     $response = $awsClustersClient->getAwsServerConfig($formattedName);
+     *     $response = $awsClustersClient->getAwsServerConfig();
      * } finally {
      *     $awsClustersClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the
-     *                             [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource
-     *                             to describe.
-     *
-     *                             `AwsServerConfig` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/awsServerConfig`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the
+     *           [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource
+     *           to describe.
+     *
+     *           `AwsServerConfig` names are formatted as
+     *           `projects/<project-id>/locations/<region>/awsServerConfig`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1341,12 +1374,15 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAwsServerConfig($name, array $optionalArgs = [])
+    public function getAwsServerConfig(array $optionalArgs = [])
     {
         $request = new GetAwsServerConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1369,9 +1405,8 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $formattedParent = $awsClustersClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $awsClustersClient->listAwsClusters($formattedParent);
+     *     $pagedResponse = $awsClustersClient->listAwsClusters();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1379,7 +1414,7 @@ class AwsClustersGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $awsClustersClient->listAwsClusters($formattedParent);
+     *     $pagedResponse = $awsClustersClient->listAwsClusters();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1388,16 +1423,17 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent location which owns this collection of
-     *                             [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources.
-     *
-     *                             Location names are formatted as `projects/<project-id>/locations/<region>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud Platform resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent location which owns this collection of
+     *           [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources.
+     *
+     *           Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud Platform resource names.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1417,12 +1453,15 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAwsClusters($parent, array $optionalArgs = [])
+    public function listAwsClusters(array $optionalArgs = [])
     {
         $request = new ListAwsClustersRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1454,9 +1493,8 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $formattedParent = $awsClustersClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $awsClustersClient->listAwsNodePools($formattedParent);
+     *     $pagedResponse = $awsClustersClient->listAwsNodePools();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1464,7 +1502,7 @@ class AwsClustersGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $awsClustersClient->listAwsNodePools($formattedParent);
+     *     $pagedResponse = $awsClustersClient->listAwsNodePools();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1473,17 +1511,18 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent `AwsCluster` which owns this collection of
-     *                             [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources.
-     *
-     *                             `AwsCluster` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent `AwsCluster` which owns this collection of
+     *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources.
+     *
+     *           `AwsCluster` names are formatted as
+     *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1503,12 +1542,15 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAwsNodePools($parent, array $optionalArgs = [])
+    public function listAwsNodePools(array $optionalArgs = [])
     {
         $request = new ListAwsNodePoolsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1543,8 +1585,7 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $formattedName = $awsClustersClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
-     *     $operationResponse = $awsClustersClient->rollbackAwsNodePoolUpdate($formattedName);
+     *     $operationResponse = $awsClustersClient->rollbackAwsNodePoolUpdate();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1555,7 +1596,7 @@ class AwsClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $awsClustersClient->rollbackAwsNodePoolUpdate($formattedName);
+     *     $operationResponse = $awsClustersClient->rollbackAwsNodePoolUpdate();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $awsClustersClient->resumeOperation($operationName, 'rollbackAwsNodePoolUpdate');
@@ -1575,18 +1616,19 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the
-     *                             [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to
-     *                             rollback.
-     *
-     *                             `AwsNodePool` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the
+     *           [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource to
+     *           rollback.
+     *
+     *           `AwsNodePool` names are formatted as
+     *           `projects/<project-id>/locations/<region>/awsClusters/<cluster-id>/awsNodePools/<node-pool-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
      *     @type bool $respectPdb
      *           Optional. Option for rollback to ignore the PodDisruptionBudget when
      *           draining the node pool nodes. Default value is false.
@@ -1600,12 +1642,15 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function rollbackAwsNodePoolUpdate($name, array $optionalArgs = [])
+    public function rollbackAwsNodePoolUpdate(array $optionalArgs = [])
     {
         $request = new RollbackAwsNodePoolUpdateRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['respectPdb'])) {
             $request->setRespectPdb($optionalArgs['respectPdb']);
         }
@@ -1631,9 +1676,7 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $awsCluster = new AwsCluster();
-     *     $updateMask = new FieldMask();
-     *     $operationResponse = $awsClustersClient->updateAwsCluster($awsCluster, $updateMask);
+     *     $operationResponse = $awsClustersClient->updateAwsCluster();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1644,7 +1687,7 @@ class AwsClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $awsClustersClient->updateAwsCluster($awsCluster, $updateMask);
+     *     $operationResponse = $awsClustersClient->updateAwsCluster();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $awsClustersClient->resumeOperation($operationName, 'updateAwsCluster');
@@ -1664,44 +1707,46 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param AwsCluster $awsCluster   Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
-     *                                 resource to update.
-     * @param FieldMask  $updateMask   Required. Mask of fields to update. At least one path must be supplied in
-     *                                 this field. The elements of the repeated paths field can only include these
-     *                                 fields from [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]:
-     *
-     *                                 *   `description`.
-     *                                 *   `annotations`.
-     *                                 *   `control_plane.version`.
-     *                                 *   `authorization.admin_users`.
-     *                                 *   `authorization.admin_groups`.
-     *                                 *   `binary_authorization.evaluation_mode`.
-     *                                 *   `control_plane.aws_services_authentication.role_arn`.
-     *                                 *   `control_plane.aws_services_authentication.role_session_name`.
-     *                                 *   `control_plane.config_encryption.kms_key_arn`.
-     *                                 *   `control_plane.instance_type`.
-     *                                 *   `control_plane.security_group_ids`.
-     *                                 *   `control_plane.proxy_config`.
-     *                                 *   `control_plane.proxy_config.secret_arn`.
-     *                                 *   `control_plane.proxy_config.secret_version`.
-     *                                 *   `control_plane.root_volume.size_gib`.
-     *                                 *   `control_plane.root_volume.volume_type`.
-     *                                 *   `control_plane.root_volume.iops`.
-     *                                 *   `control_plane.root_volume.throughput`.
-     *                                 *   `control_plane.root_volume.kms_key_arn`.
-     *                                 *   `control_plane.ssh_config`.
-     *                                 *   `control_plane.ssh_config.ec2_key_pair`.
-     *                                 *   `control_plane.instance_placement.tenancy`.
-     *                                 *   `control_plane.iam_instance_profile`.
-     *                                 *   `logging_config.component_config.enable_components`.
-     *                                 *   `control_plane.tags`.
-     *                                 *   `monitoring_config.managed_prometheus_config.enabled`.
-     *                                 *   `networking.per_node_pool_sg_rules_disabled`.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type AwsCluster $awsCluster
+     *           Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+     *           resource to update.
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually update the cluster.
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update. At least one path must be supplied in
+     *           this field. The elements of the repeated paths field can only include these
+     *           fields from [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]:
+     *
+     *           *   `description`.
+     *           *   `annotations`.
+     *           *   `control_plane.version`.
+     *           *   `authorization.admin_users`.
+     *           *   `authorization.admin_groups`.
+     *           *   `binary_authorization.evaluation_mode`.
+     *           *   `control_plane.aws_services_authentication.role_arn`.
+     *           *   `control_plane.aws_services_authentication.role_session_name`.
+     *           *   `control_plane.config_encryption.kms_key_arn`.
+     *           *   `control_plane.instance_type`.
+     *           *   `control_plane.security_group_ids`.
+     *           *   `control_plane.proxy_config`.
+     *           *   `control_plane.proxy_config.secret_arn`.
+     *           *   `control_plane.proxy_config.secret_version`.
+     *           *   `control_plane.root_volume.size_gib`.
+     *           *   `control_plane.root_volume.volume_type`.
+     *           *   `control_plane.root_volume.iops`.
+     *           *   `control_plane.root_volume.throughput`.
+     *           *   `control_plane.root_volume.kms_key_arn`.
+     *           *   `control_plane.ssh_config`.
+     *           *   `control_plane.ssh_config.ec2_key_pair`.
+     *           *   `control_plane.instance_placement.tenancy`.
+     *           *   `control_plane.iam_instance_profile`.
+     *           *   `logging_config.component_config.enable_components`.
+     *           *   `control_plane.tags`.
+     *           *   `monitoring_config.managed_prometheus_config.enabled`.
+     *           *   `networking.per_node_pool_sg_rules_disabled`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1712,18 +1757,20 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAwsCluster(
-        $awsCluster,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateAwsCluster(array $optionalArgs = [])
+    {
         $request = new UpdateAwsClusterRequest();
         $requestParamHeaders = [];
-        $request->setAwsCluster($awsCluster);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['aws_cluster.name'] = $awsCluster->getName();
+        if (isset($optionalArgs['awsCluster'])) {
+            $request->setAwsCluster($optionalArgs['awsCluster']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1747,9 +1794,7 @@ class AwsClustersGapicClient
      * ```
      * $awsClustersClient = new AwsClustersClient();
      * try {
-     *     $awsNodePool = new AwsNodePool();
-     *     $updateMask = new FieldMask();
-     *     $operationResponse = $awsClustersClient->updateAwsNodePool($awsNodePool, $updateMask);
+     *     $operationResponse = $awsClustersClient->updateAwsNodePool();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1760,7 +1805,7 @@ class AwsClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $awsClustersClient->updateAwsNodePool($awsNodePool, $updateMask);
+     *     $operationResponse = $awsClustersClient->updateAwsNodePool();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $awsClustersClient->resumeOperation($operationName, 'updateAwsNodePool');
@@ -1780,47 +1825,49 @@ class AwsClustersGapicClient
      * }
      * ```
      *
-     * @param AwsNodePool $awsNodePool  Required. The [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
-     *                                  resource to update.
-     * @param FieldMask   $updateMask   Required. Mask of fields to update. At least one path must be supplied in
-     *                                  this field. The elements of the repeated paths field can only include these
-     *                                  fields from [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]:
-     *
-     *                                  *   `annotations`.
-     *                                  *   `version`.
-     *                                  *   `autoscaling.min_node_count`.
-     *                                  *   `autoscaling.max_node_count`.
-     *                                  *   `config.config_encryption.kms_key_arn`.
-     *                                  *   `config.security_group_ids`.
-     *                                  *   `config.root_volume.iops`.
-     *                                  *   `config.root_volume.throughput`.
-     *                                  *   `config.root_volume.kms_key_arn`.
-     *                                  *   `config.root_volume.volume_type`.
-     *                                  *   `config.root_volume.size_gib`.
-     *                                  *   `config.proxy_config`.
-     *                                  *   `config.proxy_config.secret_arn`.
-     *                                  *   `config.proxy_config.secret_version`.
-     *                                  *   `config.ssh_config`.
-     *                                  *   `config.ssh_config.ec2_key_pair`.
-     *                                  *   `config.instance_placement.tenancy`.
-     *                                  *   `config.iam_instance_profile`.
-     *                                  *   `config.labels`.
-     *                                  *   `config.tags`.
-     *                                  *   `config.autoscaling_metrics_collection`.
-     *                                  *   `config.autoscaling_metrics_collection.granularity`.
-     *                                  *   `config.autoscaling_metrics_collection.metrics`.
-     *                                  *   `config.instance_type`.
-     *                                  *   `management.auto_repair`.
-     *                                  *   `management`.
-     *                                  *   `update_settings`.
-     *                                  *   `update_settings.surge_settings`.
-     *                                  *   `update_settings.surge_settings.max_surge`.
-     *                                  *   `update_settings.surge_settings.max_unavailable`.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type AwsNodePool $awsNodePool
+     *           Required. The [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+     *           resource to update.
      *     @type bool $validateOnly
      *           If set, only validate the request, but don't actually update the node pool.
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update. At least one path must be supplied in
+     *           this field. The elements of the repeated paths field can only include these
+     *           fields from [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]:
+     *
+     *           *   `annotations`.
+     *           *   `version`.
+     *           *   `autoscaling.min_node_count`.
+     *           *   `autoscaling.max_node_count`.
+     *           *   `config.config_encryption.kms_key_arn`.
+     *           *   `config.security_group_ids`.
+     *           *   `config.root_volume.iops`.
+     *           *   `config.root_volume.throughput`.
+     *           *   `config.root_volume.kms_key_arn`.
+     *           *   `config.root_volume.volume_type`.
+     *           *   `config.root_volume.size_gib`.
+     *           *   `config.proxy_config`.
+     *           *   `config.proxy_config.secret_arn`.
+     *           *   `config.proxy_config.secret_version`.
+     *           *   `config.ssh_config`.
+     *           *   `config.ssh_config.ec2_key_pair`.
+     *           *   `config.instance_placement.tenancy`.
+     *           *   `config.iam_instance_profile`.
+     *           *   `config.labels`.
+     *           *   `config.tags`.
+     *           *   `config.autoscaling_metrics_collection`.
+     *           *   `config.autoscaling_metrics_collection.granularity`.
+     *           *   `config.autoscaling_metrics_collection.metrics`.
+     *           *   `config.instance_type`.
+     *           *   `management.auto_repair`.
+     *           *   `management`.
+     *           *   `update_settings`.
+     *           *   `update_settings.surge_settings`.
+     *           *   `update_settings.surge_settings.max_surge`.
+     *           *   `update_settings.surge_settings.max_unavailable`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1831,18 +1878,20 @@ class AwsClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAwsNodePool(
-        $awsNodePool,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateAwsNodePool(array $optionalArgs = [])
+    {
         $request = new UpdateAwsNodePoolRequest();
         $requestParamHeaders = [];
-        $request->setAwsNodePool($awsNodePool);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['aws_node_pool.name'] = $awsNodePool->getName();
+        if (isset($optionalArgs['awsNodePool'])) {
+            $request->setAwsNodePool($optionalArgs['awsNodePool']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

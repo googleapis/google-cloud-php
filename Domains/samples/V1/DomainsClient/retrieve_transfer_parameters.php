@@ -36,19 +36,19 @@ use Google\Cloud\Domains\V1\RetrieveTransferParametersResponse;
  *
  * Use the returned values to call `TransferDomain`.
  *
- * @param string $domainName        The domain name. Unicode domain names must be expressed in Punycode format.
- * @param string $formattedLocation The location. Must be in the format `projects/&#42;/locations/*`. Please see
- *                                  {@see DomainsClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function retrieve_transfer_parameters_sample(string $domainName, string $formattedLocation): void
+function retrieve_transfer_parameters_sample(): void
 {
     // Create a client.
     $domainsClient = new DomainsClient();
 
     // Prepare the request message.
-    $request = (new RetrieveTransferParametersRequest())
-        ->setDomainName($domainName)
-        ->setLocation($formattedLocation);
+    $request = new RetrieveTransferParametersRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,22 +58,5 @@ function retrieve_transfer_parameters_sample(string $domainName, string $formatt
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $domainName = '[DOMAIN_NAME]';
-    $formattedLocation = DomainsClient::locationName('[PROJECT]', '[LOCATION]');
-
-    retrieve_transfer_parameters_sample($domainName, $formattedLocation);
 }
 // [END domains_v1_generated_Domains_RetrieveTransferParameters_sync]

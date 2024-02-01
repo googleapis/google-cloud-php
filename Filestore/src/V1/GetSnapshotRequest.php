@@ -26,7 +26,6 @@ class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The snapshot resource name, in the format
      *                     `projects/{project_id}/locations/{location}/instances/{instance_id}/snapshots/{snapshot_id}`
-     *                     Please see {@see CloudFilestoreManagerClient::snapshotName()} for help formatting this field.
      *
      * @return \Google\Cloud\Filestore\V1\GetSnapshotRequest
      *

@@ -30,26 +30,19 @@ use Google\Cloud\DiscoveryEngine\V1\DeleteDocumentRequest;
 /**
  * Deletes a [Document][google.cloud.discoveryengine.v1.Document].
  *
- * @param string $formattedName Full resource name of
- *                              [Document][google.cloud.discoveryengine.v1.Document], such as
- *                              `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}`.
- *
- *                              If the caller does not have permission to delete the
- *                              [Document][google.cloud.discoveryengine.v1.Document], regardless of whether
- *                              or not it exists, a `PERMISSION_DENIED` error is returned.
- *
- *                              If the [Document][google.cloud.discoveryengine.v1.Document] to delete does
- *                              not exist, a `NOT_FOUND` error is returned. Please see
- *                              {@see DocumentServiceClient::documentName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_document_sample(string $formattedName): void
+function delete_document_sample(): void
 {
     // Create a client.
     $documentServiceClient = new DocumentServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteDocumentRequest())
-        ->setName($formattedName);
+    $request = new DeleteDocumentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,27 +51,5 @@ function delete_document_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DocumentServiceClient::documentName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_STORE]',
-        '[BRANCH]',
-        '[DOCUMENT]'
-    );
-
-    delete_document_sample($formattedName);
 }
 // [END discoveryengine_v1_generated_DocumentService_DeleteDocument_sync]

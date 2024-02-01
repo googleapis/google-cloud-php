@@ -56,8 +56,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * $errorStatsServiceClient = new ErrorStatsServiceClient();
  * try {
- *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
- *     $response = $errorStatsServiceClient->deleteEvents($formattedProjectName);
+ *     $response = $errorStatsServiceClient->deleteEvents();
  * } finally {
  *     $errorStatsServiceClient->close();
  * }
@@ -272,22 +271,22 @@ class ErrorStatsServiceGapicClient
      * ```
      * $errorStatsServiceClient = new ErrorStatsServiceClient();
      * try {
-     *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
-     *     $response = $errorStatsServiceClient->deleteEvents($formattedProjectName);
+     *     $response = $errorStatsServiceClient->deleteEvents();
      * } finally {
      *     $errorStatsServiceClient->close();
      * }
      * ```
      *
-     * @param string $projectName  Required. The resource name of the Google Cloud Platform project. Written
-     *                             as `projects/{projectID}`, where `{projectID}` is the
-     *                             [Google Cloud Platform project
-     *                             ID](https://support.google.com/cloud/answer/6158840).
-     *
-     *                             Example: `projects/my-project-123`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectName
+     *           Required. The resource name of the Google Cloud Platform project. Written
+     *           as `projects/{projectID}`, where `{projectID}` is the
+     *           [Google Cloud Platform project
+     *           ID](https://support.google.com/cloud/answer/6158840).
+     *
+     *           Example: `projects/my-project-123`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -300,12 +299,15 @@ class ErrorStatsServiceGapicClient
      *
      * @experimental
      */
-    public function deleteEvents($projectName, array $optionalArgs = [])
+    public function deleteEvents(array $optionalArgs = [])
     {
         $request = new DeleteEventsRequest();
         $requestParamHeaders = [];
-        $request->setProjectName($projectName);
-        $requestParamHeaders['project_name'] = $projectName;
+        if (isset($optionalArgs['projectName'])) {
+            $request->setProjectName($optionalArgs['projectName']);
+            $requestParamHeaders['project_name'] = $optionalArgs['projectName'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteEvents', DeleteEventsResponse::class, $optionalArgs, $request)->wait();
@@ -318,10 +320,8 @@ class ErrorStatsServiceGapicClient
      * ```
      * $errorStatsServiceClient = new ErrorStatsServiceClient();
      * try {
-     *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
-     *     $groupId = 'group_id';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId);
+     *     $pagedResponse = $errorStatsServiceClient->listEvents();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -329,7 +329,7 @@ class ErrorStatsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $errorStatsServiceClient->listEvents($formattedProjectName, $groupId);
+     *     $pagedResponse = $errorStatsServiceClient->listEvents();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -338,16 +338,18 @@ class ErrorStatsServiceGapicClient
      * }
      * ```
      *
-     * @param string $projectName  Required. The resource name of the Google Cloud Platform project. Written
-     *                             as `projects/{projectID}`, where `{projectID}` is the
-     *                             [Google Cloud Platform project
-     *                             ID](https://support.google.com/cloud/answer/6158840).
-     *
-     *                             Example: `projects/my-project-123`.
-     * @param string $groupId      Required. The group for which events shall be returned.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectName
+     *           Required. The resource name of the Google Cloud Platform project. Written
+     *           as `projects/{projectID}`, where `{projectID}` is the
+     *           [Google Cloud Platform project
+     *           ID](https://support.google.com/cloud/answer/6158840).
+     *
+     *           Example: `projects/my-project-123`.
+     *     @type string $groupId
+     *           Required. The group for which events shall be returned.
      *     @type ServiceContextFilter $serviceFilter
      *           Optional. List only ErrorGroups which belong to a service context that
      *           matches the filter.
@@ -377,13 +379,19 @@ class ErrorStatsServiceGapicClient
      *
      * @experimental
      */
-    public function listEvents($projectName, $groupId, array $optionalArgs = [])
+    public function listEvents(array $optionalArgs = [])
     {
         $request = new ListEventsRequest();
         $requestParamHeaders = [];
-        $request->setProjectName($projectName);
-        $request->setGroupId($groupId);
-        $requestParamHeaders['project_name'] = $projectName;
+        if (isset($optionalArgs['projectName'])) {
+            $request->setProjectName($optionalArgs['projectName']);
+            $requestParamHeaders['project_name'] = $optionalArgs['projectName'];
+        }
+
+        if (isset($optionalArgs['groupId'])) {
+            $request->setGroupId($optionalArgs['groupId']);
+        }
+
         if (isset($optionalArgs['serviceFilter'])) {
             $request->setServiceFilter($optionalArgs['serviceFilter']);
         }
@@ -412,9 +420,8 @@ class ErrorStatsServiceGapicClient
      * ```
      * $errorStatsServiceClient = new ErrorStatsServiceClient();
      * try {
-     *     $formattedProjectName = $errorStatsServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName);
+     *     $pagedResponse = $errorStatsServiceClient->listGroupStats();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -422,7 +429,7 @@ class ErrorStatsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $errorStatsServiceClient->listGroupStats($formattedProjectName);
+     *     $pagedResponse = $errorStatsServiceClient->listGroupStats();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -431,15 +438,16 @@ class ErrorStatsServiceGapicClient
      * }
      * ```
      *
-     * @param string $projectName  Required. The resource name of the Google Cloud Platform project. Written
-     *                             as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
-     *                             and `{projectNumber}` can be found in the
-     *                             [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
-     *
-     *                             Examples: `projects/my-project-123`, `projects/5551234`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectName
+     *           Required. The resource name of the Google Cloud Platform project. Written
+     *           as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
+     *           and `{projectNumber}` can be found in the
+     *           [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
+     *
+     *           Examples: `projects/my-project-123`, `projects/5551234`.
      *     @type string[] $groupId
      *           Optional. List all <code>ErrorGroupStats</code> with these IDs.
      *     @type ServiceContextFilter $serviceFilter
@@ -490,12 +498,15 @@ class ErrorStatsServiceGapicClient
      *
      * @experimental
      */
-    public function listGroupStats($projectName, array $optionalArgs = [])
+    public function listGroupStats(array $optionalArgs = [])
     {
         $request = new ListGroupStatsRequest();
         $requestParamHeaders = [];
-        $request->setProjectName($projectName);
-        $requestParamHeaders['project_name'] = $projectName;
+        if (isset($optionalArgs['projectName'])) {
+            $request->setProjectName($optionalArgs['projectName']);
+            $requestParamHeaders['project_name'] = $optionalArgs['projectName'];
+        }
+
         if (isset($optionalArgs['groupId'])) {
             $request->setGroupId($optionalArgs['groupId']);
         }

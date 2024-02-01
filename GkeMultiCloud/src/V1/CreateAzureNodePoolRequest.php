@@ -61,8 +61,7 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *                                                                      `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      *
      *                                                                      See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                                                                      for more details on Google Cloud resource names. Please see
-     *                                                                      {@see AzureClustersClient::azureClusterName()} for help formatting this field.
+     *                                                                      for more details on Google Cloud resource names.
      * @param \Google\Cloud\GkeMultiCloud\V1\AzureNodePool $azureNodePool   Required. The specification of the
      *                                                                      [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to create.
      * @param string                                       $azureNodePoolId Required. A client provided ID the resource. Must be unique within the

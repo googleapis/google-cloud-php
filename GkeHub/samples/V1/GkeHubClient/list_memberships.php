@@ -32,19 +32,19 @@ use Google\Cloud\GkeHub\V1\Membership;
 /**
  * Lists Memberships in a given project and location.
  *
- * @param string $formattedParent The parent (project and location) where the Memberships will be
- *                                listed. Specified in the format `projects/&#42;/locations/*`.
- *                                `projects/&#42;/locations/-` list memberships in all the regions. Please see
- *                                {@see GkeHubClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_memberships_sample(string $formattedParent): void
+function list_memberships_sample(): void
 {
     // Create a client.
     $gkeHubClient = new GkeHubClient();
 
     // Prepare the request message.
-    $request = (new ListMembershipsRequest())
-        ->setParent($formattedParent);
+    $request = new ListMembershipsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +58,5 @@ function list_memberships_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = GkeHubClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_memberships_sample($formattedParent);
 }
 // [END gkehub_v1_generated_GkeHub_ListMemberships_sync]

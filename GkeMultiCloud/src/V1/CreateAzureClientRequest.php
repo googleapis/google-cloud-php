@@ -60,8 +60,7 @@ class CreateAzureClientRequest extends \Google\Protobuf\Internal\Message
      *                                                                  Location names are formatted as `projects/<project-id>/locations/<region>`.
      *
      *                                                                  See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                                                                  for more details on Google Cloud resource names. Please see
-     *                                                                  {@see AzureClustersClient::locationName()} for help formatting this field.
+     *                                                                  for more details on Google Cloud resource names.
      * @param \Google\Cloud\GkeMultiCloud\V1\AzureClient $azureClient   Required. The specification of the
      *                                                                  [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] to create.
      * @param string                                     $azureClientId Required. A client provided ID the resource. Must be unique within the

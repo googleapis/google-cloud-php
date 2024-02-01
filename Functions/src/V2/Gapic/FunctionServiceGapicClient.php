@@ -74,9 +74,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $functionServiceClient = new FunctionServiceClient();
  * try {
- *     $formattedParent = $functionServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     $function = new PBFunction();
- *     $operationResponse = $functionServiceClient->createFunction($formattedParent, $function);
+ *     $operationResponse = $functionServiceClient->createFunction();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -87,7 +85,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $functionServiceClient->createFunction($formattedParent, $function);
+ *     $operationResponse = $functionServiceClient->createFunction();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $functionServiceClient->resumeOperation($operationName, 'createFunction');
@@ -707,9 +705,7 @@ class FunctionServiceGapicClient
      * ```
      * $functionServiceClient = new FunctionServiceClient();
      * try {
-     *     $formattedParent = $functionServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $function = new PBFunction();
-     *     $operationResponse = $functionServiceClient->createFunction($formattedParent, $function);
+     *     $operationResponse = $functionServiceClient->createFunction();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -720,7 +716,7 @@ class FunctionServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $functionServiceClient->createFunction($formattedParent, $function);
+     *     $operationResponse = $functionServiceClient->createFunction();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $functionServiceClient->resumeOperation($operationName, 'createFunction');
@@ -740,12 +736,14 @@ class FunctionServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The project and location in which the function should be created,
-     *                                 specified in the format `projects/&#42;/locations/*`
-     * @param PBFunction $function     Required. Function to be created.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project and location in which the function should be created,
+     *           specified in the format `projects/&#42;/locations/*`
+     *     @type PBFunction $function
+     *           Required. Function to be created.
      *     @type string $functionId
      *           The ID to use for the function, which will become the final component of
      *           the function's resource name.
@@ -762,13 +760,19 @@ class FunctionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createFunction($parent, $function, array $optionalArgs = [])
+    public function createFunction(array $optionalArgs = [])
     {
         $request = new CreateFunctionRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setFunction($function);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['function'])) {
+            $request->setFunction($optionalArgs['function']);
+        }
+
         if (isset($optionalArgs['functionId'])) {
             $request->setFunctionId($optionalArgs['functionId']);
         }
@@ -796,8 +800,7 @@ class FunctionServiceGapicClient
      * ```
      * $functionServiceClient = new FunctionServiceClient();
      * try {
-     *     $formattedName = $functionServiceClient->functionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-     *     $operationResponse = $functionServiceClient->deleteFunction($formattedName);
+     *     $operationResponse = $functionServiceClient->deleteFunction();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -807,7 +810,7 @@ class FunctionServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $functionServiceClient->deleteFunction($formattedName);
+     *     $operationResponse = $functionServiceClient->deleteFunction();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $functionServiceClient->resumeOperation($operationName, 'deleteFunction');
@@ -826,10 +829,11 @@ class FunctionServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the function which should be deleted.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the function which should be deleted.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -840,12 +844,15 @@ class FunctionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteFunction($name, array $optionalArgs = [])
+    public function deleteFunction(array $optionalArgs = [])
     {
         $request = new DeleteFunctionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -871,18 +878,18 @@ class FunctionServiceGapicClient
      * ```
      * $functionServiceClient = new FunctionServiceClient();
      * try {
-     *     $formattedName = $functionServiceClient->functionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-     *     $response = $functionServiceClient->generateDownloadUrl($formattedName);
+     *     $response = $functionServiceClient->generateDownloadUrl();
      * } finally {
      *     $functionServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of function for which source code Google Cloud Storage
-     *                             signed URL should be generated.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of function for which source code Google Cloud Storage
+     *           signed URL should be generated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -893,12 +900,15 @@ class FunctionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateDownloadUrl($name, array $optionalArgs = [])
+    public function generateDownloadUrl(array $optionalArgs = [])
     {
         $request = new GenerateDownloadUrlRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -942,18 +952,18 @@ class FunctionServiceGapicClient
      * ```
      * $functionServiceClient = new FunctionServiceClient();
      * try {
-     *     $formattedParent = $functionServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $response = $functionServiceClient->generateUploadUrl($formattedParent);
+     *     $response = $functionServiceClient->generateUploadUrl();
      * } finally {
      *     $functionServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location in which the Google Cloud Storage signed
-     *                             URL should be generated, specified in the format `projects/&#42;/locations/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project and location in which the Google Cloud Storage signed
+     *           URL should be generated, specified in the format `projects/&#42;/locations/*`.
      *     @type string $kmsKeyName
      *           [Preview] Resource name of a KMS crypto key (managed by the user) used to
      *           encrypt/decrypt function source code objects in intermediate Cloud Storage
@@ -980,12 +990,15 @@ class FunctionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateUploadUrl($parent, array $optionalArgs = [])
+    public function generateUploadUrl(array $optionalArgs = [])
     {
         $request = new GenerateUploadUrlRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['kmsKeyName'])) {
             $request->setKmsKeyName($optionalArgs['kmsKeyName']);
         }
@@ -1011,17 +1024,17 @@ class FunctionServiceGapicClient
      * ```
      * $functionServiceClient = new FunctionServiceClient();
      * try {
-     *     $formattedName = $functionServiceClient->functionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-     *     $response = $functionServiceClient->getFunction($formattedName);
+     *     $response = $functionServiceClient->getFunction();
      * } finally {
      *     $functionServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the function which details should be obtained.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the function which details should be obtained.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1032,12 +1045,15 @@ class FunctionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getFunction($name, array $optionalArgs = [])
+    public function getFunction(array $optionalArgs = [])
     {
         $request = new GetFunctionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1059,9 +1075,8 @@ class FunctionServiceGapicClient
      * ```
      * $functionServiceClient = new FunctionServiceClient();
      * try {
-     *     $formattedParent = $functionServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $functionServiceClient->listFunctions($formattedParent);
+     *     $pagedResponse = $functionServiceClient->listFunctions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1069,7 +1084,7 @@ class FunctionServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $functionServiceClient->listFunctions($formattedParent);
+     *     $pagedResponse = $functionServiceClient->listFunctions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1078,15 +1093,16 @@ class FunctionServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location from which the function should be
-     *                             listed, specified in the format `projects/&#42;/locations/*` If you want to
-     *                             list functions in all locations, use "-" in place of a location. When
-     *                             listing functions in all locations, if one or more location(s) are
-     *                             unreachable, the response will contain functions from all reachable
-     *                             locations along with the names of any unreachable locations.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project and location from which the function should be
+     *           listed, specified in the format `projects/&#42;/locations/*` If you want to
+     *           list functions in all locations, use "-" in place of a location. When
+     *           listing functions in all locations, if one or more location(s) are
+     *           unreachable, the response will contain functions from all reachable
+     *           locations along with the names of any unreachable locations.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1113,12 +1129,15 @@ class FunctionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listFunctions($parent, array $optionalArgs = [])
+    public function listFunctions(array $optionalArgs = [])
     {
         $request = new ListFunctionsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1156,18 +1175,18 @@ class FunctionServiceGapicClient
      * ```
      * $functionServiceClient = new FunctionServiceClient();
      * try {
-     *     $formattedParent = $functionServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $response = $functionServiceClient->listRuntimes($formattedParent);
+     *     $response = $functionServiceClient->listRuntimes();
      * } finally {
      *     $functionServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location from which the runtimes should be
-     *                             listed, specified in the format `projects/&#42;/locations/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project and location from which the runtimes should be
+     *           listed, specified in the format `projects/&#42;/locations/*`
      *     @type string $filter
      *           The filter for Runtimes that match the filter expression,
      *           following the syntax outlined in https://google.aip.dev/160.
@@ -1181,12 +1200,15 @@ class FunctionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listRuntimes($parent, array $optionalArgs = [])
+    public function listRuntimes(array $optionalArgs = [])
     {
         $request = new ListRuntimesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1212,8 +1234,7 @@ class FunctionServiceGapicClient
      * ```
      * $functionServiceClient = new FunctionServiceClient();
      * try {
-     *     $function = new PBFunction();
-     *     $operationResponse = $functionServiceClient->updateFunction($function);
+     *     $operationResponse = $functionServiceClient->updateFunction();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1224,7 +1245,7 @@ class FunctionServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $functionServiceClient->updateFunction($function);
+     *     $operationResponse = $functionServiceClient->updateFunction();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $functionServiceClient->resumeOperation($operationName, 'updateFunction');
@@ -1244,10 +1265,11 @@ class FunctionServiceGapicClient
      * }
      * ```
      *
-     * @param PBFunction $function     Required. New version of the function.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type PBFunction $function
+     *           Required. New version of the function.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *           If no field mask is provided, all provided fields in the request will be
@@ -1262,12 +1284,14 @@ class FunctionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateFunction($function, array $optionalArgs = [])
+    public function updateFunction(array $optionalArgs = [])
     {
         $request = new UpdateFunctionRequest();
         $requestParamHeaders = [];
-        $request->setFunction($function);
-        $requestParamHeaders['function.name'] = $function->getName();
+        if (isset($optionalArgs['function'])) {
+            $request->setFunction($optionalArgs['function']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1381,18 +1405,18 @@ class FunctionServiceGapicClient
      * ```
      * $functionServiceClient = new FunctionServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $functionServiceClient->getIamPolicy($resource);
+     *     $response = $functionServiceClient->getIamPolicy();
      * } finally {
      *     $functionServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1406,12 +1430,15 @@ class FunctionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1443,23 +1470,23 @@ class FunctionServiceGapicClient
      * ```
      * $functionServiceClient = new FunctionServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $functionServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $functionServiceClient->setIamPolicy();
      * } finally {
      *     $functionServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1476,13 +1503,19 @@ class FunctionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1516,23 +1549,23 @@ class FunctionServiceGapicClient
      * ```
      * $functionServiceClient = new FunctionServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $functionServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $functionServiceClient->testIamPermissions();
      * } finally {
      *     $functionServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1543,16 +1576,19 @@ class FunctionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

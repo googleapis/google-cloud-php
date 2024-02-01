@@ -23,8 +23,7 @@ class DeleteDlpJobRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the DlpJob resource to be deleted. Please see
-     *                     {@see DlpServiceClient::dlpJobName()} for help formatting this field.
+     * @param string $name Required. The name of the DlpJob resource to be deleted.
      *
      * @return \Google\Cloud\Dlp\V2\DeleteDlpJobRequest
      *

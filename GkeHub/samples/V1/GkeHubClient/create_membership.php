@@ -37,30 +37,19 @@ use Google\Rpc\Status;
  * To register other clusters, follow the instructions at
  * https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
  *
- * @param string $formattedParent The parent (project and location) where the Memberships will be
- *                                created. Specified in the format `projects/&#42;/locations/*`. Please see
- *                                {@see GkeHubClient::locationName()} for help formatting this field.
- * @param string $membershipId    Client chosen ID for the membership. `membership_id` must be a
- *                                valid RFC 1123 compliant DNS label:
- *
- *                                1. At most 63 characters in length
- *                                2. It must consist of lower case alphanumeric characters or `-`
- *                                3. It must start and end with an alphanumeric character
- *
- *                                Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`,
- *                                with a maximum length of 63 characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_membership_sample(string $formattedParent, string $membershipId): void
+function create_membership_sample(): void
 {
     // Create a client.
     $gkeHubClient = new GkeHubClient();
 
     // Prepare the request message.
-    $resource = new Membership();
-    $request = (new CreateMembershipRequest())
-        ->setParent($formattedParent)
-        ->setMembershipId($membershipId)
-        ->setResource($resource);
+    $request = new CreateMembershipRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -80,22 +69,5 @@ function create_membership_sample(string $formattedParent, string $membershipId)
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = GkeHubClient::locationName('[PROJECT]', '[LOCATION]');
-    $membershipId = '[MEMBERSHIP_ID]';
-
-    create_membership_sample($formattedParent, $membershipId);
 }
 // [END gkehub_v1_generated_GkeHub_CreateMembership_sync]

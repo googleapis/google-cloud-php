@@ -56,8 +56,7 @@ class ListRegistrationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The project and location from which to list `Registration`s, specified in
-     *                       the format `projects/&#42;/locations/*`. Please see
-     *                       {@see DomainsClient::locationName()} for help formatting this field.
+     *                       the format `projects/&#42;/locations/*`.
      *
      * @return \Google\Cloud\Domains\V1\ListRegistrationsRequest
      *

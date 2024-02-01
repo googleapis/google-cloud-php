@@ -53,18 +53,19 @@ use Google\Cloud\Functions\V2\GenerateUploadUrlResponse;
  *
  * * `Authorization: Bearer YOUR_TOKEN`
  *
- * @param string $formattedParent The project and location in which the Google Cloud Storage signed
- *                                URL should be generated, specified in the format `projects/&#42;/locations/*`. Please see
- *                                {@see FunctionServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function generate_upload_url_sample(string $formattedParent): void
+function generate_upload_url_sample(): void
 {
     // Create a client.
     $functionServiceClient = new FunctionServiceClient();
 
     // Prepare the request message.
-    $request = (new GenerateUploadUrlRequest())
-        ->setParent($formattedParent);
+    $request = new GenerateUploadUrlRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,21 +75,5 @@ function generate_upload_url_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = FunctionServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    generate_upload_url_sample($formattedParent);
 }
 // [END cloudfunctions_v2_generated_FunctionService_GenerateUploadUrl_sync]

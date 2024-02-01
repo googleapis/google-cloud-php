@@ -23,8 +23,7 @@ class DiagnoseRouterRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the router resource. Please see
-     *                     {@see EdgeNetworkClient::routerName()} for help formatting this field.
+     * @param string $name Required. The name of the router resource.
      *
      * @return \Google\Cloud\EdgeNetwork\V1\DiagnoseRouterRequest
      *

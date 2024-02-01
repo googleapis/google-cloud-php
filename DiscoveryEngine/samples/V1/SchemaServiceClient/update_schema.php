@@ -45,9 +45,7 @@ function update_schema_sample(): void
     $schemaServiceClient = new SchemaServiceClient();
 
     // Prepare the request message.
-    $schema = new Schema();
-    $request = (new UpdateSchemaRequest())
-        ->setSchema($schema);
+    $request = new UpdateSchemaRequest();
 
     // Call the API and handle any network failures.
     try {

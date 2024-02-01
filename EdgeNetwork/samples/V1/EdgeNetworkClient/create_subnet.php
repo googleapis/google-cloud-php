@@ -33,32 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new Subnet in a given project and location.
  *
- * @param string $formattedParent        Value for parent. Please see
- *                                       {@see EdgeNetworkClient::zoneName()} for help formatting this field.
- * @param string $subnetId               Id of the requesting object
- *                                       If auto-generating Id server-side, remove this field and
- *                                       subnet_id from the method_signature of Create RPC
- * @param string $subnetName             The canonical resource name of the subnet.
- * @param string $formattedSubnetNetwork The network that this subnetwork belongs to. Please see
- *                                       {@see EdgeNetworkClient::networkName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_subnet_sample(
-    string $formattedParent,
-    string $subnetId,
-    string $subnetName,
-    string $formattedSubnetNetwork
-): void {
+function create_subnet_sample(): void
+{
     // Create a client.
     $edgeNetworkClient = new EdgeNetworkClient();
 
     // Prepare the request message.
-    $subnet = (new Subnet())
-        ->setName($subnetName)
-        ->setNetwork($formattedSubnetNetwork);
-    $request = (new CreateSubnetRequest())
-        ->setParent($formattedParent)
-        ->setSubnetId($subnetId)
-        ->setSubnet($subnet);
+    $request = new CreateSubnetRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -78,29 +65,5 @@ function create_subnet_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = EdgeNetworkClient::zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-    $subnetId = '[SUBNET_ID]';
-    $subnetName = '[NAME]';
-    $formattedSubnetNetwork = EdgeNetworkClient::networkName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[ZONE]',
-        '[NETWORK]'
-    );
-
-    create_subnet_sample($formattedParent, $subnetId, $subnetName, $formattedSubnetNetwork);
 }
 // [END edgenetwork_v1_generated_EdgeNetwork_CreateSubnet_sync]

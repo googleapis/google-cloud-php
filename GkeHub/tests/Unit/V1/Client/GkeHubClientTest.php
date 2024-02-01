@@ -47,7 +47,6 @@ use Google\Cloud\GkeHub\V1\UpdateMembershipRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -232,14 +231,7 @@ class GkeHubClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $membershipId = 'membershipId-1132211676';
-        $resource = new Membership();
-        $request = (new CreateMembershipRequest())
-            ->setParent($formattedParent)
-            ->setMembershipId($membershipId)
-            ->setResource($resource);
+        $request = new CreateMembershipRequest();
         $response = $gapicClient->createMembership($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -250,12 +242,6 @@ class GkeHubClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkehub.v1.GkeHub/CreateMembership', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getMembershipId();
-        $this->assertProtobufEquals($membershipId, $actualValue);
-        $actualValue = $actualApiRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createMembershipTest');
         $response->pollUntilComplete([
@@ -306,14 +292,7 @@ class GkeHubClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $membershipId = 'membershipId-1132211676';
-        $resource = new Membership();
-        $request = (new CreateMembershipRequest())
-            ->setParent($formattedParent)
-            ->setMembershipId($membershipId)
-            ->setResource($resource);
+        $request = new CreateMembershipRequest();
         $response = $gapicClient->createMembership($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -478,10 +457,7 @@ class GkeHubClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-        $request = (new DeleteMembershipRequest())
-            ->setName($formattedName);
+        $request = new DeleteMembershipRequest();
         $response = $gapicClient->deleteMembership($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -492,8 +468,6 @@ class GkeHubClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkehub.v1.GkeHub/DeleteMembership', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteMembershipTest');
         $response->pollUntilComplete([
@@ -544,10 +518,7 @@ class GkeHubClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-        $request = (new DeleteMembershipRequest())
-            ->setName($formattedName);
+        $request = new DeleteMembershipRequest();
         $response = $gapicClient->deleteMembership($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -581,10 +552,7 @@ class GkeHubClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GenerateConnectManifestResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-        $request = (new GenerateConnectManifestRequest())
-            ->setName($formattedName);
+        $request = new GenerateConnectManifestRequest();
         $response = $gapicClient->generateConnectManifest($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -592,8 +560,6 @@ class GkeHubClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkehub.v1.GkeHub/GenerateConnectManifest', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -615,10 +581,7 @@ class GkeHubClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-        $request = (new GenerateConnectManifestRequest())
-            ->setName($formattedName);
+        $request = new GenerateConnectManifestRequest();
         try {
             $gapicClient->generateConnectManifest($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -707,10 +670,7 @@ class GkeHubClientTest extends GeneratedTest
         $expectedResponse->setExternalId($externalId);
         $expectedResponse->setUniqueId($uniqueId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-        $request = (new GetMembershipRequest())
-            ->setName($formattedName);
+        $request = new GetMembershipRequest();
         $response = $gapicClient->getMembership($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -718,8 +678,6 @@ class GkeHubClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkehub.v1.GkeHub/GetMembership', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -741,10 +699,7 @@ class GkeHubClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-        $request = (new GetMembershipRequest())
-            ->setName($formattedName);
+        $request = new GetMembershipRequest();
         try {
             $gapicClient->getMembership($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -840,10 +795,7 @@ class GkeHubClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setResources($resources);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListMembershipsRequest())
-            ->setParent($formattedParent);
+        $request = new ListMembershipsRequest();
         $response = $gapicClient->listMemberships($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -854,8 +806,6 @@ class GkeHubClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkehub.v1.GkeHub/ListMemberships', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -877,10 +827,7 @@ class GkeHubClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListMembershipsRequest())
-            ->setParent($formattedParent);
+        $request = new ListMembershipsRequest();
         try {
             $gapicClient->listMemberships($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1046,14 +993,7 @@ class GkeHubClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-        $updateMask = new FieldMask();
-        $resource = new Membership();
-        $request = (new UpdateMembershipRequest())
-            ->setName($formattedName)
-            ->setUpdateMask($updateMask)
-            ->setResource($resource);
+        $request = new UpdateMembershipRequest();
         $response = $gapicClient->updateMembership($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1064,12 +1004,6 @@ class GkeHubClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkehub.v1.GkeHub/UpdateMembership', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateMembershipTest');
         $response->pollUntilComplete([
@@ -1120,14 +1054,7 @@ class GkeHubClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-        $updateMask = new FieldMask();
-        $resource = new Membership();
-        $request = (new UpdateMembershipRequest())
-            ->setName($formattedName)
-            ->setUpdateMask($updateMask)
-            ->setResource($resource);
+        $request = new UpdateMembershipRequest();
         $response = $gapicClient->updateMembership($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

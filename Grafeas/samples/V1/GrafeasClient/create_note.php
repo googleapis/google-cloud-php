@@ -31,22 +31,19 @@ use Grafeas\V1\Note;
 /**
  * Creates a new note.
  *
- * @param string $formattedParent The name of the project in the form of `projects/[PROJECT_ID]`, under which
- *                                the note is to be created. Please see
- *                                {@see GrafeasClient::projectName()} for help formatting this field.
- * @param string $noteId          The ID to use for this note.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_note_sample(string $formattedParent, string $noteId): void
+function create_note_sample(): void
 {
     // Create a client.
     $grafeasClient = new GrafeasClient();
 
     // Prepare the request message.
-    $note = new Note();
-    $request = (new CreateNoteRequest())
-        ->setParent($formattedParent)
-        ->setNoteId($noteId)
-        ->setNote($note);
+    $request = new CreateNoteRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,22 +53,5 @@ function create_note_sample(string $formattedParent, string $noteId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = GrafeasClient::projectName('[PROJECT]');
-    $noteId = '[NOTE_ID]';
-
-    create_note_sample($formattedParent, $noteId);
 }
 // [END containeranalysis_v1_generated_Grafeas_CreateNote_sync]

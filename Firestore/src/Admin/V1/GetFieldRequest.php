@@ -27,7 +27,6 @@ class GetFieldRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. A name of the form
      *                     `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`
-     *                     Please see {@see FirestoreAdminClient::fieldName()} for help formatting this field.
      *
      * @return \Google\Cloud\Firestore\Admin\V1\GetFieldRequest
      *

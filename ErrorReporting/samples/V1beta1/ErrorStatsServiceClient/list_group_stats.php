@@ -32,22 +32,19 @@ use Google\Cloud\ErrorReporting\V1beta1\ListGroupStatsRequest;
 /**
  * Lists the specified groups.
  *
- * @param string $formattedProjectName The resource name of the Google Cloud Platform project. Written
- *                                     as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
- *                                     and `{projectNumber}` can be found in the
- *                                     [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
- *
- *                                     Examples: `projects/my-project-123`, `projects/5551234`. Please see
- *                                     {@see ErrorStatsServiceClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_group_stats_sample(string $formattedProjectName): void
+function list_group_stats_sample(): void
 {
     // Create a client.
     $errorStatsServiceClient = new ErrorStatsServiceClient();
 
     // Prepare the request message.
-    $request = (new ListGroupStatsRequest())
-        ->setProjectName($formattedProjectName);
+    $request = new ListGroupStatsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,21 +58,5 @@ function list_group_stats_sample(string $formattedProjectName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedProjectName = ErrorStatsServiceClient::projectName('[PROJECT]');
-
-    list_group_stats_sample($formattedProjectName);
 }
 // [END clouderrorreporting_v1beta1_generated_ErrorStatsService_ListGroupStats_sync]

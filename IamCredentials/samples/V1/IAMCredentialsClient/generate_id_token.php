@@ -31,23 +31,19 @@ use Google\Cloud\Iam\Credentials\V1\GenerateIdTokenResponse;
 /**
  * Generates an OpenID Connect ID token for a service account.
  *
- * @param string $formattedName The resource name of the service account for which the credentials
- *                              are requested, in the following format:
- *                              `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
- *                              character is required; replacing it with a project ID is invalid. Please see
- *                              {@see IAMCredentialsClient::serviceAccountName()} for help formatting this field.
- * @param string $audience      The audience for the token, such as the API or account that this token
- *                              grants access to.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function generate_id_token_sample(string $formattedName, string $audience): void
+function generate_id_token_sample(): void
 {
     // Create a client.
     $iAMCredentialsClient = new IAMCredentialsClient();
 
     // Prepare the request message.
-    $request = (new GenerateIdTokenRequest())
-        ->setName($formattedName)
-        ->setAudience($audience);
+    $request = new GenerateIdTokenRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,22 +53,5 @@ function generate_id_token_sample(string $formattedName, string $audience): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = IAMCredentialsClient::serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
-    $audience = '[AUDIENCE]';
-
-    generate_id_token_sample($formattedName, $audience);
 }
 // [END iamcredentials_v1_generated_IAMCredentials_GenerateIdToken_sync]

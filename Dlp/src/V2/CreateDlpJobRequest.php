@@ -68,7 +68,6 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      *                                                          for processing data:
      *
      *                                                          parent=projects/example-project/locations/europe-west3
-     *                                                          Please see {@see DlpServiceClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\Dlp\V2\InspectJobConfig $inspectJob An inspection job scans a storage repository for InfoTypes.
      *
      * @return \Google\Cloud\Dlp\V2\CreateDlpJobRequest
@@ -99,7 +98,6 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      *                                                            for processing data:
      *
      *                                                            parent=projects/example-project/locations/europe-west3
-     *                                                            Please see {@see DlpServiceClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\Dlp\V2\RiskAnalysisJobConfig $riskJob A risk analysis job calculates re-identification risk metrics for a
      *                                                            BigQuery table.
      *

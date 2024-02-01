@@ -40,11 +40,13 @@ use Google\Rpc\Status;
  * not renew automatically unless the new owner sets up billing in Google
  * Domains.
  *
- * @param string $formattedName The name of the `Registration` to export,
- *                              in the format `projects/&#42;/locations/&#42;/registrations/*`. Please see
- *                              {@see DomainsClient::registrationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function export_registration_sample(string $formattedName): void
+function export_registration_sample(): void
 {
     // Create a client.
     $domainsClient = new DomainsClient();
@@ -52,7 +54,7 @@ function export_registration_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $domainsClient->exportRegistration($formattedName);
+        $response = $domainsClient->exportRegistration();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -67,21 +69,5 @@ function export_registration_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DomainsClient::registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-
-    export_registration_sample($formattedName);
 }
 // [END domains_v1alpha2_generated_Domains_ExportRegistration_sync]

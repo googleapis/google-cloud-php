@@ -48,8 +48,7 @@ class CreateMigrationJobRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string                                 $parent         Required. The parent which owns this collection of migration jobs. Please see
-     *                                                               {@see DataMigrationServiceClient::locationName()} for help formatting this field.
+     * @param string                                 $parent         Required. The parent which owns this collection of migration jobs.
      * @param \Google\Cloud\CloudDms\V1\MigrationJob $migrationJob   Required. Represents a [migration
      *                                                               job](https://cloud.google.com/database-migration/docs/reference/rest/v1/projects.locations.migrationJobs)
      *                                                               object.

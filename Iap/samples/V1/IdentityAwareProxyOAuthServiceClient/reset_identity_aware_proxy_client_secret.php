@@ -32,18 +32,19 @@ use Google\Cloud\Iap\V1\ResetIdentityAwareProxyClientSecretRequest;
  * Resets an Identity Aware Proxy (IAP) OAuth client secret. Useful if the
  * secret was compromised. Requires that the client is owned by IAP.
  *
- * @param string $name Name of the Identity Aware Proxy client to that will have its
- *                     secret reset. In the following format:
- *                     projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function reset_identity_aware_proxy_client_secret_sample(string $name): void
+function reset_identity_aware_proxy_client_secret_sample(): void
 {
     // Create a client.
     $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
 
     // Prepare the request message.
-    $request = (new ResetIdentityAwareProxyClientSecretRequest())
-        ->setName($name);
+    $request = new ResetIdentityAwareProxyClientSecretRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +54,5 @@ function reset_identity_aware_proxy_client_secret_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    reset_identity_aware_proxy_client_secret_sample($name);
 }
 // [END iap_v1_generated_IdentityAwareProxyOAuthService_ResetIdentityAwareProxyClientSecret_sync]

@@ -32,25 +32,19 @@ use Google\Cloud\GkeMultiCloud\V1\GetAttachedClusterRequest;
  * Describes a specific
  * [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource.
  *
- * @param string $formattedName The name of the
- *                              [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
- *                              to describe.
- *
- *                              `AttachedCluster` names are formatted as
- *                              `projects/<project-id>/locations/<region>/attachedClusters/<cluster-id>`.
- *
- *                              See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                              for more details on Google Cloud Platform resource names. Please see
- *                              {@see AttachedClustersClient::attachedClusterName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_attached_cluster_sample(string $formattedName): void
+function get_attached_cluster_sample(): void
 {
     // Create a client.
     $attachedClustersClient = new AttachedClustersClient();
 
     // Prepare the request message.
-    $request = (new GetAttachedClusterRequest())
-        ->setName($formattedName);
+    $request = new GetAttachedClusterRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,25 +54,5 @@ function get_attached_cluster_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AttachedClustersClient::attachedClusterName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[ATTACHED_CLUSTER]'
-    );
-
-    get_attached_cluster_sample($formattedName);
 }
 // [END gkemulticloud_v1_generated_AttachedClusters_GetAttachedCluster_sync]

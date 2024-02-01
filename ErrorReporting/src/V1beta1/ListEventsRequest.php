@@ -66,8 +66,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      *                            [Google Cloud Platform project
      *                            ID](https://support.google.com/cloud/answer/6158840).
      *
-     *                            Example: `projects/my-project-123`. Please see
-     *                            {@see ErrorStatsServiceClient::projectName()} for help formatting this field.
+     *                            Example: `projects/my-project-123`.
      * @param string $groupId     Required. The group for which events shall be returned.
      *
      * @return \Google\Cloud\ErrorReporting\V1beta1\ListEventsRequest

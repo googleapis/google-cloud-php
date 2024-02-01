@@ -30,10 +30,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\CloudDms\V1\ConnectionProfile;
 use Google\Cloud\CloudDms\V1\ConversionWorkspace;
 use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
-use Google\Cloud\CloudDms\V1\DatabaseEngine;
-use Google\Cloud\CloudDms\V1\DatabaseEngineInfo;
 use Google\Cloud\CloudDms\V1\DatabaseEntity;
-use Google\Cloud\CloudDms\V1\DatabaseEntityType;
 use Google\Cloud\CloudDms\V1\DescribeConversionWorkspaceRevisionsResponse;
 use Google\Cloud\CloudDms\V1\DescribeDatabaseEntitiesResponse;
 use Google\Cloud\CloudDms\V1\FetchStaticIpsResponse;
@@ -43,9 +40,7 @@ use Google\Cloud\CloudDms\V1\ListMappingRulesResponse;
 use Google\Cloud\CloudDms\V1\ListMigrationJobsResponse;
 use Google\Cloud\CloudDms\V1\ListPrivateConnectionsResponse;
 use Google\Cloud\CloudDms\V1\MappingRule;
-use Google\Cloud\CloudDms\V1\MappingRuleFilter;
 use Google\Cloud\CloudDms\V1\MigrationJob;
-use Google\Cloud\CloudDms\V1\MigrationJob\Type;
 use Google\Cloud\CloudDms\V1\PrivateConnection;
 use Google\Cloud\CloudDms\V1\SearchBackgroundJobsResponse;
 use Google\Cloud\CloudDms\V1\SshScript;
@@ -53,7 +48,6 @@ use Google\Cloud\CloudDms\V1\TcpProxyScript;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -123,9 +117,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $response = $gapicClient->applyConversionWorkspace($formattedName);
+        $response = $gapicClient->applyConversionWorkspace();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -135,8 +127,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/ApplyConversionWorkspace', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/applyConversionWorkspaceTest');
         $response->pollUntilComplete([
@@ -187,9 +177,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $response = $gapicClient->applyConversionWorkspace($formattedName);
+        $response = $gapicClient->applyConversionWorkspace();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -248,9 +236,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $response = $gapicClient->commitConversionWorkspace($formattedName);
+        $response = $gapicClient->commitConversionWorkspace();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -260,8 +246,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/CommitConversionWorkspace', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/commitConversionWorkspaceTest');
         $response->pollUntilComplete([
@@ -312,9 +296,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $response = $gapicClient->commitConversionWorkspace($formattedName);
+        $response = $gapicClient->commitConversionWorkspace();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -488,11 +470,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $connectionProfileId = 'connectionProfileId1179884402';
-        $connectionProfile = new ConnectionProfile();
-        $response = $gapicClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
+        $response = $gapicClient->createConnectionProfile();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -502,12 +480,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/CreateConnectionProfile', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getConnectionProfileId();
-        $this->assertProtobufEquals($connectionProfileId, $actualValue);
-        $actualValue = $actualApiRequestObject->getConnectionProfile();
-        $this->assertProtobufEquals($connectionProfile, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createConnectionProfileTest');
         $response->pollUntilComplete([
@@ -558,11 +530,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $connectionProfileId = 'connectionProfileId1179884402';
-        $connectionProfile = new ConnectionProfile();
-        $response = $gapicClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
+        $response = $gapicClient->createConnectionProfile();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -621,23 +589,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $conversionWorkspaceId = 'conversionWorkspaceId-2047649394';
-        $conversionWorkspace = new ConversionWorkspace();
-        $conversionWorkspaceSource = new DatabaseEngineInfo();
-        $sourceEngine = DatabaseEngine::DATABASE_ENGINE_UNSPECIFIED;
-        $conversionWorkspaceSource->setEngine($sourceEngine);
-        $sourceVersion = 'sourceVersion446171197';
-        $conversionWorkspaceSource->setVersion($sourceVersion);
-        $conversionWorkspace->setSource($conversionWorkspaceSource);
-        $conversionWorkspaceDestination = new DatabaseEngineInfo();
-        $destinationEngine = DatabaseEngine::DATABASE_ENGINE_UNSPECIFIED;
-        $conversionWorkspaceDestination->setEngine($destinationEngine);
-        $destinationVersion = 'destinationVersion-1058839318';
-        $conversionWorkspaceDestination->setVersion($destinationVersion);
-        $conversionWorkspace->setDestination($conversionWorkspaceDestination);
-        $response = $gapicClient->createConversionWorkspace($formattedParent, $conversionWorkspaceId, $conversionWorkspace);
+        $response = $gapicClient->createConversionWorkspace();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -647,12 +599,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/CreateConversionWorkspace', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getConversionWorkspaceId();
-        $this->assertProtobufEquals($conversionWorkspaceId, $actualValue);
-        $actualValue = $actualApiRequestObject->getConversionWorkspace();
-        $this->assertProtobufEquals($conversionWorkspace, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createConversionWorkspaceTest');
         $response->pollUntilComplete([
@@ -703,23 +649,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $conversionWorkspaceId = 'conversionWorkspaceId-2047649394';
-        $conversionWorkspace = new ConversionWorkspace();
-        $conversionWorkspaceSource = new DatabaseEngineInfo();
-        $sourceEngine = DatabaseEngine::DATABASE_ENGINE_UNSPECIFIED;
-        $conversionWorkspaceSource->setEngine($sourceEngine);
-        $sourceVersion = 'sourceVersion446171197';
-        $conversionWorkspaceSource->setVersion($sourceVersion);
-        $conversionWorkspace->setSource($conversionWorkspaceSource);
-        $conversionWorkspaceDestination = new DatabaseEngineInfo();
-        $destinationEngine = DatabaseEngine::DATABASE_ENGINE_UNSPECIFIED;
-        $conversionWorkspaceDestination->setEngine($destinationEngine);
-        $destinationVersion = 'destinationVersion-1058839318';
-        $conversionWorkspaceDestination->setVersion($destinationVersion);
-        $conversionWorkspace->setDestination($conversionWorkspaceDestination);
-        $response = $gapicClient->createConversionWorkspace($formattedParent, $conversionWorkspaceId, $conversionWorkspace);
+        $response = $gapicClient->createConversionWorkspace();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -760,29 +690,13 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setRuleOrder($ruleOrder);
         $expectedResponse->setRevisionId($revisionId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $mappingRuleId = 'mappingRuleId675527373';
-        $mappingRule = new MappingRule();
-        $mappingRuleRuleScope = DatabaseEntityType::DATABASE_ENTITY_TYPE_UNSPECIFIED;
-        $mappingRule->setRuleScope($mappingRuleRuleScope);
-        $mappingRuleFilter = new MappingRuleFilter();
-        $mappingRule->setFilter($mappingRuleFilter);
-        $mappingRuleRuleOrder = 294717464;
-        $mappingRule->setRuleOrder($mappingRuleRuleOrder);
-        $response = $gapicClient->createMappingRule($formattedParent, $mappingRuleId, $mappingRule);
+        $response = $gapicClient->createMappingRule();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/CreateMappingRule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getMappingRuleId();
-        $this->assertProtobufEquals($mappingRuleId, $actualValue);
-        $actualValue = $actualRequestObject->getMappingRule();
-        $this->assertProtobufEquals($mappingRule, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -804,18 +718,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $mappingRuleId = 'mappingRuleId675527373';
-        $mappingRule = new MappingRule();
-        $mappingRuleRuleScope = DatabaseEntityType::DATABASE_ENTITY_TYPE_UNSPECIFIED;
-        $mappingRule->setRuleScope($mappingRuleRuleScope);
-        $mappingRuleFilter = new MappingRuleFilter();
-        $mappingRule->setFilter($mappingRuleFilter);
-        $mappingRuleRuleOrder = 294717464;
-        $mappingRule->setRuleOrder($mappingRuleRuleOrder);
         try {
-            $gapicClient->createMappingRule($formattedParent, $mappingRuleId, $mappingRule);
+            $gapicClient->createMappingRule();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -870,17 +774,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $migrationJobId = 'migrationJobId-641178002';
-        $migrationJob = new MigrationJob();
-        $migrationJobType = Type::TYPE_UNSPECIFIED;
-        $migrationJob->setType($migrationJobType);
-        $migrationJobSource = 'migrationJobSource-1632714230';
-        $migrationJob->setSource($migrationJobSource);
-        $migrationJobDestination = 'migrationJobDestination814598015';
-        $migrationJob->setDestination($migrationJobDestination);
-        $response = $gapicClient->createMigrationJob($formattedParent, $migrationJobId, $migrationJob);
+        $response = $gapicClient->createMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -890,12 +784,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/CreateMigrationJob', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getMigrationJobId();
-        $this->assertProtobufEquals($migrationJobId, $actualValue);
-        $actualValue = $actualApiRequestObject->getMigrationJob();
-        $this->assertProtobufEquals($migrationJob, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createMigrationJobTest');
         $response->pollUntilComplete([
@@ -946,17 +834,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $migrationJobId = 'migrationJobId-641178002';
-        $migrationJob = new MigrationJob();
-        $migrationJobType = Type::TYPE_UNSPECIFIED;
-        $migrationJob->setType($migrationJobType);
-        $migrationJobSource = 'migrationJobSource-1632714230';
-        $migrationJob->setSource($migrationJobSource);
-        $migrationJobDestination = 'migrationJobDestination814598015';
-        $migrationJob->setDestination($migrationJobDestination);
-        $response = $gapicClient->createMigrationJob($formattedParent, $migrationJobId, $migrationJob);
+        $response = $gapicClient->createMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1011,11 +889,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $privateConnectionId = 'privateConnectionId-1948601248';
-        $privateConnection = new PrivateConnection();
-        $response = $gapicClient->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
+        $response = $gapicClient->createPrivateConnection();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1025,12 +899,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/CreatePrivateConnection', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getPrivateConnectionId();
-        $this->assertProtobufEquals($privateConnectionId, $actualValue);
-        $actualValue = $actualApiRequestObject->getPrivateConnection();
-        $this->assertProtobufEquals($privateConnection, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createPrivateConnectionTest');
         $response->pollUntilComplete([
@@ -1081,11 +949,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $privateConnectionId = 'privateConnectionId-1948601248';
-        $privateConnection = new PrivateConnection();
-        $response = $gapicClient->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
+        $response = $gapicClient->createPrivateConnection();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1136,9 +1000,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $response = $gapicClient->deleteConnectionProfile($formattedName);
+        $response = $gapicClient->deleteConnectionProfile();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1148,8 +1010,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/DeleteConnectionProfile', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteConnectionProfileTest');
         $response->pollUntilComplete([
@@ -1200,9 +1060,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $response = $gapicClient->deleteConnectionProfile($formattedName);
+        $response = $gapicClient->deleteConnectionProfile();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1253,9 +1111,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $response = $gapicClient->deleteConversionWorkspace($formattedName);
+        $response = $gapicClient->deleteConversionWorkspace();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1265,8 +1121,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/DeleteConversionWorkspace', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteConversionWorkspaceTest');
         $response->pollUntilComplete([
@@ -1317,9 +1171,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $response = $gapicClient->deleteConversionWorkspace($formattedName);
+        $response = $gapicClient->deleteConversionWorkspace();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1352,16 +1204,12 @@ class DataMigrationServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $gapicClient->deleteMappingRule($formattedName);
+        $gapicClient->deleteMappingRule();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/DeleteMappingRule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1383,10 +1231,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
         try {
-            $gapicClient->deleteMappingRule($formattedName);
+            $gapicClient->deleteMappingRule();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1427,9 +1273,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
-        $response = $gapicClient->deleteMigrationJob($formattedName);
+        $response = $gapicClient->deleteMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1439,8 +1283,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/DeleteMigrationJob', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteMigrationJobTest');
         $response->pollUntilComplete([
@@ -1491,9 +1333,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
-        $response = $gapicClient->deleteMigrationJob($formattedName);
+        $response = $gapicClient->deleteMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1544,9 +1384,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $response = $gapicClient->deletePrivateConnection($formattedName);
+        $response = $gapicClient->deletePrivateConnection();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1556,8 +1394,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/DeletePrivateConnection', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deletePrivateConnectionTest');
         $response->pollUntilComplete([
@@ -1608,9 +1444,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $response = $gapicClient->deletePrivateConnection($formattedName);
+        $response = $gapicClient->deletePrivateConnection();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1643,17 +1477,13 @@ class DataMigrationServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DescribeConversionWorkspaceRevisionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $response = $gapicClient->describeConversionWorkspaceRevisions($formattedConversionWorkspace);
+        $response = $gapicClient->describeConversionWorkspaceRevisions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/DescribeConversionWorkspaceRevisions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getConversionWorkspace();
-        $this->assertProtobufEquals($formattedConversionWorkspace, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1675,10 +1505,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
         try {
-            $gapicClient->describeConversionWorkspaceRevisions($formattedConversionWorkspace);
+            $gapicClient->describeConversionWorkspaceRevisions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1708,9 +1536,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDatabaseEntities($databaseEntities);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $response = $gapicClient->describeDatabaseEntities($formattedConversionWorkspace);
+        $response = $gapicClient->describeDatabaseEntities();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1720,8 +1546,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/DescribeDatabaseEntities', $actualFuncCall);
-        $actualValue = $actualRequestObject->getConversionWorkspace();
-        $this->assertProtobufEquals($formattedConversionWorkspace, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1743,10 +1567,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
         try {
-            $gapicClient->describeDatabaseEntities($formattedConversionWorkspace);
+            $gapicClient->describeDatabaseEntities();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1776,9 +1598,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setStaticIps($staticIps);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->fetchStaticIps($formattedName);
+        $response = $gapicClient->fetchStaticIps();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1788,8 +1608,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/FetchStaticIps', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1811,10 +1629,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->fetchStaticIps($formattedName);
+            $gapicClient->fetchStaticIps();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1839,17 +1655,13 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse = new SshScript();
         $expectedResponse->setScript($script);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $vm = 'vm3767';
-        $response = $gapicClient->generateSshScript($vm);
+        $response = $gapicClient->generateSshScript();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/GenerateSshScript', $actualFuncCall);
-        $actualValue = $actualRequestObject->getVm();
-        $this->assertProtobufEquals($vm, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1871,10 +1683,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $vm = 'vm3767';
         try {
-            $gapicClient->generateSshScript($vm);
+            $gapicClient->generateSshScript();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1899,23 +1709,13 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse = new TcpProxyScript();
         $expectedResponse->setScript($script);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $vmName = 'vmName562937619';
-        $vmMachineType = 'vmMachineType-2033986374';
-        $vmSubnet = 'vmSubnet-21527067';
-        $response = $gapicClient->generateTcpProxyScript($vmName, $vmMachineType, $vmSubnet);
+        $response = $gapicClient->generateTcpProxyScript();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/GenerateTcpProxyScript', $actualFuncCall);
-        $actualValue = $actualRequestObject->getVmName();
-        $this->assertProtobufEquals($vmName, $actualValue);
-        $actualValue = $actualRequestObject->getVmMachineType();
-        $this->assertProtobufEquals($vmMachineType, $actualValue);
-        $actualValue = $actualRequestObject->getVmSubnet();
-        $this->assertProtobufEquals($vmSubnet, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1937,12 +1737,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $vmName = 'vmName562937619';
-        $vmMachineType = 'vmMachineType-2033986374';
-        $vmSubnet = 'vmSubnet-21527067';
         try {
-            $gapicClient->generateTcpProxyScript($vmName, $vmMachineType, $vmSubnet);
+            $gapicClient->generateTcpProxyScript();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1969,17 +1765,13 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $response = $gapicClient->getConnectionProfile($formattedName);
+        $response = $gapicClient->getConnectionProfile();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/GetConnectionProfile', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2001,10 +1793,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
         try {
-            $gapicClient->getConnectionProfile($formattedName);
+            $gapicClient->getConnectionProfile();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2035,17 +1825,13 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setLatestCommitId($latestCommitId);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $response = $gapicClient->getConversionWorkspace($formattedName);
+        $response = $gapicClient->getConversionWorkspace();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/GetConversionWorkspace', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2067,10 +1853,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
         try {
-            $gapicClient->getConversionWorkspace($formattedName);
+            $gapicClient->getConversionWorkspace();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2101,17 +1885,13 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setRuleOrder($ruleOrder);
         $expectedResponse->setRevisionId($revisionId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->mappingRuleName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]', '[MAPPING_RULE]');
-        $response = $gapicClient->getMappingRule($formattedName);
+        $response = $gapicClient->getMappingRule();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/GetMappingRule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2133,10 +1913,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->mappingRuleName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]', '[MAPPING_RULE]');
         try {
-            $gapicClient->getMappingRule($formattedName);
+            $gapicClient->getMappingRule();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2173,17 +1951,13 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setCmekKeyName($cmekKeyName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
-        $response = $gapicClient->getMigrationJob($formattedName);
+        $response = $gapicClient->getMigrationJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/GetMigrationJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2205,10 +1979,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
         try {
-            $gapicClient->getMigrationJob($formattedName);
+            $gapicClient->getMigrationJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2235,17 +2007,13 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $response = $gapicClient->getPrivateConnection($formattedName);
+        $response = $gapicClient->getPrivateConnection();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/GetPrivateConnection', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2267,10 +2035,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
         try {
-            $gapicClient->getPrivateConnection($formattedName);
+            $gapicClient->getPrivateConnection();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2319,9 +2085,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $response = $gapicClient->importMappingRules($formattedParent);
+        $response = $gapicClient->importMappingRules();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2331,8 +2095,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/ImportMappingRules', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importMappingRulesTest');
         $response->pollUntilComplete([
@@ -2383,9 +2145,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $response = $gapicClient->importMappingRules($formattedParent);
+        $response = $gapicClient->importMappingRules();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2425,9 +2185,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConnectionProfiles($connectionProfiles);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listConnectionProfiles($formattedParent);
+        $response = $gapicClient->listConnectionProfiles();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2437,8 +2195,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/ListConnectionProfiles', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2460,10 +2216,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listConnectionProfiles($formattedParent);
+            $gapicClient->listConnectionProfiles();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2493,9 +2247,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConversionWorkspaces($conversionWorkspaces);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listConversionWorkspaces($formattedParent);
+        $response = $gapicClient->listConversionWorkspaces();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2505,8 +2257,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/ListConversionWorkspaces', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2528,10 +2278,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listConversionWorkspaces($formattedParent);
+            $gapicClient->listConversionWorkspaces();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2561,9 +2309,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMappingRules($mappingRules);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $response = $gapicClient->listMappingRules($formattedParent);
+        $response = $gapicClient->listMappingRules();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2573,8 +2319,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/ListMappingRules', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2596,10 +2340,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
         try {
-            $gapicClient->listMappingRules($formattedParent);
+            $gapicClient->listMappingRules();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2629,9 +2371,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMigrationJobs($migrationJobs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listMigrationJobs($formattedParent);
+        $response = $gapicClient->listMigrationJobs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2641,8 +2381,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/ListMigrationJobs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2664,10 +2402,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listMigrationJobs($formattedParent);
+            $gapicClient->listMigrationJobs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2697,9 +2433,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPrivateConnections($privateConnections);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listPrivateConnections($formattedParent);
+        $response = $gapicClient->listPrivateConnections();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2709,8 +2443,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/ListPrivateConnections', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2732,10 +2464,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listPrivateConnections($formattedParent);
+            $gapicClient->listPrivateConnections();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3159,9 +2889,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $response = $gapicClient->rollbackConversionWorkspace($formattedName);
+        $response = $gapicClient->rollbackConversionWorkspace();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3171,8 +2899,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/RollbackConversionWorkspace', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/rollbackConversionWorkspaceTest');
         $response->pollUntilComplete([
@@ -3223,9 +2949,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $response = $gapicClient->rollbackConversionWorkspace($formattedName);
+        $response = $gapicClient->rollbackConversionWorkspace();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3258,17 +2982,13 @@ class DataMigrationServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SearchBackgroundJobsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $response = $gapicClient->searchBackgroundJobs($formattedConversionWorkspace);
+        $response = $gapicClient->searchBackgroundJobs();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/SearchBackgroundJobs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getConversionWorkspace();
-        $this->assertProtobufEquals($formattedConversionWorkspace, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3290,10 +3010,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
         try {
-            $gapicClient->searchBackgroundJobs($formattedConversionWorkspace);
+            $gapicClient->searchBackgroundJobs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3707,10 +3425,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $connectionProfile = new ConnectionProfile();
-        $response = $gapicClient->updateConnectionProfile($updateMask, $connectionProfile);
+        $response = $gapicClient->updateConnectionProfile();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3720,10 +3435,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/UpdateConnectionProfile', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getConnectionProfile();
-        $this->assertProtobufEquals($connectionProfile, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateConnectionProfileTest');
         $response->pollUntilComplete([
@@ -3774,10 +3485,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $connectionProfile = new ConnectionProfile();
-        $response = $gapicClient->updateConnectionProfile($updateMask, $connectionProfile);
+        $response = $gapicClient->updateConnectionProfile();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3836,22 +3544,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $conversionWorkspace = new ConversionWorkspace();
-        $conversionWorkspaceSource = new DatabaseEngineInfo();
-        $sourceEngine = DatabaseEngine::DATABASE_ENGINE_UNSPECIFIED;
-        $conversionWorkspaceSource->setEngine($sourceEngine);
-        $sourceVersion = 'sourceVersion446171197';
-        $conversionWorkspaceSource->setVersion($sourceVersion);
-        $conversionWorkspace->setSource($conversionWorkspaceSource);
-        $conversionWorkspaceDestination = new DatabaseEngineInfo();
-        $destinationEngine = DatabaseEngine::DATABASE_ENGINE_UNSPECIFIED;
-        $conversionWorkspaceDestination->setEngine($destinationEngine);
-        $destinationVersion = 'destinationVersion-1058839318';
-        $conversionWorkspaceDestination->setVersion($destinationVersion);
-        $conversionWorkspace->setDestination($conversionWorkspaceDestination);
-        $response = $gapicClient->updateConversionWorkspace($updateMask, $conversionWorkspace);
+        $response = $gapicClient->updateConversionWorkspace();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3861,10 +3554,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/UpdateConversionWorkspace', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getConversionWorkspace();
-        $this->assertProtobufEquals($conversionWorkspace, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateConversionWorkspaceTest');
         $response->pollUntilComplete([
@@ -3915,22 +3604,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $conversionWorkspace = new ConversionWorkspace();
-        $conversionWorkspaceSource = new DatabaseEngineInfo();
-        $sourceEngine = DatabaseEngine::DATABASE_ENGINE_UNSPECIFIED;
-        $conversionWorkspaceSource->setEngine($sourceEngine);
-        $sourceVersion = 'sourceVersion446171197';
-        $conversionWorkspaceSource->setVersion($sourceVersion);
-        $conversionWorkspace->setSource($conversionWorkspaceSource);
-        $conversionWorkspaceDestination = new DatabaseEngineInfo();
-        $destinationEngine = DatabaseEngine::DATABASE_ENGINE_UNSPECIFIED;
-        $conversionWorkspaceDestination->setEngine($destinationEngine);
-        $destinationVersion = 'destinationVersion-1058839318';
-        $conversionWorkspaceDestination->setVersion($destinationVersion);
-        $conversionWorkspace->setDestination($conversionWorkspaceDestination);
-        $response = $gapicClient->updateConversionWorkspace($updateMask, $conversionWorkspace);
+        $response = $gapicClient->updateConversionWorkspace();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3995,16 +3669,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $migrationJob = new MigrationJob();
-        $migrationJobType = Type::TYPE_UNSPECIFIED;
-        $migrationJob->setType($migrationJobType);
-        $migrationJobSource = 'migrationJobSource-1632714230';
-        $migrationJob->setSource($migrationJobSource);
-        $migrationJobDestination = 'migrationJobDestination814598015';
-        $migrationJob->setDestination($migrationJobDestination);
-        $response = $gapicClient->updateMigrationJob($updateMask, $migrationJob);
+        $response = $gapicClient->updateMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -4014,10 +3679,6 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/UpdateMigrationJob', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getMigrationJob();
-        $this->assertProtobufEquals($migrationJob, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateMigrationJobTest');
         $response->pollUntilComplete([
@@ -4068,16 +3729,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $migrationJob = new MigrationJob();
-        $migrationJobType = Type::TYPE_UNSPECIFIED;
-        $migrationJob->setType($migrationJobType);
-        $migrationJobSource = 'migrationJobSource-1632714230';
-        $migrationJob->setSource($migrationJobSource);
-        $migrationJobDestination = 'migrationJobDestination814598015';
-        $migrationJob->setDestination($migrationJobDestination);
-        $response = $gapicClient->updateMigrationJob($updateMask, $migrationJob);
+        $response = $gapicClient->updateMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

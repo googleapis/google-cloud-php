@@ -25,8 +25,7 @@ class GetJobTriggerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Resource name of the project and the triggeredJob, for example
-     *                     `projects/dlp-test-project/jobTriggers/53234423`. Please see
-     *                     {@see DlpServiceClient::jobTriggerName()} for help formatting this field.
+     *                     `projects/dlp-test-project/jobTriggers/53234423`.
      *
      * @return \Google\Cloud\Dlp\V2\GetJobTriggerRequest
      *

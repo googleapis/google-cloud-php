@@ -32,25 +32,19 @@ use Google\Cloud\GkeMultiCloud\V1\GenerateAzureAccessTokenResponse;
  * Generates a short-lived access token to authenticate to a given
  * [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource.
  *
- * @param string $formattedAzureCluster The name of the
- *                                      [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource to
- *                                      authenticate to.
- *
- *                                      `AzureCluster` names are formatted as
- *                                      `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
- *
- *                                      See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                                      for more details on Google Cloud resource names. Please see
- *                                      {@see AzureClustersClient::azureClusterName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function generate_azure_access_token_sample(string $formattedAzureCluster): void
+function generate_azure_access_token_sample(): void
 {
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
     // Prepare the request message.
-    $request = (new GenerateAzureAccessTokenRequest())
-        ->setAzureCluster($formattedAzureCluster);
+    $request = new GenerateAzureAccessTokenRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,25 +54,5 @@ function generate_azure_access_token_sample(string $formattedAzureCluster): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedAzureCluster = AzureClustersClient::azureClusterName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AZURE_CLUSTER]'
-    );
-
-    generate_azure_access_token_sample($formattedAzureCluster);
 }
 // [END gkemulticloud_v1_generated_AzureClusters_GenerateAzureAccessToken_sync]

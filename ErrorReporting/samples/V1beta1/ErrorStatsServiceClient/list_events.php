@@ -32,24 +32,19 @@ use Google\Cloud\ErrorReporting\V1beta1\ListEventsRequest;
 /**
  * Lists the specified events.
  *
- * @param string $formattedProjectName The resource name of the Google Cloud Platform project. Written
- *                                     as `projects/{projectID}`, where `{projectID}` is the
- *                                     [Google Cloud Platform project
- *                                     ID](https://support.google.com/cloud/answer/6158840).
- *
- *                                     Example: `projects/my-project-123`. Please see
- *                                     {@see ErrorStatsServiceClient::projectName()} for help formatting this field.
- * @param string $groupId              The group for which events shall be returned.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_events_sample(string $formattedProjectName, string $groupId): void
+function list_events_sample(): void
 {
     // Create a client.
     $errorStatsServiceClient = new ErrorStatsServiceClient();
 
     // Prepare the request message.
-    $request = (new ListEventsRequest())
-        ->setProjectName($formattedProjectName)
-        ->setGroupId($groupId);
+    $request = new ListEventsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,22 +58,5 @@ function list_events_sample(string $formattedProjectName, string $groupId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedProjectName = ErrorStatsServiceClient::projectName('[PROJECT]');
-    $groupId = '[GROUP_ID]';
-
-    list_events_sample($formattedProjectName, $groupId);
 }
 // [END clouderrorreporting_v1beta1_generated_ErrorStatsService_ListEvents_sync]

@@ -35,7 +35,6 @@ use Google\Cloud\DiscoveryEngine\V1beta\DeleteConversationRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\GetConversationRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\ListConversationsRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\ListConversationsResponse;
-use Google\Cloud\DiscoveryEngine\V1beta\TextInput;
 use Google\Cloud\DiscoveryEngine\V1beta\UpdateConversationRequest;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
@@ -82,10 +81,7 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ConverseConversationResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[CONVERSATION]');
-        $query = new TextInput();
-        $request = (new ConverseConversationRequest())->setName($formattedName)->setQuery($query);
+        $request = new ConverseConversationRequest();
         $response = $gapicClient->converseConversation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -96,10 +92,6 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
             '/google.cloud.discoveryengine.v1beta.ConversationalSearchService/ConverseConversation',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -124,10 +116,7 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[CONVERSATION]');
-        $query = new TextInput();
-        $request = (new ConverseConversationRequest())->setName($formattedName)->setQuery($query);
+        $request = new ConverseConversationRequest();
         try {
             $gapicClient->converseConversation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -156,10 +145,7 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setUserPseudoId($userPseudoId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-        $conversation = new Conversation();
-        $request = (new CreateConversationRequest())->setParent($formattedParent)->setConversation($conversation);
+        $request = new CreateConversationRequest();
         $response = $gapicClient->createConversation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -170,10 +156,6 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
             '/google.cloud.discoveryengine.v1beta.ConversationalSearchService/CreateConversation',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getConversation();
-        $this->assertProtobufEquals($conversation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -198,10 +180,7 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-        $conversation = new Conversation();
-        $request = (new CreateConversationRequest())->setParent($formattedParent)->setConversation($conversation);
+        $request = new CreateConversationRequest();
         try {
             $gapicClient->createConversation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -226,9 +205,7 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[CONVERSATION]');
-        $request = (new DeleteConversationRequest())->setName($formattedName);
+        $request = new DeleteConversationRequest();
         $gapicClient->deleteConversation($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -238,8 +215,6 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
             '/google.cloud.discoveryengine.v1beta.ConversationalSearchService/DeleteConversation',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -264,9 +239,7 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[CONVERSATION]');
-        $request = (new DeleteConversationRequest())->setName($formattedName);
+        $request = new DeleteConversationRequest();
         try {
             $gapicClient->deleteConversation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -295,9 +268,7 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setUserPseudoId($userPseudoId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[CONVERSATION]');
-        $request = (new GetConversationRequest())->setName($formattedName);
+        $request = new GetConversationRequest();
         $response = $gapicClient->getConversation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -308,8 +279,6 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
             '/google.cloud.discoveryengine.v1beta.ConversationalSearchService/GetConversation',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -334,9 +303,7 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[CONVERSATION]');
-        $request = (new GetConversationRequest())->setName($formattedName);
+        $request = new GetConversationRequest();
         try {
             $gapicClient->getConversation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -366,9 +333,7 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConversations($conversations);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-        $request = (new ListConversationsRequest())->setParent($formattedParent);
+        $request = new ListConversationsRequest();
         $response = $gapicClient->listConversations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -382,8 +347,6 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
             '/google.cloud.discoveryengine.v1beta.ConversationalSearchService/ListConversations',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -408,9 +371,7 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-        $request = (new ListConversationsRequest())->setParent($formattedParent);
+        $request = new ListConversationsRequest();
         try {
             $gapicClient->listConversations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -439,9 +400,7 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setUserPseudoId($userPseudoId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $conversation = new Conversation();
-        $request = (new UpdateConversationRequest())->setConversation($conversation);
+        $request = new UpdateConversationRequest();
         $response = $gapicClient->updateConversation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -452,8 +411,6 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
             '/google.cloud.discoveryengine.v1beta.ConversationalSearchService/UpdateConversation',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getConversation();
-        $this->assertProtobufEquals($conversation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -478,9 +435,7 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $conversation = new Conversation();
-        $request = (new UpdateConversationRequest())->setConversation($conversation);
+        $request = new UpdateConversationRequest();
         try {
             $gapicClient->updateConversation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -505,10 +460,7 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ConverseConversationResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[CONVERSATION]');
-        $query = new TextInput();
-        $request = (new ConverseConversationRequest())->setName($formattedName)->setQuery($query);
+        $request = new ConverseConversationRequest();
         $response = $gapicClient->converseConversationAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -519,10 +471,6 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
             '/google.cloud.discoveryengine.v1beta.ConversationalSearchService/ConverseConversation',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

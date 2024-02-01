@@ -32,20 +32,19 @@ use Google\Cloud\DocumentAI\V1\ListEvaluationsRequest;
 /**
  * Retrieves a set of evaluations for a given processor version.
  *
- * @param string $formattedParent The resource name of the
- *                                [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list
- *                                evaluations for.
- *                                `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
- *                                Please see {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_evaluations_sample(string $formattedParent): void
+function list_evaluations_sample(): void
 {
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
     // Prepare the request message.
-    $request = (new ListEvaluationsRequest())
-        ->setParent($formattedParent);
+    $request = new ListEvaluationsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,26 +58,5 @@ function list_evaluations_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DocumentProcessorServiceClient::processorVersionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[PROCESSOR]',
-        '[PROCESSOR_VERSION]'
-    );
-
-    list_evaluations_sample($formattedParent);
 }
 // [END documentai_v1_generated_DocumentProcessorService_ListEvaluations_sync]

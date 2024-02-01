@@ -60,7 +60,6 @@ class ListVolumeBackupsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The Backup that contains the VolumeBackups to list.
      *                       Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
-     *                       Please see {@see BackupForGKEClient::backupName()} for help formatting this field.
      *
      * @return \Google\Cloud\GkeBackup\V1\ListVolumeBackupsRequest
      *

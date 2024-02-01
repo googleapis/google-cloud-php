@@ -41,8 +41,7 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
      *                     or not it exists, a `PERMISSION_DENIED` error is returned.
      *
      *                     If the requested [Document][google.cloud.discoveryengine.v1.Document] does
-     *                     not exist, a `NOT_FOUND` error is returned. Please see
-     *                     {@see DocumentServiceClient::documentName()} for help formatting this field.
+     *                     not exist, a `NOT_FOUND` error is returned.
      *
      * @return \Google\Cloud\DiscoveryEngine\V1\GetDocumentRequest
      *

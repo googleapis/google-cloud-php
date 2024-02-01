@@ -33,18 +33,19 @@ use Google\Cloud\DiscoveryEngine\V1beta\DeleteConversationRequest;
  * If the [Conversation][google.cloud.discoveryengine.v1beta.Conversation] to
  * delete does not exist, a NOT_FOUND error is returned.
  *
- * @param string $formattedName The resource name of the Conversation to delete. Format:
- *                              `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`
- *                              Please see {@see ConversationalSearchServiceClient::conversationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_conversation_sample(string $formattedName): void
+function delete_conversation_sample(): void
 {
     // Create a client.
     $conversationalSearchServiceClient = new ConversationalSearchServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteConversationRequest())
-        ->setName($formattedName);
+    $request = new DeleteConversationRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,26 +54,5 @@ function delete_conversation_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ConversationalSearchServiceClient::conversationName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_STORE]',
-        '[CONVERSATION]'
-    );
-
-    delete_conversation_sample($formattedName);
 }
 // [END discoveryengine_v1beta_generated_ConversationalSearchService_DeleteConversation_sync]

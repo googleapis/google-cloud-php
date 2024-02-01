@@ -33,23 +33,19 @@ use Google\Rpc\Status;
 /**
  * Update a BackupPlan.
  *
- * @param string $formattedBackupPlanCluster Immutable. The source cluster from which Backups will be created
- *                                           via this BackupPlan. Valid formats:
- *
- *                                           - `projects/&#42;/locations/&#42;/clusters/*`
- *                                           - `projects/&#42;/zones/&#42;/clusters/*`
- *                                           Please see {@see BackupForGKEClient::clusterName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_backup_plan_sample(string $formattedBackupPlanCluster): void
+function update_backup_plan_sample(): void
 {
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
     // Prepare the request message.
-    $backupPlan = (new BackupPlan())
-        ->setCluster($formattedBackupPlanCluster);
-    $request = (new UpdateBackupPlanRequest())
-        ->setBackupPlan($backupPlan);
+    $request = new UpdateBackupPlanRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,25 +65,5 @@ function update_backup_plan_sample(string $formattedBackupPlanCluster): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedBackupPlanCluster = BackupForGKEClient::clusterName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CLUSTER]'
-    );
-
-    update_backup_plan_sample($formattedBackupPlanCluster);
 }
 // [END gkebackup_v1_generated_BackupForGKE_UpdateBackupPlan_sync]

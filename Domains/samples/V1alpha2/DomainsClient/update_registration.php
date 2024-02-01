@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Domains\V1alpha2\DomainsClient;
 use Google\Cloud\Domains\V1alpha2\Registration;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -49,13 +48,10 @@ function update_registration_sample(): void
     // Create a client.
     $domainsClient = new DomainsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $updateMask = new FieldMask();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $domainsClient->updateRegistration($updateMask);
+        $response = $domainsClient->updateRegistration();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -37,8 +37,7 @@ class UpdateNoteRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                     $name       The name of the note in the form of
-     *                                               `projects/[PROVIDER_ID]/notes/[NOTE_ID]`. Please see
-     *                                               {@see GrafeasClient::noteName()} for help formatting this field.
+     *                                               `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      * @param \Grafeas\V1\Note           $note       The updated note.
      * @param \Google\Protobuf\FieldMask $updateMask The fields to update.
      *

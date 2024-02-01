@@ -23,8 +23,7 @@ class GetChannelRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the channel to get. Please see
-     *                     {@see EventarcClient::channelName()} for help formatting this field.
+     * @param string $name Required. The name of the channel to get.
      *
      * @return \Google\Cloud\Eventarc\V1\GetChannelRequest
      *

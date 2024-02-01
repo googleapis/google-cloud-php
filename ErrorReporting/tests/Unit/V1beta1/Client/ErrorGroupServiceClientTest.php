@@ -76,10 +76,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setGroupId($groupId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedGroupName = $gapicClient->errorGroupName('[PROJECT]', '[GROUP]');
-        $request = (new GetGroupRequest())
-            ->setGroupName($formattedGroupName);
+        $request = new GetGroupRequest();
         $response = $gapicClient->getGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -87,8 +84,6 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/GetGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getGroupName();
-        $this->assertProtobufEquals($formattedGroupName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -110,10 +105,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedGroupName = $gapicClient->errorGroupName('[PROJECT]', '[GROUP]');
-        $request = (new GetGroupRequest())
-            ->setGroupName($formattedGroupName);
+        $request = new GetGroupRequest();
         try {
             $gapicClient->getGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -142,10 +134,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setGroupId($groupId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $group = new ErrorGroup();
-        $request = (new UpdateGroupRequest())
-            ->setGroup($group);
+        $request = new UpdateGroupRequest();
         $response = $gapicClient->updateGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -153,8 +142,6 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/UpdateGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getGroup();
-        $this->assertProtobufEquals($group, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -176,10 +163,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $group = new ErrorGroup();
-        $request = (new UpdateGroupRequest())
-            ->setGroup($group);
+        $request = new UpdateGroupRequest();
         try {
             $gapicClient->updateGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -208,10 +192,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setGroupId($groupId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedGroupName = $gapicClient->errorGroupName('[PROJECT]', '[GROUP]');
-        $request = (new GetGroupRequest())
-            ->setGroupName($formattedGroupName);
+        $request = new GetGroupRequest();
         $response = $gapicClient->getGroupAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -219,8 +200,6 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/GetGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getGroupName();
-        $this->assertProtobufEquals($formattedGroupName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

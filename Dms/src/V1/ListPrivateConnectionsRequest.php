@@ -59,8 +59,7 @@ class ListPrivateConnectionsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
-     * @param string $parent Required. The parent that owns the collection of private connections. Please see
-     *                       {@see DataMigrationServiceClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent that owns the collection of private connections.
      *
      * @return \Google\Cloud\CloudDms\V1\ListPrivateConnectionsRequest
      *

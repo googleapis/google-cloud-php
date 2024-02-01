@@ -27,8 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\ErrorReporting\V1beta1\Client\ReportErrorsServiceClient;
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventRequest;
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse;
-use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
-use Google\Cloud\ErrorReporting\V1beta1\ServiceContext;
 
 /**
  * Report an individual error event and record the event to a log.
@@ -46,51 +44,19 @@ use Google\Cloud\ErrorReporting\V1beta1\ServiceContext;
  * in regional log buckets or logs routed to other Google Cloud projects.
  *
  *
- * @param string $formattedProjectName The resource name of the Google Cloud Platform project. Written
- *                                     as `projects/{projectId}`, where `{projectId}` is the
- *                                     [Google Cloud Platform project
- *                                     ID](https://support.google.com/cloud/answer/6158840).
- *
- *                                     Example: // `projects/my-project-123`. Please see
- *                                     {@see ReportErrorsServiceClient::projectName()} for help formatting this field.
- * @param string $eventMessage         The error message.
- *                                     If no `context.reportLocation` is provided, the message must contain a
- *                                     header (typically consisting of the exception type name and an error
- *                                     message) and an exception stack trace in one of the supported programming
- *                                     languages and formats.
- *                                     Supported languages are Java, Python, JavaScript, Ruby, C#, PHP, and Go.
- *                                     Supported stack trace formats are:
- *
- *                                     * **Java**: Must be the return value of
- *                                     [`Throwable.printStackTrace()`](https://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html#printStackTrace%28%29).
- *                                     * **Python**: Must be the return value of
- *                                     [`traceback.format_exc()`](https://docs.python.org/2/library/traceback.html#traceback.format_exc).
- *                                     * **JavaScript**: Must be the value of
- *                                     [`error.stack`](https://github.com/v8/v8/wiki/Stack-Trace-API) as returned
- *                                     by V8.
- *                                     * **Ruby**: Must contain frames returned by
- *                                     [`Exception.backtrace`](https://ruby-doc.org/core-2.2.0/Exception.html#method-i-backtrace).
- *                                     * **C#**: Must be the return value of
- *                                     [`Exception.ToString()`](https://msdn.microsoft.com/en-us/library/system.exception.tostring.aspx).
- *                                     * **PHP**: Must start with `PHP (Notice|Parse error|Fatal error|Warning)`
- *                                     and contain the result of
- *                                     [`(string)$exception`](http://php.net/manual/en/exception.tostring.php).
- *                                     * **Go**: Must be the return value of
- *                                     [`runtime.Stack()`](https://golang.org/pkg/runtime/debug/#Stack).
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function report_error_event_sample(string $formattedProjectName, string $eventMessage): void
+function report_error_event_sample(): void
 {
     // Create a client.
     $reportErrorsServiceClient = new ReportErrorsServiceClient();
 
     // Prepare the request message.
-    $eventServiceContext = new ServiceContext();
-    $event = (new ReportedErrorEvent())
-        ->setServiceContext($eventServiceContext)
-        ->setMessage($eventMessage);
-    $request = (new ReportErrorEventRequest())
-        ->setProjectName($formattedProjectName)
-        ->setEvent($event);
+    $request = new ReportErrorEventRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -100,22 +66,5 @@ function report_error_event_sample(string $formattedProjectName, string $eventMe
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedProjectName = ReportErrorsServiceClient::projectName('[PROJECT]');
-    $eventMessage = '[MESSAGE]';
-
-    report_error_event_sample($formattedProjectName, $eventMessage);
 }
 // [END clouderrorreporting_v1beta1_generated_ReportErrorsService_ReportErrorEvent_sync]

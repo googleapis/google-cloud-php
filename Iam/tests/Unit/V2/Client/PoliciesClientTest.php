@@ -110,12 +110,7 @@ class PoliciesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $policy = new Policy();
-        $request = (new CreatePolicyRequest())
-            ->setParent($parent)
-            ->setPolicy($policy);
+        $request = new CreatePolicyRequest();
         $response = $gapicClient->createPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -126,10 +121,6 @@ class PoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v2.Policies/CreatePolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createPolicyTest');
         $response->pollUntilComplete([
@@ -180,12 +171,7 @@ class PoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $policy = new Policy();
-        $request = (new CreatePolicyRequest())
-            ->setParent($parent)
-            ->setPolicy($policy);
+        $request = new CreatePolicyRequest();
         $response = $gapicClient->createPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -249,10 +235,7 @@ class PoliciesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new DeletePolicyRequest())
-            ->setName($name);
+        $request = new DeletePolicyRequest();
         $response = $gapicClient->deletePolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -263,8 +246,6 @@ class PoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v2.Policies/DeletePolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deletePolicyTest');
         $response->pollUntilComplete([
@@ -315,10 +296,7 @@ class PoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new DeletePolicyRequest())
-            ->setName($name);
+        $request = new DeletePolicyRequest();
         $response = $gapicClient->deletePolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -364,10 +342,7 @@ class PoliciesClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setManagingAuthority($managingAuthority);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new GetPolicyRequest())
-            ->setName($name);
+        $request = new GetPolicyRequest();
         $response = $gapicClient->getPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -375,8 +350,6 @@ class PoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v2.Policies/GetPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -398,10 +371,7 @@ class PoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new GetPolicyRequest())
-            ->setName($name);
+        $request = new GetPolicyRequest();
         try {
             $gapicClient->getPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -433,10 +403,7 @@ class PoliciesClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPolicies($policies);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListPoliciesRequest())
-            ->setParent($parent);
+        $request = new ListPoliciesRequest();
         $response = $gapicClient->listPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -447,8 +414,6 @@ class PoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v2.Policies/ListPolicies', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -470,10 +435,7 @@ class PoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListPoliciesRequest())
-            ->setParent($parent);
+        $request = new ListPoliciesRequest();
         try {
             $gapicClient->listPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -528,10 +490,7 @@ class PoliciesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $policy = new Policy();
-        $request = (new UpdatePolicyRequest())
-            ->setPolicy($policy);
+        $request = new UpdatePolicyRequest();
         $response = $gapicClient->updatePolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -542,8 +501,6 @@ class PoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v2.Policies/UpdatePolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updatePolicyTest');
         $response->pollUntilComplete([
@@ -594,10 +551,7 @@ class PoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $policy = new Policy();
-        $request = (new UpdatePolicyRequest())
-            ->setPolicy($policy);
+        $request = new UpdatePolicyRequest();
         $response = $gapicClient->updatePolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -661,12 +615,7 @@ class PoliciesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $policy = new Policy();
-        $request = (new CreatePolicyRequest())
-            ->setParent($parent)
-            ->setPolicy($policy);
+        $request = new CreatePolicyRequest();
         $response = $gapicClient->createPolicyAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -677,10 +626,6 @@ class PoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v2.Policies/CreatePolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createPolicyTest');
         $response->pollUntilComplete([

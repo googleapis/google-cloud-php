@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
 use Google\Cloud\CloudDms\V1\ConnectionProfile;
 use Google\Cloud\CloudDms\V1\UpdateConnectionProfileRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_connection_profile_sample(): void
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $connectionProfile = new ConnectionProfile();
-    $request = (new UpdateConnectionProfileRequest())
-        ->setUpdateMask($updateMask)
-        ->setConnectionProfile($connectionProfile);
+    $request = new UpdateConnectionProfileRequest();
 
     // Call the API and handle any network failures.
     try {

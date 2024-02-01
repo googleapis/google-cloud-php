@@ -31,17 +31,19 @@ use Google\Cloud\Functions\V2\PBFunction;
 /**
  * Returns a function with the given name from the requested project.
  *
- * @param string $formattedName The name of the function which details should be obtained. Please see
- *                              {@see FunctionServiceClient::functionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_function_sample(string $formattedName): void
+function get_function_sample(): void
 {
     // Create a client.
     $functionServiceClient = new FunctionServiceClient();
 
     // Prepare the request message.
-    $request = (new GetFunctionRequest())
-        ->setName($formattedName);
+    $request = new GetFunctionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,21 +53,5 @@ function get_function_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = FunctionServiceClient::functionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-
-    get_function_sample($formattedName);
 }
 // [END cloudfunctions_v2_generated_FunctionService_GetFunction_sync]

@@ -48,8 +48,7 @@ class ReviewDocumentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $humanReviewConfig Required. The resource name of the
      *                                  [HumanReviewConfig][google.cloud.documentai.v1.HumanReviewConfig] that the
-     *                                  document will be reviewed with. Please see
-     *                                  {@see DocumentProcessorServiceClient::humanReviewConfigName()} for help formatting this field.
+     *                                  document will be reviewed with.
      *
      * @return \Google\Cloud\DocumentAI\V1\ReviewDocumentRequest
      *

@@ -33,23 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new connection profile in a given project and location.
  *
- * @param string $formattedParent     The parent which owns this collection of connection profiles. Please see
- *                                    {@see DataMigrationServiceClient::locationName()} for help formatting this field.
- * @param string $connectionProfileId The connection profile identifier.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_connection_profile_sample(
-    string $formattedParent,
-    string $connectionProfileId
-): void {
+function create_connection_profile_sample(): void
+{
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
     // Prepare the request message.
-    $connectionProfile = new ConnectionProfile();
-    $request = (new CreateConnectionProfileRequest())
-        ->setParent($formattedParent)
-        ->setConnectionProfileId($connectionProfileId)
-        ->setConnectionProfile($connectionProfile);
+    $request = new CreateConnectionProfileRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,22 +65,5 @@ function create_connection_profile_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataMigrationServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $connectionProfileId = '[CONNECTION_PROFILE_ID]';
-
-    create_connection_profile_sample($formattedParent, $connectionProfileId);
 }
 // [END datamigration_v1_generated_DataMigrationService_CreateConnectionProfile_sync]

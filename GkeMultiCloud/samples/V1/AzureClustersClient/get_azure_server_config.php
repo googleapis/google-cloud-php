@@ -32,25 +32,19 @@ use Google\Cloud\GkeMultiCloud\V1\GetAzureServerConfigRequest;
  * Returns information, such as supported Azure regions and Kubernetes
  * versions, on a given Google Cloud location.
  *
- * @param string $formattedName The name of the
- *                              [AzureServerConfig][google.cloud.gkemulticloud.v1.AzureServerConfig]
- *                              resource to describe.
- *
- *                              `AzureServerConfig` names are formatted as
- *                              `projects/<project-id>/locations/<region>/azureServerConfig`.
- *
- *                              See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                              for more details on Google Cloud resource names. Please see
- *                              {@see AzureClustersClient::azureServerConfigName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_azure_server_config_sample(string $formattedName): void
+function get_azure_server_config_sample(): void
 {
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
     // Prepare the request message.
-    $request = (new GetAzureServerConfigRequest())
-        ->setName($formattedName);
+    $request = new GetAzureServerConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +54,5 @@ function get_azure_server_config_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AzureClustersClient::azureServerConfigName('[PROJECT]', '[LOCATION]');
-
-    get_azure_server_config_sample($formattedName);
 }
 // [END gkemulticloud_v1_generated_AzureClusters_GetAzureServerConfig_sync]

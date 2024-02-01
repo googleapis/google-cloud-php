@@ -26,9 +26,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'backup_plan_id',
-                ],
             ],
             'CreateRestore' => [
                 'method' => 'post',
@@ -41,9 +38,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'restore_id',
-                ],
             ],
             'CreateRestorePlan' => [
                 'method' => 'post',
@@ -55,9 +49,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'restore_plan_id',
                 ],
             ],
             'DeleteBackup' => [

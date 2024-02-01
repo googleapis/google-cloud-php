@@ -38,8 +38,7 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
      *                                                                             [Google Cloud Platform project
      *                                                                             ID](https://support.google.com/cloud/answer/6158840).
      *
-     *                                                                             Example: // `projects/my-project-123`. Please see
-     *                                                                             {@see ReportErrorsServiceClient::projectName()} for help formatting this field.
+     *                                                                             Example: // `projects/my-project-123`.
      * @param \Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent $event       Required. The error event to be reported.
      *
      * @return \Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventRequest

@@ -42,8 +42,7 @@ class CreateTriggerRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
-     * @param string                            $parent    Required. The parent collection in which to add this trigger. Please see
-     *                                                     {@see EventarcClient::locationName()} for help formatting this field.
+     * @param string                            $parent    Required. The parent collection in which to add this trigger.
      * @param \Google\Cloud\Eventarc\V1\Trigger $trigger   Required. The trigger to create.
      * @param string                            $triggerId Required. The user-provided ID to be assigned to the trigger.
      *

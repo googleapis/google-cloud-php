@@ -77,10 +77,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DeleteEventsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $request = (new DeleteEventsRequest())
-            ->setProjectName($formattedProjectName);
+        $request = new DeleteEventsRequest();
         $response = $gapicClient->deleteEvents($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -88,8 +85,6 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/DeleteEvents', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectName();
-        $this->assertProtobufEquals($formattedProjectName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -111,10 +106,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $request = (new DeleteEventsRequest())
-            ->setProjectName($formattedProjectName);
+        $request = new DeleteEventsRequest();
         try {
             $gapicClient->deleteEvents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -146,12 +138,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setErrorEvents($errorEvents);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $groupId = 'groupId506361563';
-        $request = (new ListEventsRequest())
-            ->setProjectName($formattedProjectName)
-            ->setGroupId($groupId);
+        $request = new ListEventsRequest();
         $response = $gapicClient->listEvents($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -162,10 +149,6 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListEvents', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectName();
-        $this->assertProtobufEquals($formattedProjectName, $actualValue);
-        $actualValue = $actualRequestObject->getGroupId();
-        $this->assertProtobufEquals($groupId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -187,12 +170,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $groupId = 'groupId506361563';
-        $request = (new ListEventsRequest())
-            ->setProjectName($formattedProjectName)
-            ->setGroupId($groupId);
+        $request = new ListEventsRequest();
         try {
             $gapicClient->listEvents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -224,10 +202,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setErrorGroupStats($errorGroupStats);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListGroupStatsRequest())
-            ->setProjectName($formattedProjectName);
+        $request = new ListGroupStatsRequest();
         $response = $gapicClient->listGroupStats($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -238,8 +213,6 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListGroupStats', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectName();
-        $this->assertProtobufEquals($formattedProjectName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -261,10 +234,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListGroupStatsRequest())
-            ->setProjectName($formattedProjectName);
+        $request = new ListGroupStatsRequest();
         try {
             $gapicClient->listGroupStats($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -289,10 +259,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DeleteEventsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedProjectName = $gapicClient->projectName('[PROJECT]');
-        $request = (new DeleteEventsRequest())
-            ->setProjectName($formattedProjectName);
+        $request = new DeleteEventsRequest();
         $response = $gapicClient->deleteEventsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -300,8 +267,6 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/DeleteEvents', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectName();
-        $this->assertProtobufEquals($formattedProjectName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

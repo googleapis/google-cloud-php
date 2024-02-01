@@ -31,22 +31,19 @@ use Google\Cloud\ErrorReporting\V1beta1\GetGroupRequest;
 /**
  * Get the specified group.
  *
- * @param string $formattedGroupName The group resource name. Written as
- *                                   `projects/{projectID}/groups/{group_name}`. Call
- *                                   [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list)
- *                                   to return a list of groups belonging to this project.
- *
- *                                   Example: `projects/my-project-123/groups/my-group`
- *                                   Please see {@see ErrorGroupServiceClient::errorGroupName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_group_sample(string $formattedGroupName): void
+function get_group_sample(): void
 {
     // Create a client.
     $errorGroupServiceClient = new ErrorGroupServiceClient();
 
     // Prepare the request message.
-    $request = (new GetGroupRequest())
-        ->setGroupName($formattedGroupName);
+    $request = new GetGroupRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +53,5 @@ function get_group_sample(string $formattedGroupName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedGroupName = ErrorGroupServiceClient::errorGroupName('[PROJECT]', '[GROUP]');
-
-    get_group_sample($formattedGroupName);
 }
 // [END clouderrorreporting_v1beta1_generated_ErrorGroupService_GetGroup_sync]

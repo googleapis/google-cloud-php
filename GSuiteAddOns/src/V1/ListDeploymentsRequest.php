@@ -44,8 +44,7 @@ class ListDeploymentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. Name of the project in which to create the deployment.
      *
-     *                       Example: `projects/my_project`. Please see
-     *                       {@see GSuiteAddOnsClient::projectName()} for help formatting this field.
+     *                       Example: `projects/my_project`.
      *
      * @return \Google\Cloud\GSuiteAddOns\V1\ListDeploymentsRequest
      *

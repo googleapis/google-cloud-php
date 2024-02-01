@@ -29,8 +29,7 @@ class SearchDomainsRequest extends \Google\Protobuf\Internal\Message
     private $location = '';
 
     /**
-     * @param string $location Required. The location. Must be in the format `projects/&#42;/locations/*`. Please see
-     *                         {@see DomainsClient::locationName()} for help formatting this field.
+     * @param string $location Required. The location. Must be in the format `projects/&#42;/locations/*`.
      * @param string $query    Required. String used to search for available domain names.
      *
      * @return \Google\Cloud\Domains\V1\SearchDomainsRequest

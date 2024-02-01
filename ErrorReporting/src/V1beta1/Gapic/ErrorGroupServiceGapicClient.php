@@ -48,8 +48,7 @@ use Google\Cloud\ErrorReporting\V1beta1\UpdateGroupRequest;
  * ```
  * $errorGroupServiceClient = new ErrorGroupServiceClient();
  * try {
- *     $formattedGroupName = $errorGroupServiceClient->errorGroupName('[PROJECT]', '[GROUP]');
- *     $response = $errorGroupServiceClient->getGroup($formattedGroupName);
+ *     $response = $errorGroupServiceClient->getGroup();
  * } finally {
  *     $errorGroupServiceClient->close();
  * }
@@ -266,22 +265,22 @@ class ErrorGroupServiceGapicClient
      * ```
      * $errorGroupServiceClient = new ErrorGroupServiceClient();
      * try {
-     *     $formattedGroupName = $errorGroupServiceClient->errorGroupName('[PROJECT]', '[GROUP]');
-     *     $response = $errorGroupServiceClient->getGroup($formattedGroupName);
+     *     $response = $errorGroupServiceClient->getGroup();
      * } finally {
      *     $errorGroupServiceClient->close();
      * }
      * ```
      *
-     * @param string $groupName    Required. The group resource name. Written as
-     *                             `projects/{projectID}/groups/{group_name}`. Call
-     *                             [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list)
-     *                             to return a list of groups belonging to this project.
-     *
-     *                             Example: `projects/my-project-123/groups/my-group`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $groupName
+     *           Required. The group resource name. Written as
+     *           `projects/{projectID}/groups/{group_name}`. Call
+     *           [`groupStats.list`](https://cloud.google.com/error-reporting/reference/rest/v1beta1/projects.groupStats/list)
+     *           to return a list of groups belonging to this project.
+     *
+     *           Example: `projects/my-project-123/groups/my-group`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -294,12 +293,15 @@ class ErrorGroupServiceGapicClient
      *
      * @experimental
      */
-    public function getGroup($groupName, array $optionalArgs = [])
+    public function getGroup(array $optionalArgs = [])
     {
         $request = new GetGroupRequest();
         $requestParamHeaders = [];
-        $request->setGroupName($groupName);
-        $requestParamHeaders['group_name'] = $groupName;
+        if (isset($optionalArgs['groupName'])) {
+            $request->setGroupName($optionalArgs['groupName']);
+            $requestParamHeaders['group_name'] = $optionalArgs['groupName'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetGroup', ErrorGroup::class, $optionalArgs, $request)->wait();
@@ -313,17 +315,17 @@ class ErrorGroupServiceGapicClient
      * ```
      * $errorGroupServiceClient = new ErrorGroupServiceClient();
      * try {
-     *     $group = new ErrorGroup();
-     *     $response = $errorGroupServiceClient->updateGroup($group);
+     *     $response = $errorGroupServiceClient->updateGroup();
      * } finally {
      *     $errorGroupServiceClient->close();
      * }
      * ```
      *
-     * @param ErrorGroup $group        Required. The group which replaces the resource on the server.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type ErrorGroup $group
+     *           Required. The group which replaces the resource on the server.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -336,12 +338,14 @@ class ErrorGroupServiceGapicClient
      *
      * @experimental
      */
-    public function updateGroup($group, array $optionalArgs = [])
+    public function updateGroup(array $optionalArgs = [])
     {
         $request = new UpdateGroupRequest();
         $requestParamHeaders = [];
-        $request->setGroup($group);
-        $requestParamHeaders['group.name'] = $group->getName();
+        if (isset($optionalArgs['group'])) {
+            $request->setGroup($optionalArgs['group']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateGroup', ErrorGroup::class, $optionalArgs, $request)->wait();

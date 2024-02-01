@@ -37,8 +37,7 @@ class UpdateDiscoveryConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                               $name            Required. Resource name of the project and the configuration, for example
-     *                                                              `projects/dlp-test-project/discoveryConfigs/53234423`. Please see
-     *                                                              {@see DlpServiceClient::discoveryConfigName()} for help formatting this field.
+     *                                                              `projects/dlp-test-project/discoveryConfigs/53234423`.
      * @param \Google\Cloud\Dlp\V2\DiscoveryConfig $discoveryConfig Required. New DiscoveryConfig value.
      * @param \Google\Protobuf\FieldMask           $updateMask      Mask to control which fields get updated.
      *

@@ -32,17 +32,19 @@ use Google\Cloud\Eventarc\V1\Trigger;
 /**
  * List triggers.
  *
- * @param string $formattedParent The parent collection to list triggers on. Please see
- *                                {@see EventarcClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_triggers_sample(string $formattedParent): void
+function list_triggers_sample(): void
 {
     // Create a client.
     $eventarcClient = new EventarcClient();
 
     // Prepare the request message.
-    $request = (new ListTriggersRequest())
-        ->setParent($formattedParent);
+    $request = new ListTriggersRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +58,5 @@ function list_triggers_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = EventarcClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_triggers_sample($formattedParent);
 }
 // [END eventarc_v1_generated_Eventarc_ListTriggers_sync]

@@ -31,18 +31,19 @@ use Google\Cloud\Filestore\V1\Snapshot;
 /**
  * Gets the details of a specific snapshot.
  *
- * @param string $formattedName The snapshot resource name, in the format
- *                              `projects/{project_id}/locations/{location}/instances/{instance_id}/snapshots/{snapshot_id}`
- *                              Please see {@see CloudFilestoreManagerClient::snapshotName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_snapshot_sample(string $formattedName): void
+function get_snapshot_sample(): void
 {
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
     // Prepare the request message.
-    $request = (new GetSnapshotRequest())
-        ->setName($formattedName);
+    $request = new GetSnapshotRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,26 +53,5 @@ function get_snapshot_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudFilestoreManagerClient::snapshotName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[INSTANCE]',
-        '[SNAPSHOT]'
-    );
-
-    get_snapshot_sample($formattedName);
 }
 // [END file_v1_generated_CloudFilestoreManager_GetSnapshot_sync]

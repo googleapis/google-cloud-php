@@ -77,25 +77,13 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new TunnelDestGroup();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->tunnelLocationName('[PROJECT]', '[LOCATION]');
-        $tunnelDestGroup = new TunnelDestGroup();
-        $tunnelDestGroupName = 'tunnelDestGroupName1906281888';
-        $tunnelDestGroup->setName($tunnelDestGroupName);
-        $tunnelDestGroupId = 'tunnelDestGroupId-1205367743';
-        $response = $gapicClient->createTunnelDestGroup($formattedParent, $tunnelDestGroup, $tunnelDestGroupId);
+        $response = $gapicClient->createTunnelDestGroup();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyAdminService/CreateTunnelDestGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getTunnelDestGroup();
-        $this->assertProtobufEquals($tunnelDestGroup, $actualValue);
-        $actualValue = $actualRequestObject->getTunnelDestGroupId();
-        $this->assertProtobufEquals($tunnelDestGroupId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -117,14 +105,8 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->tunnelLocationName('[PROJECT]', '[LOCATION]');
-        $tunnelDestGroup = new TunnelDestGroup();
-        $tunnelDestGroupName = 'tunnelDestGroupName1906281888';
-        $tunnelDestGroup->setName($tunnelDestGroupName);
-        $tunnelDestGroupId = 'tunnelDestGroupId-1205367743';
         try {
-            $gapicClient->createTunnelDestGroup($formattedParent, $tunnelDestGroup, $tunnelDestGroupId);
+            $gapicClient->createTunnelDestGroup();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -147,16 +129,12 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->tunnelDestGroupName('[PROJECT]', '[LOCATION]', '[DEST_GROUP]');
-        $gapicClient->deleteTunnelDestGroup($formattedName);
+        $gapicClient->deleteTunnelDestGroup();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyAdminService/DeleteTunnelDestGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -178,10 +156,8 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tunnelDestGroupName('[PROJECT]', '[LOCATION]', '[DEST_GROUP]');
         try {
-            $gapicClient->deleteTunnelDestGroup($formattedName);
+            $gapicClient->deleteTunnelDestGroup();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -268,17 +244,13 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new IapSettings();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $response = $gapicClient->getIapSettings($name);
+        $response = $gapicClient->getIapSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyAdminService/GetIapSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -300,10 +272,8 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
         try {
-            $gapicClient->getIapSettings($name);
+            $gapicClient->getIapSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -328,17 +298,13 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new TunnelDestGroup();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->tunnelDestGroupName('[PROJECT]', '[LOCATION]', '[DEST_GROUP]');
-        $response = $gapicClient->getTunnelDestGroup($formattedName);
+        $response = $gapicClient->getTunnelDestGroup();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyAdminService/GetTunnelDestGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -360,10 +326,8 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tunnelDestGroupName('[PROJECT]', '[LOCATION]', '[DEST_GROUP]');
         try {
-            $gapicClient->getTunnelDestGroup($formattedName);
+            $gapicClient->getTunnelDestGroup();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -393,9 +357,7 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTunnelDestGroups($tunnelDestGroups);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->tunnelLocationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listTunnelDestGroups($formattedParent);
+        $response = $gapicClient->listTunnelDestGroups();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -405,8 +367,6 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyAdminService/ListTunnelDestGroups', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -428,10 +388,8 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->tunnelLocationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listTunnelDestGroups($formattedParent);
+            $gapicClient->listTunnelDestGroups();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -584,19 +542,13 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new IapSettings();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $iapSettings = new IapSettings();
-        $iapSettingsName = 'iapSettingsName-218298426';
-        $iapSettings->setName($iapSettingsName);
-        $response = $gapicClient->updateIapSettings($iapSettings);
+        $response = $gapicClient->updateIapSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyAdminService/UpdateIapSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getIapSettings();
-        $this->assertProtobufEquals($iapSettings, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -618,12 +570,8 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $iapSettings = new IapSettings();
-        $iapSettingsName = 'iapSettingsName-218298426';
-        $iapSettings->setName($iapSettingsName);
         try {
-            $gapicClient->updateIapSettings($iapSettings);
+            $gapicClient->updateIapSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -648,19 +596,13 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new TunnelDestGroup();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $tunnelDestGroup = new TunnelDestGroup();
-        $tunnelDestGroupName = 'tunnelDestGroupName1906281888';
-        $tunnelDestGroup->setName($tunnelDestGroupName);
-        $response = $gapicClient->updateTunnelDestGroup($tunnelDestGroup);
+        $response = $gapicClient->updateTunnelDestGroup();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyAdminService/UpdateTunnelDestGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTunnelDestGroup();
-        $this->assertProtobufEquals($tunnelDestGroup, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -682,12 +624,8 @@ class IdentityAwareProxyAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $tunnelDestGroup = new TunnelDestGroup();
-        $tunnelDestGroupName = 'tunnelDestGroupName1906281888';
-        $tunnelDestGroup->setName($tunnelDestGroupName);
         try {
-            $gapicClient->updateTunnelDestGroup($tunnelDestGroup);
+            $gapicClient->updateTunnelDestGroup();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

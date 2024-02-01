@@ -74,9 +74,7 @@ use Google\Type\Money;
  * ```
  * $domainsClient = new DomainsClient();
  * try {
- *     $formattedRegistration = $domainsClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
- *     $updateMask = new FieldMask();
- *     $operationResponse = $domainsClient->configureContactSettings($formattedRegistration, $updateMask);
+ *     $operationResponse = $domainsClient->configureContactSettings();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -87,7 +85,7 @@ use Google\Type\Money;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $domainsClient->configureContactSettings($formattedRegistration, $updateMask);
+ *     $operationResponse = $domainsClient->configureContactSettings();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $domainsClient->resumeOperation($operationName, 'configureContactSettings');
@@ -389,9 +387,7 @@ class DomainsGapicClient
      * ```
      * $domainsClient = new DomainsClient();
      * try {
-     *     $formattedRegistration = $domainsClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-     *     $updateMask = new FieldMask();
-     *     $operationResponse = $domainsClient->configureContactSettings($formattedRegistration, $updateMask);
+     *     $operationResponse = $domainsClient->configureContactSettings();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -402,7 +398,7 @@ class DomainsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $domainsClient->configureContactSettings($formattedRegistration, $updateMask);
+     *     $operationResponse = $domainsClient->configureContactSettings();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $domainsClient->resumeOperation($operationName, 'configureContactSettings');
@@ -422,16 +418,18 @@ class DomainsGapicClient
      * }
      * ```
      *
-     * @param string    $registration Required. The name of the `Registration` whose contact settings are being updated,
-     *                                in the format `projects/&#42;/locations/&#42;/registrations/*`.
-     * @param FieldMask $updateMask   Required. The field mask describing which fields to update as a comma-separated list.
-     *                                For example, if only the registrant contact is being updated, the
-     *                                `update_mask` is `"registrant_contact"`.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $registration
+     *           Required. The name of the `Registration` whose contact settings are being updated,
+     *           in the format `projects/&#42;/locations/&#42;/registrations/*`.
      *     @type ContactSettings $contactSettings
      *           Fields of the `ContactSettings` to update.
+     *     @type FieldMask $updateMask
+     *           Required. The field mask describing which fields to update as a comma-separated list.
+     *           For example, if only the registrant contact is being updated, the
+     *           `update_mask` is `"registrant_contact"`.
      *     @type int[] $contactNotices
      *           The list of contact notices that the caller acknowledges. The notices
      *           needed here depend on the values specified in `contact_settings`.
@@ -450,15 +448,21 @@ class DomainsGapicClient
      *
      * @experimental
      */
-    public function configureContactSettings($registration, $updateMask, array $optionalArgs = [])
+    public function configureContactSettings(array $optionalArgs = [])
     {
         $request = new ConfigureContactSettingsRequest();
         $requestParamHeaders = [];
-        $request->setRegistration($registration);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['registration'] = $registration;
+        if (isset($optionalArgs['registration'])) {
+            $request->setRegistration($optionalArgs['registration']);
+            $requestParamHeaders['registration'] = $optionalArgs['registration'];
+        }
+
         if (isset($optionalArgs['contactSettings'])) {
             $request->setContactSettings($optionalArgs['contactSettings']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         if (isset($optionalArgs['contactNotices'])) {
@@ -481,9 +485,7 @@ class DomainsGapicClient
      * ```
      * $domainsClient = new DomainsClient();
      * try {
-     *     $formattedRegistration = $domainsClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-     *     $updateMask = new FieldMask();
-     *     $operationResponse = $domainsClient->configureDnsSettings($formattedRegistration, $updateMask);
+     *     $operationResponse = $domainsClient->configureDnsSettings();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -494,7 +496,7 @@ class DomainsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $domainsClient->configureDnsSettings($formattedRegistration, $updateMask);
+     *     $operationResponse = $domainsClient->configureDnsSettings();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $domainsClient->resumeOperation($operationName, 'configureDnsSettings');
@@ -514,22 +516,24 @@ class DomainsGapicClient
      * }
      * ```
      *
-     * @param string    $registration Required. The name of the `Registration` whose DNS settings are being updated,
-     *                                in the format `projects/&#42;/locations/&#42;/registrations/*`.
-     * @param FieldMask $updateMask   Required. The field mask describing which fields to update as a comma-separated list.
-     *                                For example, if only the name servers are being updated for an existing
-     *                                Custom DNS configuration, the `update_mask` is
-     *                                `"custom_dns.name_servers"`.
-     *
-     *                                When changing the DNS provider from one type to another, pass the new
-     *                                provider's field name as part of the field mask. For example, when changing
-     *                                from a Google Domains DNS configuration to a Custom DNS configuration, the
-     *                                `update_mask` is `"custom_dns"`. //
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $registration
+     *           Required. The name of the `Registration` whose DNS settings are being updated,
+     *           in the format `projects/&#42;/locations/&#42;/registrations/*`.
      *     @type DnsSettings $dnsSettings
      *           Fields of the `DnsSettings` to update.
+     *     @type FieldMask $updateMask
+     *           Required. The field mask describing which fields to update as a comma-separated list.
+     *           For example, if only the name servers are being updated for an existing
+     *           Custom DNS configuration, the `update_mask` is
+     *           `"custom_dns.name_servers"`.
+     *
+     *           When changing the DNS provider from one type to another, pass the new
+     *           provider's field name as part of the field mask. For example, when changing
+     *           from a Google Domains DNS configuration to a Custom DNS configuration, the
+     *           `update_mask` is `"custom_dns"`. //
      *     @type bool $validateOnly
      *           Validate the request without actually updating the DNS settings.
      *     @type RetrySettings|array $retrySettings
@@ -544,15 +548,21 @@ class DomainsGapicClient
      *
      * @experimental
      */
-    public function configureDnsSettings($registration, $updateMask, array $optionalArgs = [])
+    public function configureDnsSettings(array $optionalArgs = [])
     {
         $request = new ConfigureDnsSettingsRequest();
         $requestParamHeaders = [];
-        $request->setRegistration($registration);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['registration'] = $registration;
+        if (isset($optionalArgs['registration'])) {
+            $request->setRegistration($optionalArgs['registration']);
+            $requestParamHeaders['registration'] = $optionalArgs['registration'];
+        }
+
         if (isset($optionalArgs['dnsSettings'])) {
             $request->setDnsSettings($optionalArgs['dnsSettings']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         if (isset($optionalArgs['validateOnly'])) {
@@ -571,9 +581,7 @@ class DomainsGapicClient
      * ```
      * $domainsClient = new DomainsClient();
      * try {
-     *     $formattedRegistration = $domainsClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-     *     $updateMask = new FieldMask();
-     *     $operationResponse = $domainsClient->configureManagementSettings($formattedRegistration, $updateMask);
+     *     $operationResponse = $domainsClient->configureManagementSettings();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -584,7 +592,7 @@ class DomainsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $domainsClient->configureManagementSettings($formattedRegistration, $updateMask);
+     *     $operationResponse = $domainsClient->configureManagementSettings();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $domainsClient->resumeOperation($operationName, 'configureManagementSettings');
@@ -604,16 +612,18 @@ class DomainsGapicClient
      * }
      * ```
      *
-     * @param string    $registration Required. The name of the `Registration` whose management settings are being updated,
-     *                                in the format `projects/&#42;/locations/&#42;/registrations/*`.
-     * @param FieldMask $updateMask   Required. The field mask describing which fields to update as a comma-separated list.
-     *                                For example, if only the transfer lock is being updated, the `update_mask`
-     *                                is `"transfer_lock_state"`.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $registration
+     *           Required. The name of the `Registration` whose management settings are being updated,
+     *           in the format `projects/&#42;/locations/&#42;/registrations/*`.
      *     @type ManagementSettings $managementSettings
      *           Fields of the `ManagementSettings` to update.
+     *     @type FieldMask $updateMask
+     *           Required. The field mask describing which fields to update as a comma-separated list.
+     *           For example, if only the transfer lock is being updated, the `update_mask`
+     *           is `"transfer_lock_state"`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -626,15 +636,21 @@ class DomainsGapicClient
      *
      * @experimental
      */
-    public function configureManagementSettings($registration, $updateMask, array $optionalArgs = [])
+    public function configureManagementSettings(array $optionalArgs = [])
     {
         $request = new ConfigureManagementSettingsRequest();
         $requestParamHeaders = [];
-        $request->setRegistration($registration);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['registration'] = $registration;
+        if (isset($optionalArgs['registration'])) {
+            $request->setRegistration($optionalArgs['registration']);
+            $requestParamHeaders['registration'] = $optionalArgs['registration'];
+        }
+
         if (isset($optionalArgs['managementSettings'])) {
             $request->setManagementSettings($optionalArgs['managementSettings']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -667,8 +683,7 @@ class DomainsGapicClient
      * ```
      * $domainsClient = new DomainsClient();
      * try {
-     *     $formattedName = $domainsClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-     *     $operationResponse = $domainsClient->deleteRegistration($formattedName);
+     *     $operationResponse = $domainsClient->deleteRegistration();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -678,7 +693,7 @@ class DomainsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $domainsClient->deleteRegistration($formattedName);
+     *     $operationResponse = $domainsClient->deleteRegistration();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $domainsClient->resumeOperation($operationName, 'deleteRegistration');
@@ -697,11 +712,12 @@ class DomainsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the `Registration` to delete,
-     *                             in the format `projects/&#42;/locations/&#42;/registrations/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the `Registration` to delete,
+     *           in the format `projects/&#42;/locations/&#42;/registrations/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -714,12 +730,15 @@ class DomainsGapicClient
      *
      * @experimental
      */
-    public function deleteRegistration($name, array $optionalArgs = [])
+    public function deleteRegistration(array $optionalArgs = [])
     {
         $request = new DeleteRegistrationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteRegistration', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -740,8 +759,7 @@ class DomainsGapicClient
      * ```
      * $domainsClient = new DomainsClient();
      * try {
-     *     $formattedName = $domainsClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-     *     $operationResponse = $domainsClient->exportRegistration($formattedName);
+     *     $operationResponse = $domainsClient->exportRegistration();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -752,7 +770,7 @@ class DomainsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $domainsClient->exportRegistration($formattedName);
+     *     $operationResponse = $domainsClient->exportRegistration();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $domainsClient->resumeOperation($operationName, 'exportRegistration');
@@ -772,11 +790,12 @@ class DomainsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the `Registration` to export,
-     *                             in the format `projects/&#42;/locations/&#42;/registrations/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the `Registration` to export,
+     *           in the format `projects/&#42;/locations/&#42;/registrations/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -789,12 +808,15 @@ class DomainsGapicClient
      *
      * @experimental
      */
-    public function exportRegistration($name, array $optionalArgs = [])
+    public function exportRegistration(array $optionalArgs = [])
     {
         $request = new ExportRegistrationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('ExportRegistration', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -807,18 +829,18 @@ class DomainsGapicClient
      * ```
      * $domainsClient = new DomainsClient();
      * try {
-     *     $formattedName = $domainsClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-     *     $response = $domainsClient->getRegistration($formattedName);
+     *     $response = $domainsClient->getRegistration();
      * } finally {
      *     $domainsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the `Registration` to get, in the format
-     *                             `projects/&#42;/locations/&#42;/registrations/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the `Registration` to get, in the format
+     *           `projects/&#42;/locations/&#42;/registrations/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -831,12 +853,15 @@ class DomainsGapicClient
      *
      * @experimental
      */
-    public function getRegistration($name, array $optionalArgs = [])
+    public function getRegistration(array $optionalArgs = [])
     {
         $request = new GetRegistrationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetRegistration', Registration::class, $optionalArgs, $request)->wait();
@@ -849,9 +874,8 @@ class DomainsGapicClient
      * ```
      * $domainsClient = new DomainsClient();
      * try {
-     *     $formattedParent = $domainsClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $domainsClient->listRegistrations($formattedParent);
+     *     $pagedResponse = $domainsClient->listRegistrations();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -859,7 +883,7 @@ class DomainsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $domainsClient->listRegistrations($formattedParent);
+     *     $pagedResponse = $domainsClient->listRegistrations();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -868,11 +892,12 @@ class DomainsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location from which to list `Registration`s, specified in
-     *                             the format `projects/&#42;/locations/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project and location from which to list `Registration`s, specified in
+     *           the format `projects/&#42;/locations/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -911,12 +936,15 @@ class DomainsGapicClient
      *
      * @experimental
      */
-    public function listRegistrations($parent, array $optionalArgs = [])
+    public function listRegistrations(array $optionalArgs = [])
     {
         $request = new ListRegistrationsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -953,10 +981,7 @@ class DomainsGapicClient
      * ```
      * $domainsClient = new DomainsClient();
      * try {
-     *     $formattedParent = $domainsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $registration = new Registration();
-     *     $yearlyPrice = new Money();
-     *     $operationResponse = $domainsClient->registerDomain($formattedParent, $registration, $yearlyPrice);
+     *     $operationResponse = $domainsClient->registerDomain();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -967,7 +992,7 @@ class DomainsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $domainsClient->registerDomain($formattedParent, $registration, $yearlyPrice);
+     *     $operationResponse = $domainsClient->registerDomain();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $domainsClient->resumeOperation($operationName, 'registerDomain');
@@ -987,15 +1012,14 @@ class DomainsGapicClient
      * }
      * ```
      *
-     * @param string       $parent       Required. The parent resource of the `Registration`. Must be in the
-     *                                   format `projects/&#42;/locations/*`.
-     * @param Registration $registration Required. The complete `Registration` resource to be created.
-     * @param Money        $yearlyPrice  Required. Yearly price to register or renew the domain.
-     *                                   The value that should be put here can be obtained from
-     *                                   RetrieveRegisterParameters or SearchDomains calls.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the `Registration`. Must be in the
+     *           format `projects/&#42;/locations/*`.
+     *     @type Registration $registration
+     *           Required. The complete `Registration` resource to be created.
      *     @type int[] $domainNotices
      *           The list of domain notices that you acknowledge. Call
      *           `RetrieveRegisterParameters` to see the notices that need acknowledgement.
@@ -1005,6 +1029,10 @@ class DomainsGapicClient
      *           needed here depend on the values specified in
      *           `registration.contact_settings`.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Domains\V1beta1\ContactNotice}
+     *     @type Money $yearlyPrice
+     *           Required. Yearly price to register or renew the domain.
+     *           The value that should be put here can be obtained from
+     *           RetrieveRegisterParameters or SearchDomains calls.
      *     @type bool $validateOnly
      *           When true, only validation is performed, without actually registering
      *           the domain. Follows:
@@ -1021,20 +1049,29 @@ class DomainsGapicClient
      *
      * @experimental
      */
-    public function registerDomain($parent, $registration, $yearlyPrice, array $optionalArgs = [])
+    public function registerDomain(array $optionalArgs = [])
     {
         $request = new RegisterDomainRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setRegistration($registration);
-        $request->setYearlyPrice($yearlyPrice);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['registration'])) {
+            $request->setRegistration($optionalArgs['registration']);
+        }
+
         if (isset($optionalArgs['domainNotices'])) {
             $request->setDomainNotices($optionalArgs['domainNotices']);
         }
 
         if (isset($optionalArgs['contactNotices'])) {
             $request->setContactNotices($optionalArgs['contactNotices']);
+        }
+
+        if (isset($optionalArgs['yearlyPrice'])) {
+            $request->setYearlyPrice($optionalArgs['yearlyPrice']);
         }
 
         if (isset($optionalArgs['validateOnly'])) {
@@ -1056,18 +1093,18 @@ class DomainsGapicClient
      * ```
      * $domainsClient = new DomainsClient();
      * try {
-     *     $formattedRegistration = $domainsClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-     *     $response = $domainsClient->resetAuthorizationCode($formattedRegistration);
+     *     $response = $domainsClient->resetAuthorizationCode();
      * } finally {
      *     $domainsClient->close();
      * }
      * ```
      *
-     * @param string $registration Required. The name of the `Registration` whose authorization code is being reset,
-     *                             in the format `projects/&#42;/locations/&#42;/registrations/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $registration
+     *           Required. The name of the `Registration` whose authorization code is being reset,
+     *           in the format `projects/&#42;/locations/&#42;/registrations/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1080,12 +1117,15 @@ class DomainsGapicClient
      *
      * @experimental
      */
-    public function resetAuthorizationCode($registration, array $optionalArgs = [])
+    public function resetAuthorizationCode(array $optionalArgs = [])
     {
         $request = new ResetAuthorizationCodeRequest();
         $requestParamHeaders = [];
-        $request->setRegistration($registration);
-        $requestParamHeaders['registration'] = $registration;
+        if (isset($optionalArgs['registration'])) {
+            $request->setRegistration($optionalArgs['registration']);
+            $requestParamHeaders['registration'] = $optionalArgs['registration'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ResetAuthorizationCode', AuthorizationCode::class, $optionalArgs, $request)->wait();
@@ -1102,18 +1142,18 @@ class DomainsGapicClient
      * ```
      * $domainsClient = new DomainsClient();
      * try {
-     *     $formattedRegistration = $domainsClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-     *     $response = $domainsClient->retrieveAuthorizationCode($formattedRegistration);
+     *     $response = $domainsClient->retrieveAuthorizationCode();
      * } finally {
      *     $domainsClient->close();
      * }
      * ```
      *
-     * @param string $registration Required. The name of the `Registration` whose authorization code is being retrieved,
-     *                             in the format `projects/&#42;/locations/&#42;/registrations/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $registration
+     *           Required. The name of the `Registration` whose authorization code is being retrieved,
+     *           in the format `projects/&#42;/locations/&#42;/registrations/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1126,12 +1166,15 @@ class DomainsGapicClient
      *
      * @experimental
      */
-    public function retrieveAuthorizationCode($registration, array $optionalArgs = [])
+    public function retrieveAuthorizationCode(array $optionalArgs = [])
     {
         $request = new RetrieveAuthorizationCodeRequest();
         $requestParamHeaders = [];
-        $request->setRegistration($registration);
-        $requestParamHeaders['registration'] = $registration;
+        if (isset($optionalArgs['registration'])) {
+            $request->setRegistration($optionalArgs['registration']);
+            $requestParamHeaders['registration'] = $optionalArgs['registration'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('RetrieveAuthorizationCode', AuthorizationCode::class, $optionalArgs, $request)->wait();
@@ -1145,19 +1188,19 @@ class DomainsGapicClient
      * ```
      * $domainsClient = new DomainsClient();
      * try {
-     *     $domainName = 'domain_name';
-     *     $formattedLocation = $domainsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $response = $domainsClient->retrieveRegisterParameters($domainName, $formattedLocation);
+     *     $response = $domainsClient->retrieveRegisterParameters();
      * } finally {
      *     $domainsClient->close();
      * }
      * ```
      *
-     * @param string $domainName   Required. The domain name. Unicode domain names must be expressed in Punycode format.
-     * @param string $location     Required. The location. Must be in the format `projects/&#42;/locations/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $domainName
+     *           Required. The domain name. Unicode domain names must be expressed in Punycode format.
+     *     @type string $location
+     *           Required. The location. Must be in the format `projects/&#42;/locations/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1170,13 +1213,19 @@ class DomainsGapicClient
      *
      * @experimental
      */
-    public function retrieveRegisterParameters($domainName, $location, array $optionalArgs = [])
+    public function retrieveRegisterParameters(array $optionalArgs = [])
     {
         $request = new RetrieveRegisterParametersRequest();
         $requestParamHeaders = [];
-        $request->setDomainName($domainName);
-        $request->setLocation($location);
-        $requestParamHeaders['location'] = $location;
+        if (isset($optionalArgs['domainName'])) {
+            $request->setDomainName($optionalArgs['domainName']);
+        }
+
+        if (isset($optionalArgs['location'])) {
+            $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('RetrieveRegisterParameters', RetrieveRegisterParametersResponse::class, $optionalArgs, $request)->wait();
@@ -1194,19 +1243,19 @@ class DomainsGapicClient
      * ```
      * $domainsClient = new DomainsClient();
      * try {
-     *     $domainName = 'domain_name';
-     *     $formattedLocation = $domainsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $response = $domainsClient->retrieveTransferParameters($domainName, $formattedLocation);
+     *     $response = $domainsClient->retrieveTransferParameters();
      * } finally {
      *     $domainsClient->close();
      * }
      * ```
      *
-     * @param string $domainName   Required. The domain name. Unicode domain names must be expressed in Punycode format.
-     * @param string $location     Required. The location. Must be in the format `projects/&#42;/locations/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $domainName
+     *           Required. The domain name. Unicode domain names must be expressed in Punycode format.
+     *     @type string $location
+     *           Required. The location. Must be in the format `projects/&#42;/locations/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1219,13 +1268,19 @@ class DomainsGapicClient
      *
      * @experimental
      */
-    public function retrieveTransferParameters($domainName, $location, array $optionalArgs = [])
+    public function retrieveTransferParameters(array $optionalArgs = [])
     {
         $request = new RetrieveTransferParametersRequest();
         $requestParamHeaders = [];
-        $request->setDomainName($domainName);
-        $request->setLocation($location);
-        $requestParamHeaders['location'] = $location;
+        if (isset($optionalArgs['domainName'])) {
+            $request->setDomainName($optionalArgs['domainName']);
+        }
+
+        if (isset($optionalArgs['location'])) {
+            $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('RetrieveTransferParameters', RetrieveTransferParametersResponse::class, $optionalArgs, $request)->wait();
@@ -1242,19 +1297,19 @@ class DomainsGapicClient
      * ```
      * $domainsClient = new DomainsClient();
      * try {
-     *     $query = 'query';
-     *     $formattedLocation = $domainsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $response = $domainsClient->searchDomains($query, $formattedLocation);
+     *     $response = $domainsClient->searchDomains();
      * } finally {
      *     $domainsClient->close();
      * }
      * ```
      *
-     * @param string $query        Required. String used to search for available domain names.
-     * @param string $location     Required. The location. Must be in the format `projects/&#42;/locations/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $query
+     *           Required. String used to search for available domain names.
+     *     @type string $location
+     *           Required. The location. Must be in the format `projects/&#42;/locations/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1267,13 +1322,19 @@ class DomainsGapicClient
      *
      * @experimental
      */
-    public function searchDomains($query, $location, array $optionalArgs = [])
+    public function searchDomains(array $optionalArgs = [])
     {
         $request = new SearchDomainsRequest();
         $requestParamHeaders = [];
-        $request->setQuery($query);
-        $request->setLocation($location);
-        $requestParamHeaders['location'] = $location;
+        if (isset($optionalArgs['query'])) {
+            $request->setQuery($optionalArgs['query']);
+        }
+
+        if (isset($optionalArgs['location'])) {
+            $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SearchDomains', SearchDomainsResponse::class, $optionalArgs, $request)->wait();
@@ -1306,10 +1367,7 @@ class DomainsGapicClient
      * ```
      * $domainsClient = new DomainsClient();
      * try {
-     *     $formattedParent = $domainsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $registration = new Registration();
-     *     $yearlyPrice = new Money();
-     *     $operationResponse = $domainsClient->transferDomain($formattedParent, $registration, $yearlyPrice);
+     *     $operationResponse = $domainsClient->transferDomain();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1320,7 +1378,7 @@ class DomainsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $domainsClient->transferDomain($formattedParent, $registration, $yearlyPrice);
+     *     $operationResponse = $domainsClient->transferDomain();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $domainsClient->resumeOperation($operationName, 'transferDomain');
@@ -1340,26 +1398,29 @@ class DomainsGapicClient
      * }
      * ```
      *
-     * @param string       $parent       Required. The parent resource of the `Registration`. Must be in the
-     *                                   format `projects/&#42;/locations/*`.
-     * @param Registration $registration Required. The complete `Registration` resource to be created.
-     *
-     *                                   You can leave `registration.dns_settings` unset to import the
-     *                                   domain's current DNS configuration from its current registrar. Use this
-     *                                   option only if you are sure that the domain's current DNS service
-     *                                   does not cease upon transfer, as is often the case for DNS services
-     *                                   provided for free by the registrar.
-     * @param Money        $yearlyPrice  Required. Acknowledgement of the price to transfer or renew the domain for one year.
-     *                                   Call `RetrieveTransferParameters` to obtain the price, which you must
-     *                                   acknowledge.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the `Registration`. Must be in the
+     *           format `projects/&#42;/locations/*`.
+     *     @type Registration $registration
+     *           Required. The complete `Registration` resource to be created.
+     *
+     *           You can leave `registration.dns_settings` unset to import the
+     *           domain's current DNS configuration from its current registrar. Use this
+     *           option only if you are sure that the domain's current DNS service
+     *           does not cease upon transfer, as is often the case for DNS services
+     *           provided for free by the registrar.
      *     @type int[] $contactNotices
      *           The list of contact notices that you acknowledge. The notices
      *           needed here depend on the values specified in
      *           `registration.contact_settings`.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Domains\V1beta1\ContactNotice}
+     *     @type Money $yearlyPrice
+     *           Required. Acknowledgement of the price to transfer or renew the domain for one year.
+     *           Call `RetrieveTransferParameters` to obtain the price, which you must
+     *           acknowledge.
      *     @type AuthorizationCode $authorizationCode
      *           The domain's transfer authorization code. You can obtain this from the
      *           domain's current registrar.
@@ -1377,16 +1438,25 @@ class DomainsGapicClient
      *
      * @experimental
      */
-    public function transferDomain($parent, $registration, $yearlyPrice, array $optionalArgs = [])
+    public function transferDomain(array $optionalArgs = [])
     {
         $request = new TransferDomainRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setRegistration($registration);
-        $request->setYearlyPrice($yearlyPrice);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['registration'])) {
+            $request->setRegistration($optionalArgs['registration']);
+        }
+
         if (isset($optionalArgs['contactNotices'])) {
             $request->setContactNotices($optionalArgs['contactNotices']);
+        }
+
+        if (isset($optionalArgs['yearlyPrice'])) {
+            $request->setYearlyPrice($optionalArgs['yearlyPrice']);
         }
 
         if (isset($optionalArgs['authorizationCode'])) {
@@ -1414,8 +1484,7 @@ class DomainsGapicClient
      * ```
      * $domainsClient = new DomainsClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $operationResponse = $domainsClient->updateRegistration($updateMask);
+     *     $operationResponse = $domainsClient->updateRegistration();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1426,7 +1495,7 @@ class DomainsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $domainsClient->updateRegistration($updateMask);
+     *     $operationResponse = $domainsClient->updateRegistration();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $domainsClient->resumeOperation($operationName, 'updateRegistration');
@@ -1446,14 +1515,15 @@ class DomainsGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The field mask describing which fields to update as a comma-separated list.
-     *                                For example, if only the labels are being updated, the `update_mask` is
-     *                                `"labels"`.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type Registration $registration
      *           Fields of the `Registration` to update.
+     *     @type FieldMask $updateMask
+     *           Required. The field mask describing which fields to update as a comma-separated list.
+     *           For example, if only the labels are being updated, the `update_mask` is
+     *           `"labels"`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1466,13 +1536,16 @@ class DomainsGapicClient
      *
      * @experimental
      */
-    public function updateRegistration($updateMask, array $optionalArgs = [])
+    public function updateRegistration(array $optionalArgs = [])
     {
         $request = new UpdateRegistrationRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
         if (isset($optionalArgs['registration'])) {
             $request->setRegistration($optionalArgs['registration']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

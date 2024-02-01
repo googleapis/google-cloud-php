@@ -89,20 +89,13 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
         $expectedResponse->setResult($result);
         $expectedResponse->setError($error);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->cloudFunctionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-        $data = 'data3076010';
-        $response = $gapicClient->callFunction($formattedName, $data);
+        $response = $gapicClient->callFunction();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.functions.v1.CloudFunctionsService/CallFunction', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getData();
-        $this->assertProtobufEquals($data, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -124,11 +117,8 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->cloudFunctionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-        $data = 'data3076010';
         try {
-            $gapicClient->callFunction($formattedName, $data);
+            $gapicClient->callFunction();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -205,10 +195,7 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $function = new CloudFunction();
-        $response = $gapicClient->createFunction($formattedLocation, $function);
+        $response = $gapicClient->createFunction();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -218,10 +205,6 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.functions.v1.CloudFunctionsService/CreateFunction', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getLocation();
-        $this->assertProtobufEquals($formattedLocation, $actualValue);
-        $actualValue = $actualApiRequestObject->getFunction();
-        $this->assertProtobufEquals($function, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createFunctionTest');
         $response->pollUntilComplete([
@@ -272,10 +255,7 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $function = new CloudFunction();
-        $response = $gapicClient->createFunction($formattedLocation, $function);
+        $response = $gapicClient->createFunction();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -326,9 +306,7 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->cloudFunctionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-        $response = $gapicClient->deleteFunction($formattedName);
+        $response = $gapicClient->deleteFunction();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -338,8 +316,6 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.functions.v1.CloudFunctionsService/DeleteFunction', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteFunctionTest');
         $response->pollUntilComplete([
@@ -390,9 +366,7 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->cloudFunctionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-        $response = $gapicClient->deleteFunction($formattedName);
+        $response = $gapicClient->deleteFunction();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -569,17 +543,13 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
         $expectedResponse->setSourceToken($sourceToken);
         $expectedResponse->setDockerRepository($dockerRepository);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->cloudFunctionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-        $response = $gapicClient->getFunction($formattedName);
+        $response = $gapicClient->getFunction();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.functions.v1.CloudFunctionsService/GetFunction', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -601,10 +571,8 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->cloudFunctionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
         try {
-            $gapicClient->getFunction($formattedName);
+            $gapicClient->getFunction();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -631,17 +599,13 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.functions.v1.CloudFunctionsService/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -663,10 +627,8 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -755,20 +717,13 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.functions.v1.CloudFunctionsService/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -790,11 +745,8 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -817,20 +769,13 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.functions.v1.CloudFunctionsService/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -852,11 +797,8 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -933,9 +875,7 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $function = new CloudFunction();
-        $response = $gapicClient->updateFunction($function);
+        $response = $gapicClient->updateFunction();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -945,8 +885,6 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.functions.v1.CloudFunctionsService/UpdateFunction', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFunction();
-        $this->assertProtobufEquals($function, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateFunctionTest');
         $response->pollUntilComplete([
@@ -997,9 +935,7 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $function = new CloudFunction();
-        $response = $gapicClient->updateFunction($function);
+        $response = $gapicClient->updateFunction();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

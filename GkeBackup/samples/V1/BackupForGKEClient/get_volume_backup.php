@@ -31,18 +31,19 @@ use Google\Cloud\GkeBackup\V1\VolumeBackup;
 /**
  * Retrieve the details of a single VolumeBackup.
  *
- * @param string $formattedName Full name of the VolumeBackup resource.
- *                              Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/&#42;/volumeBackups/*`
- *                              Please see {@see BackupForGKEClient::volumeBackupName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_volume_backup_sample(string $formattedName): void
+function get_volume_backup_sample(): void
 {
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
     // Prepare the request message.
-    $request = (new GetVolumeBackupRequest())
-        ->setName($formattedName);
+    $request = new GetVolumeBackupRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,27 +53,5 @@ function get_volume_backup_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = BackupForGKEClient::volumeBackupName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[BACKUP_PLAN]',
-        '[BACKUP]',
-        '[VOLUME_BACKUP]'
-    );
-
-    get_volume_backup_sample($formattedName);
 }
 // [END gkebackup_v1_generated_BackupForGKE_GetVolumeBackup_sync]

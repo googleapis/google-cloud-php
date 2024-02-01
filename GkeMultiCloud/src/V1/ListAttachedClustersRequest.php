@@ -52,8 +52,7 @@ class ListAttachedClustersRequest extends \Google\Protobuf\Internal\Message
      *                       Location names are formatted as `projects/<project-id>/locations/<region>`.
      *
      *                       See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                       for more details on Google Cloud Platform resource names. Please see
-     *                       {@see AttachedClustersClient::locationName()} for help formatting this field.
+     *                       for more details on Google Cloud Platform resource names.
      *
      * @return \Google\Cloud\GkeMultiCloud\V1\ListAttachedClustersRequest
      *

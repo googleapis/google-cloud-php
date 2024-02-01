@@ -35,18 +35,19 @@ use Google\Cloud\Functions\V2\GenerateDownloadUrlResponse;
  * For more information about the signed URL usage see:
  * https://cloud.google.com/storage/docs/access-control/signed-urls
  *
- * @param string $formattedName The name of function for which source code Google Cloud Storage
- *                              signed URL should be generated. Please see
- *                              {@see FunctionServiceClient::functionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function generate_download_url_sample(string $formattedName): void
+function generate_download_url_sample(): void
 {
     // Create a client.
     $functionServiceClient = new FunctionServiceClient();
 
     // Prepare the request message.
-    $request = (new GenerateDownloadUrlRequest())
-        ->setName($formattedName);
+    $request = new GenerateDownloadUrlRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +57,5 @@ function generate_download_url_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = FunctionServiceClient::functionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-
-    generate_download_url_sample($formattedName);
 }
 // [END cloudfunctions_v2_generated_FunctionService_GenerateDownloadUrl_sync]

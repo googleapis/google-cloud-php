@@ -32,26 +32,19 @@ use Google\Cloud\CloudDms\V1\TcpProxyScript;
  * Generate a TCP Proxy configuration script to configure a cloud-hosted VM
  * running a TCP Proxy.
  *
- * @param string $vmName        The name of the Compute instance that will host the proxy.
- * @param string $vmMachineType The type of the Compute instance that will host the proxy.
- * @param string $vmSubnet      The name of the subnet the Compute instance will use for private
- *                              connectivity. Must be supplied in the form of
- *                              projects/{project}/regions/{region}/subnetworks/{subnetwork}.
- *                              Note: the region for the subnet must match the Compute instance region.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function generate_tcp_proxy_script_sample(
-    string $vmName,
-    string $vmMachineType,
-    string $vmSubnet
-): void {
+function generate_tcp_proxy_script_sample(): void
+{
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
     // Prepare the request message.
-    $request = (new GenerateTcpProxyScriptRequest())
-        ->setVmName($vmName)
-        ->setVmMachineType($vmMachineType)
-        ->setVmSubnet($vmSubnet);
+    $request = new GenerateTcpProxyScriptRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,23 +54,5 @@ function generate_tcp_proxy_script_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $vmName = '[VM_NAME]';
-    $vmMachineType = '[VM_MACHINE_TYPE]';
-    $vmSubnet = '[VM_SUBNET]';
-
-    generate_tcp_proxy_script_sample($vmName, $vmMachineType, $vmSubnet);
 }
 // [END datamigration_v1_generated_DataMigrationService_GenerateTcpProxyScript_sync]
