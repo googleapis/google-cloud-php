@@ -70,10 +70,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $ekmServiceClient = new EkmServiceClient();
  * try {
- *     $formattedParent = $ekmServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     $ekmConnectionId = 'ekm_connection_id';
- *     $ekmConnection = new EkmConnection();
- *     $response = $ekmServiceClient->createEkmConnection($formattedParent, $ekmConnectionId, $ekmConnection);
+ *     $response = $ekmServiceClient->createEkmConnection();
  * } finally {
  *     $ekmServiceClient->close();
  * }
@@ -380,25 +377,25 @@ class EkmServiceGapicClient
      * ```
      * $ekmServiceClient = new EkmServiceClient();
      * try {
-     *     $formattedParent = $ekmServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $ekmConnectionId = 'ekm_connection_id';
-     *     $ekmConnection = new EkmConnection();
-     *     $response = $ekmServiceClient->createEkmConnection($formattedParent, $ekmConnectionId, $ekmConnection);
+     *     $response = $ekmServiceClient->createEkmConnection();
      * } finally {
      *     $ekmServiceClient->close();
      * }
      * ```
      *
-     * @param string        $parent          Required. The resource name of the location associated with the
-     *                                       [EkmConnection][google.cloud.kms.v1.EkmConnection], in the format
-     *                                       `projects/&#42;/locations/*`.
-     * @param string        $ekmConnectionId Required. It must be unique within a location and match the regular
-     *                                       expression `[a-zA-Z0-9_-]{1,63}`.
-     * @param EkmConnection $ekmConnection   Required. An [EkmConnection][google.cloud.kms.v1.EkmConnection] with
-     *                                       initial field values.
-     * @param array         $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the location associated with the
+     *           [EkmConnection][google.cloud.kms.v1.EkmConnection], in the format
+     *           `projects/&#42;/locations/*`.
+     *     @type string $ekmConnectionId
+     *           Required. It must be unique within a location and match the regular
+     *           expression `[a-zA-Z0-9_-]{1,63}`.
+     *     @type EkmConnection $ekmConnection
+     *           Required. An [EkmConnection][google.cloud.kms.v1.EkmConnection] with
+     *           initial field values.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -409,14 +406,23 @@ class EkmServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createEkmConnection($parent, $ekmConnectionId, $ekmConnection, array $optionalArgs = [])
+    public function createEkmConnection(array $optionalArgs = [])
     {
         $request = new CreateEkmConnectionRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setEkmConnectionId($ekmConnectionId);
-        $request->setEkmConnection($ekmConnection);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['ekmConnectionId'])) {
+            $request->setEkmConnectionId($optionalArgs['ekmConnectionId']);
+        }
+
+        if (isset($optionalArgs['ekmConnection'])) {
+            $request->setEkmConnection($optionalArgs['ekmConnection']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateEkmConnection', EkmConnection::class, $optionalArgs, $request)->wait();
@@ -430,18 +436,18 @@ class EkmServiceGapicClient
      * ```
      * $ekmServiceClient = new EkmServiceClient();
      * try {
-     *     $formattedName = $ekmServiceClient->ekmConfigName('[PROJECT]', '[LOCATION]');
-     *     $response = $ekmServiceClient->getEkmConfig($formattedName);
+     *     $response = $ekmServiceClient->getEkmConfig();
      * } finally {
      *     $ekmServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.kms.v1.EkmConfig.name] of the
-     *                             [EkmConfig][google.cloud.kms.v1.EkmConfig] to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [name][google.cloud.kms.v1.EkmConfig.name] of the
+     *           [EkmConfig][google.cloud.kms.v1.EkmConfig] to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -452,12 +458,15 @@ class EkmServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEkmConfig($name, array $optionalArgs = [])
+    public function getEkmConfig(array $optionalArgs = [])
     {
         $request = new GetEkmConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetEkmConfig', EkmConfig::class, $optionalArgs, $request)->wait();
@@ -471,18 +480,18 @@ class EkmServiceGapicClient
      * ```
      * $ekmServiceClient = new EkmServiceClient();
      * try {
-     *     $formattedName = $ekmServiceClient->ekmConnectionName('[PROJECT]', '[LOCATION]', '[EKM_CONNECTION]');
-     *     $response = $ekmServiceClient->getEkmConnection($formattedName);
+     *     $response = $ekmServiceClient->getEkmConnection();
      * } finally {
      *     $ekmServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.kms.v1.EkmConnection.name] of the
-     *                             [EkmConnection][google.cloud.kms.v1.EkmConnection] to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [name][google.cloud.kms.v1.EkmConnection.name] of the
+     *           [EkmConnection][google.cloud.kms.v1.EkmConnection] to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -493,12 +502,15 @@ class EkmServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEkmConnection($name, array $optionalArgs = [])
+    public function getEkmConnection(array $optionalArgs = [])
     {
         $request = new GetEkmConnectionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetEkmConnection', EkmConnection::class, $optionalArgs, $request)->wait();
@@ -511,9 +523,8 @@ class EkmServiceGapicClient
      * ```
      * $ekmServiceClient = new EkmServiceClient();
      * try {
-     *     $formattedParent = $ekmServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $ekmServiceClient->listEkmConnections($formattedParent);
+     *     $pagedResponse = $ekmServiceClient->listEkmConnections();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -521,7 +532,7 @@ class EkmServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $ekmServiceClient->listEkmConnections($formattedParent);
+     *     $pagedResponse = $ekmServiceClient->listEkmConnections();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -530,12 +541,13 @@ class EkmServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the location associated with the
-     *                             [EkmConnections][google.cloud.kms.v1.EkmConnection] to list, in the format
-     *                             `projects/&#42;/locations/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the location associated with the
+     *           [EkmConnections][google.cloud.kms.v1.EkmConnection] to list, in the format
+     *           `projects/&#42;/locations/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -565,12 +577,15 @@ class EkmServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listEkmConnections($parent, array $optionalArgs = [])
+    public function listEkmConnections(array $optionalArgs = [])
     {
         $request = new ListEkmConnectionsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -600,19 +615,19 @@ class EkmServiceGapicClient
      * ```
      * $ekmServiceClient = new EkmServiceClient();
      * try {
-     *     $ekmConfig = new EkmConfig();
-     *     $updateMask = new FieldMask();
-     *     $response = $ekmServiceClient->updateEkmConfig($ekmConfig, $updateMask);
+     *     $response = $ekmServiceClient->updateEkmConfig();
      * } finally {
      *     $ekmServiceClient->close();
      * }
      * ```
      *
-     * @param EkmConfig $ekmConfig    Required. [EkmConfig][google.cloud.kms.v1.EkmConfig] with updated values.
-     * @param FieldMask $updateMask   Required. List of fields to be updated in this request.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type EkmConfig $ekmConfig
+     *           Required. [EkmConfig][google.cloud.kms.v1.EkmConfig] with updated values.
+     *     @type FieldMask $updateMask
+     *           Required. List of fields to be updated in this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -623,13 +638,18 @@ class EkmServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateEkmConfig($ekmConfig, $updateMask, array $optionalArgs = [])
+    public function updateEkmConfig(array $optionalArgs = [])
     {
         $request = new UpdateEkmConfigRequest();
         $requestParamHeaders = [];
-        $request->setEkmConfig($ekmConfig);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['ekm_config.name'] = $ekmConfig->getName();
+        if (isset($optionalArgs['ekmConfig'])) {
+            $request->setEkmConfig($optionalArgs['ekmConfig']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateEkmConfig', EkmConfig::class, $optionalArgs, $request)->wait();
@@ -642,20 +662,20 @@ class EkmServiceGapicClient
      * ```
      * $ekmServiceClient = new EkmServiceClient();
      * try {
-     *     $ekmConnection = new EkmConnection();
-     *     $updateMask = new FieldMask();
-     *     $response = $ekmServiceClient->updateEkmConnection($ekmConnection, $updateMask);
+     *     $response = $ekmServiceClient->updateEkmConnection();
      * } finally {
      *     $ekmServiceClient->close();
      * }
      * ```
      *
-     * @param EkmConnection $ekmConnection Required. [EkmConnection][google.cloud.kms.v1.EkmConnection] with updated
-     *                                     values.
-     * @param FieldMask     $updateMask    Required. List of fields to be updated in this request.
-     * @param array         $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type EkmConnection $ekmConnection
+     *           Required. [EkmConnection][google.cloud.kms.v1.EkmConnection] with updated
+     *           values.
+     *     @type FieldMask $updateMask
+     *           Required. List of fields to be updated in this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -666,13 +686,18 @@ class EkmServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateEkmConnection($ekmConnection, $updateMask, array $optionalArgs = [])
+    public function updateEkmConnection(array $optionalArgs = [])
     {
         $request = new UpdateEkmConnectionRequest();
         $requestParamHeaders = [];
-        $request->setEkmConnection($ekmConnection);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['ekm_connection.name'] = $ekmConnection->getName();
+        if (isset($optionalArgs['ekmConnection'])) {
+            $request->setEkmConnection($optionalArgs['ekmConnection']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateEkmConnection', EkmConnection::class, $optionalArgs, $request)->wait();
@@ -689,18 +714,18 @@ class EkmServiceGapicClient
      * ```
      * $ekmServiceClient = new EkmServiceClient();
      * try {
-     *     $formattedName = $ekmServiceClient->ekmConnectionName('[PROJECT]', '[LOCATION]', '[EKM_CONNECTION]');
-     *     $response = $ekmServiceClient->verifyConnectivity($formattedName);
+     *     $response = $ekmServiceClient->verifyConnectivity();
      * } finally {
      *     $ekmServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.kms.v1.EkmConnection.name] of the
-     *                             [EkmConnection][google.cloud.kms.v1.EkmConnection] to verify.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [name][google.cloud.kms.v1.EkmConnection.name] of the
+     *           [EkmConnection][google.cloud.kms.v1.EkmConnection] to verify.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -711,12 +736,15 @@ class EkmServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function verifyConnectivity($name, array $optionalArgs = [])
+    public function verifyConnectivity(array $optionalArgs = [])
     {
         $request = new VerifyConnectivityRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('VerifyConnectivity', VerifyConnectivityResponse::class, $optionalArgs, $request)->wait();
@@ -849,18 +877,18 @@ class EkmServiceGapicClient
      * ```
      * $ekmServiceClient = new EkmServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $ekmServiceClient->getIamPolicy($resource);
+     *     $response = $ekmServiceClient->getIamPolicy();
      * } finally {
      *     $ekmServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -874,12 +902,15 @@ class EkmServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -900,23 +931,23 @@ class EkmServiceGapicClient
      * ```
      * $ekmServiceClient = new EkmServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $ekmServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $ekmServiceClient->setIamPolicy();
      * } finally {
      *     $ekmServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -933,13 +964,19 @@ class EkmServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -962,23 +999,23 @@ class EkmServiceGapicClient
      * ```
      * $ekmServiceClient = new EkmServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $ekmServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $ekmServiceClient->testIamPermissions();
      * } finally {
      *     $ekmServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -989,13 +1026,19 @@ class EkmServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    public function testIamPermissions(array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();

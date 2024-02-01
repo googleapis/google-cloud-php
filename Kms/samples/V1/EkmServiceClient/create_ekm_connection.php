@@ -32,24 +32,19 @@ use Google\Cloud\Kms\V1\EkmConnection;
  * Creates a new [EkmConnection][google.cloud.kms.v1.EkmConnection] in a given
  * Project and Location.
  *
- * @param string $formattedParent The resource name of the location associated with the
- *                                [EkmConnection][google.cloud.kms.v1.EkmConnection], in the format
- *                                `projects/&#42;/locations/*`. Please see
- *                                {@see EkmServiceClient::locationName()} for help formatting this field.
- * @param string $ekmConnectionId It must be unique within a location and match the regular
- *                                expression `[a-zA-Z0-9_-]{1,63}`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_ekm_connection_sample(string $formattedParent, string $ekmConnectionId): void
+function create_ekm_connection_sample(): void
 {
     // Create a client.
     $ekmServiceClient = new EkmServiceClient();
 
     // Prepare the request message.
-    $ekmConnection = new EkmConnection();
-    $request = (new CreateEkmConnectionRequest())
-        ->setParent($formattedParent)
-        ->setEkmConnectionId($ekmConnectionId)
-        ->setEkmConnection($ekmConnection);
+    $request = new CreateEkmConnectionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,22 +54,5 @@ function create_ekm_connection_sample(string $formattedParent, string $ekmConnec
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = EkmServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $ekmConnectionId = '[EKM_CONNECTION_ID]';
-
-    create_ekm_connection_sample($formattedParent, $ekmConnectionId);
 }
 // [END cloudkms_v1_generated_EkmService_CreateEkmConnection_sync]

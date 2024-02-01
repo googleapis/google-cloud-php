@@ -32,18 +32,19 @@ use Google\Cloud\Kms\V1\GetEkmConnectionRequest;
  * Returns metadata for a given
  * [EkmConnection][google.cloud.kms.v1.EkmConnection].
  *
- * @param string $formattedName The [name][google.cloud.kms.v1.EkmConnection.name] of the
- *                              [EkmConnection][google.cloud.kms.v1.EkmConnection] to get. Please see
- *                              {@see EkmServiceClient::ekmConnectionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_ekm_connection_sample(string $formattedName): void
+function get_ekm_connection_sample(): void
 {
     // Create a client.
     $ekmServiceClient = new EkmServiceClient();
 
     // Prepare the request message.
-    $request = (new GetEkmConnectionRequest())
-        ->setName($formattedName);
+    $request = new GetEkmConnectionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +54,5 @@ function get_ekm_connection_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = EkmServiceClient::ekmConnectionName('[PROJECT]', '[LOCATION]', '[EKM_CONNECTION]');
-
-    get_ekm_connection_sample($formattedName);
 }
 // [END cloudkms_v1_generated_EkmService_GetEkmConnection_sync]

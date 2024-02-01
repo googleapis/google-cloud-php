@@ -35,18 +35,19 @@ use Google\Cloud\Kms\V1\VerifyConnectivityResponse;
  * FAILED_PRECONDITION status containing structured information as described
  * at https://cloud.google.com/kms/docs/reference/ekm_errors.
  *
- * @param string $formattedName The [name][google.cloud.kms.v1.EkmConnection.name] of the
- *                              [EkmConnection][google.cloud.kms.v1.EkmConnection] to verify. Please see
- *                              {@see EkmServiceClient::ekmConnectionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function verify_connectivity_sample(string $formattedName): void
+function verify_connectivity_sample(): void
 {
     // Create a client.
     $ekmServiceClient = new EkmServiceClient();
 
     // Prepare the request message.
-    $request = (new VerifyConnectivityRequest())
-        ->setName($formattedName);
+    $request = new VerifyConnectivityRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +57,5 @@ function verify_connectivity_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = EkmServiceClient::ekmConnectionName('[PROJECT]', '[LOCATION]', '[EKM_CONNECTION]');
-
-    verify_connectivity_sample($formattedName);
 }
 // [END cloudkms_v1_generated_EkmService_VerifyConnectivity_sync]

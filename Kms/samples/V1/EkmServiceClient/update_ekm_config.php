@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Kms\V1\Client\EkmServiceClient;
 use Google\Cloud\Kms\V1\EkmConfig;
 use Google\Cloud\Kms\V1\UpdateEkmConfigRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates the [EkmConfig][google.cloud.kms.v1.EkmConfig] singleton resource
@@ -45,11 +44,7 @@ function update_ekm_config_sample(): void
     $ekmServiceClient = new EkmServiceClient();
 
     // Prepare the request message.
-    $ekmConfig = new EkmConfig();
-    $updateMask = new FieldMask();
-    $request = (new UpdateEkmConfigRequest())
-        ->setEkmConfig($ekmConfig)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateEkmConfigRequest();
 
     // Call the API and handle any network failures.
     try {

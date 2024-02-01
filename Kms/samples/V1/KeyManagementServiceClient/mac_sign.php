@@ -33,22 +33,19 @@ use Google\Cloud\Kms\V1\MacSignResponse;
  * with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] MAC,
  * producing a tag that can be verified by another source with the same key.
  *
- * @param string $formattedName The resource name of the
- *                              [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
- *                              signing. Please see
- *                              {@see KeyManagementServiceClient::cryptoKeyVersionName()} for help formatting this field.
- * @param string $data          The data to sign. The MAC tag is computed over this data field
- *                              based on the specific algorithm.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function mac_sign_sample(string $formattedName, string $data): void
+function mac_sign_sample(): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = (new MacSignRequest())
-        ->setName($formattedName)
-        ->setData($data);
+    $request = new MacSignRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,28 +55,5 @@ function mac_sign_sample(string $formattedName, string $data): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = KeyManagementServiceClient::cryptoKeyVersionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[KEY_RING]',
-        '[CRYPTO_KEY]',
-        '[CRYPTO_KEY_VERSION]'
-    );
-    $data = '...';
-
-    mac_sign_sample($formattedName, $data);
 }
 // [END cloudkms_v1_generated_KeyManagementService_MacSign_sync]

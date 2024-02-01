@@ -26,8 +26,7 @@ class GetCryptoKeyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
-     *                     [CryptoKey][google.cloud.kms.v1.CryptoKey] to get. Please see
-     *                     {@see KeyManagementServiceClient::cryptoKeyName()} for help formatting this field.
+     *                     [CryptoKey][google.cloud.kms.v1.CryptoKey] to get.
      *
      * @return \Google\Cloud\Kms\V1\GetCryptoKeyRequest
      *

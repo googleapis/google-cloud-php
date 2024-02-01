@@ -32,18 +32,19 @@ use Google\Cloud\Kms\V1\GetCryptoKeyVersionRequest;
  * Returns metadata for a given
  * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
  *
- * @param string $formattedName The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
- *                              [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to get. Please see
- *                              {@see KeyManagementServiceClient::cryptoKeyVersionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_crypto_key_version_sample(string $formattedName): void
+function get_crypto_key_version_sample(): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = (new GetCryptoKeyVersionRequest())
-        ->setName($formattedName);
+    $request = new GetCryptoKeyVersionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,27 +54,5 @@ function get_crypto_key_version_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = KeyManagementServiceClient::cryptoKeyVersionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[KEY_RING]',
-        '[CRYPTO_KEY]',
-        '[CRYPTO_KEY_VERSION]'
-    );
-
-    get_crypto_key_version_sample($formattedName);
 }
 // [END cloudkms_v1_generated_KeyManagementService_GetCryptoKeyVersion_sync]

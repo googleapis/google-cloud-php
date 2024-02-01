@@ -31,18 +31,19 @@ use Google\Cloud\Kms\V1\KeyRing;
 /**
  * Returns metadata for a given [KeyRing][google.cloud.kms.v1.KeyRing].
  *
- * @param string $formattedName The [name][google.cloud.kms.v1.KeyRing.name] of the
- *                              [KeyRing][google.cloud.kms.v1.KeyRing] to get. Please see
- *                              {@see KeyManagementServiceClient::keyRingName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_key_ring_sample(string $formattedName): void
+function get_key_ring_sample(): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = (new GetKeyRingRequest())
-        ->setName($formattedName);
+    $request = new GetKeyRingRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +53,5 @@ function get_key_ring_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = KeyManagementServiceClient::keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
-
-    get_key_ring_sample($formattedName);
 }
 // [END cloudkms_v1_generated_KeyManagementService_GetKeyRing_sync]

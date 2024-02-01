@@ -34,34 +34,19 @@ use Google\Cloud\Kms\V1\EncryptResponse;
  * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
  * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
  *
- * @param string $name      The resource name of the
- *                          [CryptoKey][google.cloud.kms.v1.CryptoKey] or
- *                          [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
- *                          encryption.
- *
- *                          If a [CryptoKey][google.cloud.kms.v1.CryptoKey] is specified, the server
- *                          will use its [primary version][google.cloud.kms.v1.CryptoKey.primary].
- * @param string $plaintext The data to encrypt. Must be no larger than 64KiB.
- *
- *                          The maximum size depends on the key version's
- *                          [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
- *                          For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE],
- *                          [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL], and
- *                          [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC] keys, the
- *                          plaintext must be no larger than 64KiB. For
- *                          [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
- *                          the plaintext and additional_authenticated_data fields must be no larger
- *                          than 8KiB.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function encrypt_sample(string $name, string $plaintext): void
+function encrypt_sample(): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = (new EncryptRequest())
-        ->setName($name)
-        ->setPlaintext($plaintext);
+    $request = new EncryptRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,22 +56,5 @@ function encrypt_sample(string $name, string $plaintext): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-    $plaintext = '...';
-
-    encrypt_sample($name, $plaintext);
 }
 // [END cloudkms_v1_generated_KeyManagementService_Encrypt_sync]

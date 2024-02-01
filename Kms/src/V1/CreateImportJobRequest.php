@@ -42,8 +42,7 @@ class CreateImportJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                         $parent      Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
      *                                                    [KeyRing][google.cloud.kms.v1.KeyRing] associated with the
-     *                                                    [ImportJobs][google.cloud.kms.v1.ImportJob]. Please see
-     *                                                    {@see KeyManagementServiceClient::keyRingName()} for help formatting this field.
+     *                                                    [ImportJobs][google.cloud.kms.v1.ImportJob].
      * @param string                         $importJobId Required. It must be unique within a KeyRing and match the regular
      *                                                    expression `[a-zA-Z0-9_-]{1,63}`
      * @param \Google\Cloud\Kms\V1\ImportJob $importJob   Required. An [ImportJob][google.cloud.kms.v1.ImportJob] with initial field

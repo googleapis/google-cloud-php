@@ -42,8 +42,7 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                       $parent    Required. The resource name of the location associated with the
      *                                                [KeyRings][google.cloud.kms.v1.KeyRing], in the format
-     *                                                `projects/&#42;/locations/*`. Please see
-     *                                                {@see KeyManagementServiceClient::locationName()} for help formatting this field.
+     *                                                `projects/&#42;/locations/*`.
      * @param string                       $keyRingId Required. It must be unique within a location and match the regular
      *                                                expression `[a-zA-Z0-9_-]{1,63}`
      * @param \Google\Cloud\Kms\V1\KeyRing $keyRing   Required. A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field

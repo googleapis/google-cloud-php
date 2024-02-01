@@ -26,8 +26,7 @@ class DestroyCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the
-     *                     [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy. Please see
-     *                     {@see KeyManagementServiceClient::cryptoKeyVersionName()} for help formatting this field.
+     *                     [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
      *
      * @return \Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest
      *

@@ -34,25 +34,19 @@ use Google\Cloud\Kms\V1\RawDecryptResponse;
  * must be
  * [RAW_ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.RAW_ENCRYPT_DECRYPT].
  *
- * @param string $name                 The resource name of the
- *                                     [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
- *                                     decryption.
- * @param string $ciphertext           The encrypted data originally returned in
- *                                     [RawEncryptResponse.ciphertext][google.cloud.kms.v1.RawEncryptResponse.ciphertext].
- * @param string $initializationVector The initialization vector (IV) used during encryption, which must
- *                                     match the data originally provided in
- *                                     [RawEncryptResponse.initialization_vector][google.cloud.kms.v1.RawEncryptResponse.initialization_vector].
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function raw_decrypt_sample(string $name, string $ciphertext, string $initializationVector): void
+function raw_decrypt_sample(): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = (new RawDecryptRequest())
-        ->setName($name)
-        ->setCiphertext($ciphertext)
-        ->setInitializationVector($initializationVector);
+    $request = new RawDecryptRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,23 +56,5 @@ function raw_decrypt_sample(string $name, string $ciphertext, string $initializa
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-    $ciphertext = '...';
-    $initializationVector = '...';
-
-    raw_decrypt_sample($name, $ciphertext, $initializationVector);
 }
 // [END cloudkms_v1_generated_KeyManagementService_RawDecrypt_sync]

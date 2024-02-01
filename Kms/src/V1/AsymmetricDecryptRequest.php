@@ -60,8 +60,7 @@ class AsymmetricDecryptRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name       Required. The resource name of the
      *                           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     *                           decryption. Please see
-     *                           {@see KeyManagementServiceClient::cryptoKeyVersionName()} for help formatting this field.
+     *                           decryption.
      * @param string $ciphertext Required. The data encrypted with the named
      *                           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s public key using
      *                           OAEP.

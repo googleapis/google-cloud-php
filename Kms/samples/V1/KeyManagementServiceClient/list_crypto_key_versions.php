@@ -32,19 +32,19 @@ use Google\Cloud\Kms\V1\ListCryptoKeyVersionsRequest;
 /**
  * Lists [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
  *
- * @param string $formattedParent The resource name of the
- *                                [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
- *                                `projects/&#42;/locations/&#42;/keyRings/&#42;/cryptoKeys/*`. Please see
- *                                {@see KeyManagementServiceClient::cryptoKeyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_crypto_key_versions_sample(string $formattedParent): void
+function list_crypto_key_versions_sample(): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = (new ListCryptoKeyVersionsRequest())
-        ->setParent($formattedParent);
+    $request = new ListCryptoKeyVersionsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,26 +58,5 @@ function list_crypto_key_versions_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = KeyManagementServiceClient::cryptoKeyName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[KEY_RING]',
-        '[CRYPTO_KEY]'
-    );
-
-    list_crypto_key_versions_sample($formattedParent);
 }
 // [END cloudkms_v1_generated_KeyManagementService_ListCryptoKeyVersions_sync]

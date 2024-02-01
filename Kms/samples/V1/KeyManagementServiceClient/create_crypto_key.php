@@ -36,23 +36,19 @@ use Google\Cloud\Kms\V1\CryptoKey;
  * [CryptoKey.version_template.algorithm][google.cloud.kms.v1.CryptoKeyVersionTemplate.algorithm]
  * are required.
  *
- * @param string $formattedParent The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing
- *                                associated with the [CryptoKeys][google.cloud.kms.v1.CryptoKey]. Please see
- *                                {@see KeyManagementServiceClient::keyRingName()} for help formatting this field.
- * @param string $cryptoKeyId     It must be unique within a KeyRing and match the regular
- *                                expression `[a-zA-Z0-9_-]{1,63}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_crypto_key_sample(string $formattedParent, string $cryptoKeyId): void
+function create_crypto_key_sample(): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $cryptoKey = new CryptoKey();
-    $request = (new CreateCryptoKeyRequest())
-        ->setParent($formattedParent)
-        ->setCryptoKeyId($cryptoKeyId)
-        ->setCryptoKey($cryptoKey);
+    $request = new CreateCryptoKeyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,22 +58,5 @@ function create_crypto_key_sample(string $formattedParent, string $cryptoKeyId):
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = KeyManagementServiceClient::keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
-    $cryptoKeyId = '[CRYPTO_KEY_ID]';
-
-    create_crypto_key_sample($formattedParent, $cryptoKeyId);
 }
 // [END cloudkms_v1_generated_KeyManagementService_CreateCryptoKey_sync]

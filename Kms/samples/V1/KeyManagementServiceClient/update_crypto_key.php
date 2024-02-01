@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Kms\V1\Client\KeyManagementServiceClient;
 use Google\Cloud\Kms\V1\CryptoKey;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Update a [CryptoKey][google.cloud.kms.v1.CryptoKey].
@@ -44,11 +43,7 @@ function update_crypto_key_sample(): void
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $cryptoKey = new CryptoKey();
-    $updateMask = new FieldMask();
-    $request = (new UpdateCryptoKeyRequest())
-        ->setCryptoKey($cryptoKey)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateCryptoKeyRequest();
 
     // Call the API and handle any network failures.
     try {

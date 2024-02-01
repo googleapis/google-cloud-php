@@ -33,18 +33,19 @@ use Google\Cloud\Kms\V1\GetCryptoKeyRequest;
  * well as its [primary][google.cloud.kms.v1.CryptoKey.primary]
  * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
  *
- * @param string $formattedName The [name][google.cloud.kms.v1.CryptoKey.name] of the
- *                              [CryptoKey][google.cloud.kms.v1.CryptoKey] to get. Please see
- *                              {@see KeyManagementServiceClient::cryptoKeyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_crypto_key_sample(string $formattedName): void
+function get_crypto_key_sample(): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = (new GetCryptoKeyRequest())
-        ->setName($formattedName);
+    $request = new GetCryptoKeyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,26 +55,5 @@ function get_crypto_key_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = KeyManagementServiceClient::cryptoKeyName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[KEY_RING]',
-        '[CRYPTO_KEY]'
-    );
-
-    get_crypto_key_sample($formattedName);
 }
 // [END cloudkms_v1_generated_KeyManagementService_GetCryptoKey_sync]

@@ -90,8 +90,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name       Required. The resource name of the
      *                           [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption. The
-     *                           server will choose the appropriate version. Please see
-     *                           {@see KeyManagementServiceClient::cryptoKeyName()} for help formatting this field.
+     *                           server will choose the appropriate version.
      * @param string $ciphertext Required. The encrypted data originally returned in
      *                           [EncryptResponse.ciphertext][google.cloud.kms.v1.EncryptResponse.ciphertext].
      *

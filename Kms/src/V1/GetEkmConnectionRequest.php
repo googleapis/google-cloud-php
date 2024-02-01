@@ -26,8 +26,7 @@ class GetEkmConnectionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The [name][google.cloud.kms.v1.EkmConnection.name] of the
-     *                     [EkmConnection][google.cloud.kms.v1.EkmConnection] to get. Please see
-     *                     {@see EkmServiceClient::ekmConnectionName()} for help formatting this field.
+     *                     [EkmConnection][google.cloud.kms.v1.EkmConnection] to get.
      *
      * @return \Google\Cloud\Kms\V1\GetEkmConnectionRequest
      *

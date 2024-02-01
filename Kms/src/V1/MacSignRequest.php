@@ -57,8 +57,7 @@ class MacSignRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The resource name of the
      *                     [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     *                     signing. Please see
-     *                     {@see KeyManagementServiceClient::cryptoKeyVersionName()} for help formatting this field.
+     *                     signing.
      * @param string $data Required. The data to sign. The MAC tag is computed over this data field
      *                     based on the specific algorithm.
      *

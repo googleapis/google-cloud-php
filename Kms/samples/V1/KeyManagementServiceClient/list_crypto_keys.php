@@ -32,18 +32,19 @@ use Google\Cloud\Kms\V1\ListCryptoKeysRequest;
 /**
  * Lists [CryptoKeys][google.cloud.kms.v1.CryptoKey].
  *
- * @param string $formattedParent The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
- *                                to list, in the format `projects/&#42;/locations/&#42;/keyRings/*`. Please see
- *                                {@see KeyManagementServiceClient::keyRingName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_crypto_keys_sample(string $formattedParent): void
+function list_crypto_keys_sample(): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = (new ListCryptoKeysRequest())
-        ->setParent($formattedParent);
+    $request = new ListCryptoKeysRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_crypto_keys_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = KeyManagementServiceClient::keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
-
-    list_crypto_keys_sample($formattedParent);
 }
 // [END cloudkms_v1_generated_KeyManagementService_ListCryptoKeys_sync]
