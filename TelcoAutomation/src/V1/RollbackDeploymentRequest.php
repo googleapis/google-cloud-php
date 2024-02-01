@@ -29,8 +29,7 @@ class RollbackDeploymentRequest extends \Google\Protobuf\Internal\Message
     protected $revision_id = '';
 
     /**
-     * @param string $name       Required. Name of the deployment. Please see
-     *                           {@see TelcoAutomationClient::deploymentName()} for help formatting this field.
+     * @param string $name       Required. Name of the deployment.
      * @param string $revisionId Required. The revision id of deployment to roll back to.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\RollbackDeploymentRequest

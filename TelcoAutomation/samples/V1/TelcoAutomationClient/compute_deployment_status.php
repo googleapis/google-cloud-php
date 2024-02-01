@@ -31,17 +31,19 @@ use Google\Cloud\TelcoAutomation\V1\ComputeDeploymentStatusResponse;
 /**
  * Returns the requested deployment status.
  *
- * @param string $formattedName The name of the deployment without revisionID. Please see
- *                              {@see TelcoAutomationClient::deploymentName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function compute_deployment_status_sample(string $formattedName): void
+function compute_deployment_status_sample(): void
 {
     // Create a client.
     $telcoAutomationClient = new TelcoAutomationClient();
 
     // Prepare the request message.
-    $request = (new ComputeDeploymentStatusRequest())
-        ->setName($formattedName);
+    $request = new ComputeDeploymentStatusRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,26 +53,5 @@ function compute_deployment_status_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = TelcoAutomationClient::deploymentName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[ORCHESTRATION_CLUSTER]',
-        '[DEPLOYMENT]'
-    );
-
-    compute_deployment_status_sample($formattedName);
 }
 // [END telcoautomation_v1_generated_TelcoAutomation_ComputeDeploymentStatus_sync]

@@ -54,8 +54,7 @@ class SearchDeploymentRevisionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The name of parent orchestration cluster resource.
      *                       Format should be -
-     *                       "projects/{project_id}/locations/{location_name}/orchestrationClusters/{orchestration_cluster}". Please see
-     *                       {@see TelcoAutomationClient::orchestrationClusterName()} for help formatting this field.
+     *                       "projects/{project_id}/locations/{location_name}/orchestrationClusters/{orchestration_cluster}".
      * @param string $query  Required. Supported queries:
      *                       1. ""                       : Lists all revisions across all deployments.
      *                       2. "latest=true"            : Lists latest revisions across all

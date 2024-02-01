@@ -23,8 +23,7 @@ class RejectBlueprintRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the blueprint being rejected. Please see
-     *                     {@see TelcoAutomationClient::blueprintName()} for help formatting this field.
+     * @param string $name Required. The name of the blueprint being rejected.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\RejectBlueprintRequest
      *

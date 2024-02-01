@@ -33,23 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new EdgeSlm in a given project and location.
  *
- * @param string $formattedParent Value for parent. Please see
- *                                {@see TelcoAutomationClient::locationName()} for help formatting this field.
- * @param string $edgeSlmId       Id of the requesting object
- *                                If auto-generating Id server-side, remove this field and
- *                                edge_slm_id from the method_signature of Create RPC
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_edge_slm_sample(string $formattedParent, string $edgeSlmId): void
+function create_edge_slm_sample(): void
 {
     // Create a client.
     $telcoAutomationClient = new TelcoAutomationClient();
 
     // Prepare the request message.
-    $edgeSlm = new EdgeSlm();
-    $request = (new CreateEdgeSlmRequest())
-        ->setParent($formattedParent)
-        ->setEdgeSlmId($edgeSlmId)
-        ->setEdgeSlm($edgeSlm);
+    $request = new CreateEdgeSlmRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,22 +65,5 @@ function create_edge_slm_sample(string $formattedParent, string $edgeSlmId): voi
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = TelcoAutomationClient::locationName('[PROJECT]', '[LOCATION]');
-    $edgeSlmId = '[EDGE_SLM_ID]';
-
-    create_edge_slm_sample($formattedParent, $edgeSlmId);
 }
 // [END telcoautomation_v1_generated_TelcoAutomation_CreateEdgeSlm_sync]
