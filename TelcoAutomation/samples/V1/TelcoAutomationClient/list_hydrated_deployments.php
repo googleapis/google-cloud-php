@@ -32,19 +32,17 @@ use Google\Cloud\TelcoAutomation\V1\ListHydratedDeploymentsRequest;
 /**
  * List all hydrated deployments present under a deployment.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The deployment managing the hydrated deployments. Please see
+ *                                {@see TelcoAutomationClient::deploymentName()} for help formatting this field.
  */
-function list_hydrated_deployments_sample(): void
+function list_hydrated_deployments_sample(string $formattedParent): void
 {
     // Create a client.
     $telcoAutomationClient = new TelcoAutomationClient();
 
     // Prepare the request message.
-    $request = new ListHydratedDeploymentsRequest();
+    $request = (new ListHydratedDeploymentsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +56,26 @@ function list_hydrated_deployments_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = TelcoAutomationClient::deploymentName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[ORCHESTRATION_CLUSTER]',
+        '[DEPLOYMENT]'
+    );
+
+    list_hydrated_deployments_sample($formattedParent);
 }
 // [END telcoautomation_v1_generated_TelcoAutomation_ListHydratedDeployments_sync]

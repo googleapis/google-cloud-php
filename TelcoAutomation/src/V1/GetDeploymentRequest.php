@@ -40,7 +40,8 @@ class GetDeploymentRequest extends \Google\Protobuf\Internal\Message
      *                     {deployment_id}&#64;{revision_id}, then the revision with revision_id will be
      *                     returned.
      *                     Case 2: If the name provided in the request is {deployment}, then
-     *                     the current state of the deployment is returned.
+     *                     the current state of the deployment is returned. Please see
+     *                     {@see TelcoAutomationClient::deploymentName()} for help formatting this field.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\GetDeploymentRequest
      *

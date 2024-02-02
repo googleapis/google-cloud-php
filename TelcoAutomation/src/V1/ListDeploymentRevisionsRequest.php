@@ -36,7 +36,8 @@ class ListDeploymentRevisionsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
-     * @param string $name Required. The name of the deployment to list revisions for.
+     * @param string $name Required. The name of the deployment to list revisions for. Please see
+     *                     {@see TelcoAutomationClient::deploymentName()} for help formatting this field.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\ListDeploymentRevisionsRequest
      *

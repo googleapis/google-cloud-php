@@ -23,7 +23,8 @@ class ProposeBlueprintRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the blueprint being proposed.
+     * @param string $name Required. The name of the blueprint being proposed. Please see
+     *                     {@see TelcoAutomationClient::blueprintName()} for help formatting this field.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\ProposeBlueprintRequest
      *

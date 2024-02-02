@@ -98,9 +98,6 @@ class Deployment extends \Google\Protobuf\Internal\Message
     protected $source_provider = '';
     /**
      * Optional. Immutable. The WorkloadCluster on which to create the Deployment.
-     * This field should only be passed when the deployment_level of the source
-     * blueprint specifies deployments on workload clusters e.g.
-     * WORKLOAD_CLUSTER_DEPLOYMENT.
      *
      * Generated from protobuf field <code>string workload_cluster = 13 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -159,9 +156,6 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           which this deployment is created.
      *     @type string $workload_cluster
      *           Optional. Immutable. The WorkloadCluster on which to create the Deployment.
-     *           This field should only be passed when the deployment_level of the source
-     *           blueprint specifies deployments on workload clusters e.g.
-     *           WORKLOAD_CLUSTER_DEPLOYMENT.
      *     @type int $deployment_level
      *           Output only. Attributes to where the deployment can inflict changes. The
      *           value can only be [SINGLE_DEPLOYMENT, MULTI_DEPLOYMENT].
@@ -533,9 +527,6 @@ class Deployment extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Immutable. The WorkloadCluster on which to create the Deployment.
-     * This field should only be passed when the deployment_level of the source
-     * blueprint specifies deployments on workload clusters e.g.
-     * WORKLOAD_CLUSTER_DEPLOYMENT.
      *
      * Generated from protobuf field <code>string workload_cluster = 13 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -547,9 +538,6 @@ class Deployment extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Immutable. The WorkloadCluster on which to create the Deployment.
-     * This field should only be passed when the deployment_level of the source
-     * blueprint specifies deployments on workload clusters e.g.
-     * WORKLOAD_CLUSTER_DEPLOYMENT.
      *
      * Generated from protobuf field <code>string workload_cluster = 13 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

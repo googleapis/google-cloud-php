@@ -40,7 +40,8 @@ class ListPublicBlueprintsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. Parent value of public blueprint.
      *                       Format should be -
-     *                       "projects/{project_id}/locations/{location_name}".
+     *                       "projects/{project_id}/locations/{location_name}". Please see
+     *                       {@see TelcoAutomationClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\ListPublicBlueprintsRequest
      *

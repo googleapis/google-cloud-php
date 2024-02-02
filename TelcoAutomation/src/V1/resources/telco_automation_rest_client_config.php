@@ -109,6 +109,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'edge_slm_id',
+                ],
             ],
             'CreateOrchestrationCluster' => [
                 'method' => 'post',
@@ -120,6 +123,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'orchestration_cluster_id',
                 ],
             ],
             'DeleteBlueprint' => [
@@ -415,6 +421,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateDeployment' => [
                 'method' => 'patch',
@@ -428,6 +437,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateHydratedDeployment' => [
                 'method' => 'patch',
@@ -440,6 +452,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

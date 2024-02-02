@@ -31,19 +31,22 @@ use Google\Cloud\TelcoAutomation\V1\GetDeploymentRequest;
 /**
  * Returns the requested deployment.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the deployment.
+ *                              Case 1: If the name provided in the request is
+ *                              {deployment_id}&#64;{revision_id}, then the revision with revision_id will be
+ *                              returned.
+ *                              Case 2: If the name provided in the request is {deployment}, then
+ *                              the current state of the deployment is returned. Please see
+ *                              {@see TelcoAutomationClient::deploymentName()} for help formatting this field.
  */
-function get_deployment_sample(): void
+function get_deployment_sample(string $formattedName): void
 {
     // Create a client.
     $telcoAutomationClient = new TelcoAutomationClient();
 
     // Prepare the request message.
-    $request = new GetDeploymentRequest();
+    $request = (new GetDeploymentRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +56,26 @@ function get_deployment_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = TelcoAutomationClient::deploymentName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[ORCHESTRATION_CLUSTER]',
+        '[DEPLOYMENT]'
+    );
+
+    get_deployment_sample($formattedName);
 }
 // [END telcoautomation_v1_generated_TelcoAutomation_GetDeployment_sync]

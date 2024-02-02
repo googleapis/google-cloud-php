@@ -25,7 +25,8 @@ class ApplyDeploymentRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the deployment to apply to orchestration cluster.
+     * @param string $name Required. The name of the deployment to apply to orchestration cluster. Please see
+     *                     {@see TelcoAutomationClient::deploymentName()} for help formatting this field.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\ApplyDeploymentRequest
      *
