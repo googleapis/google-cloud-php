@@ -29,7 +29,8 @@ use Google\Cloud\AIPlatform\V1\DirectRawPredictRequest;
 use Google\Cloud\AIPlatform\V1\DirectRawPredictResponse;
 
 /**
- * Perform an online prediction request through gRPC.
+ * Perform an unary online prediction request to a gRPC model server for
+ * custom containers.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

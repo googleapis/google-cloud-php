@@ -50,6 +50,11 @@ use Google\Cloud\AIPlatform\V1\PredictRequest;
 use Google\Cloud\AIPlatform\V1\PredictResponse;
 use Google\Cloud\AIPlatform\V1\RawPredictRequest;
 use Google\Cloud\AIPlatform\V1\SafetySetting;
+use Google\Cloud\AIPlatform\V1\StreamDirectPredictRequest;
+use Google\Cloud\AIPlatform\V1\StreamDirectPredictResponse;
+use Google\Cloud\AIPlatform\V1\StreamDirectRawPredictRequest;
+use Google\Cloud\AIPlatform\V1\StreamDirectRawPredictResponse;
+use Google\Cloud\AIPlatform\V1\StreamRawPredictRequest;
 use Google\Cloud\AIPlatform\V1\StreamingPredictRequest;
 use Google\Cloud\AIPlatform\V1\StreamingPredictResponse;
 use Google\Cloud\AIPlatform\V1\StreamingRawPredictRequest;
@@ -373,8 +378,8 @@ class PredictionServiceGapicClient
     }
 
     /**
-     * Perform an unary online prediction request for Vertex first-party products
-     * and frameworks.
+     * Perform an unary online prediction request to a gRPC model server for
+     * Vertex first-party products and frameworks.
      *
      * Sample code:
      * ```
@@ -439,7 +444,8 @@ class PredictionServiceGapicClient
     }
 
     /**
-     * Perform an online prediction request through gRPC.
+     * Perform an unary online prediction request to a gRPC model server for
+     * custom containers.
      *
      * Sample code:
      * ```
@@ -614,6 +620,94 @@ class PredictionServiceGapicClient
         return $this->startCall(
             'Explain',
             ExplainResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Generate content with multimodal inputs.
+     *
+     * Sample code:
+     * ```
+     * $predictionServiceClient = new PredictionServiceClient();
+     * try {
+     *     $response = $predictionServiceClient->generateContent();
+     * } finally {
+     *     $predictionServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $model
+     *           Required. The name of the publisher model requested to serve the
+     *           prediction. Format:
+     *           `projects/{project}/locations/{location}/publishers/&#42;/models/*`
+     *     @type Content[] $contents
+     *           Required. The content of the current conversation with the model.
+     *
+     *           For single-turn queries, this is a single instance. For multi-turn queries,
+     *           this is a repeated field that contains conversation history + latest
+     *           request.
+     *     @type Tool[] $tools
+     *           Optional. A list of `Tools` the model may use to generate the next
+     *           response.
+     *
+     *           A `Tool` is a piece of code that enables the system to interact with
+     *           external systems to perform an action, or set of actions, outside of
+     *           knowledge and scope of the model. The only supported tool is currently
+     *           `Function`
+     *     @type SafetySetting[] $safetySettings
+     *           Optional. Per request settings for blocking unsafe content.
+     *           Enforced on GenerateContentResponse.candidates.
+     *     @type GenerationConfig $generationConfig
+     *           Optional. Generation config.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\GenerateContentResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function generateContent(array $optionalArgs = [])
+    {
+        $request = new GenerateContentRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['model'])) {
+            $request->setModel($optionalArgs['model']);
+            $requestParamHeaders['model'] = $optionalArgs['model'];
+        }
+
+        if (isset($optionalArgs['contents'])) {
+            $request->setContents($optionalArgs['contents']);
+        }
+
+        if (isset($optionalArgs['tools'])) {
+            $request->setTools($optionalArgs['tools']);
+        }
+
+        if (isset($optionalArgs['safetySettings'])) {
+            $request->setSafetySettings($optionalArgs['safetySettings']);
+        }
+
+        if (isset($optionalArgs['generationConfig'])) {
+            $request->setGenerationConfig($optionalArgs['generationConfig']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GenerateContent',
+            GenerateContentResponse::class,
             $optionalArgs,
             $request
         )->wait();
@@ -849,6 +943,138 @@ class PredictionServiceGapicClient
     }
 
     /**
+     * Perform a streaming online prediction request to a gRPC model server for
+     * Vertex first-party products and frameworks.
+     *
+     * Sample code:
+     * ```
+     * $predictionServiceClient = new PredictionServiceClient();
+     * try {
+     *     $request = new StreamDirectPredictRequest();
+     *     // Write all requests to the server, then read all responses until the
+     *     // stream is complete
+     *     $requests = [
+     *         $request,
+     *     ];
+     *     $stream = $predictionServiceClient->streamDirectPredict();
+     *     $stream->writeAll($requests);
+     *     foreach ($stream->closeWriteAndReadAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *     // Alternatively:
+     *     // Write requests individually, making read() calls if
+     *     // required. Call closeWrite() once writes are complete, and read the
+     *     // remaining responses from the server.
+     *     $requests = [
+     *         $request,
+     *     ];
+     *     $stream = $predictionServiceClient->streamDirectPredict();
+     *     foreach ($requests as $request) {
+     *         $stream->write($request);
+     *         // if required, read a single response from the stream
+     *         $element = $stream->read();
+     *         // doSomethingWith($element)
+     *     }
+     *     $stream->closeWrite();
+     *     $element = $stream->read();
+     *     while (!is_null($element)) {
+     *         // doSomethingWith($element)
+     *         $element = $stream->read();
+     *     }
+     * } finally {
+     *     $predictionServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\BidiStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function streamDirectPredict(array $optionalArgs = [])
+    {
+        return $this->startCall(
+            'StreamDirectPredict',
+            StreamDirectPredictResponse::class,
+            $optionalArgs,
+            null,
+            Call::BIDI_STREAMING_CALL
+        );
+    }
+
+    /**
+     * Perform a streaming online prediction request to a gRPC model server for
+     * custom containers.
+     *
+     * Sample code:
+     * ```
+     * $predictionServiceClient = new PredictionServiceClient();
+     * try {
+     *     $request = new StreamDirectRawPredictRequest();
+     *     // Write all requests to the server, then read all responses until the
+     *     // stream is complete
+     *     $requests = [
+     *         $request,
+     *     ];
+     *     $stream = $predictionServiceClient->streamDirectRawPredict();
+     *     $stream->writeAll($requests);
+     *     foreach ($stream->closeWriteAndReadAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *     // Alternatively:
+     *     // Write requests individually, making read() calls if
+     *     // required. Call closeWrite() once writes are complete, and read the
+     *     // remaining responses from the server.
+     *     $requests = [
+     *         $request,
+     *     ];
+     *     $stream = $predictionServiceClient->streamDirectRawPredict();
+     *     foreach ($requests as $request) {
+     *         $stream->write($request);
+     *         // if required, read a single response from the stream
+     *         $element = $stream->read();
+     *         // doSomethingWith($element)
+     *     }
+     *     $stream->closeWrite();
+     *     $element = $stream->read();
+     *     while (!is_null($element)) {
+     *         // doSomethingWith($element)
+     *         $element = $stream->read();
+     *     }
+     * } finally {
+     *     $predictionServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\BidiStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function streamDirectRawPredict(array $optionalArgs = [])
+    {
+        return $this->startCall(
+            'StreamDirectRawPredict',
+            StreamDirectRawPredictResponse::class,
+            $optionalArgs,
+            null,
+            Call::BIDI_STREAMING_CALL
+        );
+    }
+
+    /**
      * Generate content with multimodal inputs with streaming support.
      *
      * Sample code:
@@ -933,6 +1159,68 @@ class PredictionServiceGapicClient
         return $this->startCall(
             'StreamGenerateContent',
             GenerateContentResponse::class,
+            $optionalArgs,
+            $request,
+            Call::SERVER_STREAMING_CALL
+        );
+    }
+
+    /**
+     * Perform a streaming online prediction with an arbitrary HTTP payload.
+     *
+     * Sample code:
+     * ```
+     * $predictionServiceClient = new PredictionServiceClient();
+     * try {
+     *     // Read all responses until the stream is complete
+     *     $stream = $predictionServiceClient->streamRawPredict();
+     *     foreach ($stream->readAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $predictionServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $endpoint
+     *           Required. The name of the Endpoint requested to serve the prediction.
+     *           Format:
+     *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *     @type HttpBody $httpBody
+     *           The prediction input. Supports HTTP headers and arbitrary data payload.
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\ServerStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function streamRawPredict(array $optionalArgs = [])
+    {
+        $request = new StreamRawPredictRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['endpoint'])) {
+            $request->setEndpoint($optionalArgs['endpoint']);
+            $requestParamHeaders['endpoint'] = $optionalArgs['endpoint'];
+        }
+
+        if (isset($optionalArgs['httpBody'])) {
+            $request->setHttpBody($optionalArgs['httpBody']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'StreamRawPredict',
+            HttpBody::class,
             $optionalArgs,
             $request,
             Call::SERVER_STREAMING_CALL
