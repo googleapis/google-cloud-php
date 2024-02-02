@@ -33,18 +33,19 @@ use Google\Cloud\DocumentAI\V1\FetchProcessorTypesResponse;
  * [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
  * here, because it isn't paginated.
  *
- * @param string $formattedParent The location of processor types to list.
- *                                Format: `projects/{project}/locations/{location}`. Please see
- *                                {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function fetch_processor_types_sample(string $formattedParent): void
+function fetch_processor_types_sample(): void
 {
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
     // Prepare the request message.
-    $request = (new FetchProcessorTypesRequest())
-        ->setParent($formattedParent);
+    $request = new FetchProcessorTypesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +55,5 @@ function fetch_processor_types_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DocumentProcessorServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    fetch_processor_types_sample($formattedParent);
 }
 // [END documentai_v1_generated_DocumentProcessorService_FetchProcessorTypes_sync]

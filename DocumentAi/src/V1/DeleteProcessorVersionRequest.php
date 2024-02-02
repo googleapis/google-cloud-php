@@ -25,8 +25,7 @@ class DeleteProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The processor version resource name to be deleted. Please see
-     *                     {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
+     * @param string $name Required. The processor version resource name to be deleted.
      *
      * @return \Google\Cloud\DocumentAI\V1\DeleteProcessorVersionRequest
      *

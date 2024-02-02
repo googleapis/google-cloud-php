@@ -25,8 +25,7 @@ class DeleteProcessorRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The processor resource name to be deleted. Please see
-     *                     {@see DocumentProcessorServiceClient::processorName()} for help formatting this field.
+     * @param string $name Required. The processor resource name to be deleted.
      *
      * @return \Google\Cloud\DocumentAI\V1\DeleteProcessorRequest
      *

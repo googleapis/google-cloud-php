@@ -31,25 +31,19 @@ use Google\Cloud\DocumentAI\V1\ProcessResponse;
 /**
  * Processes a single document.
  *
- * @param string $name The resource name of the
- *                     [Processor][google.cloud.documentai.v1.Processor] or
- *                     [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
- *                     to use for processing. If a
- *                     [Processor][google.cloud.documentai.v1.Processor] is specified, the server
- *                     will use its [default
- *                     version][google.cloud.documentai.v1.Processor.default_processor_version].
- *                     Format: `projects/{project}/locations/{location}/processors/{processor}`,
- *                     or
- *                     `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function process_document_sample(string $name): void
+function process_document_sample(): void
 {
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
     // Prepare the request message.
-    $request = (new ProcessRequest())
-        ->setName($name);
+    $request = new ProcessRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,21 +53,5 @@ function process_document_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    process_document_sample($name);
 }
 // [END documentai_v1_generated_DocumentProcessorService_ProcessDocument_sync]

@@ -25,8 +25,7 @@ class DeployProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The processor version resource name to be deployed. Please see
-     *                     {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
+     * @param string $name Required. The processor version resource name to be deployed.
      *
      * @return \Google\Cloud\DocumentAI\V1\DeployProcessorVersionRequest
      *
