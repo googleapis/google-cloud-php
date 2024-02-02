@@ -177,7 +177,6 @@ trait ClientTrait
             'hasEmulator' => false,
             'preferNumericProjectId' => false,
             'suppressKeyFileNotice' => false,
-            'credentials' => null,
         ];
 
         if ($config['projectId']) {
@@ -186,12 +185,6 @@ trait ClientTrait
 
         if ($config['hasEmulator']) {
             return 'emulator-project';
-        }
-
-        if ($config['credentials']
-            && $config['credentials'] instanceof ProjectIdProviderInterface
-            && $projectId = $config['credentials']->getProjectId()) {
-            return $projectId;
         }
 
         if (isset($config['keyFile'])) {
@@ -225,6 +218,77 @@ trait ClientTrait
             return getenv('GCLOUD_PROJECT');
         }
 
+        if ($projectId = $this->getProjectIdFromGce($config)) {
+            return $projectId;
+        }
+        $this->throwExceptionIfProjectIdRequired($config);
+
+        return '';
+    }
+
+    /**
+     * Detect and return a project ID.
+     * This is different from detectProjectId as this method is supposed to be used by
+     * handwritten clients delegating their auth process to GAX.
+     *
+     * Process:
+     * 1. If $config['projectId'] is set, use that.
+     * 2. If an emulator is enabled, return a dummy value.
+     * 3. If $config['credentials'] is set, attempt to retrieve a project ID from
+     *    that.
+     * 6. If code is running on compute engine, try to get the project ID from
+     *    the metadata store.
+     * 7. Throw exception.
+     *
+     * @param  array $config
+     * @return string
+     * @throws GoogleException
+     */
+    private function detectProjectIdFromCredentials($config)
+    {
+        $config += [
+            'httpHandler' => null,
+            'projectId' => null,
+            'projectIdRequired' => false,
+            'hasEmulator' => false,
+            'preferNumericProjectId' => false,
+            'credentials' => null,
+        ];
+
+        if ($config['projectId']) {
+            return $config['projectId'];
+        }
+
+        if ($config['hasEmulator']) {
+            return 'emulator-project';
+        }
+
+        if ($projectId = $this->getProjectIdFromGce($config)) {
+            return $projectId;
+        }
+
+        if ($config['credentials']
+            && $config['credentials'] instanceof ProjectIdProviderInterface) {
+            try {
+                return $config['credentials']->getProjectId();
+            } catch (\RuntimeException $e) {
+            }
+        }
+
+        $this->throwExceptionIfProjectIdRequired($config);
+
+        return '';
+    }
+
+    /**
+     * Returns project id if process is running in GCE and
+     * $config['httpHandler'] is set.
+     *
+     * @param array $config
+     * @return string|int|void
+     */
+    private function getProjectIdFromGce(array $config)
+    {
         if ($this->onGce($config['httpHandler'])) {
             $metadata = $this->getMetaData();
             $projectId = $config['preferNumericProjectId']
@@ -234,15 +298,42 @@ trait ClientTrait
                 return $projectId;
             }
         }
+    }
 
+    /**
+     * Throws an exception if project id is required.
+     * @param array $config
+     * @throws GoogleException
+     */
+    private function throwExceptionIfProjectIdRequired($config)
+    {
         if ($config['projectIdRequired']) {
             throw new GoogleException(
                 'No project ID was provided, ' .
                 'and we were unable to detect a default project ID.'
             );
         }
+    }
 
-        return '';
+    /**
+     * Helper function to be used inside the handwritten clients
+     * which are delegating there auth to GAX(starting V2).
+     * @param array $config
+     * @return array
+     */
+    private function initCredentialsAndProjectId(array $config): array
+    {
+        // Configure GAPIC client options
+        $config = $this->buildClientOptions($config);
+        $config['credentials'] = $this->createCredentialsWrapper(
+            $config['credentials'],
+            $config['credentialsConfig'],
+            $config['universeDomain']
+        );
+
+        $this->projectId = $this->detectProjectIdFromCredentials($config);
+
+        return $config;
     }
 
     /**

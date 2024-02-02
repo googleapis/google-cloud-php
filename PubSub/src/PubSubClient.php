@@ -186,14 +186,7 @@ class PubSubClient
                 ]
             ]
         ];
-        // Configure GAPIC client options
-        $config = $this->buildClientOptions($config);
-        $config['credentials'] = $this->createCredentialsWrapper(
-            $config['credentials'],
-            $config['credentialsConfig'],
-            $config['universeDomain']
-        );
-        $this->projectId = $this->detectProjectId($config);
+        $config = $this->initCredentialsAndProjectId($config);
         $this->clientConfig = $config;
         $this->serializer = new Serializer([
             'publish_time' => function ($v) {

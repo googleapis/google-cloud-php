@@ -18,9 +18,8 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\Duration;
-use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Tests\Unit\Stubs\ApiHelpersTraitImpl;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -258,19 +257,5 @@ class ApiHelperTraitTest extends TestCase
                 ]
             ]
         ];
-    }
-}
-
-class ApiHelpersTraitImpl
-{
-    use ArrayTrait;
-    use ApiHelperTrait {
-        formatStructForApi as public;
-        formatTimestampFromApi as public;
-        formatListForApi as public;
-        formatTimestampForApi as public;
-        formatDurationForApi as public;
-        formatValueForApi as public;
-        unpackValue as public;
     }
 }
