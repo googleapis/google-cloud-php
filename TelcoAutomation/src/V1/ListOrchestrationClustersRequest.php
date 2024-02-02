@@ -49,7 +49,6 @@ class ListOrchestrationClustersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Parent value for ListOrchestrationClustersRequest
-     *                       Please see {@see TelcoAutomationClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\ListOrchestrationClustersRequest
      *

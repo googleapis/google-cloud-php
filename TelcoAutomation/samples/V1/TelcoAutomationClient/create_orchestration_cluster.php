@@ -33,25 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new OrchestrationCluster in a given project and location.
  *
- * @param string $formattedParent        Value for parent. Please see
- *                                       {@see TelcoAutomationClient::locationName()} for help formatting this field.
- * @param string $orchestrationClusterId Id of the requesting object
- *                                       If auto-generating Id server-side, remove this field and
- *                                       orchestration_cluster_id from the method_signature of Create RPC
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_orchestration_cluster_sample(
-    string $formattedParent,
-    string $orchestrationClusterId
-): void {
+function create_orchestration_cluster_sample(): void
+{
     // Create a client.
     $telcoAutomationClient = new TelcoAutomationClient();
 
     // Prepare the request message.
-    $orchestrationCluster = new OrchestrationCluster();
-    $request = (new CreateOrchestrationClusterRequest())
-        ->setParent($formattedParent)
-        ->setOrchestrationClusterId($orchestrationClusterId)
-        ->setOrchestrationCluster($orchestrationCluster);
+    $request = new CreateOrchestrationClusterRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,22 +65,5 @@ function create_orchestration_cluster_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = TelcoAutomationClient::locationName('[PROJECT]', '[LOCATION]');
-    $orchestrationClusterId = '[ORCHESTRATION_CLUSTER_ID]';
-
-    create_orchestration_cluster_sample($formattedParent, $orchestrationClusterId);
 }
 // [END telcoautomation_v1_generated_TelcoAutomation_CreateOrchestrationCluster_sync]

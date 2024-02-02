@@ -39,8 +39,7 @@ class CreateBlueprintRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                     $parent      Required. The name of parent resource.
      *                                                                Format should be -
-     *                                                                "projects/{project_id}/locations/{location_name}/orchestrationClusters/{orchestration_cluster}". Please see
-     *                                                                {@see TelcoAutomationClient::orchestrationClusterName()} for help formatting this field.
+     *                                                                "projects/{project_id}/locations/{location_name}/orchestrationClusters/{orchestration_cluster}".
      * @param \Google\Cloud\TelcoAutomation\V1\Blueprint $blueprint   Required. The `Blueprint` to create.
      * @param string                                     $blueprintId Optional. The name of the blueprint.
      *

@@ -32,28 +32,19 @@ use Google\Cloud\TelcoAutomation\V1\SearchDeploymentRevisionsRequest;
 /**
  * Searches across deployment revisions.
  *
- * @param string $formattedParent The name of parent orchestration cluster resource.
- *                                Format should be -
- *                                "projects/{project_id}/locations/{location_name}/orchestrationClusters/{orchestration_cluster}". Please see
- *                                {@see TelcoAutomationClient::orchestrationClusterName()} for help formatting this field.
- * @param string $query           Supported queries:
- *                                1. ""                       : Lists all revisions across all deployments.
- *                                2. "latest=true"            : Lists latest revisions across all
- *                                deployments.
- *                                3. "name={name}"            : Lists all revisions of deployment with name
- *                                {name}.
- *                                4. "name={name} latest=true": Lists latest revision of deployment with name
- *                                {name}
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function search_deployment_revisions_sample(string $formattedParent, string $query): void
+function search_deployment_revisions_sample(): void
 {
     // Create a client.
     $telcoAutomationClient = new TelcoAutomationClient();
 
     // Prepare the request message.
-    $request = (new SearchDeploymentRevisionsRequest())
-        ->setParent($formattedParent)
-        ->setQuery($query);
+    $request = new SearchDeploymentRevisionsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -67,26 +58,5 @@ function search_deployment_revisions_sample(string $formattedParent, string $que
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = TelcoAutomationClient::orchestrationClusterName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[ORCHESTRATION_CLUSTER]'
-    );
-    $query = '[QUERY]';
-
-    search_deployment_revisions_sample($formattedParent, $query);
 }
 // [END telcoautomation_v1_generated_TelcoAutomation_SearchDeploymentRevisions_sync]

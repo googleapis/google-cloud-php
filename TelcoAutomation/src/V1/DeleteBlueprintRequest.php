@@ -29,8 +29,7 @@ class DeleteBlueprintRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of blueprint to delete.
      *                     Blueprint name should be in the format {blueprint_id}, if
      *                     {blueprint_id}&#64;{revision_id} is passed then the API throws invalid
-     *                     argument. Please see
-     *                     {@see TelcoAutomationClient::blueprintName()} for help formatting this field.
+     *                     argument.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\DeleteBlueprintRequest
      *

@@ -23,8 +23,7 @@ class DiscardDeploymentChangesRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the deployment of which changes are being discarded. Please see
-     *                     {@see TelcoAutomationClient::deploymentName()} for help formatting this field.
+     * @param string $name Required. The name of the deployment of which changes are being discarded.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\DiscardDeploymentChangesRequest
      *
