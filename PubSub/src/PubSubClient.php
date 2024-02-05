@@ -20,9 +20,9 @@ namespace Google\Cloud\PubSub;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\HandwrittenClientTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
@@ -93,7 +93,7 @@ use Google\Cloud\PubSub\V1\ValidateSchemaRequest;
  */
 class PubSubClient
 {
-    use ClientTrait;
+    use HandwrittenClientTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
     use ClientOptionsTrait;
