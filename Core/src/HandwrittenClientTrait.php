@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Core;
 
+use Google\ApiCore\ClientOptionsTrait;
 use Google\Auth\ProjectIdProviderInterface;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Auth\Credentials\GCECredentials;
@@ -27,6 +28,8 @@ use Google\Cloud\Core\Compute\Metadata;
  */
 trait HandwrittenClientTrait
 {
+    use ClientOptionsTrait;
+
     /**
      * @var string|null The project ID created in the Google Developers Console.
      */
@@ -47,10 +50,10 @@ trait HandwrittenClientTrait
      * 5. Throw exception.
      *
      * @param  array $config
-     * @return string|int
+     * @return string|int|null
      * @throws GoogleException
      */
-    private function detectProjectIdFromCredentials(array $config): mixed
+    private function detectProjectId(array $config): mixed
     {
         $config += [
             'httpHandler' => null,
@@ -74,16 +77,9 @@ trait HandwrittenClientTrait
         }
 
         if ($config['credentials']
-            && $config['credentials'] instanceof ProjectIdProviderInterface) {
-            try {
-                $projectId = $config['credentials']->getProjectId();
-
-                // $projectId might be returned as null
-                if (!$projectId) {
-                    return $projectId;
-                }
-            } catch (\RuntimeException $e) {
-            }
+            && $config['credentials'] instanceof ProjectIdProviderInterface
+            && $projectId = $config['credentials']->getProjectId()) {
+                return $projectId;
         }
 
         if (getenv('GOOGLE_CLOUD_PROJECT')) {
@@ -130,7 +126,7 @@ trait HandwrittenClientTrait
             $config['universeDomain']
         );
 
-        $this->projectId = $this->detectProjectIdFromCredentials($config);
+        $this->projectId = $this->detectProjectId($config);
 
         return $config;
     }
@@ -139,7 +135,7 @@ trait HandwrittenClientTrait
      * Helper method to get project id from a GCE instance.
      *
      * @param array $config
-     * @return string|int|void
+     * @return string|int|null
      */
     private function getProjectIdFromGce(array $config): mixed
     {
@@ -152,6 +148,8 @@ trait HandwrittenClientTrait
                 return $projectId;
             }
         }
+
+        return null;
     }
 
     /**
