@@ -53,7 +53,7 @@ trait HandwrittenClientTrait
      * @return string|int|null
      * @throws GoogleException
      */
-    private function detectProjectId(array $config): mixed
+    private function detectProjectId(array $config)
     {
         $config += [
             'httpHandler' => null,
@@ -116,7 +116,7 @@ trait HandwrittenClientTrait
      * @param array $config
      * @return array
      */
-    private function initCredentialsAndProjectId(array $config): array
+    private function initCredentialsAndProjectId(array $config)
     {
         // Configure GAPIC client options
         $config = $this->buildClientOptions($config);
@@ -137,7 +137,7 @@ trait HandwrittenClientTrait
      * @param array $config
      * @return string|int|null
      */
-    private function getProjectIdFromGce(array $config): mixed
+    private function getProjectIdFromGce(array $config)
     {
         if ($this->onGce($config['httpHandler'])) {
             $metadata = $this->getMetaData();
@@ -158,7 +158,7 @@ trait HandwrittenClientTrait
      * @codeCoverageIgnore
      * @return bool
      */
-    protected function onGce($httpHandler): bool
+    protected function onGce($httpHandler)
     {
         return GCECredentials::onGce($httpHandler);
     }
@@ -169,7 +169,7 @@ trait HandwrittenClientTrait
      * @codeCoverageIgnore
      * @return Metadata
      */
-    protected function getMetaData(): Metadata
+    protected function getMetaData()
     {
         return new Metadata;
     }
