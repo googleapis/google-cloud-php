@@ -44,6 +44,7 @@ use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetUniverseDomainInterface;
+use Google\Auth\ProjectIdProviderInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Auth\UpdateMetadataInterface;
 use PHPUnit\Framework\TestCase;
@@ -523,5 +524,37 @@ class CredentialsWrapperTest extends TestCase
         $reflectionProperty = $reflectionClass->getProperty('credentialsFetcher');
         $reflectionProperty->setAccessible(true);
         $this->assertInstanceOf(GCECredentials::class, $reflectionProperty->getValue($wrapper)->getFetcher());
+    }
+
+    public function testGetProjectId()
+    {
+        $credentials = $this->prophesize(FetchAuthTokenInterface::class)
+            ->willImplement(ProjectIdProviderInterface::class);
+        $credentials
+            ->getProjectId(null)
+            ->shouldBeCalledOnce()
+            ->willReturn('my-project-id');
+        $credentialsWrapper = new CredentialsWrapper($credentials->reveal());
+        $this->assertEquals('my-project-id', $credentialsWrapper->getProjectId());
+    }
+
+    public function testGetProjectIdWithFetchAuthTokenCache()
+    {
+        // Ensure credentials which do NOT implement ProjectIdProviderInterface return null
+        $credentials = $this->prophesize(FetchAuthTokenInterface::class);
+        $cache = new FetchAuthTokenCache($credentials->reveal(), [], new MemoryCacheItemPool());
+        $credentialsWrapper = new CredentialsWrapper($cache);
+        $this->assertNull($credentialsWrapper->getProjectId());
+
+        // Ensure credentials which DO implement ProjectIdProviderInterface return the project ID
+        $credentials = $this->prophesize(FetchAuthTokenInterface::class)
+            ->willImplement(ProjectIdProviderInterface::class);
+        $credentials
+            ->getProjectId(null)
+            ->shouldBeCalledOnce()
+            ->willReturn('my-project-id');
+        $cache = new FetchAuthTokenCache($credentials->reveal(), [], new MemoryCacheItemPool());
+        $credentialsWrapper = new CredentialsWrapper($cache);
+        $this->assertEquals('my-project-id', $credentialsWrapper->getProjectId());
     }
 }
