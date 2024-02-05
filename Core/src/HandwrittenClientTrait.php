@@ -40,9 +40,9 @@ trait HandwrittenClientTrait
      * 2. If an emulator is enabled, return a dummy value.
      * 3. If $config['credentials'] is set, attempt to retrieve a project ID from
      *    that.
-     * 6. If code is running on compute engine, try to get the project ID from
+     * 4. If code is running on compute engine, try to get the project ID from
      *    the metadata store.
-     * 7. Throw exception.
+     * 5. Throw exception.
      *
      * @param  array $config
      * @return string
@@ -67,6 +67,7 @@ trait HandwrittenClientTrait
             return 'emulator-project';
         }
 
+        // TODO: verify if this is needed on GCE.
         // if ($projectId = $this->getProjectIdFromGce($config)) {
         //     return $projectId;
         // }
@@ -74,9 +75,22 @@ trait HandwrittenClientTrait
         if ($config['credentials']
             && $config['credentials'] instanceof ProjectIdProviderInterface) {
             try {
-                return $config['credentials']->getProjectId();
+                $projectId = $config['credentials']->getProjectId();
+
+                // $projectId might be returned as null
+                if (!$projectId) {
+                    return $projectId;
+                }
             } catch (\RuntimeException $e) {
             }
+        }
+
+        if (getenv('GOOGLE_CLOUD_PROJECT')) {
+            return getenv('GOOGLE_CLOUD_PROJECT');
+        }
+
+        if (getenv('GCLOUD_PROJECT')) {
+            return getenv('GCLOUD_PROJECT');
         }
 
         $this->throwExceptionIfProjectIdRequired($config);
