@@ -55,13 +55,6 @@ class Status
      * Generated from protobuf enum <code>STATUS_PEERING = 10;</code>
      */
     const STATUS_PEERING = 10;
-    /**
-     * K8s objects such as NetworkAttachmentDefinition don't have a defined
-     * status.
-     *
-     * Generated from protobuf enum <code>STATUS_NOT_APPLICABLE = 11;</code>
-     */
-    const STATUS_NOT_APPLICABLE = 11;
 
     private static $valueToName = [
         self::STATUS_UNSPECIFIED => 'STATUS_UNSPECIFIED',
@@ -71,7 +64,6 @@ class Status
         self::STATUS_DELETING => 'STATUS_DELETING',
         self::STATUS_DELETED => 'STATUS_DELETED',
         self::STATUS_PEERING => 'STATUS_PEERING',
-        self::STATUS_NOT_APPLICABLE => 'STATUS_NOT_APPLICABLE',
     ];
 
     public static function name($value)
