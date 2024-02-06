@@ -22,12 +22,12 @@ class CloudSqlConnect
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∞
-0google/cloud/sql/v1beta4/cloud_sql_connect.protogoogle.cloud.sql.v1beta4google/api/client.protogoogle/api/field_behavior.proto2google/cloud/sql/v1beta4/cloud_sql_resources.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"s
+¨
+0google/cloud/sql/v1beta4/cloud_sql_connect.protogoogle.cloud.sql.v1beta4google/api/client.protogoogle/api/field_behavior.proto2google/cloud/sql/v1beta4/cloud_sql_resources.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"r
 GetConnectSettingsRequest
 instance (	
-project (	3
-	read_time (2.google.protobuf.TimestampB‚A"‘
+project (	2
+	read_time (2.google.protobuf.TimestampB‡A"‘
 ConnectSettings
 kind (	9
 server_ca_cert (2!.google.cloud.sql.v1beta4.SslCert9
@@ -36,15 +36,15 @@ class CloudSqlConnect
 database_version (2,.google.cloud.sql.v1beta4.SqlDatabaseVersion>
 backend_type  (2(.google.cloud.sql.v1beta4.SqlBackendType
 psc_enabled! (
-dns_name" (	"ﬂ
+dns_name" (	"‹
 GenerateEphemeralCertRequest
 instance (	
 project (	
 
-public_key (	
-access_token (	B‚A3
-	read_time (2.google.protobuf.TimestampB‚A7
-valid_duration (2.google.protobuf.DurationB‚A"Z
+public_key (	
+access_token (	B‡A2
+	read_time (2.google.protobuf.TimestampB‡A6
+valid_duration (2.google.protobuf.DurationB‡A"Z
 GenerateEphemeralCertResponse9
 ephemeral_cert (2!.google.cloud.sql.v1beta4.SslCert2∏
 SqlConnectService¬

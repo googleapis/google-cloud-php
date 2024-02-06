@@ -25,6 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START sqladmin_v1_generated_SqlInstancesService_Demote_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Sql\V1\Client\SqlInstancesServiceClient;
+use Google\Cloud\Sql\V1\DemoteContext;
+use Google\Cloud\Sql\V1\InstancesDemoteRequest;
 use Google\Cloud\Sql\V1\Operation;
 use Google\Cloud\Sql\V1\SqlInstancesDemoteRequest;
 
@@ -32,19 +34,28 @@ use Google\Cloud\Sql\V1\SqlInstancesDemoteRequest;
  * Demotes an existing standalone instance to be a Cloud SQL read replica
  * for an external database server.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $instance                                          Cloud SQL instance name.
+ * @param string $project                                           ID of the project that contains the instance.
+ * @param string $bodyDemoteContextSourceRepresentativeInstanceName The name of the instance which acts as the on-premises primary
+ *                                                                  instance in the replication setup.
  */
-function demote_sample(): void
-{
+function demote_sample(
+    string $instance,
+    string $project,
+    string $bodyDemoteContextSourceRepresentativeInstanceName
+): void {
     // Create a client.
     $sqlInstancesServiceClient = new SqlInstancesServiceClient();
 
     // Prepare the request message.
-    $request = new SqlInstancesDemoteRequest();
+    $bodyDemoteContext = (new DemoteContext())
+        ->setSourceRepresentativeInstanceName($bodyDemoteContextSourceRepresentativeInstanceName);
+    $body = (new InstancesDemoteRequest())
+        ->setDemoteContext($bodyDemoteContext);
+    $request = (new SqlInstancesDemoteRequest())
+        ->setInstance($instance)
+        ->setProject($project)
+        ->setBody($body);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +65,23 @@ function demote_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $instance = '[INSTANCE]';
+    $project = '[PROJECT]';
+    $bodyDemoteContextSourceRepresentativeInstanceName = '[SOURCE_REPRESENTATIVE_INSTANCE_NAME]';
+
+    demote_sample($instance, $project, $bodyDemoteContextSourceRepresentativeInstanceName);
 }
 // [END sqladmin_v1_generated_SqlInstancesService_Demote_sync]

@@ -495,19 +495,19 @@ class SqlInstancesServiceGapicClient
      * ```
      * $sqlInstancesServiceClient = new SqlInstancesServiceClient();
      * try {
-     *     $response = $sqlInstancesServiceClient->demote();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $response = $sqlInstancesServiceClient->demote($instance, $project);
      * } finally {
      *     $sqlInstancesServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Required. The name of the Cloud SQL instance.
+     * @param string $project      Required. The project ID of the project that contains the instance.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $instance
-     *           Required. The name of the Cloud SQL instance.
-     *     @type string $project
-     *           Required. The project ID of the project that contains the instance.
      *     @type InstancesDemoteRequest $body
      *           The request body.
      *     @type RetrySettings|array $retrySettings
@@ -522,20 +522,14 @@ class SqlInstancesServiceGapicClient
      *
      * @experimental
      */
-    public function demote(array $optionalArgs = [])
+    public function demote($instance, $project, array $optionalArgs = [])
     {
         $request = new SqlInstancesDemoteRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['body'])) {
             $request->setBody($optionalArgs['body']);
         }

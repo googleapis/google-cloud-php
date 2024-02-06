@@ -28,6 +28,8 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Sql\V1\Client\SqlInstancesServiceClient;
 use Google\Cloud\Sql\V1\DatabaseInstance;
+use Google\Cloud\Sql\V1\DemoteContext;
+use Google\Cloud\Sql\V1\InstancesDemoteRequest;
 use Google\Cloud\Sql\V1\InstancesListResponse;
 use Google\Cloud\Sql\V1\InstancesListServerCasResponse;
 use Google\Cloud\Sql\V1\Operation;
@@ -395,7 +397,18 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetProject($targetProject);
         $transport->addResponse($expectedResponse);
-        $request = new SqlInstancesDemoteRequest();
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $body = new InstancesDemoteRequest();
+        $bodyDemoteContext = new DemoteContext();
+        $demoteContextSourceRepresentativeInstanceName = 'demoteContextSourceRepresentativeInstanceName1566063379';
+        $bodyDemoteContext->setSourceRepresentativeInstanceName($demoteContextSourceRepresentativeInstanceName);
+        $body->setDemoteContext($bodyDemoteContext);
+        $request = (new SqlInstancesDemoteRequest())
+            ->setInstance($instance)
+            ->setProject($project)
+            ->setBody($body);
         $response = $gapicClient->demote($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -403,6 +416,12 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.sql.v1.SqlInstancesService/Demote', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getBody();
+        $this->assertProtobufEquals($body, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -424,7 +443,18 @@ class SqlInstancesServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SqlInstancesDemoteRequest();
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $body = new InstancesDemoteRequest();
+        $bodyDemoteContext = new DemoteContext();
+        $demoteContextSourceRepresentativeInstanceName = 'demoteContextSourceRepresentativeInstanceName1566063379';
+        $bodyDemoteContext->setSourceRepresentativeInstanceName($demoteContextSourceRepresentativeInstanceName);
+        $body->setDemoteContext($bodyDemoteContext);
+        $request = (new SqlInstancesDemoteRequest())
+            ->setInstance($instance)
+            ->setProject($project)
+            ->setBody($body);
         try {
             $gapicClient->demote($request);
             // If the $gapicClient method call did not throw, fail the test

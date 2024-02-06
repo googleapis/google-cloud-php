@@ -31,13 +31,10 @@ use Google\Cloud\Sql\V1beta4\SqlInstancesServiceClient;
  * Demotes an existing standalone instance to be a Cloud SQL read replica
  * for an external database server.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $instance The name of the Cloud SQL instance.
+ * @param string $project  The project ID of the project that contains the instance.
  */
-function demote_sample(): void
+function demote_sample(string $instance, string $project): void
 {
     // Create a client.
     $sqlInstancesServiceClient = new SqlInstancesServiceClient();
@@ -45,10 +42,27 @@ function demote_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var Operation $response */
-        $response = $sqlInstancesServiceClient->demote();
+        $response = $sqlInstancesServiceClient->demote($instance, $project);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $instance = '[INSTANCE]';
+    $project = '[PROJECT]';
+
+    demote_sample($instance, $project);
 }
 // [END sqladmin_v1beta4_generated_SqlInstancesService_Demote_sync]
