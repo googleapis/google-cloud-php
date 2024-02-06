@@ -43,7 +43,8 @@ class CreateKeyRequest extends \Google\Protobuf\Internal\Message
     private $key_id = '';
 
     /**
-     * @param string                       $parent Required. The project in which the API key is created.
+     * @param string                       $parent Required. The project in which the API key is created. Please see
+     *                                             {@see ApiKeysClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\ApiKeys\V2\Key $key    Required. The API key fields to set at creation time.
      *                                             You can configure only the `display_name`, `restrictions`, and
      *                                             `annotations` fields.

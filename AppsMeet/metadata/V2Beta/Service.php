@@ -23,84 +23,84 @@ class Service
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ï-
+˛,
 %google/apps/meet/v2beta/service.protogoogle.apps.meet.v2betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/apps/meet/v2beta/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"C
 CreateSpaceRequest-
-space (2.google.apps.meet.v2beta.Space"C
-GetSpaceRequest0
-name (	B"‚A˙A
-meet.googleapis.com/Space"Ä
-UpdateSpaceRequest3
-space (2.google.apps.meet.v2beta.SpaceB‚A5
-update_mask (2.google.protobuf.FieldMaskB‚A"N
-EndActiveConferenceRequest0
-name (	B"‚A˙A
-meet.googleapis.com/Space"Y
-GetConferenceRecordRequest;
-name (	B-‚A˙A&
-$meet.googleapis.com/ConferenceRecord"g
-ListConferenceRecordsRequest
-	page_size (B‚A
+space (2.google.apps.meet.v2beta.Space"B
+GetSpaceRequest/
+name (	B!‡A˙A
+meet.googleapis.com/Space"~
+UpdateSpaceRequest2
+space (2.google.apps.meet.v2beta.SpaceB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"M
+EndActiveConferenceRequest/
+name (	B!‡A˙A
+meet.googleapis.com/Space"X
+GetConferenceRecordRequest:
+name (	B,‡A˙A&
+$meet.googleapis.com/ConferenceRecord"d
+ListConferenceRecordsRequest
+	page_size (B‡A
 
-page_token (	B‚A
-filter (	B‚A"
+page_token (	B‡A
+filter (	B‡A"
 ListConferenceRecordsResponseE
 conference_records (2).google.apps.meet.v2beta.ConferenceRecord
-next_page_token (	"O
-GetParticipantRequest6
-name (	B(‚A˙A!
-meet.googleapis.com/Participant"ê
-ListParticipantsRequest8
-parent (	B(‚A˙A!meet.googleapis.com/Participant
+next_page_token (	"N
+GetParticipantRequest5
+name (	B\'‡A˙A!
+meet.googleapis.com/Participant"é
+ListParticipantsRequest7
+parent (	B\'‡A˙A!meet.googleapis.com/Participant
 	page_size (
 
-page_token (	
-filter (	B‚A"É
+page_token (	
+filter (	B‡A"É
 ListParticipantsResponse:
 participants (2$.google.apps.meet.v2beta.Participant
 next_page_token (	
 
-total_size ("]
-GetParticipantSessionRequest=
-name (	B/‚A˙A(
-&meet.googleapis.com/ParticipantSession"™
-ListParticipantSessionsRequest?
-parent (	B/‚A˙A(&meet.googleapis.com/ParticipantSession
-	page_size (B‚A
+total_size ("\\
+GetParticipantSessionRequest<
+name (	B.‡A˙A(
+&meet.googleapis.com/ParticipantSession"¶
+ListParticipantSessionsRequest>
+parent (	B.‡A˙A(&meet.googleapis.com/ParticipantSession
+	page_size (B‡A
 
-page_token (	B‚A
-filter (	B‚A"Ö
+page_token (	B‡A
+filter (	B‡A"Ö
 ListParticipantSessionsResponseI
 participant_sessions (2+.google.apps.meet.v2beta.ParticipantSession
-next_page_token (	"K
-GetRecordingRequest4
-name (	B&‚A˙A
-meet.googleapis.com/Recording"v
-ListRecordingsRequest6
-parent (	B&‚A˙Ameet.googleapis.com/Recording
+next_page_token (	"J
+GetRecordingRequest3
+name (	B%‡A˙A
+meet.googleapis.com/Recording"u
+ListRecordingsRequest5
+parent (	B%‡A˙Ameet.googleapis.com/Recording
 	page_size (
 
 page_token (	"i
 ListRecordingsResponse6
 
 recordings (2".google.apps.meet.v2beta.Recording
-next_page_token (	"M
-GetTranscriptRequest5
-name (	B\'‚A˙A 
-meet.googleapis.com/Transcript"x
-ListTranscriptsRequest7
-parent (	B\'‚A˙A meet.googleapis.com/Transcript
+next_page_token (	"L
+GetTranscriptRequest4
+name (	B&‡A˙A 
+meet.googleapis.com/Transcript"w
+ListTranscriptsRequest6
+parent (	B&‡A˙A meet.googleapis.com/Transcript
 	page_size (
 
 page_token (	"l
 ListTranscriptsResponse8
 transcripts (2#.google.apps.meet.v2beta.Transcript
-next_page_token (	"W
-GetTranscriptEntryRequest:
-name (	B,‚A˙A%
-#meet.googleapis.com/TranscriptEntry"É
-ListTranscriptEntriesRequest<
-parent (	B,‚A˙A%#meet.googleapis.com/TranscriptEntry
+next_page_token (	"V
+GetTranscriptEntryRequest9
+name (	B+‡A˙A%
+#meet.googleapis.com/TranscriptEntry"Ç
+ListTranscriptEntriesRequest;
+parent (	B+‡A˙A%#meet.googleapis.com/TranscriptEntry
 	page_size (
 
 page_token (	"~

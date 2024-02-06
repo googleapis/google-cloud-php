@@ -30,24 +30,40 @@ use Google\Cloud\AutoMl\V1beta1\Dataset;
 /**
  * Creates a dataset.
  *
+ * @param string $formattedParent The resource name of the project to create the dataset for. Please see
+ *                                {@see AutoMlClient::locationName()} for help formatting this field.
+ */
+function create_dataset_sample(string $formattedParent): void
+{
+    // Create a client.
+    $autoMlClient = new AutoMlClient();
+
+    // Prepare any non-scalar elements to be passed along with the request.
+    $dataset = new Dataset();
+
+    // Call the API and handle any network failures.
+    try {
+        /** @var Dataset $response */
+        $response = $autoMlClient->createDataset($formattedParent, $dataset);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
+}
+
+/**
+ * Helper to execute the sample.
+ *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function create_dataset_sample(): void
+function callSample(): void
 {
-    // Create a client.
-    $autoMlClient = new AutoMlClient();
+    $formattedParent = AutoMlClient::locationName('[PROJECT]', '[LOCATION]');
 
-    // Call the API and handle any network failures.
-    try {
-        /** @var Dataset $response */
-        $response = $autoMlClient->createDataset();
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
+    create_dataset_sample($formattedParent);
 }
 // [END automl_v1beta1_generated_AutoMl_CreateDataset_sync]

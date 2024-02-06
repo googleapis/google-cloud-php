@@ -56,8 +56,11 @@ use Google\Cloud\Asset\V1\DeleteSavedQueryRequest;
 use Google\Cloud\Asset\V1\ExportAssetsRequest;
 use Google\Cloud\Asset\V1\ExportAssetsResponse;
 use Google\Cloud\Asset\V1\Feed;
+use Google\Cloud\Asset\V1\FeedOutputConfig;
 use Google\Cloud\Asset\V1\GetFeedRequest;
 use Google\Cloud\Asset\V1\GetSavedQueryRequest;
+use Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig;
+use Google\Cloud\Asset\V1\IamPolicyAnalysisQuery;
 use Google\Cloud\Asset\V1\IamPolicySearchResult;
 use Google\Cloud\Asset\V1\ListAssetsRequest;
 use Google\Cloud\Asset\V1\ListAssetsResponse;
@@ -65,6 +68,7 @@ use Google\Cloud\Asset\V1\ListFeedsRequest;
 use Google\Cloud\Asset\V1\ListFeedsResponse;
 use Google\Cloud\Asset\V1\ListSavedQueriesRequest;
 use Google\Cloud\Asset\V1\ListSavedQueriesResponse;
+use Google\Cloud\Asset\V1\OutputConfig;
 use Google\Cloud\Asset\V1\QueryAssetsRequest;
 use Google\Cloud\Asset\V1\QueryAssetsResponse;
 use Google\Cloud\Asset\V1\ResourceSearchResult;
@@ -79,6 +83,7 @@ use Google\Cloud\Asset\V1\UpdateSavedQueryRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -124,7 +129,12 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse = new AnalyzeIamPolicyResponse();
         $expectedResponse->setFullyExplored($fullyExplored);
         $transport->addResponse($expectedResponse);
-        $request = new AnalyzeIamPolicyRequest();
+        // Mock request
+        $analysisQuery = new IamPolicyAnalysisQuery();
+        $analysisQueryScope = 'analysisQueryScope-495018392';
+        $analysisQuery->setScope($analysisQueryScope);
+        $request = (new AnalyzeIamPolicyRequest())
+            ->setAnalysisQuery($analysisQuery);
         $response = $gapicClient->analyzeIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -132,6 +142,8 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/AnalyzeIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAnalysisQuery();
+        $this->assertProtobufEquals($analysisQuery, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -153,7 +165,12 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AnalyzeIamPolicyRequest();
+        // Mock request
+        $analysisQuery = new IamPolicyAnalysisQuery();
+        $analysisQueryScope = 'analysisQueryScope-495018392';
+        $analysisQuery->setScope($analysisQueryScope);
+        $request = (new AnalyzeIamPolicyRequest())
+            ->setAnalysisQuery($analysisQuery);
         try {
             $gapicClient->analyzeIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -196,7 +213,14 @@ class AssetServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new AnalyzeIamPolicyLongrunningRequest();
+        // Mock request
+        $analysisQuery = new IamPolicyAnalysisQuery();
+        $analysisQueryScope = 'analysisQueryScope-495018392';
+        $analysisQuery->setScope($analysisQueryScope);
+        $outputConfig = new IamPolicyAnalysisOutputConfig();
+        $request = (new AnalyzeIamPolicyLongrunningRequest())
+            ->setAnalysisQuery($analysisQuery)
+            ->setOutputConfig($outputConfig);
         $response = $gapicClient->analyzeIamPolicyLongrunning($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -207,6 +231,10 @@ class AssetServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/AnalyzeIamPolicyLongrunning', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAnalysisQuery();
+        $this->assertProtobufEquals($analysisQuery, $actualValue);
+        $actualValue = $actualApiRequestObject->getOutputConfig();
+        $this->assertProtobufEquals($outputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/analyzeIamPolicyLongrunningTest');
         $response->pollUntilComplete([
@@ -257,7 +285,14 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new AnalyzeIamPolicyLongrunningRequest();
+        // Mock request
+        $analysisQuery = new IamPolicyAnalysisQuery();
+        $analysisQueryScope = 'analysisQueryScope-495018392';
+        $analysisQuery->setScope($analysisQueryScope);
+        $outputConfig = new IamPolicyAnalysisOutputConfig();
+        $request = (new AnalyzeIamPolicyLongrunningRequest())
+            ->setAnalysisQuery($analysisQuery)
+            ->setOutputConfig($outputConfig);
         $response = $gapicClient->analyzeIamPolicyLongrunning($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -291,7 +326,12 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new AnalyzeMoveResponse();
         $transport->addResponse($expectedResponse);
-        $request = new AnalyzeMoveRequest();
+        // Mock request
+        $formattedResource = $gapicClient->projectName('[PROJECT]');
+        $destinationParent = 'destinationParent-1362053637';
+        $request = (new AnalyzeMoveRequest())
+            ->setResource($formattedResource)
+            ->setDestinationParent($destinationParent);
         $response = $gapicClient->analyzeMove($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -299,6 +339,10 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/AnalyzeMove', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $actualValue = $actualRequestObject->getDestinationParent();
+        $this->assertProtobufEquals($destinationParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -320,7 +364,12 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AnalyzeMoveRequest();
+        // Mock request
+        $formattedResource = $gapicClient->projectName('[PROJECT]');
+        $destinationParent = 'destinationParent-1362053637';
+        $request = (new AnalyzeMoveRequest())
+            ->setResource($formattedResource)
+            ->setDestinationParent($destinationParent);
         try {
             $gapicClient->analyzeMove($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -352,7 +401,12 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOrgPolicyResults($orgPolicyResults);
         $transport->addResponse($expectedResponse);
-        $request = new AnalyzeOrgPoliciesRequest();
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        $request = (new AnalyzeOrgPoliciesRequest())
+            ->setScope($scope)
+            ->setConstraint($constraint);
         $response = $gapicClient->analyzeOrgPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -363,6 +417,10 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/AnalyzeOrgPolicies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getScope();
+        $this->assertProtobufEquals($scope, $actualValue);
+        $actualValue = $actualRequestObject->getConstraint();
+        $this->assertProtobufEquals($constraint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -384,7 +442,12 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AnalyzeOrgPoliciesRequest();
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        $request = (new AnalyzeOrgPoliciesRequest())
+            ->setScope($scope)
+            ->setConstraint($constraint);
         try {
             $gapicClient->analyzeOrgPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -416,7 +479,12 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGovernedAssets($governedAssets);
         $transport->addResponse($expectedResponse);
-        $request = new AnalyzeOrgPolicyGovernedAssetsRequest();
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        $request = (new AnalyzeOrgPolicyGovernedAssetsRequest())
+            ->setScope($scope)
+            ->setConstraint($constraint);
         $response = $gapicClient->analyzeOrgPolicyGovernedAssets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -427,6 +495,10 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/AnalyzeOrgPolicyGovernedAssets', $actualFuncCall);
+        $actualValue = $actualRequestObject->getScope();
+        $this->assertProtobufEquals($scope, $actualValue);
+        $actualValue = $actualRequestObject->getConstraint();
+        $this->assertProtobufEquals($constraint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -448,7 +520,12 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AnalyzeOrgPolicyGovernedAssetsRequest();
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        $request = (new AnalyzeOrgPolicyGovernedAssetsRequest())
+            ->setScope($scope)
+            ->setConstraint($constraint);
         try {
             $gapicClient->analyzeOrgPolicyGovernedAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -480,7 +557,12 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGovernedContainers($governedContainers);
         $transport->addResponse($expectedResponse);
-        $request = new AnalyzeOrgPolicyGovernedContainersRequest();
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        $request = (new AnalyzeOrgPolicyGovernedContainersRequest())
+            ->setScope($scope)
+            ->setConstraint($constraint);
         $response = $gapicClient->analyzeOrgPolicyGovernedContainers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -491,6 +573,10 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/AnalyzeOrgPolicyGovernedContainers', $actualFuncCall);
+        $actualValue = $actualRequestObject->getScope();
+        $this->assertProtobufEquals($scope, $actualValue);
+        $actualValue = $actualRequestObject->getConstraint();
+        $this->assertProtobufEquals($constraint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -512,7 +598,12 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AnalyzeOrgPolicyGovernedContainersRequest();
+        // Mock request
+        $scope = 'scope109264468';
+        $constraint = 'constraint-190376483';
+        $request = (new AnalyzeOrgPolicyGovernedContainersRequest())
+            ->setScope($scope)
+            ->setConstraint($constraint);
         try {
             $gapicClient->analyzeOrgPolicyGovernedContainers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -538,9 +629,11 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse = new BatchGetAssetsHistoryResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
+        $parent = 'parent-995424086';
         $contentType = ContentType::CONTENT_TYPE_UNSPECIFIED;
         $readTimeWindow = new TimeWindow();
         $request = (new BatchGetAssetsHistoryRequest())
+            ->setParent($parent)
             ->setContentType($contentType)
             ->setReadTimeWindow($readTimeWindow);
         $response = $gapicClient->batchGetAssetsHistory($request);
@@ -550,6 +643,8 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/BatchGetAssetsHistory', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualRequestObject->getContentType();
         $this->assertProtobufEquals($contentType, $actualValue);
         $actualValue = $actualRequestObject->getReadTimeWindow();
@@ -576,9 +671,11 @@ class AssetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
+        $parent = 'parent-995424086';
         $contentType = ContentType::CONTENT_TYPE_UNSPECIFIED;
         $readTimeWindow = new TimeWindow();
         $request = (new BatchGetAssetsHistoryRequest())
+            ->setParent($parent)
             ->setContentType($contentType)
             ->setReadTimeWindow($readTimeWindow);
         try {
@@ -605,7 +702,12 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchGetEffectiveIamPoliciesResponse();
         $transport->addResponse($expectedResponse);
-        $request = new BatchGetEffectiveIamPoliciesRequest();
+        // Mock request
+        $scope = 'scope109264468';
+        $names = [];
+        $request = (new BatchGetEffectiveIamPoliciesRequest())
+            ->setScope($scope)
+            ->setNames($names);
         $response = $gapicClient->batchGetEffectiveIamPolicies($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -613,6 +715,10 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/BatchGetEffectiveIamPolicies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getScope();
+        $this->assertProtobufEquals($scope, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($names, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -634,7 +740,12 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new BatchGetEffectiveIamPoliciesRequest();
+        // Mock request
+        $scope = 'scope109264468';
+        $names = [];
+        $request = (new BatchGetEffectiveIamPoliciesRequest())
+            ->setScope($scope)
+            ->setNames($names);
         try {
             $gapicClient->batchGetEffectiveIamPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -661,7 +772,18 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse = new Feed();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        $request = new CreateFeedRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $feedId = 'feedId-976011428';
+        $feed = new Feed();
+        $feedName = 'feedName-192096951';
+        $feed->setName($feedName);
+        $feedFeedOutputConfig = new FeedOutputConfig();
+        $feed->setFeedOutputConfig($feedFeedOutputConfig);
+        $request = (new CreateFeedRequest())
+            ->setParent($parent)
+            ->setFeedId($feedId)
+            ->setFeed($feed);
         $response = $gapicClient->createFeed($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -669,6 +791,12 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/CreateFeed', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
+        $actualValue = $actualRequestObject->getFeedId();
+        $this->assertProtobufEquals($feedId, $actualValue);
+        $actualValue = $actualRequestObject->getFeed();
+        $this->assertProtobufEquals($feed, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -690,7 +818,18 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateFeedRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $feedId = 'feedId-976011428';
+        $feed = new Feed();
+        $feedName = 'feedName-192096951';
+        $feed->setName($feedName);
+        $feedFeedOutputConfig = new FeedOutputConfig();
+        $feed->setFeedOutputConfig($feedFeedOutputConfig);
+        $request = (new CreateFeedRequest())
+            ->setParent($parent)
+            ->setFeedId($feedId)
+            ->setFeed($feed);
         try {
             $gapicClient->createFeed($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -723,7 +862,14 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse->setCreator($creator);
         $expectedResponse->setLastUpdater($lastUpdater);
         $transport->addResponse($expectedResponse);
-        $request = new CreateSavedQueryRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $savedQuery = new SavedQuery();
+        $savedQueryId = 'savedQueryId1290759850';
+        $request = (new CreateSavedQueryRequest())
+            ->setParent($formattedParent)
+            ->setSavedQuery($savedQuery)
+            ->setSavedQueryId($savedQueryId);
         $response = $gapicClient->createSavedQuery($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -731,6 +877,12 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/CreateSavedQuery', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getSavedQuery();
+        $this->assertProtobufEquals($savedQuery, $actualValue);
+        $actualValue = $actualRequestObject->getSavedQueryId();
+        $this->assertProtobufEquals($savedQueryId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -752,7 +904,14 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateSavedQueryRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $savedQuery = new SavedQuery();
+        $savedQueryId = 'savedQueryId1290759850';
+        $request = (new CreateSavedQueryRequest())
+            ->setParent($formattedParent)
+            ->setSavedQuery($savedQuery)
+            ->setSavedQueryId($savedQueryId);
         try {
             $gapicClient->createSavedQuery($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -777,13 +936,18 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteFeedRequest();
+        // Mock request
+        $formattedName = $gapicClient->feedName('[PROJECT]', '[FEED]');
+        $request = (new DeleteFeedRequest())
+            ->setName($formattedName);
         $gapicClient->deleteFeed($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/DeleteFeed', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -805,7 +969,10 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteFeedRequest();
+        // Mock request
+        $formattedName = $gapicClient->feedName('[PROJECT]', '[FEED]');
+        $request = (new DeleteFeedRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteFeed($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -830,13 +997,18 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteSavedQueryRequest();
+        // Mock request
+        $formattedName = $gapicClient->savedQueryName('[PROJECT]', '[SAVED_QUERY]');
+        $request = (new DeleteSavedQueryRequest())
+            ->setName($formattedName);
         $gapicClient->deleteSavedQuery($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/DeleteSavedQuery', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -858,7 +1030,10 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteSavedQueryRequest();
+        // Mock request
+        $formattedName = $gapicClient->savedQueryName('[PROJECT]', '[SAVED_QUERY]');
+        $request = (new DeleteSavedQueryRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteSavedQuery($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -901,7 +1076,12 @@ class AssetServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new ExportAssetsRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $outputConfig = new OutputConfig();
+        $request = (new ExportAssetsRequest())
+            ->setParent($parent)
+            ->setOutputConfig($outputConfig);
         $response = $gapicClient->exportAssets($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -912,6 +1092,10 @@ class AssetServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/ExportAssets', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
+        $actualValue = $actualApiRequestObject->getOutputConfig();
+        $this->assertProtobufEquals($outputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportAssetsTest');
         $response->pollUntilComplete([
@@ -962,7 +1146,12 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new ExportAssetsRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $outputConfig = new OutputConfig();
+        $request = (new ExportAssetsRequest())
+            ->setParent($parent)
+            ->setOutputConfig($outputConfig);
         $response = $gapicClient->exportAssets($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -998,7 +1187,10 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse = new Feed();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $request = new GetFeedRequest();
+        // Mock request
+        $formattedName = $gapicClient->feedName('[PROJECT]', '[FEED]');
+        $request = (new GetFeedRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getFeed($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1006,6 +1198,8 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/GetFeed', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1027,7 +1221,10 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetFeedRequest();
+        // Mock request
+        $formattedName = $gapicClient->feedName('[PROJECT]', '[FEED]');
+        $request = (new GetFeedRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getFeed($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1060,7 +1257,10 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse->setCreator($creator);
         $expectedResponse->setLastUpdater($lastUpdater);
         $transport->addResponse($expectedResponse);
-        $request = new GetSavedQueryRequest();
+        // Mock request
+        $formattedName = $gapicClient->savedQueryName('[PROJECT]', '[SAVED_QUERY]');
+        $request = (new GetSavedQueryRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getSavedQuery($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1068,6 +1268,8 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/GetSavedQuery', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1089,7 +1291,10 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetSavedQueryRequest();
+        // Mock request
+        $formattedName = $gapicClient->savedQueryName('[PROJECT]', '[SAVED_QUERY]');
+        $request = (new GetSavedQueryRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getSavedQuery($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1121,7 +1326,10 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAssets($assets);
         $transport->addResponse($expectedResponse);
-        $request = new ListAssetsRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new ListAssetsRequest())
+            ->setParent($parent);
         $response = $gapicClient->listAssets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1132,6 +1340,8 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/ListAssets', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1153,7 +1363,10 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListAssetsRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new ListAssetsRequest())
+            ->setParent($parent);
         try {
             $gapicClient->listAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1178,7 +1391,10 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ListFeedsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new ListFeedsRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new ListFeedsRequest())
+            ->setParent($parent);
         $response = $gapicClient->listFeeds($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1186,6 +1402,8 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/ListFeeds', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1207,7 +1425,10 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListFeedsRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new ListFeedsRequest())
+            ->setParent($parent);
         try {
             $gapicClient->listFeeds($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1239,7 +1460,10 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSavedQueries($savedQueries);
         $transport->addResponse($expectedResponse);
-        $request = new ListSavedQueriesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListSavedQueriesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listSavedQueries($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1250,6 +1474,8 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/ListSavedQueries', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1271,7 +1497,10 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListSavedQueriesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListSavedQueriesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listSavedQueries($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1300,7 +1529,10 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse->setJobReference($jobReference);
         $expectedResponse->setDone($done);
         $transport->addResponse($expectedResponse);
-        $request = new QueryAssetsRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new QueryAssetsRequest())
+            ->setParent($parent);
         $response = $gapicClient->queryAssets($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1308,6 +1540,8 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/QueryAssets', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1329,7 +1563,10 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new QueryAssetsRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new QueryAssetsRequest())
+            ->setParent($parent);
         try {
             $gapicClient->queryAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1361,7 +1598,10 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
-        $request = new SearchAllIamPoliciesRequest();
+        // Mock request
+        $scope = 'scope109264468';
+        $request = (new SearchAllIamPoliciesRequest())
+            ->setScope($scope);
         $response = $gapicClient->searchAllIamPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1372,6 +1612,8 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/SearchAllIamPolicies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getScope();
+        $this->assertProtobufEquals($scope, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1393,7 +1635,10 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SearchAllIamPoliciesRequest();
+        // Mock request
+        $scope = 'scope109264468';
+        $request = (new SearchAllIamPoliciesRequest())
+            ->setScope($scope);
         try {
             $gapicClient->searchAllIamPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1425,7 +1670,10 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
-        $request = new SearchAllResourcesRequest();
+        // Mock request
+        $scope = 'scope109264468';
+        $request = (new SearchAllResourcesRequest())
+            ->setScope($scope);
         $response = $gapicClient->searchAllResources($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1436,6 +1684,8 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/SearchAllResources', $actualFuncCall);
+        $actualValue = $actualRequestObject->getScope();
+        $this->assertProtobufEquals($scope, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1457,7 +1707,10 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SearchAllResourcesRequest();
+        // Mock request
+        $scope = 'scope109264468';
+        $request = (new SearchAllResourcesRequest())
+            ->setScope($scope);
         try {
             $gapicClient->searchAllResources($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1484,7 +1737,16 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse = new Feed();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateFeedRequest();
+        // Mock request
+        $feed = new Feed();
+        $feedName = 'feedName-192096951';
+        $feed->setName($feedName);
+        $feedFeedOutputConfig = new FeedOutputConfig();
+        $feed->setFeedOutputConfig($feedFeedOutputConfig);
+        $updateMask = new FieldMask();
+        $request = (new UpdateFeedRequest())
+            ->setFeed($feed)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateFeed($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1492,6 +1754,10 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/UpdateFeed', $actualFuncCall);
+        $actualValue = $actualRequestObject->getFeed();
+        $this->assertProtobufEquals($feed, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1513,7 +1779,16 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateFeedRequest();
+        // Mock request
+        $feed = new Feed();
+        $feedName = 'feedName-192096951';
+        $feed->setName($feedName);
+        $feedFeedOutputConfig = new FeedOutputConfig();
+        $feed->setFeedOutputConfig($feedFeedOutputConfig);
+        $updateMask = new FieldMask();
+        $request = (new UpdateFeedRequest())
+            ->setFeed($feed)
+            ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateFeed($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1546,7 +1821,12 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse->setCreator($creator);
         $expectedResponse->setLastUpdater($lastUpdater);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateSavedQueryRequest();
+        // Mock request
+        $savedQuery = new SavedQuery();
+        $updateMask = new FieldMask();
+        $request = (new UpdateSavedQueryRequest())
+            ->setSavedQuery($savedQuery)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateSavedQuery($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1554,6 +1834,10 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/UpdateSavedQuery', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSavedQuery();
+        $this->assertProtobufEquals($savedQuery, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1575,7 +1859,12 @@ class AssetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateSavedQueryRequest();
+        // Mock request
+        $savedQuery = new SavedQuery();
+        $updateMask = new FieldMask();
+        $request = (new UpdateSavedQueryRequest())
+            ->setSavedQuery($savedQuery)
+            ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateSavedQuery($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1602,7 +1891,12 @@ class AssetServiceClientTest extends GeneratedTest
         $expectedResponse = new AnalyzeIamPolicyResponse();
         $expectedResponse->setFullyExplored($fullyExplored);
         $transport->addResponse($expectedResponse);
-        $request = new AnalyzeIamPolicyRequest();
+        // Mock request
+        $analysisQuery = new IamPolicyAnalysisQuery();
+        $analysisQueryScope = 'analysisQueryScope-495018392';
+        $analysisQuery->setScope($analysisQueryScope);
+        $request = (new AnalyzeIamPolicyRequest())
+            ->setAnalysisQuery($analysisQuery);
         $response = $gapicClient->analyzeIamPolicyAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1610,6 +1904,8 @@ class AssetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.asset.v1.AssetService/AnalyzeIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAnalysisQuery();
+        $this->assertProtobufEquals($analysisQuery, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

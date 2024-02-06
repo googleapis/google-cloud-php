@@ -23,6 +23,7 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsdata_v1alpha_generated_AlphaAnalyticsData_CreateAudienceList_sync]
+use Google\Analytics\Data\V1alpha\AudienceDimension;
 use Google\Analytics\Data\V1alpha\AudienceList;
 use Google\Analytics\Data\V1alpha\Client\AlphaAnalyticsDataClient;
 use Google\Analytics\Data\V1alpha\CreateAudienceListRequest;
@@ -56,19 +57,28 @@ use Google\Rpc\Status;
  * To give your feedback on this API, complete the [Google Analytics Audience
  * Export API Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent      The parent resource where this audience list will be created.
+ *                                     Format: `properties/{property}`
+ *                                     Please see {@see AlphaAnalyticsDataClient::propertyName()} for help formatting this field.
+ * @param string $audienceListAudience The audience resource name. This resource name identifies the
+ *                                     audience being listed and is shared between the Analytics Data & Admin
+ *                                     APIs.
+ *
+ *                                     Format: `properties/{property}/audiences/{audience}`
  */
-function create_audience_list_sample(): void
+function create_audience_list_sample(string $formattedParent, string $audienceListAudience): void
 {
     // Create a client.
     $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
 
     // Prepare the request message.
-    $request = new CreateAudienceListRequest();
+    $audienceListDimensions = [new AudienceDimension()];
+    $audienceList = (new AudienceList())
+        ->setAudience($audienceListAudience)
+        ->setDimensions($audienceListDimensions);
+    $request = (new CreateAudienceListRequest())
+        ->setParent($formattedParent)
+        ->setAudienceList($audienceList);
 
     // Call the API and handle any network failures.
     try {
@@ -88,5 +98,22 @@ function create_audience_list_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AlphaAnalyticsDataClient::propertyName('[PROPERTY]');
+    $audienceListAudience = '[AUDIENCE]';
+
+    create_audience_list_sample($formattedParent, $audienceListAudience);
 }
 // [END analyticsdata_v1alpha_generated_AlphaAnalyticsData_CreateAudienceList_sync]

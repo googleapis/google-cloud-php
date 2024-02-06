@@ -24,26 +24,52 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateAttributionSettings_sync]
 use Google\Analytics\Admin\V1alpha\AttributionSettings;
+use Google\Analytics\Admin\V1alpha\AttributionSettings\AcquisitionConversionEventLookbackWindow;
+use Google\Analytics\Admin\V1alpha\AttributionSettings\AdsWebConversionDataExportScope;
+use Google\Analytics\Admin\V1alpha\AttributionSettings\OtherConversionEventLookbackWindow;
+use Google\Analytics\Admin\V1alpha\AttributionSettings\ReportingAttributionModel;
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
 use Google\ApiCore\ApiException;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates attribution settings on a property.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param int $attributionSettingsAcquisitionConversionEventLookbackWindow The lookback window configuration for acquisition conversion
+ *                                                                         events. The default window size is 30 days.
+ * @param int $attributionSettingsOtherConversionEventLookbackWindow       The lookback window for all other, non-acquisition conversion
+ *                                                                         events. The default window size is 90 days.
+ * @param int $attributionSettingsReportingAttributionModel                The reporting attribution model used to calculate conversion
+ *                                                                         credit in this property's reports.
+ *
+ *                                                                         Changing the attribution model will apply to both historical and future
+ *                                                                         data. These changes will be reflected in reports with conversion and
+ *                                                                         revenue data. User and session data will be unaffected.
+ * @param int $attributionSettingsAdsWebConversionDataExportScope          The Conversion Export Scope for data exported to linked Ads
+ *                                                                         Accounts.
  */
-function update_attribution_settings_sample(): void
-{
+function update_attribution_settings_sample(
+    int $attributionSettingsAcquisitionConversionEventLookbackWindow,
+    int $attributionSettingsOtherConversionEventLookbackWindow,
+    int $attributionSettingsReportingAttributionModel,
+    int $attributionSettingsAdsWebConversionDataExportScope
+): void {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateAttributionSettingsRequest();
+    $attributionSettings = (new AttributionSettings())
+        ->setAcquisitionConversionEventLookbackWindow(
+            $attributionSettingsAcquisitionConversionEventLookbackWindow
+        )
+        ->setOtherConversionEventLookbackWindow($attributionSettingsOtherConversionEventLookbackWindow)
+        ->setReportingAttributionModel($attributionSettingsReportingAttributionModel)
+        ->setAdsWebConversionDataExportScope($attributionSettingsAdsWebConversionDataExportScope);
+    $updateMask = new FieldMask();
+    $request = (new UpdateAttributionSettingsRequest())
+        ->setAttributionSettings($attributionSettings)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +79,29 @@ function update_attribution_settings_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $attributionSettingsAcquisitionConversionEventLookbackWindow = AcquisitionConversionEventLookbackWindow::ACQUISITION_CONVERSION_EVENT_LOOKBACK_WINDOW_UNSPECIFIED;
+    $attributionSettingsOtherConversionEventLookbackWindow = OtherConversionEventLookbackWindow::OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_UNSPECIFIED;
+    $attributionSettingsReportingAttributionModel = ReportingAttributionModel::REPORTING_ATTRIBUTION_MODEL_UNSPECIFIED;
+    $attributionSettingsAdsWebConversionDataExportScope = AdsWebConversionDataExportScope::ADS_WEB_CONVERSION_DATA_EXPORT_SCOPE_UNSPECIFIED;
+
+    update_attribution_settings_sample(
+        $attributionSettingsAcquisitionConversionEventLookbackWindow,
+        $attributionSettingsOtherConversionEventLookbackWindow,
+        $attributionSettingsReportingAttributionModel,
+        $attributionSettingsAdsWebConversionDataExportScope
+    );
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateAttributionSettings_sync]

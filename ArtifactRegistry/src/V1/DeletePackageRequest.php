@@ -23,7 +23,8 @@ class DeletePackageRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the package to delete.
+     * @param string $name Required. The name of the package to delete. Please see
+     *                     {@see ArtifactRegistryClient::packageName()} for help formatting this field.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\DeletePackageRequest
      *

@@ -20,10 +20,10 @@ class Connection
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-û	
-.google/cloud/apigeeconnect/v1/connection.protogoogle.cloud.apigeeconnect.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"
-ListConnectionsRequest>
-parent (	B.‚A˙A\'
+ù	
+.google/cloud/apigeeconnect/v1/connection.protogoogle.cloud.apigeeconnect.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"~
+ListConnectionsRequest=
+parent (	B-‡A˙A\'
 %apigeeconnect.googleapis.com/Endpoint
 	page_size (
 

@@ -32,6 +32,7 @@ class CreateAudienceExportRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                       $parent         Required. The parent resource where this audience export will be created.
      *                                                                     Format: `properties/{property}`
+     *                                                                     Please see {@see BetaAnalyticsDataClient::propertyName()} for help formatting this field.
      * @param \Google\Analytics\Data\V1beta\AudienceExport $audienceExport Required. The audience export to create.
      *
      * @return \Google\Analytics\Data\V1beta\CreateAudienceExportRequest

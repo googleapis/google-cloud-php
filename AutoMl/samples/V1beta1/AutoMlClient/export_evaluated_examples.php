@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AutoMl\V1beta1\AutoMlClient;
+use Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOutputConfig;
 use Google\Rpc\Status;
 
 /**
@@ -44,21 +45,22 @@ use Google\Rpc\Status;
  * Returns an empty response in the
  * [response][google.longrunning.Operation.response] field when it completes.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the model whose evaluated examples are to
+ *                              be exported. Please see
+ *                              {@see AutoMlClient::modelName()} for help formatting this field.
  */
-function export_evaluated_examples_sample(): void
+function export_evaluated_examples_sample(string $formattedName): void
 {
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $outputConfig = new ExportEvaluatedExamplesOutputConfig();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $autoMlClient->exportEvaluatedExamples();
+        $response = $autoMlClient->exportEvaluatedExamples($formattedName, $outputConfig);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -71,5 +73,21 @@ function export_evaluated_examples_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AutoMlClient::modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+
+    export_evaluated_examples_sample($formattedName);
 }
 // [END automl_v1beta1_generated_AutoMl_ExportEvaluatedExamples_sync]

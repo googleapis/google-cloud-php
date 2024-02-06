@@ -32,21 +32,29 @@ use Google\Rpc\Status;
 /**
  * Creates a new Backup in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent            Value for parent. Please see
+ *                                           {@see AlloyDBAdminClient::locationName()} for help formatting this field.
+ * @param string $backupId                   ID of the requesting object.
+ * @param string $formattedBackupClusterName The full resource name of the backup source cluster
+ *                                           (e.g., projects/{project}/locations/{region}/clusters/{cluster_id}). Please see
+ *                                           {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
  */
-function create_backup_sample(): void
-{
+function create_backup_sample(
+    string $formattedParent,
+    string $backupId,
+    string $formattedBackupClusterName
+): void {
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
+
+    // Prepare any non-scalar elements to be passed along with the request.
+    $backup = (new Backup())
+        ->setClusterName($formattedBackupClusterName);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $alloyDBAdminClient->createBackup();
+        $response = $alloyDBAdminClient->createBackup($formattedParent, $backupId, $backup);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -61,5 +69,27 @@ function create_backup_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AlloyDBAdminClient::locationName('[PROJECT]', '[LOCATION]');
+    $backupId = '[BACKUP_ID]';
+    $formattedBackupClusterName = AlloyDBAdminClient::clusterName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[CLUSTER]'
+    );
+
+    create_backup_sample($formattedParent, $backupId, $formattedBackupClusterName);
 }
 // [END alloydb_v1alpha_generated_AlloyDBAdmin_CreateBackup_sync]

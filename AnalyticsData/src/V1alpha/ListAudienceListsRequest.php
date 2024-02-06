@@ -44,6 +44,7 @@ class ListAudienceListsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. All audience lists for this property will be listed in the
      *                       response. Format: `properties/{property}`
+     *                       Please see {@see AlphaAnalyticsDataClient::propertyName()} for help formatting this field.
      *
      * @return \Google\Analytics\Data\V1alpha\ListAudienceListsRequest
      *

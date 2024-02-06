@@ -41,10 +41,13 @@ function update_column_spec_sample(): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $columnSpec = new ColumnSpec();
+
     // Call the API and handle any network failures.
     try {
         /** @var ColumnSpec $response */
-        $response = $autoMlClient->updateColumnSpec();
+        $response = $autoMlClient->updateColumnSpec($columnSpec);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

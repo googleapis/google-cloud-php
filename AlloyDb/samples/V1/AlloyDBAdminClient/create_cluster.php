@@ -33,19 +33,32 @@ use Google\Rpc\Status;
 /**
  * Creates a new Cluster in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent         The location of the new cluster. For the required format, see the
+ *                                        comment on the Cluster.name field. Please see
+ *                                        {@see AlloyDBAdminClient::locationName()} for help formatting this field.
+ * @param string $clusterId               ID of the requesting object.
+ * @param string $formattedClusterNetwork The resource link for the VPC network in which cluster resources
+ *                                        are created and from which they are accessible via Private IP. The network
+ *                                        must belong to the same project as the cluster. It is specified in the
+ *                                        form: "projects/{project}/global/networks/{network_id}". This is required
+ *                                        to create a cluster. Deprecated, use network_config.network instead. Please see
+ *                                        {@see AlloyDBAdminClient::networkName()} for help formatting this field.
  */
-function create_cluster_sample(): void
-{
+function create_cluster_sample(
+    string $formattedParent,
+    string $clusterId,
+    string $formattedClusterNetwork
+): void {
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
     // Prepare the request message.
-    $request = new CreateClusterRequest();
+    $cluster = (new Cluster())
+        ->setNetwork($formattedClusterNetwork);
+    $request = (new CreateClusterRequest())
+        ->setParent($formattedParent)
+        ->setClusterId($clusterId)
+        ->setCluster($cluster);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +78,23 @@ function create_cluster_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AlloyDBAdminClient::locationName('[PROJECT]', '[LOCATION]');
+    $clusterId = '[CLUSTER_ID]';
+    $formattedClusterNetwork = AlloyDBAdminClient::networkName('[PROJECT]', '[NETWORK]');
+
+    create_cluster_sample($formattedParent, $clusterId, $formattedClusterNetwork);
 }
 // [END alloydb_v1_generated_AlloyDBAdmin_CreateCluster_sync]

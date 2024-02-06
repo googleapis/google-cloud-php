@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Asset\V1\Client\AssetServiceClient;
 use Google\Cloud\Asset\V1\SavedQuery;
 use Google\Cloud\Asset\V1\UpdateSavedQueryRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a saved query.
@@ -43,7 +44,11 @@ function update_saved_query_sample(): void
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateSavedQueryRequest();
+    $savedQuery = new SavedQuery();
+    $updateMask = new FieldMask();
+    $request = (new UpdateSavedQueryRequest())
+        ->setSavedQuery($savedQuery)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {

@@ -27,23 +27,37 @@ use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1beta\Property;
 use Google\Analytics\Admin\V1beta\UpdatePropertyRequest;
 use Google\ApiCore\ApiException;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a property.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $propertyDisplayName Human-readable display name for this property.
+ *
+ *                                    The max allowed display name length is 100 UTF-16 code units.
+ * @param string $propertyTimeZone    Reporting Time Zone, used as the day boundary for reports,
+ *                                    regardless of where the data originates. If the time zone honors DST,
+ *                                    Analytics will automatically adjust for the changes.
+ *
+ *                                    NOTE: Changing the time zone only affects data going forward, and is not
+ *                                    applied retroactively.
+ *
+ *                                    Format: https://www.iana.org/time-zones
+ *                                    Example: "America/Los_Angeles"
  */
-function update_property_sample(): void
+function update_property_sample(string $propertyDisplayName, string $propertyTimeZone): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new UpdatePropertyRequest();
+    $property = (new Property())
+        ->setDisplayName($propertyDisplayName)
+        ->setTimeZone($propertyTimeZone);
+    $updateMask = new FieldMask();
+    $request = (new UpdatePropertyRequest())
+        ->setProperty($property)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +67,22 @@ function update_property_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $propertyDisplayName = '[DISPLAY_NAME]';
+    $propertyTimeZone = '[TIME_ZONE]';
+
+    update_property_sample($propertyDisplayName, $propertyTimeZone);
 }
 // [END analyticsadmin_v1beta_generated_AnalyticsAdminService_UpdateProperty_sync]

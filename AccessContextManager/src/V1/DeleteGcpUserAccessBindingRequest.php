@@ -25,6 +25,7 @@ class DeleteGcpUserAccessBindingRequest extends \Google\Protobuf\Internal\Messag
 
     /**
      * @param string $name Required. Example: "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
+     *                     Please see {@see AccessContextManagerClient::gcpUserAccessBindingName()} for help formatting this field.
      *
      * @return \Google\Identity\AccessContextManager\V1\DeleteGcpUserAccessBindingRequest
      *

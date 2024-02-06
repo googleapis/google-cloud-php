@@ -24,170 +24,170 @@ class RegistryService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-£s
-5google/cloud/apigeeregistry/v1/registry_service.protogoogle.cloud.apigeeregistry.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/httpbody.protogoogle/api/resource.proto4google/cloud/apigeeregistry/v1/registry_models.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Ñ
-ListApisRequest:
-parent (	B*‚A˙A#!apigeeregistry.googleapis.com/Api
+Úr
+5google/cloud/apigeeregistry/v1/registry_service.protogoogle.cloud.apigeeregistry.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/httpbody.protogoogle/api/resource.proto4google/cloud/apigeeregistry/v1/registry_models.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"É
+ListApisRequest9
+parent (	B)‡A˙A#!apigeeregistry.googleapis.com/Api
 	page_size (
 
 page_token (	
 filter (	"^
 ListApisResponse1
 apis (2#.google.cloud.apigeeregistry.v1.Api
-next_page_token (	"I
-GetApiRequest8
-name (	B*‚A˙A#
-!apigeeregistry.googleapis.com/Api"ú
-CreateApiRequest:
-parent (	B*‚A˙A#!apigeeregistry.googleapis.com/Api6
-api (2#.google.cloud.apigeeregistry.v1.ApiB‚A
-api_id (	B‚A"í
-UpdateApiRequest6
-api (2#.google.cloud.apigeeregistry.v1.ApiB‚A/
+next_page_token (	"H
+GetApiRequest7
+name (	B)‡A˙A#
+!apigeeregistry.googleapis.com/Api"ô
+CreateApiRequest9
+parent (	B)‡A˙A#!apigeeregistry.googleapis.com/Api5
+api (2#.google.cloud.apigeeregistry.v1.ApiB‡A
+api_id (	B‡A"ë
+UpdateApiRequest5
+api (2#.google.cloud.apigeeregistry.v1.ApiB‡A/
 update_mask (2.google.protobuf.FieldMask
-allow_missing ("[
-DeleteApiRequest8
-name (	B*‚A˙A#
+allow_missing ("Z
+DeleteApiRequest7
+name (	B)‡A˙A#
 !apigeeregistry.googleapis.com/Api
-force ("í
-ListApiVersionsRequestA
-parent (	B1‚A˙A*(apigeeregistry.googleapis.com/ApiVersion
+force ("ë
+ListApiVersionsRequest@
+parent (	B0‡A˙A*(apigeeregistry.googleapis.com/ApiVersion
 	page_size (
 
 page_token (	
 filter (	"t
 ListApiVersionsResponse@
 api_versions (2*.google.cloud.apigeeregistry.v1.ApiVersion
-next_page_token (	"W
-GetApiVersionRequest?
-name (	B1‚A˙A*
-(apigeeregistry.googleapis.com/ApiVersion"¡
-CreateApiVersionRequestA
-parent (	B1‚A˙A*(apigeeregistry.googleapis.com/ApiVersionE
-api_version (2*.google.cloud.apigeeregistry.v1.ApiVersionB‚A
-api_version_id (	B‚A"®
-UpdateApiVersionRequestE
-api_version (2*.google.cloud.apigeeregistry.v1.ApiVersionB‚A/
+next_page_token (	"V
+GetApiVersionRequest>
+name (	B0‡A˙A*
+(apigeeregistry.googleapis.com/ApiVersion"æ
+CreateApiVersionRequest@
+parent (	B0‡A˙A*(apigeeregistry.googleapis.com/ApiVersionD
+api_version (2*.google.cloud.apigeeregistry.v1.ApiVersionB‡A
+api_version_id (	B‡A"ß
+UpdateApiVersionRequestD
+api_version (2*.google.cloud.apigeeregistry.v1.ApiVersionB‡A/
 update_mask (2.google.protobuf.FieldMask
-allow_missing ("i
-DeleteApiVersionRequest?
-name (	B1‚A˙A*
+allow_missing ("h
+DeleteApiVersionRequest>
+name (	B0‡A˙A*
 (apigeeregistry.googleapis.com/ApiVersion
-force ("å
-ListApiSpecsRequest>
-parent (	B.‚A˙A\'%apigeeregistry.googleapis.com/ApiSpec
+force ("ã
+ListApiSpecsRequest=
+parent (	B-‡A˙A\'%apigeeregistry.googleapis.com/ApiSpec
 	page_size (
 
 page_token (	
 filter (	"k
 ListApiSpecsResponse:
 	api_specs (2\'.google.cloud.apigeeregistry.v1.ApiSpec
-next_page_token (	"Q
-GetApiSpecRequest<
-name (	B.‚A˙A\'
-%apigeeregistry.googleapis.com/ApiSpec"Y
-GetApiSpecContentsRequest<
-name (	B.‚A˙A\'
-%apigeeregistry.googleapis.com/ApiSpec"≤
-CreateApiSpecRequest>
-parent (	B.‚A˙A\'%apigeeregistry.googleapis.com/ApiSpec?
-api_spec (2\'.google.cloud.apigeeregistry.v1.ApiSpecB‚A
-api_spec_id (	B‚A"ü
-UpdateApiSpecRequest?
-api_spec (2\'.google.cloud.apigeeregistry.v1.ApiSpecB‚A/
+next_page_token (	"P
+GetApiSpecRequest;
+name (	B-‡A˙A\'
+%apigeeregistry.googleapis.com/ApiSpec"X
+GetApiSpecContentsRequest;
+name (	B-‡A˙A\'
+%apigeeregistry.googleapis.com/ApiSpec"Ø
+CreateApiSpecRequest=
+parent (	B-‡A˙A\'%apigeeregistry.googleapis.com/ApiSpec>
+api_spec (2\'.google.cloud.apigeeregistry.v1.ApiSpecB‡A
+api_spec_id (	B‡A"û
+UpdateApiSpecRequest>
+api_spec (2\'.google.cloud.apigeeregistry.v1.ApiSpecB‡A/
 update_mask (2.google.protobuf.FieldMask
-allow_missing ("c
-DeleteApiSpecRequest<
-name (	B.‚A˙A\'
+allow_missing ("b
+DeleteApiSpecRequest;
+name (	B-‡A˙A\'
 %apigeeregistry.googleapis.com/ApiSpec
-force ("l
-TagApiSpecRevisionRequest<
-name (	B.‚A˙A\'
-%apigeeregistry.googleapis.com/ApiSpec
-tag (	B‚A"Ç
-ListApiSpecRevisionsRequest<
-name (	B.‚A˙A\'
+force ("j
+TagApiSpecRevisionRequest;
+name (	B-‡A˙A\'
+%apigeeregistry.googleapis.com/ApiSpec
+tag (	B‡A"Å
+ListApiSpecRevisionsRequest;
+name (	B-‡A˙A\'
 %apigeeregistry.googleapis.com/ApiSpec
 	page_size (
 
 page_token (	"s
 ListApiSpecRevisionsResponse:
 	api_specs (2\'.google.cloud.apigeeregistry.v1.ApiSpec
-next_page_token (	"q
-RollbackApiSpecRequest<
-name (	B.‚A˙A\'
-%apigeeregistry.googleapis.com/ApiSpec
-revision_id (	B‚A"\\
-DeleteApiSpecRevisionRequest<
-name (	B.‚A˙A\'
-%apigeeregistry.googleapis.com/ApiSpec"ò
-ListApiDeploymentsRequestD
-parent (	B4‚A˙A-+apigeeregistry.googleapis.com/ApiDeployment
+next_page_token (	"o
+RollbackApiSpecRequest;
+name (	B-‡A˙A\'
+%apigeeregistry.googleapis.com/ApiSpec
+revision_id (	B‡A"[
+DeleteApiSpecRevisionRequest;
+name (	B-‡A˙A\'
+%apigeeregistry.googleapis.com/ApiSpec"ó
+ListApiDeploymentsRequestC
+parent (	B3‡A˙A-+apigeeregistry.googleapis.com/ApiDeployment
 	page_size (
 
 page_token (	
 filter (	"}
 ListApiDeploymentsResponseF
 api_deployments (2-.google.cloud.apigeeregistry.v1.ApiDeployment
-next_page_token (	"]
-GetApiDeploymentRequestB
-name (	B4‚A˙A-
-+apigeeregistry.googleapis.com/ApiDeployment"–
-CreateApiDeploymentRequestD
-parent (	B4‚A˙A-+apigeeregistry.googleapis.com/ApiDeploymentK
-api_deployment (2-.google.cloud.apigeeregistry.v1.ApiDeploymentB‚A
-api_deployment_id (	B‚A"±
-UpdateApiDeploymentRequestK
-api_deployment (2-.google.cloud.apigeeregistry.v1.ApiDeploymentB‚A/
+next_page_token (	"\\
+GetApiDeploymentRequestA
+name (	B3‡A˙A-
++apigeeregistry.googleapis.com/ApiDeployment"Õ
+CreateApiDeploymentRequestC
+parent (	B3‡A˙A-+apigeeregistry.googleapis.com/ApiDeploymentJ
+api_deployment (2-.google.cloud.apigeeregistry.v1.ApiDeploymentB‡A
+api_deployment_id (	B‡A"∞
+UpdateApiDeploymentRequestJ
+api_deployment (2-.google.cloud.apigeeregistry.v1.ApiDeploymentB‡A/
 update_mask (2.google.protobuf.FieldMask
-allow_missing ("o
-DeleteApiDeploymentRequestB
-name (	B4‚A˙A-
+allow_missing ("n
+DeleteApiDeploymentRequestA
+name (	B3‡A˙A-
 +apigeeregistry.googleapis.com/ApiDeployment
-force ("x
-TagApiDeploymentRevisionRequestB
-name (	B4‚A˙A-
-+apigeeregistry.googleapis.com/ApiDeployment
-tag (	B‚A"é
-!ListApiDeploymentRevisionsRequestB
-name (	B4‚A˙A-
+force ("v
+TagApiDeploymentRevisionRequestA
+name (	B3‡A˙A-
++apigeeregistry.googleapis.com/ApiDeployment
+tag (	B‡A"ç
+!ListApiDeploymentRevisionsRequestA
+name (	B3‡A˙A-
 +apigeeregistry.googleapis.com/ApiDeployment
 	page_size (
 
 page_token (	"Ö
 "ListApiDeploymentRevisionsResponseF
 api_deployments (2-.google.cloud.apigeeregistry.v1.ApiDeployment
-next_page_token (	"}
-RollbackApiDeploymentRequestB
-name (	B4‚A˙A-
-+apigeeregistry.googleapis.com/ApiDeployment
-revision_id (	B‚A"h
-"DeleteApiDeploymentRevisionRequestB
-name (	B4‚A˙A-
-+apigeeregistry.googleapis.com/ApiDeployment"é
-ListArtifactsRequest?
-parent (	B/‚A˙A(&apigeeregistry.googleapis.com/Artifact
+next_page_token (	"{
+RollbackApiDeploymentRequestA
+name (	B3‡A˙A-
++apigeeregistry.googleapis.com/ApiDeployment
+revision_id (	B‡A"g
+"DeleteApiDeploymentRevisionRequestA
+name (	B3‡A˙A-
++apigeeregistry.googleapis.com/ApiDeployment"ç
+ListArtifactsRequest>
+parent (	B.‡A˙A(&apigeeregistry.googleapis.com/Artifact
 	page_size (
 
 page_token (	
 filter (	"m
 ListArtifactsResponse;
 	artifacts (2(.google.cloud.apigeeregistry.v1.Artifact
-next_page_token (	"S
-GetArtifactRequest=
-name (	B/‚A˙A(
-&apigeeregistry.googleapis.com/Artifact"[
-GetArtifactContentsRequest=
-name (	B/‚A˙A(
-&apigeeregistry.googleapis.com/Artifact"µ
-CreateArtifactRequest?
-parent (	B/‚A˙A(&apigeeregistry.googleapis.com/Artifact@
-artifact (2(.google.cloud.apigeeregistry.v1.ArtifactB‚A
-artifact_id (	B‚A"Z
-ReplaceArtifactRequest@
-artifact (2(.google.cloud.apigeeregistry.v1.ArtifactB‚A"V
-DeleteArtifactRequest=
-name (	B/‚A˙A(
+next_page_token (	"R
+GetArtifactRequest<
+name (	B.‡A˙A(
+&apigeeregistry.googleapis.com/Artifact"Z
+GetArtifactContentsRequest<
+name (	B.‡A˙A(
+&apigeeregistry.googleapis.com/Artifact"≤
+CreateArtifactRequest>
+parent (	B.‡A˙A(&apigeeregistry.googleapis.com/Artifact?
+artifact (2(.google.cloud.apigeeregistry.v1.ArtifactB‡A
+artifact_id (	B‡A"Y
+ReplaceArtifactRequest?
+artifact (2(.google.cloud.apigeeregistry.v1.ArtifactB‡A"U
+DeleteArtifactRequest<
+name (	B.‡A˙A(
 &apigeeregistry.googleapis.com/Artifact2¿E
 Registry®
 ListApis/.google.cloud.apigeeregistry.v1.ListApisRequest0.google.cloud.apigeeregistry.v1.ListApisResponse"9⁄AparentÇ”‰ì*(/v1/{parent=projects/*/locations/*}/apisï

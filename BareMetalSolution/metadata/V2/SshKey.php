@@ -18,30 +18,30 @@ class SshKey
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ý
-/google/cloud/baremetalsolution/v2/ssh_key.proto!google.cloud.baremetalsolution.v2google/api/resource.proto"™
-SSHKey
-name (	BâA
+÷
+/google/cloud/baremetalsolution/v2/ssh_key.proto!google.cloud.baremetalsolution.v2google/api/resource.proto"˜
+SSHKey
+name (	BàA
 
 public_key (	:gêAd
-\'baremetalsolution.googleapis.com/SshKey9projects/{project}/locations/{location}/sshKeys/{ssh_key}"w
-ListSSHKeysRequest:
-parent (	B*âAúA#
+\'baremetalsolution.googleapis.com/SshKey9projects/{project}/locations/{location}/sshKeys/{ssh_key}"v
+ListSSHKeysRequest9
+parent (	B)àAúA#
 !locations.googleapis.com/Location
 	page_size (
 
 page_token (	"k
 ListSSHKeysResponse;
 ssh_keys (2).google.cloud.baremetalsolution.v2.SSHKey
-next_page_tokenZ (	"­
-CreateSSHKeyRequest:
-parent (	B*âAúA#
-!locations.googleapis.com/Location@
-ssh_key (2).google.cloud.baremetalsolution.v2.SSHKeyBâA
+next_page_tokenZ (	"ª
+CreateSSHKeyRequest9
+parent (	B)àAúA#
+!locations.googleapis.com/Location?
+ssh_key (2).google.cloud.baremetalsolution.v2.SSHKeyBàA
 
-ssh_key_id (	BâA"U
-DeleteSSHKeyRequest>
-name (	B0âAúA)
+ssh_key_id (	BàA"T
+DeleteSSHKeyRequest=
+name (	B/àAúA)
 \'baremetalsolution.googleapis.com/SshKeyBú
 %com.google.cloud.baremetalsolution.v2BSshKeyProtoPZScloud.google.com/go/baremetalsolution/apiv2/baremetalsolutionpb;baremetalsolutionpbª!Google.Cloud.BareMetalSolution.V2Ê!Google\\Cloud\\BareMetalSolution\\V2ê$Google::Cloud::BareMetalSolution::V2bproto3'
         , true);

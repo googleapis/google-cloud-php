@@ -30,6 +30,7 @@ class GetGlobalSiteTagRequest extends \Google\Protobuf\Internal\Message
      *                     Note that site tags are singletons and do not have unique IDs.
      *                     Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
      *                     Example: "properties/123/dataStreams/456/globalSiteTag"
+     *                     Please see {@see AnalyticsAdminServiceClient::globalSiteTagName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetGlobalSiteTagRequest
      *

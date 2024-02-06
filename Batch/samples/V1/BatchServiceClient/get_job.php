@@ -31,19 +31,17 @@ use Google\Cloud\Batch\V1\Job;
 /**
  * Get a Job specified by its resource name.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Job name. Please see
+ *                              {@see BatchServiceClient::jobName()} for help formatting this field.
  */
-function get_job_sample(): void
+function get_job_sample(string $formattedName): void
 {
     // Create a client.
     $batchServiceClient = new BatchServiceClient();
 
     // Prepare the request message.
-    $request = new GetJobRequest();
+    $request = (new GetJobRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +51,21 @@ function get_job_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = BatchServiceClient::jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+
+    get_job_sample($formattedName);
 }
 // [END batch_v1_generated_BatchService_GetJob_sync]

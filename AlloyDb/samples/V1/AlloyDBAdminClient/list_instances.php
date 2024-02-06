@@ -32,19 +32,22 @@ use Google\Cloud\AlloyDb\V1\ListInstancesRequest;
 /**
  * Lists Instances in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the parent resource. For the required format, see the
+ *                                comment on the Instance.name field. Additionally, you can perform an
+ *                                aggregated list operation by specifying a value with one of the following
+ *                                formats:
+ *                                * projects/{project}/locations/-/clusters/-
+ *                                * projects/{project}/locations/{region}/clusters/-
+ *                                Please see {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
  */
-function list_instances_sample(): void
+function list_instances_sample(string $formattedParent): void
 {
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
     // Prepare the request message.
-    $request = new ListInstancesRequest();
+    $request = (new ListInstancesRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +61,21 @@ function list_instances_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AlloyDBAdminClient::clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+
+    list_instances_sample($formattedParent);
 }
 // [END alloydb_v1_generated_AlloyDBAdmin_ListInstances_sync]

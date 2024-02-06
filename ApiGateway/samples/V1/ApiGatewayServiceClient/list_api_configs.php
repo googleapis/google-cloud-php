@@ -32,19 +32,18 @@ use Google\Cloud\ApiGateway\V1\ListApiConfigsRequest;
 /**
  * Lists ApiConfigs in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Parent resource of the API Config, of the form:
+ *                                `projects/&#42;/locations/global/apis/*`
+ *                                Please see {@see ApiGatewayServiceClient::apiName()} for help formatting this field.
  */
-function list_api_configs_sample(): void
+function list_api_configs_sample(string $formattedParent): void
 {
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
     // Prepare the request message.
-    $request = new ListApiConfigsRequest();
+    $request = (new ListApiConfigsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function list_api_configs_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ApiGatewayServiceClient::apiName('[PROJECT]', '[API]');
+
+    list_api_configs_sample($formattedParent);
 }
 // [END apigateway_v1_generated_ApiGatewayService_ListApiConfigs_sync]

@@ -43,7 +43,9 @@ function update_api_deployment_sample(): void
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $request = new UpdateApiDeploymentRequest();
+    $apiDeployment = new ApiDeployment();
+    $request = (new UpdateApiDeploymentRequest())
+        ->setApiDeployment($apiDeployment);
 
     // Call the API and handle any network failures.
     try {

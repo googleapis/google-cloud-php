@@ -33,19 +33,20 @@ use Google\Rpc\Status;
 /**
  * Detach LUN from Instance.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedInstance Name of the instance. Please see
+ *                                  {@see BareMetalSolutionClient::instanceName()} for help formatting this field.
+ * @param string $formattedLun      Name of the Lun to detach. Please see
+ *                                  {@see BareMetalSolutionClient::lunName()} for help formatting this field.
  */
-function detach_lun_sample(): void
+function detach_lun_sample(string $formattedInstance, string $formattedLun): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = new DetachLunRequest();
+    $request = (new DetachLunRequest())
+        ->setInstance($formattedInstance)
+        ->setLun($formattedLun);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +66,22 @@ function detach_lun_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedInstance = BareMetalSolutionClient::instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+    $formattedLun = BareMetalSolutionClient::lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+
+    detach_lun_sample($formattedInstance, $formattedLun);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_DetachLun_sync]

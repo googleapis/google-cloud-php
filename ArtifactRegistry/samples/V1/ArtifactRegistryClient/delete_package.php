@@ -33,19 +33,17 @@ use Google\Rpc\Status;
  * Deletes a package and all of its versions and tags. The returned operation
  * will complete once the package has been deleted.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the package to delete. Please see
+ *                              {@see ArtifactRegistryClient::packageName()} for help formatting this field.
  */
-function delete_package_sample(): void
+function delete_package_sample(string $formattedName): void
 {
     // Create a client.
     $artifactRegistryClient = new ArtifactRegistryClient();
 
     // Prepare the request message.
-    $request = new DeletePackageRequest();
+    $request = (new DeletePackageRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -63,5 +61,26 @@ function delete_package_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ArtifactRegistryClient::packageName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[REPOSITORY]',
+        '[PACKAGE]'
+    );
+
+    delete_package_sample($formattedName);
 }
 // [END artifactregistry_v1_generated_ArtifactRegistry_DeletePackage_sync]

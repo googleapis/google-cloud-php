@@ -30,13 +30,10 @@ use Google\Cloud\AlloyDb\V1alpha\Backup;
 /**
  * Gets details of a single Backup.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Name of the resource
+ *                              Please see {@see AlloyDBAdminClient::backupName()} for help formatting this field.
  */
-function get_backup_sample(): void
+function get_backup_sample(string $formattedName): void
 {
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
@@ -44,10 +41,26 @@ function get_backup_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var Backup $response */
-        $response = $alloyDBAdminClient->getBackup();
+        $response = $alloyDBAdminClient->getBackup($formattedName);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AlloyDBAdminClient::backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
+
+    get_backup_sample($formattedName);
 }
 // [END alloydb_v1alpha_generated_AlloyDBAdmin_GetBackup_sync]

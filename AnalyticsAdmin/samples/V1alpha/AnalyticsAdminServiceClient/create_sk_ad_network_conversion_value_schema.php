@@ -25,25 +25,29 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateSKAdNetworkConversionValueSchema_sync]
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\CreateSKAdNetworkConversionValueSchemaRequest;
+use Google\Analytics\Admin\V1alpha\PostbackWindow;
 use Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema;
 use Google\ApiCore\ApiException;
 
 /**
  * Creates a SKAdNetworkConversionValueSchema.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent resource where this schema will be created.
+ *                                Format: properties/{property}/dataStreams/{dataStream}
+ *                                Please see {@see AnalyticsAdminServiceClient::dataStreamName()} for help formatting this field.
  */
-function create_sk_ad_network_conversion_value_schema_sample(): void
+function create_sk_ad_network_conversion_value_schema_sample(string $formattedParent): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new CreateSKAdNetworkConversionValueSchemaRequest();
+    $skadnetworkConversionValueSchemaPostbackWindowOne = new PostbackWindow();
+    $skadnetworkConversionValueSchema = (new SKAdNetworkConversionValueSchema())
+        ->setPostbackWindowOne($skadnetworkConversionValueSchemaPostbackWindowOne);
+    $request = (new CreateSKAdNetworkConversionValueSchemaRequest())
+        ->setParent($formattedParent)
+        ->setSkadnetworkConversionValueSchema($skadnetworkConversionValueSchema);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +57,21 @@ function create_sk_ad_network_conversion_value_schema_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AnalyticsAdminServiceClient::dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+
+    create_sk_ad_network_conversion_value_schema_sample($formattedParent);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateSKAdNetworkConversionValueSchema_sync]

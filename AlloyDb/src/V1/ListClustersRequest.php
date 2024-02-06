@@ -55,6 +55,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *                       comment on the Cluster.name field. Additionally, you can perform an
      *                       aggregated list operation by specifying a value with the following format:
      *                       * projects/{project}/locations/-
+     *                       Please see {@see AlloyDBAdminClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AlloyDb\V1\ListClustersRequest
      *

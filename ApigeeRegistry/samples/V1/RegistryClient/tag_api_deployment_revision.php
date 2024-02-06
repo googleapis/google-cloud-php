@@ -32,19 +32,20 @@ use Google\Cloud\ApigeeRegistry\V1\TagApiDeploymentRevisionRequest;
  * Adds a tag to a specified revision of a
  * deployment.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the deployment to be tagged, including the revision ID. Please see
+ *                              {@see RegistryClient::apiDeploymentName()} for help formatting this field.
+ * @param string $tag           The tag to apply.
+ *                              The tag should be at most 40 characters, and match `[a-z][a-z0-9-]{3,39}`.
  */
-function tag_api_deployment_revision_sample(): void
+function tag_api_deployment_revision_sample(string $formattedName, string $tag): void
 {
     // Create a client.
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $request = new TagApiDeploymentRevisionRequest();
+    $request = (new TagApiDeploymentRevisionRequest())
+        ->setName($formattedName)
+        ->setTag($tag);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +55,27 @@ function tag_api_deployment_revision_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = RegistryClient::apiDeploymentName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[API]',
+        '[DEPLOYMENT]'
+    );
+    $tag = '[TAG]';
+
+    tag_api_deployment_revision_sample($formattedName, $tag);
 }
 // [END apigeeregistry_v1_generated_Registry_TagApiDeploymentRevision_sync]

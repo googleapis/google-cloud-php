@@ -38,7 +38,8 @@ class CreateSSHKeyRequest extends \Google\Protobuf\Internal\Message
     private $ssh_key_id = '';
 
     /**
-     * @param string                                    $parent   Required. The parent containing the SSH keys.
+     * @param string                                    $parent   Required. The parent containing the SSH keys. Please see
+     *                                                            {@see BareMetalSolutionClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\BareMetalSolution\V2\SSHKey $sshKey   Required. The SSH key to register.
      * @param string                                    $sshKeyId Required. The ID to use for the key, which will become the final component
      *                                                            of the key's resource name.

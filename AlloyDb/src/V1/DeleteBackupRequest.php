@@ -56,7 +56,8 @@ class DeleteBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the resource. For the required format, see the comment on
-     *                     the Backup.name field.
+     *                     the Backup.name field. Please see
+     *                     {@see AlloyDBAdminClient::backupName()} for help formatting this field.
      *
      * @return \Google\Cloud\AlloyDb\V1\DeleteBackupRequest
      *

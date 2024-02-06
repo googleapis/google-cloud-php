@@ -26,24 +26,37 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\CreateSubpropertyEventFilterRequest;
 use Google\Analytics\Admin\V1alpha\SubpropertyEventFilter;
+use Google\Analytics\Admin\V1alpha\SubpropertyEventFilterClause;
+use Google\Analytics\Admin\V1alpha\SubpropertyEventFilterClause\FilterClauseType;
+use Google\Analytics\Admin\V1alpha\SubpropertyEventFilterExpression;
 use Google\ApiCore\ApiException;
 
 /**
  * Creates a subproperty Event Filter.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent                                     The ordinary property for which to create a subproperty event
+ *                                                                    filter. Format: properties/property_id Example: properties/123
+ *                                                                    Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+ * @param int    $subpropertyEventFilterFilterClausesFilterClauseType The type for the filter clause.
  */
-function create_subproperty_event_filter_sample(): void
-{
+function create_subproperty_event_filter_sample(
+    string $formattedParent,
+    int $subpropertyEventFilterFilterClausesFilterClauseType
+): void {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new CreateSubpropertyEventFilterRequest();
+    $subpropertyEventFilterFilterClausesFilterExpression = new SubpropertyEventFilterExpression();
+    $subpropertyEventFilterClause = (new SubpropertyEventFilterClause())
+        ->setFilterClauseType($subpropertyEventFilterFilterClausesFilterClauseType)
+        ->setFilterExpression($subpropertyEventFilterFilterClausesFilterExpression);
+    $subpropertyEventFilterFilterClauses = [$subpropertyEventFilterClause,];
+    $subpropertyEventFilter = (new SubpropertyEventFilter())
+        ->setFilterClauses($subpropertyEventFilterFilterClauses);
+    $request = (new CreateSubpropertyEventFilterRequest())
+        ->setParent($formattedParent)
+        ->setSubpropertyEventFilter($subpropertyEventFilter);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +66,25 @@ function create_subproperty_event_filter_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AnalyticsAdminServiceClient::propertyName('[PROPERTY]');
+    $subpropertyEventFilterFilterClausesFilterClauseType = FilterClauseType::FILTER_CLAUSE_TYPE_UNSPECIFIED;
+
+    create_subproperty_event_filter_sample(
+        $formattedParent,
+        $subpropertyEventFilterFilterClausesFilterClauseType
+    );
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateSubpropertyEventFilter_sync]

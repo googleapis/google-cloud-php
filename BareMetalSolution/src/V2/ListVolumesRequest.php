@@ -42,7 +42,8 @@ class ListVolumesRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
-     * @param string $parent Required. Parent value for ListVolumesRequest.
+     * @param string $parent Required. Parent value for ListVolumesRequest. Please see
+     *                       {@see BareMetalSolutionClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\ListVolumesRequest
      *

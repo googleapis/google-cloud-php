@@ -27,6 +27,7 @@ use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1beta\CustomDimension;
 use Google\Analytics\Admin\V1beta\UpdateCustomDimensionRequest;
 use Google\ApiCore\ApiException;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a CustomDimension on a property.
@@ -43,7 +44,9 @@ function update_custom_dimension_sample(): void
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateCustomDimensionRequest();
+    $updateMask = new FieldMask();
+    $request = (new UpdateCustomDimensionRequest())
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {

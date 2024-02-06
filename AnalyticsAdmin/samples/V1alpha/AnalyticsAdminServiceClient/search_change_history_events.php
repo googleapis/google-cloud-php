@@ -33,19 +33,18 @@ use Google\ApiCore\PagedListResponse;
  * Searches through all changes to an account or its children given the
  * specified set of filters.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedAccount The account resource for which to return change history
+ *                                 resources. Format: accounts/{account} Example: "accounts/100"
+ *                                 Please see {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.
  */
-function search_change_history_events_sample(): void
+function search_change_history_events_sample(string $formattedAccount): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new SearchChangeHistoryEventsRequest();
+    $request = (new SearchChangeHistoryEventsRequest())
+        ->setAccount($formattedAccount);
 
     // Call the API and handle any network failures.
     try {
@@ -59,5 +58,21 @@ function search_change_history_events_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedAccount = AnalyticsAdminServiceClient::accountName('[ACCOUNT]');
+
+    search_change_history_events_sample($formattedAccount);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_SearchChangeHistoryEvents_sync]

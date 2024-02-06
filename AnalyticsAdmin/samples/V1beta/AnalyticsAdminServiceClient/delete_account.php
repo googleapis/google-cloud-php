@@ -40,19 +40,19 @@ use Google\ApiCore\ApiException;
  *
  * Returns an error if the target is not found.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the Account to soft-delete.
+ *                              Format: accounts/{account}
+ *                              Example: "accounts/100"
+ *                              Please see {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.
  */
-function delete_account_sample(): void
+function delete_account_sample(string $formattedName): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteAccountRequest();
+    $request = (new DeleteAccountRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -61,5 +61,21 @@ function delete_account_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AnalyticsAdminServiceClient::accountName('[ACCOUNT]');
+
+    delete_account_sample($formattedName);
 }
 // [END analyticsadmin_v1beta_generated_AnalyticsAdminService_DeleteAccount_sync]

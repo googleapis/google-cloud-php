@@ -28,6 +28,7 @@ class GetAccountRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the account to lookup.
      *                     Format: accounts/{account}
      *                     Example: "accounts/100"
+     *                     Please see {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1beta\GetAccountRequest
      *

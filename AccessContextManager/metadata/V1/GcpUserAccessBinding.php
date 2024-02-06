@@ -18,12 +18,12 @@ class GcpUserAccessBinding
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ì
-Egoogle/identity/accesscontextmanager/v1/gcp_user_access_binding.proto\'google.identity.accesscontextmanager.v1google/api/resource.proto"§
-GcpUserAccessBinding
-name (	B‚A
-	group_key (	B‚AO
-access_levels (	B8‚A˙A1
+Ï
+Egoogle/identity/accesscontextmanager/v1/gcp_user_access_binding.proto\'google.identity.accesscontextmanager.v1google/api/resource.proto"£
+GcpUserAccessBinding
+name (	B‡A
+	group_key (	B‡A‡AN
+access_levels (	B7‡A˙A1
 /accesscontextmanager.googleapis.com/AccessLevel:åÍAà
 8accesscontextmanager.googleapis.com/GcpUserAccessBindingLorganizations/{organization}/gcpUserAccessBindings/{gcp_user_access_binding}B∞
 +com.google.identity.accesscontextmanager.v1BGcpUserAccessBindingProtoPZ\\cloud.google.com/go/accesscontextmanager/apiv1/accesscontextmanagerpb;accesscontextmanagerpb¢GACM™\'Google.Identity.AccessContextManager.V1 \'Google\\Identity\\AccessContextManager\\V1Í*Google::Identity::AccessContextManager::V1bproto3'

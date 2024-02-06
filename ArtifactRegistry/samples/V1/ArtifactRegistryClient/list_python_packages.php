@@ -32,19 +32,18 @@ use Google\Cloud\ArtifactRegistry\V1\PythonPackage;
 /**
  * Lists python packages.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the parent resource whose python packages will be
+ *                                listed. Please see
+ *                                {@see ArtifactRegistryClient::repositoryName()} for help formatting this field.
  */
-function list_python_packages_sample(): void
+function list_python_packages_sample(string $formattedParent): void
 {
     // Create a client.
     $artifactRegistryClient = new ArtifactRegistryClient();
 
     // Prepare the request message.
-    $request = new ListPythonPackagesRequest();
+    $request = (new ListPythonPackagesRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,25 @@ function list_python_packages_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ArtifactRegistryClient::repositoryName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[REPOSITORY]'
+    );
+
+    list_python_packages_sample($formattedParent);
 }
 // [END artifactregistry_v1_generated_ArtifactRegistry_ListPythonPackages_sync]

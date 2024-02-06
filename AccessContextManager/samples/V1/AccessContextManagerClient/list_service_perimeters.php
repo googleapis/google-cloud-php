@@ -34,19 +34,21 @@ use Google\Identity\AccessContextManager\V1\ServicePerimeter;
  * [google.identity.accesscontextmanager.v1.ServicePerimeter] for an
  * access policy.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Resource name for the access policy to list [Service Perimeters]
+ *                                [google.identity.accesscontextmanager.v1.ServicePerimeter] from.
+ *
+ *                                Format:
+ *                                `accessPolicies/{policy_id}`
+ *                                Please see {@see AccessContextManagerClient::accessPolicyName()} for help formatting this field.
  */
-function list_service_perimeters_sample(): void
+function list_service_perimeters_sample(string $formattedParent): void
 {
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
     // Prepare the request message.
-    $request = new ListServicePerimetersRequest();
+    $request = (new ListServicePerimetersRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -60,5 +62,21 @@ function list_service_perimeters_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AccessContextManagerClient::accessPolicyName('[ACCESS_POLICY]');
+
+    list_service_perimeters_sample($formattedParent);
 }
 // [END accesscontextmanager_v1_generated_AccessContextManager_ListServicePerimeters_sync]

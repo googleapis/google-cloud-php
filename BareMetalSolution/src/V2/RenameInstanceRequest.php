@@ -32,6 +32,7 @@ class RenameInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name          Required. The `name` field is used to identify the instance.
      *                              Format: projects/{project}/locations/{location}/instances/{instance}
+     *                              Please see {@see BareMetalSolutionClient::instanceName()} for help formatting this field.
      * @param string $newInstanceId Required. The new `id` of the instance.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\RenameInstanceRequest

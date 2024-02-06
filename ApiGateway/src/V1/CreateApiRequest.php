@@ -39,6 +39,7 @@ class CreateApiRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                          $parent Required. Parent resource of the API, of the form:
      *                                                `projects/&#42;/locations/global`
+     *                                                Please see {@see ApiGatewayServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\ApiGateway\V1\Api $api    Required. API resource.
      * @param string                          $apiId  Required. Identifier to assign to the API. Must be unique within scope of
      *                                                the parent resource.

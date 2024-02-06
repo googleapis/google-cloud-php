@@ -25,7 +25,7 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-øš
+¶š
 3google/analytics/admin/v1beta/analytics_admin.protogoogle.analytics.admin.v1beta-google/analytics/admin/v1beta/resources.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"
 RunAccessReportRequest
 entity (	B
@@ -46,9 +46,9 @@ dimensions (2..google.analytics.admin.v1beta.AccessDimension<
 metric_headers (21.google.analytics.admin.v1beta.AccessMetricHeader6
 rows (2(.google.analytics.admin.v1beta.AccessRow
 	row_count (9
-quota (2*.google.analytics.admin.v1beta.AccessQuota"Q
-GetAccountRequest<
-name (	B.âAúA\'
+quota (2*.google.analytics.admin.v1beta.AccessQuota"P
+GetAccountRequest;
+name (	B-àAúA\'
 %analyticsadmin.googleapis.com/Account"R
 ListAccountsRequest
 	page_size (
@@ -57,23 +57,23 @@ page_token (	
 show_deleted ("i
 ListAccountsResponse8
 accounts (2&.google.analytics.admin.v1beta.Account
-next_page_token (	"T
-DeleteAccountRequest<
-name (	B.âAúA\'
-%analyticsadmin.googleapis.com/Account"Œ
-UpdateAccountRequest=
-account (2&.google.analytics.admin.v1beta.AccountBâA5
-update_mask (2.google.protobuf.FieldMaskBâA"n
+next_page_token (	"S
+DeleteAccountRequest;
+name (	B-àAúA\'
+%analyticsadmin.googleapis.com/Account"Š
+UpdateAccountRequest<
+account (2&.google.analytics.admin.v1beta.AccountBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"n
 ProvisionAccountTicketRequest7
 account (2&.google.analytics.admin.v1beta.Account
 redirect_uri (	";
 ProvisionAccountTicketResponse
-account_ticket_id (	"S
-GetPropertyRequest=
-name (	B/âAúA(
-&analyticsadmin.googleapis.com/Property"j
-ListPropertiesRequest
-filter (	BâA
+account_ticket_id (	"R
+GetPropertyRequest<
+name (	B.àAúA(
+&analyticsadmin.googleapis.com/Property"i
+ListPropertiesRequest
+filter (	BàA
 	page_size (
 
 page_token (	
@@ -81,48 +81,48 @@ page_token (	
 ListPropertiesResponse;
 
 properties (2\'.google.analytics.admin.v1beta.Property
-next_page_token (	"
-UpdatePropertyRequest?
-property (2\'.google.analytics.admin.v1beta.PropertyBâA5
-update_mask (2.google.protobuf.FieldMaskBâA"X
-CreatePropertyRequest?
-property (2\'.google.analytics.admin.v1beta.PropertyBâA"V
-DeletePropertyRequest=
-name (	B/âAúA(
-&analyticsadmin.googleapis.com/Property"ª
-CreateFirebaseLinkRequestC
-parent (	B3âAúA,*analyticsadmin.googleapis.com/FirebaseLinkH
-firebase_link (2+.google.analytics.admin.v1beta.FirebaseLinkBâA"^
-DeleteFirebaseLinkRequestA
-name (	B3âAúA,
-*analyticsadmin.googleapis.com/FirebaseLink"†
-ListFirebaseLinksRequestC
-parent (	B3âAúA,*analyticsadmin.googleapis.com/FirebaseLink
+next_page_token (	"
+UpdatePropertyRequest>
+property (2\'.google.analytics.admin.v1beta.PropertyBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"W
+CreatePropertyRequest>
+property (2\'.google.analytics.admin.v1beta.PropertyBàA"U
+DeletePropertyRequest<
+name (	B.àAúA(
+&analyticsadmin.googleapis.com/Property"¨
+CreateFirebaseLinkRequestB
+parent (	B2àAúA,*analyticsadmin.googleapis.com/FirebaseLinkG
+firebase_link (2+.google.analytics.admin.v1beta.FirebaseLinkBàA"]
+DeleteFirebaseLinkRequest@
+name (	B2àAúA,
+*analyticsadmin.googleapis.com/FirebaseLink"…
+ListFirebaseLinksRequestB
+parent (	B2àAúA,*analyticsadmin.googleapis.com/FirebaseLink
 	page_size (
 
 page_token (	"y
 ListFirebaseLinksResponseC
 firebase_links (2+.google.analytics.admin.v1beta.FirebaseLink
-next_page_token (	"¯
-CreateGoogleAdsLinkRequestD
-parent (	B4âAúA-+analyticsadmin.googleapis.com/GoogleAdsLinkK
-google_ads_link (2,.google.analytics.admin.v1beta.GoogleAdsLinkBâA"š
+next_page_token (	"­
+CreateGoogleAdsLinkRequestC
+parent (	B3àAúA-+analyticsadmin.googleapis.com/GoogleAdsLinkJ
+google_ads_link (2,.google.analytics.admin.v1beta.GoogleAdsLinkBàA"™
 UpdateGoogleAdsLinkRequestE
-google_ads_link (2,.google.analytics.admin.v1beta.GoogleAdsLink5
-update_mask (2.google.protobuf.FieldMaskBâA"`
-DeleteGoogleAdsLinkRequestB
-name (	B4âAúA-
-+analyticsadmin.googleapis.com/GoogleAdsLink"ˆ
-ListGoogleAdsLinksRequestD
-parent (	B4âAúA-+analyticsadmin.googleapis.com/GoogleAdsLink
+google_ads_link (2,.google.analytics.admin.v1beta.GoogleAdsLink4
+update_mask (2.google.protobuf.FieldMaskBàA"_
+DeleteGoogleAdsLinkRequestA
+name (	B3àAúA-
++analyticsadmin.googleapis.com/GoogleAdsLink"‡
+ListGoogleAdsLinksRequestC
+parent (	B3àAúA-+analyticsadmin.googleapis.com/GoogleAdsLink
 	page_size (
 
 page_token (	"}
 ListGoogleAdsLinksResponseF
 google_ads_links (2,.google.analytics.admin.v1beta.GoogleAdsLink
-next_page_token (	"i
-GetDataSharingSettingsRequestH
-name (	B:âAúA3
+next_page_token (	"h
+GetDataSharingSettingsRequestG
+name (	B9àAúA3
 1analyticsadmin.googleapis.com/DataSharingSettings"D
 ListAccountSummariesRequest
 	page_size (
@@ -130,133 +130,133 @@ page_token (	"}
 page_token (	"
 ListAccountSummariesResponseH
 account_summaries (2-.google.analytics.admin.v1beta.AccountSummary
-next_page_token (	"ˆ
-$AcknowledgeUserDataCollectionRequestA
-property (	B/âAúA(
-&analyticsadmin.googleapis.com/Property
-acknowledgement (	BâA"\'
-%AcknowledgeUserDataCollectionResponse"Š
- SearchChangeHistoryEventsRequest?
-account (	B.âAúA\'
-%analyticsadmin.googleapis.com/AccountA
-property (	B/âAúA(
-&analyticsadmin.googleapis.com/PropertyU
-resource_type (28.google.analytics.admin.v1beta.ChangeHistoryResourceTypeBâA?
-action (2).google.analytics.admin.v1beta.ActionTypeBâA
-actor_email (	BâA>
-earliest_change_time (2.google.protobuf.TimestampBâA<
-latest_change_time (2.google.protobuf.TimestampBâA
-	page_size (BâA
+next_page_token (	"†
+$AcknowledgeUserDataCollectionRequest@
+property (	B.àAúA(
+&analyticsadmin.googleapis.com/Property
+acknowledgement (	BàA"\'
+%AcknowledgeUserDataCollectionResponse"
+ SearchChangeHistoryEventsRequest>
+account (	B-àAúA\'
+%analyticsadmin.googleapis.com/Account@
+property (	B.àAúA(
+&analyticsadmin.googleapis.com/PropertyT
+resource_type (28.google.analytics.admin.v1beta.ChangeHistoryResourceTypeBàA>
+action (2).google.analytics.admin.v1beta.ActionTypeBàA
+actor_email (	BàA=
+earliest_change_time (2.google.protobuf.TimestampBàA;
+latest_change_time (2.google.protobuf.TimestampBàA
+	page_size (BàA
 
-page_token	 (	BâA"
+page_token	 (	BàA"
 !SearchChangeHistoryEventsResponseP
 change_history_events (21.google.analytics.admin.v1beta.ChangeHistoryEvent
-next_page_token (	"u
-#GetMeasurementProtocolSecretRequestN
-name (	B@âAúA9
-7analyticsadmin.googleapis.com/MeasurementProtocolSecret"ß
-&CreateMeasurementProtocolSecretRequestP
-parent (	B@âAúA97analyticsadmin.googleapis.com/MeasurementProtocolSecretc
-measurement_protocol_secret (28.google.analytics.admin.v1beta.MeasurementProtocolSecretBâA"x
-&DeleteMeasurementProtocolSecretRequestN
-name (	B@âAúA9
-7analyticsadmin.googleapis.com/MeasurementProtocolSecret"Ä
-&UpdateMeasurementProtocolSecretRequestc
-measurement_protocol_secret (28.google.analytics.admin.v1beta.MeasurementProtocolSecretBâA5
-update_mask (2.google.protobuf.FieldMaskBâA" 
-%ListMeasurementProtocolSecretsRequestP
-parent (	B@âAúA97analyticsadmin.googleapis.com/MeasurementProtocolSecret
+next_page_token (	"t
+#GetMeasurementProtocolSecretRequestM
+name (	B?àAúA9
+7analyticsadmin.googleapis.com/MeasurementProtocolSecret"İ
+&CreateMeasurementProtocolSecretRequestO
+parent (	B?àAúA97analyticsadmin.googleapis.com/MeasurementProtocolSecretb
+measurement_protocol_secret (28.google.analytics.admin.v1beta.MeasurementProtocolSecretBàA"w
+&DeleteMeasurementProtocolSecretRequestM
+name (	B?àAúA9
+7analyticsadmin.googleapis.com/MeasurementProtocolSecret"Â
+&UpdateMeasurementProtocolSecretRequestb
+measurement_protocol_secret (28.google.analytics.admin.v1beta.MeasurementProtocolSecretBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"Ÿ
+%ListMeasurementProtocolSecretsRequestO
+parent (	B?àAúA97analyticsadmin.googleapis.com/MeasurementProtocolSecret
 	page_size (
 
 page_token (	"¡
 &ListMeasurementProtocolSecretsResponse^
 measurement_protocol_secrets (28.google.analytics.admin.v1beta.MeasurementProtocolSecret
-next_page_token (	"¶
-CreateConversionEventRequestN
-conversion_event (2..google.analytics.admin.v1beta.ConversionEventBâAF
-parent (	B6âAúA/-analyticsadmin.googleapis.com/ConversionEvent"¥
-UpdateConversionEventRequestN
-conversion_event (2..google.analytics.admin.v1beta.ConversionEventBâA5
-update_mask (2.google.protobuf.FieldMaskBâA"a
-GetConversionEventRequestD
-name (	B6âAúA/
--analyticsadmin.googleapis.com/ConversionEvent"d
-DeleteConversionEventRequestD
-name (	B6âAúA/
--analyticsadmin.googleapis.com/ConversionEvent"Œ
-ListConversionEventsRequestF
-parent (	B6âAúA/-analyticsadmin.googleapis.com/ConversionEvent
+next_page_token (	"´
+CreateConversionEventRequestM
+conversion_event (2..google.analytics.admin.v1beta.ConversionEventBàAE
+parent (	B5àAúA/-analyticsadmin.googleapis.com/ConversionEvent"£
+UpdateConversionEventRequestM
+conversion_event (2..google.analytics.admin.v1beta.ConversionEventBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"`
+GetConversionEventRequestC
+name (	B5àAúA/
+-analyticsadmin.googleapis.com/ConversionEvent"c
+DeleteConversionEventRequestC
+name (	B5àAúA/
+-analyticsadmin.googleapis.com/ConversionEvent"‹
+ListConversionEventsRequestE
+parent (	B5àAúA/-analyticsadmin.googleapis.com/ConversionEvent
 	page_size (
 
 page_token (	"‚
 ListConversionEventsResponseI
 conversion_events (2..google.analytics.admin.v1beta.ConversionEvent
-next_page_token (	"¶
-CreateCustomDimensionRequestF
-parent (	B6âAúA/-analyticsadmin.googleapis.com/CustomDimensionN
-custom_dimension (2..google.analytics.admin.v1beta.CustomDimensionBâA"Ÿ
+next_page_token (	"´
+CreateCustomDimensionRequestE
+parent (	B5àAúA/-analyticsadmin.googleapis.com/CustomDimensionM
+custom_dimension (2..google.analytics.admin.v1beta.CustomDimensionBàA"
 UpdateCustomDimensionRequestH
-custom_dimension (2..google.analytics.admin.v1beta.CustomDimension5
-update_mask (2.google.protobuf.FieldMaskBâA"Œ
-ListCustomDimensionsRequestF
-parent (	B6âAúA/-analyticsadmin.googleapis.com/CustomDimension
+custom_dimension (2..google.analytics.admin.v1beta.CustomDimension4
+update_mask (2.google.protobuf.FieldMaskBàA"‹
+ListCustomDimensionsRequestE
+parent (	B5àAúA/-analyticsadmin.googleapis.com/CustomDimension
 	page_size (
 
 page_token (	"‚
 ListCustomDimensionsResponseI
 custom_dimensions (2..google.analytics.admin.v1beta.CustomDimension
-next_page_token (	"e
-ArchiveCustomDimensionRequestD
-name (	B6âAúA/
--analyticsadmin.googleapis.com/CustomDimension"a
-GetCustomDimensionRequestD
-name (	B6âAúA/
--analyticsadmin.googleapis.com/CustomDimension"ª
-CreateCustomMetricRequestC
-parent (	B3âAúA,*analyticsadmin.googleapis.com/CustomMetricH
-custom_metric (2+.google.analytics.admin.v1beta.CustomMetricBâA"–
+next_page_token (	"d
+ArchiveCustomDimensionRequestC
+name (	B5àAúA/
+-analyticsadmin.googleapis.com/CustomDimension"`
+GetCustomDimensionRequestC
+name (	B5àAúA/
+-analyticsadmin.googleapis.com/CustomDimension"¨
+CreateCustomMetricRequestB
+parent (	B2àAúA,*analyticsadmin.googleapis.com/CustomMetricG
+custom_metric (2+.google.analytics.admin.v1beta.CustomMetricBàA"•
 UpdateCustomMetricRequestB
-custom_metric (2+.google.analytics.admin.v1beta.CustomMetric5
-update_mask (2.google.protobuf.FieldMaskBâA"†
-ListCustomMetricsRequestC
-parent (	B3âAúA,*analyticsadmin.googleapis.com/CustomMetric
+custom_metric (2+.google.analytics.admin.v1beta.CustomMetric4
+update_mask (2.google.protobuf.FieldMaskBàA"…
+ListCustomMetricsRequestB
+parent (	B2àAúA,*analyticsadmin.googleapis.com/CustomMetric
 	page_size (
 
 page_token (	"y
 ListCustomMetricsResponseC
 custom_metrics (2+.google.analytics.admin.v1beta.CustomMetric
-next_page_token (	"_
-ArchiveCustomMetricRequestA
-name (	B3âAúA,
-*analyticsadmin.googleapis.com/CustomMetric"[
-GetCustomMetricRequestA
-name (	B3âAúA,
-*analyticsadmin.googleapis.com/CustomMetric"m
-GetDataRetentionSettingsRequestJ
-name (	B<âAúA5
-3analyticsadmin.googleapis.com/DataRetentionSettings"¸
-"UpdateDataRetentionSettingsRequest[
-data_retention_settings (24.google.analytics.admin.v1beta.DataRetentionSettingsBâA5
-update_mask (2.google.protobuf.FieldMaskBâA"¢
-CreateDataStreamRequestA
-parent (	B1âAúA*(analyticsadmin.googleapis.com/DataStreamD
-data_stream (2).google.analytics.admin.v1beta.DataStreamBâA"Z
-DeleteDataStreamRequest?
-name (	B1âAúA*
-(analyticsadmin.googleapis.com/DataStream"
+next_page_token (	"^
+ArchiveCustomMetricRequest@
+name (	B2àAúA,
+*analyticsadmin.googleapis.com/CustomMetric"Z
+GetCustomMetricRequest@
+name (	B2àAúA,
+*analyticsadmin.googleapis.com/CustomMetric"l
+GetDataRetentionSettingsRequestI
+name (	B;àAúA5
+3analyticsadmin.googleapis.com/DataRetentionSettings"¶
+"UpdateDataRetentionSettingsRequestZ
+data_retention_settings (24.google.analytics.admin.v1beta.DataRetentionSettingsBàA4
+update_mask (2.google.protobuf.FieldMaskBàA" 
+CreateDataStreamRequest@
+parent (	B0àAúA*(analyticsadmin.googleapis.com/DataStreamC
+data_stream (2).google.analytics.admin.v1beta.DataStreamBàA"Y
+DeleteDataStreamRequest>
+name (	B0àAúA*
+(analyticsadmin.googleapis.com/DataStream"
 UpdateDataStreamRequest>
-data_stream (2).google.analytics.admin.v1beta.DataStream5
-update_mask (2.google.protobuf.FieldMaskBâA"‚
-ListDataStreamsRequestA
-parent (	B1âAúA*(analyticsadmin.googleapis.com/DataStream
+data_stream (2).google.analytics.admin.v1beta.DataStream4
+update_mask (2.google.protobuf.FieldMaskBàA"
+ListDataStreamsRequest@
+parent (	B0àAúA*(analyticsadmin.googleapis.com/DataStream
 	page_size (
 
 page_token (	"s
 ListDataStreamsResponse?
 data_streams (2).google.analytics.admin.v1beta.DataStream
-next_page_token (	"W
-GetDataStreamRequest?
-name (	B1âAúA*
+next_page_token (	"V
+GetDataStreamRequest>
+name (	B0àAúA*
 (analyticsadmin.googleapis.com/DataStream2ÛP
 AnalyticsAdminService
 

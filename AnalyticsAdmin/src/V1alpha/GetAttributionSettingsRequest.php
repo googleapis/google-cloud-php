@@ -26,6 +26,7 @@ class GetAttributionSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the attribution settings to retrieve.
      *                     Format: properties/{property}/attributionSettings
+     *                     Please see {@see AnalyticsAdminServiceClient::attributionSettingsName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetAttributionSettingsRequest
      *

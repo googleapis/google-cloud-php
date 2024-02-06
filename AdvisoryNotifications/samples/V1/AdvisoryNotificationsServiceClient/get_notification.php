@@ -31,19 +31,20 @@ use Google\Cloud\AdvisoryNotifications\V1\Notification;
 /**
  * Gets a notification.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName A name of the notification to retrieve.
+ *                              Format:
+ *                              organizations/{organization}/locations/{location}/notifications/{notification}
+ *                              or projects/{projects}/locations/{location}/notifications/{notification}. Please see
+ *                              {@see AdvisoryNotificationsServiceClient::notificationName()} for help formatting this field.
  */
-function get_notification_sample(): void
+function get_notification_sample(string $formattedName): void
 {
     // Create a client.
     $advisoryNotificationsServiceClient = new AdvisoryNotificationsServiceClient();
 
     // Prepare the request message.
-    $request = new GetNotificationRequest();
+    $request = (new GetNotificationRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +54,25 @@ function get_notification_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AdvisoryNotificationsServiceClient::notificationName(
+        '[ORGANIZATION]',
+        '[LOCATION]',
+        '[NOTIFICATION]'
+    );
+
+    get_notification_sample($formattedName);
 }
 // [END advisorynotifications_v1_generated_AdvisoryNotificationsService_GetNotification_sync]

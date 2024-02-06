@@ -46,7 +46,8 @@ class ListWorkloadsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Parent Resource to list workloads from.
-     *                       Must be of the form `organizations/{org_id}/locations/{location}`.
+     *                       Must be of the form `organizations/{org_id}/locations/{location}`. Please see
+     *                       {@see AssuredWorkloadsServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AssuredWorkloads\V1\ListWorkloadsRequest
      *

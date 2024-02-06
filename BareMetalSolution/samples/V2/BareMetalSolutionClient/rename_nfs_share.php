@@ -32,19 +32,20 @@ use Google\Cloud\BareMetalSolution\V2\RenameNfsShareRequest;
  * RenameNfsShare sets a new name for an nfsshare.
  * Use with caution, previous names become immediately invalidated.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The `name` field is used to identify the nfsshare.
+ *                              Format: projects/{project}/locations/{location}/nfsshares/{nfsshare}
+ *                              Please see {@see BareMetalSolutionClient::nFSShareName()} for help formatting this field.
+ * @param string $newNfsshareId The new `id` of the nfsshare.
  */
-function rename_nfs_share_sample(): void
+function rename_nfs_share_sample(string $formattedName, string $newNfsshareId): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = new RenameNfsShareRequest();
+    $request = (new RenameNfsShareRequest())
+        ->setName($formattedName)
+        ->setNewNfsshareId($newNfsshareId);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +55,22 @@ function rename_nfs_share_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = BareMetalSolutionClient::nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
+    $newNfsshareId = '[NEW_NFSSHARE_ID]';
+
+    rename_nfs_share_sample($formattedName, $newNfsshareId);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_RenameNfsShare_sync]

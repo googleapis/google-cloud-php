@@ -106,7 +106,8 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
     private $params;
 
     /**
-     * @param string                                           $name         Required. Name of the model requested to serve the batch prediction.
+     * @param string                                           $name         Required. Name of the model requested to serve the batch prediction. Please see
+     *                                                                       {@see PredictionServiceClient::modelName()} for help formatting this field.
      * @param \Google\Cloud\AutoMl\V1\BatchPredictInputConfig  $inputConfig  Required. The input configuration for batch prediction.
      * @param \Google\Cloud\AutoMl\V1\BatchPredictOutputConfig $outputConfig Required. The Configuration specifying where output predictions should
      *                                                                       be written.

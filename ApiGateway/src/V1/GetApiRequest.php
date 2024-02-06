@@ -26,6 +26,7 @@ class GetApiRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Resource name of the form:
      *                     `projects/&#42;/locations/global/apis/*`
+     *                     Please see {@see ApiGatewayServiceClient::apiName()} for help formatting this field.
      *
      * @return \Google\Cloud\ApiGateway\V1\GetApiRequest
      *

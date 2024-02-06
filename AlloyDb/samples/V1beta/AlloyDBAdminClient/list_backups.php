@@ -31,13 +31,10 @@ use Google\Cloud\AlloyDb\V1beta\Backup;
 /**
  * Lists Backups in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Parent value for ListBackupsRequest
+ *                                Please see {@see AlloyDBAdminClient::locationName()} for help formatting this field.
  */
-function list_backups_sample(): void
+function list_backups_sample(string $formattedParent): void
 {
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
@@ -45,7 +42,7 @@ function list_backups_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $alloyDBAdminClient->listBackups();
+        $response = $alloyDBAdminClient->listBackups($formattedParent);
 
         /** @var Backup $element */
         foreach ($response as $element) {
@@ -54,5 +51,21 @@ function list_backups_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AlloyDBAdminClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_backups_sample($formattedParent);
 }
 // [END alloydb_v1beta_generated_AlloyDBAdmin_ListBackups_sync]

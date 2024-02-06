@@ -27,6 +27,7 @@ use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1beta\GoogleAdsLink;
 use Google\Analytics\Admin\V1beta\UpdateGoogleAdsLinkRequest;
 use Google\ApiCore\ApiException;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a GoogleAdsLink on a property
@@ -43,7 +44,9 @@ function update_google_ads_link_sample(): void
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateGoogleAdsLinkRequest();
+    $updateMask = new FieldMask();
+    $request = (new UpdateGoogleAdsLinkRequest())
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {

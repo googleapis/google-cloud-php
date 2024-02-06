@@ -42,7 +42,8 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
     private $show_deleted = false;
 
     /**
-     * @param string $parent Required. Lists all API keys associated with this project.
+     * @param string $parent Required. Lists all API keys associated with this project. Please see
+     *                       {@see ApiKeysClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\ApiKeys\V2\ListKeysRequest
      *

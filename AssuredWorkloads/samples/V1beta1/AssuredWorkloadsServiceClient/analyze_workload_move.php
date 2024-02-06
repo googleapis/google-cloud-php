@@ -31,13 +31,14 @@ use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
  * Analyze if the source Assured Workloads can be moved to the target Assured
  * Workload
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $target The resource ID of the folder-based destination workload. This workload is
+ *                       where the source project will hypothetically be moved to. Specify the
+ *                       workload's relative resource name, formatted as:
+ *                       "organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}"
+ *                       For example:
+ *                       "organizations/123/locations/us-east1/workloads/assured-workload-2"
  */
-function analyze_workload_move_sample(): void
+function analyze_workload_move_sample(string $target): void
 {
     // Create a client.
     $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
@@ -45,10 +46,26 @@ function analyze_workload_move_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var AnalyzeWorkloadMoveResponse $response */
-        $response = $assuredWorkloadsServiceClient->analyzeWorkloadMove();
+        $response = $assuredWorkloadsServiceClient->analyzeWorkloadMove($target);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $target = '[TARGET]';
+
+    analyze_workload_move_sample($target);
 }
 // [END assuredworkloads_v1beta1_generated_AssuredWorkloadsService_AnalyzeWorkloadMove_sync]

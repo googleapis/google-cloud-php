@@ -45,6 +45,7 @@ class ListAdSenseLinksRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. Resource name of the parent property.
      *                       Format: properties/{propertyId}
      *                       Example: properties/1234
+     *                       Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\ListAdSenseLinksRequest
      *

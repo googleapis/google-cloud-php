@@ -23,6 +23,7 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsdata_v1alpha_generated_AlphaAnalyticsData_CreateRecurringAudienceList_sync]
+use Google\Analytics\Data\V1alpha\AudienceDimension;
 use Google\Analytics\Data\V1alpha\Client\AlphaAnalyticsDataClient;
 use Google\Analytics\Data\V1alpha\CreateRecurringAudienceListRequest;
 use Google\Analytics\Data\V1alpha\RecurringAudienceList;
@@ -48,19 +49,30 @@ use Google\ApiCore\ApiException;
  * [Google Analytics Audience Export API
  * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent               The parent resource where this recurring audience list will be
+ *                                              created. Format: `properties/{property}`
+ *                                              Please see {@see AlphaAnalyticsDataClient::propertyName()} for help formatting this field.
+ * @param string $recurringAudienceListAudience The audience resource name. This resource name identifies the
+ *                                              audience being listed and is shared between the Analytics Data & Admin
+ *                                              APIs.
+ *
+ *                                              Format: `properties/{property}/audiences/{audience}`
  */
-function create_recurring_audience_list_sample(): void
-{
+function create_recurring_audience_list_sample(
+    string $formattedParent,
+    string $recurringAudienceListAudience
+): void {
     // Create a client.
     $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
 
     // Prepare the request message.
-    $request = new CreateRecurringAudienceListRequest();
+    $recurringAudienceListDimensions = [new AudienceDimension()];
+    $recurringAudienceList = (new RecurringAudienceList())
+        ->setAudience($recurringAudienceListAudience)
+        ->setDimensions($recurringAudienceListDimensions);
+    $request = (new CreateRecurringAudienceListRequest())
+        ->setParent($formattedParent)
+        ->setRecurringAudienceList($recurringAudienceList);
 
     // Call the API and handle any network failures.
     try {
@@ -70,5 +82,22 @@ function create_recurring_audience_list_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AlphaAnalyticsDataClient::propertyName('[PROPERTY]');
+    $recurringAudienceListAudience = '[AUDIENCE]';
+
+    create_recurring_audience_list_sample($formattedParent, $recurringAudienceListAudience);
 }
 // [END analyticsdata_v1alpha_generated_AlphaAnalyticsData_CreateRecurringAudienceList_sync]

@@ -23,7 +23,8 @@ class GetVPCSCConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the VPCSCConfig resource.
+     * @param string $name Required. The name of the VPCSCConfig resource. Please see
+     *                     {@see ArtifactRegistryClient::vpcscConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\GetVPCSCConfigRequest
      *

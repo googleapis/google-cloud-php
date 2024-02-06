@@ -25,9 +25,13 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START automl_v1_generated_PredictionService_BatchPredict_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AutoMl\V1\BatchPredictInputConfig;
+use Google\Cloud\AutoMl\V1\BatchPredictOutputConfig;
 use Google\Cloud\AutoMl\V1\BatchPredictRequest;
 use Google\Cloud\AutoMl\V1\BatchPredictResult;
 use Google\Cloud\AutoMl\V1\Client\PredictionServiceClient;
+use Google\Cloud\AutoMl\V1\GcsDestination;
+use Google\Cloud\AutoMl\V1\GcsSource;
 use Google\Rpc\Status;
 
 /**
@@ -47,19 +51,40 @@ use Google\Rpc\Status;
  * * AutoML Natural Language Sentiment Analysis
  * * AutoML Tables
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName                             Name of the model requested to serve the batch prediction. Please see
+ *                                                          {@see PredictionServiceClient::modelName()} for help formatting this field.
+ * @param string $inputConfigGcsSourceInputUrisElement      Google Cloud Storage URIs to input files, up to 2000
+ *                                                          characters long. Accepted forms:
+ *                                                          * Full object path, e.g. gs://bucket/directory/object.csv
+ * @param string $outputConfigGcsDestinationOutputUriPrefix Google Cloud Storage URI to output directory, up to 2000
+ *                                                          characters long.
+ *                                                          Accepted forms:
+ *                                                          * Prefix path: gs://bucket/directory
+ *                                                          The requesting user must have write permission to the bucket.
+ *                                                          The directory is created if it doesn't exist.
  */
-function batch_predict_sample(): void
-{
+function batch_predict_sample(
+    string $formattedName,
+    string $inputConfigGcsSourceInputUrisElement,
+    string $outputConfigGcsDestinationOutputUriPrefix
+): void {
     // Create a client.
     $predictionServiceClient = new PredictionServiceClient();
 
     // Prepare the request message.
-    $request = new BatchPredictRequest();
+    $inputConfigGcsSourceInputUris = [$inputConfigGcsSourceInputUrisElement,];
+    $inputConfigGcsSource = (new GcsSource())
+        ->setInputUris($inputConfigGcsSourceInputUris);
+    $inputConfig = (new BatchPredictInputConfig())
+        ->setGcsSource($inputConfigGcsSource);
+    $outputConfigGcsDestination = (new GcsDestination())
+        ->setOutputUriPrefix($outputConfigGcsDestinationOutputUriPrefix);
+    $outputConfig = (new BatchPredictOutputConfig())
+        ->setGcsDestination($outputConfigGcsDestination);
+    $request = (new BatchPredictRequest())
+        ->setName($formattedName)
+        ->setInputConfig($inputConfig)
+        ->setOutputConfig($outputConfig);
 
     // Call the API and handle any network failures.
     try {
@@ -79,5 +104,27 @@ function batch_predict_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = PredictionServiceClient::modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+    $inputConfigGcsSourceInputUrisElement = '[INPUT_URIS]';
+    $outputConfigGcsDestinationOutputUriPrefix = '[OUTPUT_URI_PREFIX]';
+
+    batch_predict_sample(
+        $formattedName,
+        $inputConfigGcsSourceInputUrisElement,
+        $outputConfigGcsDestinationOutputUriPrefix
+    );
 }
 // [END automl_v1_generated_PredictionService_BatchPredict_sync]

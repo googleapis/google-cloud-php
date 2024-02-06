@@ -27,25 +27,25 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
 use Google\Cloud\AlloyDb\V1\Instance;
+use Google\Cloud\AlloyDb\V1\Instance\InstanceType;
 use Google\Cloud\AlloyDb\V1\UpdateInstanceRequest;
 use Google\Rpc\Status;
 
 /**
  * Updates the parameters of a single Instance.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param int $instanceInstanceType The type of the instance. Specified at creation time.
  */
-function update_instance_sample(): void
+function update_instance_sample(int $instanceInstanceType): void
 {
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
     // Prepare the request message.
-    $request = new UpdateInstanceRequest();
+    $instance = (new Instance())
+        ->setInstanceType($instanceInstanceType);
+    $request = (new UpdateInstanceRequest())
+        ->setInstance($instance);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +65,21 @@ function update_instance_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $instanceInstanceType = InstanceType::INSTANCE_TYPE_UNSPECIFIED;
+
+    update_instance_sample($instanceInstanceType);
 }
 // [END alloydb_v1_generated_AlloyDBAdmin_UpdateInstance_sync]

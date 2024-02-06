@@ -42,6 +42,7 @@ class CreateApiSpecRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                  $parent    Required. The parent, which owns this collection of specs.
      *                                                           Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
+     *                                                           Please see {@see RegistryClient::apiVersionName()} for help formatting this field.
      * @param \Google\Cloud\ApigeeRegistry\V1\ApiSpec $apiSpec   Required. The spec to create.
      * @param string                                  $apiSpecId Required. The ID to use for the spec, which will become the final component of
      *                                                           the spec's resource name.

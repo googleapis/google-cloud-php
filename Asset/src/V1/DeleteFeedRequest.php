@@ -28,6 +28,7 @@ class DeleteFeedRequest extends \Google\Protobuf\Internal\Message
      *                     projects/project_number/feeds/feed_id
      *                     folders/folder_number/feeds/feed_id
      *                     organizations/organization_number/feeds/feed_id
+     *                     Please see {@see AssetServiceClient::feedName()} for help formatting this field.
      *
      * @return \Google\Cloud\Asset\V1\DeleteFeedRequest
      *

@@ -23,7 +23,8 @@ class EvictLunRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the lun.
+     * @param string $name Required. The name of the lun. Please see
+     *                     {@see BareMetalSolutionClient::lunName()} for help formatting this field.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\EvictLunRequest
      *

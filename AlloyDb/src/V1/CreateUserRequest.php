@@ -58,7 +58,8 @@ class CreateUserRequest extends \Google\Protobuf\Internal\Message
     protected $validate_only = false;
 
     /**
-     * @param string                        $parent Required. Value for parent.
+     * @param string                        $parent Required. Value for parent. Please see
+     *                                              {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
      * @param \Google\Cloud\AlloyDb\V1\User $user   Required. The resource being created
      * @param string                        $userId Required. ID of the requesting object.
      *

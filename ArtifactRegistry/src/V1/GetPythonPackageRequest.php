@@ -23,7 +23,8 @@ class GetPythonPackageRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the python package.
+     * @param string $name Required. The name of the python package. Please see
+     *                     {@see ArtifactRegistryClient::pythonPackageName()} for help formatting this field.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\GetPythonPackageRequest
      *

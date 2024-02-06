@@ -37,7 +37,8 @@ class ListMavenArtifactsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The name of the parent resource whose maven artifacts will be
-     *                       listed.
+     *                       listed. Please see
+     *                       {@see ArtifactRegistryClient::repositoryName()} for help formatting this field.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\ListMavenArtifactsRequest
      *

@@ -31,19 +31,18 @@ use Google\ApiCore\ApiException;
 /**
  * Lookup for a single DataStream.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the DataStream to get.
+ *                              Example format: properties/1234/dataStreams/5678
+ *                              Please see {@see AnalyticsAdminServiceClient::dataStreamName()} for help formatting this field.
  */
-function get_data_stream_sample(): void
+function get_data_stream_sample(string $formattedName): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new GetDataStreamRequest();
+    $request = (new GetDataStreamRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,21 @@ function get_data_stream_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AnalyticsAdminServiceClient::dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+
+    get_data_stream_sample($formattedName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetDataStream_sync]

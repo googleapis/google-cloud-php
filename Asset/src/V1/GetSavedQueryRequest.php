@@ -31,6 +31,7 @@ class GetSavedQueryRequest extends \Google\Protobuf\Internal\Message
      *                     * projects/project_number/savedQueries/saved_query_id
      *                     * folders/folder_number/savedQueries/saved_query_id
      *                     * organizations/organization_number/savedQueries/saved_query_id
+     *                     Please see {@see AssetServiceClient::savedQueryName()} for help formatting this field.
      *
      * @return \Google\Cloud\Asset\V1\GetSavedQueryRequest
      *

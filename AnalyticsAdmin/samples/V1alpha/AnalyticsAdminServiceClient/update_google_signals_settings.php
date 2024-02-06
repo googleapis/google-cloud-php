@@ -27,6 +27,7 @@ use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest;
 use Google\ApiCore\ApiException;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates Google Signals settings for a property.
@@ -43,7 +44,11 @@ function update_google_signals_settings_sample(): void
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateGoogleSignalsSettingsRequest();
+    $googleSignalsSettings = new GoogleSignalsSettings();
+    $updateMask = new FieldMask();
+    $request = (new UpdateGoogleSignalsSettingsRequest())
+        ->setGoogleSignalsSettings($googleSignalsSettings)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {

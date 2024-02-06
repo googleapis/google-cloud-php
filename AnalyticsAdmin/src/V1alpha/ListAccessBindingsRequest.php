@@ -46,6 +46,7 @@ class ListAccessBindingsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. Formats:
      *                       - accounts/{account}
      *                       - properties/{property}
+     *                       Please see {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\ListAccessBindingsRequest
      *

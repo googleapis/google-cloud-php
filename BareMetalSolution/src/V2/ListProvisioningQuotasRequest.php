@@ -38,7 +38,8 @@ class ListProvisioningQuotasRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent Required. Parent value for ListProvisioningQuotasRequest.
+     * @param string $parent Required. Parent value for ListProvisioningQuotasRequest. Please see
+     *                       {@see BareMetalSolutionClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\ListProvisioningQuotasRequest
      *

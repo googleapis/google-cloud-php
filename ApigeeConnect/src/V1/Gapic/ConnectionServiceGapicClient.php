@@ -45,8 +45,9 @@ use Google\Cloud\ApigeeConnect\V1\ListConnectionsResponse;
  * ```
  * $connectionServiceClient = new ConnectionServiceClient();
  * try {
+ *     $formattedParent = $connectionServiceClient->endpointName('[PROJECT]', '[ENDPOINT]');
  *     // Iterate over pages of elements
- *     $pagedResponse = $connectionServiceClient->listConnections();
+ *     $pagedResponse = $connectionServiceClient->listConnections($formattedParent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -54,7 +55,7 @@ use Google\Cloud\ApigeeConnect\V1\ListConnectionsResponse;
  *     }
  *     // Alternatively:
  *     // Iterate through all elements
- *     $pagedResponse = $connectionServiceClient->listConnections();
+ *     $pagedResponse = $connectionServiceClient->listConnections($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -267,8 +268,9 @@ class ConnectionServiceGapicClient
      * ```
      * $connectionServiceClient = new ConnectionServiceClient();
      * try {
+     *     $formattedParent = $connectionServiceClient->endpointName('[PROJECT]', '[ENDPOINT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $connectionServiceClient->listConnections();
+     *     $pagedResponse = $connectionServiceClient->listConnections($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -276,7 +278,7 @@ class ConnectionServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $connectionServiceClient->listConnections();
+     *     $pagedResponse = $connectionServiceClient->listConnections($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -285,12 +287,11 @@ class ConnectionServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Parent name of the form:
+     *                             `projects/{project_number or project_id}/endpoints/{endpoint}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent name of the form:
-     *           `projects/{project_number or project_id}/endpoints/{endpoint}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -310,15 +311,12 @@ class ConnectionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listConnections(array $optionalArgs = [])
+    public function listConnections($parent, array $optionalArgs = [])
     {
         $request = new ListConnectionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

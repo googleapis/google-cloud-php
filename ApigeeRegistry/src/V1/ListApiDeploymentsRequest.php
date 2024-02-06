@@ -51,6 +51,7 @@ class ListApiDeploymentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent, which owns this collection of deployments.
      *                       Format: `projects/&#42;/locations/&#42;/apis/*`
+     *                       Please see {@see RegistryClient::apiName()} for help formatting this field.
      *
      * @return \Google\Cloud\ApigeeRegistry\V1\ListApiDeploymentsRequest
      *

@@ -31,6 +31,7 @@ class DeleteApiSpecRevisionRequest extends \Google\Protobuf\Internal\Message
      *
      *                     Example:
      *                     `projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml&#64;c7cfa2a8`
+     *                     Please see {@see RegistryClient::apiSpecName()} for help formatting this field.
      *
      * @return \Google\Cloud\ApigeeRegistry\V1\DeleteApiSpecRevisionRequest
      *

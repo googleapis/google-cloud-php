@@ -61,6 +61,7 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                     $parent Required. The parent resource name where the Job will be created.
      *                                           Pattern: "projects/{project}/locations/{location}"
+     *                                           Please see {@see BatchServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Batch\V1\Job $job    Required. The Job to create.
      * @param string                     $jobId  ID used to uniquely identify the Job within its parent scope.
      *                                           This field should contain at most 63 characters and must start with

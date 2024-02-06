@@ -30,19 +30,18 @@ use Google\ApiCore\ApiException;
 /**
  * Deletes a DisplayVideo360AdvertiserLink on a property.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the DisplayVideo360AdvertiserLink to delete.
+ *                              Example format: properties/1234/displayVideo360AdvertiserLinks/5678
+ *                              Please see {@see AnalyticsAdminServiceClient::displayVideo360AdvertiserLinkName()} for help formatting this field.
  */
-function delete_display_video360_advertiser_link_sample(): void
+function delete_display_video360_advertiser_link_sample(string $formattedName): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteDisplayVideo360AdvertiserLinkRequest();
+    $request = (new DeleteDisplayVideo360AdvertiserLinkRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -51,5 +50,24 @@ function delete_display_video360_advertiser_link_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AnalyticsAdminServiceClient::displayVideo360AdvertiserLinkName(
+        '[PROPERTY]',
+        '[DISPLAY_VIDEO_360_ADVERTISER_LINK]'
+    );
+
+    delete_display_video360_advertiser_link_sample($formattedName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_DeleteDisplayVideo360AdvertiserLink_sync]

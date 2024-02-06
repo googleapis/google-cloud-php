@@ -45,6 +45,7 @@ class ListMeasurementProtocolSecretsRequest extends \Google\Protobuf\Internal\Me
      * @param string $parent Required. The resource name of the parent stream.
      *                       Format:
      *                       properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets
+     *                       Please see {@see AnalyticsAdminServiceClient::dataStreamName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsRequest
      *

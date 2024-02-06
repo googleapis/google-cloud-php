@@ -28,6 +28,7 @@ class GetBigQueryLinkRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the BigQuery link to lookup.
      *                     Format: properties/{property_id}/bigQueryLinks/{bigquery_link_id}
      *                     Example: properties/123/bigQueryLinks/456
+     *                     Please see {@see AnalyticsAdminServiceClient::bigQueryLinkName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetBigQueryLinkRequest
      *

@@ -94,7 +94,8 @@ use Google\Protobuf\Timestamp;
  * ```
  * $assetServiceClient = new AssetServiceClient();
  * try {
- *     $response = $assetServiceClient->analyzeIamPolicy();
+ *     $analysisQuery = new IamPolicyAnalysisQuery();
+ *     $response = $assetServiceClient->analyzeIamPolicy($analysisQuery);
  * } finally {
  *     $assetServiceClient->close();
  * }
@@ -666,17 +667,17 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $response = $assetServiceClient->analyzeIamPolicy();
+     *     $analysisQuery = new IamPolicyAnalysisQuery();
+     *     $response = $assetServiceClient->analyzeIamPolicy($analysisQuery);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param IamPolicyAnalysisQuery $analysisQuery Required. The request query.
+     * @param array                  $optionalArgs  {
      *     Optional.
      *
-     *     @type IamPolicyAnalysisQuery $analysisQuery
-     *           Required. The request query.
      *     @type string $savedAnalysisQuery
      *           Optional. The name of a saved query, which must be in the format of:
      *
@@ -716,14 +717,14 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function analyzeIamPolicy(array $optionalArgs = [])
+    public function analyzeIamPolicy($analysisQuery, array $optionalArgs = [])
     {
         $request = new AnalyzeIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['analysisQuery'])) {
-            $request->setAnalysisQuery($optionalArgs['analysisQuery']);
-        }
-
+        $request->setAnalysisQuery($analysisQuery);
+        $requestParamHeaders[
+            'analysis_query.scope'
+        ] = $analysisQuery->getScope();
         if (isset($optionalArgs['savedAnalysisQuery'])) {
             $request->setSavedAnalysisQuery(
                 $optionalArgs['savedAnalysisQuery']
@@ -764,7 +765,9 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $operationResponse = $assetServiceClient->analyzeIamPolicyLongrunning();
+     *     $analysisQuery = new IamPolicyAnalysisQuery();
+     *     $outputConfig = new IamPolicyAnalysisOutputConfig();
+     *     $operationResponse = $assetServiceClient->analyzeIamPolicyLongrunning($analysisQuery, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -775,7 +778,7 @@ class AssetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $assetServiceClient->analyzeIamPolicyLongrunning();
+     *     $operationResponse = $assetServiceClient->analyzeIamPolicyLongrunning($analysisQuery, $outputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $assetServiceClient->resumeOperation($operationName, 'analyzeIamPolicyLongrunning');
@@ -795,11 +798,12 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param IamPolicyAnalysisQuery        $analysisQuery Required. The request query.
+     * @param IamPolicyAnalysisOutputConfig $outputConfig  Required. Output configuration indicating where the results will be output
+     *                                                     to.
+     * @param array                         $optionalArgs  {
      *     Optional.
      *
-     *     @type IamPolicyAnalysisQuery $analysisQuery
-     *           Required. The request query.
      *     @type string $savedAnalysisQuery
      *           Optional. The name of a saved query, which must be in the format of:
      *
@@ -817,9 +821,6 @@ class AssetServiceGapicClient
      *           Note that you cannot override primitive fields with default value, such as
      *           0 or empty string, etc., because we use proto3, which doesn't support field
      *           presence yet.
-     *     @type IamPolicyAnalysisOutputConfig $outputConfig
-     *           Required. Output configuration indicating where the results will be output
-     *           to.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -830,22 +831,22 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function analyzeIamPolicyLongrunning(array $optionalArgs = [])
-    {
+    public function analyzeIamPolicyLongrunning(
+        $analysisQuery,
+        $outputConfig,
+        array $optionalArgs = []
+    ) {
         $request = new AnalyzeIamPolicyLongrunningRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['analysisQuery'])) {
-            $request->setAnalysisQuery($optionalArgs['analysisQuery']);
-        }
-
+        $request->setAnalysisQuery($analysisQuery);
+        $request->setOutputConfig($outputConfig);
+        $requestParamHeaders[
+            'analysis_query.scope'
+        ] = $analysisQuery->getScope();
         if (isset($optionalArgs['savedAnalysisQuery'])) {
             $request->setSavedAnalysisQuery(
                 $optionalArgs['savedAnalysisQuery']
             );
-        }
-
-        if (isset($optionalArgs['outputConfig'])) {
-            $request->setOutputConfig($optionalArgs['outputConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -873,26 +874,26 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $response = $assetServiceClient->analyzeMove();
+     *     $formattedResource = $assetServiceClient->projectName('[PROJECT]');
+     *     $destinationParent = 'destination_parent';
+     *     $response = $assetServiceClient->analyzeMove($formattedResource, $destinationParent);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource          Required. Name of the resource to perform the analysis against.
+     *                                  Only Google Cloud projects are supported as of today. Hence, this can only
+     *                                  be a project ID (such as "projects/my-project-id") or a project number
+     *                                  (such as "projects/12345").
+     * @param string $destinationParent Required. Name of the Google Cloud folder or organization to reparent the
+     *                                  target resource. The analysis will be performed against hypothetically
+     *                                  moving the resource to this specified desitination parent. This can only be
+     *                                  a folder number (such as "folders/123") or an organization number (such as
+     *                                  "organizations/123").
+     * @param array  $optionalArgs      {
      *     Optional.
      *
-     *     @type string $resource
-     *           Required. Name of the resource to perform the analysis against.
-     *           Only Google Cloud projects are supported as of today. Hence, this can only
-     *           be a project ID (such as "projects/my-project-id") or a project number
-     *           (such as "projects/12345").
-     *     @type string $destinationParent
-     *           Required. Name of the Google Cloud folder or organization to reparent the
-     *           target resource. The analysis will be performed against hypothetically
-     *           moving the resource to this specified desitination parent. This can only be
-     *           a folder number (such as "folders/123") or an organization number (such as
-     *           "organizations/123").
      *     @type int $view
      *           Analysis view indicating what information should be included in the
      *           analysis response. If unspecified, the default view is FULL.
@@ -907,19 +908,16 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function analyzeMove(array $optionalArgs = [])
-    {
+    public function analyzeMove(
+        $resource,
+        $destinationParent,
+        array $optionalArgs = []
+    ) {
         $request = new AnalyzeMoveRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['destinationParent'])) {
-            $request->setDestinationParent($optionalArgs['destinationParent']);
-        }
-
+        $request->setResource($resource);
+        $request->setDestinationParent($destinationParent);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -945,8 +943,10 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
+     *     $scope = 'scope';
+     *     $constraint = 'constraint';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicies();
+     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicies($scope, $constraint);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -954,7 +954,7 @@ class AssetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicies();
+     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicies($scope, $constraint);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -963,18 +963,16 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $scope        Required. The organization to scope the request. Only organization
+     *                             policies within the scope will be analyzed.
+     *
+     *                             * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+     * @param string $constraint   Required. The name of the constraint to analyze organization policies for.
+     *                             The response only contains analyzed organization policies for the provided
+     *                             constraint.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $scope
-     *           Required. The organization to scope the request. Only organization
-     *           policies within the scope will be analyzed.
-     *
-     *           * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
-     *     @type string $constraint
-     *           Required. The name of the constraint to analyze organization policies for.
-     *           The response only contains analyzed organization policies for the provided
-     *           constraint.
      *     @type string $filter
      *           The expression to filter
      *           [AnalyzeOrgPoliciesResponse.org_policy_results][google.cloud.asset.v1.AnalyzeOrgPoliciesResponse.org_policy_results].
@@ -1006,19 +1004,16 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function analyzeOrgPolicies(array $optionalArgs = [])
-    {
+    public function analyzeOrgPolicies(
+        $scope,
+        $constraint,
+        array $optionalArgs = []
+    ) {
         $request = new AnalyzeOrgPoliciesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['scope'])) {
-            $request->setScope($optionalArgs['scope']);
-            $requestParamHeaders['scope'] = $optionalArgs['scope'];
-        }
-
-        if (isset($optionalArgs['constraint'])) {
-            $request->setConstraint($optionalArgs['constraint']);
-        }
-
+        $request->setScope($scope);
+        $request->setConstraint($constraint);
+        $requestParamHeaders['scope'] = $scope;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1070,8 +1065,10 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
+     *     $scope = 'scope';
+     *     $constraint = 'constraint';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicyGovernedAssets();
+     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicyGovernedAssets($scope, $constraint);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1079,7 +1076,7 @@ class AssetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicyGovernedAssets();
+     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicyGovernedAssets($scope, $constraint);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1088,20 +1085,18 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $scope        Required. The organization to scope the request. Only organization
+     *                             policies within the scope will be analyzed. The output assets will
+     *                             also be limited to the ones governed by those in-scope organization
+     *                             policies.
+     *
+     *                             * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+     * @param string $constraint   Required. The name of the constraint to analyze governed assets for. The
+     *                             analysis only contains analyzed organization policies for the provided
+     *                             constraint.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $scope
-     *           Required. The organization to scope the request. Only organization
-     *           policies within the scope will be analyzed. The output assets will
-     *           also be limited to the ones governed by those in-scope organization
-     *           policies.
-     *
-     *           * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
-     *     @type string $constraint
-     *           Required. The name of the constraint to analyze governed assets for. The
-     *           analysis only contains analyzed organization policies for the provided
-     *           constraint.
      *     @type string $filter
      *           The expression to filter
      *           [AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets].
@@ -1149,19 +1144,16 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function analyzeOrgPolicyGovernedAssets(array $optionalArgs = [])
-    {
+    public function analyzeOrgPolicyGovernedAssets(
+        $scope,
+        $constraint,
+        array $optionalArgs = []
+    ) {
         $request = new AnalyzeOrgPolicyGovernedAssetsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['scope'])) {
-            $request->setScope($optionalArgs['scope']);
-            $requestParamHeaders['scope'] = $optionalArgs['scope'];
-        }
-
-        if (isset($optionalArgs['constraint'])) {
-            $request->setConstraint($optionalArgs['constraint']);
-        }
-
+        $request->setScope($scope);
+        $request->setConstraint($constraint);
+        $requestParamHeaders['scope'] = $scope;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1196,8 +1188,10 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
+     *     $scope = 'scope';
+     *     $constraint = 'constraint';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicyGovernedContainers();
+     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicyGovernedContainers($scope, $constraint);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1205,7 +1199,7 @@ class AssetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicyGovernedContainers();
+     *     $pagedResponse = $assetServiceClient->analyzeOrgPolicyGovernedContainers($scope, $constraint);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1214,20 +1208,18 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $scope        Required. The organization to scope the request. Only organization
+     *                             policies within the scope will be analyzed. The output containers will
+     *                             also be limited to the ones governed by those in-scope organization
+     *                             policies.
+     *
+     *                             * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+     * @param string $constraint   Required. The name of the constraint to analyze governed containers for.
+     *                             The analysis only contains organization policies for the provided
+     *                             constraint.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $scope
-     *           Required. The organization to scope the request. Only organization
-     *           policies within the scope will be analyzed. The output containers will
-     *           also be limited to the ones governed by those in-scope organization
-     *           policies.
-     *
-     *           * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
-     *     @type string $constraint
-     *           Required. The name of the constraint to analyze governed containers for.
-     *           The analysis only contains organization policies for the provided
-     *           constraint.
      *     @type string $filter
      *           The expression to filter
      *           [AnalyzeOrgPolicyGovernedContainersResponse.governed_containers][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.governed_containers].
@@ -1259,19 +1251,16 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function analyzeOrgPolicyGovernedContainers(array $optionalArgs = [])
-    {
+    public function analyzeOrgPolicyGovernedContainers(
+        $scope,
+        $constraint,
+        array $optionalArgs = []
+    ) {
         $request = new AnalyzeOrgPolicyGovernedContainersRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['scope'])) {
-            $request->setScope($optionalArgs['scope']);
-            $requestParamHeaders['scope'] = $optionalArgs['scope'];
-        }
-
-        if (isset($optionalArgs['constraint'])) {
-            $request->setConstraint($optionalArgs['constraint']);
-        }
-
+        $request->setScope($scope);
+        $request->setConstraint($constraint);
+        $requestParamHeaders['scope'] = $scope;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1311,14 +1300,18 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
+     *     $parent = 'parent';
      *     $contentType = ContentType::CONTENT_TYPE_UNSPECIFIED;
      *     $readTimeWindow = new TimeWindow();
-     *     $response = $assetServiceClient->batchGetAssetsHistory($contentType, $readTimeWindow);
+     *     $response = $assetServiceClient->batchGetAssetsHistory($parent, $contentType, $readTimeWindow);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
+     * @param string     $parent         Required. The relative name of the root asset. It can only be an
+     *                                   organization number (such as "organizations/123"), a project ID (such as
+     *                                   "projects/my-project-id")", or a project number (such as "projects/12345").
      * @param int        $contentType    Optional. The content type.
      *                                   For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1\ContentType}
      * @param TimeWindow $readTimeWindow Optional. The time window for the asset history. Both start_time and
@@ -1330,10 +1323,6 @@ class AssetServiceGapicClient
      * @param array      $optionalArgs   {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The relative name of the root asset. It can only be an
-     *           organization number (such as "organizations/123"), a project ID (such as
-     *           "projects/my-project-id")", or a project number (such as "projects/12345").
      *     @type string[] $assetNames
      *           A list of the full names of the assets.
      *           See: https://cloud.google.com/asset-inventory/docs/resource-name-format
@@ -1371,19 +1360,17 @@ class AssetServiceGapicClient
      * @throws ApiException if the remote call fails
      */
     public function batchGetAssetsHistory(
+        $parent,
         $contentType,
         $readTimeWindow,
         array $optionalArgs = []
     ) {
         $request = new BatchGetAssetsHistoryRequest();
         $requestParamHeaders = [];
+        $request->setParent($parent);
         $request->setContentType($contentType);
         $request->setReadTimeWindow($readTimeWindow);
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['assetNames'])) {
             $request->setAssetNames($optionalArgs['assetNames']);
         }
@@ -1413,33 +1400,33 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $response = $assetServiceClient->batchGetEffectiveIamPolicies();
+     *     $scope = 'scope';
+     *     $names = [];
+     *     $response = $assetServiceClient->batchGetEffectiveIamPolicies($scope, $names);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $scope        Required. Only IAM policies on or below the scope will be returned.
+     *
+     *                               This can only be an organization number (such as "organizations/123"), a
+     *                               folder number (such as "folders/123"), a project ID (such as
+     *                               "projects/my-project-id"), or a project number (such as "projects/12345").
+     *
+     *                               To know how to get organization id, visit [here
+     *                               ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).
+     *
+     *                               To know how to get folder or project id, visit [here
+     *                               ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     * @param string[] $names        Required. The names refer to the [full_resource_names]
+     *                               (https://cloud.google.com/asset-inventory/docs/resource-name-format)
+     *                               of [searchable asset
+     *                               types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
+     *                               A maximum of 20 resources' effective policies can be retrieved in a batch.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $scope
-     *           Required. Only IAM policies on or below the scope will be returned.
-     *
-     *           This can only be an organization number (such as "organizations/123"), a
-     *           folder number (such as "folders/123"), a project ID (such as
-     *           "projects/my-project-id"), or a project number (such as "projects/12345").
-     *
-     *           To know how to get organization id, visit [here
-     *           ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).
-     *
-     *           To know how to get folder or project id, visit [here
-     *           ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
-     *     @type string[] $names
-     *           Required. The names refer to the [full_resource_names]
-     *           (https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     *           of [searchable asset
-     *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
-     *           A maximum of 20 resources' effective policies can be retrieved in a batch.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1450,19 +1437,16 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchGetEffectiveIamPolicies(array $optionalArgs = [])
-    {
+    public function batchGetEffectiveIamPolicies(
+        $scope,
+        $names,
+        array $optionalArgs = []
+    ) {
         $request = new BatchGetEffectiveIamPoliciesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['scope'])) {
-            $request->setScope($optionalArgs['scope']);
-            $requestParamHeaders['scope'] = $optionalArgs['scope'];
-        }
-
-        if (isset($optionalArgs['names'])) {
-            $request->setNames($optionalArgs['names']);
-        }
-
+        $request->setScope($scope);
+        $request->setNames($names);
+        $requestParamHeaders['scope'] = $scope;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1485,29 +1469,29 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $response = $assetServiceClient->createFeed();
+     *     $parent = 'parent';
+     *     $feedId = 'feed_id';
+     *     $feed = new Feed();
+     *     $response = $assetServiceClient->createFeed($parent, $feedId, $feed);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the project/folder/organization where this feed
+     *                             should be created in. It can only be an organization number (such as
+     *                             "organizations/123"), a folder number (such as "folders/123"), a project ID
+     *                             (such as "projects/my-project-id"), or a project number (such as
+     *                             "projects/12345").
+     * @param string $feedId       Required. This is the client-assigned asset feed identifier and it needs to
+     *                             be unique under a specific parent project/folder/organization.
+     * @param Feed   $feed         Required. The feed details. The field `name` must be empty and it will be
+     *                             generated in the format of: projects/project_number/feeds/feed_id
+     *                             folders/folder_number/feeds/feed_id
+     *                             organizations/organization_number/feeds/feed_id
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the project/folder/organization where this feed
-     *           should be created in. It can only be an organization number (such as
-     *           "organizations/123"), a folder number (such as "folders/123"), a project ID
-     *           (such as "projects/my-project-id"), or a project number (such as
-     *           "projects/12345").
-     *     @type string $feedId
-     *           Required. This is the client-assigned asset feed identifier and it needs to
-     *           be unique under a specific parent project/folder/organization.
-     *     @type Feed $feed
-     *           Required. The feed details. The field `name` must be empty and it will be
-     *           generated in the format of: projects/project_number/feeds/feed_id
-     *           folders/folder_number/feeds/feed_id
-     *           organizations/organization_number/feeds/feed_id
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1518,23 +1502,18 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createFeed(array $optionalArgs = [])
-    {
+    public function createFeed(
+        $parent,
+        $feedId,
+        $feed,
+        array $optionalArgs = []
+    ) {
         $request = new CreateFeedRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['feedId'])) {
-            $request->setFeedId($optionalArgs['feedId']);
-        }
-
-        if (isset($optionalArgs['feed'])) {
-            $request->setFeed($optionalArgs['feed']);
-        }
-
+        $request->setParent($parent);
+        $request->setFeedId($feedId);
+        $request->setFeed($feed);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1556,34 +1535,34 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $response = $assetServiceClient->createSavedQuery();
+     *     $formattedParent = $assetServiceClient->projectName('[PROJECT]');
+     *     $savedQuery = new SavedQuery();
+     *     $savedQueryId = 'saved_query_id';
+     *     $response = $assetServiceClient->createSavedQuery($formattedParent, $savedQuery, $savedQueryId);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string     $parent       Required. The name of the project/folder/organization where this
+     *                                 saved_query should be created in. It can only be an organization number
+     *                                 (such as "organizations/123"), a folder number (such as "folders/123"), a
+     *                                 project ID (such as "projects/my-project-id"), or a project number (such as
+     *                                 "projects/12345").
+     * @param SavedQuery $savedQuery   Required. The saved_query details. The `name` field must be empty as it
+     *                                 will be generated based on the parent and saved_query_id.
+     * @param string     $savedQueryId Required. The ID to use for the saved query, which must be unique in the
+     *                                 specified parent. It will become the final component of the saved query's
+     *                                 resource name.
+     *
+     *                                 This value should be 4-63 characters, and valid characters
+     *                                 are `[a-z][0-9]-`.
+     *
+     *                                 Notice that this field is required in the saved query creation, and the
+     *                                 `name` field of the `saved_query` will be ignored.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the project/folder/organization where this
-     *           saved_query should be created in. It can only be an organization number
-     *           (such as "organizations/123"), a folder number (such as "folders/123"), a
-     *           project ID (such as "projects/my-project-id"), or a project number (such as
-     *           "projects/12345").
-     *     @type SavedQuery $savedQuery
-     *           Required. The saved_query details. The `name` field must be empty as it
-     *           will be generated based on the parent and saved_query_id.
-     *     @type string $savedQueryId
-     *           Required. The ID to use for the saved query, which must be unique in the
-     *           specified parent. It will become the final component of the saved query's
-     *           resource name.
-     *
-     *           This value should be 4-63 characters, and valid characters
-     *           are `[a-z][0-9]-`.
-     *
-     *           Notice that this field is required in the saved query creation, and the
-     *           `name` field of the `saved_query` will be ignored.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1594,23 +1573,18 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSavedQuery(array $optionalArgs = [])
-    {
+    public function createSavedQuery(
+        $parent,
+        $savedQuery,
+        $savedQueryId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateSavedQueryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['savedQuery'])) {
-            $request->setSavedQuery($optionalArgs['savedQuery']);
-        }
-
-        if (isset($optionalArgs['savedQueryId'])) {
-            $request->setSavedQueryId($optionalArgs['savedQueryId']);
-        }
-
+        $request->setParent($parent);
+        $request->setSavedQuery($savedQuery);
+        $request->setSavedQueryId($savedQueryId);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1632,20 +1606,20 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $assetServiceClient->deleteFeed();
+     *     $formattedName = $assetServiceClient->feedName('[PROJECT]', '[FEED]');
+     *     $assetServiceClient->deleteFeed($formattedName);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the feed and it must be in the format of:
+     *                             projects/project_number/feeds/feed_id
+     *                             folders/folder_number/feeds/feed_id
+     *                             organizations/organization_number/feeds/feed_id
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the feed and it must be in the format of:
-     *           projects/project_number/feeds/feed_id
-     *           folders/folder_number/feeds/feed_id
-     *           organizations/organization_number/feeds/feed_id
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1654,15 +1628,12 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteFeed(array $optionalArgs = [])
+    public function deleteFeed($name, array $optionalArgs = [])
     {
         $request = new DeleteFeedRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1684,22 +1655,22 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $assetServiceClient->deleteSavedQuery();
+     *     $formattedName = $assetServiceClient->savedQueryName('[PROJECT]', '[SAVED_QUERY]');
+     *     $assetServiceClient->deleteSavedQuery($formattedName);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the saved query to delete. It must be in the format
+     *                             of:
+     *
+     *                             * projects/project_number/savedQueries/saved_query_id
+     *                             * folders/folder_number/savedQueries/saved_query_id
+     *                             * organizations/organization_number/savedQueries/saved_query_id
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the saved query to delete. It must be in the format
-     *           of:
-     *
-     *           * projects/project_number/savedQueries/saved_query_id
-     *           * folders/folder_number/savedQueries/saved_query_id
-     *           * organizations/organization_number/savedQueries/saved_query_id
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1708,15 +1679,12 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSavedQuery(array $optionalArgs = [])
+    public function deleteSavedQuery($name, array $optionalArgs = [])
     {
         $request = new DeleteSavedQueryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1748,7 +1716,9 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $operationResponse = $assetServiceClient->exportAssets();
+     *     $parent = 'parent';
+     *     $outputConfig = new OutputConfig();
+     *     $operationResponse = $assetServiceClient->exportAssets($parent, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1759,7 +1729,7 @@ class AssetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $assetServiceClient->exportAssets();
+     *     $operationResponse = $assetServiceClient->exportAssets($parent, $outputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $assetServiceClient->resumeOperation($operationName, 'exportAssets');
@@ -1779,14 +1749,15 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string       $parent       Required. The relative name of the root asset. This can only be an
+     *                                   organization number (such as "organizations/123"), a project ID (such as
+     *                                   "projects/my-project-id"), or a project number (such as "projects/12345"),
+     *                                   or a folder number (such as "folders/123").
+     * @param OutputConfig $outputConfig Required. Output configuration indicating where the results will be output
+     *                                   to.
+     * @param array        $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The relative name of the root asset. This can only be an
-     *           organization number (such as "organizations/123"), a project ID (such as
-     *           "projects/my-project-id"), or a project number (such as "projects/12345"),
-     *           or a folder number (such as "folders/123").
      *     @type Timestamp $readTime
      *           Timestamp to take an asset snapshot. This can only be set to a timestamp
      *           between the current time and the current time minus 35 days (inclusive).
@@ -1816,9 +1787,6 @@ class AssetServiceGapicClient
      *           Asset content type. If not specified, no content but the asset name will be
      *           returned.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1\ContentType}
-     *     @type OutputConfig $outputConfig
-     *           Required. Output configuration indicating where the results will be output
-     *           to.
      *     @type string[] $relationshipTypes
      *           A list of relationship types to export, for example:
      *           `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
@@ -1845,15 +1813,16 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function exportAssets(array $optionalArgs = [])
-    {
+    public function exportAssets(
+        $parent,
+        $outputConfig,
+        array $optionalArgs = []
+    ) {
         $request = new ExportAssetsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $request->setOutputConfig($outputConfig);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['readTime'])) {
             $request->setReadTime($optionalArgs['readTime']);
         }
@@ -1864,10 +1833,6 @@ class AssetServiceGapicClient
 
         if (isset($optionalArgs['contentType'])) {
             $request->setContentType($optionalArgs['contentType']);
-        }
-
-        if (isset($optionalArgs['outputConfig'])) {
-            $request->setOutputConfig($optionalArgs['outputConfig']);
         }
 
         if (isset($optionalArgs['relationshipTypes'])) {
@@ -1895,20 +1860,20 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $response = $assetServiceClient->getFeed();
+     *     $formattedName = $assetServiceClient->feedName('[PROJECT]', '[FEED]');
+     *     $response = $assetServiceClient->getFeed($formattedName);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Feed and it must be in the format of:
+     *                             projects/project_number/feeds/feed_id
+     *                             folders/folder_number/feeds/feed_id
+     *                             organizations/organization_number/feeds/feed_id
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Feed and it must be in the format of:
-     *           projects/project_number/feeds/feed_id
-     *           folders/folder_number/feeds/feed_id
-     *           organizations/organization_number/feeds/feed_id
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1919,15 +1884,12 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getFeed(array $optionalArgs = [])
+    public function getFeed($name, array $optionalArgs = [])
     {
         $request = new GetFeedRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1949,21 +1911,21 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $response = $assetServiceClient->getSavedQuery();
+     *     $formattedName = $assetServiceClient->savedQueryName('[PROJECT]', '[SAVED_QUERY]');
+     *     $response = $assetServiceClient->getSavedQuery($formattedName);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the saved query and it must be in the format of:
+     *
+     *                             * projects/project_number/savedQueries/saved_query_id
+     *                             * folders/folder_number/savedQueries/saved_query_id
+     *                             * organizations/organization_number/savedQueries/saved_query_id
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the saved query and it must be in the format of:
-     *
-     *           * projects/project_number/savedQueries/saved_query_id
-     *           * folders/folder_number/savedQueries/saved_query_id
-     *           * organizations/organization_number/savedQueries/saved_query_id
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1974,15 +1936,12 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSavedQuery(array $optionalArgs = [])
+    public function getSavedQuery($name, array $optionalArgs = [])
     {
         $request = new GetSavedQueryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2005,8 +1964,9 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
+     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $assetServiceClient->listAssets();
+     *     $pagedResponse = $assetServiceClient->listAssets($parent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2014,7 +1974,7 @@ class AssetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $assetServiceClient->listAssets();
+     *     $pagedResponse = $assetServiceClient->listAssets($parent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2023,15 +1983,14 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Name of the organization, folder, or project the assets belong
+     *                             to. Format: "organizations/[organization-number]" (such as
+     *                             "organizations/123"), "projects/[project-id]" (such as
+     *                             "projects/my-project-id"), "projects/[project-number]" (such as
+     *                             "projects/12345"), or "folders/[folder-number]" (such as "folders/12345").
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Name of the organization, folder, or project the assets belong
-     *           to. Format: "organizations/[organization-number]" (such as
-     *           "organizations/123"), "projects/[project-id]" (such as
-     *           "projects/my-project-id"), "projects/[project-number]" (such as
-     *           "projects/12345"), or "folders/[folder-number]" (such as "folders/12345").
      *     @type Timestamp $readTime
      *           Timestamp to take an asset snapshot. This can only be set to a timestamp
      *           between the current time and the current time minus 35 days (inclusive).
@@ -2096,15 +2055,12 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAssets(array $optionalArgs = [])
+    public function listAssets($parent, array $optionalArgs = [])
     {
         $request = new ListAssetsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['readTime'])) {
             $request->setReadTime($optionalArgs['readTime']);
         }
@@ -2150,19 +2106,19 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $response = $assetServiceClient->listFeeds();
+     *     $parent = 'parent';
+     *     $response = $assetServiceClient->listFeeds($parent);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The parent project/folder/organization whose feeds are to be
+     *                             listed. It can only be using project/folder/organization number (such as
+     *                             "folders/12345")", or a project ID (such as "projects/my-project-id").
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent project/folder/organization whose feeds are to be
-     *           listed. It can only be using project/folder/organization number (such as
-     *           "folders/12345")", or a project ID (such as "projects/my-project-id").
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2173,15 +2129,12 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listFeeds(array $optionalArgs = [])
+    public function listFeeds($parent, array $optionalArgs = [])
     {
         $request = new ListFeedsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2203,8 +2156,9 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
+     *     $formattedParent = $assetServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $assetServiceClient->listSavedQueries();
+     *     $pagedResponse = $assetServiceClient->listSavedQueries($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2212,7 +2166,7 @@ class AssetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $assetServiceClient->listSavedQueries();
+     *     $pagedResponse = $assetServiceClient->listSavedQueries($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2221,13 +2175,12 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The parent project/folder/organization whose savedQueries are to
+     *                             be listed. It can only be using project/folder/organization number (such as
+     *                             "folders/12345")", or a project ID (such as "projects/my-project-id").
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent project/folder/organization whose savedQueries are to
-     *           be listed. It can only be using project/folder/organization number (such as
-     *           "folders/12345")", or a project ID (such as "projects/my-project-id").
      *     @type string $filter
      *           Optional. The expression to filter resources.
      *           The expression is a list of zero or more restrictions combined via logical
@@ -2255,15 +2208,12 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSavedQueries(array $optionalArgs = [])
+    public function listSavedQueries($parent, array $optionalArgs = [])
     {
         $request = new ListSavedQueriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2308,22 +2258,22 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $response = $assetServiceClient->queryAssets();
+     *     $parent = 'parent';
+     *     $response = $assetServiceClient->queryAssets($parent);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The relative name of the root asset. This can only be an
+     *                             organization number (such as "organizations/123"), a project ID (such as
+     *                             "projects/my-project-id"), or a project number (such as "projects/12345"),
+     *                             or a folder number (such as "folders/123").
+     *
+     *                             Only assets belonging to the `parent` will be returned.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The relative name of the root asset. This can only be an
-     *           organization number (such as "organizations/123"), a project ID (such as
-     *           "projects/my-project-id"), or a project number (such as "projects/12345"),
-     *           or a folder number (such as "folders/123").
-     *
-     *           Only assets belonging to the `parent` will be returned.
      *     @type string $statement
      *           Optional. A SQL statement that's compatible with [BigQuery
      *           SQL](https://cloud.google.com/bigquery/docs/introduction-sql).
@@ -2383,15 +2333,12 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function queryAssets(array $optionalArgs = [])
+    public function queryAssets($parent, array $optionalArgs = [])
     {
         $request = new QueryAssetsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['statement'])) {
             $request->setStatement($optionalArgs['statement']);
         }
@@ -2448,8 +2395,9 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
+     *     $scope = 'scope';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $assetServiceClient->searchAllIamPolicies();
+     *     $pagedResponse = $assetServiceClient->searchAllIamPolicies($scope);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2457,7 +2405,7 @@ class AssetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $assetServiceClient->searchAllIamPolicies();
+     *     $pagedResponse = $assetServiceClient->searchAllIamPolicies($scope);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2466,22 +2414,21 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $scope        Required. A scope can be a project, a folder, or an organization. The
+     *                             search is limited to the IAM policies within the `scope`. The caller must
+     *                             be granted the
+     *                             [`cloudasset.assets.searchAllIamPolicies`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
+     *                             permission on the desired scope.
+     *
+     *                             The allowed values are:
+     *
+     *                             * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
+     *                             * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
+     *                             * folders/{FOLDER_NUMBER} (e.g., "folders/1234567")
+     *                             * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $scope
-     *           Required. A scope can be a project, a folder, or an organization. The
-     *           search is limited to the IAM policies within the `scope`. The caller must
-     *           be granted the
-     *           [`cloudasset.assets.searchAllIamPolicies`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
-     *           permission on the desired scope.
-     *
-     *           The allowed values are:
-     *
-     *           * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
-     *           * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
-     *           * folders/{FOLDER_NUMBER} (e.g., "folders/1234567")
-     *           * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
      *     @type string $query
      *           Optional. The query statement. See [how to construct a
      *           query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query)
@@ -2573,15 +2520,12 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function searchAllIamPolicies(array $optionalArgs = [])
+    public function searchAllIamPolicies($scope, array $optionalArgs = [])
     {
         $request = new SearchAllIamPoliciesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['scope'])) {
-            $request->setScope($optionalArgs['scope']);
-            $requestParamHeaders['scope'] = $optionalArgs['scope'];
-        }
-
+        $request->setScope($scope);
+        $requestParamHeaders['scope'] = $scope;
         if (isset($optionalArgs['query'])) {
             $request->setQuery($optionalArgs['query']);
         }
@@ -2626,8 +2570,9 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
+     *     $scope = 'scope';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $assetServiceClient->searchAllResources();
+     *     $pagedResponse = $assetServiceClient->searchAllResources($scope);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2635,7 +2580,7 @@ class AssetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $assetServiceClient->searchAllResources();
+     *     $pagedResponse = $assetServiceClient->searchAllResources($scope);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2644,22 +2589,21 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $scope        Required. A scope can be a project, a folder, or an organization. The
+     *                             search is limited to the resources within the `scope`. The caller must be
+     *                             granted the
+     *                             [`cloudasset.assets.searchAllResources`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
+     *                             permission on the desired scope.
+     *
+     *                             The allowed values are:
+     *
+     *                             * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
+     *                             * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
+     *                             * folders/{FOLDER_NUMBER} (e.g., "folders/1234567")
+     *                             * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $scope
-     *           Required. A scope can be a project, a folder, or an organization. The
-     *           search is limited to the resources within the `scope`. The caller must be
-     *           granted the
-     *           [`cloudasset.assets.searchAllResources`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
-     *           permission on the desired scope.
-     *
-     *           The allowed values are:
-     *
-     *           * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
-     *           * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
-     *           * folders/{FOLDER_NUMBER} (e.g., "folders/1234567")
-     *           * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
      *     @type string $query
      *           Optional. The query statement. See [how to construct a
      *           query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query)
@@ -2825,15 +2769,12 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function searchAllResources(array $optionalArgs = [])
+    public function searchAllResources($scope, array $optionalArgs = [])
     {
         $request = new SearchAllResourcesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['scope'])) {
-            $request->setScope($optionalArgs['scope']);
-            $requestParamHeaders['scope'] = $optionalArgs['scope'];
-        }
-
+        $request->setScope($scope);
+        $requestParamHeaders['scope'] = $scope;
         if (isset($optionalArgs['query'])) {
             $request->setQuery($optionalArgs['query']);
         }
@@ -2879,25 +2820,25 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $response = $assetServiceClient->updateFeed();
+     *     $feed = new Feed();
+     *     $updateMask = new FieldMask();
+     *     $response = $assetServiceClient->updateFeed($feed, $updateMask);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Feed      $feed         Required. The new values of feed details. It must match an existing feed
+     *                                and the field `name` must be in the format of:
+     *                                projects/project_number/feeds/feed_id or
+     *                                folders/folder_number/feeds/feed_id or
+     *                                organizations/organization_number/feeds/feed_id.
+     * @param FieldMask $updateMask   Required. Only updates the `feed` fields indicated by this mask.
+     *                                The field mask must not be empty, and it must not contain fields that
+     *                                are immutable or only set by the server.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type Feed $feed
-     *           Required. The new values of feed details. It must match an existing feed
-     *           and the field `name` must be in the format of:
-     *           projects/project_number/feeds/feed_id or
-     *           folders/folder_number/feeds/feed_id or
-     *           organizations/organization_number/feeds/feed_id.
-     *     @type FieldMask $updateMask
-     *           Required. Only updates the `feed` fields indicated by this mask.
-     *           The field mask must not be empty, and it must not contain fields that
-     *           are immutable or only set by the server.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2908,18 +2849,13 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateFeed(array $optionalArgs = [])
+    public function updateFeed($feed, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateFeedRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['feed'])) {
-            $request->setFeed($optionalArgs['feed']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setFeed($feed);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['feed.name'] = $feed->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2941,26 +2877,26 @@ class AssetServiceGapicClient
      * ```
      * $assetServiceClient = new AssetServiceClient();
      * try {
-     *     $response = $assetServiceClient->updateSavedQuery();
+     *     $savedQuery = new SavedQuery();
+     *     $updateMask = new FieldMask();
+     *     $response = $assetServiceClient->updateSavedQuery($savedQuery, $updateMask);
      * } finally {
      *     $assetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param SavedQuery $savedQuery   Required. The saved query to update.
+     *
+     *                                 The saved query's `name` field is used to identify the one to update,
+     *                                 which has format as below:
+     *
+     *                                 * projects/project_number/savedQueries/saved_query_id
+     *                                 * folders/folder_number/savedQueries/saved_query_id
+     *                                 * organizations/organization_number/savedQueries/saved_query_id
+     * @param FieldMask  $updateMask   Required. The list of fields to update.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type SavedQuery $savedQuery
-     *           Required. The saved query to update.
-     *
-     *           The saved query's `name` field is used to identify the one to update,
-     *           which has format as below:
-     *
-     *           * projects/project_number/savedQueries/saved_query_id
-     *           * folders/folder_number/savedQueries/saved_query_id
-     *           * organizations/organization_number/savedQueries/saved_query_id
-     *     @type FieldMask $updateMask
-     *           Required. The list of fields to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2971,18 +2907,16 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSavedQuery(array $optionalArgs = [])
-    {
+    public function updateSavedQuery(
+        $savedQuery,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateSavedQueryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['savedQuery'])) {
-            $request->setSavedQuery($optionalArgs['savedQuery']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setSavedQuery($savedQuery);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['saved_query.name'] = $savedQuery->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

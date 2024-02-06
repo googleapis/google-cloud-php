@@ -25,24 +25,37 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_BatchDeleteAccessBindings_sync]
 use Google\Analytics\Admin\V1alpha\BatchDeleteAccessBindingsRequest;
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest;
 use Google\ApiCore\ApiException;
 
 /**
  * Deletes information about multiple users' links to an account or property.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent       The account or property that owns the access bindings. The parent
+ *                                      of all provided values for the 'names' field in DeleteAccessBindingRequest
+ *                                      messages must match this field. Formats:
+ *                                      - accounts/{account}
+ *                                      - properties/{property}
+ *                                      Please see {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.
+ * @param string $formattedRequestsName Formats:
+ *                                      - accounts/{account}/accessBindings/{accessBinding}
+ *                                      - properties/{property}/accessBindings/{accessBinding}
+ *                                      Please see {@see AnalyticsAdminServiceClient::accessBindingName()} for help formatting this field.
  */
-function batch_delete_access_bindings_sample(): void
-{
+function batch_delete_access_bindings_sample(
+    string $formattedParent,
+    string $formattedRequestsName
+): void {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new BatchDeleteAccessBindingsRequest();
+    $deleteAccessBindingRequest = (new DeleteAccessBindingRequest())
+        ->setName($formattedRequestsName);
+    $requests = [$deleteAccessBindingRequest,];
+    $request = (new BatchDeleteAccessBindingsRequest())
+        ->setParent($formattedParent)
+        ->setRequests($requests);
 
     // Call the API and handle any network failures.
     try {
@@ -51,5 +64,25 @@ function batch_delete_access_bindings_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AnalyticsAdminServiceClient::accountName('[ACCOUNT]');
+    $formattedRequestsName = AnalyticsAdminServiceClient::accessBindingName(
+        '[ACCOUNT]',
+        '[ACCESS_BINDING]'
+    );
+
+    batch_delete_access_bindings_sample($formattedParent, $formattedRequestsName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_BatchDeleteAccessBindings_sync]

@@ -32,19 +32,17 @@ use Google\Cloud\BareMetalSolution\V2\ProvisioningQuota;
 /**
  * List the budget details to provision resources on a given project.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Parent value for ListProvisioningQuotasRequest. Please see
+ *                                {@see BareMetalSolutionClient::locationName()} for help formatting this field.
  */
-function list_provisioning_quotas_sample(): void
+function list_provisioning_quotas_sample(string $formattedParent): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = new ListProvisioningQuotasRequest();
+    $request = (new ListProvisioningQuotasRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +56,21 @@ function list_provisioning_quotas_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = BareMetalSolutionClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_provisioning_quotas_sample($formattedParent);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_ListProvisioningQuotas_sync]

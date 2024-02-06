@@ -30,6 +30,7 @@ class GetRollupPropertySourceLinkRequest extends \Google\Protobuf\Internal\Messa
      *                     Format:
      *                     properties/{property_id}/rollupPropertySourceLinks/{rollup_property_source_link_id}
      *                     Example: properties/123/rollupPropertySourceLinks/456
+     *                     Please see {@see AnalyticsAdminServiceClient::rollupPropertySourceLinkName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetRollupPropertySourceLinkRequest
      *

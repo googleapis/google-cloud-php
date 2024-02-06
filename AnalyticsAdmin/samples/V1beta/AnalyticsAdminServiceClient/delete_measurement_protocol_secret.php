@@ -30,19 +30,19 @@ use Google\ApiCore\ApiException;
 /**
  * Deletes target MeasurementProtocolSecret.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the MeasurementProtocolSecret to delete.
+ *                              Format:
+ *                              properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
+ *                              Please see {@see AnalyticsAdminServiceClient::measurementProtocolSecretName()} for help formatting this field.
  */
-function delete_measurement_protocol_secret_sample(): void
+function delete_measurement_protocol_secret_sample(string $formattedName): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteMeasurementProtocolSecretRequest();
+    $request = (new DeleteMeasurementProtocolSecretRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -51,5 +51,25 @@ function delete_measurement_protocol_secret_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AnalyticsAdminServiceClient::measurementProtocolSecretName(
+        '[PROPERTY]',
+        '[DATA_STREAM]',
+        '[MEASUREMENT_PROTOCOL_SECRET]'
+    );
+
+    delete_measurement_protocol_secret_sample($formattedName);
 }
 // [END analyticsadmin_v1beta_generated_AnalyticsAdminService_DeleteMeasurementProtocolSecret_sync]

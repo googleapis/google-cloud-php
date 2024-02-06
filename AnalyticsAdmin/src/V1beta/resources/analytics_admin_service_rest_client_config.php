@@ -392,6 +392,9 @@ return [
             'ListProperties' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/properties',
+                'queryParams' => [
+                    'filter',
+                ],
             ],
             'ProvisionAccountTicket' => [
                 'method' => 'post',
@@ -441,6 +444,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateConversionEvent' => [
                 'method' => 'patch',
@@ -453,6 +459,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateCustomDimension' => [
@@ -467,6 +476,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateCustomMetric' => [
                 'method' => 'patch',
@@ -479,6 +491,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateDataRetentionSettings' => [
@@ -493,6 +508,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateDataStream' => [
                 'method' => 'patch',
@@ -505,6 +523,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateGoogleAdsLink' => [
@@ -519,6 +540,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateMeasurementProtocolSecret' => [
                 'method' => 'patch',
@@ -532,6 +556,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateProperty' => [
                 'method' => 'patch',
@@ -544,6 +571,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

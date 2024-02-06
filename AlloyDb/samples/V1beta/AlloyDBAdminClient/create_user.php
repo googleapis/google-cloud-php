@@ -30,24 +30,42 @@ use Google\Cloud\AlloyDb\V1beta\User;
 /**
  * Creates a new User in a given project, location, and cluster.
  *
+ * @param string $formattedParent Value for parent. Please see
+ *                                {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
+ * @param string $userId          ID of the requesting object.
+ */
+function create_user_sample(string $formattedParent, string $userId): void
+{
+    // Create a client.
+    $alloyDBAdminClient = new AlloyDBAdminClient();
+
+    // Prepare any non-scalar elements to be passed along with the request.
+    $user = new User();
+
+    // Call the API and handle any network failures.
+    try {
+        /** @var User $response */
+        $response = $alloyDBAdminClient->createUser($formattedParent, $userId, $user);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
+}
+
+/**
+ * Helper to execute the sample.
+ *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function create_user_sample(): void
+function callSample(): void
 {
-    // Create a client.
-    $alloyDBAdminClient = new AlloyDBAdminClient();
+    $formattedParent = AlloyDBAdminClient::clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+    $userId = '[USER_ID]';
 
-    // Call the API and handle any network failures.
-    try {
-        /** @var User $response */
-        $response = $alloyDBAdminClient->createUser();
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
+    create_user_sample($formattedParent, $userId);
 }
 // [END alloydb_v1beta_generated_AlloyDBAdmin_CreateUser_sync]

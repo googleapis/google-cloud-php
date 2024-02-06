@@ -31,19 +31,17 @@ use Google\Cloud\BareMetalSolution\V2\Network;
 /**
  * Get details of a single network.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Name of the resource. Please see
+ *                              {@see BareMetalSolutionClient::networkName()} for help formatting this field.
  */
-function get_network_sample(): void
+function get_network_sample(string $formattedName): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = new GetNetworkRequest();
+    $request = (new GetNetworkRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +51,21 @@ function get_network_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = BareMetalSolutionClient::networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
+
+    get_network_sample($formattedName);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_GetNetwork_sync]

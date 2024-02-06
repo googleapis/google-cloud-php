@@ -24,26 +24,44 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateAudience_sync]
 use Google\Analytics\Admin\V1alpha\Audience;
+use Google\Analytics\Admin\V1alpha\AudienceFilterClause;
+use Google\Analytics\Admin\V1alpha\AudienceFilterClause\AudienceClauseType;
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\UpdateAudienceRequest;
 use Google\ApiCore\ApiException;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates an Audience on a property.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $audienceDisplayName             The display name of the Audience.
+ * @param string $audienceDescription             The description of the Audience.
+ * @param int    $audienceMembershipDurationDays  Immutable. The duration a user should stay in an Audience. It
+ *                                                cannot be set to more than 540 days.
+ * @param int    $audienceFilterClausesClauseType Specifies whether this is an include or exclude filter clause.
  */
-function update_audience_sample(): void
-{
+function update_audience_sample(
+    string $audienceDisplayName,
+    string $audienceDescription,
+    int $audienceMembershipDurationDays,
+    int $audienceFilterClausesClauseType
+): void {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateAudienceRequest();
+    $audienceFilterClause = (new AudienceFilterClause())
+        ->setClauseType($audienceFilterClausesClauseType);
+    $audienceFilterClauses = [$audienceFilterClause,];
+    $audience = (new Audience())
+        ->setDisplayName($audienceDisplayName)
+        ->setDescription($audienceDescription)
+        ->setMembershipDurationDays($audienceMembershipDurationDays)
+        ->setFilterClauses($audienceFilterClauses);
+    $updateMask = new FieldMask();
+    $request = (new UpdateAudienceRequest())
+        ->setAudience($audience)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +71,29 @@ function update_audience_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $audienceDisplayName = '[DISPLAY_NAME]';
+    $audienceDescription = '[DESCRIPTION]';
+    $audienceMembershipDurationDays = 0;
+    $audienceFilterClausesClauseType = AudienceClauseType::AUDIENCE_CLAUSE_TYPE_UNSPECIFIED;
+
+    update_audience_sample(
+        $audienceDisplayName,
+        $audienceDescription,
+        $audienceMembershipDurationDays,
+        $audienceFilterClausesClauseType
+    );
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateAudience_sync]

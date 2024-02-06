@@ -30,19 +30,20 @@ use Google\ApiCore\ApiException;
 /**
  * Deletes a subproperty event filter.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Resource name of the subproperty event filter to delete.
+ *                              Format:
+ *                              properties/property_id/subpropertyEventFilters/subproperty_event_filter
+ *                              Example: properties/123/subpropertyEventFilters/456
+ *                              Please see {@see AnalyticsAdminServiceClient::subpropertyEventFilterName()} for help formatting this field.
  */
-function delete_subproperty_event_filter_sample(): void
+function delete_subproperty_event_filter_sample(string $formattedName): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteSubpropertyEventFilterRequest();
+    $request = (new DeleteSubpropertyEventFilterRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -51,5 +52,24 @@ function delete_subproperty_event_filter_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AnalyticsAdminServiceClient::subpropertyEventFilterName(
+        '[PROPERTY]',
+        '[SUB_PROPERTY_EVENT_FILTER]'
+    );
+
+    delete_subproperty_event_filter_sample($formattedName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_DeleteSubpropertyEventFilter_sync]

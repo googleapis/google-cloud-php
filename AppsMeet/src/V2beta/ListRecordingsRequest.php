@@ -40,6 +40,7 @@ class ListRecordingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Format: `conferenceRecords/{conference_record}`
+     *                       Please see {@see ConferenceRecordsServiceClient::conferenceRecordName()} for help formatting this field.
      *
      * @return \Google\Apps\Meet\V2beta\ListRecordingsRequest
      *

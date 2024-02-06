@@ -30,19 +30,22 @@ use Google\Cloud\Asset\V1\DeleteSavedQueryRequest;
 /**
  * Deletes a saved query.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the saved query to delete. It must be in the format
+ *                              of:
+ *
+ *                              * projects/project_number/savedQueries/saved_query_id
+ *                              * folders/folder_number/savedQueries/saved_query_id
+ *                              * organizations/organization_number/savedQueries/saved_query_id
+ *                              Please see {@see AssetServiceClient::savedQueryName()} for help formatting this field.
  */
-function delete_saved_query_sample(): void
+function delete_saved_query_sample(string $formattedName): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteSavedQueryRequest();
+    $request = (new DeleteSavedQueryRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -51,5 +54,21 @@ function delete_saved_query_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AssetServiceClient::savedQueryName('[PROJECT]', '[SAVED_QUERY]');
+
+    delete_saved_query_sample($formattedName);
 }
 // [END cloudasset_v1_generated_AssetService_DeleteSavedQuery_sync]

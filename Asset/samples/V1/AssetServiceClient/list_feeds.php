@@ -31,19 +31,18 @@ use Google\Cloud\Asset\V1\ListFeedsResponse;
 /**
  * Lists all asset feeds in a parent project/folder/organization.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $parent The parent project/folder/organization whose feeds are to be
+ *                       listed. It can only be using project/folder/organization number (such as
+ *                       "folders/12345")", or a project ID (such as "projects/my-project-id").
  */
-function list_feeds_sample(): void
+function list_feeds_sample(string $parent): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $request = new ListFeedsRequest();
+    $request = (new ListFeedsRequest())
+        ->setParent($parent);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,21 @@ function list_feeds_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $parent = '[PARENT]';
+
+    list_feeds_sample($parent);
 }
 // [END cloudasset_v1_generated_AssetService_ListFeeds_sync]

@@ -27,24 +27,35 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Asset\V1\AnalyzeIamPolicyRequest;
 use Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse;
 use Google\Cloud\Asset\V1\Client\AssetServiceClient;
+use Google\Cloud\Asset\V1\IamPolicyAnalysisQuery;
 
 /**
  * Analyzes IAM policies to answer which identities have what accesses on
  * which resources.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $analysisQueryScope The relative name of the root asset. Only resources and IAM
+ *                                   policies within the scope will be analyzed.
+ *
+ *                                   This can only be an organization number (such as "organizations/123"), a
+ *                                   folder number (such as "folders/123"), a project ID (such as
+ *                                   "projects/my-project-id"), or a project number (such as "projects/12345").
+ *
+ *                                   To know how to get organization id, visit [here
+ *                                   ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).
+ *
+ *                                   To know how to get folder or project id, visit [here
+ *                                   ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
  */
-function analyze_iam_policy_sample(): void
+function analyze_iam_policy_sample(string $analysisQueryScope): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $request = new AnalyzeIamPolicyRequest();
+    $analysisQuery = (new IamPolicyAnalysisQuery())
+        ->setScope($analysisQueryScope);
+    $request = (new AnalyzeIamPolicyRequest())
+        ->setAnalysisQuery($analysisQuery);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +65,21 @@ function analyze_iam_policy_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $analysisQueryScope = '[SCOPE]';
+
+    analyze_iam_policy_sample($analysisQueryScope);
 }
 // [END cloudasset_v1_generated_AssetService_AnalyzeIamPolicy_sync]

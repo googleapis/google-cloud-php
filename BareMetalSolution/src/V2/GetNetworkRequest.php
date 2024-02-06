@@ -23,7 +23,8 @@ class GetNetworkRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. Name of the resource.
+     * @param string $name Required. Name of the resource. Please see
+     *                     {@see BareMetalSolutionClient::networkName()} for help formatting this field.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\GetNetworkRequest
      *

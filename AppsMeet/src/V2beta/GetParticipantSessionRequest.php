@@ -23,7 +23,8 @@ class GetParticipantSessionRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. Resource name of the participant.
+     * @param string $name Required. Resource name of the participant. Please see
+     *                     {@see ConferenceRecordsServiceClient::participantSessionName()} for help formatting this field.
      *
      * @return \Google\Apps\Meet\V2beta\GetParticipantSessionRequest
      *

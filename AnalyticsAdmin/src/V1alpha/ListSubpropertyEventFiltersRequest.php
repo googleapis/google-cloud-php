@@ -47,6 +47,7 @@ class ListSubpropertyEventFiltersRequest extends \Google\Protobuf\Internal\Messa
      * @param string $parent Required. Resource name of the ordinary property.
      *                       Format: properties/property_id
      *                       Example: properties/123
+     *                       Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\ListSubpropertyEventFiltersRequest
      *

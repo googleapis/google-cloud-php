@@ -42,6 +42,7 @@ class CreateApiRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                              $parent Required. The parent, which owns this collection of APIs.
      *                                                    Format: `projects/&#42;/locations/*`
+     *                                                    Please see {@see RegistryClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\ApigeeRegistry\V1\Api $api    Required. The API to create.
      * @param string                              $apiId  Required. The ID to use for the API, which will become the final component of
      *                                                    the API's resource name.

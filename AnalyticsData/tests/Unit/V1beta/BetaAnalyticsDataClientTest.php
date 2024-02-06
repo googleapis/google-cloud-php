@@ -275,7 +275,14 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->createAudienceExport();
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $audienceExport = new AudienceExport();
+        $audienceExportAudience = 'audienceExportAudience1191136508';
+        $audienceExport->setAudience($audienceExportAudience);
+        $audienceExportDimensions = [];
+        $audienceExport->setDimensions($audienceExportDimensions);
+        $response = $gapicClient->createAudienceExport($formattedParent, $audienceExport);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -285,6 +292,10 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.data.v1beta.BetaAnalyticsData/CreateAudienceExport', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getAudienceExport();
+        $this->assertProtobufEquals($audienceExport, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createAudienceExportTest');
         $response->pollUntilComplete([
@@ -335,7 +346,14 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->createAudienceExport();
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $audienceExport = new AudienceExport();
+        $audienceExportAudience = 'audienceExportAudience1191136508';
+        $audienceExport->setAudience($audienceExportAudience);
+        $audienceExportDimensions = [];
+        $audienceExport->setDimensions($audienceExportDimensions);
+        $response = $gapicClient->createAudienceExport($formattedParent, $audienceExport);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -382,13 +400,17 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse->setErrorMessage($errorMessage);
         $expectedResponse->setPercentageCompleted($percentageCompleted);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getAudienceExport();
+        // Mock request
+        $formattedName = $gapicClient->audienceExportName('[PROPERTY]', '[AUDIENCE_EXPORT]');
+        $response = $gapicClient->getAudienceExport($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.data.v1beta.BetaAnalyticsData/GetAudienceExport', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -410,8 +432,10 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->audienceExportName('[PROPERTY]', '[AUDIENCE_EXPORT]');
         try {
-            $gapicClient->getAudienceExport();
+            $gapicClient->getAudienceExport($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -436,13 +460,17 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse = new Metadata();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getMetadata();
+        // Mock request
+        $formattedName = $gapicClient->metadataName('[PROPERTY]');
+        $response = $gapicClient->getMetadata($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.data.v1beta.BetaAnalyticsData/GetMetadata', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -464,8 +492,10 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->metadataName('[PROPERTY]');
         try {
-            $gapicClient->getMetadata();
+            $gapicClient->getMetadata($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -495,7 +525,9 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAudienceExports($audienceExports);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listAudienceExports();
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $response = $gapicClient->listAudienceExports($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -505,6 +537,8 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.data.v1beta.BetaAnalyticsData/ListAudienceExports', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -526,8 +560,10 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listAudienceExports();
+            $gapicClient->listAudienceExports($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -552,13 +588,17 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse = new QueryAudienceExportResponse();
         $expectedResponse->setRowCount($rowCount);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->queryAudienceExport();
+        // Mock request
+        $name = 'name3373707';
+        $response = $gapicClient->queryAudienceExport($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.data.v1beta.BetaAnalyticsData/QueryAudienceExport', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -580,8 +620,10 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
         try {
-            $gapicClient->queryAudienceExport();
+            $gapicClient->queryAudienceExport($name);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

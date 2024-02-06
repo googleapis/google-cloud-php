@@ -26,6 +26,7 @@ class GetAudienceRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the Audience to get.
      *                     Example format: properties/1234/audiences/5678
+     *                     Please see {@see AnalyticsAdminServiceClient::audienceName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetAudienceRequest
      *

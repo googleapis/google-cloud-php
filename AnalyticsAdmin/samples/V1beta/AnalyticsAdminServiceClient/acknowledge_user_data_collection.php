@@ -35,19 +35,28 @@ use Google\ApiCore\ApiException;
  * or through this API) before MeasurementProtocolSecret resources may be
  * created.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedProperty The property for which to acknowledge user data collection. Please see
+ *                                  {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+ * @param string $acknowledgement   An acknowledgement that the caller of this method understands the
+ *                                  terms of user data collection.
+ *
+ *                                  This field must contain the exact value:
+ *                                  "I acknowledge that I have the necessary privacy disclosures and rights
+ *                                  from my end users for the collection and processing of their data,
+ *                                  including the association of such data with the visitation information
+ *                                  Google Analytics collects from my site and/or app property."
  */
-function acknowledge_user_data_collection_sample(): void
-{
+function acknowledge_user_data_collection_sample(
+    string $formattedProperty,
+    string $acknowledgement
+): void {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new AcknowledgeUserDataCollectionRequest();
+    $request = (new AcknowledgeUserDataCollectionRequest())
+        ->setProperty($formattedProperty)
+        ->setAcknowledgement($acknowledgement);
 
     // Call the API and handle any network failures.
     try {
@@ -57,5 +66,22 @@ function acknowledge_user_data_collection_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedProperty = AnalyticsAdminServiceClient::propertyName('[PROPERTY]');
+    $acknowledgement = '[ACKNOWLEDGEMENT]';
+
+    acknowledge_user_data_collection_sample($formattedProperty, $acknowledgement);
 }
 // [END analyticsadmin_v1beta_generated_AnalyticsAdminService_AcknowledgeUserDataCollection_sync]

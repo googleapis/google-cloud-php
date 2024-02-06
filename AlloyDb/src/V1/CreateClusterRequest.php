@@ -61,7 +61,8 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                           $parent    Required. The location of the new cluster. For the required format, see the
-     *                                                    comment on the Cluster.name field.
+     *                                                    comment on the Cluster.name field. Please see
+     *                                                    {@see AlloyDBAdminClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AlloyDb\V1\Cluster $cluster   Required. The resource being created
      * @param string                           $clusterId Required. ID of the requesting object.
      *

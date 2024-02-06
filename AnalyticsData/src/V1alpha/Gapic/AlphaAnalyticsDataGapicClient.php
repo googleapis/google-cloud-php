@@ -70,7 +70,9 @@ use Google\LongRunning\Operation;
  * ```
  * $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
  * try {
- *     $operationResponse = $alphaAnalyticsDataClient->createAudienceList();
+ *     $formattedParent = $alphaAnalyticsDataClient->propertyName('[PROPERTY]');
+ *     $audienceList = new AudienceList();
+ *     $operationResponse = $alphaAnalyticsDataClient->createAudienceList($formattedParent, $audienceList);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -81,7 +83,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $alphaAnalyticsDataClient->createAudienceList();
+ *     $operationResponse = $alphaAnalyticsDataClient->createAudienceList($formattedParent, $audienceList);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $alphaAnalyticsDataClient->resumeOperation($operationName, 'createAudienceList');
@@ -463,7 +465,9 @@ class AlphaAnalyticsDataGapicClient
      * ```
      * $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
      * try {
-     *     $operationResponse = $alphaAnalyticsDataClient->createAudienceList();
+     *     $formattedParent = $alphaAnalyticsDataClient->propertyName('[PROPERTY]');
+     *     $audienceList = new AudienceList();
+     *     $operationResponse = $alphaAnalyticsDataClient->createAudienceList($formattedParent, $audienceList);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -474,7 +478,7 @@ class AlphaAnalyticsDataGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alphaAnalyticsDataClient->createAudienceList();
+     *     $operationResponse = $alphaAnalyticsDataClient->createAudienceList($formattedParent, $audienceList);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alphaAnalyticsDataClient->resumeOperation($operationName, 'createAudienceList');
@@ -494,14 +498,12 @@ class AlphaAnalyticsDataGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string       $parent       Required. The parent resource where this audience list will be created.
+     *                                   Format: `properties/{property}`
+     * @param AudienceList $audienceList Required. The audience list to create.
+     * @param array        $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent resource where this audience list will be created.
-     *           Format: `properties/{property}`
-     *     @type AudienceList $audienceList
-     *           Required. The audience list to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -514,19 +516,16 @@ class AlphaAnalyticsDataGapicClient
      *
      * @experimental
      */
-    public function createAudienceList(array $optionalArgs = [])
-    {
+    public function createAudienceList(
+        $parent,
+        $audienceList,
+        array $optionalArgs = []
+    ) {
         $request = new CreateAudienceListRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['audienceList'])) {
-            $request->setAudienceList($optionalArgs['audienceList']);
-        }
-
+        $request->setParent($parent);
+        $request->setAudienceList($audienceList);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -565,20 +564,20 @@ class AlphaAnalyticsDataGapicClient
      * ```
      * $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
      * try {
-     *     $response = $alphaAnalyticsDataClient->createRecurringAudienceList();
+     *     $formattedParent = $alphaAnalyticsDataClient->propertyName('[PROPERTY]');
+     *     $recurringAudienceList = new RecurringAudienceList();
+     *     $response = $alphaAnalyticsDataClient->createRecurringAudienceList($formattedParent, $recurringAudienceList);
      * } finally {
      *     $alphaAnalyticsDataClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                $parent                Required. The parent resource where this recurring audience list will be
+     *                                                     created. Format: `properties/{property}`
+     * @param RecurringAudienceList $recurringAudienceList Required. The recurring audience list to create.
+     * @param array                 $optionalArgs          {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent resource where this recurring audience list will be
-     *           created. Format: `properties/{property}`
-     *     @type RecurringAudienceList $recurringAudienceList
-     *           Required. The recurring audience list to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -591,21 +590,16 @@ class AlphaAnalyticsDataGapicClient
      *
      * @experimental
      */
-    public function createRecurringAudienceList(array $optionalArgs = [])
-    {
+    public function createRecurringAudienceList(
+        $parent,
+        $recurringAudienceList,
+        array $optionalArgs = []
+    ) {
         $request = new CreateRecurringAudienceListRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['recurringAudienceList'])) {
-            $request->setRecurringAudienceList(
-                $optionalArgs['recurringAudienceList']
-            );
-        }
-
+        $request->setParent($parent);
+        $request->setRecurringAudienceList($recurringAudienceList);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -638,18 +632,18 @@ class AlphaAnalyticsDataGapicClient
      * ```
      * $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
      * try {
-     *     $response = $alphaAnalyticsDataClient->getAudienceList();
+     *     $formattedName = $alphaAnalyticsDataClient->audienceListName('[PROPERTY]', '[AUDIENCE_LIST]');
+     *     $response = $alphaAnalyticsDataClient->getAudienceList($formattedName);
      * } finally {
      *     $alphaAnalyticsDataClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The audience list resource name.
+     *                             Format: `properties/{property}/audienceLists/{audience_list}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The audience list resource name.
-     *           Format: `properties/{property}/audienceLists/{audience_list}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -662,15 +656,12 @@ class AlphaAnalyticsDataGapicClient
      *
      * @experimental
      */
-    public function getAudienceList(array $optionalArgs = [])
+    public function getAudienceList($name, array $optionalArgs = [])
     {
         $request = new GetAudienceListRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -702,19 +693,19 @@ class AlphaAnalyticsDataGapicClient
      * ```
      * $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
      * try {
-     *     $response = $alphaAnalyticsDataClient->getRecurringAudienceList();
+     *     $formattedName = $alphaAnalyticsDataClient->recurringAudienceListName('[PROPERTY]', '[RECURRING_AUDIENCE_LIST]');
+     *     $response = $alphaAnalyticsDataClient->getRecurringAudienceList($formattedName);
      * } finally {
      *     $alphaAnalyticsDataClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The recurring audience list resource name.
+     *                             Format:
+     *                             `properties/{property}/recurringAudienceLists/{recurring_audience_list}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The recurring audience list resource name.
-     *           Format:
-     *           `properties/{property}/recurringAudienceLists/{recurring_audience_list}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -727,15 +718,12 @@ class AlphaAnalyticsDataGapicClient
      *
      * @experimental
      */
-    public function getRecurringAudienceList(array $optionalArgs = [])
+    public function getRecurringAudienceList($name, array $optionalArgs = [])
     {
         $request = new GetRecurringAudienceListRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -770,8 +758,9 @@ class AlphaAnalyticsDataGapicClient
      * ```
      * $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
      * try {
+     *     $formattedParent = $alphaAnalyticsDataClient->propertyName('[PROPERTY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $alphaAnalyticsDataClient->listAudienceLists();
+     *     $pagedResponse = $alphaAnalyticsDataClient->listAudienceLists($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -779,7 +768,7 @@ class AlphaAnalyticsDataGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $alphaAnalyticsDataClient->listAudienceLists();
+     *     $pagedResponse = $alphaAnalyticsDataClient->listAudienceLists($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -788,12 +777,11 @@ class AlphaAnalyticsDataGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. All audience lists for this property will be listed in the
+     *                             response. Format: `properties/{property}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. All audience lists for this property will be listed in the
-     *           response. Format: `properties/{property}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -815,15 +803,12 @@ class AlphaAnalyticsDataGapicClient
      *
      * @experimental
      */
-    public function listAudienceLists(array $optionalArgs = [])
+    public function listAudienceLists($parent, array $optionalArgs = [])
     {
         $request = new ListAudienceListsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -864,8 +849,9 @@ class AlphaAnalyticsDataGapicClient
      * ```
      * $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
      * try {
+     *     $formattedParent = $alphaAnalyticsDataClient->propertyName('[PROPERTY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $alphaAnalyticsDataClient->listRecurringAudienceLists();
+     *     $pagedResponse = $alphaAnalyticsDataClient->listRecurringAudienceLists($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -873,7 +859,7 @@ class AlphaAnalyticsDataGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $alphaAnalyticsDataClient->listRecurringAudienceLists();
+     *     $pagedResponse = $alphaAnalyticsDataClient->listRecurringAudienceLists($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -882,12 +868,11 @@ class AlphaAnalyticsDataGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. All recurring audience lists for this property will be listed in
+     *                             the response. Format: `properties/{property}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. All recurring audience lists for this property will be listed in
-     *           the response. Format: `properties/{property}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -909,15 +894,14 @@ class AlphaAnalyticsDataGapicClient
      *
      * @experimental
      */
-    public function listRecurringAudienceLists(array $optionalArgs = [])
-    {
+    public function listRecurringAudienceLists(
+        $parent,
+        array $optionalArgs = []
+    ) {
         $request = new ListRecurringAudienceListsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -964,18 +948,18 @@ class AlphaAnalyticsDataGapicClient
      * ```
      * $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
      * try {
-     *     $response = $alphaAnalyticsDataClient->queryAudienceList();
+     *     $name = 'name';
+     *     $response = $alphaAnalyticsDataClient->queryAudienceList($name);
      * } finally {
      *     $alphaAnalyticsDataClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the audience list to retrieve users from.
+     *                             Format: `properties/{property}/audienceLists/{audience_list}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the audience list to retrieve users from.
-     *           Format: `properties/{property}/audienceLists/{audience_list}`
      *     @type int $offset
      *           Optional. The row count of the start row. The first row is counted as row
      *           0.
@@ -1009,15 +993,12 @@ class AlphaAnalyticsDataGapicClient
      *
      * @experimental
      */
-    public function queryAudienceList(array $optionalArgs = [])
+    public function queryAudienceList($name, array $optionalArgs = [])
     {
         $request = new QueryAudienceListRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['offset'])) {
             $request->setOffset($optionalArgs['offset']);
         }
@@ -1233,18 +1214,18 @@ class AlphaAnalyticsDataGapicClient
      * ```
      * $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
      * try {
-     *     $response = $alphaAnalyticsDataClient->sheetExportAudienceList();
+     *     $formattedName = $alphaAnalyticsDataClient->audienceListName('[PROPERTY]', '[AUDIENCE_LIST]');
+     *     $response = $alphaAnalyticsDataClient->sheetExportAudienceList($formattedName);
      * } finally {
      *     $alphaAnalyticsDataClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the audience list to retrieve users from.
+     *                             Format: `properties/{property}/audienceLists/{audience_list}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the audience list to retrieve users from.
-     *           Format: `properties/{property}/audienceLists/{audience_list}`
      *     @type int $offset
      *           Optional. The row count of the start row. The first row is counted as row
      *           0.
@@ -1278,15 +1259,12 @@ class AlphaAnalyticsDataGapicClient
      *
      * @experimental
      */
-    public function sheetExportAudienceList(array $optionalArgs = [])
+    public function sheetExportAudienceList($name, array $optionalArgs = [])
     {
         $request = new SheetExportAudienceListRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['offset'])) {
             $request->setOffset($optionalArgs['offset']);
         }

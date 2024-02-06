@@ -35,8 +35,10 @@ class DetachLunRequest extends \Google\Protobuf\Internal\Message
     private $skip_reboot = false;
 
     /**
-     * @param string $instance Required. Name of the instance.
-     * @param string $lun      Required. Name of the Lun to detach.
+     * @param string $instance Required. Name of the instance. Please see
+     *                         {@see BareMetalSolutionClient::instanceName()} for help formatting this field.
+     * @param string $lun      Required. Name of the Lun to detach. Please see
+     *                         {@see BareMetalSolutionClient::lunName()} for help formatting this field.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\DetachLunRequest
      *

@@ -26,6 +26,7 @@ class GetExpandedDataSetRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the ExpandedDataSet to get.
      *                     Example format: properties/1234/expandedDataSets/5678
+     *                     Please see {@see AnalyticsAdminServiceClient::expandedDataSetName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetExpandedDataSetRequest
      *

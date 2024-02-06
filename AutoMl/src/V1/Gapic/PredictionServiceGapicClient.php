@@ -56,7 +56,10 @@ use Google\LongRunning\Operation;
  * ```
  * $predictionServiceClient = new Google\Cloud\AutoMl\V1\PredictionServiceClient();
  * try {
- *     $operationResponse = $predictionServiceClient->batchPredict();
+ *     $formattedName = $predictionServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+ *     $inputConfig = new Google\Cloud\AutoMl\V1\BatchPredictInputConfig();
+ *     $outputConfig = new Google\Cloud\AutoMl\V1\BatchPredictOutputConfig();
+ *     $operationResponse = $predictionServiceClient->batchPredict($formattedName, $inputConfig, $outputConfig);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -67,7 +70,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $predictionServiceClient->batchPredict();
+ *     $operationResponse = $predictionServiceClient->batchPredict($formattedName, $inputConfig, $outputConfig);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $predictionServiceClient->resumeOperation($operationName, 'batchPredict');
@@ -357,7 +360,10 @@ class PredictionServiceGapicClient
      * ```
      * $predictionServiceClient = new Google\Cloud\AutoMl\V1\PredictionServiceClient();
      * try {
-     *     $operationResponse = $predictionServiceClient->batchPredict();
+     *     $formattedName = $predictionServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $inputConfig = new Google\Cloud\AutoMl\V1\BatchPredictInputConfig();
+     *     $outputConfig = new Google\Cloud\AutoMl\V1\BatchPredictOutputConfig();
+     *     $operationResponse = $predictionServiceClient->batchPredict($formattedName, $inputConfig, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -368,7 +374,7 @@ class PredictionServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $predictionServiceClient->batchPredict();
+     *     $operationResponse = $predictionServiceClient->batchPredict($formattedName, $inputConfig, $outputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $predictionServiceClient->resumeOperation($operationName, 'batchPredict');
@@ -388,16 +394,13 @@ class PredictionServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                   $name         Required. Name of the model requested to serve the batch prediction.
+     * @param BatchPredictInputConfig  $inputConfig  Required. The input configuration for batch prediction.
+     * @param BatchPredictOutputConfig $outputConfig Required. The Configuration specifying where output predictions should
+     *                                               be written.
+     * @param array                    $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the model requested to serve the batch prediction.
-     *     @type BatchPredictInputConfig $inputConfig
-     *           Required. The input configuration for batch prediction.
-     *     @type BatchPredictOutputConfig $outputConfig
-     *           Required. The Configuration specifying where output predictions should
-     *           be written.
      *     @type array $params
      *           Additional domain-specific parameters for the predictions, any string must
      *           be up to 25000 characters long.
@@ -493,23 +496,18 @@ class PredictionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchPredict(array $optionalArgs = [])
-    {
+    public function batchPredict(
+        $name,
+        $inputConfig,
+        $outputConfig,
+        array $optionalArgs = []
+    ) {
         $request = new BatchPredictRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['inputConfig'])) {
-            $request->setInputConfig($optionalArgs['inputConfig']);
-        }
-
-        if (isset($optionalArgs['outputConfig'])) {
-            $request->setOutputConfig($optionalArgs['outputConfig']);
-        }
-
+        $request->setName($name);
+        $request->setInputConfig($inputConfig);
+        $request->setOutputConfig($outputConfig);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['params'])) {
             $request->setParams($optionalArgs['params']);
         }
@@ -570,20 +568,20 @@ class PredictionServiceGapicClient
      * ```
      * $predictionServiceClient = new Google\Cloud\AutoMl\V1\PredictionServiceClient();
      * try {
-     *     $response = $predictionServiceClient->predict();
+     *     $formattedName = $predictionServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $payload = new ExamplePayload();
+     *     $response = $predictionServiceClient->predict($formattedName, $payload);
      * } finally {
      *     $predictionServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string         $name         Required. Name of the model requested to serve the prediction.
+     * @param ExamplePayload $payload      Required. Payload to perform a prediction on. The payload must match the
+     *                                     problem type that the model was trained to solve.
+     * @param array          $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the model requested to serve the prediction.
-     *     @type ExamplePayload $payload
-     *           Required. Payload to perform a prediction on. The payload must match the
-     *           problem type that the model was trained to solve.
      *     @type array $params
      *           Additional domain-specific parameters, any string must be up to 25000
      *           characters long.
@@ -625,19 +623,13 @@ class PredictionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function predict(array $optionalArgs = [])
+    public function predict($name, $payload, array $optionalArgs = [])
     {
         $request = new PredictRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['payload'])) {
-            $request->setPayload($optionalArgs['payload']);
-        }
-
+        $request->setName($name);
+        $request->setPayload($payload);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['params'])) {
             $request->setParams($optionalArgs['params']);
         }

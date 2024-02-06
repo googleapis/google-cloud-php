@@ -139,7 +139,14 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setRecommendedVersion($recommendedVersion);
         $expectedResponse->setRecommendedDeployment($recommendedDeployment);
         $transport->addResponse($expectedResponse);
-        $request = new CreateApiRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $api = new Api();
+        $apiId = 'apiId-1411282592';
+        $request = (new CreateApiRequest())
+            ->setParent($formattedParent)
+            ->setApi($api)
+            ->setApiId($apiId);
         $response = $gapicClient->createApi($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -147,6 +154,12 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/CreateApi', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getApi();
+        $this->assertProtobufEquals($api, $actualValue);
+        $actualValue = $actualRequestObject->getApiId();
+        $this->assertProtobufEquals($apiId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -168,7 +181,14 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateApiRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $api = new Api();
+        $apiId = 'apiId-1411282592';
+        $request = (new CreateApiRequest())
+            ->setParent($formattedParent)
+            ->setApi($api)
+            ->setApiId($apiId);
         try {
             $gapicClient->createApi($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -211,7 +231,14 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setIntendedAudience($intendedAudience);
         $expectedResponse->setAccessGuidance($accessGuidance);
         $transport->addResponse($expectedResponse);
-        $request = new CreateApiDeploymentRequest();
+        // Mock request
+        $formattedParent = $gapicClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
+        $apiDeployment = new ApiDeployment();
+        $apiDeploymentId = 'apiDeploymentId-276259984';
+        $request = (new CreateApiDeploymentRequest())
+            ->setParent($formattedParent)
+            ->setApiDeployment($apiDeployment)
+            ->setApiDeploymentId($apiDeploymentId);
         $response = $gapicClient->createApiDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -219,6 +246,12 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/CreateApiDeployment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getApiDeployment();
+        $this->assertProtobufEquals($apiDeployment, $actualValue);
+        $actualValue = $actualRequestObject->getApiDeploymentId();
+        $this->assertProtobufEquals($apiDeploymentId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -240,7 +273,14 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateApiDeploymentRequest();
+        // Mock request
+        $formattedParent = $gapicClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
+        $apiDeployment = new ApiDeployment();
+        $apiDeploymentId = 'apiDeploymentId-276259984';
+        $request = (new CreateApiDeploymentRequest())
+            ->setParent($formattedParent)
+            ->setApiDeployment($apiDeployment)
+            ->setApiDeploymentId($apiDeploymentId);
         try {
             $gapicClient->createApiDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -283,7 +323,14 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setSourceUri($sourceUri);
         $expectedResponse->setContents($contents);
         $transport->addResponse($expectedResponse);
-        $request = new CreateApiSpecRequest();
+        // Mock request
+        $formattedParent = $gapicClient->apiVersionName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]');
+        $apiSpec = new ApiSpec();
+        $apiSpecId = 'apiSpecId800293626';
+        $request = (new CreateApiSpecRequest())
+            ->setParent($formattedParent)
+            ->setApiSpec($apiSpec)
+            ->setApiSpecId($apiSpecId);
         $response = $gapicClient->createApiSpec($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -291,6 +338,12 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/CreateApiSpec', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getApiSpec();
+        $this->assertProtobufEquals($apiSpec, $actualValue);
+        $actualValue = $actualRequestObject->getApiSpecId();
+        $this->assertProtobufEquals($apiSpecId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -312,7 +365,14 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateApiSpecRequest();
+        // Mock request
+        $formattedParent = $gapicClient->apiVersionName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]');
+        $apiSpec = new ApiSpec();
+        $apiSpecId = 'apiSpecId800293626';
+        $request = (new CreateApiSpecRequest())
+            ->setParent($formattedParent)
+            ->setApiSpec($apiSpec)
+            ->setApiSpecId($apiSpecId);
         try {
             $gapicClient->createApiSpec($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -345,7 +405,14 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setState($state);
         $transport->addResponse($expectedResponse);
-        $request = new CreateApiVersionRequest();
+        // Mock request
+        $formattedParent = $gapicClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
+        $apiVersion = new ApiVersion();
+        $apiVersionId = 'apiVersionId790654247';
+        $request = (new CreateApiVersionRequest())
+            ->setParent($formattedParent)
+            ->setApiVersion($apiVersion)
+            ->setApiVersionId($apiVersionId);
         $response = $gapicClient->createApiVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -353,6 +420,12 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/CreateApiVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getApiVersion();
+        $this->assertProtobufEquals($apiVersion, $actualValue);
+        $actualValue = $actualRequestObject->getApiVersionId();
+        $this->assertProtobufEquals($apiVersionId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -374,7 +447,14 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateApiVersionRequest();
+        // Mock request
+        $formattedParent = $gapicClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
+        $apiVersion = new ApiVersion();
+        $apiVersionId = 'apiVersionId790654247';
+        $request = (new CreateApiVersionRequest())
+            ->setParent($formattedParent)
+            ->setApiVersion($apiVersion)
+            ->setApiVersionId($apiVersionId);
         try {
             $gapicClient->createApiVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -409,7 +489,14 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setHash($hash);
         $expectedResponse->setContents($contents);
         $transport->addResponse($expectedResponse);
-        $request = new CreateArtifactRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $artifact = new Artifact();
+        $artifactId = 'artifactId-1130052952';
+        $request = (new CreateArtifactRequest())
+            ->setParent($formattedParent)
+            ->setArtifact($artifact)
+            ->setArtifactId($artifactId);
         $response = $gapicClient->createArtifact($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -417,6 +504,12 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/CreateArtifact', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getArtifact();
+        $this->assertProtobufEquals($artifact, $actualValue);
+        $actualValue = $actualRequestObject->getArtifactId();
+        $this->assertProtobufEquals($artifactId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -438,7 +531,14 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateArtifactRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $artifact = new Artifact();
+        $artifactId = 'artifactId-1130052952';
+        $request = (new CreateArtifactRequest())
+            ->setParent($formattedParent)
+            ->setArtifact($artifact)
+            ->setArtifactId($artifactId);
         try {
             $gapicClient->createArtifact($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -463,13 +563,18 @@ class RegistryClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteApiRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
+        $request = (new DeleteApiRequest())
+            ->setName($formattedName);
         $gapicClient->deleteApi($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/DeleteApi', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -491,7 +596,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteApiRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
+        $request = (new DeleteApiRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteApi($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -516,13 +624,18 @@ class RegistryClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteApiDeploymentRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
+        $request = (new DeleteApiDeploymentRequest())
+            ->setName($formattedName);
         $gapicClient->deleteApiDeployment($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/DeleteApiDeployment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -544,7 +657,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteApiDeploymentRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
+        $request = (new DeleteApiDeploymentRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteApiDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -587,7 +703,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setIntendedAudience($intendedAudience);
         $expectedResponse->setAccessGuidance($accessGuidance);
         $transport->addResponse($expectedResponse);
-        $request = new DeleteApiDeploymentRevisionRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
+        $request = (new DeleteApiDeploymentRevisionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteApiDeploymentRevision($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -595,6 +714,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/DeleteApiDeploymentRevision', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -616,7 +737,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteApiDeploymentRevisionRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
+        $request = (new DeleteApiDeploymentRevisionRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteApiDeploymentRevision($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -641,13 +765,18 @@ class RegistryClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteApiSpecRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
+        $request = (new DeleteApiSpecRequest())
+            ->setName($formattedName);
         $gapicClient->deleteApiSpec($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/DeleteApiSpec', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -669,7 +798,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteApiSpecRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
+        $request = (new DeleteApiSpecRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteApiSpec($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -712,7 +844,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setSourceUri($sourceUri);
         $expectedResponse->setContents($contents);
         $transport->addResponse($expectedResponse);
-        $request = new DeleteApiSpecRevisionRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
+        $request = (new DeleteApiSpecRevisionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteApiSpecRevision($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -720,6 +855,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/DeleteApiSpecRevision', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -741,7 +878,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteApiSpecRevisionRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
+        $request = (new DeleteApiSpecRevisionRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteApiSpecRevision($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -766,13 +906,18 @@ class RegistryClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteApiVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiVersionName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]');
+        $request = (new DeleteApiVersionRequest())
+            ->setName($formattedName);
         $gapicClient->deleteApiVersion($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/DeleteApiVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -794,7 +939,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteApiVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiVersionName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]');
+        $request = (new DeleteApiVersionRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteApiVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -819,13 +967,18 @@ class RegistryClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteArtifactRequest();
+        // Mock request
+        $formattedName = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[ARTIFACT]');
+        $request = (new DeleteArtifactRequest())
+            ->setName($formattedName);
         $gapicClient->deleteArtifact($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/DeleteArtifact', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -847,7 +1000,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteArtifactRequest();
+        // Mock request
+        $formattedName = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[ARTIFACT]');
+        $request = (new DeleteArtifactRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteArtifact($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -884,7 +1040,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setRecommendedVersion($recommendedVersion);
         $expectedResponse->setRecommendedDeployment($recommendedDeployment);
         $transport->addResponse($expectedResponse);
-        $request = new GetApiRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
+        $request = (new GetApiRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getApi($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -892,6 +1051,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/GetApi', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -913,7 +1074,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetApiRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
+        $request = (new GetApiRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getApi($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -956,7 +1120,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setIntendedAudience($intendedAudience);
         $expectedResponse->setAccessGuidance($accessGuidance);
         $transport->addResponse($expectedResponse);
-        $request = new GetApiDeploymentRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
+        $request = (new GetApiDeploymentRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getApiDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -964,6 +1131,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/GetApiDeployment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -985,7 +1154,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetApiDeploymentRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
+        $request = (new GetApiDeploymentRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getApiDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1028,7 +1200,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setSourceUri($sourceUri);
         $expectedResponse->setContents($contents);
         $transport->addResponse($expectedResponse);
-        $request = new GetApiSpecRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
+        $request = (new GetApiSpecRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getApiSpec($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1036,6 +1211,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/GetApiSpec', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1057,7 +1234,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetApiSpecRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
+        $request = (new GetApiSpecRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getApiSpec($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1086,7 +1266,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setContentType($contentType);
         $expectedResponse->setData($data);
         $transport->addResponse($expectedResponse);
-        $request = new GetApiSpecContentsRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
+        $request = (new GetApiSpecContentsRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getApiSpecContents($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1094,6 +1277,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/GetApiSpecContents', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1115,7 +1300,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetApiSpecContentsRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
+        $request = (new GetApiSpecContentsRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getApiSpecContents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1148,7 +1336,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setState($state);
         $transport->addResponse($expectedResponse);
-        $request = new GetApiVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiVersionName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]');
+        $request = (new GetApiVersionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getApiVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1156,6 +1347,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/GetApiVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1177,7 +1370,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetApiVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiVersionName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]');
+        $request = (new GetApiVersionRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getApiVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1212,7 +1408,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setHash($hash);
         $expectedResponse->setContents($contents);
         $transport->addResponse($expectedResponse);
-        $request = new GetArtifactRequest();
+        // Mock request
+        $formattedName = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[ARTIFACT]');
+        $request = (new GetArtifactRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getArtifact($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1220,6 +1419,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/GetArtifact', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1241,7 +1442,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetArtifactRequest();
+        // Mock request
+        $formattedName = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[ARTIFACT]');
+        $request = (new GetArtifactRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getArtifact($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1270,7 +1474,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setContentType($contentType);
         $expectedResponse->setData($data);
         $transport->addResponse($expectedResponse);
-        $request = new GetArtifactContentsRequest();
+        // Mock request
+        $formattedName = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[ARTIFACT]');
+        $request = (new GetArtifactContentsRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getArtifactContents($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1278,6 +1485,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/GetArtifactContents', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1299,7 +1508,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetArtifactContentsRequest();
+        // Mock request
+        $formattedName = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[ARTIFACT]');
+        $request = (new GetArtifactContentsRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getArtifactContents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1331,7 +1543,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setApiDeployments($apiDeployments);
         $transport->addResponse($expectedResponse);
-        $request = new ListApiDeploymentRevisionsRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
+        $request = (new ListApiDeploymentRevisionsRequest())
+            ->setName($formattedName);
         $response = $gapicClient->listApiDeploymentRevisions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1342,6 +1557,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/ListApiDeploymentRevisions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1363,7 +1580,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListApiDeploymentRevisionsRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
+        $request = (new ListApiDeploymentRevisionsRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->listApiDeploymentRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1395,7 +1615,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setApiDeployments($apiDeployments);
         $transport->addResponse($expectedResponse);
-        $request = new ListApiDeploymentsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
+        $request = (new ListApiDeploymentsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listApiDeployments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1406,6 +1629,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/ListApiDeployments', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1427,7 +1652,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListApiDeploymentsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
+        $request = (new ListApiDeploymentsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listApiDeployments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1459,7 +1687,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setApiSpecs($apiSpecs);
         $transport->addResponse($expectedResponse);
-        $request = new ListApiSpecRevisionsRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
+        $request = (new ListApiSpecRevisionsRequest())
+            ->setName($formattedName);
         $response = $gapicClient->listApiSpecRevisions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1470,6 +1701,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/ListApiSpecRevisions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1491,7 +1724,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListApiSpecRevisionsRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
+        $request = (new ListApiSpecRevisionsRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->listApiSpecRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1523,7 +1759,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setApiSpecs($apiSpecs);
         $transport->addResponse($expectedResponse);
-        $request = new ListApiSpecsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->apiVersionName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]');
+        $request = (new ListApiSpecsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listApiSpecs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1534,6 +1773,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/ListApiSpecs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1555,7 +1796,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListApiSpecsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->apiVersionName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]');
+        $request = (new ListApiSpecsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listApiSpecs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1587,7 +1831,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setApiVersions($apiVersions);
         $transport->addResponse($expectedResponse);
-        $request = new ListApiVersionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
+        $request = (new ListApiVersionsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listApiVersions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1598,6 +1845,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/ListApiVersions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1619,7 +1868,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListApiVersionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->apiName('[PROJECT]', '[LOCATION]', '[API]');
+        $request = (new ListApiVersionsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listApiVersions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1651,7 +1903,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setApis($apis);
         $transport->addResponse($expectedResponse);
-        $request = new ListApisRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListApisRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listApis($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1662,6 +1917,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/ListApis', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1683,7 +1940,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListApisRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListApisRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listApis($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1715,7 +1975,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setArtifacts($artifacts);
         $transport->addResponse($expectedResponse);
-        $request = new ListArtifactsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListArtifactsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listArtifacts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1726,6 +1989,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/ListArtifacts', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1747,7 +2012,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListArtifactsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListArtifactsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listArtifacts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1782,7 +2050,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setHash($hash);
         $expectedResponse->setContents($contents);
         $transport->addResponse($expectedResponse);
-        $request = new ReplaceArtifactRequest();
+        // Mock request
+        $artifact = new Artifact();
+        $request = (new ReplaceArtifactRequest())
+            ->setArtifact($artifact);
         $response = $gapicClient->replaceArtifact($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1790,6 +2061,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/ReplaceArtifact', $actualFuncCall);
+        $actualValue = $actualRequestObject->getArtifact();
+        $this->assertProtobufEquals($artifact, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1811,7 +2084,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ReplaceArtifactRequest();
+        // Mock request
+        $artifact = new Artifact();
+        $request = (new ReplaceArtifactRequest())
+            ->setArtifact($artifact);
         try {
             $gapicClient->replaceArtifact($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1854,7 +2130,12 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setIntendedAudience($intendedAudience);
         $expectedResponse->setAccessGuidance($accessGuidance);
         $transport->addResponse($expectedResponse);
-        $request = new RollbackApiDeploymentRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
+        $revisionId = 'revisionId513861631';
+        $request = (new RollbackApiDeploymentRequest())
+            ->setName($formattedName)
+            ->setRevisionId($revisionId);
         $response = $gapicClient->rollbackApiDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1862,6 +2143,10 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/RollbackApiDeployment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getRevisionId();
+        $this->assertProtobufEquals($revisionId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1883,7 +2168,12 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new RollbackApiDeploymentRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
+        $revisionId = 'revisionId513861631';
+        $request = (new RollbackApiDeploymentRequest())
+            ->setName($formattedName)
+            ->setRevisionId($revisionId);
         try {
             $gapicClient->rollbackApiDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1926,7 +2216,12 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setSourceUri($sourceUri);
         $expectedResponse->setContents($contents);
         $transport->addResponse($expectedResponse);
-        $request = new RollbackApiSpecRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
+        $revisionId = 'revisionId513861631';
+        $request = (new RollbackApiSpecRequest())
+            ->setName($formattedName)
+            ->setRevisionId($revisionId);
         $response = $gapicClient->rollbackApiSpec($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1934,6 +2229,10 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/RollbackApiSpec', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getRevisionId();
+        $this->assertProtobufEquals($revisionId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1955,7 +2254,12 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new RollbackApiSpecRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
+        $revisionId = 'revisionId513861631';
+        $request = (new RollbackApiSpecRequest())
+            ->setName($formattedName)
+            ->setRevisionId($revisionId);
         try {
             $gapicClient->rollbackApiSpec($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1998,7 +2302,12 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setIntendedAudience($intendedAudience);
         $expectedResponse->setAccessGuidance($accessGuidance);
         $transport->addResponse($expectedResponse);
-        $request = new TagApiDeploymentRevisionRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
+        $tag = 'tag114586';
+        $request = (new TagApiDeploymentRevisionRequest())
+            ->setName($formattedName)
+            ->setTag($tag);
         $response = $gapicClient->tagApiDeploymentRevision($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2006,6 +2315,10 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/TagApiDeploymentRevision', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getTag();
+        $this->assertProtobufEquals($tag, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2027,7 +2340,12 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TagApiDeploymentRevisionRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiDeploymentName('[PROJECT]', '[LOCATION]', '[API]', '[DEPLOYMENT]');
+        $tag = 'tag114586';
+        $request = (new TagApiDeploymentRevisionRequest())
+            ->setName($formattedName)
+            ->setTag($tag);
         try {
             $gapicClient->tagApiDeploymentRevision($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2070,7 +2388,12 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setSourceUri($sourceUri);
         $expectedResponse->setContents($contents);
         $transport->addResponse($expectedResponse);
-        $request = new TagApiSpecRevisionRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
+        $tag = 'tag114586';
+        $request = (new TagApiSpecRevisionRequest())
+            ->setName($formattedName)
+            ->setTag($tag);
         $response = $gapicClient->tagApiSpecRevision($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2078,6 +2401,10 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/TagApiSpecRevision', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getTag();
+        $this->assertProtobufEquals($tag, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2099,7 +2426,12 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TagApiSpecRevisionRequest();
+        // Mock request
+        $formattedName = $gapicClient->apiSpecName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]', '[SPEC]');
+        $tag = 'tag114586';
+        $request = (new TagApiSpecRevisionRequest())
+            ->setName($formattedName)
+            ->setTag($tag);
         try {
             $gapicClient->tagApiSpecRevision($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2136,7 +2468,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setRecommendedVersion($recommendedVersion);
         $expectedResponse->setRecommendedDeployment($recommendedDeployment);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateApiRequest();
+        // Mock request
+        $api = new Api();
+        $request = (new UpdateApiRequest())
+            ->setApi($api);
         $response = $gapicClient->updateApi($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2144,6 +2479,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/UpdateApi', $actualFuncCall);
+        $actualValue = $actualRequestObject->getApi();
+        $this->assertProtobufEquals($api, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2165,7 +2502,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateApiRequest();
+        // Mock request
+        $api = new Api();
+        $request = (new UpdateApiRequest())
+            ->setApi($api);
         try {
             $gapicClient->updateApi($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2208,7 +2548,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setIntendedAudience($intendedAudience);
         $expectedResponse->setAccessGuidance($accessGuidance);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateApiDeploymentRequest();
+        // Mock request
+        $apiDeployment = new ApiDeployment();
+        $request = (new UpdateApiDeploymentRequest())
+            ->setApiDeployment($apiDeployment);
         $response = $gapicClient->updateApiDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2216,6 +2559,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/UpdateApiDeployment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getApiDeployment();
+        $this->assertProtobufEquals($apiDeployment, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2237,7 +2582,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateApiDeploymentRequest();
+        // Mock request
+        $apiDeployment = new ApiDeployment();
+        $request = (new UpdateApiDeploymentRequest())
+            ->setApiDeployment($apiDeployment);
         try {
             $gapicClient->updateApiDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2280,7 +2628,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setSourceUri($sourceUri);
         $expectedResponse->setContents($contents);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateApiSpecRequest();
+        // Mock request
+        $apiSpec = new ApiSpec();
+        $request = (new UpdateApiSpecRequest())
+            ->setApiSpec($apiSpec);
         $response = $gapicClient->updateApiSpec($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2288,6 +2639,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/UpdateApiSpec', $actualFuncCall);
+        $actualValue = $actualRequestObject->getApiSpec();
+        $this->assertProtobufEquals($apiSpec, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2309,7 +2662,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateApiSpecRequest();
+        // Mock request
+        $apiSpec = new ApiSpec();
+        $request = (new UpdateApiSpecRequest())
+            ->setApiSpec($apiSpec);
         try {
             $gapicClient->updateApiSpec($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2342,7 +2698,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setState($state);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateApiVersionRequest();
+        // Mock request
+        $apiVersion = new ApiVersion();
+        $request = (new UpdateApiVersionRequest())
+            ->setApiVersion($apiVersion);
         $response = $gapicClient->updateApiVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2350,6 +2709,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/UpdateApiVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getApiVersion();
+        $this->assertProtobufEquals($apiVersion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2371,7 +2732,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateApiVersionRequest();
+        // Mock request
+        $apiVersion = new ApiVersion();
+        $request = (new UpdateApiVersionRequest())
+            ->setApiVersion($apiVersion);
         try {
             $gapicClient->updateApiVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2524,7 +2888,10 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2532,6 +2899,8 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2553,7 +2922,10 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2582,7 +2954,12 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2590,6 +2967,10 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2611,7 +2992,12 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2636,7 +3022,12 @@ class RegistryClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2644,6 +3035,10 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2665,7 +3060,12 @@ class RegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2702,7 +3102,14 @@ class RegistryClientTest extends GeneratedTest
         $expectedResponse->setRecommendedVersion($recommendedVersion);
         $expectedResponse->setRecommendedDeployment($recommendedDeployment);
         $transport->addResponse($expectedResponse);
-        $request = new CreateApiRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $api = new Api();
+        $apiId = 'apiId-1411282592';
+        $request = (new CreateApiRequest())
+            ->setParent($formattedParent)
+            ->setApi($api)
+            ->setApiId($apiId);
         $response = $gapicClient->createApiAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2710,6 +3117,12 @@ class RegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeregistry.v1.Registry/CreateApi', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getApi();
+        $this->assertProtobufEquals($api, $actualValue);
+        $actualValue = $actualRequestObject->getApiId();
+        $this->assertProtobufEquals($apiId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

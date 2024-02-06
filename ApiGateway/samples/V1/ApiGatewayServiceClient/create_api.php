@@ -33,19 +33,23 @@ use Google\Rpc\Status;
 /**
  * Creates a new Api in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Parent resource of the API, of the form:
+ *                                `projects/&#42;/locations/global`
+ *                                Please see {@see ApiGatewayServiceClient::locationName()} for help formatting this field.
+ * @param string $apiId           Identifier to assign to the API. Must be unique within scope of
+ *                                the parent resource.
  */
-function create_api_sample(): void
+function create_api_sample(string $formattedParent, string $apiId): void
 {
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
     // Prepare the request message.
-    $request = new CreateApiRequest();
+    $api = new Api();
+    $request = (new CreateApiRequest())
+        ->setParent($formattedParent)
+        ->setApiId($apiId)
+        ->setApi($api);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +69,22 @@ function create_api_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ApiGatewayServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $apiId = '[API_ID]';
+
+    create_api_sample($formattedParent, $apiId);
 }
 // [END apigateway_v1_generated_ApiGatewayService_CreateApi_sync]

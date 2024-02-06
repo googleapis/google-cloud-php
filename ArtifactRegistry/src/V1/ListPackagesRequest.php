@@ -35,7 +35,8 @@ class ListPackagesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent Required. The name of the parent resource whose packages will be listed.
+     * @param string $parent Required. The name of the parent resource whose packages will be listed. Please see
+     *                       {@see ArtifactRegistryClient::repositoryName()} for help formatting this field.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\ListPackagesRequest
      *

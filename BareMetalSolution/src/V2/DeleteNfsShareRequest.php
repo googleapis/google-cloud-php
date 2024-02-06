@@ -23,7 +23,8 @@ class DeleteNfsShareRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the NFS share to delete.
+     * @param string $name Required. The name of the NFS share to delete. Please see
+     *                     {@see BareMetalSolutionClient::nFSShareName()} for help formatting this field.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\DeleteNfsShareRequest
      *

@@ -25,25 +25,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START baremetalsolution_v2_generated_BareMetalSolution_SubmitProvisioningConfig_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\BareMetalSolution\V2\Client\BareMetalSolutionClient;
+use Google\Cloud\BareMetalSolution\V2\ProvisioningConfig;
 use Google\Cloud\BareMetalSolution\V2\SubmitProvisioningConfigRequest;
 use Google\Cloud\BareMetalSolution\V2\SubmitProvisioningConfigResponse;
 
 /**
  * Submit a provisiong configuration for a given project.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent project and location containing the
+ *                                ProvisioningConfig. Please see
+ *                                {@see BareMetalSolutionClient::locationName()} for help formatting this field.
  */
-function submit_provisioning_config_sample(): void
+function submit_provisioning_config_sample(string $formattedParent): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = new SubmitProvisioningConfigRequest();
+    $provisioningConfig = new ProvisioningConfig();
+    $request = (new SubmitProvisioningConfigRequest())
+        ->setParent($formattedParent)
+        ->setProvisioningConfig($provisioningConfig);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +55,21 @@ function submit_provisioning_config_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = BareMetalSolutionClient::locationName('[PROJECT]', '[LOCATION]');
+
+    submit_provisioning_config_sample($formattedParent);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_SubmitProvisioningConfig_sync]

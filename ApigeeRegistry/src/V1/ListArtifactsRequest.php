@@ -51,6 +51,7 @@ class ListArtifactsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent, which owns this collection of artifacts.
      *                       Format: `{parent}`
+     *                       Please see {@see RegistryClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\ApigeeRegistry\V1\ListArtifactsRequest
      *

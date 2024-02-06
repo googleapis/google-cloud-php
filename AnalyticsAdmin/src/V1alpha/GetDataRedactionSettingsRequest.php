@@ -30,6 +30,7 @@ class GetDataRedactionSettingsRequest extends \Google\Protobuf\Internal\Message
      *                     Format:
      *                     properties/{property}/dataStreams/{data_stream}/dataRedactionSettings
      *                     Example: "properties/1000/dataStreams/2000/dataRedactionSettings"
+     *                     Please see {@see AnalyticsAdminServiceClient::dataRedactionSettingsName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetDataRedactionSettingsRequest
      *

@@ -39,7 +39,8 @@ class GetNotificationRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. A name of the notification to retrieve.
      *                     Format:
      *                     organizations/{organization}/locations/{location}/notifications/{notification}
-     *                     or projects/{projects}/locations/{location}/notifications/{notification}.
+     *                     or projects/{projects}/locations/{location}/notifications/{notification}. Please see
+     *                     {@see AdvisoryNotificationsServiceClient::notificationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AdvisoryNotifications\V1\GetNotificationRequest
      *

@@ -26,6 +26,7 @@ class GetDisplayVideo360AdvertiserLinkProposalRequest extends \Google\Protobuf\I
     /**
      * @param string $name Required. The name of the DisplayVideo360AdvertiserLinkProposal to get.
      *                     Example format: properties/1234/displayVideo360AdvertiserLinkProposals/5678
+     *                     Please see {@see AnalyticsAdminServiceClient::displayVideo360AdvertiserLinkProposalName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkProposalRequest
      *

@@ -33,6 +33,7 @@ class DeleteApiRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the API to delete.
      *                     Format: `projects/&#42;/locations/&#42;/apis/*`
+     *                     Please see {@see RegistryClient::apiName()} for help formatting this field.
      *
      * @return \Google\Cloud\ApigeeRegistry\V1\DeleteApiRequest
      *

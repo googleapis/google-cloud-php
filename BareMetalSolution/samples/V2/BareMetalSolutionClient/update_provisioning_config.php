@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\BareMetalSolution\V2\Client\BareMetalSolutionClient;
 use Google\Cloud\BareMetalSolution\V2\ProvisioningConfig;
 use Google\Cloud\BareMetalSolution\V2\UpdateProvisioningConfigRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Update existing ProvisioningConfig.
@@ -43,7 +44,11 @@ function update_provisioning_config_sample(): void
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = new UpdateProvisioningConfigRequest();
+    $provisioningConfig = new ProvisioningConfig();
+    $updateMask = new FieldMask();
+    $request = (new UpdateProvisioningConfigRequest())
+        ->setProvisioningConfig($provisioningConfig)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
