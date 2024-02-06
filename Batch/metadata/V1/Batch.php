@@ -76,13 +76,13 @@ page_token (	"m
 requested_cancellation (BàA
 api_version (	BàA2¶
 BatchService›
-	CreateJob\'.google.cloud.batch.v1.CreateJobRequest.google.cloud.batch.v1.Job"I‚Óä“/"(/v1/{parent=projects/*/locations/*}/jobs:jobÚAparent,job,job_idƒ
-GetJob$.google.cloud.batch.v1.GetJobRequest.google.cloud.batch.v1.Job"7‚Óä“*(/v1/{name=projects/*/locations/*/jobs/*}ÚAnameÏ
-	DeleteJob\'.google.cloud.batch.v1.DeleteJobRequest.google.longrunning.Operation"z‚Óä“**(/v1/{name=projects/*/locations/*/jobs/*}ÚAnameÊA@
-google.protobuf.Empty\'google.cloud.batch.v1.OperationMetadata–
-ListJobs&.google.cloud.batch.v1.ListJobsRequest\'.google.cloud.batch.v1.ListJobsResponse"9‚Óä“*(/v1/{parent=projects/*/locations/*}/jobsÚAparent›
-GetTask%.google.cloud.batch.v1.GetTaskRequest.google.cloud.batch.v1.Task"L‚Óä“?=/v1/{name=projects/*/locations/*/jobs/*/taskGroups/*/tasks/*}ÚAname®
-	ListTasks\'.google.cloud.batch.v1.ListTasksRequest(.google.cloud.batch.v1.ListTasksResponse"N‚Óä“?=/v1/{parent=projects/*/locations/*/jobs/*/taskGroups/*}/tasksÚAparentHÊAbatch.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB«
+	CreateJob\'.google.cloud.batch.v1.CreateJobRequest.google.cloud.batch.v1.Job"IÚAparent,job,job_id‚Óä“/"(/v1/{parent=projects/*/locations/*}/jobs:jobƒ
+GetJob$.google.cloud.batch.v1.GetJobRequest.google.cloud.batch.v1.Job"7ÚAname‚Óä“*(/v1/{name=projects/*/locations/*/jobs/*}Ï
+	DeleteJob\'.google.cloud.batch.v1.DeleteJobRequest.google.longrunning.Operation"zÊA@
+google.protobuf.Empty\'google.cloud.batch.v1.OperationMetadataÚAname‚Óä“**(/v1/{name=projects/*/locations/*/jobs/*}–
+ListJobs&.google.cloud.batch.v1.ListJobsRequest\'.google.cloud.batch.v1.ListJobsResponse"9ÚAparent‚Óä“*(/v1/{parent=projects/*/locations/*}/jobs›
+GetTask%.google.cloud.batch.v1.GetTaskRequest.google.cloud.batch.v1.Task"LÚAname‚Óä“?=/v1/{name=projects/*/locations/*/jobs/*/taskGroups/*/tasks/*}®
+	ListTasks\'.google.cloud.batch.v1.ListTasksRequest(.google.cloud.batch.v1.ListTasksResponse"NÚAparent‚Óä“?=/v1/{parent=projects/*/locations/*/jobs/*/taskGroups/*}/tasksHÊAbatch.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB«
 com.google.cloud.batch.v1B
 BatchProtoPZ/cloud.google.com/go/batch/apiv1/batchpb;batchpb¢GCBªGoogle.Cloud.Batch.V1ÊGoogle\\Cloud\\Batch\\V1êGoogle::Cloud::Batch::V1bproto3'
         , true);
