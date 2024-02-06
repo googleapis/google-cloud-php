@@ -32,19 +32,17 @@ use Google\Cloud\Spanner\V1\Session;
 /**
  * Lists all sessions in a given database.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedDatabase The database in which to list sessions. Please see
+ *                                  {@see SpannerClient::databaseName()} for help formatting this field.
  */
-function list_sessions_sample(): void
+function list_sessions_sample(string $formattedDatabase): void
 {
     // Create a client.
     $spannerClient = new SpannerClient();
 
     // Prepare the request message.
-    $request = new ListSessionsRequest();
+    $request = (new ListSessionsRequest())
+        ->setDatabase($formattedDatabase);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +56,21 @@ function list_sessions_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedDatabase = SpannerClient::databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+
+    list_sessions_sample($formattedDatabase);
 }
 // [END spanner_v1_generated_Spanner_ListSessions_sync]

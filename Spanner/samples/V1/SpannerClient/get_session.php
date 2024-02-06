@@ -33,19 +33,17 @@ use Google\Cloud\Spanner\V1\Session;
  * This is mainly useful for determining whether a session is still
  * alive.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the session to retrieve. Please see
+ *                              {@see SpannerClient::sessionName()} for help formatting this field.
  */
-function get_session_sample(): void
+function get_session_sample(string $formattedName): void
 {
     // Create a client.
     $spannerClient = new SpannerClient();
 
     // Prepare the request message.
-    $request = new GetSessionRequest();
+    $request = (new GetSessionRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -55,5 +53,21 @@ function get_session_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = SpannerClient::sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+
+    get_session_sample($formattedName);
 }
 // [END spanner_v1_generated_Spanner_GetSession_sync]

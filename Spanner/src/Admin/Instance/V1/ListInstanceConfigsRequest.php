@@ -44,7 +44,8 @@ class ListInstanceConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The name of the project for which a list of supported instance
      *                       configurations is requested. Values are of the form
-     *                       `projects/<project>`.
+     *                       `projects/<project>`. Please see
+     *                       {@see InstanceAdminClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest
      *

@@ -94,7 +94,10 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $instanceAdminClient = new InstanceAdminClient();
  * try {
- *     $operationResponse = $instanceAdminClient->createInstance();
+ *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
+ *     $instanceId = 'instance_id';
+ *     $instance = new Instance();
+ *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -105,7 +108,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $instanceAdminClient->createInstance();
+ *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'createInstance');
@@ -472,7 +475,10 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $operationResponse = $instanceAdminClient->createInstance();
+     *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
+     *     $instanceId = 'instance_id';
+     *     $instance = new Instance();
+     *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -483,7 +489,7 @@ class InstanceAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instanceAdminClient->createInstance();
+     *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'createInstance');
@@ -503,19 +509,16 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $parent       Required. The name of the project in which to create the instance. Values
+     *                               are of the form `projects/<project>`.
+     * @param string   $instanceId   Required. The ID of the instance to create.  Valid identifiers are of the
+     *                               form `[a-z][-a-z0-9]*[a-z0-9]` and must be between 2 and 64 characters in
+     *                               length.
+     * @param Instance $instance     Required. The instance to create.  The name may be omitted, but if
+     *                               specified must be `<parent>/instances/<instance_id>`.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the project in which to create the instance. Values
-     *           are of the form `projects/<project>`.
-     *     @type string $instanceId
-     *           Required. The ID of the instance to create.  Valid identifiers are of the
-     *           form `[a-z][-a-z0-9]*[a-z0-9]` and must be between 2 and 64 characters in
-     *           length.
-     *     @type Instance $instance
-     *           Required. The instance to create.  The name may be omitted, but if
-     *           specified must be `<parent>/instances/<instance_id>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -526,23 +529,18 @@ class InstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createInstance(array $optionalArgs = [])
-    {
+    public function createInstance(
+        $parent,
+        $instanceId,
+        $instance,
+        array $optionalArgs = []
+    ) {
         $request = new CreateInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['instanceId'])) {
-            $request->setInstanceId($optionalArgs['instanceId']);
-        }
-
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-        }
-
+        $request->setParent($parent);
+        $request->setInstanceId($instanceId);
+        $request->setInstance($instance);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -604,7 +602,10 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $operationResponse = $instanceAdminClient->createInstanceConfig();
+     *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
+     *     $instanceConfigId = 'instance_config_id';
+     *     $instanceConfig = new InstanceConfig();
+     *     $operationResponse = $instanceAdminClient->createInstanceConfig($formattedParent, $instanceConfigId, $instanceConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -615,7 +616,7 @@ class InstanceAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instanceAdminClient->createInstanceConfig();
+     *     $operationResponse = $instanceAdminClient->createInstanceConfig($formattedParent, $instanceConfigId, $instanceConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'createInstanceConfig');
@@ -635,23 +636,20 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string         $parent           Required. The name of the project in which to create the instance config.
+     *                                         Values are of the form `projects/<project>`.
+     * @param string         $instanceConfigId Required. The ID of the instance config to create.  Valid identifiers are
+     *                                         of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
+     *                                         characters in length. The `custom-` prefix is required to avoid name
+     *                                         conflicts with Google managed configurations.
+     * @param InstanceConfig $instanceConfig   Required. The InstanceConfig proto of the configuration to create.
+     *                                         instance_config.name must be
+     *                                         `<parent>/instanceConfigs/<instance_config_id>`.
+     *                                         instance_config.base_config must be a Google managed configuration name,
+     *                                         e.g. <parent>/instanceConfigs/us-east1, <parent>/instanceConfigs/nam3.
+     * @param array          $optionalArgs     {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the project in which to create the instance config.
-     *           Values are of the form `projects/<project>`.
-     *     @type string $instanceConfigId
-     *           Required. The ID of the instance config to create.  Valid identifiers are
-     *           of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
-     *           characters in length. The `custom-` prefix is required to avoid name
-     *           conflicts with Google managed configurations.
-     *     @type InstanceConfig $instanceConfig
-     *           Required. The InstanceConfig proto of the configuration to create.
-     *           instance_config.name must be
-     *           `<parent>/instanceConfigs/<instance_config_id>`.
-     *           instance_config.base_config must be a Google managed configuration name,
-     *           e.g. <parent>/instanceConfigs/us-east1, <parent>/instanceConfigs/nam3.
      *     @type bool $validateOnly
      *           An option to validate, but not actually execute, a request,
      *           and provide the same response.
@@ -665,23 +663,18 @@ class InstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createInstanceConfig(array $optionalArgs = [])
-    {
+    public function createInstanceConfig(
+        $parent,
+        $instanceConfigId,
+        $instanceConfig,
+        array $optionalArgs = []
+    ) {
         $request = new CreateInstanceConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['instanceConfigId'])) {
-            $request->setInstanceConfigId($optionalArgs['instanceConfigId']);
-        }
-
-        if (isset($optionalArgs['instanceConfig'])) {
-            $request->setInstanceConfig($optionalArgs['instanceConfig']);
-        }
-
+        $request->setParent($parent);
+        $request->setInstanceConfigId($instanceConfigId);
+        $request->setInstanceConfig($instanceConfig);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -717,18 +710,18 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $instanceAdminClient->deleteInstance();
+     *     $formattedName = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $instanceAdminClient->deleteInstance($formattedName);
      * } finally {
      *     $instanceAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the instance to be deleted. Values are of the form
+     *                             `projects/<project>/instances/<instance>`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the instance to be deleted. Values are of the form
-     *           `projects/<project>/instances/<instance>`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -737,15 +730,12 @@ class InstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteInstance(array $optionalArgs = [])
+    public function deleteInstance($name, array $optionalArgs = [])
     {
         $request = new DeleteInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -774,19 +764,19 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $instanceAdminClient->deleteInstanceConfig();
+     *     $formattedName = $instanceAdminClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+     *     $instanceAdminClient->deleteInstanceConfig($formattedName);
      * } finally {
      *     $instanceAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the instance configuration to be deleted.
+     *                             Values are of the form
+     *                             `projects/<project>/instanceConfigs/<instance_config>`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the instance configuration to be deleted.
-     *           Values are of the form
-     *           `projects/<project>/instanceConfigs/<instance_config>`
      *     @type string $etag
      *           Used for optimistic concurrency control as a way to help prevent
      *           simultaneous deletes of an instance config from overwriting each
@@ -806,15 +796,12 @@ class InstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteInstanceConfig(array $optionalArgs = [])
+    public function deleteInstanceConfig($name, array $optionalArgs = [])
     {
         $request = new DeleteInstanceConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -904,18 +891,18 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $response = $instanceAdminClient->getInstance();
+     *     $formattedName = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $response = $instanceAdminClient->getInstance($formattedName);
      * } finally {
      *     $instanceAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the requested instance. Values are of the form
+     *                             `projects/<project>/instances/<instance>`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the requested instance. Values are of the form
-     *           `projects/<project>/instances/<instance>`.
      *     @type FieldMask $fieldMask
      *           If field_mask is present, specifies the subset of
      *           [Instance][google.spanner.admin.instance.v1.Instance] fields that should be
@@ -931,15 +918,12 @@ class InstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getInstance(array $optionalArgs = [])
+    public function getInstance($name, array $optionalArgs = [])
     {
         $request = new GetInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['fieldMask'])) {
             $request->setFieldMask($optionalArgs['fieldMask']);
         }
@@ -965,18 +949,18 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $response = $instanceAdminClient->getInstanceConfig();
+     *     $formattedName = $instanceAdminClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+     *     $response = $instanceAdminClient->getInstanceConfig($formattedName);
      * } finally {
      *     $instanceAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the requested instance configuration. Values are of
+     *                             the form `projects/<project>/instanceConfigs/<config>`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the requested instance configuration. Values are of
-     *           the form `projects/<project>/instanceConfigs/<config>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -987,15 +971,12 @@ class InstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getInstanceConfig(array $optionalArgs = [])
+    public function getInstanceConfig($name, array $optionalArgs = [])
     {
         $request = new GetInstanceConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1027,8 +1008,9 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
+     *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $instanceAdminClient->listInstanceConfigOperations();
+     *     $pagedResponse = $instanceAdminClient->listInstanceConfigOperations($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1036,7 +1018,7 @@ class InstanceAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $instanceAdminClient->listInstanceConfigOperations();
+     *     $pagedResponse = $instanceAdminClient->listInstanceConfigOperations($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1045,12 +1027,11 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The project of the instance config operations.
+     *                             Values are of the form `projects/<project>`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The project of the instance config operations.
-     *           Values are of the form `projects/<project>`.
      *     @type string $filter
      *           An expression that filters the list of returned operations.
      *
@@ -1114,15 +1095,14 @@ class InstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listInstanceConfigOperations(array $optionalArgs = [])
-    {
+    public function listInstanceConfigOperations(
+        $parent,
+        array $optionalArgs = []
+    ) {
         $request = new ListInstanceConfigOperationsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1156,8 +1136,9 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
+     *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $instanceAdminClient->listInstanceConfigs();
+     *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1165,7 +1146,7 @@ class InstanceAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $instanceAdminClient->listInstanceConfigs();
+     *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1174,13 +1155,12 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the project for which a list of supported instance
+     *                             configurations is requested. Values are of the form
+     *                             `projects/<project>`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the project for which a list of supported instance
-     *           configurations is requested. Values are of the form
-     *           `projects/<project>`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1200,15 +1180,12 @@ class InstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listInstanceConfigs(array $optionalArgs = [])
+    public function listInstanceConfigs($parent, array $optionalArgs = [])
     {
         $request = new ListInstanceConfigsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1238,8 +1215,9 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
+     *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $instanceAdminClient->listInstances();
+     *     $pagedResponse = $instanceAdminClient->listInstances($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1247,7 +1225,7 @@ class InstanceAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $instanceAdminClient->listInstances();
+     *     $pagedResponse = $instanceAdminClient->listInstances($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1256,12 +1234,11 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the project for which a list of instances is
+     *                             requested. Values are of the form `projects/<project>`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the project for which a list of instances is
-     *           requested. Values are of the form `projects/<project>`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1301,15 +1278,12 @@ class InstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listInstances(array $optionalArgs = [])
+    public function listInstances($parent, array $optionalArgs = [])
     {
         $request = new ListInstancesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1514,7 +1488,9 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $operationResponse = $instanceAdminClient->updateInstance();
+     *     $instance = new Instance();
+     *     $fieldMask = new FieldMask();
+     *     $operationResponse = $instanceAdminClient->updateInstance($instance, $fieldMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1525,7 +1501,7 @@ class InstanceAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instanceAdminClient->updateInstance();
+     *     $operationResponse = $instanceAdminClient->updateInstance($instance, $fieldMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'updateInstance');
@@ -1545,20 +1521,18 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Instance  $instance     Required. The instance to update, which must always include the instance
+     *                                name.  Otherwise, only fields mentioned in
+     *                                [field_mask][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask]
+     *                                need be included.
+     * @param FieldMask $fieldMask    Required. A mask specifying which fields in
+     *                                [Instance][google.spanner.admin.instance.v1.Instance] should be updated.
+     *                                The field mask must always be specified; this prevents any future fields in
+     *                                [Instance][google.spanner.admin.instance.v1.Instance] from being erased
+     *                                accidentally by clients that do not know about them.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type Instance $instance
-     *           Required. The instance to update, which must always include the instance
-     *           name.  Otherwise, only fields mentioned in
-     *           [field_mask][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask]
-     *           need be included.
-     *     @type FieldMask $fieldMask
-     *           Required. A mask specifying which fields in
-     *           [Instance][google.spanner.admin.instance.v1.Instance] should be updated.
-     *           The field mask must always be specified; this prevents any future fields in
-     *           [Instance][google.spanner.admin.instance.v1.Instance] from being erased
-     *           accidentally by clients that do not know about them.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1569,18 +1543,16 @@ class InstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateInstance(array $optionalArgs = [])
-    {
+    public function updateInstance(
+        $instance,
+        $fieldMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-        }
-
-        if (isset($optionalArgs['fieldMask'])) {
-            $request->setFieldMask($optionalArgs['fieldMask']);
-        }
-
+        $request->setInstance($instance);
+        $request->setFieldMask($fieldMask);
+        $requestParamHeaders['instance.name'] = $instance->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1645,7 +1617,9 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $operationResponse = $instanceAdminClient->updateInstanceConfig();
+     *     $instanceConfig = new InstanceConfig();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $instanceAdminClient->updateInstanceConfig($instanceConfig, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1656,7 +1630,7 @@ class InstanceAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instanceAdminClient->updateInstanceConfig();
+     *     $operationResponse = $instanceAdminClient->updateInstanceConfig($instanceConfig, $updateMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'updateInstanceConfig');
@@ -1676,23 +1650,21 @@ class InstanceAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param InstanceConfig $instanceConfig Required. The user instance config to update, which must always include the
+     *                                       instance config name. Otherwise, only fields mentioned in
+     *                                       [update_mask][google.spanner.admin.instance.v1.UpdateInstanceConfigRequest.update_mask]
+     *                                       need be included. To prevent conflicts of concurrent updates,
+     *                                       [etag][google.spanner.admin.instance.v1.InstanceConfig.reconciling] can
+     *                                       be used.
+     * @param FieldMask      $updateMask     Required. A mask specifying which fields in
+     *                                       [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] should be
+     *                                       updated. The field mask must always be specified; this prevents any future
+     *                                       fields in [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig]
+     *                                       from being erased accidentally by clients that do not know about them. Only
+     *                                       display_name and labels can be updated.
+     * @param array          $optionalArgs   {
      *     Optional.
      *
-     *     @type InstanceConfig $instanceConfig
-     *           Required. The user instance config to update, which must always include the
-     *           instance config name. Otherwise, only fields mentioned in
-     *           [update_mask][google.spanner.admin.instance.v1.UpdateInstanceConfigRequest.update_mask]
-     *           need be included. To prevent conflicts of concurrent updates,
-     *           [etag][google.spanner.admin.instance.v1.InstanceConfig.reconciling] can
-     *           be used.
-     *     @type FieldMask $updateMask
-     *           Required. A mask specifying which fields in
-     *           [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] should be
-     *           updated. The field mask must always be specified; this prevents any future
-     *           fields in [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig]
-     *           from being erased accidentally by clients that do not know about them. Only
-     *           display_name and labels can be updated.
      *     @type bool $validateOnly
      *           An option to validate, but not actually execute, a request,
      *           and provide the same response.
@@ -1706,18 +1678,18 @@ class InstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateInstanceConfig(array $optionalArgs = [])
-    {
+    public function updateInstanceConfig(
+        $instanceConfig,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateInstanceConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceConfig'])) {
-            $request->setInstanceConfig($optionalArgs['instanceConfig']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setInstanceConfig($instanceConfig);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders[
+            'instance_config.name'
+        ] = $instanceConfig->getName();
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }

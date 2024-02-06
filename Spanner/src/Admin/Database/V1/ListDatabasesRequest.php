@@ -40,7 +40,8 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The instance whose databases should be listed.
-     *                       Values are of the form `projects/<project>/instances/<instance>`.
+     *                       Values are of the form `projects/<project>/instances/<instance>`. Please see
+     *                       {@see DatabaseAdminClient::instanceName()} for help formatting this field.
      *
      * @return \Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest
      *

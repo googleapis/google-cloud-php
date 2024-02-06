@@ -96,7 +96,11 @@ use Google\Protobuf\Timestamp;
  * ```
  * $databaseAdminClient = new DatabaseAdminClient();
  * try {
- *     $operationResponse = $databaseAdminClient->copyBackup();
+ *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+ *     $backupId = 'backup_id';
+ *     $formattedSourceBackup = $databaseAdminClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
+ *     $expireTime = new Timestamp();
+ *     $operationResponse = $databaseAdminClient->copyBackup($formattedParent, $backupId, $formattedSourceBackup, $expireTime);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -107,7 +111,7 @@ use Google\Protobuf\Timestamp;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $databaseAdminClient->copyBackup();
+ *     $operationResponse = $databaseAdminClient->copyBackup($formattedParent, $backupId, $formattedSourceBackup, $expireTime);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'copyBackup');
@@ -543,7 +547,11 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $operationResponse = $databaseAdminClient->copyBackup();
+     *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $backupId = 'backup_id';
+     *     $formattedSourceBackup = $databaseAdminClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
+     *     $expireTime = new Timestamp();
+     *     $operationResponse = $databaseAdminClient->copyBackup($formattedParent, $backupId, $formattedSourceBackup, $expireTime);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -554,7 +562,7 @@ class DatabaseAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $databaseAdminClient->copyBackup();
+     *     $operationResponse = $databaseAdminClient->copyBackup($formattedParent, $backupId, $formattedSourceBackup, $expireTime);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'copyBackup');
@@ -574,29 +582,25 @@ class DatabaseAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string    $parent       Required. The name of the destination instance that will contain the backup copy.
+     *                                Values are of the form: `projects/<project>/instances/<instance>`.
+     * @param string    $backupId     Required. The id of the backup copy.
+     *                                The `backup_id` appended to `parent` forms the full backup_uri of the form
+     *                                `projects/<project>/instances/<instance>/backups/<backup>`.
+     * @param string    $sourceBackup Required. The source backup to be copied.
+     *                                The source backup needs to be in READY state for it to be copied.
+     *                                Once CopyBackup is in progress, the source backup cannot be deleted or
+     *                                cleaned up on expiration until CopyBackup is finished.
+     *                                Values are of the form:
+     *                                `projects/<project>/instances/<instance>/backups/<backup>`.
+     * @param Timestamp $expireTime   Required. The expiration time of the backup in microsecond granularity.
+     *                                The expiration time must be at least 6 hours and at most 366 days
+     *                                from the `create_time` of the source backup. Once the `expire_time` has
+     *                                passed, the backup is eligible to be automatically deleted by Cloud Spanner
+     *                                to free the resources used by the backup.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the destination instance that will contain the backup copy.
-     *           Values are of the form: `projects/<project>/instances/<instance>`.
-     *     @type string $backupId
-     *           Required. The id of the backup copy.
-     *           The `backup_id` appended to `parent` forms the full backup_uri of the form
-     *           `projects/<project>/instances/<instance>/backups/<backup>`.
-     *     @type string $sourceBackup
-     *           Required. The source backup to be copied.
-     *           The source backup needs to be in READY state for it to be copied.
-     *           Once CopyBackup is in progress, the source backup cannot be deleted or
-     *           cleaned up on expiration until CopyBackup is finished.
-     *           Values are of the form:
-     *           `projects/<project>/instances/<instance>/backups/<backup>`.
-     *     @type Timestamp $expireTime
-     *           Required. The expiration time of the backup in microsecond granularity.
-     *           The expiration time must be at least 6 hours and at most 366 days
-     *           from the `create_time` of the source backup. Once the `expire_time` has
-     *           passed, the backup is eligible to be automatically deleted by Cloud Spanner
-     *           to free the resources used by the backup.
      *     @type CopyBackupEncryptionConfig $encryptionConfig
      *           Optional. The encryption configuration used to encrypt the backup. If this field is
      *           not specified, the backup will use the same
@@ -613,27 +617,20 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function copyBackup(array $optionalArgs = [])
-    {
+    public function copyBackup(
+        $parent,
+        $backupId,
+        $sourceBackup,
+        $expireTime,
+        array $optionalArgs = []
+    ) {
         $request = new CopyBackupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['backupId'])) {
-            $request->setBackupId($optionalArgs['backupId']);
-        }
-
-        if (isset($optionalArgs['sourceBackup'])) {
-            $request->setSourceBackup($optionalArgs['sourceBackup']);
-        }
-
-        if (isset($optionalArgs['expireTime'])) {
-            $request->setExpireTime($optionalArgs['expireTime']);
-        }
-
+        $request->setParent($parent);
+        $request->setBackupId($backupId);
+        $request->setSourceBackup($sourceBackup);
+        $request->setExpireTime($expireTime);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['encryptionConfig'])) {
             $request->setEncryptionConfig($optionalArgs['encryptionConfig']);
         }
@@ -670,7 +667,10 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $operationResponse = $databaseAdminClient->createBackup();
+     *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $backupId = 'backup_id';
+     *     $backup = new Backup();
+     *     $operationResponse = $databaseAdminClient->createBackup($formattedParent, $backupId, $backup);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -681,7 +681,7 @@ class DatabaseAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $databaseAdminClient->createBackup();
+     *     $operationResponse = $databaseAdminClient->createBackup($formattedParent, $backupId, $backup);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'createBackup');
@@ -701,22 +701,19 @@ class DatabaseAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the instance in which the backup will be
+     *                             created. This must be the same instance that contains the database the
+     *                             backup will be created from. The backup will be stored in the
+     *                             location(s) specified in the instance configuration of this
+     *                             instance. Values are of the form
+     *                             `projects/<project>/instances/<instance>`.
+     * @param string $backupId     Required. The id of the backup to be created. The `backup_id` appended to
+     *                             `parent` forms the full backup name of the form
+     *                             `projects/<project>/instances/<instance>/backups/<backup_id>`.
+     * @param Backup $backup       Required. The backup to create.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the instance in which the backup will be
-     *           created. This must be the same instance that contains the database the
-     *           backup will be created from. The backup will be stored in the
-     *           location(s) specified in the instance configuration of this
-     *           instance. Values are of the form
-     *           `projects/<project>/instances/<instance>`.
-     *     @type string $backupId
-     *           Required. The id of the backup to be created. The `backup_id` appended to
-     *           `parent` forms the full backup name of the form
-     *           `projects/<project>/instances/<instance>/backups/<backup_id>`.
-     *     @type Backup $backup
-     *           Required. The backup to create.
      *     @type CreateBackupEncryptionConfig $encryptionConfig
      *           Optional. The encryption configuration used to encrypt the backup. If this field is
      *           not specified, the backup will use the same
@@ -733,23 +730,18 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createBackup(array $optionalArgs = [])
-    {
+    public function createBackup(
+        $parent,
+        $backupId,
+        $backup,
+        array $optionalArgs = []
+    ) {
         $request = new CreateBackupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['backupId'])) {
-            $request->setBackupId($optionalArgs['backupId']);
-        }
-
-        if (isset($optionalArgs['backup'])) {
-            $request->setBackup($optionalArgs['backup']);
-        }
-
+        $request->setParent($parent);
+        $request->setBackupId($backupId);
+        $request->setBackup($backup);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['encryptionConfig'])) {
             $request->setEncryptionConfig($optionalArgs['encryptionConfig']);
         }
@@ -782,7 +774,9 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $operationResponse = $databaseAdminClient->createDatabase();
+     *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $createStatement = 'create_statement';
+     *     $operationResponse = $databaseAdminClient->createDatabase($formattedParent, $createStatement);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -793,7 +787,7 @@ class DatabaseAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $databaseAdminClient->createDatabase();
+     *     $operationResponse = $databaseAdminClient->createDatabase($formattedParent, $createStatement);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'createDatabase');
@@ -813,18 +807,16 @@ class DatabaseAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent          Required. The name of the instance that will serve the new database.
+     *                                Values are of the form `projects/<project>/instances/<instance>`.
+     * @param string $createStatement Required. A `CREATE DATABASE` statement, which specifies the ID of the
+     *                                new database.  The database ID must conform to the regular expression
+     *                                `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.
+     *                                If the database ID is a reserved word or if it contains a hyphen, the
+     *                                database ID must be enclosed in backticks (`` ` ``).
+     * @param array  $optionalArgs    {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the instance that will serve the new database.
-     *           Values are of the form `projects/<project>/instances/<instance>`.
-     *     @type string $createStatement
-     *           Required. A `CREATE DATABASE` statement, which specifies the ID of the
-     *           new database.  The database ID must conform to the regular expression
-     *           `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.
-     *           If the database ID is a reserved word or if it contains a hyphen, the
-     *           database ID must be enclosed in backticks (`` ` ``).
      *     @type string[] $extraStatements
      *           Optional. A list of DDL statements to run inside the newly created
      *           database. Statements can create tables, indexes, etc. These
@@ -863,19 +855,16 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDatabase(array $optionalArgs = [])
-    {
+    public function createDatabase(
+        $parent,
+        $createStatement,
+        array $optionalArgs = []
+    ) {
         $request = new CreateDatabaseRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['createStatement'])) {
-            $request->setCreateStatement($optionalArgs['createStatement']);
-        }
-
+        $request->setParent($parent);
+        $request->setCreateStatement($createStatement);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['extraStatements'])) {
             $request->setExtraStatements($optionalArgs['extraStatements']);
         }
@@ -913,19 +902,19 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient->deleteBackup();
+     *     $formattedName = $databaseAdminClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
+     *     $databaseAdminClient->deleteBackup($formattedName);
      * } finally {
      *     $databaseAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the backup to delete.
+     *                             Values are of the form
+     *                             `projects/<project>/instances/<instance>/backups/<backup>`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the backup to delete.
-     *           Values are of the form
-     *           `projects/<project>/instances/<instance>/backups/<backup>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -934,15 +923,12 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteBackup(array $optionalArgs = [])
+    public function deleteBackup($name, array $optionalArgs = [])
     {
         $request = new DeleteBackupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -968,17 +954,17 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $databaseAdminClient->dropDatabase();
+     *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+     *     $databaseAdminClient->dropDatabase($formattedDatabase);
      * } finally {
      *     $databaseAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $database     Required. The database to be dropped.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $database
-     *           Required. The database to be dropped.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -987,15 +973,12 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function dropDatabase(array $optionalArgs = [])
+    public function dropDatabase($database, array $optionalArgs = [])
     {
         $request = new DropDatabaseRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['database'])) {
-            $request->setDatabase($optionalArgs['database']);
-            $requestParamHeaders['database'] = $optionalArgs['database'];
-        }
-
+        $request->setDatabase($database);
+        $requestParamHeaders['database'] = $database;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1017,19 +1000,19 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $response = $databaseAdminClient->getBackup();
+     *     $formattedName = $databaseAdminClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
+     *     $response = $databaseAdminClient->getBackup($formattedName);
      * } finally {
      *     $databaseAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the backup.
+     *                             Values are of the form
+     *                             `projects/<project>/instances/<instance>/backups/<backup>`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the backup.
-     *           Values are of the form
-     *           `projects/<project>/instances/<instance>/backups/<backup>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1040,15 +1023,12 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getBackup(array $optionalArgs = [])
+    public function getBackup($name, array $optionalArgs = [])
     {
         $request = new GetBackupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1070,18 +1050,18 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $response = $databaseAdminClient->getDatabase();
+     *     $formattedName = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+     *     $response = $databaseAdminClient->getDatabase($formattedName);
      * } finally {
      *     $databaseAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the requested database. Values are of the form
+     *                             `projects/<project>/instances/<instance>/databases/<database>`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the requested database. Values are of the form
-     *           `projects/<project>/instances/<instance>/databases/<database>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1092,15 +1072,12 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDatabase(array $optionalArgs = [])
+    public function getDatabase($name, array $optionalArgs = [])
     {
         $request = new GetDatabaseRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1124,19 +1101,19 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $response = $databaseAdminClient->getDatabaseDdl();
+     *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+     *     $response = $databaseAdminClient->getDatabaseDdl($formattedDatabase);
      * } finally {
      *     $databaseAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $database     Required. The database whose schema we wish to get.
+     *                             Values are of the form
+     *                             `projects/<project>/instances/<instance>/databases/<database>`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $database
-     *           Required. The database whose schema we wish to get.
-     *           Values are of the form
-     *           `projects/<project>/instances/<instance>/databases/<database>`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1147,15 +1124,12 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDatabaseDdl(array $optionalArgs = [])
+    public function getDatabaseDdl($database, array $optionalArgs = [])
     {
         $request = new GetDatabaseDdlRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['database'])) {
-            $request->setDatabase($optionalArgs['database']);
-            $requestParamHeaders['database'] = $optionalArgs['database'];
-        }
-
+        $request->setDatabase($database);
+        $requestParamHeaders['database'] = $database;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1249,8 +1223,9 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
+     *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $databaseAdminClient->listBackupOperations();
+     *     $pagedResponse = $databaseAdminClient->listBackupOperations($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1258,7 +1233,7 @@ class DatabaseAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $databaseAdminClient->listBackupOperations();
+     *     $pagedResponse = $databaseAdminClient->listBackupOperations($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1267,12 +1242,11 @@ class DatabaseAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The instance of the backup operations. Values are of
+     *                             the form `projects/<project>/instances/<instance>`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The instance of the backup operations. Values are of
-     *           the form `projects/<project>/instances/<instance>`.
      *     @type string $filter
      *           An expression that filters the list of returned backup operations.
      *
@@ -1359,15 +1333,12 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listBackupOperations(array $optionalArgs = [])
+    public function listBackupOperations($parent, array $optionalArgs = [])
     {
         $request = new ListBackupOperationsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1403,8 +1374,9 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
+     *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $databaseAdminClient->listBackups();
+     *     $pagedResponse = $databaseAdminClient->listBackups($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1412,7 +1384,7 @@ class DatabaseAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $databaseAdminClient->listBackups();
+     *     $pagedResponse = $databaseAdminClient->listBackups($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1421,12 +1393,11 @@ class DatabaseAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The instance to list backups from.  Values are of the
+     *                             form `projects/<project>/instances/<instance>`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The instance to list backups from.  Values are of the
-     *           form `projects/<project>/instances/<instance>`.
      *     @type string $filter
      *           An expression that filters the list of returned backups.
      *
@@ -1482,15 +1453,12 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listBackups(array $optionalArgs = [])
+    public function listBackups($parent, array $optionalArgs = [])
     {
         $request = new ListBackupsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1531,8 +1499,9 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
+     *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $databaseAdminClient->listDatabaseOperations();
+     *     $pagedResponse = $databaseAdminClient->listDatabaseOperations($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1540,7 +1509,7 @@ class DatabaseAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $databaseAdminClient->listDatabaseOperations();
+     *     $pagedResponse = $databaseAdminClient->listDatabaseOperations($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1549,12 +1518,11 @@ class DatabaseAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The instance of the database operations.
+     *                             Values are of the form `projects/<project>/instances/<instance>`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The instance of the database operations.
-     *           Values are of the form `projects/<project>/instances/<instance>`.
      *     @type string $filter
      *           An expression that filters the list of returned operations.
      *
@@ -1617,15 +1585,12 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDatabaseOperations(array $optionalArgs = [])
+    public function listDatabaseOperations($parent, array $optionalArgs = [])
     {
         $request = new ListDatabaseOperationsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1659,8 +1624,9 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
+     *     $formattedParent = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $databaseAdminClient->listDatabaseRoles();
+     *     $pagedResponse = $databaseAdminClient->listDatabaseRoles($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1668,7 +1634,7 @@ class DatabaseAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $databaseAdminClient->listDatabaseRoles();
+     *     $pagedResponse = $databaseAdminClient->listDatabaseRoles($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1677,13 +1643,12 @@ class DatabaseAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The database whose roles should be listed.
+     *                             Values are of the form
+     *                             `projects/<project>/instances/<instance>/databases/<database>/databaseRoles`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The database whose roles should be listed.
-     *           Values are of the form
-     *           `projects/<project>/instances/<instance>/databases/<database>/databaseRoles`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1703,15 +1668,12 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDatabaseRoles(array $optionalArgs = [])
+    public function listDatabaseRoles($parent, array $optionalArgs = [])
     {
         $request = new ListDatabaseRolesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1741,8 +1703,9 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
+     *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $databaseAdminClient->listDatabases();
+     *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1750,7 +1713,7 @@ class DatabaseAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $databaseAdminClient->listDatabases();
+     *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1759,12 +1722,11 @@ class DatabaseAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The instance whose databases should be listed.
+     *                             Values are of the form `projects/<project>/instances/<instance>`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The instance whose databases should be listed.
-     *           Values are of the form `projects/<project>/instances/<instance>`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1784,15 +1746,12 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDatabases(array $optionalArgs = [])
+    public function listDatabases($parent, array $optionalArgs = [])
     {
         $request = new ListDatabasesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1838,7 +1797,9 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $operationResponse = $databaseAdminClient->restoreDatabase();
+     *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $databaseId = 'database_id';
+     *     $operationResponse = $databaseAdminClient->restoreDatabase($formattedParent, $databaseId);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1849,7 +1810,7 @@ class DatabaseAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $databaseAdminClient->restoreDatabase();
+     *     $operationResponse = $databaseAdminClient->restoreDatabase($formattedParent, $databaseId);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'restoreDatabase');
@@ -1869,20 +1830,18 @@ class DatabaseAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the instance in which to create the
+     *                             restored database. This instance must be in the same project and
+     *                             have the same instance configuration as the instance containing
+     *                             the source backup. Values are of the form
+     *                             `projects/<project>/instances/<instance>`.
+     * @param string $databaseId   Required. The id of the database to create and restore to. This
+     *                             database must not already exist. The `database_id` appended to
+     *                             `parent` forms the full database name of the form
+     *                             `projects/<project>/instances/<instance>/databases/<database_id>`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the instance in which to create the
-     *           restored database. This instance must be in the same project and
-     *           have the same instance configuration as the instance containing
-     *           the source backup. Values are of the form
-     *           `projects/<project>/instances/<instance>`.
-     *     @type string $databaseId
-     *           Required. The id of the database to create and restore to. This
-     *           database must not already exist. The `database_id` appended to
-     *           `parent` forms the full database name of the form
-     *           `projects/<project>/instances/<instance>/databases/<database_id>`.
      *     @type string $backup
      *           Name of the backup from which to restore.  Values are of the form
      *           `projects/<project>/instances/<instance>/backups/<backup>`.
@@ -1903,19 +1862,16 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function restoreDatabase(array $optionalArgs = [])
-    {
+    public function restoreDatabase(
+        $parent,
+        $databaseId,
+        array $optionalArgs = []
+    ) {
         $request = new RestoreDatabaseRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['databaseId'])) {
-            $request->setDatabaseId($optionalArgs['databaseId']);
-        }
-
+        $request->setParent($parent);
+        $request->setDatabaseId($databaseId);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['backup'])) {
             $request->setBackup($optionalArgs['backup']);
         }
@@ -2083,26 +2039,26 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $response = $databaseAdminClient->updateBackup();
+     *     $backup = new Backup();
+     *     $updateMask = new FieldMask();
+     *     $response = $databaseAdminClient->updateBackup($backup, $updateMask);
      * } finally {
      *     $databaseAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Backup    $backup       Required. The backup to update. `backup.name`, and the fields to be updated
+     *                                as specified by `update_mask` are required. Other fields are ignored.
+     *                                Update is only supported for the following fields:
+     *                                * `backup.expire_time`.
+     * @param FieldMask $updateMask   Required. A mask specifying which fields (e.g. `expire_time`) in the
+     *                                Backup resource should be updated. This mask is relative to the Backup
+     *                                resource, not to the request message. The field mask must always be
+     *                                specified; this prevents any future fields from being erased accidentally
+     *                                by clients that do not know about them.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type Backup $backup
-     *           Required. The backup to update. `backup.name`, and the fields to be updated
-     *           as specified by `update_mask` are required. Other fields are ignored.
-     *           Update is only supported for the following fields:
-     *           * `backup.expire_time`.
-     *     @type FieldMask $updateMask
-     *           Required. A mask specifying which fields (e.g. `expire_time`) in the
-     *           Backup resource should be updated. This mask is relative to the Backup
-     *           resource, not to the request message. The field mask must always be
-     *           specified; this prevents any future fields from being erased accidentally
-     *           by clients that do not know about them.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2113,18 +2069,13 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateBackup(array $optionalArgs = [])
+    public function updateBackup($backup, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateBackupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['backup'])) {
-            $request->setBackup($optionalArgs['backup']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setBackup($backup);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['backup.name'] = $backup->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2181,7 +2132,9 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $operationResponse = $databaseAdminClient->updateDatabase();
+     *     $database = new Database();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $databaseAdminClient->updateDatabase($database, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2192,7 +2145,7 @@ class DatabaseAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $databaseAdminClient->updateDatabase();
+     *     $operationResponse = $databaseAdminClient->updateDatabase($database, $updateMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'updateDatabase');
@@ -2212,16 +2165,14 @@ class DatabaseAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Database  $database     Required. The database to update.
+     *                                The `name` field of the database is of the form
+     *                                `projects/<project>/instances/<instance>/databases/<database>`.
+     * @param FieldMask $updateMask   Required. The list of fields to update. Currently, only
+     *                                `enable_drop_protection` field can be updated.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type Database $database
-     *           Required. The database to update.
-     *           The `name` field of the database is of the form
-     *           `projects/<project>/instances/<instance>/databases/<database>`.
-     *     @type FieldMask $updateMask
-     *           Required. The list of fields to update. Currently, only
-     *           `enable_drop_protection` field can be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2232,18 +2183,16 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDatabase(array $optionalArgs = [])
-    {
+    public function updateDatabase(
+        $database,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateDatabaseRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['database'])) {
-            $request->setDatabase($optionalArgs['database']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setDatabase($database);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['database.name'] = $database->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2271,7 +2220,9 @@ class DatabaseAdminGapicClient
      * ```
      * $databaseAdminClient = new DatabaseAdminClient();
      * try {
-     *     $operationResponse = $databaseAdminClient->updateDatabaseDdl();
+     *     $formattedDatabase = $databaseAdminClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+     *     $statements = [];
+     *     $operationResponse = $databaseAdminClient->updateDatabaseDdl($formattedDatabase, $statements);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -2281,7 +2232,7 @@ class DatabaseAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $databaseAdminClient->updateDatabaseDdl();
+     *     $operationResponse = $databaseAdminClient->updateDatabaseDdl($formattedDatabase, $statements);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'updateDatabaseDdl');
@@ -2300,13 +2251,11 @@ class DatabaseAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $database     Required. The database to update.
+     * @param string[] $statements   Required. DDL statements to be applied to the database.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $database
-     *           Required. The database to update.
-     *     @type string[] $statements
-     *           Required. DDL statements to be applied to the database.
      *     @type string $operationId
      *           If empty, the new update request is assigned an
      *           automatically-generated operation ID. Otherwise, `operation_id`
@@ -2352,19 +2301,16 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDatabaseDdl(array $optionalArgs = [])
-    {
+    public function updateDatabaseDdl(
+        $database,
+        $statements,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateDatabaseDdlRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['database'])) {
-            $request->setDatabase($optionalArgs['database']);
-            $requestParamHeaders['database'] = $optionalArgs['database'];
-        }
-
-        if (isset($optionalArgs['statements'])) {
-            $request->setStatements($optionalArgs['statements']);
-        }
-
+        $request->setDatabase($database);
+        $request->setStatements($statements);
+        $requestParamHeaders['database'] = $database;
         if (isset($optionalArgs['operationId'])) {
             $request->setOperationId($optionalArgs['operationId']);
         }

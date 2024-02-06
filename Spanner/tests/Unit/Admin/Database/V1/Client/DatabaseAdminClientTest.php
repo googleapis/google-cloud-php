@@ -62,7 +62,9 @@ use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -129,7 +131,16 @@ class DatabaseAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CopyBackupRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $backupId = 'backupId1355353272';
+        $formattedSourceBackup = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
+        $expireTime = new Timestamp();
+        $request = (new CopyBackupRequest())
+            ->setParent($formattedParent)
+            ->setBackupId($backupId)
+            ->setSourceBackup($formattedSourceBackup)
+            ->setExpireTime($expireTime);
         $response = $gapicClient->copyBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -140,6 +151,14 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/CopyBackup', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackupId();
+        $this->assertProtobufEquals($backupId, $actualValue);
+        $actualValue = $actualApiRequestObject->getSourceBackup();
+        $this->assertProtobufEquals($formattedSourceBackup, $actualValue);
+        $actualValue = $actualApiRequestObject->getExpireTime();
+        $this->assertProtobufEquals($expireTime, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/copyBackupTest');
         $response->pollUntilComplete([
@@ -190,7 +209,16 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CopyBackupRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $backupId = 'backupId1355353272';
+        $formattedSourceBackup = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
+        $expireTime = new Timestamp();
+        $request = (new CopyBackupRequest())
+            ->setParent($formattedParent)
+            ->setBackupId($backupId)
+            ->setSourceBackup($formattedSourceBackup)
+            ->setExpireTime($expireTime);
         $response = $gapicClient->copyBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -248,7 +276,14 @@ class DatabaseAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateBackupRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $backupId = 'backupId1355353272';
+        $backup = new Backup();
+        $request = (new CreateBackupRequest())
+            ->setParent($formattedParent)
+            ->setBackupId($backupId)
+            ->setBackup($backup);
         $response = $gapicClient->createBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -259,6 +294,12 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/CreateBackup', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackupId();
+        $this->assertProtobufEquals($backupId, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackup();
+        $this->assertProtobufEquals($backup, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBackupTest');
         $response->pollUntilComplete([
@@ -309,7 +350,14 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateBackupRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $backupId = 'backupId1355353272';
+        $backup = new Backup();
+        $request = (new CreateBackupRequest())
+            ->setParent($formattedParent)
+            ->setBackupId($backupId)
+            ->setBackup($backup);
         $response = $gapicClient->createBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -371,7 +419,12 @@ class DatabaseAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateDatabaseRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $createStatement = 'createStatement552974828';
+        $request = (new CreateDatabaseRequest())
+            ->setParent($formattedParent)
+            ->setCreateStatement($createStatement);
         $response = $gapicClient->createDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -382,6 +435,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/CreateDatabase', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getCreateStatement();
+        $this->assertProtobufEquals($createStatement, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createDatabaseTest');
         $response->pollUntilComplete([
@@ -432,7 +489,12 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateDatabaseRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $createStatement = 'createStatement552974828';
+        $request = (new CreateDatabaseRequest())
+            ->setParent($formattedParent)
+            ->setCreateStatement($createStatement);
         $response = $gapicClient->createDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -466,13 +528,18 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteBackupRequest();
+        // Mock request
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
+        $request = (new DeleteBackupRequest())
+            ->setName($formattedName);
         $gapicClient->deleteBackup($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/DeleteBackup', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -494,7 +561,10 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteBackupRequest();
+        // Mock request
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
+        $request = (new DeleteBackupRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -519,13 +589,18 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DropDatabaseRequest();
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $request = (new DropDatabaseRequest())
+            ->setDatabase($formattedDatabase);
         $gapicClient->dropDatabase($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/DropDatabase', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDatabase();
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -547,7 +622,10 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DropDatabaseRequest();
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $request = (new DropDatabaseRequest())
+            ->setDatabase($formattedDatabase);
         try {
             $gapicClient->dropDatabase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -578,7 +656,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setSizeBytes($sizeBytes);
         $transport->addResponse($expectedResponse);
-        $request = new GetBackupRequest();
+        // Mock request
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
+        $request = (new GetBackupRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getBackup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -586,6 +667,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/GetBackup', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -607,7 +690,10 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetBackupRequest();
+        // Mock request
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
+        $request = (new GetBackupRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -642,7 +728,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $expectedResponse->setEnableDropProtection($enableDropProtection);
         $expectedResponse->setReconciling($reconciling);
         $transport->addResponse($expectedResponse);
-        $request = new GetDatabaseRequest();
+        // Mock request
+        $formattedName = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $request = (new GetDatabaseRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getDatabase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -650,6 +739,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/GetDatabase', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -671,7 +762,10 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetDatabaseRequest();
+        // Mock request
+        $formattedName = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $request = (new GetDatabaseRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getDatabase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -698,7 +792,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $expectedResponse = new GetDatabaseDdlResponse();
         $expectedResponse->setProtoDescriptors($protoDescriptors);
         $transport->addResponse($expectedResponse);
-        $request = new GetDatabaseDdlRequest();
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $request = (new GetDatabaseDdlRequest())
+            ->setDatabase($formattedDatabase);
         $response = $gapicClient->getDatabaseDdl($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -706,6 +803,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/GetDatabaseDdl', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDatabase();
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -727,7 +826,10 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetDatabaseDdlRequest();
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $request = (new GetDatabaseDdlRequest())
+            ->setDatabase($formattedDatabase);
         try {
             $gapicClient->getDatabaseDdl($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -825,7 +927,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOperations($operations);
         $transport->addResponse($expectedResponse);
-        $request = new ListBackupOperationsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new ListBackupOperationsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listBackupOperations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -836,6 +941,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/ListBackupOperations', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -857,7 +964,10 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListBackupOperationsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new ListBackupOperationsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listBackupOperations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -889,7 +999,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBackups($backups);
         $transport->addResponse($expectedResponse);
-        $request = new ListBackupsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new ListBackupsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listBackups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -900,6 +1013,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/ListBackups', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -921,7 +1036,10 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListBackupsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new ListBackupsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listBackups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -953,7 +1071,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOperations($operations);
         $transport->addResponse($expectedResponse);
-        $request = new ListDatabaseOperationsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new ListDatabaseOperationsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listDatabaseOperations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -964,6 +1085,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/ListDatabaseOperations', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -985,7 +1108,10 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListDatabaseOperationsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new ListDatabaseOperationsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listDatabaseOperations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1017,7 +1143,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDatabaseRoles($databaseRoles);
         $transport->addResponse($expectedResponse);
-        $request = new ListDatabaseRolesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $request = (new ListDatabaseRolesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listDatabaseRoles($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1028,6 +1157,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/ListDatabaseRoles', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1049,7 +1180,10 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListDatabaseRolesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $request = (new ListDatabaseRolesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listDatabaseRoles($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1081,7 +1215,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDatabases($databases);
         $transport->addResponse($expectedResponse);
-        $request = new ListDatabasesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new ListDatabasesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listDatabases($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1092,6 +1229,8 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/ListDatabases', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1113,7 +1252,10 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListDatabasesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new ListDatabasesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listDatabases($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1166,7 +1308,12 @@ class DatabaseAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new RestoreDatabaseRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $databaseId = 'databaseId816491103';
+        $request = (new RestoreDatabaseRequest())
+            ->setParent($formattedParent)
+            ->setDatabaseId($databaseId);
         $response = $gapicClient->restoreDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1177,6 +1324,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/RestoreDatabase', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getDatabaseId();
+        $this->assertProtobufEquals($databaseId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/restoreDatabaseTest');
         $response->pollUntilComplete([
@@ -1227,7 +1378,12 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new RestoreDatabaseRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $databaseId = 'databaseId816491103';
+        $request = (new RestoreDatabaseRequest())
+            ->setParent($formattedParent)
+            ->setDatabaseId($databaseId);
         $response = $gapicClient->restoreDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1407,7 +1563,12 @@ class DatabaseAdminClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setSizeBytes($sizeBytes);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateBackupRequest();
+        // Mock request
+        $backup = new Backup();
+        $updateMask = new FieldMask();
+        $request = (new UpdateBackupRequest())
+            ->setBackup($backup)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateBackup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1415,6 +1576,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/UpdateBackup', $actualFuncCall);
+        $actualValue = $actualRequestObject->getBackup();
+        $this->assertProtobufEquals($backup, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1436,7 +1601,12 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateBackupRequest();
+        // Mock request
+        $backup = new Backup();
+        $updateMask = new FieldMask();
+        $request = (new UpdateBackupRequest())
+            ->setBackup($backup)
+            ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1489,7 +1659,14 @@ class DatabaseAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateDatabaseRequest();
+        // Mock request
+        $database = new Database();
+        $databaseName = 'databaseName-459093338';
+        $database->setName($databaseName);
+        $updateMask = new FieldMask();
+        $request = (new UpdateDatabaseRequest())
+            ->setDatabase($database)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1500,6 +1677,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/UpdateDatabase', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getDatabase();
+        $this->assertProtobufEquals($database, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateDatabaseTest');
         $response->pollUntilComplete([
@@ -1550,7 +1731,14 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateDatabaseRequest();
+        // Mock request
+        $database = new Database();
+        $databaseName = 'databaseName-459093338';
+        $database->setName($databaseName);
+        $updateMask = new FieldMask();
+        $request = (new UpdateDatabaseRequest())
+            ->setDatabase($database)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1602,7 +1790,12 @@ class DatabaseAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateDatabaseDdlRequest();
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $statements = [];
+        $request = (new UpdateDatabaseDdlRequest())
+            ->setDatabase($formattedDatabase)
+            ->setStatements($statements);
         $response = $gapicClient->updateDatabaseDdl($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1613,6 +1806,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/UpdateDatabaseDdl', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getDatabase();
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $actualValue = $actualApiRequestObject->getStatements();
+        $this->assertProtobufEquals($statements, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateDatabaseDdlTest');
         $response->pollUntilComplete([
@@ -1663,7 +1860,12 @@ class DatabaseAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateDatabaseDdlRequest();
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $statements = [];
+        $request = (new UpdateDatabaseDdlRequest())
+            ->setDatabase($formattedDatabase)
+            ->setStatements($statements);
         $response = $gapicClient->updateDatabaseDdl($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1721,7 +1923,16 @@ class DatabaseAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CopyBackupRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $backupId = 'backupId1355353272';
+        $formattedSourceBackup = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
+        $expireTime = new Timestamp();
+        $request = (new CopyBackupRequest())
+            ->setParent($formattedParent)
+            ->setBackupId($backupId)
+            ->setSourceBackup($formattedSourceBackup)
+            ->setExpireTime($expireTime);
         $response = $gapicClient->copyBackupAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1732,6 +1943,14 @@ class DatabaseAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/CopyBackup', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackupId();
+        $this->assertProtobufEquals($backupId, $actualValue);
+        $actualValue = $actualApiRequestObject->getSourceBackup();
+        $this->assertProtobufEquals($formattedSourceBackup, $actualValue);
+        $actualValue = $actualApiRequestObject->getExpireTime();
+        $this->assertProtobufEquals($expireTime, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/copyBackupTest');
         $response->pollUntilComplete([

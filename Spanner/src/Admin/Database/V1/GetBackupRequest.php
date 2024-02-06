@@ -27,7 +27,8 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Name of the backup.
      *                     Values are of the form
-     *                     `projects/<project>/instances/<instance>/backups/<backup>`.
+     *                     `projects/<project>/instances/<instance>/backups/<backup>`. Please see
+     *                     {@see DatabaseAdminClient::backupName()} for help formatting this field.
      *
      * @return \Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest
      *

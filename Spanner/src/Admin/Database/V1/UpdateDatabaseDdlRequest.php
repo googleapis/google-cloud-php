@@ -84,7 +84,8 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     private $proto_descriptors = '';
 
     /**
-     * @param string   $database   Required. The database to update.
+     * @param string   $database   Required. The database to update. Please see
+     *                             {@see DatabaseAdminClient::databaseName()} for help formatting this field.
      * @param string[] $statements Required. DDL statements to be applied to the database.
      *
      * @return \Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest

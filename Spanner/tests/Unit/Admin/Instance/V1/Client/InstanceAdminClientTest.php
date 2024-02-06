@@ -52,6 +52,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -123,7 +124,20 @@ class InstanceAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateInstanceRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $instanceId = 'instanceId-2101995259';
+        $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceConfig = $gapicClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $instance->setConfig($instanceConfig);
+        $instanceDisplayName = 'instanceDisplayName1824500376';
+        $instance->setDisplayName($instanceDisplayName);
+        $request = (new CreateInstanceRequest())
+            ->setParent($formattedParent)
+            ->setInstanceId($instanceId)
+            ->setInstance($instance);
         $response = $gapicClient->createInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -134,6 +148,12 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/CreateInstance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceId();
+        $this->assertProtobufEquals($instanceId, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInstanceTest');
         $response->pollUntilComplete([
@@ -184,7 +204,20 @@ class InstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateInstanceRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $instanceId = 'instanceId-2101995259';
+        $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceConfig = $gapicClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $instance->setConfig($instanceConfig);
+        $instanceDisplayName = 'instanceDisplayName1824500376';
+        $instance->setDisplayName($instanceDisplayName);
+        $request = (new CreateInstanceRequest())
+            ->setParent($formattedParent)
+            ->setInstanceId($instanceId)
+            ->setInstance($instance);
         $response = $gapicClient->createInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -246,7 +279,14 @@ class InstanceAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateInstanceConfigRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $instanceConfigId = 'instanceConfigId-1789417458';
+        $instanceConfig = new InstanceConfig();
+        $request = (new CreateInstanceConfigRequest())
+            ->setParent($formattedParent)
+            ->setInstanceConfigId($instanceConfigId)
+            ->setInstanceConfig($instanceConfig);
         $response = $gapicClient->createInstanceConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -257,6 +297,12 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/CreateInstanceConfig', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceConfigId();
+        $this->assertProtobufEquals($instanceConfigId, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceConfig();
+        $this->assertProtobufEquals($instanceConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInstanceConfigTest');
         $response->pollUntilComplete([
@@ -307,7 +353,14 @@ class InstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateInstanceConfigRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $instanceConfigId = 'instanceConfigId-1789417458';
+        $instanceConfig = new InstanceConfig();
+        $request = (new CreateInstanceConfigRequest())
+            ->setParent($formattedParent)
+            ->setInstanceConfigId($instanceConfigId)
+            ->setInstanceConfig($instanceConfig);
         $response = $gapicClient->createInstanceConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -341,13 +394,18 @@ class InstanceAdminClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteInstanceRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new DeleteInstanceRequest())
+            ->setName($formattedName);
         $gapicClient->deleteInstance($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/DeleteInstance', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -369,7 +427,10 @@ class InstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteInstanceRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new DeleteInstanceRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteInstance($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -394,13 +455,18 @@ class InstanceAdminClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteInstanceConfigRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $request = (new DeleteInstanceConfigRequest())
+            ->setName($formattedName);
         $gapicClient->deleteInstanceConfig($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/DeleteInstanceConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -422,7 +488,10 @@ class InstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteInstanceConfigRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $request = (new DeleteInstanceConfigRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteInstanceConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -523,7 +592,10 @@ class InstanceAdminClientTest extends GeneratedTest
         $expectedResponse->setNodeCount($nodeCount);
         $expectedResponse->setProcessingUnits($processingUnits);
         $transport->addResponse($expectedResponse);
-        $request = new GetInstanceRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new GetInstanceRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getInstance($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -531,6 +603,8 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/GetInstance', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -552,7 +626,10 @@ class InstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetInstanceRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new GetInstanceRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getInstance($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -587,7 +664,10 @@ class InstanceAdminClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setReconciling($reconciling);
         $transport->addResponse($expectedResponse);
-        $request = new GetInstanceConfigRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $request = (new GetInstanceConfigRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getInstanceConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -595,6 +675,8 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/GetInstanceConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -616,7 +698,10 @@ class InstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetInstanceConfigRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $request = (new GetInstanceConfigRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getInstanceConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -648,7 +733,10 @@ class InstanceAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOperations($operations);
         $transport->addResponse($expectedResponse);
-        $request = new ListInstanceConfigOperationsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListInstanceConfigOperationsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listInstanceConfigOperations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -659,6 +747,8 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/ListInstanceConfigOperations', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -680,7 +770,10 @@ class InstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListInstanceConfigOperationsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListInstanceConfigOperationsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listInstanceConfigOperations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -712,7 +805,10 @@ class InstanceAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInstanceConfigs($instanceConfigs);
         $transport->addResponse($expectedResponse);
-        $request = new ListInstanceConfigsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListInstanceConfigsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listInstanceConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -723,6 +819,8 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/ListInstanceConfigs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -744,7 +842,10 @@ class InstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListInstanceConfigsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListInstanceConfigsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listInstanceConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -776,7 +877,10 @@ class InstanceAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInstances($instances);
         $transport->addResponse($expectedResponse);
-        $request = new ListInstancesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListInstancesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listInstances($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -787,6 +891,8 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/ListInstances', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -808,7 +914,10 @@ class InstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListInstancesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListInstancesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listInstances($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1001,7 +1110,18 @@ class InstanceAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateInstanceRequest();
+        // Mock request
+        $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceConfig = $gapicClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $instance->setConfig($instanceConfig);
+        $instanceDisplayName = 'instanceDisplayName1824500376';
+        $instance->setDisplayName($instanceDisplayName);
+        $fieldMask = new FieldMask();
+        $request = (new UpdateInstanceRequest())
+            ->setInstance($instance)
+            ->setFieldMask($fieldMask);
         $response = $gapicClient->updateInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1012,6 +1132,10 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/UpdateInstance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualApiRequestObject->getFieldMask();
+        $this->assertProtobufEquals($fieldMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateInstanceTest');
         $response->pollUntilComplete([
@@ -1062,7 +1186,18 @@ class InstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateInstanceRequest();
+        // Mock request
+        $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceConfig = $gapicClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $instance->setConfig($instanceConfig);
+        $instanceDisplayName = 'instanceDisplayName1824500376';
+        $instance->setDisplayName($instanceDisplayName);
+        $fieldMask = new FieldMask();
+        $request = (new UpdateInstanceRequest())
+            ->setInstance($instance)
+            ->setFieldMask($fieldMask);
         $response = $gapicClient->updateInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1124,7 +1259,12 @@ class InstanceAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateInstanceConfigRequest();
+        // Mock request
+        $instanceConfig = new InstanceConfig();
+        $updateMask = new FieldMask();
+        $request = (new UpdateInstanceConfigRequest())
+            ->setInstanceConfig($instanceConfig)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateInstanceConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1135,6 +1275,10 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/UpdateInstanceConfig', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceConfig();
+        $this->assertProtobufEquals($instanceConfig, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateInstanceConfigTest');
         $response->pollUntilComplete([
@@ -1185,7 +1329,12 @@ class InstanceAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateInstanceConfigRequest();
+        // Mock request
+        $instanceConfig = new InstanceConfig();
+        $updateMask = new FieldMask();
+        $request = (new UpdateInstanceConfigRequest())
+            ->setInstanceConfig($instanceConfig)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateInstanceConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1247,7 +1396,20 @@ class InstanceAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateInstanceRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $instanceId = 'instanceId-2101995259';
+        $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceConfig = $gapicClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $instance->setConfig($instanceConfig);
+        $instanceDisplayName = 'instanceDisplayName1824500376';
+        $instance->setDisplayName($instanceDisplayName);
+        $request = (new CreateInstanceRequest())
+            ->setParent($formattedParent)
+            ->setInstanceId($instanceId)
+            ->setInstance($instance);
         $response = $gapicClient->createInstanceAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1258,6 +1420,12 @@ class InstanceAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/CreateInstance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceId();
+        $this->assertProtobufEquals($instanceId, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInstanceTest');
         $response->pollUntilComplete([

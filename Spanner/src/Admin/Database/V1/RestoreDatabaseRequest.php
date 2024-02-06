@@ -53,7 +53,8 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
      *                           restored database. This instance must be in the same project and
      *                           have the same instance configuration as the instance containing
      *                           the source backup. Values are of the form
-     *                           `projects/<project>/instances/<instance>`.
+     *                           `projects/<project>/instances/<instance>`. Please see
+     *                           {@see DatabaseAdminClient::instanceName()} for help formatting this field.
      * @param string $databaseId Required. The id of the database to create and restore to. This
      *                           database must not already exist. The `database_id` appended to
      *                           `parent` forms the full database name of the form

@@ -63,7 +63,8 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The name of the project for which a list of instances is
-     *                       requested. Values are of the form `projects/<project>`.
+     *                       requested. Values are of the form `projects/<project>`. Please see
+     *                       {@see InstanceAdminClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest
      *

@@ -35,7 +35,8 @@ class BatchWriteRequest extends \Google\Protobuf\Internal\Message
     private $mutation_groups;
 
     /**
-     * @param string                                                     $session        Required. The session in which the batch request is to be run.
+     * @param string                                                     $session        Required. The session in which the batch request is to be run. Please see
+     *                                                                                   {@see SpannerClient::sessionName()} for help formatting this field.
      * @param \Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup[] $mutationGroups Required. The groups of mutations to be applied.
      *
      * @return \Google\Cloud\Spanner\V1\BatchWriteRequest

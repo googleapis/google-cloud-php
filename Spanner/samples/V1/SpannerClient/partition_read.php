@@ -25,6 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START spanner_v1_generated_Spanner_PartitionRead_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\PartitionResponse;
 
@@ -44,19 +45,21 @@ use Google\Cloud\Spanner\V1\PartitionResponse;
  * old.  When any of these happen, it is not possible to resume the read, and
  * the whole operation must be restarted from the beginning.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedSession The session used to create the partitions. Please see
+ *                                 {@see SpannerClient::sessionName()} for help formatting this field.
+ * @param string $table            The name of the table in the database to be read.
  */
-function partition_read_sample(): void
+function partition_read_sample(string $formattedSession, string $table): void
 {
     // Create a client.
     $spannerClient = new SpannerClient();
 
     // Prepare the request message.
-    $request = new PartitionReadRequest();
+    $keySet = new KeySet();
+    $request = (new PartitionReadRequest())
+        ->setSession($formattedSession)
+        ->setTable($table)
+        ->setKeySet($keySet);
 
     // Call the API and handle any network failures.
     try {
@@ -66,5 +69,27 @@ function partition_read_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedSession = SpannerClient::sessionName(
+        '[PROJECT]',
+        '[INSTANCE]',
+        '[DATABASE]',
+        '[SESSION]'
+    );
+    $table = '[TABLE]';
+
+    partition_read_sample($formattedSession, $table);
 }
 // [END spanner_v1_generated_Spanner_PartitionRead_sync]

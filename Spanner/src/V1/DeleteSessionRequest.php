@@ -23,7 +23,8 @@ class DeleteSessionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the session to delete.
+     * @param string $name Required. The name of the session to delete. Please see
+     *                     {@see SpannerClient::sessionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Spanner\V1\DeleteSessionRequest
      *

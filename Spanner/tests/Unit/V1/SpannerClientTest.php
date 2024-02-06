@@ -31,6 +31,7 @@ use Google\Cloud\Spanner\V1\BatchCreateSessionsResponse;
 use Google\Cloud\Spanner\V1\BatchWriteResponse;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
+use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\ListSessionsResponse;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\PartitionResponse;
@@ -38,6 +39,8 @@ use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\Transaction;
+use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -81,13 +84,20 @@ class SpannerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchCreateSessionsResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->batchCreateSessions();
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $sessionCount = 185691686;
+        $response = $gapicClient->batchCreateSessions($formattedDatabase, $sessionCount);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/BatchCreateSessions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDatabase();
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $actualValue = $actualRequestObject->getSessionCount();
+        $this->assertProtobufEquals($sessionCount, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -109,8 +119,11 @@ class SpannerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $sessionCount = 185691686;
         try {
-            $gapicClient->batchCreateSessions();
+            $gapicClient->batchCreateSessions($formattedDatabase, $sessionCount);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -138,7 +151,9 @@ class SpannerClientTest extends GeneratedTest
         $expectedResponse3 = new BatchWriteResponse();
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $serverStream = $gapicClient->batchWrite();
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $mutationGroups = [];
+        $serverStream = $gapicClient->batchWrite($formattedSession, $mutationGroups);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
         $expectedResponses = [];
@@ -151,6 +166,10 @@ class SpannerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/BatchWrite', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getMutationGroups();
+        $this->assertProtobufEquals($mutationGroups, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -173,7 +192,9 @@ class SpannerClientTest extends GeneratedTest
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
-        $serverStream = $gapicClient->batchWrite();
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $mutationGroups = [];
+        $serverStream = $gapicClient->batchWrite($formattedSession, $mutationGroups);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);
@@ -201,13 +222,20 @@ class SpannerClientTest extends GeneratedTest
         $expectedResponse = new Transaction();
         $expectedResponse->setId($id);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->beginTransaction();
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $options = new TransactionOptions();
+        $response = $gapicClient->beginTransaction($formattedSession, $options);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/BeginTransaction', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getOptions();
+        $this->assertProtobufEquals($options, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -229,8 +257,11 @@ class SpannerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $options = new TransactionOptions();
         try {
-            $gapicClient->beginTransaction();
+            $gapicClient->beginTransaction($formattedSession, $options);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -254,14 +285,17 @@ class SpannerClientTest extends GeneratedTest
         $expectedResponse = new CommitResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $mutations = [];
-        $response = $gapicClient->commit($mutations);
+        $response = $gapicClient->commit($formattedSession, $mutations);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/Commit', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
         $actualValue = $actualRequestObject->getMutations();
         $this->assertProtobufEquals($mutations, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -286,9 +320,10 @@ class SpannerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         $mutations = [];
         try {
-            $gapicClient->commit($mutations);
+            $gapicClient->commit($formattedSession, $mutations);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -315,13 +350,17 @@ class SpannerClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setCreatorRole($creatorRole);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createSession();
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $response = $gapicClient->createSession($formattedDatabase);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/CreateSession', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDatabase();
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -343,8 +382,10 @@ class SpannerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         try {
-            $gapicClient->createSession();
+            $gapicClient->createSession($formattedDatabase);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -367,12 +408,16 @@ class SpannerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteSession();
+        // Mock request
+        $formattedName = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $gapicClient->deleteSession($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/DeleteSession', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -394,8 +439,10 @@ class SpannerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         try {
-            $gapicClient->deleteSession();
+            $gapicClient->deleteSession($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -418,13 +465,26 @@ class SpannerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ExecuteBatchDmlResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->executeBatchDml();
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $transaction = new TransactionSelector();
+        $statements = [];
+        $seqno = 109325920;
+        $response = $gapicClient->executeBatchDml($formattedSession, $transaction, $statements, $seqno);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/ExecuteBatchDml', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getTransaction();
+        $this->assertProtobufEquals($transaction, $actualValue);
+        $actualValue = $actualRequestObject->getStatements();
+        $this->assertProtobufEquals($statements, $actualValue);
+        $actualValue = $actualRequestObject->getSeqno();
+        $this->assertProtobufEquals($seqno, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -446,8 +506,13 @@ class SpannerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $transaction = new TransactionSelector();
+        $statements = [];
+        $seqno = 109325920;
         try {
-            $gapicClient->executeBatchDml();
+            $gapicClient->executeBatchDml($formattedSession, $transaction, $statements, $seqno);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -470,13 +535,20 @@ class SpannerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ResultSet();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->executeSql();
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $sql = 'sql114126';
+        $response = $gapicClient->executeSql($formattedSession, $sql);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/ExecuteSql', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getSql();
+        $this->assertProtobufEquals($sql, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -498,8 +570,11 @@ class SpannerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $sql = 'sql114126';
         try {
-            $gapicClient->executeSql();
+            $gapicClient->executeSql($formattedSession, $sql);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -539,7 +614,9 @@ class SpannerClientTest extends GeneratedTest
         $expectedResponse3->setResumeToken($resumeToken4);
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $serverStream = $gapicClient->executeStreamingSql();
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $sql = 'sql114126';
+        $serverStream = $gapicClient->executeStreamingSql($formattedSession, $sql);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
         $expectedResponses = [];
@@ -552,6 +629,10 @@ class SpannerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/ExecuteStreamingSql', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getSql();
+        $this->assertProtobufEquals($sql, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -574,7 +655,9 @@ class SpannerClientTest extends GeneratedTest
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
-        $serverStream = $gapicClient->executeStreamingSql();
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $sql = 'sql114126';
+        $serverStream = $gapicClient->executeStreamingSql($formattedSession, $sql);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);
@@ -604,13 +687,17 @@ class SpannerClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setCreatorRole($creatorRole);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getSession();
+        // Mock request
+        $formattedName = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $response = $gapicClient->getSession($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/GetSession', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -632,8 +719,10 @@ class SpannerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
         try {
-            $gapicClient->getSession();
+            $gapicClient->getSession($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -663,7 +752,9 @@ class SpannerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSessions($sessions);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listSessions();
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $response = $gapicClient->listSessions($formattedDatabase);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -673,6 +764,8 @@ class SpannerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/ListSessions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDatabase();
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -694,8 +787,10 @@ class SpannerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         try {
-            $gapicClient->listSessions();
+            $gapicClient->listSessions($formattedDatabase);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -718,13 +813,20 @@ class SpannerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new PartitionResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->partitionQuery();
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $sql = 'sql114126';
+        $response = $gapicClient->partitionQuery($formattedSession, $sql);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/PartitionQuery', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getSql();
+        $this->assertProtobufEquals($sql, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -746,8 +848,11 @@ class SpannerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $sql = 'sql114126';
         try {
-            $gapicClient->partitionQuery();
+            $gapicClient->partitionQuery($formattedSession, $sql);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -770,13 +875,23 @@ class SpannerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new PartitionResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->partitionRead();
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $table = 'table110115790';
+        $keySet = new KeySet();
+        $response = $gapicClient->partitionRead($formattedSession, $table, $keySet);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/PartitionRead', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getTable();
+        $this->assertProtobufEquals($table, $actualValue);
+        $actualValue = $actualRequestObject->getKeySet();
+        $this->assertProtobufEquals($keySet, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -798,8 +913,12 @@ class SpannerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $table = 'table110115790';
+        $keySet = new KeySet();
         try {
-            $gapicClient->partitionRead();
+            $gapicClient->partitionRead($formattedSession, $table, $keySet);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -822,13 +941,26 @@ class SpannerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ResultSet();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->read();
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $table = 'table110115790';
+        $columns = [];
+        $keySet = new KeySet();
+        $response = $gapicClient->read($formattedSession, $table, $columns, $keySet);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/Read', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getTable();
+        $this->assertProtobufEquals($table, $actualValue);
+        $actualValue = $actualRequestObject->getColumns();
+        $this->assertProtobufEquals($columns, $actualValue);
+        $actualValue = $actualRequestObject->getKeySet();
+        $this->assertProtobufEquals($keySet, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -850,8 +982,13 @@ class SpannerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $table = 'table110115790';
+        $columns = [];
+        $keySet = new KeySet();
         try {
-            $gapicClient->read();
+            $gapicClient->read($formattedSession, $table, $columns, $keySet);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -874,12 +1011,19 @@ class SpannerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->rollback();
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $transactionId = '28';
+        $gapicClient->rollback($formattedSession, $transactionId);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/Rollback', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getTransactionId();
+        $this->assertProtobufEquals($transactionId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -901,8 +1045,11 @@ class SpannerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $transactionId = '28';
         try {
-            $gapicClient->rollback();
+            $gapicClient->rollback($formattedSession, $transactionId);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -942,7 +1089,11 @@ class SpannerClientTest extends GeneratedTest
         $expectedResponse3->setResumeToken($resumeToken4);
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $serverStream = $gapicClient->streamingRead();
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $table = 'table110115790';
+        $columns = [];
+        $keySet = new KeySet();
+        $serverStream = $gapicClient->streamingRead($formattedSession, $table, $columns, $keySet);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
         $expectedResponses = [];
@@ -955,6 +1106,14 @@ class SpannerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.spanner.v1.Spanner/StreamingRead', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getTable();
+        $this->assertProtobufEquals($table, $actualValue);
+        $actualValue = $actualRequestObject->getColumns();
+        $this->assertProtobufEquals($columns, $actualValue);
+        $actualValue = $actualRequestObject->getKeySet();
+        $this->assertProtobufEquals($keySet, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -977,7 +1136,11 @@ class SpannerClientTest extends GeneratedTest
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
-        $serverStream = $gapicClient->streamingRead();
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+        $table = 'table110115790';
+        $columns = [];
+        $keySet = new KeySet();
+        $serverStream = $gapicClient->streamingRead($formattedSession, $table, $columns, $keySet);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);

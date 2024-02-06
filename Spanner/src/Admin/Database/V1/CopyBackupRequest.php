@@ -64,7 +64,8 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                     $parent       Required. The name of the destination instance that will contain the backup copy.
-     *                                                 Values are of the form: `projects/<project>/instances/<instance>`.
+     *                                                 Values are of the form: `projects/<project>/instances/<instance>`. Please see
+     *                                                 {@see DatabaseAdminClient::instanceName()} for help formatting this field.
      * @param string                     $backupId     Required. The id of the backup copy.
      *                                                 The `backup_id` appended to `parent` forms the full backup_uri of the form
      *                                                 `projects/<project>/instances/<instance>/backups/<backup>`.
@@ -73,7 +74,8 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *                                                 Once CopyBackup is in progress, the source backup cannot be deleted or
      *                                                 cleaned up on expiration until CopyBackup is finished.
      *                                                 Values are of the form:
-     *                                                 `projects/<project>/instances/<instance>/backups/<backup>`.
+     *                                                 `projects/<project>/instances/<instance>/backups/<backup>`. Please see
+     *                                                 {@see DatabaseAdminClient::backupName()} for help formatting this field.
      * @param \Google\Protobuf\Timestamp $expireTime   Required. The expiration time of the backup in microsecond granularity.
      *                                                 The expiration time must be at least 6 hours and at most 366 days
      *                                                 from the `create_time` of the source backup. Once the `expire_time` has

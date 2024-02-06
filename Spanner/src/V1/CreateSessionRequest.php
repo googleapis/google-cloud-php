@@ -29,7 +29,8 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
     private $session = null;
 
     /**
-     * @param string $database Required. The database in which the new session is created.
+     * @param string $database Required. The database in which the new session is created. Please see
+     *                         {@see SpannerClient::databaseName()} for help formatting this field.
      *
      * @return \Google\Cloud\Spanner\V1\CreateSessionRequest
      *

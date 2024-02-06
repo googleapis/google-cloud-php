@@ -42,19 +42,30 @@ use Google\Cloud\Spanner\V1\PartitionResponse;
  * old.  When any of these happen, it is not possible to resume the query, and
  * the whole operation must be restarted from the beginning.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedSession The session used to create the partitions. Please see
+ *                                 {@see SpannerClient::sessionName()} for help formatting this field.
+ * @param string $sql              The query request to generate partitions for. The request will
+ *                                 fail if the query is not root partitionable. For a query to be root
+ *                                 partitionable, it needs to satisfy a few conditions. For example, if the
+ *                                 query execution plan contains a distributed union operator, then it must be
+ *                                 the first operator in the plan. For more information about other
+ *                                 conditions, see [Read data in
+ *                                 parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel).
+ *
+ *                                 The query request must not contain DML commands, such as INSERT, UPDATE, or
+ *                                 DELETE. Use
+ *                                 [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
+ *                                 PartitionedDml transaction for large, partition-friendly DML operations.
  */
-function partition_query_sample(): void
+function partition_query_sample(string $formattedSession, string $sql): void
 {
     // Create a client.
     $spannerClient = new SpannerClient();
 
     // Prepare the request message.
-    $request = new PartitionQueryRequest();
+    $request = (new PartitionQueryRequest())
+        ->setSession($formattedSession)
+        ->setSql($sql);
 
     // Call the API and handle any network failures.
     try {
@@ -64,5 +75,27 @@ function partition_query_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedSession = SpannerClient::sessionName(
+        '[PROJECT]',
+        '[INSTANCE]',
+        '[DATABASE]',
+        '[SESSION]'
+    );
+    $sql = '[SQL]';
+
+    partition_query_sample($formattedSession, $sql);
 }
 // [END spanner_v1_generated_Spanner_PartitionQuery_sync]

@@ -26,7 +26,8 @@ class GetInstanceConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the requested instance configuration. Values are of
-     *                     the form `projects/<project>/instanceConfigs/<config>`.
+     *                     the form `projects/<project>/instanceConfigs/<config>`. Please see
+     *                     {@see InstanceAdminClient::instanceConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest
      *

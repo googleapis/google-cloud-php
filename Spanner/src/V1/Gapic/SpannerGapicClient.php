@@ -85,7 +85,9 @@ use Google\Protobuf\Struct;
  * ```
  * $spannerClient = new SpannerClient();
  * try {
- *     $response = $spannerClient->batchCreateSessions();
+ *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+ *     $sessionCount = 0;
+ *     $response = $spannerClient->batchCreateSessions($formattedDatabase, $sessionCount);
  * } finally {
  *     $spannerClient->close();
  * }
@@ -348,26 +350,26 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
-     *     $response = $spannerClient->batchCreateSessions();
+     *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+     *     $sessionCount = 0;
+     *     $response = $spannerClient->batchCreateSessions($formattedDatabase, $sessionCount);
      * } finally {
      *     $spannerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $database     Required. The database in which the new sessions are created.
+     * @param int    $sessionCount Required. The number of sessions to be created in this batch call.
+     *                             The API may return fewer than the requested number of sessions. If a
+     *                             specific number of sessions are desired, the client can make additional
+     *                             calls to BatchCreateSessions (adjusting
+     *                             [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
+     *                             as necessary).
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $database
-     *           Required. The database in which the new sessions are created.
      *     @type Session $sessionTemplate
      *           Parameters to be applied to each created session.
-     *     @type int $sessionCount
-     *           Required. The number of sessions to be created in this batch call.
-     *           The API may return fewer than the requested number of sessions. If a
-     *           specific number of sessions are desired, the client can make additional
-     *           calls to BatchCreateSessions (adjusting
-     *           [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
-     *           as necessary).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -378,21 +380,18 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchCreateSessions(array $optionalArgs = [])
-    {
+    public function batchCreateSessions(
+        $database,
+        $sessionCount,
+        array $optionalArgs = []
+    ) {
         $request = new BatchCreateSessionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['database'])) {
-            $request->setDatabase($optionalArgs['database']);
-            $requestParamHeaders['database'] = $optionalArgs['database'];
-        }
-
+        $request->setDatabase($database);
+        $request->setSessionCount($sessionCount);
+        $requestParamHeaders['database'] = $database;
         if (isset($optionalArgs['sessionTemplate'])) {
             $request->setSessionTemplate($optionalArgs['sessionTemplate']);
-        }
-
-        if (isset($optionalArgs['sessionCount'])) {
-            $request->setSessionCount($optionalArgs['sessionCount']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -430,8 +429,10 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $mutationGroups = [];
      *     // Read all responses until the stream is complete
-     *     $stream = $spannerClient->batchWrite();
+     *     $stream = $spannerClient->batchWrite($formattedSession, $mutationGroups);
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -440,15 +441,13 @@ class SpannerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string          $session        Required. The session in which the batch request is to be run.
+     * @param MutationGroup[] $mutationGroups Required. The groups of mutations to be applied.
+     * @param array           $optionalArgs   {
      *     Optional.
      *
-     *     @type string $session
-     *           Required. The session in which the batch request is to be run.
      *     @type RequestOptions $requestOptions
      *           Common options for this request.
-     *     @type MutationGroup[] $mutationGroups
-     *           Required. The groups of mutations to be applied.
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -457,21 +456,18 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchWrite(array $optionalArgs = [])
-    {
+    public function batchWrite(
+        $session,
+        $mutationGroups,
+        array $optionalArgs = []
+    ) {
         $request = new BatchWriteRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['session'])) {
-            $request->setSession($optionalArgs['session']);
-            $requestParamHeaders['session'] = $optionalArgs['session'];
-        }
-
+        $request->setSession($session);
+        $request->setMutationGroups($mutationGroups);
+        $requestParamHeaders['session'] = $session;
         if (isset($optionalArgs['requestOptions'])) {
             $request->setRequestOptions($optionalArgs['requestOptions']);
-        }
-
-        if (isset($optionalArgs['mutationGroups'])) {
-            $request->setMutationGroups($optionalArgs['mutationGroups']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -500,19 +496,19 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
-     *     $response = $spannerClient->beginTransaction();
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $options = new TransactionOptions();
+     *     $response = $spannerClient->beginTransaction($formattedSession, $options);
      * } finally {
      *     $spannerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string             $session      Required. The session in which the transaction runs.
+     * @param TransactionOptions $options      Required. Options for the new transaction.
+     * @param array              $optionalArgs {
      *     Optional.
      *
-     *     @type string $session
-     *           Required. The session in which the transaction runs.
-     *     @type TransactionOptions $options
-     *           Required. Options for the new transaction.
      *     @type RequestOptions $requestOptions
      *           Common options for this request.
      *           Priority is ignored for this request. Setting the priority in this
@@ -529,19 +525,16 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function beginTransaction(array $optionalArgs = [])
-    {
+    public function beginTransaction(
+        $session,
+        $options,
+        array $optionalArgs = []
+    ) {
         $request = new BeginTransactionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['session'])) {
-            $request->setSession($optionalArgs['session']);
-            $requestParamHeaders['session'] = $optionalArgs['session'];
-        }
-
-        if (isset($optionalArgs['options'])) {
-            $request->setOptions($optionalArgs['options']);
-        }
-
+        $request->setSession($session);
+        $request->setOptions($options);
+        $requestParamHeaders['session'] = $session;
         if (isset($optionalArgs['requestOptions'])) {
             $request->setRequestOptions($optionalArgs['requestOptions']);
         }
@@ -580,21 +573,21 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
      *     $mutations = [];
-     *     $response = $spannerClient->commit($mutations);
+     *     $response = $spannerClient->commit($formattedSession, $mutations);
      * } finally {
      *     $spannerClient->close();
      * }
      * ```
      *
+     * @param string     $session      Required. The session in which the transaction to be committed is running.
      * @param Mutation[] $mutations    The mutations to be executed when this transaction commits. All
      *                                 mutations are applied atomically, in the order they appear in
      *                                 this list.
      * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type string $session
-     *           Required. The session in which the transaction to be committed is running.
      *     @type string $transactionId
      *           Commit a previously-started transaction.
      *     @type TransactionOptions $singleUseTransaction
@@ -629,16 +622,13 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function commit($mutations, array $optionalArgs = [])
+    public function commit($session, $mutations, array $optionalArgs = [])
     {
         $request = new CommitRequest();
         $requestParamHeaders = [];
+        $request->setSession($session);
         $request->setMutations($mutations);
-        if (isset($optionalArgs['session'])) {
-            $request->setSession($optionalArgs['session']);
-            $requestParamHeaders['session'] = $optionalArgs['session'];
-        }
-
+        $requestParamHeaders['session'] = $session;
         if (isset($optionalArgs['transactionId'])) {
             $request->setTransactionId($optionalArgs['transactionId']);
         }
@@ -700,17 +690,17 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
-     *     $response = $spannerClient->createSession();
+     *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+     *     $response = $spannerClient->createSession($formattedDatabase);
      * } finally {
      *     $spannerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $database     Required. The database in which the new session is created.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $database
-     *           Required. The database in which the new session is created.
      *     @type Session $session
      *           Required. The session to create.
      *     @type RetrySettings|array $retrySettings
@@ -723,15 +713,12 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSession(array $optionalArgs = [])
+    public function createSession($database, array $optionalArgs = [])
     {
         $request = new CreateSessionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['database'])) {
-            $request->setDatabase($optionalArgs['database']);
-            $requestParamHeaders['database'] = $optionalArgs['database'];
-        }
-
+        $request->setDatabase($database);
+        $requestParamHeaders['database'] = $database;
         if (isset($optionalArgs['session'])) {
             $request->setSession($optionalArgs['session']);
         }
@@ -759,17 +746,17 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient->deleteSession();
+     *     $formattedName = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $spannerClient->deleteSession($formattedName);
      * } finally {
      *     $spannerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the session to delete.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the session to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -778,15 +765,12 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSession(array $optionalArgs = [])
+    public function deleteSession($name, array $optionalArgs = [])
     {
         $request = new DeleteSessionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -819,39 +803,39 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
-     *     $response = $spannerClient->executeBatchDml();
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $transaction = new TransactionSelector();
+     *     $statements = [];
+     *     $seqno = 0;
+     *     $response = $spannerClient->executeBatchDml($formattedSession, $transaction, $statements, $seqno);
      * } finally {
      *     $spannerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string              $session      Required. The session in which the DML statements should be performed.
+     * @param TransactionSelector $transaction  Required. The transaction to use. Must be a read-write transaction.
+     *
+     *                                          To protect against replays, single-use transactions are not supported. The
+     *                                          caller must either supply an existing transaction ID or begin a new
+     *                                          transaction.
+     * @param Statement[]         $statements   Required. The list of statements to execute in this batch. Statements are
+     *                                          executed serially, such that the effects of statement `i` are visible to
+     *                                          statement `i+1`. Each statement must be a DML statement. Execution stops at
+     *                                          the first failed statement; the remaining statements are not executed.
+     *
+     *                                          Callers must provide at least one statement.
+     * @param int                 $seqno        Required. A per-transaction sequence number used to identify this request.
+     *                                          This field makes each request idempotent such that if the request is
+     *                                          received multiple times, at most one will succeed.
+     *
+     *                                          The sequence number must be monotonically increasing within the
+     *                                          transaction. If a request arrives for the first time with an out-of-order
+     *                                          sequence number, the transaction may be aborted. Replays of previously
+     *                                          handled requests will yield the same response as the first execution.
+     * @param array               $optionalArgs {
      *     Optional.
      *
-     *     @type string $session
-     *           Required. The session in which the DML statements should be performed.
-     *     @type TransactionSelector $transaction
-     *           Required. The transaction to use. Must be a read-write transaction.
-     *
-     *           To protect against replays, single-use transactions are not supported. The
-     *           caller must either supply an existing transaction ID or begin a new
-     *           transaction.
-     *     @type Statement[] $statements
-     *           Required. The list of statements to execute in this batch. Statements are
-     *           executed serially, such that the effects of statement `i` are visible to
-     *           statement `i+1`. Each statement must be a DML statement. Execution stops at
-     *           the first failed statement; the remaining statements are not executed.
-     *
-     *           Callers must provide at least one statement.
-     *     @type int $seqno
-     *           Required. A per-transaction sequence number used to identify this request.
-     *           This field makes each request idempotent such that if the request is
-     *           received multiple times, at most one will succeed.
-     *
-     *           The sequence number must be monotonically increasing within the
-     *           transaction. If a request arrives for the first time with an out-of-order
-     *           sequence number, the transaction may be aborted. Replays of previously
-     *           handled requests will yield the same response as the first execution.
      *     @type RequestOptions $requestOptions
      *           Common options for this request.
      *     @type RetrySettings|array $retrySettings
@@ -864,27 +848,20 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function executeBatchDml(array $optionalArgs = [])
-    {
+    public function executeBatchDml(
+        $session,
+        $transaction,
+        $statements,
+        $seqno,
+        array $optionalArgs = []
+    ) {
         $request = new ExecuteBatchDmlRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['session'])) {
-            $request->setSession($optionalArgs['session']);
-            $requestParamHeaders['session'] = $optionalArgs['session'];
-        }
-
-        if (isset($optionalArgs['transaction'])) {
-            $request->setTransaction($optionalArgs['transaction']);
-        }
-
-        if (isset($optionalArgs['statements'])) {
-            $request->setStatements($optionalArgs['statements']);
-        }
-
-        if (isset($optionalArgs['seqno'])) {
-            $request->setSeqno($optionalArgs['seqno']);
-        }
-
+        $request->setSession($session);
+        $request->setTransaction($transaction);
+        $request->setStatements($statements);
+        $request->setSeqno($seqno);
+        $requestParamHeaders['session'] = $session;
         if (isset($optionalArgs['requestOptions'])) {
             $request->setRequestOptions($optionalArgs['requestOptions']);
         }
@@ -922,17 +899,19 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
-     *     $response = $spannerClient->executeSql();
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $sql = 'sql';
+     *     $response = $spannerClient->executeSql($formattedSession, $sql);
      * } finally {
      *     $spannerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $session      Required. The session in which the SQL query should be performed.
+     * @param string $sql          Required. The SQL string.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $session
-     *           Required. The session in which the SQL query should be performed.
      *     @type TransactionSelector $transaction
      *           The transaction to use.
      *
@@ -944,8 +923,6 @@ class SpannerGapicClient
      *           must either supply an existing transaction ID or begin a new transaction.
      *
      *           Partitioned DML requires an existing Partitioned DML transaction ID.
-     *     @type string $sql
-     *           Required. The SQL string.
      *     @type Struct $params
      *           Parameter names and values that bind to placeholders in the SQL string.
      *
@@ -1023,21 +1000,15 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function executeSql(array $optionalArgs = [])
+    public function executeSql($session, $sql, array $optionalArgs = [])
     {
         $request = new ExecuteSqlRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['session'])) {
-            $request->setSession($optionalArgs['session']);
-            $requestParamHeaders['session'] = $optionalArgs['session'];
-        }
-
+        $request->setSession($session);
+        $request->setSql($sql);
+        $requestParamHeaders['session'] = $session;
         if (isset($optionalArgs['transaction'])) {
             $request->setTransaction($optionalArgs['transaction']);
-        }
-
-        if (isset($optionalArgs['sql'])) {
-            $request->setSql($optionalArgs['sql']);
         }
 
         if (isset($optionalArgs['params'])) {
@@ -1107,8 +1078,10 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $sql = 'sql';
      *     // Read all responses until the stream is complete
-     *     $stream = $spannerClient->executeStreamingSql();
+     *     $stream = $spannerClient->executeStreamingSql($formattedSession, $sql);
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1117,11 +1090,11 @@ class SpannerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $session      Required. The session in which the SQL query should be performed.
+     * @param string $sql          Required. The SQL string.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $session
-     *           Required. The session in which the SQL query should be performed.
      *     @type TransactionSelector $transaction
      *           The transaction to use.
      *
@@ -1133,8 +1106,6 @@ class SpannerGapicClient
      *           must either supply an existing transaction ID or begin a new transaction.
      *
      *           Partitioned DML requires an existing Partitioned DML transaction ID.
-     *     @type string $sql
-     *           Required. The SQL string.
      *     @type Struct $params
      *           Parameter names and values that bind to placeholders in the SQL string.
      *
@@ -1210,21 +1181,18 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function executeStreamingSql(array $optionalArgs = [])
-    {
+    public function executeStreamingSql(
+        $session,
+        $sql,
+        array $optionalArgs = []
+    ) {
         $request = new ExecuteSqlRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['session'])) {
-            $request->setSession($optionalArgs['session']);
-            $requestParamHeaders['session'] = $optionalArgs['session'];
-        }
-
+        $request->setSession($session);
+        $request->setSql($sql);
+        $requestParamHeaders['session'] = $session;
         if (isset($optionalArgs['transaction'])) {
             $request->setTransaction($optionalArgs['transaction']);
-        }
-
-        if (isset($optionalArgs['sql'])) {
-            $request->setSql($optionalArgs['sql']);
         }
 
         if (isset($optionalArgs['params'])) {
@@ -1293,17 +1261,17 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
-     *     $response = $spannerClient->getSession();
+     *     $formattedName = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $response = $spannerClient->getSession($formattedName);
      * } finally {
      *     $spannerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the session to retrieve.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the session to retrieve.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1314,15 +1282,12 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSession(array $optionalArgs = [])
+    public function getSession($name, array $optionalArgs = [])
     {
         $request = new GetSessionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1344,8 +1309,9 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
+     *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $spannerClient->listSessions();
+     *     $pagedResponse = $spannerClient->listSessions($formattedDatabase);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1353,7 +1319,7 @@ class SpannerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $spannerClient->listSessions();
+     *     $pagedResponse = $spannerClient->listSessions($formattedDatabase);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1362,11 +1328,10 @@ class SpannerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $database     Required. The database in which to list sessions.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $database
-     *           Required. The database in which to list sessions.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1397,15 +1362,12 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSessions(array $optionalArgs = [])
+    public function listSessions($database, array $optionalArgs = [])
     {
         $request = new ListSessionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['database'])) {
-            $request->setDatabase($optionalArgs['database']);
-            $requestParamHeaders['database'] = $optionalArgs['database'];
-        }
-
+        $request->setDatabase($database);
+        $requestParamHeaders['database'] = $database;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1450,33 +1412,33 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
-     *     $response = $spannerClient->partitionQuery();
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $sql = 'sql';
+     *     $response = $spannerClient->partitionQuery($formattedSession, $sql);
      * } finally {
      *     $spannerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $session      Required. The session used to create the partitions.
+     * @param string $sql          Required. The query request to generate partitions for. The request will
+     *                             fail if the query is not root partitionable. For a query to be root
+     *                             partitionable, it needs to satisfy a few conditions. For example, if the
+     *                             query execution plan contains a distributed union operator, then it must be
+     *                             the first operator in the plan. For more information about other
+     *                             conditions, see [Read data in
+     *                             parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel).
+     *
+     *                             The query request must not contain DML commands, such as INSERT, UPDATE, or
+     *                             DELETE. Use
+     *                             [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
+     *                             PartitionedDml transaction for large, partition-friendly DML operations.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $session
-     *           Required. The session used to create the partitions.
      *     @type TransactionSelector $transaction
      *           Read only snapshot transactions are supported, read/write and single use
      *           transactions are not.
-     *     @type string $sql
-     *           Required. The query request to generate partitions for. The request will
-     *           fail if the query is not root partitionable. For a query to be root
-     *           partitionable, it needs to satisfy a few conditions. For example, if the
-     *           query execution plan contains a distributed union operator, then it must be
-     *           the first operator in the plan. For more information about other
-     *           conditions, see [Read data in
-     *           parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel).
-     *
-     *           The query request must not contain DML commands, such as INSERT, UPDATE, or
-     *           DELETE. Use
-     *           [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
-     *           PartitionedDml transaction for large, partition-friendly DML operations.
      *     @type Struct $params
      *           Parameter names and values that bind to placeholders in the SQL string.
      *
@@ -1512,21 +1474,15 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function partitionQuery(array $optionalArgs = [])
+    public function partitionQuery($session, $sql, array $optionalArgs = [])
     {
         $request = new PartitionQueryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['session'])) {
-            $request->setSession($optionalArgs['session']);
-            $requestParamHeaders['session'] = $optionalArgs['session'];
-        }
-
+        $request->setSession($session);
+        $request->setSql($sql);
+        $requestParamHeaders['session'] = $session;
         if (isset($optionalArgs['transaction'])) {
             $request->setTransaction($optionalArgs['transaction']);
-        }
-
-        if (isset($optionalArgs['sql'])) {
-            $request->setSql($optionalArgs['sql']);
         }
 
         if (isset($optionalArgs['params'])) {
@@ -1575,22 +1531,33 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
-     *     $response = $spannerClient->partitionRead();
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $table = 'table';
+     *     $keySet = new KeySet();
+     *     $response = $spannerClient->partitionRead($formattedSession, $table, $keySet);
      * } finally {
      *     $spannerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $session      Required. The session used to create the partitions.
+     * @param string $table        Required. The name of the table in the database to be read.
+     * @param KeySet $keySet       Required. `key_set` identifies the rows to be yielded. `key_set` names the
+     *                             primary keys of the rows in
+     *                             [table][google.spanner.v1.PartitionReadRequest.table] to be yielded, unless
+     *                             [index][google.spanner.v1.PartitionReadRequest.index] is present. If
+     *                             [index][google.spanner.v1.PartitionReadRequest.index] is present, then
+     *                             [key_set][google.spanner.v1.PartitionReadRequest.key_set] instead names
+     *                             index keys in [index][google.spanner.v1.PartitionReadRequest.index].
+     *
+     *                             It is not an error for the `key_set` to name rows that do not
+     *                             exist in the database. Read yields nothing for nonexistent rows.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $session
-     *           Required. The session used to create the partitions.
      *     @type TransactionSelector $transaction
      *           Read only snapshot transactions are supported, read/write and single use
      *           transactions are not.
-     *     @type string $table
-     *           Required. The name of the table in the database to be read.
      *     @type string $index
      *           If non-empty, the name of an index on
      *           [table][google.spanner.v1.PartitionReadRequest.table]. This index is used
@@ -1601,17 +1568,6 @@ class SpannerGapicClient
      *     @type string[] $columns
      *           The columns of [table][google.spanner.v1.PartitionReadRequest.table] to be
      *           returned for each row matching this request.
-     *     @type KeySet $keySet
-     *           Required. `key_set` identifies the rows to be yielded. `key_set` names the
-     *           primary keys of the rows in
-     *           [table][google.spanner.v1.PartitionReadRequest.table] to be yielded, unless
-     *           [index][google.spanner.v1.PartitionReadRequest.index] is present. If
-     *           [index][google.spanner.v1.PartitionReadRequest.index] is present, then
-     *           [key_set][google.spanner.v1.PartitionReadRequest.key_set] instead names
-     *           index keys in [index][google.spanner.v1.PartitionReadRequest.index].
-     *
-     *           It is not an error for the `key_set` to name rows that do not
-     *           exist in the database. Read yields nothing for nonexistent rows.
      *     @type PartitionOptions $partitionOptions
      *           Additional options that affect how many partitions are created.
      *     @type RetrySettings|array $retrySettings
@@ -1624,21 +1580,20 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function partitionRead(array $optionalArgs = [])
-    {
+    public function partitionRead(
+        $session,
+        $table,
+        $keySet,
+        array $optionalArgs = []
+    ) {
         $request = new PartitionReadRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['session'])) {
-            $request->setSession($optionalArgs['session']);
-            $requestParamHeaders['session'] = $optionalArgs['session'];
-        }
-
+        $request->setSession($session);
+        $request->setTable($table);
+        $request->setKeySet($keySet);
+        $requestParamHeaders['session'] = $session;
         if (isset($optionalArgs['transaction'])) {
             $request->setTransaction($optionalArgs['transaction']);
-        }
-
-        if (isset($optionalArgs['table'])) {
-            $request->setTable($optionalArgs['table']);
         }
 
         if (isset($optionalArgs['index'])) {
@@ -1647,10 +1602,6 @@ class SpannerGapicClient
 
         if (isset($optionalArgs['columns'])) {
             $request->setColumns($optionalArgs['columns']);
-        }
-
-        if (isset($optionalArgs['keySet'])) {
-            $request->setKeySet($optionalArgs['keySet']);
         }
 
         if (isset($optionalArgs['partitionOptions'])) {
@@ -1691,22 +1642,42 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
-     *     $response = $spannerClient->read();
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $table = 'table';
+     *     $columns = [];
+     *     $keySet = new KeySet();
+     *     $response = $spannerClient->read($formattedSession, $table, $columns, $keySet);
      * } finally {
      *     $spannerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $session      Required. The session in which the read should be performed.
+     * @param string   $table        Required. The name of the table in the database to be read.
+     * @param string[] $columns      Required. The columns of [table][google.spanner.v1.ReadRequest.table] to be
+     *                               returned for each row matching this request.
+     * @param KeySet   $keySet       Required. `key_set` identifies the rows to be yielded. `key_set` names the
+     *                               primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to
+     *                               be yielded, unless [index][google.spanner.v1.ReadRequest.index] is present.
+     *                               If [index][google.spanner.v1.ReadRequest.index] is present, then
+     *                               [key_set][google.spanner.v1.ReadRequest.key_set] instead names index keys
+     *                               in [index][google.spanner.v1.ReadRequest.index].
+     *
+     *                               If the [partition_token][google.spanner.v1.ReadRequest.partition_token]
+     *                               field is empty, rows are yielded in table primary key order (if
+     *                               [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+     *                               (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the
+     *                               [partition_token][google.spanner.v1.ReadRequest.partition_token] field is
+     *                               not empty, rows will be yielded in an unspecified order.
+     *
+     *                               It is not an error for the `key_set` to name rows that do not
+     *                               exist in the database. Read yields nothing for nonexistent rows.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $session
-     *           Required. The session in which the read should be performed.
      *     @type TransactionSelector $transaction
      *           The transaction to use. If none is provided, the default is a
      *           temporary read-only transaction with strong concurrency.
-     *     @type string $table
-     *           Required. The name of the table in the database to be read.
      *     @type string $index
      *           If non-empty, the name of an index on
      *           [table][google.spanner.v1.ReadRequest.table]. This index is used instead of
@@ -1714,26 +1685,6 @@ class SpannerGapicClient
      *           [key_set][google.spanner.v1.ReadRequest.key_set] and sorting result rows.
      *           See [key_set][google.spanner.v1.ReadRequest.key_set] for further
      *           information.
-     *     @type string[] $columns
-     *           Required. The columns of [table][google.spanner.v1.ReadRequest.table] to be
-     *           returned for each row matching this request.
-     *     @type KeySet $keySet
-     *           Required. `key_set` identifies the rows to be yielded. `key_set` names the
-     *           primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to
-     *           be yielded, unless [index][google.spanner.v1.ReadRequest.index] is present.
-     *           If [index][google.spanner.v1.ReadRequest.index] is present, then
-     *           [key_set][google.spanner.v1.ReadRequest.key_set] instead names index keys
-     *           in [index][google.spanner.v1.ReadRequest.index].
-     *
-     *           If the [partition_token][google.spanner.v1.ReadRequest.partition_token]
-     *           field is empty, rows are yielded in table primary key order (if
-     *           [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
-     *           (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the
-     *           [partition_token][google.spanner.v1.ReadRequest.partition_token] field is
-     *           not empty, rows will be yielded in an unspecified order.
-     *
-     *           It is not an error for the `key_set` to name rows that do not
-     *           exist in the database. Read yields nothing for nonexistent rows.
      *     @type int $limit
      *           If greater than zero, only the first `limit` rows are yielded. If `limit`
      *           is zero, the default is no limit. A limit cannot be specified if
@@ -1770,33 +1721,26 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function read(array $optionalArgs = [])
-    {
+    public function read(
+        $session,
+        $table,
+        $columns,
+        $keySet,
+        array $optionalArgs = []
+    ) {
         $request = new ReadRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['session'])) {
-            $request->setSession($optionalArgs['session']);
-            $requestParamHeaders['session'] = $optionalArgs['session'];
-        }
-
+        $request->setSession($session);
+        $request->setTable($table);
+        $request->setColumns($columns);
+        $request->setKeySet($keySet);
+        $requestParamHeaders['session'] = $session;
         if (isset($optionalArgs['transaction'])) {
             $request->setTransaction($optionalArgs['transaction']);
         }
 
-        if (isset($optionalArgs['table'])) {
-            $request->setTable($optionalArgs['table']);
-        }
-
         if (isset($optionalArgs['index'])) {
             $request->setIndex($optionalArgs['index']);
-        }
-
-        if (isset($optionalArgs['columns'])) {
-            $request->setColumns($optionalArgs['columns']);
-        }
-
-        if (isset($optionalArgs['keySet'])) {
-            $request->setKeySet($optionalArgs['keySet']);
         }
 
         if (isset($optionalArgs['limit'])) {
@@ -1854,19 +1798,19 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
-     *     $spannerClient->rollback();
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $transactionId = '...';
+     *     $spannerClient->rollback($formattedSession, $transactionId);
      * } finally {
      *     $spannerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $session       Required. The session in which the transaction to roll back is running.
+     * @param string $transactionId Required. The transaction to roll back.
+     * @param array  $optionalArgs  {
      *     Optional.
      *
-     *     @type string $session
-     *           Required. The session in which the transaction to roll back is running.
-     *     @type string $transactionId
-     *           Required. The transaction to roll back.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1875,19 +1819,13 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function rollback(array $optionalArgs = [])
+    public function rollback($session, $transactionId, array $optionalArgs = [])
     {
         $request = new RollbackRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['session'])) {
-            $request->setSession($optionalArgs['session']);
-            $requestParamHeaders['session'] = $optionalArgs['session'];
-        }
-
-        if (isset($optionalArgs['transactionId'])) {
-            $request->setTransactionId($optionalArgs['transactionId']);
-        }
-
+        $request->setSession($session);
+        $request->setTransactionId($transactionId);
+        $requestParamHeaders['session'] = $session;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1913,8 +1851,12 @@ class SpannerGapicClient
      * ```
      * $spannerClient = new SpannerClient();
      * try {
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $table = 'table';
+     *     $columns = [];
+     *     $keySet = new KeySet();
      *     // Read all responses until the stream is complete
-     *     $stream = $spannerClient->streamingRead();
+     *     $stream = $spannerClient->streamingRead($formattedSession, $table, $columns, $keySet);
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1923,16 +1865,32 @@ class SpannerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $session      Required. The session in which the read should be performed.
+     * @param string   $table        Required. The name of the table in the database to be read.
+     * @param string[] $columns      Required. The columns of [table][google.spanner.v1.ReadRequest.table] to be
+     *                               returned for each row matching this request.
+     * @param KeySet   $keySet       Required. `key_set` identifies the rows to be yielded. `key_set` names the
+     *                               primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to
+     *                               be yielded, unless [index][google.spanner.v1.ReadRequest.index] is present.
+     *                               If [index][google.spanner.v1.ReadRequest.index] is present, then
+     *                               [key_set][google.spanner.v1.ReadRequest.key_set] instead names index keys
+     *                               in [index][google.spanner.v1.ReadRequest.index].
+     *
+     *                               If the [partition_token][google.spanner.v1.ReadRequest.partition_token]
+     *                               field is empty, rows are yielded in table primary key order (if
+     *                               [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+     *                               (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the
+     *                               [partition_token][google.spanner.v1.ReadRequest.partition_token] field is
+     *                               not empty, rows will be yielded in an unspecified order.
+     *
+     *                               It is not an error for the `key_set` to name rows that do not
+     *                               exist in the database. Read yields nothing for nonexistent rows.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $session
-     *           Required. The session in which the read should be performed.
      *     @type TransactionSelector $transaction
      *           The transaction to use. If none is provided, the default is a
      *           temporary read-only transaction with strong concurrency.
-     *     @type string $table
-     *           Required. The name of the table in the database to be read.
      *     @type string $index
      *           If non-empty, the name of an index on
      *           [table][google.spanner.v1.ReadRequest.table]. This index is used instead of
@@ -1940,26 +1898,6 @@ class SpannerGapicClient
      *           [key_set][google.spanner.v1.ReadRequest.key_set] and sorting result rows.
      *           See [key_set][google.spanner.v1.ReadRequest.key_set] for further
      *           information.
-     *     @type string[] $columns
-     *           Required. The columns of [table][google.spanner.v1.ReadRequest.table] to be
-     *           returned for each row matching this request.
-     *     @type KeySet $keySet
-     *           Required. `key_set` identifies the rows to be yielded. `key_set` names the
-     *           primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to
-     *           be yielded, unless [index][google.spanner.v1.ReadRequest.index] is present.
-     *           If [index][google.spanner.v1.ReadRequest.index] is present, then
-     *           [key_set][google.spanner.v1.ReadRequest.key_set] instead names index keys
-     *           in [index][google.spanner.v1.ReadRequest.index].
-     *
-     *           If the [partition_token][google.spanner.v1.ReadRequest.partition_token]
-     *           field is empty, rows are yielded in table primary key order (if
-     *           [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
-     *           (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the
-     *           [partition_token][google.spanner.v1.ReadRequest.partition_token] field is
-     *           not empty, rows will be yielded in an unspecified order.
-     *
-     *           It is not an error for the `key_set` to name rows that do not
-     *           exist in the database. Read yields nothing for nonexistent rows.
      *     @type int $limit
      *           If greater than zero, only the first `limit` rows are yielded. If `limit`
      *           is zero, the default is no limit. A limit cannot be specified if
@@ -1994,33 +1932,26 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function streamingRead(array $optionalArgs = [])
-    {
+    public function streamingRead(
+        $session,
+        $table,
+        $columns,
+        $keySet,
+        array $optionalArgs = []
+    ) {
         $request = new ReadRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['session'])) {
-            $request->setSession($optionalArgs['session']);
-            $requestParamHeaders['session'] = $optionalArgs['session'];
-        }
-
+        $request->setSession($session);
+        $request->setTable($table);
+        $request->setColumns($columns);
+        $request->setKeySet($keySet);
+        $requestParamHeaders['session'] = $session;
         if (isset($optionalArgs['transaction'])) {
             $request->setTransaction($optionalArgs['transaction']);
         }
 
-        if (isset($optionalArgs['table'])) {
-            $request->setTable($optionalArgs['table']);
-        }
-
         if (isset($optionalArgs['index'])) {
             $request->setIndex($optionalArgs['index']);
-        }
-
-        if (isset($optionalArgs['columns'])) {
-            $request->setColumns($optionalArgs['columns']);
-        }
-
-        if (isset($optionalArgs['keySet'])) {
-            $request->setKeySet($optionalArgs['keySet']);
         }
 
         if (isset($optionalArgs['limit'])) {

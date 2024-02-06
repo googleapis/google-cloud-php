@@ -78,7 +78,8 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent          Required. The name of the instance that will serve the new database.
-     *                                Values are of the form `projects/<project>/instances/<instance>`.
+     *                                Values are of the form `projects/<project>/instances/<instance>`. Please see
+     *                                {@see DatabaseAdminClient::instanceName()} for help formatting this field.
      * @param string $createStatement Required. A `CREATE DATABASE` statement, which specifies the ID of the
      *                                new database.  The database ID must conform to the regular expression
      *                                `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.

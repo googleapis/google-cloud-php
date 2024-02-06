@@ -25,7 +25,8 @@ class GetDatabaseRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the requested database. Values are of the form
-     *                     `projects/<project>/instances/<instance>/databases/<database>`.
+     *                     `projects/<project>/instances/<instance>/databases/<database>`. Please see
+     *                     {@see DatabaseAdminClient::databaseName()} for help formatting this field.
      *
      * @return \Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest
      *

@@ -34,19 +34,24 @@ use Google\Cloud\Spanner\V1\Client\SpannerClient;
  * This API can be used to initialize a session cache on the clients.
  * See https://goo.gl/TgSFN2 for best practices on session cache management.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedDatabase The database in which the new sessions are created. Please see
+ *                                  {@see SpannerClient::databaseName()} for help formatting this field.
+ * @param int    $sessionCount      The number of sessions to be created in this batch call.
+ *                                  The API may return fewer than the requested number of sessions. If a
+ *                                  specific number of sessions are desired, the client can make additional
+ *                                  calls to BatchCreateSessions (adjusting
+ *                                  [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
+ *                                  as necessary).
  */
-function batch_create_sessions_sample(): void
+function batch_create_sessions_sample(string $formattedDatabase, int $sessionCount): void
 {
     // Create a client.
     $spannerClient = new SpannerClient();
 
     // Prepare the request message.
-    $request = new BatchCreateSessionsRequest();
+    $request = (new BatchCreateSessionsRequest())
+        ->setDatabase($formattedDatabase)
+        ->setSessionCount($sessionCount);
 
     // Call the API and handle any network failures.
     try {
@@ -56,5 +61,22 @@ function batch_create_sessions_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedDatabase = SpannerClient::databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+    $sessionCount = 0;
+
+    batch_create_sessions_sample($formattedDatabase, $sessionCount);
 }
 // [END spanner_v1_generated_Spanner_BatchCreateSessions_sync]
