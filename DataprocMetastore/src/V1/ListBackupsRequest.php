@@ -63,7 +63,8 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The relative resource name of the service whose backups to
      *                       list, in the following form:
      *
-     *                       `projects/{project_number}/locations/{location_id}/services/{service_id}/backups`.
+     *                       `projects/{project_number}/locations/{location_id}/services/{service_id}/backups`. Please see
+     *                       {@see DataprocMetastoreClient::serviceName()} for help formatting this field.
      *
      * @return \Google\Cloud\Metastore\V1\ListBackupsRequest
      *

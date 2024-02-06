@@ -32,19 +32,17 @@ use Google\Cloud\Deploy\V1\ListJobRunsRequest;
 /**
  * Lists JobRuns in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The `Rollout` which owns this collection of `JobRun` objects. Please see
+ *                                {@see CloudDeployClient::rolloutName()} for help formatting this field.
  */
-function list_job_runs_sample(): void
+function list_job_runs_sample(string $formattedParent): void
 {
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = new ListJobRunsRequest();
+    $request = (new ListJobRunsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +56,27 @@ function list_job_runs_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = CloudDeployClient::rolloutName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[DELIVERY_PIPELINE]',
+        '[RELEASE]',
+        '[ROLLOUT]'
+    );
+
+    list_job_runs_sample($formattedParent);
 }
 // [END clouddeploy_v1_generated_CloudDeploy_ListJobRuns_sync]

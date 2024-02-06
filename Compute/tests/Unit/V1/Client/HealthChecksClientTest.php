@@ -96,7 +96,10 @@ class HealthChecksClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListHealthChecksRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListHealthChecksRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -109,6 +112,8 @@ class HealthChecksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.HealthChecks/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -130,7 +135,10 @@ class HealthChecksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AggregatedListHealthChecksRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListHealthChecksRequest())
+            ->setProject($project);
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -169,7 +177,12 @@ class HealthChecksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteHealthCheckRequest();
+        // Mock request
+        $healthCheck = 'healthCheck845747557';
+        $project = 'project-309310695';
+        $request = (new DeleteHealthCheckRequest())
+            ->setHealthCheck($healthCheck)
+            ->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -179,8 +192,13 @@ class HealthChecksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.HealthChecks/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getHealthCheck();
+        $this->assertProtobufEquals($healthCheck, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -228,7 +246,12 @@ class HealthChecksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteHealthCheckRequest();
+        // Mock request
+        $healthCheck = 'healthCheck845747557';
+        $project = 'project-309310695';
+        $request = (new DeleteHealthCheckRequest())
+            ->setHealthCheck($healthCheck)
+            ->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -284,7 +307,12 @@ class HealthChecksClientTest extends GeneratedTest
         $expectedResponse->setType($type);
         $expectedResponse->setUnhealthyThreshold($unhealthyThreshold);
         $transport->addResponse($expectedResponse);
-        $request = new GetHealthCheckRequest();
+        // Mock request
+        $healthCheck = 'healthCheck845747557';
+        $project = 'project-309310695';
+        $request = (new GetHealthCheckRequest())
+            ->setHealthCheck($healthCheck)
+            ->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -292,6 +320,10 @@ class HealthChecksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.HealthChecks/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getHealthCheck();
+        $this->assertProtobufEquals($healthCheck, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -313,7 +345,12 @@ class HealthChecksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetHealthCheckRequest();
+        // Mock request
+        $healthCheck = 'healthCheck845747557';
+        $project = 'project-309310695';
+        $request = (new GetHealthCheckRequest())
+            ->setHealthCheck($healthCheck)
+            ->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -352,7 +389,12 @@ class HealthChecksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertHealthCheckRequest();
+        // Mock request
+        $healthCheckResource = new HealthCheck();
+        $project = 'project-309310695';
+        $request = (new InsertHealthCheckRequest())
+            ->setHealthCheckResource($healthCheckResource)
+            ->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -362,8 +404,13 @@ class HealthChecksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.HealthChecks/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getHealthCheckResource();
+        $this->assertProtobufEquals($healthCheckResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -411,7 +458,12 @@ class HealthChecksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertHealthCheckRequest();
+        // Mock request
+        $healthCheckResource = new HealthCheck();
+        $project = 'project-309310695';
+        $request = (new InsertHealthCheckRequest())
+            ->setHealthCheckResource($healthCheckResource)
+            ->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -456,7 +508,10 @@ class HealthChecksClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListHealthChecksRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListHealthChecksRequest())
+            ->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -467,6 +522,8 @@ class HealthChecksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.HealthChecks/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -488,7 +545,10 @@ class HealthChecksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListHealthChecksRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListHealthChecksRequest())
+            ->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -527,7 +587,14 @@ class HealthChecksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PatchHealthCheckRequest();
+        // Mock request
+        $healthCheck = 'healthCheck845747557';
+        $healthCheckResource = new HealthCheck();
+        $project = 'project-309310695';
+        $request = (new PatchHealthCheckRequest())
+            ->setHealthCheck($healthCheck)
+            ->setHealthCheckResource($healthCheckResource)
+            ->setProject($project);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -537,8 +604,15 @@ class HealthChecksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.HealthChecks/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getHealthCheck();
+        $this->assertProtobufEquals($healthCheck, $actualValue);
+        $actualValue = $actualApiRequestObject->getHealthCheckResource();
+        $this->assertProtobufEquals($healthCheckResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -586,7 +660,14 @@ class HealthChecksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PatchHealthCheckRequest();
+        // Mock request
+        $healthCheck = 'healthCheck845747557';
+        $healthCheckResource = new HealthCheck();
+        $project = 'project-309310695';
+        $request = (new PatchHealthCheckRequest())
+            ->setHealthCheck($healthCheck)
+            ->setHealthCheckResource($healthCheckResource)
+            ->setProject($project);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -632,7 +713,14 @@ class HealthChecksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/updateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateHealthCheckRequest();
+        // Mock request
+        $healthCheck = 'healthCheck845747557';
+        $healthCheckResource = new HealthCheck();
+        $project = 'project-309310695';
+        $request = (new UpdateHealthCheckRequest())
+            ->setHealthCheck($healthCheck)
+            ->setHealthCheckResource($healthCheckResource)
+            ->setProject($project);
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -642,8 +730,15 @@ class HealthChecksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.HealthChecks/Update', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getHealthCheck();
+        $this->assertProtobufEquals($healthCheck, $actualValue);
+        $actualValue = $actualApiRequestObject->getHealthCheckResource();
+        $this->assertProtobufEquals($healthCheckResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -691,7 +786,14 @@ class HealthChecksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateHealthCheckRequest();
+        // Mock request
+        $healthCheck = 'healthCheck845747557';
+        $healthCheckResource = new HealthCheck();
+        $project = 'project-309310695';
+        $request = (new UpdateHealthCheckRequest())
+            ->setHealthCheck($healthCheck)
+            ->setHealthCheckResource($healthCheckResource)
+            ->setProject($project);
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -735,7 +837,10 @@ class HealthChecksClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListHealthChecksRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListHealthChecksRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -748,6 +853,8 @@ class HealthChecksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.HealthChecks/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

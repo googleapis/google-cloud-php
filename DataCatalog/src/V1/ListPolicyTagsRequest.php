@@ -40,7 +40,8 @@ class ListPolicyTagsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent Required. Resource name of the taxonomy to list the policy tags of.
+     * @param string $parent Required. Resource name of the taxonomy to list the policy tags of. Please see
+     *                       {@see PolicyTagManagerClient::taxonomyName()} for help formatting this field.
      *
      * @return \Google\Cloud\DataCatalog\V1\ListPolicyTagsRequest
      *

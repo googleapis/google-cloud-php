@@ -25,27 +25,34 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionNetworkFirewallPolicies_AddAssociation_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\FirewallPolicyAssociation;
 use Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesClient;
 use Google\Rpc\Status;
 
 /**
  * Inserts an association for the specified network firewall policy.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $firewallPolicy Name of the firewall policy to update.
+ * @param string $project        Project ID for this request.
+ * @param string $region         Name of the region scoping this request.
  */
-function add_association_sample(): void
+function add_association_sample(string $firewallPolicy, string $project, string $region): void
 {
     // Create a client.
     $regionNetworkFirewallPoliciesClient = new RegionNetworkFirewallPoliciesClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionNetworkFirewallPoliciesClient->addAssociation();
+        $response = $regionNetworkFirewallPoliciesClient->addAssociation(
+            $firewallPolicy,
+            $firewallPolicyAssociationResource,
+            $project,
+            $region
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +65,23 @@ function add_association_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $firewallPolicy = '[FIREWALL_POLICY]';
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    add_association_sample($firewallPolicy, $project, $region);
 }
 // [END compute_v1_generated_RegionNetworkFirewallPolicies_AddAssociation_sync]

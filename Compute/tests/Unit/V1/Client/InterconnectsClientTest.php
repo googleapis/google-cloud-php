@@ -33,6 +33,7 @@ use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GetInterconnectRequest;
 use Google\Cloud\Compute\V1\GetMacsecConfigInterconnectRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
+use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
 use Google\Cloud\Compute\V1\InsertInterconnectRequest;
 use Google\Cloud\Compute\V1\Interconnect;
 use Google\Cloud\Compute\V1\InterconnectList;
@@ -99,7 +100,12 @@ class InterconnectsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteInterconnectRequest();
+        // Mock request
+        $interconnect = 'interconnect-849140594';
+        $project = 'project-309310695';
+        $request = (new DeleteInterconnectRequest())
+            ->setInterconnect($interconnect)
+            ->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -109,8 +115,13 @@ class InterconnectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Interconnects/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInterconnect();
+        $this->assertProtobufEquals($interconnect, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -158,7 +169,12 @@ class InterconnectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteInterconnectRequest();
+        // Mock request
+        $interconnect = 'interconnect-849140594';
+        $project = 'project-309310695';
+        $request = (new DeleteInterconnectRequest())
+            ->setInterconnect($interconnect)
+            ->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -236,7 +252,12 @@ class InterconnectsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setState($state);
         $transport->addResponse($expectedResponse);
-        $request = new GetInterconnectRequest();
+        // Mock request
+        $interconnect = 'interconnect-849140594';
+        $project = 'project-309310695';
+        $request = (new GetInterconnectRequest())
+            ->setInterconnect($interconnect)
+            ->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -244,6 +265,10 @@ class InterconnectsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Interconnects/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInterconnect();
+        $this->assertProtobufEquals($interconnect, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -265,7 +290,12 @@ class InterconnectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetInterconnectRequest();
+        // Mock request
+        $interconnect = 'interconnect-849140594';
+        $project = 'project-309310695';
+        $request = (new GetInterconnectRequest())
+            ->setInterconnect($interconnect)
+            ->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -290,7 +320,12 @@ class InterconnectsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new InterconnectsGetDiagnosticsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new GetDiagnosticsInterconnectRequest();
+        // Mock request
+        $interconnect = 'interconnect-849140594';
+        $project = 'project-309310695';
+        $request = (new GetDiagnosticsInterconnectRequest())
+            ->setInterconnect($interconnect)
+            ->setProject($project);
         $response = $gapicClient->getDiagnostics($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -298,6 +333,10 @@ class InterconnectsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Interconnects/GetDiagnostics', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInterconnect();
+        $this->assertProtobufEquals($interconnect, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -319,7 +358,12 @@ class InterconnectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetDiagnosticsInterconnectRequest();
+        // Mock request
+        $interconnect = 'interconnect-849140594';
+        $project = 'project-309310695';
+        $request = (new GetDiagnosticsInterconnectRequest())
+            ->setInterconnect($interconnect)
+            ->setProject($project);
         try {
             $gapicClient->getDiagnostics($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -346,7 +390,12 @@ class InterconnectsClientTest extends GeneratedTest
         $expectedResponse = new InterconnectsGetMacsecConfigResponse();
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetMacsecConfigInterconnectRequest();
+        // Mock request
+        $interconnect = 'interconnect-849140594';
+        $project = 'project-309310695';
+        $request = (new GetMacsecConfigInterconnectRequest())
+            ->setInterconnect($interconnect)
+            ->setProject($project);
         $response = $gapicClient->getMacsecConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -354,6 +403,10 @@ class InterconnectsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Interconnects/GetMacsecConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInterconnect();
+        $this->assertProtobufEquals($interconnect, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -375,7 +428,12 @@ class InterconnectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetMacsecConfigInterconnectRequest();
+        // Mock request
+        $interconnect = 'interconnect-849140594';
+        $project = 'project-309310695';
+        $request = (new GetMacsecConfigInterconnectRequest())
+            ->setInterconnect($interconnect)
+            ->setProject($project);
         try {
             $gapicClient->getMacsecConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -414,7 +472,12 @@ class InterconnectsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertInterconnectRequest();
+        // Mock request
+        $interconnectResource = new Interconnect();
+        $project = 'project-309310695';
+        $request = (new InsertInterconnectRequest())
+            ->setInterconnectResource($interconnectResource)
+            ->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -424,8 +487,13 @@ class InterconnectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Interconnects/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInterconnectResource();
+        $this->assertProtobufEquals($interconnectResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -473,7 +541,12 @@ class InterconnectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertInterconnectRequest();
+        // Mock request
+        $interconnectResource = new Interconnect();
+        $project = 'project-309310695';
+        $request = (new InsertInterconnectRequest())
+            ->setInterconnectResource($interconnectResource)
+            ->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -518,7 +591,10 @@ class InterconnectsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListInterconnectsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListInterconnectsRequest())
+            ->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -529,6 +605,8 @@ class InterconnectsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Interconnects/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -550,7 +628,10 @@ class InterconnectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListInterconnectsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListInterconnectsRequest())
+            ->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -589,7 +670,14 @@ class InterconnectsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PatchInterconnectRequest();
+        // Mock request
+        $interconnect = 'interconnect-849140594';
+        $interconnectResource = new Interconnect();
+        $project = 'project-309310695';
+        $request = (new PatchInterconnectRequest())
+            ->setInterconnect($interconnect)
+            ->setInterconnectResource($interconnectResource)
+            ->setProject($project);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -599,8 +687,15 @@ class InterconnectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Interconnects/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInterconnect();
+        $this->assertProtobufEquals($interconnect, $actualValue);
+        $actualValue = $actualApiRequestObject->getInterconnectResource();
+        $this->assertProtobufEquals($interconnectResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -648,7 +743,14 @@ class InterconnectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PatchInterconnectRequest();
+        // Mock request
+        $interconnect = 'interconnect-849140594';
+        $interconnectResource = new Interconnect();
+        $project = 'project-309310695';
+        $request = (new PatchInterconnectRequest())
+            ->setInterconnect($interconnect)
+            ->setInterconnectResource($interconnectResource)
+            ->setProject($project);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -694,7 +796,14 @@ class InterconnectsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setLabelsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SetLabelsInterconnectRequest();
+        // Mock request
+        $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new SetLabelsInterconnectRequest())
+            ->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource)
+            ->setProject($project)
+            ->setResource($resource);
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -704,8 +813,15 @@ class InterconnectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Interconnects/SetLabels', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getGlobalSetLabelsRequestResource();
+        $this->assertProtobufEquals($globalSetLabelsRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -753,7 +869,14 @@ class InterconnectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SetLabelsInterconnectRequest();
+        // Mock request
+        $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new SetLabelsInterconnectRequest())
+            ->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource)
+            ->setProject($project)
+            ->setResource($resource);
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -799,7 +922,12 @@ class InterconnectsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteInterconnectRequest();
+        // Mock request
+        $interconnect = 'interconnect-849140594';
+        $project = 'project-309310695';
+        $request = (new DeleteInterconnectRequest())
+            ->setInterconnect($interconnect)
+            ->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -809,8 +937,13 @@ class InterconnectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Interconnects/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInterconnect();
+        $this->assertProtobufEquals($interconnect, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

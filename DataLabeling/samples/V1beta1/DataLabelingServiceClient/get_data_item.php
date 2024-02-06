@@ -32,19 +32,18 @@ use Google\Cloud\DataLabeling\V1beta1\GetDataItemRequest;
  * Gets a data item in a dataset by resource name. This API can be
  * called after data are imported into dataset.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the data item to get, format:
+ *                              projects/{project_id}/datasets/{dataset_id}/dataItems/{data_item_id}
+ *                              Please see {@see DataLabelingServiceClient::dataItemName()} for help formatting this field.
  */
-function get_data_item_sample(): void
+function get_data_item_sample(string $formattedName): void
 {
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
     // Prepare the request message.
-    $request = new GetDataItemRequest();
+    $request = (new GetDataItemRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +53,21 @@ function get_data_item_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DataLabelingServiceClient::dataItemName('[PROJECT]', '[DATASET]', '[DATA_ITEM]');
+
+    get_data_item_sample($formattedName);
 }
 // [END datalabeling_v1beta1_generated_DataLabelingService_GetDataItem_sync]

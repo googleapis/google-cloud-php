@@ -30,13 +30,13 @@ use Google\Cloud\Metastore\V1alpha\DataprocMetastoreClient;
 /**
  * Gets details of a single backup.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The relative resource name of the backup to retrieve, in the
+ *                              following form:
+ *
+ *                              `projects/{project_number}/locations/{location_id}/services/{service_id}/backups/{backup_id}`. Please see
+ *                              {@see DataprocMetastoreClient::backupName()} for help formatting this field.
  */
-function get_backup_sample(): void
+function get_backup_sample(string $formattedName): void
 {
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
@@ -44,10 +44,31 @@ function get_backup_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var Backup $response */
-        $response = $dataprocMetastoreClient->getBackup();
+        $response = $dataprocMetastoreClient->getBackup($formattedName);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DataprocMetastoreClient::backupName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[SERVICE]',
+        '[BACKUP]'
+    );
+
+    get_backup_sample($formattedName);
 }
 // [END metastore_v1alpha_generated_DataprocMetastore_GetBackup_sync]

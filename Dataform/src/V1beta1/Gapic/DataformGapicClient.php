@@ -141,7 +141,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $dataformClient = new DataformClient();
  * try {
- *     $dataformClient->cancelWorkflowInvocation();
+ *     $formattedName = $dataformClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
+ *     $dataformClient->cancelWorkflowInvocation($formattedName);
  * } finally {
  *     $dataformClient->close();
  * }
@@ -652,17 +653,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $dataformClient->cancelWorkflowInvocation();
+     *     $formattedName = $dataformClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
+     *     $dataformClient->cancelWorkflowInvocation($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The workflow invocation resource's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The workflow invocation resource's name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -673,15 +674,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function cancelWorkflowInvocation(array $optionalArgs = [])
+    public function cancelWorkflowInvocation($name, array $optionalArgs = [])
     {
         $request = new CancelWorkflowInvocationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -704,19 +702,19 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $dataformClient->commitRepositoryChanges();
+     *     $formattedName = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $commitMetadata = new CommitMetadata();
+     *     $dataformClient->commitRepositoryChanges($formattedName, $commitMetadata);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string         $name           Required. The repository's name.
+     * @param CommitMetadata $commitMetadata Required. The changes to commit to the repository.
+     * @param array          $optionalArgs   {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The repository's name.
-     *     @type CommitMetadata $commitMetadata
-     *           Required. The changes to commit to the repository.
      *     @type string $requiredHeadCommitSha
      *           Optional. The commit SHA which must be the repository's current HEAD before
      *           applying this commit; otherwise this request will fail. If unset, no
@@ -734,19 +732,16 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function commitRepositoryChanges(array $optionalArgs = [])
-    {
+    public function commitRepositoryChanges(
+        $name,
+        $commitMetadata,
+        array $optionalArgs = []
+    ) {
         $request = new CommitRepositoryChangesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['commitMetadata'])) {
-            $request->setCommitMetadata($optionalArgs['commitMetadata']);
-        }
-
+        $request->setName($name);
+        $request->setCommitMetadata($commitMetadata);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requiredHeadCommitSha'])) {
             $request->setRequiredHeadCommitSha(
                 $optionalArgs['requiredHeadCommitSha']
@@ -778,19 +773,19 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $dataformClient->commitWorkspaceChanges();
+     *     $formattedName = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $author = new CommitAuthor();
+     *     $dataformClient->commitWorkspaceChanges($formattedName, $author);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string       $name         Required. The workspace's name.
+     * @param CommitAuthor $author       Required. The commit's author.
+     * @param array        $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The workspace's name.
-     *     @type CommitAuthor $author
-     *           Required. The commit's author.
      *     @type string $commitMessage
      *           Optional. The commit's message.
      *     @type string[] $paths
@@ -806,19 +801,16 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function commitWorkspaceChanges(array $optionalArgs = [])
-    {
+    public function commitWorkspaceChanges(
+        $name,
+        $author,
+        array $optionalArgs = []
+    ) {
         $request = new CommitWorkspaceChangesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['author'])) {
-            $request->setAuthor($optionalArgs['author']);
-        }
-
+        $request->setName($name);
+        $request->setAuthor($author);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['commitMessage'])) {
             $request->setCommitMessage($optionalArgs['commitMessage']);
         }
@@ -848,17 +840,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->computeRepositoryAccessTokenStatus();
+     *     $formattedName = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $response = $dataformClient->computeRepositoryAccessTokenStatus($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The repository's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The repository's name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -871,15 +863,14 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function computeRepositoryAccessTokenStatus(array $optionalArgs = [])
-    {
+    public function computeRepositoryAccessTokenStatus(
+        $name,
+        array $optionalArgs = []
+    ) {
         $request = new ComputeRepositoryAccessTokenStatusRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -901,20 +892,20 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->createCompilationResult();
+     *     $formattedParent = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $compilationResult = new CompilationResult();
+     *     $response = $dataformClient->createCompilationResult($formattedParent, $compilationResult);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string            $parent            Required. The repository in which to create the compilation result. Must be
+     *                                             in the format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param CompilationResult $compilationResult Required. The compilation result to create.
+     * @param array             $optionalArgs      {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The repository in which to create the compilation result. Must be
-     *           in the format `projects/&#42;/locations/&#42;/repositories/*`.
-     *     @type CompilationResult $compilationResult
-     *           Required. The compilation result to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -927,19 +918,16 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function createCompilationResult(array $optionalArgs = [])
-    {
+    public function createCompilationResult(
+        $parent,
+        $compilationResult,
+        array $optionalArgs = []
+    ) {
         $request = new CreateCompilationResultRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['compilationResult'])) {
-            $request->setCompilationResult($optionalArgs['compilationResult']);
-        }
-
+        $request->setParent($parent);
+        $request->setCompilationResult($compilationResult);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -961,23 +949,23 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->createReleaseConfig();
+     *     $formattedParent = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $releaseConfig = new ReleaseConfig();
+     *     $releaseConfigId = 'release_config_id';
+     *     $response = $dataformClient->createReleaseConfig($formattedParent, $releaseConfig, $releaseConfigId);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string        $parent          Required. The repository in which to create the release config. Must be in
+     *                                       the format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param ReleaseConfig $releaseConfig   Required. The release config to create.
+     * @param string        $releaseConfigId Required. The ID to use for the release config, which will become the final
+     *                                       component of the release config's resource name.
+     * @param array         $optionalArgs    {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The repository in which to create the release config. Must be in
-     *           the format `projects/&#42;/locations/&#42;/repositories/*`.
-     *     @type ReleaseConfig $releaseConfig
-     *           Required. The release config to create.
-     *     @type string $releaseConfigId
-     *           Required. The ID to use for the release config, which will become the final
-     *           component of the release config's resource name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -990,23 +978,18 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function createReleaseConfig(array $optionalArgs = [])
-    {
+    public function createReleaseConfig(
+        $parent,
+        $releaseConfig,
+        $releaseConfigId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateReleaseConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['releaseConfig'])) {
-            $request->setReleaseConfig($optionalArgs['releaseConfig']);
-        }
-
-        if (isset($optionalArgs['releaseConfigId'])) {
-            $request->setReleaseConfigId($optionalArgs['releaseConfigId']);
-        }
-
+        $request->setParent($parent);
+        $request->setReleaseConfig($releaseConfig);
+        $request->setReleaseConfigId($releaseConfigId);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1028,23 +1011,23 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->createRepository();
+     *     $formattedParent = $dataformClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $repository = new Repository();
+     *     $repositoryId = 'repository_id';
+     *     $response = $dataformClient->createRepository($formattedParent, $repository, $repositoryId);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string     $parent       Required. The location in which to create the repository. Must be in the
+     *                                 format `projects/&#42;/locations/*`.
+     * @param Repository $repository   Required. The repository to create.
+     * @param string     $repositoryId Required. The ID to use for the repository, which will become the final
+     *                                 component of the repository's resource name.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The location in which to create the repository. Must be in the
-     *           format `projects/&#42;/locations/*`.
-     *     @type Repository $repository
-     *           Required. The repository to create.
-     *     @type string $repositoryId
-     *           Required. The ID to use for the repository, which will become the final
-     *           component of the repository's resource name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1057,23 +1040,18 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function createRepository(array $optionalArgs = [])
-    {
+    public function createRepository(
+        $parent,
+        $repository,
+        $repositoryId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateRepositoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['repository'])) {
-            $request->setRepository($optionalArgs['repository']);
-        }
-
-        if (isset($optionalArgs['repositoryId'])) {
-            $request->setRepositoryId($optionalArgs['repositoryId']);
-        }
-
+        $request->setParent($parent);
+        $request->setRepository($repository);
+        $request->setRepositoryId($repositoryId);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1095,23 +1073,23 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->createWorkflowConfig();
+     *     $formattedParent = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $workflowConfig = new WorkflowConfig();
+     *     $workflowConfigId = 'workflow_config_id';
+     *     $response = $dataformClient->createWorkflowConfig($formattedParent, $workflowConfig, $workflowConfigId);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string         $parent           Required. The repository in which to create the workflow config. Must be in
+     *                                         the format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param WorkflowConfig $workflowConfig   Required. The workflow config to create.
+     * @param string         $workflowConfigId Required. The ID to use for the workflow config, which will become the
+     *                                         final component of the workflow config's resource name.
+     * @param array          $optionalArgs     {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The repository in which to create the workflow config. Must be in
-     *           the format `projects/&#42;/locations/&#42;/repositories/*`.
-     *     @type WorkflowConfig $workflowConfig
-     *           Required. The workflow config to create.
-     *     @type string $workflowConfigId
-     *           Required. The ID to use for the workflow config, which will become the
-     *           final component of the workflow config's resource name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1124,23 +1102,18 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function createWorkflowConfig(array $optionalArgs = [])
-    {
+    public function createWorkflowConfig(
+        $parent,
+        $workflowConfig,
+        $workflowConfigId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateWorkflowConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['workflowConfig'])) {
-            $request->setWorkflowConfig($optionalArgs['workflowConfig']);
-        }
-
-        if (isset($optionalArgs['workflowConfigId'])) {
-            $request->setWorkflowConfigId($optionalArgs['workflowConfigId']);
-        }
-
+        $request->setParent($parent);
+        $request->setWorkflowConfig($workflowConfig);
+        $request->setWorkflowConfigId($workflowConfigId);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1162,20 +1135,20 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->createWorkflowInvocation();
+     *     $formattedParent = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $workflowInvocation = new WorkflowInvocation();
+     *     $response = $dataformClient->createWorkflowInvocation($formattedParent, $workflowInvocation);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string             $parent             Required. The repository in which to create the workflow invocation. Must
+     *                                               be in the format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param WorkflowInvocation $workflowInvocation Required. The workflow invocation resource to create.
+     * @param array              $optionalArgs       {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The repository in which to create the workflow invocation. Must
-     *           be in the format `projects/&#42;/locations/&#42;/repositories/*`.
-     *     @type WorkflowInvocation $workflowInvocation
-     *           Required. The workflow invocation resource to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1188,21 +1161,16 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function createWorkflowInvocation(array $optionalArgs = [])
-    {
+    public function createWorkflowInvocation(
+        $parent,
+        $workflowInvocation,
+        array $optionalArgs = []
+    ) {
         $request = new CreateWorkflowInvocationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['workflowInvocation'])) {
-            $request->setWorkflowInvocation(
-                $optionalArgs['workflowInvocation']
-            );
-        }
-
+        $request->setParent($parent);
+        $request->setWorkflowInvocation($workflowInvocation);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1224,23 +1192,23 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->createWorkspace();
+     *     $formattedParent = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $workspace = new Workspace();
+     *     $workspaceId = 'workspace_id';
+     *     $response = $dataformClient->createWorkspace($formattedParent, $workspace, $workspaceId);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string    $parent       Required. The repository in which to create the workspace. Must be in the
+     *                                format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param Workspace $workspace    Required. The workspace to create.
+     * @param string    $workspaceId  Required. The ID to use for the workspace, which will become the final
+     *                                component of the workspace's resource name.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The repository in which to create the workspace. Must be in the
-     *           format `projects/&#42;/locations/&#42;/repositories/*`.
-     *     @type Workspace $workspace
-     *           Required. The workspace to create.
-     *     @type string $workspaceId
-     *           Required. The ID to use for the workspace, which will become the final
-     *           component of the workspace's resource name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1253,23 +1221,18 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function createWorkspace(array $optionalArgs = [])
-    {
+    public function createWorkspace(
+        $parent,
+        $workspace,
+        $workspaceId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateWorkspaceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['workspace'])) {
-            $request->setWorkspace($optionalArgs['workspace']);
-        }
-
-        if (isset($optionalArgs['workspaceId'])) {
-            $request->setWorkspaceId($optionalArgs['workspaceId']);
-        }
-
+        $request->setParent($parent);
+        $request->setWorkspace($workspace);
+        $request->setWorkspaceId($workspaceId);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1291,17 +1254,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $dataformClient->deleteReleaseConfig();
+     *     $formattedName = $dataformClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
+     *     $dataformClient->deleteReleaseConfig($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The release config's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The release config's name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1312,15 +1275,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function deleteReleaseConfig(array $optionalArgs = [])
+    public function deleteReleaseConfig($name, array $optionalArgs = [])
     {
         $request = new DeleteReleaseConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1342,17 +1302,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $dataformClient->deleteRepository();
+     *     $formattedName = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $dataformClient->deleteRepository($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The repository's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The repository's name.
      *     @type bool $force
      *           If set to true, any child resources of this repository will also be
      *           deleted. (Otherwise, the request will only succeed if the repository has no
@@ -1367,15 +1327,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function deleteRepository(array $optionalArgs = [])
+    public function deleteRepository($name, array $optionalArgs = [])
     {
         $request = new DeleteRepositoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -1401,17 +1358,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $dataformClient->deleteWorkflowConfig();
+     *     $formattedName = $dataformClient->workflowConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_CONFIG]');
+     *     $dataformClient->deleteWorkflowConfig($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The workflow config's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The workflow config's name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1422,15 +1379,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function deleteWorkflowConfig(array $optionalArgs = [])
+    public function deleteWorkflowConfig($name, array $optionalArgs = [])
     {
         $request = new DeleteWorkflowConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1452,17 +1406,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $dataformClient->deleteWorkflowInvocation();
+     *     $formattedName = $dataformClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
+     *     $dataformClient->deleteWorkflowInvocation($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The workflow invocation resource's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The workflow invocation resource's name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1473,15 +1427,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function deleteWorkflowInvocation(array $optionalArgs = [])
+    public function deleteWorkflowInvocation($name, array $optionalArgs = [])
     {
         $request = new DeleteWorkflowInvocationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1503,17 +1454,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $dataformClient->deleteWorkspace();
+     *     $formattedName = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $dataformClient->deleteWorkspace($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The workspace resource's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The workspace resource's name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1524,15 +1475,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function deleteWorkspace(array $optionalArgs = [])
+    public function deleteWorkspace($name, array $optionalArgs = [])
     {
         $request = new DeleteWorkspaceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1554,20 +1502,20 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->fetchFileDiff();
+     *     $formattedWorkspace = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $path = 'path';
+     *     $response = $dataformClient->fetchFileDiff($formattedWorkspace, $path);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $workspace    Required. The workspace's name.
+     * @param string $path         Required. The file's full path including filename, relative to the
+     *                             workspace root.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $workspace
-     *           Required. The workspace's name.
-     *     @type string $path
-     *           Required. The file's full path including filename, relative to the
-     *           workspace root.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1580,19 +1528,13 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function fetchFileDiff(array $optionalArgs = [])
+    public function fetchFileDiff($workspace, $path, array $optionalArgs = [])
     {
         $request = new FetchFileDiffRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['workspace'])) {
-            $request->setWorkspace($optionalArgs['workspace']);
-            $requestParamHeaders['workspace'] = $optionalArgs['workspace'];
-        }
-
-        if (isset($optionalArgs['path'])) {
-            $request->setPath($optionalArgs['path']);
-        }
-
+        $request->setWorkspace($workspace);
+        $request->setPath($path);
+        $requestParamHeaders['workspace'] = $workspace;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1614,17 +1556,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->fetchFileGitStatuses();
+     *     $formattedName = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $response = $dataformClient->fetchFileGitStatuses($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The workspace's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The workspace's name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1637,15 +1579,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function fetchFileGitStatuses(array $optionalArgs = [])
+    public function fetchFileGitStatuses($name, array $optionalArgs = [])
     {
         $request = new FetchFileGitStatusesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1667,17 +1606,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->fetchGitAheadBehind();
+     *     $formattedName = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $response = $dataformClient->fetchGitAheadBehind($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The workspace's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The workspace's name.
      *     @type string $remoteBranch
      *           Optional. The name of the branch in the Git remote against which this
      *           workspace should be compared. If left unset, the repository's default
@@ -1694,15 +1633,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function fetchGitAheadBehind(array $optionalArgs = [])
+    public function fetchGitAheadBehind($name, array $optionalArgs = [])
     {
         $request = new FetchGitAheadBehindRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['remoteBranch'])) {
             $request->setRemoteBranch($optionalArgs['remoteBranch']);
         }
@@ -1728,17 +1664,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->fetchRemoteBranches();
+     *     $formattedName = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $response = $dataformClient->fetchRemoteBranches($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The repository's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The repository's name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1751,15 +1687,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function fetchRemoteBranches(array $optionalArgs = [])
+    public function fetchRemoteBranches($name, array $optionalArgs = [])
     {
         $request = new FetchRemoteBranchesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1782,8 +1715,9 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
+     *     $formattedName = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataformClient->fetchRepositoryHistory();
+     *     $pagedResponse = $dataformClient->fetchRepositoryHistory($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1791,7 +1725,7 @@ class DataformGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataformClient->fetchRepositoryHistory();
+     *     $pagedResponse = $dataformClient->fetchRepositoryHistory($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1800,11 +1734,10 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The repository's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The repository's name.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1826,15 +1759,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function fetchRepositoryHistory(array $optionalArgs = [])
+    public function fetchRepositoryHistory($name, array $optionalArgs = [])
     {
         $request = new FetchRepositoryHistoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1864,17 +1794,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->getCompilationResult();
+     *     $formattedName = $dataformClient->compilationResultName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[COMPILATION_RESULT]');
+     *     $response = $dataformClient->getCompilationResult($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The compilation result's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The compilation result's name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1887,15 +1817,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function getCompilationResult(array $optionalArgs = [])
+    public function getCompilationResult($name, array $optionalArgs = [])
     {
         $request = new GetCompilationResultRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1917,17 +1844,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->getReleaseConfig();
+     *     $formattedName = $dataformClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
+     *     $response = $dataformClient->getReleaseConfig($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The release config's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The release config's name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1940,15 +1867,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function getReleaseConfig(array $optionalArgs = [])
+    public function getReleaseConfig($name, array $optionalArgs = [])
     {
         $request = new GetReleaseConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1970,17 +1894,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->getRepository();
+     *     $formattedName = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $response = $dataformClient->getRepository($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The repository's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The repository's name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1993,15 +1917,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function getRepository(array $optionalArgs = [])
+    public function getRepository($name, array $optionalArgs = [])
     {
         $request = new GetRepositoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2023,17 +1944,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->getWorkflowConfig();
+     *     $formattedName = $dataformClient->workflowConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_CONFIG]');
+     *     $response = $dataformClient->getWorkflowConfig($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The workflow config's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The workflow config's name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2046,15 +1967,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function getWorkflowConfig(array $optionalArgs = [])
+    public function getWorkflowConfig($name, array $optionalArgs = [])
     {
         $request = new GetWorkflowConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2076,17 +1994,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->getWorkflowInvocation();
+     *     $formattedName = $dataformClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
+     *     $response = $dataformClient->getWorkflowInvocation($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The workflow invocation resource's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The workflow invocation resource's name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2099,15 +2017,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function getWorkflowInvocation(array $optionalArgs = [])
+    public function getWorkflowInvocation($name, array $optionalArgs = [])
     {
         $request = new GetWorkflowInvocationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2129,17 +2044,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->getWorkspace();
+     *     $formattedName = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $response = $dataformClient->getWorkspace($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The workspace's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The workspace's name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2152,15 +2067,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function getWorkspace(array $optionalArgs = [])
+    public function getWorkspace($name, array $optionalArgs = [])
     {
         $request = new GetWorkspaceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2182,17 +2094,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->installNpmPackages();
+     *     $formattedWorkspace = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $response = $dataformClient->installNpmPackages($formattedWorkspace);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $workspace    Required. The workspace's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $workspace
-     *           Required. The workspace's name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2205,15 +2117,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function installNpmPackages(array $optionalArgs = [])
+    public function installNpmPackages($workspace, array $optionalArgs = [])
     {
         $request = new InstallNpmPackagesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['workspace'])) {
-            $request->setWorkspace($optionalArgs['workspace']);
-            $requestParamHeaders['workspace'] = $optionalArgs['workspace'];
-        }
-
+        $request->setWorkspace($workspace);
+        $requestParamHeaders['workspace'] = $workspace;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2235,8 +2144,9 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
+     *     $formattedParent = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataformClient->listCompilationResults();
+     *     $pagedResponse = $dataformClient->listCompilationResults($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2244,7 +2154,7 @@ class DataformGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataformClient->listCompilationResults();
+     *     $pagedResponse = $dataformClient->listCompilationResults($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2253,12 +2163,11 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The repository in which to list compilation results. Must be in
+     *                             the format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The repository in which to list compilation results. Must be in
-     *           the format `projects/&#42;/locations/&#42;/repositories/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2280,15 +2189,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function listCompilationResults(array $optionalArgs = [])
+    public function listCompilationResults($parent, array $optionalArgs = [])
     {
         $request = new ListCompilationResultsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2318,8 +2224,9 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
+     *     $formattedParent = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataformClient->listReleaseConfigs();
+     *     $pagedResponse = $dataformClient->listReleaseConfigs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2327,7 +2234,7 @@ class DataformGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataformClient->listReleaseConfigs();
+     *     $pagedResponse = $dataformClient->listReleaseConfigs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2336,12 +2243,11 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The repository in which to list release configs. Must be in the
+     *                             format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The repository in which to list release configs. Must be in the
-     *           format `projects/&#42;/locations/&#42;/repositories/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2363,15 +2269,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function listReleaseConfigs(array $optionalArgs = [])
+    public function listReleaseConfigs($parent, array $optionalArgs = [])
     {
         $request = new ListReleaseConfigsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2401,8 +2304,9 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
+     *     $formattedParent = $dataformClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataformClient->listRepositories();
+     *     $pagedResponse = $dataformClient->listRepositories($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2410,7 +2314,7 @@ class DataformGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataformClient->listRepositories();
+     *     $pagedResponse = $dataformClient->listRepositories($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2419,12 +2323,11 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The location in which to list repositories. Must be in the format
+     *                             `projects/&#42;/locations/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The location in which to list repositories. Must be in the format
-     *           `projects/&#42;/locations/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2452,15 +2355,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function listRepositories(array $optionalArgs = [])
+    public function listRepositories($parent, array $optionalArgs = [])
     {
         $request = new ListRepositoriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2498,8 +2398,9 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
+     *     $formattedParent = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataformClient->listWorkflowConfigs();
+     *     $pagedResponse = $dataformClient->listWorkflowConfigs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2507,7 +2408,7 @@ class DataformGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataformClient->listWorkflowConfigs();
+     *     $pagedResponse = $dataformClient->listWorkflowConfigs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2516,12 +2417,11 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The repository in which to list workflow configs. Must be in the
+     *                             format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The repository in which to list workflow configs. Must be in the
-     *           format `projects/&#42;/locations/&#42;/repositories/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2543,15 +2443,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function listWorkflowConfigs(array $optionalArgs = [])
+    public function listWorkflowConfigs($parent, array $optionalArgs = [])
     {
         $request = new ListWorkflowConfigsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2581,8 +2478,9 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
+     *     $formattedParent = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataformClient->listWorkflowInvocations();
+     *     $pagedResponse = $dataformClient->listWorkflowInvocations($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2590,7 +2488,7 @@ class DataformGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataformClient->listWorkflowInvocations();
+     *     $pagedResponse = $dataformClient->listWorkflowInvocations($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2599,12 +2497,11 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The parent resource of the WorkflowInvocation type. Must be in
+     *                             the format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent resource of the WorkflowInvocation type. Must be in
-     *           the format `projects/&#42;/locations/&#42;/repositories/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2632,15 +2529,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function listWorkflowInvocations(array $optionalArgs = [])
+    public function listWorkflowInvocations($parent, array $optionalArgs = [])
     {
         $request = new ListWorkflowInvocationsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2678,8 +2572,9 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
+     *     $formattedParent = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataformClient->listWorkspaces();
+     *     $pagedResponse = $dataformClient->listWorkspaces($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2687,7 +2582,7 @@ class DataformGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataformClient->listWorkspaces();
+     *     $pagedResponse = $dataformClient->listWorkspaces($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2696,12 +2591,11 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The repository in which to list workspaces. Must be in the
+     *                             format `projects/&#42;/locations/&#42;/repositories/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The repository in which to list workspaces. Must be in the
-     *           format `projects/&#42;/locations/&#42;/repositories/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2729,15 +2623,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function listWorkspaces(array $optionalArgs = [])
+    public function listWorkspaces($parent, array $optionalArgs = [])
     {
         $request = new ListWorkspacesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2775,20 +2666,20 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->makeDirectory();
+     *     $formattedWorkspace = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $path = 'path';
+     *     $response = $dataformClient->makeDirectory($formattedWorkspace, $path);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $workspace    Required. The workspace's name.
+     * @param string $path         Required. The directory's full path including directory name, relative to
+     *                             the workspace root.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $workspace
-     *           Required. The workspace's name.
-     *     @type string $path
-     *           Required. The directory's full path including directory name, relative to
-     *           the workspace root.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2801,19 +2692,13 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function makeDirectory(array $optionalArgs = [])
+    public function makeDirectory($workspace, $path, array $optionalArgs = [])
     {
         $request = new MakeDirectoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['workspace'])) {
-            $request->setWorkspace($optionalArgs['workspace']);
-            $requestParamHeaders['workspace'] = $optionalArgs['workspace'];
-        }
-
-        if (isset($optionalArgs['path'])) {
-            $request->setPath($optionalArgs['path']);
-        }
-
+        $request->setWorkspace($workspace);
+        $request->setPath($path);
+        $requestParamHeaders['workspace'] = $workspace;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2836,23 +2721,23 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->moveDirectory();
+     *     $formattedWorkspace = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $path = 'path';
+     *     $newPath = 'new_path';
+     *     $response = $dataformClient->moveDirectory($formattedWorkspace, $path, $newPath);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $workspace    Required. The workspace's name.
+     * @param string $path         Required. The directory's full path including directory name, relative to
+     *                             the workspace root.
+     * @param string $newPath      Required. The new path for the directory including directory name, rooted
+     *                             at workspace root.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $workspace
-     *           Required. The workspace's name.
-     *     @type string $path
-     *           Required. The directory's full path including directory name, relative to
-     *           the workspace root.
-     *     @type string $newPath
-     *           Required. The new path for the directory including directory name, rooted
-     *           at workspace root.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2865,23 +2750,18 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function moveDirectory(array $optionalArgs = [])
-    {
+    public function moveDirectory(
+        $workspace,
+        $path,
+        $newPath,
+        array $optionalArgs = []
+    ) {
         $request = new MoveDirectoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['workspace'])) {
-            $request->setWorkspace($optionalArgs['workspace']);
-            $requestParamHeaders['workspace'] = $optionalArgs['workspace'];
-        }
-
-        if (isset($optionalArgs['path'])) {
-            $request->setPath($optionalArgs['path']);
-        }
-
-        if (isset($optionalArgs['newPath'])) {
-            $request->setNewPath($optionalArgs['newPath']);
-        }
-
+        $request->setWorkspace($workspace);
+        $request->setPath($path);
+        $request->setNewPath($newPath);
+        $requestParamHeaders['workspace'] = $workspace;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2903,23 +2783,23 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->moveFile();
+     *     $formattedWorkspace = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $path = 'path';
+     *     $newPath = 'new_path';
+     *     $response = $dataformClient->moveFile($formattedWorkspace, $path, $newPath);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $workspace    Required. The workspace's name.
+     * @param string $path         Required. The file's full path including filename, relative to the
+     *                             workspace root.
+     * @param string $newPath      Required. The file's new path including filename, relative to the workspace
+     *                             root.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $workspace
-     *           Required. The workspace's name.
-     *     @type string $path
-     *           Required. The file's full path including filename, relative to the
-     *           workspace root.
-     *     @type string $newPath
-     *           Required. The file's new path including filename, relative to the workspace
-     *           root.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2932,23 +2812,18 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function moveFile(array $optionalArgs = [])
-    {
+    public function moveFile(
+        $workspace,
+        $path,
+        $newPath,
+        array $optionalArgs = []
+    ) {
         $request = new MoveFileRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['workspace'])) {
-            $request->setWorkspace($optionalArgs['workspace']);
-            $requestParamHeaders['workspace'] = $optionalArgs['workspace'];
-        }
-
-        if (isset($optionalArgs['path'])) {
-            $request->setPath($optionalArgs['path']);
-        }
-
-        if (isset($optionalArgs['newPath'])) {
-            $request->setNewPath($optionalArgs['newPath']);
-        }
-
+        $request->setWorkspace($workspace);
+        $request->setPath($path);
+        $request->setNewPath($newPath);
+        $requestParamHeaders['workspace'] = $workspace;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2970,23 +2845,23 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $dataformClient->pullGitCommits();
+     *     $formattedName = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $author = new CommitAuthor();
+     *     $dataformClient->pullGitCommits($formattedName, $author);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string       $name         Required. The workspace's name.
+     * @param CommitAuthor $author       Required. The author of any merge commit which may be created as a result
+     *                                   of merging fetched Git commits into this workspace.
+     * @param array        $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The workspace's name.
      *     @type string $remoteBranch
      *           Optional. The name of the branch in the Git remote from which to pull
      *           commits. If left unset, the repository's default branch name will be used.
-     *     @type CommitAuthor $author
-     *           Required. The author of any merge commit which may be created as a result
-     *           of merging fetched Git commits into this workspace.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2997,21 +2872,15 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function pullGitCommits(array $optionalArgs = [])
+    public function pullGitCommits($name, $author, array $optionalArgs = [])
     {
         $request = new PullGitCommitsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $request->setAuthor($author);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['remoteBranch'])) {
             $request->setRemoteBranch($optionalArgs['remoteBranch']);
-        }
-
-        if (isset($optionalArgs['author'])) {
-            $request->setAuthor($optionalArgs['author']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -3035,17 +2904,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $dataformClient->pushGitCommits();
+     *     $formattedName = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $dataformClient->pushGitCommits($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The workspace's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The workspace's name.
      *     @type string $remoteBranch
      *           Optional. The name of the branch in the Git remote to which commits should
      *           be pushed. If left unset, the repository's default branch name will be
@@ -3060,15 +2929,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function pushGitCommits(array $optionalArgs = [])
+    public function pushGitCommits($name, array $optionalArgs = [])
     {
         $request = new PushGitCommitsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['remoteBranch'])) {
             $request->setRemoteBranch($optionalArgs['remoteBranch']);
         }
@@ -3094,8 +2960,9 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
+     *     $formattedName = $dataformClient->compilationResultName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[COMPILATION_RESULT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataformClient->queryCompilationResultActions();
+     *     $pagedResponse = $dataformClient->queryCompilationResultActions($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3103,7 +2970,7 @@ class DataformGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataformClient->queryCompilationResultActions();
+     *     $pagedResponse = $dataformClient->queryCompilationResultActions($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3112,11 +2979,10 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The compilation result's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The compilation result's name.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3141,15 +3007,14 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function queryCompilationResultActions(array $optionalArgs = [])
-    {
+    public function queryCompilationResultActions(
+        $name,
+        array $optionalArgs = []
+    ) {
         $request = new QueryCompilationResultActionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3183,8 +3048,9 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
+     *     $formattedWorkspace = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataformClient->queryDirectoryContents();
+     *     $pagedResponse = $dataformClient->queryDirectoryContents($formattedWorkspace);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3192,7 +3058,7 @@ class DataformGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataformClient->queryDirectoryContents();
+     *     $pagedResponse = $dataformClient->queryDirectoryContents($formattedWorkspace);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3201,11 +3067,10 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $workspace    Required. The workspace's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $workspace
-     *           Required. The workspace's name.
      *     @type string $path
      *           Optional. The directory's full path including directory name, relative to
      *           the workspace root. If left unset, the workspace root is used.
@@ -3230,15 +3095,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function queryDirectoryContents(array $optionalArgs = [])
+    public function queryDirectoryContents($workspace, array $optionalArgs = [])
     {
         $request = new QueryDirectoryContentsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['workspace'])) {
-            $request->setWorkspace($optionalArgs['workspace']);
-            $requestParamHeaders['workspace'] = $optionalArgs['workspace'];
-        }
-
+        $request->setWorkspace($workspace);
+        $requestParamHeaders['workspace'] = $workspace;
         if (isset($optionalArgs['path'])) {
             $request->setPath($optionalArgs['path']);
         }
@@ -3273,8 +3135,9 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
+     *     $formattedName = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataformClient->queryRepositoryDirectoryContents();
+     *     $pagedResponse = $dataformClient->queryRepositoryDirectoryContents($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3282,7 +3145,7 @@ class DataformGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataformClient->queryRepositoryDirectoryContents();
+     *     $pagedResponse = $dataformClient->queryRepositoryDirectoryContents($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3291,11 +3154,10 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The repository's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The repository's name.
      *     @type string $commitSha
      *           Optional. The Commit SHA for the commit to query from. If unset, the
      *           directory will be queried from HEAD.
@@ -3323,15 +3185,14 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function queryRepositoryDirectoryContents(array $optionalArgs = [])
-    {
+    public function queryRepositoryDirectoryContents(
+        $name,
+        array $optionalArgs = []
+    ) {
         $request = new QueryRepositoryDirectoryContentsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['commitSha'])) {
             $request->setCommitSha($optionalArgs['commitSha']);
         }
@@ -3369,8 +3230,9 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
+     *     $formattedName = $dataformClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataformClient->queryWorkflowInvocationActions();
+     *     $pagedResponse = $dataformClient->queryWorkflowInvocationActions($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3378,7 +3240,7 @@ class DataformGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataformClient->queryWorkflowInvocationActions();
+     *     $pagedResponse = $dataformClient->queryWorkflowInvocationActions($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3387,11 +3249,10 @@ class DataformGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The workflow invocation's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The workflow invocation's name.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3413,15 +3274,14 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function queryWorkflowInvocationActions(array $optionalArgs = [])
-    {
+    public function queryWorkflowInvocationActions(
+        $name,
+        array $optionalArgs = []
+    ) {
         $request = new QueryWorkflowInvocationActionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3451,20 +3311,20 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->readFile();
+     *     $formattedWorkspace = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $path = 'path';
+     *     $response = $dataformClient->readFile($formattedWorkspace, $path);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $workspace    Required. The workspace's name.
+     * @param string $path         Required. The file's full path including filename, relative to the
+     *                             workspace root.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $workspace
-     *           Required. The workspace's name.
-     *     @type string $path
-     *           Required. The file's full path including filename, relative to the
-     *           workspace root.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3477,19 +3337,13 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function readFile(array $optionalArgs = [])
+    public function readFile($workspace, $path, array $optionalArgs = [])
     {
         $request = new ReadFileRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['workspace'])) {
-            $request->setWorkspace($optionalArgs['workspace']);
-            $requestParamHeaders['workspace'] = $optionalArgs['workspace'];
-        }
-
-        if (isset($optionalArgs['path'])) {
-            $request->setPath($optionalArgs['path']);
-        }
-
+        $request->setWorkspace($workspace);
+        $request->setPath($path);
+        $requestParamHeaders['workspace'] = $workspace;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3512,22 +3366,22 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->readRepositoryFile();
+     *     $formattedName = $dataformClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $path = 'path';
+     *     $response = $dataformClient->readRepositoryFile($formattedName, $path);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The repository's name.
+     * @param string $path         Required. Full file path to read including filename, from repository root.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The repository's name.
      *     @type string $commitSha
      *           Optional. The commit SHA for the commit to read from. If unset, the file
      *           will be read from HEAD.
-     *     @type string $path
-     *           Required. Full file path to read including filename, from repository root.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3540,21 +3394,15 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function readRepositoryFile(array $optionalArgs = [])
+    public function readRepositoryFile($name, $path, array $optionalArgs = [])
     {
         $request = new ReadRepositoryFileRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $request->setPath($path);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['commitSha'])) {
             $request->setCommitSha($optionalArgs['commitSha']);
-        }
-
-        if (isset($optionalArgs['path'])) {
-            $request->setPath($optionalArgs['path']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -3578,20 +3426,20 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $dataformClient->removeDirectory();
+     *     $formattedWorkspace = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $path = 'path';
+     *     $dataformClient->removeDirectory($formattedWorkspace, $path);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $workspace    Required. The workspace's name.
+     * @param string $path         Required. The directory's full path including directory name, relative to
+     *                             the workspace root.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $workspace
-     *           Required. The workspace's name.
-     *     @type string $path
-     *           Required. The directory's full path including directory name, relative to
-     *           the workspace root.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3602,19 +3450,13 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function removeDirectory(array $optionalArgs = [])
+    public function removeDirectory($workspace, $path, array $optionalArgs = [])
     {
         $request = new RemoveDirectoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['workspace'])) {
-            $request->setWorkspace($optionalArgs['workspace']);
-            $requestParamHeaders['workspace'] = $optionalArgs['workspace'];
-        }
-
-        if (isset($optionalArgs['path'])) {
-            $request->setPath($optionalArgs['path']);
-        }
-
+        $request->setWorkspace($workspace);
+        $request->setPath($path);
+        $requestParamHeaders['workspace'] = $workspace;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3636,20 +3478,20 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $dataformClient->removeFile();
+     *     $formattedWorkspace = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $path = 'path';
+     *     $dataformClient->removeFile($formattedWorkspace, $path);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $workspace    Required. The workspace's name.
+     * @param string $path         Required. The file's full path including filename, relative to the
+     *                             workspace root.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $workspace
-     *           Required. The workspace's name.
-     *     @type string $path
-     *           Required. The file's full path including filename, relative to the
-     *           workspace root.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3660,19 +3502,13 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function removeFile(array $optionalArgs = [])
+    public function removeFile($workspace, $path, array $optionalArgs = [])
     {
         $request = new RemoveFileRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['workspace'])) {
-            $request->setWorkspace($optionalArgs['workspace']);
-            $requestParamHeaders['workspace'] = $optionalArgs['workspace'];
-        }
-
-        if (isset($optionalArgs['path'])) {
-            $request->setPath($optionalArgs['path']);
-        }
-
+        $request->setWorkspace($workspace);
+        $request->setPath($path);
+        $requestParamHeaders['workspace'] = $workspace;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3694,17 +3530,17 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $dataformClient->resetWorkspaceChanges();
+     *     $formattedName = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $dataformClient->resetWorkspaceChanges($formattedName);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The workspace's name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The workspace's name.
      *     @type string[] $paths
      *           Optional. Full file paths to reset back to their committed state including
      *           filename, rooted at workspace root. If left empty, all files will be reset.
@@ -3720,15 +3556,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function resetWorkspaceChanges(array $optionalArgs = [])
+    public function resetWorkspaceChanges($name, array $optionalArgs = [])
     {
         $request = new ResetWorkspaceChangesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['paths'])) {
             $request->setPaths($optionalArgs['paths']);
         }
@@ -3758,20 +3591,20 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->updateReleaseConfig();
+     *     $releaseConfig = new ReleaseConfig();
+     *     $response = $dataformClient->updateReleaseConfig($releaseConfig);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param ReleaseConfig $releaseConfig Required. The release config to update.
+     * @param array         $optionalArgs  {
      *     Optional.
      *
      *     @type FieldMask $updateMask
      *           Optional. Specifies the fields to be updated in the release config. If left
      *           unset, all fields will be updated.
-     *     @type ReleaseConfig $releaseConfig
-     *           Required. The release config to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3784,16 +3617,16 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function updateReleaseConfig(array $optionalArgs = [])
-    {
+    public function updateReleaseConfig(
+        $releaseConfig,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateReleaseConfigRequest();
         $requestParamHeaders = [];
+        $request->setReleaseConfig($releaseConfig);
+        $requestParamHeaders['release_config.name'] = $releaseConfig->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        if (isset($optionalArgs['releaseConfig'])) {
-            $request->setReleaseConfig($optionalArgs['releaseConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -3817,20 +3650,20 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->updateRepository();
+     *     $repository = new Repository();
+     *     $response = $dataformClient->updateRepository($repository);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Repository $repository   Required. The repository to update.
+     * @param array      $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
      *           Optional. Specifies the fields to be updated in the repository. If left
      *           unset, all fields will be updated.
-     *     @type Repository $repository
-     *           Required. The repository to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3843,16 +3676,14 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function updateRepository(array $optionalArgs = [])
+    public function updateRepository($repository, array $optionalArgs = [])
     {
         $request = new UpdateRepositoryRequest();
         $requestParamHeaders = [];
+        $request->setRepository($repository);
+        $requestParamHeaders['repository.name'] = $repository->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        if (isset($optionalArgs['repository'])) {
-            $request->setRepository($optionalArgs['repository']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -3876,20 +3707,20 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->updateWorkflowConfig();
+     *     $workflowConfig = new WorkflowConfig();
+     *     $response = $dataformClient->updateWorkflowConfig($workflowConfig);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param WorkflowConfig $workflowConfig Required. The workflow config to update.
+     * @param array          $optionalArgs   {
      *     Optional.
      *
      *     @type FieldMask $updateMask
      *           Optional. Specifies the fields to be updated in the workflow config. If
      *           left unset, all fields will be updated.
-     *     @type WorkflowConfig $workflowConfig
-     *           Required. The workflow config to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3902,16 +3733,18 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function updateWorkflowConfig(array $optionalArgs = [])
-    {
+    public function updateWorkflowConfig(
+        $workflowConfig,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateWorkflowConfigRequest();
         $requestParamHeaders = [];
+        $request->setWorkflowConfig($workflowConfig);
+        $requestParamHeaders[
+            'workflow_config.name'
+        ] = $workflowConfig->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        if (isset($optionalArgs['workflowConfig'])) {
-            $request->setWorkflowConfig($optionalArgs['workflowConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -3935,21 +3768,21 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->writeFile();
+     *     $formattedWorkspace = $dataformClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+     *     $path = 'path';
+     *     $contents = '...';
+     *     $response = $dataformClient->writeFile($formattedWorkspace, $path, $contents);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $workspace    Required. The workspace's name.
+     * @param string $path         Required. The file.
+     * @param string $contents     Required. The file's contents.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $workspace
-     *           Required. The workspace's name.
-     *     @type string $path
-     *           Required. The file.
-     *     @type string $contents
-     *           Required. The file's contents.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3962,23 +3795,18 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function writeFile(array $optionalArgs = [])
-    {
+    public function writeFile(
+        $workspace,
+        $path,
+        $contents,
+        array $optionalArgs = []
+    ) {
         $request = new WriteFileRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['workspace'])) {
-            $request->setWorkspace($optionalArgs['workspace']);
-            $requestParamHeaders['workspace'] = $optionalArgs['workspace'];
-        }
-
-        if (isset($optionalArgs['path'])) {
-            $request->setPath($optionalArgs['path']);
-        }
-
-        if (isset($optionalArgs['contents'])) {
-            $request->setContents($optionalArgs['contents']);
-        }
-
+        $request->setWorkspace($workspace);
+        $request->setPath($path);
+        $request->setContents($contents);
+        $requestParamHeaders['workspace'] = $workspace;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -4145,18 +3973,18 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $dataformClient->getIamPolicy($resource);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -4172,15 +4000,12 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -4212,23 +4037,23 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $dataformClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -4247,19 +4072,13 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -4293,23 +4112,23 @@ class DataformGapicClient
      * ```
      * $dataformClient = new DataformClient();
      * try {
-     *     $response = $dataformClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $dataformClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $dataformClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4322,19 +4141,16 @@ class DataformGapicClient
      *
      * @experimental
      */
-    public function testIamPermissions(array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

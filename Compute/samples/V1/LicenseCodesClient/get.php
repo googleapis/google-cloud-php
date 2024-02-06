@@ -30,13 +30,10 @@ use Google\Cloud\Compute\V1\LicenseCodesClient;
 /**
  * Return a specified license code. License codes are mirrored across all projects that have permissions to read the License Code. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $licenseCode Number corresponding to the License code resource to return.
+ * @param string $project     Project ID for this request.
  */
-function get_sample(): void
+function get_sample(string $licenseCode, string $project): void
 {
     // Create a client.
     $licenseCodesClient = new LicenseCodesClient();
@@ -44,10 +41,27 @@ function get_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var LicenseCode $response */
-        $response = $licenseCodesClient->get();
+        $response = $licenseCodesClient->get($licenseCode, $project);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $licenseCode = '[LICENSE_CODE]';
+    $project = '[PROJECT]';
+
+    get_sample($licenseCode, $project);
 }
 // [END compute_v1_generated_LicenseCodes_Get_sync]

@@ -27,23 +27,29 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
 use Google\Cloud\ContactCenterInsights\V1\CreatePhraseMatcherRequest;
 use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher;
+use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher\PhraseMatcherType;
 
 /**
  * Creates a phrase matcher.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent   The parent resource of the phrase matcher. Required. The location
+ *                                  to create a phrase matcher for. Format: `projects/<Project
+ *                                  ID>/locations/<Location ID>` or `projects/<Project
+ *                                  Number>/locations/<Location ID>`
+ *                                  Please see {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
+ * @param int    $phraseMatcherType The type of this phrase matcher.
  */
-function create_phrase_matcher_sample(): void
+function create_phrase_matcher_sample(string $formattedParent, int $phraseMatcherType): void
 {
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $request = new CreatePhraseMatcherRequest();
+    $phraseMatcher = (new PhraseMatcher())
+        ->setType($phraseMatcherType);
+    $request = (new CreatePhraseMatcherRequest())
+        ->setParent($formattedParent)
+        ->setPhraseMatcher($phraseMatcher);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +59,22 @@ function create_phrase_matcher_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ContactCenterInsightsClient::locationName('[PROJECT]', '[LOCATION]');
+    $phraseMatcherType = PhraseMatcherType::PHRASE_MATCHER_TYPE_UNSPECIFIED;
+
+    create_phrase_matcher_sample($formattedParent, $phraseMatcherType);
 }
 // [END contactcenterinsights_v1_generated_ContactCenterInsights_CreatePhraseMatcher_sync]

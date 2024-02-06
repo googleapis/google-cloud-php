@@ -30,13 +30,10 @@ use Google\Cloud\Compute\V1\RegionBackendServicesClient;
 /**
  * Retrieves an aggregated list of all usable backend services in the specified project in the given region.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project Project ID for this request.
+ * @param string $region  Name of the region scoping this request. It must be a string that meets the requirements in RFC1035.
  */
-function list_usable_sample(): void
+function list_usable_sample(string $project, string $region): void
 {
     // Create a client.
     $regionBackendServicesClient = new RegionBackendServicesClient();
@@ -44,7 +41,7 @@ function list_usable_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionBackendServicesClient->listUsable();
+        $response = $regionBackendServicesClient->listUsable($project, $region);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -52,5 +49,22 @@ function list_usable_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    list_usable_sample($project, $region);
 }
 // [END compute_v1_generated_RegionBackendServices_ListUsable_sync]

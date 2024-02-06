@@ -30,13 +30,11 @@ use Google\Cloud\Compute\V1\TargetInstancesClient;
 /**
  * Returns the specified TargetInstance resource.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project        Project ID for this request.
+ * @param string $targetInstance Name of the TargetInstance resource to return.
+ * @param string $zone           Name of the zone scoping this request.
  */
-function get_sample(): void
+function get_sample(string $project, string $targetInstance, string $zone): void
 {
     // Create a client.
     $targetInstancesClient = new TargetInstancesClient();
@@ -44,10 +42,28 @@ function get_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var TargetInstance $response */
-        $response = $targetInstancesClient->get();
+        $response = $targetInstancesClient->get($project, $targetInstance, $zone);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $targetInstance = '[TARGET_INSTANCE]';
+    $zone = '[ZONE]';
+
+    get_sample($project, $targetInstance, $zone);
 }
 // [END compute_v1_generated_TargetInstances_Get_sync]

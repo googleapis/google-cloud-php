@@ -26,26 +26,36 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTemplateRequest;
 use Google\Rpc\Status;
 
 /**
  * Sets the instance template to use when creating new instances or recreating instances in this group. Existing instances are not affected.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $instanceGroupManager The name of the managed instance group.
+ * @param string $project              Project ID for this request.
+ * @param string $region               Name of the region scoping this request.
  */
-function set_instance_template_sample(): void
-{
+function set_instance_template_sample(
+    string $instanceGroupManager,
+    string $project,
+    string $region
+): void {
     // Create a client.
     $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
+
+    // Prepare any non-scalar elements to be passed along with the request.
+    $regionInstanceGroupManagersSetTemplateRequestResource = new RegionInstanceGroupManagersSetTemplateRequest();
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionInstanceGroupManagersClient->setInstanceTemplate();
+        $response = $regionInstanceGroupManagersClient->setInstanceTemplate(
+            $instanceGroupManager,
+            $project,
+            $region,
+            $regionInstanceGroupManagersSetTemplateRequestResource
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +68,23 @@ function set_instance_template_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $instanceGroupManager = '[INSTANCE_GROUP_MANAGER]';
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    set_instance_template_sample($instanceGroupManager, $project, $region);
 }
 // [END compute_v1_generated_RegionInstanceGroupManagers_SetInstanceTemplate_sync]

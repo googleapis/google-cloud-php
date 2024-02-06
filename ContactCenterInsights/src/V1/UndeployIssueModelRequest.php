@@ -23,7 +23,8 @@ class UndeployIssueModelRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The issue model to undeploy.
+     * @param string $name Required. The issue model to undeploy. Please see
+     *                     {@see ContactCenterInsightsClient::issueModelName()} for help formatting this field.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\UndeployIssueModelRequest
      *

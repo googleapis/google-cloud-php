@@ -31,19 +31,26 @@ use Google\Cloud\Dialogflow\Cx\V3\SecuritySettings;
 /**
  * Create security settings in the specified location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent             The location to create an
+ *                                            [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] for.
+ *                                            Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+ *                                            {@see SecuritySettingsServiceClient::locationName()} for help formatting this field.
+ * @param string $securitySettingsDisplayName The human-readable name of the security settings, unique within
+ *                                            the location.
  */
-function create_security_settings_sample(): void
-{
+function create_security_settings_sample(
+    string $formattedParent,
+    string $securitySettingsDisplayName
+): void {
     // Create a client.
     $securitySettingsServiceClient = new SecuritySettingsServiceClient();
 
     // Prepare the request message.
-    $request = new CreateSecuritySettingsRequest();
+    $securitySettings = (new SecuritySettings())
+        ->setDisplayName($securitySettingsDisplayName);
+    $request = (new CreateSecuritySettingsRequest())
+        ->setParent($formattedParent)
+        ->setSecuritySettings($securitySettings);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +60,22 @@ function create_security_settings_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = SecuritySettingsServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $securitySettingsDisplayName = '[DISPLAY_NAME]';
+
+    create_security_settings_sample($formattedParent, $securitySettingsDisplayName);
 }
 // [END dialogflow_v3_generated_SecuritySettingsService_CreateSecuritySettings_sync]

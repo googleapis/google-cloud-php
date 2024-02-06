@@ -30,19 +30,24 @@ use Google\Cloud\Debugger\V2\DeleteBreakpointRequest;
 /**
  * Deletes the breakpoint from the debuggee.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $debuggeeId    ID of the debuggee whose breakpoint to delete.
+ * @param string $breakpointId  ID of the breakpoint to delete.
+ * @param string $clientVersion The client version making the call.
+ *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
  */
-function delete_breakpoint_sample(): void
-{
+function delete_breakpoint_sample(
+    string $debuggeeId,
+    string $breakpointId,
+    string $clientVersion
+): void {
     // Create a client.
     $debugger2Client = new Debugger2Client();
 
     // Prepare the request message.
-    $request = new DeleteBreakpointRequest();
+    $request = (new DeleteBreakpointRequest())
+        ->setDebuggeeId($debuggeeId)
+        ->setBreakpointId($breakpointId)
+        ->setClientVersion($clientVersion);
 
     // Call the API and handle any network failures.
     try {
@@ -51,5 +56,23 @@ function delete_breakpoint_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $debuggeeId = '[DEBUGGEE_ID]';
+    $breakpointId = '[BREAKPOINT_ID]';
+    $clientVersion = '[CLIENT_VERSION]';
+
+    delete_breakpoint_sample($debuggeeId, $breakpointId, $clientVersion);
 }
 // [END clouddebugger_v2_generated_Debugger2_DeleteBreakpoint_sync]

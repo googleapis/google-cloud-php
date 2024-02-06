@@ -31,13 +31,10 @@ use Google\Rpc\Status;
 /**
  * Deletes the specified network endpoint group.Note that the NEG cannot be deleted if there are backend services referencing it.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $networkEndpointGroup The name of the network endpoint group to delete. It should comply with RFC1035.
+ * @param string $project              Project ID for this request.
  */
-function delete_sample(): void
+function delete_sample(string $networkEndpointGroup, string $project): void
 {
     // Create a client.
     $globalNetworkEndpointGroupsClient = new GlobalNetworkEndpointGroupsClient();
@@ -45,7 +42,7 @@ function delete_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $globalNetworkEndpointGroupsClient->delete();
+        $response = $globalNetworkEndpointGroupsClient->delete($networkEndpointGroup, $project);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +55,22 @@ function delete_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $networkEndpointGroup = '[NETWORK_ENDPOINT_GROUP]';
+    $project = '[PROJECT]';
+
+    delete_sample($networkEndpointGroup, $project);
 }
 // [END compute_v1_generated_GlobalNetworkEndpointGroups_Delete_sync]

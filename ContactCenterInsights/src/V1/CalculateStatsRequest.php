@@ -30,7 +30,8 @@ class CalculateStatsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
-     * @param string $location Required. The location of the conversations.
+     * @param string $location Required. The location of the conversations. Please see
+     *                         {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\CalculateStatsRequest
      *

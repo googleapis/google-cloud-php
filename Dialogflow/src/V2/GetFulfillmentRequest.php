@@ -26,7 +26,8 @@ class GetFulfillmentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the fulfillment.
-     *                     Format: `projects/<Project ID>/agent/fulfillment`.
+     *                     Format: `projects/<Project ID>/agent/fulfillment`. Please see
+     *                     {@see FulfillmentsClient::fulfillmentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\GetFulfillmentRequest
      *

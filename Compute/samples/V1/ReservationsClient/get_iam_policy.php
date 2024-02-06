@@ -30,13 +30,11 @@ use Google\Cloud\Compute\V1\ReservationsClient;
 /**
  * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project  Project ID for this request.
+ * @param string $resource Name or id of the resource for this request.
+ * @param string $zone     The name of the zone for this request.
  */
-function get_iam_policy_sample(): void
+function get_iam_policy_sample(string $project, string $resource, string $zone): void
 {
     // Create a client.
     $reservationsClient = new ReservationsClient();
@@ -44,10 +42,28 @@ function get_iam_policy_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $reservationsClient->getIamPolicy();
+        $response = $reservationsClient->getIamPolicy($project, $resource, $zone);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $resource = '[RESOURCE]';
+    $zone = '[ZONE]';
+
+    get_iam_policy_sample($project, $resource, $zone);
 }
 // [END compute_v1_generated_Reservations_GetIamPolicy_sync]

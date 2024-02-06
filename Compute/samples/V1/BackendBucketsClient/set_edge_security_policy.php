@@ -26,26 +26,31 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\BackendBucketsClient;
+use Google\Cloud\Compute\V1\SecurityPolicyReference;
 use Google\Rpc\Status;
 
 /**
  * Sets the edge security policy for the specified backend bucket.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $backendBucket Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.
+ * @param string $project       Project ID for this request.
  */
-function set_edge_security_policy_sample(): void
+function set_edge_security_policy_sample(string $backendBucket, string $project): void
 {
     // Create a client.
     $backendBucketsClient = new BackendBucketsClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $securityPolicyReferenceResource = new SecurityPolicyReference();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backendBucketsClient->setEdgeSecurityPolicy();
+        $response = $backendBucketsClient->setEdgeSecurityPolicy(
+            $backendBucket,
+            $project,
+            $securityPolicyReferenceResource
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +63,22 @@ function set_edge_security_policy_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $backendBucket = '[BACKEND_BUCKET]';
+    $project = '[PROJECT]';
+
+    set_edge_security_policy_sample($backendBucket, $project);
 }
 // [END compute_v1_generated_BackendBuckets_SetEdgeSecurityPolicy_sync]

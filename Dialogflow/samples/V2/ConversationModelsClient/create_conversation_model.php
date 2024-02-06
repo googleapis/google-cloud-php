@@ -28,6 +28,7 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dialogflow\V2\Client\ConversationModelsClient;
 use Google\Cloud\Dialogflow\V2\ConversationModel;
 use Google\Cloud\Dialogflow\V2\CreateConversationModelRequest;
+use Google\Cloud\Dialogflow\V2\InputDataset;
 use Google\Rpc\Status;
 
 /**
@@ -42,19 +43,28 @@ use Google\Rpc\Status;
  * - `response`:
  * [ConversationModel][google.cloud.dialogflow.v2.ConversationModel]
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $conversationModelDisplayName              The display name of the model. At most 64 bytes long.
+ * @param string $formattedConversationModelDatasetsDataset ConversationDataset resource name. Format:
+ *                                                          `projects/<Project ID>/locations/<Location
+ *                                                          ID>/conversationDatasets/<Conversation Dataset ID>`
+ *                                                          Please see {@see ConversationModelsClient::conversationDatasetName()} for help formatting this field.
  */
-function create_conversation_model_sample(): void
-{
+function create_conversation_model_sample(
+    string $conversationModelDisplayName,
+    string $formattedConversationModelDatasetsDataset
+): void {
     // Create a client.
     $conversationModelsClient = new ConversationModelsClient();
 
     // Prepare the request message.
-    $request = new CreateConversationModelRequest();
+    $inputDataset = (new InputDataset())
+        ->setDataset($formattedConversationModelDatasetsDataset);
+    $conversationModelDatasets = [$inputDataset,];
+    $conversationModel = (new ConversationModel())
+        ->setDisplayName($conversationModelDisplayName)
+        ->setDatasets($conversationModelDatasets);
+    $request = (new CreateConversationModelRequest())
+        ->setConversationModel($conversationModel);
 
     // Call the API and handle any network failures.
     try {
@@ -74,5 +84,29 @@ function create_conversation_model_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $conversationModelDisplayName = '[DISPLAY_NAME]';
+    $formattedConversationModelDatasetsDataset = ConversationModelsClient::conversationDatasetName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[CONVERSATION_DATASET]'
+    );
+
+    create_conversation_model_sample(
+        $conversationModelDisplayName,
+        $formattedConversationModelDatasetsDataset
+    );
 }
 // [END dialogflow_v2_generated_ConversationModels_CreateConversationModel_sync]

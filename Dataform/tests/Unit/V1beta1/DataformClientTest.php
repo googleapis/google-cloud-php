@@ -26,7 +26,9 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Dataform\V1beta1\CommitAuthor;
 use Google\Cloud\Dataform\V1beta1\CommitLogEntry;
+use Google\Cloud\Dataform\V1beta1\CommitMetadata;
 use Google\Cloud\Dataform\V1beta1\CompilationResult;
 use Google\Cloud\Dataform\V1beta1\CompilationResultAction;
 use Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusResponse;
@@ -107,12 +109,16 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->cancelWorkflowInvocation();
+        // Mock request
+        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
+        $gapicClient->cancelWorkflowInvocation($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/CancelWorkflowInvocation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -134,8 +140,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
         try {
-            $gapicClient->cancelWorkflowInvocation();
+            $gapicClient->cancelWorkflowInvocation($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -158,12 +166,25 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->commitRepositoryChanges();
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $commitMetadata = new CommitMetadata();
+        $commitMetadataAuthor = new CommitAuthor();
+        $authorName = 'authorName-1501539658';
+        $commitMetadataAuthor->setName($authorName);
+        $authorEmailAddress = 'authorEmailAddress-6398493';
+        $commitMetadataAuthor->setEmailAddress($authorEmailAddress);
+        $commitMetadata->setAuthor($commitMetadataAuthor);
+        $gapicClient->commitRepositoryChanges($formattedName, $commitMetadata);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/CommitRepositoryChanges', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getCommitMetadata();
+        $this->assertProtobufEquals($commitMetadata, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -185,8 +206,17 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $commitMetadata = new CommitMetadata();
+        $commitMetadataAuthor = new CommitAuthor();
+        $authorName = 'authorName-1501539658';
+        $commitMetadataAuthor->setName($authorName);
+        $authorEmailAddress = 'authorEmailAddress-6398493';
+        $commitMetadataAuthor->setEmailAddress($authorEmailAddress);
+        $commitMetadata->setAuthor($commitMetadataAuthor);
         try {
-            $gapicClient->commitRepositoryChanges();
+            $gapicClient->commitRepositoryChanges($formattedName, $commitMetadata);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -209,12 +239,23 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->commitWorkspaceChanges();
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $author = new CommitAuthor();
+        $authorName = 'authorName-1501539658';
+        $author->setName($authorName);
+        $authorEmailAddress = 'authorEmailAddress-6398493';
+        $author->setEmailAddress($authorEmailAddress);
+        $gapicClient->commitWorkspaceChanges($formattedName, $author);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/CommitWorkspaceChanges', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getAuthor();
+        $this->assertProtobufEquals($author, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -236,8 +277,15 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $author = new CommitAuthor();
+        $authorName = 'authorName-1501539658';
+        $author->setName($authorName);
+        $authorEmailAddress = 'authorEmailAddress-6398493';
+        $author->setEmailAddress($authorEmailAddress);
         try {
-            $gapicClient->commitWorkspaceChanges();
+            $gapicClient->commitWorkspaceChanges($formattedName, $author);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -260,13 +308,17 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ComputeRepositoryAccessTokenStatusResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->computeRepositoryAccessTokenStatus();
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $response = $gapicClient->computeRepositoryAccessTokenStatus($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/ComputeRepositoryAccessTokenStatus', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -288,8 +340,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
         try {
-            $gapicClient->computeRepositoryAccessTokenStatus();
+            $gapicClient->computeRepositoryAccessTokenStatus($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -320,13 +374,20 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setResolvedGitCommitSha($resolvedGitCommitSha);
         $expectedResponse->setDataformCoreVersion($dataformCoreVersion);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createCompilationResult();
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $compilationResult = new CompilationResult();
+        $response = $gapicClient->createCompilationResult($formattedParent, $compilationResult);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/CreateCompilationResult', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getCompilationResult();
+        $this->assertProtobufEquals($compilationResult, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -348,8 +409,11 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $compilationResult = new CompilationResult();
         try {
-            $gapicClient->createCompilationResult();
+            $gapicClient->createCompilationResult($formattedParent, $compilationResult);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -382,13 +446,25 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setReleaseCompilationResult($releaseCompilationResult);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createReleaseConfig();
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $releaseConfig = new ReleaseConfig();
+        $releaseConfigGitCommitish = 'releaseConfigGitCommitish1714987262';
+        $releaseConfig->setGitCommitish($releaseConfigGitCommitish);
+        $releaseConfigId = 'releaseConfigId-113371904';
+        $response = $gapicClient->createReleaseConfig($formattedParent, $releaseConfig, $releaseConfigId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/CreateReleaseConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getReleaseConfig();
+        $this->assertProtobufEquals($releaseConfig, $actualValue);
+        $actualValue = $actualRequestObject->getReleaseConfigId();
+        $this->assertProtobufEquals($releaseConfigId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -410,8 +486,14 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $releaseConfig = new ReleaseConfig();
+        $releaseConfigGitCommitish = 'releaseConfigGitCommitish1714987262';
+        $releaseConfig->setGitCommitish($releaseConfigGitCommitish);
+        $releaseConfigId = 'releaseConfigId-113371904';
         try {
-            $gapicClient->createReleaseConfig();
+            $gapicClient->createReleaseConfig($formattedParent, $releaseConfig, $releaseConfigId);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -444,13 +526,23 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setSetAuthenticatedUserAdmin($setAuthenticatedUserAdmin);
         $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createRepository();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $repository = new Repository();
+        $repositoryId = 'repositoryId1101683248';
+        $response = $gapicClient->createRepository($formattedParent, $repository, $repositoryId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/CreateRepository', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRepository();
+        $this->assertProtobufEquals($repository, $actualValue);
+        $actualValue = $actualRequestObject->getRepositoryId();
+        $this->assertProtobufEquals($repositoryId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -472,8 +564,12 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $repository = new Repository();
+        $repositoryId = 'repositoryId1101683248';
         try {
-            $gapicClient->createRepository();
+            $gapicClient->createRepository($formattedParent, $repository, $repositoryId);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -504,13 +600,25 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createWorkflowConfig();
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $workflowConfig = new WorkflowConfig();
+        $workflowConfigReleaseConfig = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
+        $workflowConfig->setReleaseConfig($workflowConfigReleaseConfig);
+        $workflowConfigId = 'workflowConfigId-60129608';
+        $response = $gapicClient->createWorkflowConfig($formattedParent, $workflowConfig, $workflowConfigId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/CreateWorkflowConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getWorkflowConfig();
+        $this->assertProtobufEquals($workflowConfig, $actualValue);
+        $actualValue = $actualRequestObject->getWorkflowConfigId();
+        $this->assertProtobufEquals($workflowConfigId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -532,8 +640,14 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $workflowConfig = new WorkflowConfig();
+        $workflowConfigReleaseConfig = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
+        $workflowConfig->setReleaseConfig($workflowConfigReleaseConfig);
+        $workflowConfigId = 'workflowConfigId-60129608';
         try {
-            $gapicClient->createWorkflowConfig();
+            $gapicClient->createWorkflowConfig($formattedParent, $workflowConfig, $workflowConfigId);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -560,13 +674,20 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setCompilationResult($compilationResult);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createWorkflowInvocation();
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $workflowInvocation = new WorkflowInvocation();
+        $response = $gapicClient->createWorkflowInvocation($formattedParent, $workflowInvocation);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/CreateWorkflowInvocation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getWorkflowInvocation();
+        $this->assertProtobufEquals($workflowInvocation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -588,8 +709,11 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $workflowInvocation = new WorkflowInvocation();
         try {
-            $gapicClient->createWorkflowInvocation();
+            $gapicClient->createWorkflowInvocation($formattedParent, $workflowInvocation);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -614,13 +738,23 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse = new Workspace();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createWorkspace();
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $workspace = new Workspace();
+        $workspaceId = 'workspaceId1578483973';
+        $response = $gapicClient->createWorkspace($formattedParent, $workspace, $workspaceId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/CreateWorkspace', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getWorkspace();
+        $this->assertProtobufEquals($workspace, $actualValue);
+        $actualValue = $actualRequestObject->getWorkspaceId();
+        $this->assertProtobufEquals($workspaceId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -642,8 +776,12 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $workspace = new Workspace();
+        $workspaceId = 'workspaceId1578483973';
         try {
-            $gapicClient->createWorkspace();
+            $gapicClient->createWorkspace($formattedParent, $workspace, $workspaceId);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -666,12 +804,16 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteReleaseConfig();
+        // Mock request
+        $formattedName = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
+        $gapicClient->deleteReleaseConfig($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/DeleteReleaseConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -693,8 +835,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
         try {
-            $gapicClient->deleteReleaseConfig();
+            $gapicClient->deleteReleaseConfig($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -717,12 +861,16 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteRepository();
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $gapicClient->deleteRepository($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/DeleteRepository', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -744,8 +892,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
         try {
-            $gapicClient->deleteRepository();
+            $gapicClient->deleteRepository($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -768,12 +918,16 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteWorkflowConfig();
+        // Mock request
+        $formattedName = $gapicClient->workflowConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_CONFIG]');
+        $gapicClient->deleteWorkflowConfig($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/DeleteWorkflowConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -795,8 +949,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workflowConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_CONFIG]');
         try {
-            $gapicClient->deleteWorkflowConfig();
+            $gapicClient->deleteWorkflowConfig($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -819,12 +975,16 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteWorkflowInvocation();
+        // Mock request
+        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
+        $gapicClient->deleteWorkflowInvocation($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/DeleteWorkflowInvocation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -846,8 +1006,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
         try {
-            $gapicClient->deleteWorkflowInvocation();
+            $gapicClient->deleteWorkflowInvocation($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -870,12 +1032,16 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteWorkspace();
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $gapicClient->deleteWorkspace($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/DeleteWorkspace', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -897,8 +1063,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         try {
-            $gapicClient->deleteWorkspace();
+            $gapicClient->deleteWorkspace($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -923,13 +1091,20 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse = new FetchFileDiffResponse();
         $expectedResponse->setFormattedDiff($formattedDiff);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->fetchFileDiff();
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
+        $response = $gapicClient->fetchFileDiff($formattedWorkspace, $path);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/FetchFileDiff', $actualFuncCall);
+        $actualValue = $actualRequestObject->getWorkspace();
+        $this->assertProtobufEquals($formattedWorkspace, $actualValue);
+        $actualValue = $actualRequestObject->getPath();
+        $this->assertProtobufEquals($path, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -951,8 +1126,11 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
         try {
-            $gapicClient->fetchFileDiff();
+            $gapicClient->fetchFileDiff($formattedWorkspace, $path);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -975,13 +1153,17 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new FetchFileGitStatusesResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->fetchFileGitStatuses();
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $response = $gapicClient->fetchFileGitStatuses($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/FetchFileGitStatuses', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1003,8 +1185,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         try {
-            $gapicClient->fetchFileGitStatuses();
+            $gapicClient->fetchFileGitStatuses($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1031,13 +1215,17 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setCommitsAhead($commitsAhead);
         $expectedResponse->setCommitsBehind($commitsBehind);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->fetchGitAheadBehind();
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $response = $gapicClient->fetchGitAheadBehind($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/FetchGitAheadBehind', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1059,8 +1247,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         try {
-            $gapicClient->fetchGitAheadBehind();
+            $gapicClient->fetchGitAheadBehind($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1083,13 +1273,17 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new FetchRemoteBranchesResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->fetchRemoteBranches();
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $response = $gapicClient->fetchRemoteBranches($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/FetchRemoteBranches', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1111,8 +1305,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
         try {
-            $gapicClient->fetchRemoteBranches();
+            $gapicClient->fetchRemoteBranches($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1142,7 +1338,9 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCommits($commits);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->fetchRepositoryHistory();
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $response = $gapicClient->fetchRepositoryHistory($formattedName);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1152,6 +1350,8 @@ class DataformClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/FetchRepositoryHistory', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1173,8 +1373,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
         try {
-            $gapicClient->fetchRepositoryHistory();
+            $gapicClient->fetchRepositoryHistory($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1205,13 +1407,17 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setResolvedGitCommitSha($resolvedGitCommitSha);
         $expectedResponse->setDataformCoreVersion($dataformCoreVersion);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getCompilationResult();
+        // Mock request
+        $formattedName = $gapicClient->compilationResultName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[COMPILATION_RESULT]');
+        $response = $gapicClient->getCompilationResult($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/GetCompilationResult', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1233,8 +1439,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->compilationResultName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[COMPILATION_RESULT]');
         try {
-            $gapicClient->getCompilationResult();
+            $gapicClient->getCompilationResult($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1267,13 +1475,17 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setReleaseCompilationResult($releaseCompilationResult);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getReleaseConfig();
+        // Mock request
+        $formattedName = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
+        $response = $gapicClient->getReleaseConfig($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/GetReleaseConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1295,8 +1507,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
         try {
-            $gapicClient->getReleaseConfig();
+            $gapicClient->getReleaseConfig($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1329,13 +1543,17 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setSetAuthenticatedUserAdmin($setAuthenticatedUserAdmin);
         $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getRepository();
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $response = $gapicClient->getRepository($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/GetRepository', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1357,8 +1575,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
         try {
-            $gapicClient->getRepository();
+            $gapicClient->getRepository($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1389,13 +1609,17 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getWorkflowConfig();
+        // Mock request
+        $formattedName = $gapicClient->workflowConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_CONFIG]');
+        $response = $gapicClient->getWorkflowConfig($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/GetWorkflowConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1417,8 +1641,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workflowConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_CONFIG]');
         try {
-            $gapicClient->getWorkflowConfig();
+            $gapicClient->getWorkflowConfig($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1445,13 +1671,17 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setCompilationResult($compilationResult);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getWorkflowInvocation();
+        // Mock request
+        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
+        $response = $gapicClient->getWorkflowInvocation($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/GetWorkflowInvocation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1473,8 +1703,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
         try {
-            $gapicClient->getWorkflowInvocation();
+            $gapicClient->getWorkflowInvocation($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1499,13 +1731,17 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse = new Workspace();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getWorkspace();
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $response = $gapicClient->getWorkspace($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/GetWorkspace', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1527,8 +1763,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         try {
-            $gapicClient->getWorkspace();
+            $gapicClient->getWorkspace($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1551,13 +1789,17 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new InstallNpmPackagesResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->installNpmPackages();
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $response = $gapicClient->installNpmPackages($formattedWorkspace);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/InstallNpmPackages', $actualFuncCall);
+        $actualValue = $actualRequestObject->getWorkspace();
+        $this->assertProtobufEquals($formattedWorkspace, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1579,8 +1821,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         try {
-            $gapicClient->installNpmPackages();
+            $gapicClient->installNpmPackages($formattedWorkspace);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1610,7 +1854,9 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCompilationResults($compilationResults);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listCompilationResults();
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $response = $gapicClient->listCompilationResults($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1620,6 +1866,8 @@ class DataformClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/ListCompilationResults', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1641,8 +1889,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
         try {
-            $gapicClient->listCompilationResults();
+            $gapicClient->listCompilationResults($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1672,7 +1922,9 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReleaseConfigs($releaseConfigs);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listReleaseConfigs();
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $response = $gapicClient->listReleaseConfigs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1682,6 +1934,8 @@ class DataformClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/ListReleaseConfigs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1703,8 +1957,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
         try {
-            $gapicClient->listReleaseConfigs();
+            $gapicClient->listReleaseConfigs($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1734,7 +1990,9 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRepositories($repositories);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listRepositories();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listRepositories($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1744,6 +2002,8 @@ class DataformClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/ListRepositories', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1765,8 +2025,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listRepositories();
+            $gapicClient->listRepositories($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1796,7 +2058,9 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setWorkflowConfigs($workflowConfigs);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listWorkflowConfigs();
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $response = $gapicClient->listWorkflowConfigs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1806,6 +2070,8 @@ class DataformClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/ListWorkflowConfigs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1827,8 +2093,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
         try {
-            $gapicClient->listWorkflowConfigs();
+            $gapicClient->listWorkflowConfigs($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1858,7 +2126,9 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setWorkflowInvocations($workflowInvocations);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listWorkflowInvocations();
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $response = $gapicClient->listWorkflowInvocations($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1868,6 +2138,8 @@ class DataformClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/ListWorkflowInvocations', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1889,8 +2161,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
         try {
-            $gapicClient->listWorkflowInvocations();
+            $gapicClient->listWorkflowInvocations($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1920,7 +2194,9 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setWorkspaces($workspaces);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listWorkspaces();
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $response = $gapicClient->listWorkspaces($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1930,6 +2206,8 @@ class DataformClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/ListWorkspaces', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1951,8 +2229,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
         try {
-            $gapicClient->listWorkspaces();
+            $gapicClient->listWorkspaces($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1975,13 +2255,20 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new MakeDirectoryResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->makeDirectory();
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
+        $response = $gapicClient->makeDirectory($formattedWorkspace, $path);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/MakeDirectory', $actualFuncCall);
+        $actualValue = $actualRequestObject->getWorkspace();
+        $this->assertProtobufEquals($formattedWorkspace, $actualValue);
+        $actualValue = $actualRequestObject->getPath();
+        $this->assertProtobufEquals($path, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2003,8 +2290,11 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
         try {
-            $gapicClient->makeDirectory();
+            $gapicClient->makeDirectory($formattedWorkspace, $path);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2027,13 +2317,23 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new MoveDirectoryResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->moveDirectory();
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
+        $newPath = 'newPath1377204068';
+        $response = $gapicClient->moveDirectory($formattedWorkspace, $path, $newPath);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/MoveDirectory', $actualFuncCall);
+        $actualValue = $actualRequestObject->getWorkspace();
+        $this->assertProtobufEquals($formattedWorkspace, $actualValue);
+        $actualValue = $actualRequestObject->getPath();
+        $this->assertProtobufEquals($path, $actualValue);
+        $actualValue = $actualRequestObject->getNewPath();
+        $this->assertProtobufEquals($newPath, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2055,8 +2355,12 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
+        $newPath = 'newPath1377204068';
         try {
-            $gapicClient->moveDirectory();
+            $gapicClient->moveDirectory($formattedWorkspace, $path, $newPath);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2079,13 +2383,23 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new MoveFileResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->moveFile();
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
+        $newPath = 'newPath1377204068';
+        $response = $gapicClient->moveFile($formattedWorkspace, $path, $newPath);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/MoveFile', $actualFuncCall);
+        $actualValue = $actualRequestObject->getWorkspace();
+        $this->assertProtobufEquals($formattedWorkspace, $actualValue);
+        $actualValue = $actualRequestObject->getPath();
+        $this->assertProtobufEquals($path, $actualValue);
+        $actualValue = $actualRequestObject->getNewPath();
+        $this->assertProtobufEquals($newPath, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2107,8 +2421,12 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
+        $newPath = 'newPath1377204068';
         try {
-            $gapicClient->moveFile();
+            $gapicClient->moveFile($formattedWorkspace, $path, $newPath);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2131,12 +2449,23 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->pullGitCommits();
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $author = new CommitAuthor();
+        $authorName = 'authorName-1501539658';
+        $author->setName($authorName);
+        $authorEmailAddress = 'authorEmailAddress-6398493';
+        $author->setEmailAddress($authorEmailAddress);
+        $gapicClient->pullGitCommits($formattedName, $author);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/PullGitCommits', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getAuthor();
+        $this->assertProtobufEquals($author, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2158,8 +2487,15 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $author = new CommitAuthor();
+        $authorName = 'authorName-1501539658';
+        $author->setName($authorName);
+        $authorEmailAddress = 'authorEmailAddress-6398493';
+        $author->setEmailAddress($authorEmailAddress);
         try {
-            $gapicClient->pullGitCommits();
+            $gapicClient->pullGitCommits($formattedName, $author);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2182,12 +2518,16 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->pushGitCommits();
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $gapicClient->pushGitCommits($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/PushGitCommits', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2209,8 +2549,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         try {
-            $gapicClient->pushGitCommits();
+            $gapicClient->pushGitCommits($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2240,7 +2582,9 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCompilationResultActions($compilationResultActions);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->queryCompilationResultActions();
+        // Mock request
+        $formattedName = $gapicClient->compilationResultName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[COMPILATION_RESULT]');
+        $response = $gapicClient->queryCompilationResultActions($formattedName);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2250,6 +2594,8 @@ class DataformClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/QueryCompilationResultActions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2271,8 +2617,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->compilationResultName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[COMPILATION_RESULT]');
         try {
-            $gapicClient->queryCompilationResultActions();
+            $gapicClient->queryCompilationResultActions($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2302,7 +2650,9 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDirectoryEntries($directoryEntries);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->queryDirectoryContents();
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $response = $gapicClient->queryDirectoryContents($formattedWorkspace);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2312,6 +2662,8 @@ class DataformClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/QueryDirectoryContents', $actualFuncCall);
+        $actualValue = $actualRequestObject->getWorkspace();
+        $this->assertProtobufEquals($formattedWorkspace, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2333,8 +2685,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         try {
-            $gapicClient->queryDirectoryContents();
+            $gapicClient->queryDirectoryContents($formattedWorkspace);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2364,7 +2718,9 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDirectoryEntries($directoryEntries);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->queryRepositoryDirectoryContents();
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $response = $gapicClient->queryRepositoryDirectoryContents($formattedName);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2374,6 +2730,8 @@ class DataformClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/QueryRepositoryDirectoryContents', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2395,8 +2753,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
         try {
-            $gapicClient->queryRepositoryDirectoryContents();
+            $gapicClient->queryRepositoryDirectoryContents($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2426,7 +2786,9 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setWorkflowInvocationActions($workflowInvocationActions);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->queryWorkflowInvocationActions();
+        // Mock request
+        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
+        $response = $gapicClient->queryWorkflowInvocationActions($formattedName);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2436,6 +2798,8 @@ class DataformClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/QueryWorkflowInvocationActions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2457,8 +2821,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workflowInvocationName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKFLOW_INVOCATION]');
         try {
-            $gapicClient->queryWorkflowInvocationActions();
+            $gapicClient->queryWorkflowInvocationActions($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2483,13 +2849,20 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse = new ReadFileResponse();
         $expectedResponse->setFileContents($fileContents);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->readFile();
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
+        $response = $gapicClient->readFile($formattedWorkspace, $path);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/ReadFile', $actualFuncCall);
+        $actualValue = $actualRequestObject->getWorkspace();
+        $this->assertProtobufEquals($formattedWorkspace, $actualValue);
+        $actualValue = $actualRequestObject->getPath();
+        $this->assertProtobufEquals($path, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2511,8 +2884,11 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
         try {
-            $gapicClient->readFile();
+            $gapicClient->readFile($formattedWorkspace, $path);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2537,13 +2913,20 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse = new ReadRepositoryFileResponse();
         $expectedResponse->setContents($contents);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->readRepositoryFile();
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $path = 'path3433509';
+        $response = $gapicClient->readRepositoryFile($formattedName, $path);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/ReadRepositoryFile', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getPath();
+        $this->assertProtobufEquals($path, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2565,8 +2948,11 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $path = 'path3433509';
         try {
-            $gapicClient->readRepositoryFile();
+            $gapicClient->readRepositoryFile($formattedName, $path);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2589,12 +2975,19 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->removeDirectory();
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
+        $gapicClient->removeDirectory($formattedWorkspace, $path);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/RemoveDirectory', $actualFuncCall);
+        $actualValue = $actualRequestObject->getWorkspace();
+        $this->assertProtobufEquals($formattedWorkspace, $actualValue);
+        $actualValue = $actualRequestObject->getPath();
+        $this->assertProtobufEquals($path, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2616,8 +3009,11 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
         try {
-            $gapicClient->removeDirectory();
+            $gapicClient->removeDirectory($formattedWorkspace, $path);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2640,12 +3036,19 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->removeFile();
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
+        $gapicClient->removeFile($formattedWorkspace, $path);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/RemoveFile', $actualFuncCall);
+        $actualValue = $actualRequestObject->getWorkspace();
+        $this->assertProtobufEquals($formattedWorkspace, $actualValue);
+        $actualValue = $actualRequestObject->getPath();
+        $this->assertProtobufEquals($path, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2667,8 +3070,11 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
         try {
-            $gapicClient->removeFile();
+            $gapicClient->removeFile($formattedWorkspace, $path);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2691,12 +3097,16 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->resetWorkspaceChanges();
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $gapicClient->resetWorkspaceChanges($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/ResetWorkspaceChanges', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2718,8 +3128,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
         try {
-            $gapicClient->resetWorkspaceChanges();
+            $gapicClient->resetWorkspaceChanges($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2752,13 +3164,19 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setReleaseCompilationResult($releaseCompilationResult);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->updateReleaseConfig();
+        // Mock request
+        $releaseConfig = new ReleaseConfig();
+        $releaseConfigGitCommitish = 'releaseConfigGitCommitish1714987262';
+        $releaseConfig->setGitCommitish($releaseConfigGitCommitish);
+        $response = $gapicClient->updateReleaseConfig($releaseConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/UpdateReleaseConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getReleaseConfig();
+        $this->assertProtobufEquals($releaseConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2780,8 +3198,12 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $releaseConfig = new ReleaseConfig();
+        $releaseConfigGitCommitish = 'releaseConfigGitCommitish1714987262';
+        $releaseConfig->setGitCommitish($releaseConfigGitCommitish);
         try {
-            $gapicClient->updateReleaseConfig();
+            $gapicClient->updateReleaseConfig($releaseConfig);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2814,13 +3236,17 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setSetAuthenticatedUserAdmin($setAuthenticatedUserAdmin);
         $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->updateRepository();
+        // Mock request
+        $repository = new Repository();
+        $response = $gapicClient->updateRepository($repository);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/UpdateRepository', $actualFuncCall);
+        $actualValue = $actualRequestObject->getRepository();
+        $this->assertProtobufEquals($repository, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2842,8 +3268,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $repository = new Repository();
         try {
-            $gapicClient->updateRepository();
+            $gapicClient->updateRepository($repository);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2874,13 +3302,19 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->updateWorkflowConfig();
+        // Mock request
+        $workflowConfig = new WorkflowConfig();
+        $workflowConfigReleaseConfig = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
+        $workflowConfig->setReleaseConfig($workflowConfigReleaseConfig);
+        $response = $gapicClient->updateWorkflowConfig($workflowConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/UpdateWorkflowConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getWorkflowConfig();
+        $this->assertProtobufEquals($workflowConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2902,8 +3336,12 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $workflowConfig = new WorkflowConfig();
+        $workflowConfigReleaseConfig = $gapicClient->releaseConfigName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RELEASE_CONFIG]');
+        $workflowConfig->setReleaseConfig($workflowConfigReleaseConfig);
         try {
-            $gapicClient->updateWorkflowConfig();
+            $gapicClient->updateWorkflowConfig($workflowConfig);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2926,13 +3364,23 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new WriteFileResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->writeFile();
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
+        $contents = '26';
+        $response = $gapicClient->writeFile($formattedWorkspace, $path, $contents);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/WriteFile', $actualFuncCall);
+        $actualValue = $actualRequestObject->getWorkspace();
+        $this->assertProtobufEquals($formattedWorkspace, $actualValue);
+        $actualValue = $actualRequestObject->getPath();
+        $this->assertProtobufEquals($path, $actualValue);
+        $actualValue = $actualRequestObject->getContents();
+        $this->assertProtobufEquals($contents, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2954,8 +3402,12 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedWorkspace = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
+        $path = 'path3433509';
+        $contents = '26';
         try {
-            $gapicClient->writeFile();
+            $gapicClient->writeFile($formattedWorkspace, $path, $contents);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3102,13 +3554,17 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getIamPolicy();
+        // Mock request
+        $resource = 'resource-341064690';
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3130,8 +3586,10 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy();
+            $gapicClient->getIamPolicy($resource);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3158,13 +3616,20 @@ class DataformClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->setIamPolicy();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3186,8 +3651,11 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy();
+            $gapicClient->setIamPolicy($resource, $policy);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3210,13 +3678,20 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->testIamPermissions();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3238,8 +3713,11 @@ class DataformClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
         try {
-            $gapicClient->testIamPermissions();
+            $gapicClient->testIamPermissions($resource, $permissions);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

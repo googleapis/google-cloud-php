@@ -31,19 +31,24 @@ use Google\Cloud\DataCatalog\V1\UpdateTagRequest;
 /**
  * Updates an existing tag.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $tagTemplate The resource name of the tag template this tag uses. Example:
+ *
+ *                            `projects/{PROJECT_ID}/locations/{LOCATION}/tagTemplates/{TAG_TEMPLATE_ID}`
+ *
+ *                            This field cannot be modified after creation.
  */
-function update_tag_sample(): void
+function update_tag_sample(string $tagTemplate): void
 {
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
     // Prepare the request message.
-    $request = new UpdateTagRequest();
+    $tagFields = [];
+    $tag = (new Tag())
+        ->setTemplate($tagTemplate)
+        ->setFields($tagFields);
+    $request = (new UpdateTagRequest())
+        ->setTag($tag);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +58,21 @@ function update_tag_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $tagTemplate = '[TEMPLATE]';
+
+    update_tag_sample($tagTemplate);
 }
 // [END datacatalog_v1_generated_DataCatalog_UpdateTag_sync]

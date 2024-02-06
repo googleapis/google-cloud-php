@@ -27,23 +27,37 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\V2\Client\ConversationsClient;
 use Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest;
 use Google\Cloud\Dialogflow\V2\SearchKnowledgeResponse;
+use Google\Cloud\Dialogflow\V2\TextInput;
 
 /**
  * Get answers for the given query based on knowledge documents.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $queryText                    The UTF-8 encoded natural language text to be processed.
+ *                                             Text length must not exceed 256 characters for virtual agent interactions.
+ * @param string $queryLanguageCode            The language of this conversational query. See [Language
+ *                                             Support](https://cloud.google.com/dialogflow/docs/reference/language)
+ *                                             for a list of the currently supported language codes. Note that queries in
+ *                                             the same session do not necessarily need to specify the same language.
+ * @param string $formattedConversationProfile The conversation profile used to configure the search.
+ *                                             Format: `projects/<Project ID>/locations/<Location
+ *                                             ID>/conversationProfiles/<Conversation Profile ID>`. Please see
+ *                                             {@see ConversationsClient::conversationProfileName()} for help formatting this field.
  */
-function search_knowledge_sample(): void
-{
+function search_knowledge_sample(
+    string $queryText,
+    string $queryLanguageCode,
+    string $formattedConversationProfile
+): void {
     // Create a client.
     $conversationsClient = new ConversationsClient();
 
     // Prepare the request message.
-    $request = new SearchKnowledgeRequest();
+    $query = (new TextInput())
+        ->setText($queryText)
+        ->setLanguageCode($queryLanguageCode);
+    $request = (new SearchKnowledgeRequest())
+        ->setQuery($query)
+        ->setConversationProfile($formattedConversationProfile);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +67,26 @@ function search_knowledge_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $queryText = '[TEXT]';
+    $queryLanguageCode = '[LANGUAGE_CODE]';
+    $formattedConversationProfile = ConversationsClient::conversationProfileName(
+        '[PROJECT]',
+        '[CONVERSATION_PROFILE]'
+    );
+
+    search_knowledge_sample($queryText, $queryLanguageCode, $formattedConversationProfile);
 }
 // [END dialogflow_v2_generated_Conversations_SearchKnowledge_sync]

@@ -34,6 +34,7 @@ class CreateAnnotationSpecSetRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                               $parent            Required. AnnotationSpecSet resource parent, format:
      *                                                                                projects/{project_id}
+     *                                                                                Please see {@see DataLabelingServiceClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\DataLabeling\V1beta1\AnnotationSpecSet $annotationSpecSet Required. Annotation spec set to create. Annotation specs must be included.
      *                                                                                Only one annotation spec will be accepted for annotation specs with same
      *                                                                                display_name.

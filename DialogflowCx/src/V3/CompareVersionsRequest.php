@@ -51,7 +51,8 @@ class CompareVersionsRequest extends \Google\Protobuf\Internal\Message
      *                            Use version ID `0` to indicate the draft version of the specified flow.
      *
      *                            Format: `projects/<Project ID>/locations/<Location ID>/agents/
-     *                            <Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     *                            <Agent ID>/flows/<Flow ID>/versions/<Version ID>`. Please see
+     *                            {@see VersionsClient::versionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\CompareVersionsRequest
      *

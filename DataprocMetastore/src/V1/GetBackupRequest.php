@@ -29,7 +29,8 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The relative resource name of the backup to retrieve, in the
      *                     following form:
      *
-     *                     `projects/{project_number}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
+     *                     `projects/{project_number}/locations/{location_id}/services/{service_id}/backups/{backup_id}`. Please see
+     *                     {@see DataprocMetastoreClient::backupName()} for help formatting this field.
      *
      * @return \Google\Cloud\Metastore\V1\GetBackupRequest
      *

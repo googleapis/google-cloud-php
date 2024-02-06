@@ -56,7 +56,9 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  * ```
  * $externalVpnGatewaysClient = new ExternalVpnGatewaysClient();
  * try {
- *     $operationResponse = $externalVpnGatewaysClient->delete();
+ *     $externalVpnGateway = 'external_vpn_gateway';
+ *     $project = 'project';
+ *     $operationResponse = $externalVpnGatewaysClient->delete($externalVpnGateway, $project);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -66,7 +68,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $externalVpnGatewaysClient->delete();
+ *     $operationResponse = $externalVpnGatewaysClient->delete($externalVpnGateway, $project);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $externalVpnGatewaysClient->resumeOperation($operationName, 'delete');
@@ -166,7 +168,9 @@ class ExternalVpnGatewaysGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -262,7 +266,9 @@ class ExternalVpnGatewaysGapicClient
      * ```
      * $externalVpnGatewaysClient = new ExternalVpnGatewaysClient();
      * try {
-     *     $operationResponse = $externalVpnGatewaysClient->delete();
+     *     $externalVpnGateway = 'external_vpn_gateway';
+     *     $project = 'project';
+     *     $operationResponse = $externalVpnGatewaysClient->delete($externalVpnGateway, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -272,7 +278,7 @@ class ExternalVpnGatewaysGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $externalVpnGatewaysClient->delete();
+     *     $operationResponse = $externalVpnGatewaysClient->delete($externalVpnGateway, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $externalVpnGatewaysClient->resumeOperation($operationName, 'delete');
@@ -291,13 +297,11 @@ class ExternalVpnGatewaysGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $externalVpnGateway Name of the externalVpnGateways to delete.
+     * @param string $project            Project ID for this request.
+     * @param array  $optionalArgs       {
      *     Optional.
      *
-     *     @type string $externalVpnGateway
-     *           Name of the externalVpnGateways to delete.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -310,20 +314,14 @@ class ExternalVpnGatewaysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete(array $optionalArgs = [])
+    public function delete($externalVpnGateway, $project, array $optionalArgs = [])
     {
         $request = new DeleteExternalVpnGatewayRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['externalVpnGateway'])) {
-            $request->setExternalVpnGateway($optionalArgs['externalVpnGateway']);
-            $requestParamHeaders['external_vpn_gateway'] = $optionalArgs['externalVpnGateway'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setExternalVpnGateway($externalVpnGateway);
+        $request->setProject($project);
+        $requestParamHeaders['external_vpn_gateway'] = $externalVpnGateway;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -340,19 +338,19 @@ class ExternalVpnGatewaysGapicClient
      * ```
      * $externalVpnGatewaysClient = new ExternalVpnGatewaysClient();
      * try {
-     *     $response = $externalVpnGatewaysClient->get();
+     *     $externalVpnGateway = 'external_vpn_gateway';
+     *     $project = 'project';
+     *     $response = $externalVpnGatewaysClient->get($externalVpnGateway, $project);
      * } finally {
      *     $externalVpnGatewaysClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $externalVpnGateway Name of the externalVpnGateway to return.
+     * @param string $project            Project ID for this request.
+     * @param array  $optionalArgs       {
      *     Optional.
      *
-     *     @type string $externalVpnGateway
-     *           Name of the externalVpnGateway to return.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -363,20 +361,14 @@ class ExternalVpnGatewaysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($externalVpnGateway, $project, array $optionalArgs = [])
     {
         $request = new GetExternalVpnGatewayRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['externalVpnGateway'])) {
-            $request->setExternalVpnGateway($optionalArgs['externalVpnGateway']);
-            $requestParamHeaders['external_vpn_gateway'] = $optionalArgs['externalVpnGateway'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setExternalVpnGateway($externalVpnGateway);
+        $request->setProject($project);
+        $requestParamHeaders['external_vpn_gateway'] = $externalVpnGateway;
+        $requestParamHeaders['project'] = $project;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', ExternalVpnGateway::class, $optionalArgs, $request)->wait();
@@ -389,7 +381,9 @@ class ExternalVpnGatewaysGapicClient
      * ```
      * $externalVpnGatewaysClient = new ExternalVpnGatewaysClient();
      * try {
-     *     $operationResponse = $externalVpnGatewaysClient->insert();
+     *     $externalVpnGatewayResource = new ExternalVpnGateway();
+     *     $project = 'project';
+     *     $operationResponse = $externalVpnGatewaysClient->insert($externalVpnGatewayResource, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -399,7 +393,7 @@ class ExternalVpnGatewaysGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $externalVpnGatewaysClient->insert();
+     *     $operationResponse = $externalVpnGatewaysClient->insert($externalVpnGatewayResource, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $externalVpnGatewaysClient->resumeOperation($operationName, 'insert');
@@ -418,13 +412,11 @@ class ExternalVpnGatewaysGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param ExternalVpnGateway $externalVpnGatewayResource The body resource for this request
+     * @param string             $project                    Project ID for this request.
+     * @param array              $optionalArgs               {
      *     Optional.
      *
-     *     @type ExternalVpnGateway $externalVpnGatewayResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -437,19 +429,13 @@ class ExternalVpnGatewaysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert(array $optionalArgs = [])
+    public function insert($externalVpnGatewayResource, $project, array $optionalArgs = [])
     {
         $request = new InsertExternalVpnGatewayRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['externalVpnGatewayResource'])) {
-            $request->setExternalVpnGatewayResource($optionalArgs['externalVpnGatewayResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setExternalVpnGatewayResource($externalVpnGatewayResource);
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -466,8 +452,9 @@ class ExternalVpnGatewaysGapicClient
      * ```
      * $externalVpnGatewaysClient = new ExternalVpnGatewaysClient();
      * try {
+     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $externalVpnGatewaysClient->list();
+     *     $pagedResponse = $externalVpnGatewaysClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -475,7 +462,7 @@ class ExternalVpnGatewaysGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $externalVpnGatewaysClient->list();
+     *     $pagedResponse = $externalVpnGatewaysClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -484,7 +471,8 @@ class ExternalVpnGatewaysGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -498,8 +486,6 @@ class ExternalVpnGatewaysGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -512,10 +498,12 @@ class ExternalVpnGatewaysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list(array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListExternalVpnGatewaysRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -530,11 +518,6 @@ class ExternalVpnGatewaysGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -553,7 +536,10 @@ class ExternalVpnGatewaysGapicClient
      * ```
      * $externalVpnGatewaysClient = new ExternalVpnGatewaysClient();
      * try {
-     *     $operationResponse = $externalVpnGatewaysClient->setLabels();
+     *     $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $operationResponse = $externalVpnGatewaysClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -563,7 +549,7 @@ class ExternalVpnGatewaysGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $externalVpnGatewaysClient->setLabels();
+     *     $operationResponse = $externalVpnGatewaysClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $externalVpnGatewaysClient->resumeOperation($operationName, 'setLabels');
@@ -582,15 +568,12 @@ class ExternalVpnGatewaysGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param GlobalSetLabelsRequest $globalSetLabelsRequestResource The body resource for this request
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param array                  $optionalArgs                   {
      *     Optional.
      *
-     *     @type GlobalSetLabelsRequest $globalSetLabelsRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $resource
-     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -601,24 +584,15 @@ class ExternalVpnGatewaysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setLabels(array $optionalArgs = [])
+    public function setLabels($globalSetLabelsRequestResource, $project, $resource, array $optionalArgs = [])
     {
         $request = new SetLabelsExternalVpnGatewayRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['globalSetLabelsRequestResource'])) {
-            $request->setGlobalSetLabelsRequestResource($optionalArgs['globalSetLabelsRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource);
+        $request->setProject($project);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('SetLabels', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
@@ -631,21 +605,21 @@ class ExternalVpnGatewaysGapicClient
      * ```
      * $externalVpnGatewaysClient = new ExternalVpnGatewaysClient();
      * try {
-     *     $response = $externalVpnGatewaysClient->testIamPermissions();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $testPermissionsRequestResource = new TestPermissionsRequest();
+     *     $response = $externalVpnGatewaysClient->testIamPermissions($project, $resource, $testPermissionsRequestResource);
      * } finally {
      *     $externalVpnGatewaysClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param TestPermissionsRequest $testPermissionsRequestResource The body resource for this request
+     * @param array                  $optionalArgs                   {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $resource
-     *           Name or id of the resource for this request.
-     *     @type TestPermissionsRequest $testPermissionsRequestResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -656,24 +630,15 @@ class ExternalVpnGatewaysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
+    public function testIamPermissions($project, $resource, $testPermissionsRequestResource, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsExternalVpnGatewayRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['testPermissionsRequestResource'])) {
-            $request->setTestPermissionsRequestResource($optionalArgs['testPermissionsRequestResource']);
-        }
-
+        $request->setProject($project);
+        $request->setResource($resource);
+        $request->setTestPermissionsRequestResource($testPermissionsRequestResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestPermissionsResponse::class, $optionalArgs, $request)->wait();

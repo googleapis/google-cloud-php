@@ -28,7 +28,8 @@ class TrainFlowRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The flow to train.
      *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/flows/<Flow ID>`.
+     *                     ID>/flows/<Flow ID>`. Please see
+     *                     {@see FlowsClient::flowName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\TrainFlowRequest
      *

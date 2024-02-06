@@ -31,21 +31,24 @@ use Google\Rpc\Status;
 /**
  * Detaches a disk from an instance.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $deviceName The device name of the disk to detach. Make a get() request on the instance to view currently attached disks and device names.
+ * @param string $instance   Instance name for this request.
+ * @param string $project    Project ID for this request.
+ * @param string $zone       The name of the zone for this request.
  */
-function detach_disk_sample(): void
-{
+function detach_disk_sample(
+    string $deviceName,
+    string $instance,
+    string $project,
+    string $zone
+): void {
     // Create a client.
     $instancesClient = new InstancesClient();
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->detachDisk();
+        $response = $instancesClient->detachDisk($deviceName, $instance, $project, $zone);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +61,24 @@ function detach_disk_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $deviceName = '[DEVICE_NAME]';
+    $instance = '[INSTANCE]';
+    $project = '[PROJECT]';
+    $zone = '[ZONE]';
+
+    detach_disk_sample($deviceName, $instance, $project, $zone);
 }
 // [END compute_v1_generated_Instances_DetachDisk_sync]

@@ -30,13 +30,10 @@ use Google\Cloud\Compute\V1\Operation;
 /**
  * Waits for the specified Operation resource to return as `DONE` or for the request to approach the 2 minute deadline, and retrieves the specified Operation resource. This method differs from the `GET` method in that it waits for no more than the default deadline (2 minutes) and then returns the current state of the operation, which might be `DONE` or still in progress. This method is called on a best-effort basis. Specifically: - In uncommon cases, when the server is overloaded, the request might return before the default deadline is reached, or might return after zero seconds. - If the default deadline is reached, there is no guarantee that the operation is actually done when the method returns. Be prepared to retry if the operation is not `DONE`.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $operation Name of the Operations resource to return.
+ * @param string $project   Project ID for this request.
  */
-function wait_sample(): void
+function wait_sample(string $operation, string $project): void
 {
     // Create a client.
     $globalOperationsClient = new GlobalOperationsClient();
@@ -44,10 +41,27 @@ function wait_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var Operation $response */
-        $response = $globalOperationsClient->wait();
+        $response = $globalOperationsClient->wait($operation, $project);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $operation = '[OPERATION]';
+    $project = '[PROJECT]';
+
+    wait_sample($operation, $project);
 }
 // [END compute_v1_generated_GlobalOperations_Wait_sync]

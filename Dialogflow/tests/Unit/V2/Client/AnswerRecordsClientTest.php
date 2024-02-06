@@ -26,6 +26,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Dialogflow\V2\AnswerFeedback;
 use Google\Cloud\Dialogflow\V2\AnswerRecord;
 use Google\Cloud\Dialogflow\V2\Client\AnswerRecordsClient;
 use Google\Cloud\Dialogflow\V2\ListAnswerRecordsRequest;
@@ -35,6 +36,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -84,7 +86,10 @@ class AnswerRecordsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAnswerRecords($answerRecords);
         $transport->addResponse($expectedResponse);
-        $request = new ListAnswerRecordsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListAnswerRecordsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listAnswerRecords($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -95,6 +100,8 @@ class AnswerRecordsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.AnswerRecords/ListAnswerRecords', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -116,7 +123,10 @@ class AnswerRecordsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListAnswerRecordsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListAnswerRecordsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listAnswerRecords($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -143,7 +153,14 @@ class AnswerRecordsClientTest extends GeneratedTest
         $expectedResponse = new AnswerRecord();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateAnswerRecordRequest();
+        // Mock request
+        $answerRecord = new AnswerRecord();
+        $answerRecordAnswerFeedback = new AnswerFeedback();
+        $answerRecord->setAnswerFeedback($answerRecordAnswerFeedback);
+        $updateMask = new FieldMask();
+        $request = (new UpdateAnswerRecordRequest())
+            ->setAnswerRecord($answerRecord)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateAnswerRecord($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -151,6 +168,10 @@ class AnswerRecordsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.AnswerRecords/UpdateAnswerRecord', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAnswerRecord();
+        $this->assertProtobufEquals($answerRecord, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -172,7 +193,14 @@ class AnswerRecordsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateAnswerRecordRequest();
+        // Mock request
+        $answerRecord = new AnswerRecord();
+        $answerRecordAnswerFeedback = new AnswerFeedback();
+        $answerRecord->setAnswerFeedback($answerRecordAnswerFeedback);
+        $updateMask = new FieldMask();
+        $request = (new UpdateAnswerRecordRequest())
+            ->setAnswerRecord($answerRecord)
+            ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateAnswerRecord($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -328,7 +356,10 @@ class AnswerRecordsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAnswerRecords($answerRecords);
         $transport->addResponse($expectedResponse);
-        $request = new ListAnswerRecordsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListAnswerRecordsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listAnswerRecordsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -339,6 +370,8 @@ class AnswerRecordsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.AnswerRecords/ListAnswerRecords', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

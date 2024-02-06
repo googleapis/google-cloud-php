@@ -33,19 +33,20 @@ use Google\Rpc\Status;
 /**
  * Creates an instruction for how data should be labeled.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Instruction resource parent, format:
+ *                                projects/{project_id}
+ *                                Please see {@see DataLabelingServiceClient::projectName()} for help formatting this field.
  */
-function create_instruction_sample(): void
+function create_instruction_sample(string $formattedParent): void
 {
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
     // Prepare the request message.
-    $request = new CreateInstructionRequest();
+    $instruction = new Instruction();
+    $request = (new CreateInstructionRequest())
+        ->setParent($formattedParent)
+        ->setInstruction($instruction);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +66,21 @@ function create_instruction_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataLabelingServiceClient::projectName('[PROJECT]');
+
+    create_instruction_sample($formattedParent);
 }
 // [END datalabeling_v1beta1_generated_DataLabelingService_CreateInstruction_sync]

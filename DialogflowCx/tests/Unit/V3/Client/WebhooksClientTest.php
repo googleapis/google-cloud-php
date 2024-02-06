@@ -89,7 +89,12 @@ class WebhooksClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDisabled($disabled);
         $transport->addResponse($expectedResponse);
-        $request = new CreateWebhookRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $webhook = new Webhook();
+        $webhookDisplayName = 'webhookDisplayName1755228022';
+        $webhook->setDisplayName($webhookDisplayName);
+        $request = (new CreateWebhookRequest())->setParent($formattedParent)->setWebhook($webhook);
         $response = $gapicClient->createWebhook($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -97,6 +102,10 @@ class WebhooksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Webhooks/CreateWebhook', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getWebhook();
+        $this->assertProtobufEquals($webhook, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -121,7 +130,12 @@ class WebhooksClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new CreateWebhookRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $webhook = new Webhook();
+        $webhookDisplayName = 'webhookDisplayName1755228022';
+        $webhook->setDisplayName($webhookDisplayName);
+        $request = (new CreateWebhookRequest())->setParent($formattedParent)->setWebhook($webhook);
         try {
             $gapicClient->createWebhook($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -146,13 +160,17 @@ class WebhooksClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteWebhookRequest();
+        // Mock request
+        $formattedName = $gapicClient->webhookName('[PROJECT]', '[LOCATION]', '[AGENT]', '[WEBHOOK]');
+        $request = (new DeleteWebhookRequest())->setName($formattedName);
         $gapicClient->deleteWebhook($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Webhooks/DeleteWebhook', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -177,7 +195,9 @@ class WebhooksClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new DeleteWebhookRequest();
+        // Mock request
+        $formattedName = $gapicClient->webhookName('[PROJECT]', '[LOCATION]', '[AGENT]', '[WEBHOOK]');
+        $request = (new DeleteWebhookRequest())->setName($formattedName);
         try {
             $gapicClient->deleteWebhook($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -208,7 +228,9 @@ class WebhooksClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDisabled($disabled);
         $transport->addResponse($expectedResponse);
-        $request = new GetWebhookRequest();
+        // Mock request
+        $formattedName = $gapicClient->webhookName('[PROJECT]', '[LOCATION]', '[AGENT]', '[WEBHOOK]');
+        $request = (new GetWebhookRequest())->setName($formattedName);
         $response = $gapicClient->getWebhook($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -216,6 +238,8 @@ class WebhooksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Webhooks/GetWebhook', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -240,7 +264,9 @@ class WebhooksClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetWebhookRequest();
+        // Mock request
+        $formattedName = $gapicClient->webhookName('[PROJECT]', '[LOCATION]', '[AGENT]', '[WEBHOOK]');
+        $request = (new GetWebhookRequest())->setName($formattedName);
         try {
             $gapicClient->getWebhook($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -270,7 +296,9 @@ class WebhooksClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setWebhooks($webhooks);
         $transport->addResponse($expectedResponse);
-        $request = new ListWebhooksRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ListWebhooksRequest())->setParent($formattedParent);
         $response = $gapicClient->listWebhooks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -281,6 +309,8 @@ class WebhooksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Webhooks/ListWebhooks', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -305,7 +335,9 @@ class WebhooksClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListWebhooksRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ListWebhooksRequest())->setParent($formattedParent);
         try {
             $gapicClient->listWebhooks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -336,7 +368,11 @@ class WebhooksClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDisabled($disabled);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateWebhookRequest();
+        // Mock request
+        $webhook = new Webhook();
+        $webhookDisplayName = 'webhookDisplayName1755228022';
+        $webhook->setDisplayName($webhookDisplayName);
+        $request = (new UpdateWebhookRequest())->setWebhook($webhook);
         $response = $gapicClient->updateWebhook($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -344,6 +380,8 @@ class WebhooksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Webhooks/UpdateWebhook', $actualFuncCall);
+        $actualValue = $actualRequestObject->getWebhook();
+        $this->assertProtobufEquals($webhook, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -368,7 +406,11 @@ class WebhooksClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new UpdateWebhookRequest();
+        // Mock request
+        $webhook = new Webhook();
+        $webhookDisplayName = 'webhookDisplayName1755228022';
+        $webhook->setDisplayName($webhookDisplayName);
+        $request = (new UpdateWebhookRequest())->setWebhook($webhook);
         try {
             $gapicClient->updateWebhook($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -527,7 +569,12 @@ class WebhooksClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDisabled($disabled);
         $transport->addResponse($expectedResponse);
-        $request = new CreateWebhookRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $webhook = new Webhook();
+        $webhookDisplayName = 'webhookDisplayName1755228022';
+        $webhook->setDisplayName($webhookDisplayName);
+        $request = (new CreateWebhookRequest())->setParent($formattedParent)->setWebhook($webhook);
         $response = $gapicClient->createWebhookAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -535,6 +582,10 @@ class WebhooksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Webhooks/CreateWebhook', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getWebhook();
+        $this->assertProtobufEquals($webhook, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

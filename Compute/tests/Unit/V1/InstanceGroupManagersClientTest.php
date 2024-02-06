@@ -30,11 +30,21 @@ use Google\Cloud\Compute\V1\GetZoneOperationRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManager;
 use Google\Cloud\Compute\V1\InstanceGroupManagerAggregatedList;
 use Google\Cloud\Compute\V1\InstanceGroupManagerList;
+use Google\Cloud\Compute\V1\InstanceGroupManagersAbandonInstancesRequest;
+use Google\Cloud\Compute\V1\InstanceGroupManagersApplyUpdatesRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\InstanceGroupManagersCreateInstancesRequest;
+use Google\Cloud\Compute\V1\InstanceGroupManagersDeleteInstancesRequest;
+use Google\Cloud\Compute\V1\InstanceGroupManagersDeletePerInstanceConfigsReq;
 use Google\Cloud\Compute\V1\InstanceGroupManagersListErrorsResponse;
 use Google\Cloud\Compute\V1\InstanceGroupManagersListManagedInstancesResponse;
 use Google\Cloud\Compute\V1\InstanceGroupManagersListPerInstanceConfigsResp;
+use Google\Cloud\Compute\V1\InstanceGroupManagersPatchPerInstanceConfigsReq;
+use Google\Cloud\Compute\V1\InstanceGroupManagersRecreateInstancesRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManagersScopedList;
+use Google\Cloud\Compute\V1\InstanceGroupManagersSetInstanceTemplateRequest;
+use Google\Cloud\Compute\V1\InstanceGroupManagersSetTargetPoolsRequest;
+use Google\Cloud\Compute\V1\InstanceGroupManagersUpdatePerInstanceConfigsReq;
 use Google\Cloud\Compute\V1\InstanceManagedByIgmError;
 use Google\Cloud\Compute\V1\ManagedInstance;
 use Google\Cloud\Compute\V1\Operation;
@@ -97,7 +107,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/abandonInstancesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->abandonInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersAbandonInstancesRequestResource = new InstanceGroupManagersAbandonInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->abandonInstances($instanceGroupManager, $instanceGroupManagersAbandonInstancesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -106,8 +121,18 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/AbandonInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagersAbandonInstancesRequestResource();
+        $this->assertProtobufEquals($instanceGroupManagersAbandonInstancesRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -155,7 +180,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->abandonInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersAbandonInstancesRequestResource = new InstanceGroupManagersAbandonInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->abandonInstances($instanceGroupManager, $instanceGroupManagersAbandonInstancesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -198,7 +228,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->aggregatedList();
+        // Mock request
+        $project = 'project-309310695';
+        $response = $gapicClient->aggregatedList($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -210,6 +242,8 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -231,8 +265,10 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
         try {
-            $gapicClient->aggregatedList();
+            $gapicClient->aggregatedList($project);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -269,7 +305,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/applyUpdatesToInstancesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->applyUpdatesToInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersApplyUpdatesRequestResource = new InstanceGroupManagersApplyUpdatesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->applyUpdatesToInstances($instanceGroupManager, $instanceGroupManagersApplyUpdatesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -278,8 +319,18 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/ApplyUpdatesToInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagersApplyUpdatesRequestResource();
+        $this->assertProtobufEquals($instanceGroupManagersApplyUpdatesRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -327,7 +378,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->applyUpdatesToInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersApplyUpdatesRequestResource = new InstanceGroupManagersApplyUpdatesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->applyUpdatesToInstances($instanceGroupManager, $instanceGroupManagersApplyUpdatesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -372,7 +428,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/createInstancesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->createInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersCreateInstancesRequestResource = new InstanceGroupManagersCreateInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->createInstances($instanceGroupManager, $instanceGroupManagersCreateInstancesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -381,8 +442,18 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/CreateInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagersCreateInstancesRequestResource();
+        $this->assertProtobufEquals($instanceGroupManagersCreateInstancesRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -430,7 +501,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->createInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersCreateInstancesRequestResource = new InstanceGroupManagersCreateInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->createInstances($instanceGroupManager, $instanceGroupManagersCreateInstancesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -475,7 +551,11 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->delete();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->delete($instanceGroupManager, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -484,8 +564,16 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -533,7 +621,11 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->delete();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->delete($instanceGroupManager, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -578,7 +670,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteInstancesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deleteInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersDeleteInstancesRequestResource = new InstanceGroupManagersDeleteInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->deleteInstances($instanceGroupManager, $instanceGroupManagersDeleteInstancesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -587,8 +684,18 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/DeleteInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagersDeleteInstancesRequestResource();
+        $this->assertProtobufEquals($instanceGroupManagersDeleteInstancesRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -636,7 +743,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deleteInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersDeleteInstancesRequestResource = new InstanceGroupManagersDeleteInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->deleteInstances($instanceGroupManager, $instanceGroupManagersDeleteInstancesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -681,7 +793,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deletePerInstanceConfigsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deletePerInstanceConfigs();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersDeletePerInstanceConfigsReqResource = new InstanceGroupManagersDeletePerInstanceConfigsReq();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->deletePerInstanceConfigs($instanceGroupManager, $instanceGroupManagersDeletePerInstanceConfigsReqResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -690,8 +807,18 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/DeletePerInstanceConfigs', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagersDeletePerInstanceConfigsReqResource();
+        $this->assertProtobufEquals($instanceGroupManagersDeletePerInstanceConfigsReqResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -739,7 +866,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deletePerInstanceConfigs();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersDeletePerInstanceConfigsReqResource = new InstanceGroupManagersDeletePerInstanceConfigsReq();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->deletePerInstanceConfigs($instanceGroupManager, $instanceGroupManagersDeletePerInstanceConfigsReqResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -798,13 +930,23 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setTargetSize($targetSize);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->get();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->get($instanceGroupManager, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -826,8 +968,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
         try {
-            $gapicClient->get();
+            $gapicClient->get($instanceGroupManager, $project, $zone);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -864,7 +1010,11 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->insert();
+        // Mock request
+        $instanceGroupManagerResource = new InstanceGroupManager();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->insert($instanceGroupManagerResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -873,8 +1023,16 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagerResource();
+        $this->assertProtobufEquals($instanceGroupManagerResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -922,7 +1080,11 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->insert();
+        // Mock request
+        $instanceGroupManagerResource = new InstanceGroupManager();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->insert($instanceGroupManagerResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -966,7 +1128,10 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->list();
+        // Mock request
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->list($project, $zone);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -976,6 +1141,10 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -997,8 +1166,11 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
         try {
-            $gapicClient->list();
+            $gapicClient->list($project, $zone);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1028,7 +1200,11 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listErrors();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->listErrors($instanceGroupManager, $project, $zone);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1038,6 +1214,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/ListErrors', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1059,8 +1241,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
         try {
-            $gapicClient->listErrors();
+            $gapicClient->listErrors($instanceGroupManager, $project, $zone);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1090,7 +1276,11 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setManagedInstances($managedInstances);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listManagedInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->listManagedInstances($instanceGroupManager, $project, $zone);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1100,6 +1290,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/ListManagedInstances', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1121,8 +1317,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
         try {
-            $gapicClient->listManagedInstances();
+            $gapicClient->listManagedInstances($instanceGroupManager, $project, $zone);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1152,7 +1352,11 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listPerInstanceConfigs();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->listPerInstanceConfigs($instanceGroupManager, $project, $zone);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1162,6 +1366,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/ListPerInstanceConfigs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1183,8 +1393,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
         try {
-            $gapicClient->listPerInstanceConfigs();
+            $gapicClient->listPerInstanceConfigs($instanceGroupManager, $project, $zone);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1221,7 +1435,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->patch();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagerResource = new InstanceGroupManager();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->patch($instanceGroupManager, $instanceGroupManagerResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1230,8 +1449,18 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagerResource();
+        $this->assertProtobufEquals($instanceGroupManagerResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1279,7 +1508,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->patch();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagerResource = new InstanceGroupManager();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->patch($instanceGroupManager, $instanceGroupManagerResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1324,7 +1558,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchPerInstanceConfigsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->patchPerInstanceConfigs();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersPatchPerInstanceConfigsReqResource = new InstanceGroupManagersPatchPerInstanceConfigsReq();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->patchPerInstanceConfigs($instanceGroupManager, $instanceGroupManagersPatchPerInstanceConfigsReqResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1333,8 +1572,18 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/PatchPerInstanceConfigs', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagersPatchPerInstanceConfigsReqResource();
+        $this->assertProtobufEquals($instanceGroupManagersPatchPerInstanceConfigsReqResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1382,7 +1631,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->patchPerInstanceConfigs();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersPatchPerInstanceConfigsReqResource = new InstanceGroupManagersPatchPerInstanceConfigsReq();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->patchPerInstanceConfigs($instanceGroupManager, $instanceGroupManagersPatchPerInstanceConfigsReqResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1427,7 +1681,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/recreateInstancesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->recreateInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersRecreateInstancesRequestResource = new InstanceGroupManagersRecreateInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->recreateInstances($instanceGroupManager, $instanceGroupManagersRecreateInstancesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1436,8 +1695,18 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/RecreateInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagersRecreateInstancesRequestResource();
+        $this->assertProtobufEquals($instanceGroupManagersRecreateInstancesRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1485,7 +1754,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->recreateInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersRecreateInstancesRequestResource = new InstanceGroupManagersRecreateInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->recreateInstances($instanceGroupManager, $instanceGroupManagersRecreateInstancesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1530,7 +1804,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/resizeTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->resize();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $size = 3530753;
+        $zone = 'zone3744684';
+        $response = $gapicClient->resize($instanceGroupManager, $project, $size, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1539,8 +1818,18 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/Resize', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getSize();
+        $this->assertProtobufEquals($size, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1588,7 +1877,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->resize();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $size = 3530753;
+        $zone = 'zone3744684';
+        $response = $gapicClient->resize($instanceGroupManager, $project, $size, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1633,7 +1927,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setInstanceTemplateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->setInstanceTemplate();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersSetInstanceTemplateRequestResource = new InstanceGroupManagersSetInstanceTemplateRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->setInstanceTemplate($instanceGroupManager, $instanceGroupManagersSetInstanceTemplateRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1642,8 +1941,18 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/SetInstanceTemplate', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagersSetInstanceTemplateRequestResource();
+        $this->assertProtobufEquals($instanceGroupManagersSetInstanceTemplateRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1691,7 +2000,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->setInstanceTemplate();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersSetInstanceTemplateRequestResource = new InstanceGroupManagersSetInstanceTemplateRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->setInstanceTemplate($instanceGroupManager, $instanceGroupManagersSetInstanceTemplateRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1736,7 +2050,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setTargetPoolsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->setTargetPools();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersSetTargetPoolsRequestResource = new InstanceGroupManagersSetTargetPoolsRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->setTargetPools($instanceGroupManager, $instanceGroupManagersSetTargetPoolsRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1745,8 +2064,18 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/SetTargetPools', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagersSetTargetPoolsRequestResource();
+        $this->assertProtobufEquals($instanceGroupManagersSetTargetPoolsRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1794,7 +2123,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->setTargetPools();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersSetTargetPoolsRequestResource = new InstanceGroupManagersSetTargetPoolsRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->setTargetPools($instanceGroupManager, $instanceGroupManagersSetTargetPoolsRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1839,7 +2173,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/updatePerInstanceConfigsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->updatePerInstanceConfigs();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersUpdatePerInstanceConfigsReqResource = new InstanceGroupManagersUpdatePerInstanceConfigsReq();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->updatePerInstanceConfigs($instanceGroupManager, $instanceGroupManagersUpdatePerInstanceConfigsReqResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1848,8 +2187,18 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/UpdatePerInstanceConfigs', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagersUpdatePerInstanceConfigsReqResource();
+        $this->assertProtobufEquals($instanceGroupManagersUpdatePerInstanceConfigsReqResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1897,7 +2246,12 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->updatePerInstanceConfigs();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersUpdatePerInstanceConfigsReqResource = new InstanceGroupManagersUpdatePerInstanceConfigsReq();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->updatePerInstanceConfigs($instanceGroupManager, $instanceGroupManagersUpdatePerInstanceConfigsReqResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

@@ -32,7 +32,8 @@ class DeleteStatefileRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the deployment in the format:
-     *                     'projects/{project_id}/locations/{location}/deployments/{deployment}'.
+     *                     'projects/{project_id}/locations/{location}/deployments/{deployment}'. Please see
+     *                     {@see ConfigClient::deploymentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Config\V1\DeleteStatefileRequest
      *

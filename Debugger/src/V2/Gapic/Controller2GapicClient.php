@@ -69,7 +69,8 @@ use Google\Cloud\Debugger\V2\UpdateActiveBreakpointResponse;
  * ```
  * $controller2Client = new Controller2Client();
  * try {
- *     $response = $controller2Client->listActiveBreakpoints();
+ *     $debuggeeId = 'debuggee_id';
+ *     $response = $controller2Client->listActiveBreakpoints($debuggeeId);
  * } finally {
  *     $controller2Client->close();
  * }
@@ -210,17 +211,17 @@ class Controller2GapicClient
      * ```
      * $controller2Client = new Controller2Client();
      * try {
-     *     $response = $controller2Client->listActiveBreakpoints();
+     *     $debuggeeId = 'debuggee_id';
+     *     $response = $controller2Client->listActiveBreakpoints($debuggeeId);
      * } finally {
      *     $controller2Client->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $debuggeeId   Required. Identifies the debuggee.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $debuggeeId
-     *           Required. Identifies the debuggee.
      *     @type string $waitToken
      *           A token that, if specified, blocks the method call until the list
      *           of active breakpoints has changed, or a server-selected timeout has
@@ -243,15 +244,12 @@ class Controller2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listActiveBreakpoints(array $optionalArgs = [])
+    public function listActiveBreakpoints($debuggeeId, array $optionalArgs = [])
     {
         $request = new ListActiveBreakpointsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['debuggeeId'])) {
-            $request->setDebuggeeId($optionalArgs['debuggeeId']);
-            $requestParamHeaders['debuggee_id'] = $optionalArgs['debuggeeId'];
-        }
-
+        $request->setDebuggeeId($debuggeeId);
+        $requestParamHeaders['debuggee_id'] = $debuggeeId;
         if (isset($optionalArgs['waitToken'])) {
             $request->setWaitToken($optionalArgs['waitToken']);
         }
@@ -290,19 +288,19 @@ class Controller2GapicClient
      * ```
      * $controller2Client = new Controller2Client();
      * try {
-     *     $response = $controller2Client->registerDebuggee();
+     *     $debuggee = new Debuggee();
+     *     $response = $controller2Client->registerDebuggee($debuggee);
      * } finally {
      *     $controller2Client->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Debuggee $debuggee     Required. Debuggee information to register.
+     *                               The fields `project`, `uniquifier`, `description` and `agent_version`
+     *                               of the debuggee must be set.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type Debuggee $debuggee
-     *           Required. Debuggee information to register.
-     *           The fields `project`, `uniquifier`, `description` and `agent_version`
-     *           of the debuggee must be set.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -313,13 +311,10 @@ class Controller2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function registerDebuggee(array $optionalArgs = [])
+    public function registerDebuggee($debuggee, array $optionalArgs = [])
     {
         $request = new RegisterDebuggeeRequest();
-        if (isset($optionalArgs['debuggee'])) {
-            $request->setDebuggee($optionalArgs['debuggee']);
-        }
-
+        $request->setDebuggee($debuggee);
         return $this->startCall(
             'RegisterDebuggee',
             RegisterDebuggeeResponse::class,
@@ -342,21 +337,21 @@ class Controller2GapicClient
      * ```
      * $controller2Client = new Controller2Client();
      * try {
-     *     $response = $controller2Client->updateActiveBreakpoint();
+     *     $debuggeeId = 'debuggee_id';
+     *     $breakpoint = new Breakpoint();
+     *     $response = $controller2Client->updateActiveBreakpoint($debuggeeId, $breakpoint);
      * } finally {
      *     $controller2Client->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string     $debuggeeId   Required. Identifies the debuggee being debugged.
+     * @param Breakpoint $breakpoint   Required. Updated breakpoint information.
+     *                                 The field `id` must be set.
+     *                                 The agent must echo all Breakpoint specification fields in the update.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type string $debuggeeId
-     *           Required. Identifies the debuggee being debugged.
-     *     @type Breakpoint $breakpoint
-     *           Required. Updated breakpoint information.
-     *           The field `id` must be set.
-     *           The agent must echo all Breakpoint specification fields in the update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -367,19 +362,17 @@ class Controller2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateActiveBreakpoint(array $optionalArgs = [])
-    {
+    public function updateActiveBreakpoint(
+        $debuggeeId,
+        $breakpoint,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateActiveBreakpointRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['debuggeeId'])) {
-            $request->setDebuggeeId($optionalArgs['debuggeeId']);
-            $requestParamHeaders['debuggee_id'] = $optionalArgs['debuggeeId'];
-        }
-
-        if (isset($optionalArgs['breakpoint'])) {
-            $request->setBreakpoint($optionalArgs['breakpoint']);
-        }
-
+        $request->setDebuggeeId($debuggeeId);
+        $request->setBreakpoint($breakpoint);
+        $requestParamHeaders['debuggee_id'] = $debuggeeId;
+        $requestParamHeaders['breakpoint.id'] = $breakpoint->getId();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

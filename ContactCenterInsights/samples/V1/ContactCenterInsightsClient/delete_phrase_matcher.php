@@ -30,19 +30,17 @@ use Google\Cloud\ContactCenterInsights\V1\DeletePhraseMatcherRequest;
 /**
  * Deletes a phrase matcher.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the phrase matcher to delete. Please see
+ *                              {@see ContactCenterInsightsClient::phraseMatcherName()} for help formatting this field.
  */
-function delete_phrase_matcher_sample(): void
+function delete_phrase_matcher_sample(string $formattedName): void
 {
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $request = new DeletePhraseMatcherRequest();
+    $request = (new DeletePhraseMatcherRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -51,5 +49,25 @@ function delete_phrase_matcher_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ContactCenterInsightsClient::phraseMatcherName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[PHRASE_MATCHER]'
+    );
+
+    delete_phrase_matcher_sample($formattedName);
 }
 // [END contactcenterinsights_v1_generated_ContactCenterInsights_DeletePhraseMatcher_sync]

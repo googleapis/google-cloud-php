@@ -62,7 +62,8 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      * @param string                             $parent    Required. The relative resource name of the location in which to create a
      *                                                      metastore service, in the following form:
      *
-     *                                                      `projects/{project_number}/locations/{location_id}`.
+     *                                                      `projects/{project_number}/locations/{location_id}`. Please see
+     *                                                      {@see DataprocMetastoreClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Metastore\V1\Service $service   Required. The Metastore service to create. The `name` field is
      *                                                      ignored. The ID of the created metastore service must be provided in
      *                                                      the request's `service_id` field.

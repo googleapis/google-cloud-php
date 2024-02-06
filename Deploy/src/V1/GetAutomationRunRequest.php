@@ -25,7 +25,8 @@ class GetAutomationRunRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the `AutomationRun`. Format must be
-     *                     `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automationRuns/{automation_run}`.
+     *                     `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automationRuns/{automation_run}`. Please see
+     *                     {@see CloudDeployClient::automationRunName()} for help formatting this field.
      *
      * @return \Google\Cloud\Deploy\V1\GetAutomationRunRequest
      *

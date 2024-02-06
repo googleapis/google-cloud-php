@@ -27,24 +27,27 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\Cx\V3\Client\SecuritySettingsServiceClient;
 use Google\Cloud\Dialogflow\Cx\V3\SecuritySettings;
 use Google\Cloud\Dialogflow\Cx\V3\UpdateSecuritySettingsRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates the specified
  * [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $securitySettingsDisplayName The human-readable name of the security settings, unique within
+ *                                            the location.
  */
-function update_security_settings_sample(): void
+function update_security_settings_sample(string $securitySettingsDisplayName): void
 {
     // Create a client.
     $securitySettingsServiceClient = new SecuritySettingsServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateSecuritySettingsRequest();
+    $securitySettings = (new SecuritySettings())
+        ->setDisplayName($securitySettingsDisplayName);
+    $updateMask = new FieldMask();
+    $request = (new UpdateSecuritySettingsRequest())
+        ->setSecuritySettings($securitySettings)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +57,21 @@ function update_security_settings_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $securitySettingsDisplayName = '[DISPLAY_NAME]';
+
+    update_security_settings_sample($securitySettingsDisplayName);
 }
 // [END dialogflow_v3_generated_SecuritySettingsService_UpdateSecuritySettings_sync]

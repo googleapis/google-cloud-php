@@ -53,7 +53,8 @@ class CreatePreviewRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                          $parent  Required. The parent in whose context the Preview is created. The parent
-     *                                                 value is in the format: 'projects/{project_id}/locations/{location}'.
+     *                                                 value is in the format: 'projects/{project_id}/locations/{location}'. Please see
+     *                                                 {@see ConfigClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Config\V1\Preview $preview Required. [Preview][google.cloud.config.v1.Preview] resource to be created.
      *
      * @return \Google\Cloud\Config\V1\CreatePreviewRequest

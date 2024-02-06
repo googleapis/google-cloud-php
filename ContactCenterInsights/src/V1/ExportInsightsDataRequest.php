@@ -45,7 +45,8 @@ class ExportInsightsDataRequest extends \Google\Protobuf\Internal\Message
     protected $destination;
 
     /**
-     * @param string $parent Required. The parent resource to export data from.
+     * @param string $parent Required. The parent resource to export data from. Please see
+     *                       {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\ExportInsightsDataRequest
      *

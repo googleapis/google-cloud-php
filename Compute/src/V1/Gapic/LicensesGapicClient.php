@@ -58,7 +58,9 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  * ```
  * $licensesClient = new LicensesClient();
  * try {
- *     $operationResponse = $licensesClient->delete();
+ *     $license = 'license';
+ *     $project = 'project';
+ *     $operationResponse = $licensesClient->delete($license, $project);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -68,7 +70,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $licensesClient->delete();
+ *     $operationResponse = $licensesClient->delete($license, $project);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $licensesClient->resumeOperation($operationName, 'delete');
@@ -168,7 +170,9 @@ class LicensesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -264,7 +268,9 @@ class LicensesGapicClient
      * ```
      * $licensesClient = new LicensesClient();
      * try {
-     *     $operationResponse = $licensesClient->delete();
+     *     $license = 'license';
+     *     $project = 'project';
+     *     $operationResponse = $licensesClient->delete($license, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -274,7 +280,7 @@ class LicensesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $licensesClient->delete();
+     *     $operationResponse = $licensesClient->delete($license, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $licensesClient->resumeOperation($operationName, 'delete');
@@ -293,13 +299,11 @@ class LicensesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $license      Name of the license resource to delete.
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $license
-     *           Name of the license resource to delete.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -312,20 +316,14 @@ class LicensesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete(array $optionalArgs = [])
+    public function delete($license, $project, array $optionalArgs = [])
     {
         $request = new DeleteLicenseRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['license'])) {
-            $request->setLicense($optionalArgs['license']);
-            $requestParamHeaders['license'] = $optionalArgs['license'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setLicense($license);
+        $request->setProject($project);
+        $requestParamHeaders['license'] = $license;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -342,19 +340,19 @@ class LicensesGapicClient
      * ```
      * $licensesClient = new LicensesClient();
      * try {
-     *     $response = $licensesClient->get();
+     *     $license = 'license';
+     *     $project = 'project';
+     *     $response = $licensesClient->get($license, $project);
      * } finally {
      *     $licensesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $license      Name of the License resource to return.
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $license
-     *           Name of the License resource to return.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -365,20 +363,14 @@ class LicensesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($license, $project, array $optionalArgs = [])
     {
         $request = new GetLicenseRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['license'])) {
-            $request->setLicense($optionalArgs['license']);
-            $requestParamHeaders['license'] = $optionalArgs['license'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setLicense($license);
+        $request->setProject($project);
+        $requestParamHeaders['license'] = $license;
+        $requestParamHeaders['project'] = $project;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', License::class, $optionalArgs, $request)->wait();
@@ -391,21 +383,21 @@ class LicensesGapicClient
      * ```
      * $licensesClient = new LicensesClient();
      * try {
-     *     $response = $licensesClient->getIamPolicy();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $response = $licensesClient->getIamPolicy($project, $resource);
      * } finally {
      *     $licensesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $resource     Name or id of the resource for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type int $optionsRequestedPolicyVersion
      *           Requested IAM Policy version.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $resource
-     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -416,22 +408,16 @@ class LicensesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($project, $resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyLicenseRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['optionsRequestedPolicyVersion'])) {
             $request->setOptionsRequestedPolicyVersion($optionalArgs['optionsRequestedPolicyVersion']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -446,7 +432,9 @@ class LicensesGapicClient
      * ```
      * $licensesClient = new LicensesClient();
      * try {
-     *     $operationResponse = $licensesClient->insert();
+     *     $licenseResource = new License();
+     *     $project = 'project';
+     *     $operationResponse = $licensesClient->insert($licenseResource, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -456,7 +444,7 @@ class LicensesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $licensesClient->insert();
+     *     $operationResponse = $licensesClient->insert($licenseResource, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $licensesClient->resumeOperation($operationName, 'insert');
@@ -475,13 +463,11 @@ class LicensesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param License $licenseResource The body resource for this request
+     * @param string  $project         Project ID for this request.
+     * @param array   $optionalArgs    {
      *     Optional.
      *
-     *     @type License $licenseResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -494,19 +480,13 @@ class LicensesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert(array $optionalArgs = [])
+    public function insert($licenseResource, $project, array $optionalArgs = [])
     {
         $request = new InsertLicenseRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['licenseResource'])) {
-            $request->setLicenseResource($optionalArgs['licenseResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setLicenseResource($licenseResource);
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -523,8 +503,9 @@ class LicensesGapicClient
      * ```
      * $licensesClient = new LicensesClient();
      * try {
+     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $licensesClient->list();
+     *     $pagedResponse = $licensesClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -532,7 +513,7 @@ class LicensesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $licensesClient->list();
+     *     $pagedResponse = $licensesClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -541,7 +522,8 @@ class LicensesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -555,8 +537,6 @@ class LicensesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -569,10 +549,12 @@ class LicensesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list(array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListLicensesRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -587,11 +569,6 @@ class LicensesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -610,21 +587,21 @@ class LicensesGapicClient
      * ```
      * $licensesClient = new LicensesClient();
      * try {
-     *     $response = $licensesClient->setIamPolicy();
+     *     $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $response = $licensesClient->setIamPolicy($globalSetPolicyRequestResource, $project, $resource);
      * } finally {
      *     $licensesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param GlobalSetPolicyRequest $globalSetPolicyRequestResource The body resource for this request
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param array                  $optionalArgs                   {
      *     Optional.
      *
-     *     @type GlobalSetPolicyRequest $globalSetPolicyRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $resource
-     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -635,24 +612,15 @@ class LicensesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($globalSetPolicyRequestResource, $project, $resource, array $optionalArgs = [])
     {
         $request = new SetIamPolicyLicenseRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['globalSetPolicyRequestResource'])) {
-            $request->setGlobalSetPolicyRequestResource($optionalArgs['globalSetPolicyRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setGlobalSetPolicyRequestResource($globalSetPolicyRequestResource);
+        $request->setProject($project);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
@@ -665,21 +633,21 @@ class LicensesGapicClient
      * ```
      * $licensesClient = new LicensesClient();
      * try {
-     *     $response = $licensesClient->testIamPermissions();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $testPermissionsRequestResource = new TestPermissionsRequest();
+     *     $response = $licensesClient->testIamPermissions($project, $resource, $testPermissionsRequestResource);
      * } finally {
      *     $licensesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param TestPermissionsRequest $testPermissionsRequestResource The body resource for this request
+     * @param array                  $optionalArgs                   {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $resource
-     *           Name or id of the resource for this request.
-     *     @type TestPermissionsRequest $testPermissionsRequestResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -690,24 +658,15 @@ class LicensesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
+    public function testIamPermissions($project, $resource, $testPermissionsRequestResource, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsLicenseRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['testPermissionsRequestResource'])) {
-            $request->setTestPermissionsRequestResource($optionalArgs['testPermissionsRequestResource']);
-        }
-
+        $request->setProject($project);
+        $request->setResource($resource);
+        $request->setTestPermissionsRequestResource($testPermissionsRequestResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestPermissionsResponse::class, $optionalArgs, $request)->wait();

@@ -57,7 +57,8 @@ class ListTargetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent, which owns this collection of targets. Format must be
-     *                       `projects/{project_id}/locations/{location_name}`.
+     *                       `projects/{project_id}/locations/{location_name}`. Please see
+     *                       {@see CloudDeployClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Deploy\V1\ListTargetsRequest
      *

@@ -30,13 +30,11 @@ use Google\Cloud\Compute\V1\NodeTemplatesClient;
 /**
  * Returns the specified node template.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $nodeTemplate Name of the node template to return.
+ * @param string $project      Project ID for this request.
+ * @param string $region       The name of the region for this request.
  */
-function get_sample(): void
+function get_sample(string $nodeTemplate, string $project, string $region): void
 {
     // Create a client.
     $nodeTemplatesClient = new NodeTemplatesClient();
@@ -44,10 +42,28 @@ function get_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var NodeTemplate $response */
-        $response = $nodeTemplatesClient->get();
+        $response = $nodeTemplatesClient->get($nodeTemplate, $project, $region);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $nodeTemplate = '[NODE_TEMPLATE]';
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    get_sample($nodeTemplate, $project, $region);
 }
 // [END compute_v1_generated_NodeTemplates_Get_sync]

@@ -33,19 +33,20 @@ use Google\Rpc\Status;
 /**
  * Creates a [Preview][google.cloud.config.v1.Preview].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent in whose context the Preview is created. The parent
+ *                                value is in the format: 'projects/{project_id}/locations/{location}'. Please see
+ *                                {@see ConfigClient::locationName()} for help formatting this field.
  */
-function create_preview_sample(): void
+function create_preview_sample(string $formattedParent): void
 {
     // Create a client.
     $configClient = new ConfigClient();
 
     // Prepare the request message.
-    $request = new CreatePreviewRequest();
+    $preview = new Preview();
+    $request = (new CreatePreviewRequest())
+        ->setParent($formattedParent)
+        ->setPreview($preview);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +66,21 @@ function create_preview_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ConfigClient::locationName('[PROJECT]', '[LOCATION]');
+
+    create_preview_sample($formattedParent);
 }
 // [END config_v1_generated_Config_CreatePreview_sync]

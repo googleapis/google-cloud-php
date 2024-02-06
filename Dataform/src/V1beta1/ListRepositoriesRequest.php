@@ -56,7 +56,8 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The location in which to list repositories. Must be in the format
-     *                       `projects/&#42;/locations/*`.
+     *                       `projects/&#42;/locations/*`. Please see
+     *                       {@see DataformClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataform\V1beta1\ListRepositoriesRequest
      *

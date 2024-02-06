@@ -31,19 +31,18 @@ use Google\Cloud\DataLabeling\V1beta1\Instruction;
 /**
  * Gets an instruction by resource name.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Instruction resource name, format:
+ *                              projects/{project_id}/instructions/{instruction_id}
+ *                              Please see {@see DataLabelingServiceClient::instructionName()} for help formatting this field.
  */
-function get_instruction_sample(): void
+function get_instruction_sample(string $formattedName): void
 {
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
     // Prepare the request message.
-    $request = new GetInstructionRequest();
+    $request = (new GetInstructionRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,21 @@ function get_instruction_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DataLabelingServiceClient::instructionName('[PROJECT]', '[INSTRUCTION]');
+
+    get_instruction_sample($formattedName);
 }
 // [END datalabeling_v1beta1_generated_DataLabelingService_GetInstruction_sync]

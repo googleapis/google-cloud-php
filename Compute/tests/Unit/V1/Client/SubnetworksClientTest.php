@@ -41,13 +41,17 @@ use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchSubnetworkRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
+use Google\Cloud\Compute\V1\RegionSetPolicyRequest;
 use Google\Cloud\Compute\V1\SetIamPolicySubnetworkRequest;
 use Google\Cloud\Compute\V1\SetPrivateIpGoogleAccessSubnetworkRequest;
 use Google\Cloud\Compute\V1\Subnetwork;
 use Google\Cloud\Compute\V1\SubnetworkAggregatedList;
 use Google\Cloud\Compute\V1\SubnetworkList;
+use Google\Cloud\Compute\V1\SubnetworksExpandIpCidrRangeRequest;
 use Google\Cloud\Compute\V1\SubnetworksScopedList;
+use Google\Cloud\Compute\V1\SubnetworksSetPrivateIpGoogleAccessRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsSubnetworkRequest;
+use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UsableSubnetwork;
 use Google\Cloud\Compute\V1\UsableSubnetworksAggregatedList;
@@ -105,7 +109,10 @@ class SubnetworksClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListSubnetworksRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListSubnetworksRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -118,6 +125,8 @@ class SubnetworksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Subnetworks/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -139,7 +148,10 @@ class SubnetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AggregatedListSubnetworksRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListSubnetworksRequest())
+            ->setProject($project);
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -178,7 +190,14 @@ class SubnetworksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteSubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $subnetwork = 'subnetwork-1302785042';
+        $request = (new DeleteSubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetwork($subnetwork);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -188,8 +207,16 @@ class SubnetworksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Subnetworks/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getSubnetwork();
+        $this->assertProtobufEquals($subnetwork, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -237,7 +264,14 @@ class SubnetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteSubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $subnetwork = 'subnetwork-1302785042';
+        $request = (new DeleteSubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetwork($subnetwork);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -283,7 +317,16 @@ class SubnetworksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/expandIpCidrRangeTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new ExpandIpCidrRangeSubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $subnetwork = 'subnetwork-1302785042';
+        $subnetworksExpandIpCidrRangeRequestResource = new SubnetworksExpandIpCidrRangeRequest();
+        $request = (new ExpandIpCidrRangeSubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetwork($subnetwork)
+            ->setSubnetworksExpandIpCidrRangeRequestResource($subnetworksExpandIpCidrRangeRequestResource);
         $response = $gapicClient->expandIpCidrRange($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -293,8 +336,18 @@ class SubnetworksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Subnetworks/ExpandIpCidrRange', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getSubnetwork();
+        $this->assertProtobufEquals($subnetwork, $actualValue);
+        $actualValue = $actualApiRequestObject->getSubnetworksExpandIpCidrRangeRequestResource();
+        $this->assertProtobufEquals($subnetworksExpandIpCidrRangeRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -342,7 +395,16 @@ class SubnetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new ExpandIpCidrRangeSubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $subnetwork = 'subnetwork-1302785042';
+        $subnetworksExpandIpCidrRangeRequestResource = new SubnetworksExpandIpCidrRangeRequest();
+        $request = (new ExpandIpCidrRangeSubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetwork($subnetwork)
+            ->setSubnetworksExpandIpCidrRangeRequestResource($subnetworksExpandIpCidrRangeRequestResource);
         $response = $gapicClient->expandIpCidrRange($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -418,7 +480,14 @@ class SubnetworksClientTest extends GeneratedTest
         $expectedResponse->setStackType($stackType);
         $expectedResponse->setState($state);
         $transport->addResponse($expectedResponse);
-        $request = new GetSubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $subnetwork = 'subnetwork-1302785042';
+        $request = (new GetSubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetwork($subnetwork);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -426,6 +495,12 @@ class SubnetworksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Subnetworks/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getSubnetwork();
+        $this->assertProtobufEquals($subnetwork, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -447,7 +522,14 @@ class SubnetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetSubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $subnetwork = 'subnetwork-1302785042';
+        $request = (new GetSubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetwork($subnetwork);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -478,7 +560,14 @@ class SubnetworksClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicySubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicySubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -486,6 +575,12 @@ class SubnetworksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Subnetworks/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -507,7 +602,14 @@ class SubnetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicySubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicySubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -546,7 +648,14 @@ class SubnetworksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertSubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $subnetworkResource = new Subnetwork();
+        $request = (new InsertSubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetworkResource($subnetworkResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -556,8 +665,16 @@ class SubnetworksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Subnetworks/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getSubnetworkResource();
+        $this->assertProtobufEquals($subnetworkResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -605,7 +722,14 @@ class SubnetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertSubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $subnetworkResource = new Subnetwork();
+        $request = (new InsertSubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetworkResource($subnetworkResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -650,7 +774,12 @@ class SubnetworksClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListSubnetworksRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListSubnetworksRequest())
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -661,6 +790,10 @@ class SubnetworksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Subnetworks/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -682,7 +815,12 @@ class SubnetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListSubnetworksRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListSubnetworksRequest())
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -720,7 +858,10 @@ class SubnetworksClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListUsableSubnetworksRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListUsableSubnetworksRequest())
+            ->setProject($project);
         $response = $gapicClient->listUsable($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -731,6 +872,8 @@ class SubnetworksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Subnetworks/ListUsable', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -752,7 +895,10 @@ class SubnetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListUsableSubnetworksRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListUsableSubnetworksRequest())
+            ->setProject($project);
         try {
             $gapicClient->listUsable($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -791,7 +937,16 @@ class SubnetworksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PatchSubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $subnetwork = 'subnetwork-1302785042';
+        $subnetworkResource = new Subnetwork();
+        $request = (new PatchSubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetwork($subnetwork)
+            ->setSubnetworkResource($subnetworkResource);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -801,8 +956,18 @@ class SubnetworksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Subnetworks/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getSubnetwork();
+        $this->assertProtobufEquals($subnetwork, $actualValue);
+        $actualValue = $actualApiRequestObject->getSubnetworkResource();
+        $this->assertProtobufEquals($subnetworkResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -850,7 +1015,16 @@ class SubnetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PatchSubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $subnetwork = 'subnetwork-1302785042';
+        $subnetworkResource = new Subnetwork();
+        $request = (new PatchSubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetwork($subnetwork)
+            ->setSubnetworkResource($subnetworkResource);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -888,7 +1062,16 @@ class SubnetworksClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicySubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
+        $resource = 'resource-341064690';
+        $request = (new SetIamPolicySubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionSetPolicyRequestResource($regionSetPolicyRequestResource)
+            ->setResource($resource);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -896,6 +1079,14 @@ class SubnetworksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Subnetworks/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getRegionSetPolicyRequestResource();
+        $this->assertProtobufEquals($regionSetPolicyRequestResource, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -917,7 +1108,16 @@ class SubnetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicySubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
+        $resource = 'resource-341064690';
+        $request = (new SetIamPolicySubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionSetPolicyRequestResource($regionSetPolicyRequestResource)
+            ->setResource($resource);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -956,7 +1156,16 @@ class SubnetworksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setPrivateIpGoogleAccessTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SetPrivateIpGoogleAccessSubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $subnetwork = 'subnetwork-1302785042';
+        $subnetworksSetPrivateIpGoogleAccessRequestResource = new SubnetworksSetPrivateIpGoogleAccessRequest();
+        $request = (new SetPrivateIpGoogleAccessSubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetwork($subnetwork)
+            ->setSubnetworksSetPrivateIpGoogleAccessRequestResource($subnetworksSetPrivateIpGoogleAccessRequestResource);
         $response = $gapicClient->setPrivateIpGoogleAccess($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -966,8 +1175,18 @@ class SubnetworksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Subnetworks/SetPrivateIpGoogleAccess', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getSubnetwork();
+        $this->assertProtobufEquals($subnetwork, $actualValue);
+        $actualValue = $actualApiRequestObject->getSubnetworksSetPrivateIpGoogleAccessRequestResource();
+        $this->assertProtobufEquals($subnetworksSetPrivateIpGoogleAccessRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1015,7 +1234,16 @@ class SubnetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SetPrivateIpGoogleAccessSubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $subnetwork = 'subnetwork-1302785042';
+        $subnetworksSetPrivateIpGoogleAccessRequestResource = new SubnetworksSetPrivateIpGoogleAccessRequest();
+        $request = (new SetPrivateIpGoogleAccessSubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setSubnetwork($subnetwork)
+            ->setSubnetworksSetPrivateIpGoogleAccessRequestResource($subnetworksSetPrivateIpGoogleAccessRequestResource);
         $response = $gapicClient->setPrivateIpGoogleAccess($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1047,7 +1275,16 @@ class SubnetworksClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsSubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsSubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1055,6 +1292,14 @@ class SubnetworksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Subnetworks/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
+        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1076,7 +1321,16 @@ class SubnetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsSubnetworkRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsSubnetworkRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1113,7 +1367,10 @@ class SubnetworksClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListSubnetworksRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListSubnetworksRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1126,6 +1383,8 @@ class SubnetworksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Subnetworks/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

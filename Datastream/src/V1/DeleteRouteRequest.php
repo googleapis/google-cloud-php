@@ -39,7 +39,8 @@ class DeleteRouteRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string $name Required. The name of the Route resource to delete.
+     * @param string $name Required. The name of the Route resource to delete. Please see
+     *                     {@see DatastreamClient::routeName()} for help formatting this field.
      *
      * @return \Google\Cloud\Datastream\V1\DeleteRouteRequest
      *

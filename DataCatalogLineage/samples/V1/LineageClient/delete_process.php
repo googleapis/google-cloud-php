@@ -32,19 +32,17 @@ use Google\Rpc\Status;
 /**
  * Deletes the process with the specified name.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the process to delete. Please see
+ *                              {@see LineageClient::processName()} for help formatting this field.
  */
-function delete_process_sample(): void
+function delete_process_sample(string $formattedName): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
     // Prepare the request message.
-    $request = new DeleteProcessRequest();
+    $request = (new DeleteProcessRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -62,5 +60,21 @@ function delete_process_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = LineageClient::processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
+
+    delete_process_sample($formattedName);
 }
 // [END datalineage_v1_generated_Lineage_DeleteProcess_sync]

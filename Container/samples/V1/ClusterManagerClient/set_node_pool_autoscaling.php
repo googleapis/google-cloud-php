@@ -25,6 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START container_v1_generated_ClusterManager_SetNodePoolAutoscaling_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Container\V1\Client\ClusterManagerClient;
+use Google\Cloud\Container\V1\NodePoolAutoscaling;
 use Google\Cloud\Container\V1\Operation;
 use Google\Cloud\Container\V1\SetNodePoolAutoscalingRequest;
 
@@ -43,7 +44,9 @@ function set_node_pool_autoscaling_sample(): void
     $clusterManagerClient = new ClusterManagerClient();
 
     // Prepare the request message.
-    $request = new SetNodePoolAutoscalingRequest();
+    $autoscaling = new NodePoolAutoscaling();
+    $request = (new SetNodePoolAutoscalingRequest())
+        ->setAutoscaling($autoscaling);
 
     // Call the API and handle any network failures.
     try {

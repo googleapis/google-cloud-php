@@ -31,19 +31,17 @@ use Google\Cloud\DataCatalog\V1\GetEntryRequest;
 /**
  * Gets an entry.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the entry to get. Please see
+ *                              {@see DataCatalogClient::entryName()} for help formatting this field.
  */
-function get_entry_sample(): void
+function get_entry_sample(string $formattedName): void
 {
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
     // Prepare the request message.
-    $request = new GetEntryRequest();
+    $request = (new GetEntryRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +51,26 @@ function get_entry_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DataCatalogClient::entryName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[ENTRY_GROUP]',
+        '[ENTRY]'
+    );
+
+    get_entry_sample($formattedName);
 }
 // [END datacatalog_v1_generated_DataCatalog_GetEntry_sync]

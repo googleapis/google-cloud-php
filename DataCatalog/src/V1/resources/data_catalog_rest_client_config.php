@@ -14,6 +14,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'entry_id',
+                ],
             ],
             'CreateEntryGroup' => [
                 'method' => 'post',
@@ -25,6 +28,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'entry_group_id',
                 ],
             ],
             'CreateTag' => [
@@ -57,6 +63,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'tag_template_id',
+                ],
             ],
             'CreateTagTemplateField' => [
                 'method' => 'post',
@@ -68,6 +77,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'tag_template_field_id',
                 ],
             ],
             'DeleteEntry' => [
@@ -119,6 +131,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'force',
+                ],
             ],
             'DeleteTagTemplateField' => [
                 'method' => 'delete',
@@ -129,6 +144,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'force',
                 ],
             ],
             'GetEntry' => [

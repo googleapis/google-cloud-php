@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dialogflow\V2\Client\DocumentsClient;
 use Google\Cloud\Dialogflow\V2\Document;
+use Google\Cloud\Dialogflow\V2\Document\KnowledgeType;
 use Google\Cloud\Dialogflow\V2\UpdateDocumentRequest;
 use Google\Rpc\Status;
 
@@ -41,19 +42,27 @@ use Google\Rpc\Status;
  * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
  * - `response`: [Document][google.cloud.dialogflow.v2.Document]
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $documentDisplayName           The display name of the document. The name must be 1024 bytes or
+ *                                              less; otherwise, the creation request fails.
+ * @param string $documentMimeType              The MIME type of this document.
+ * @param int    $documentKnowledgeTypesElement The knowledge type of document content.
  */
-function update_document_sample(): void
-{
+function update_document_sample(
+    string $documentDisplayName,
+    string $documentMimeType,
+    int $documentKnowledgeTypesElement
+): void {
     // Create a client.
     $documentsClient = new DocumentsClient();
 
     // Prepare the request message.
-    $request = new UpdateDocumentRequest();
+    $documentKnowledgeTypes = [$documentKnowledgeTypesElement,];
+    $document = (new Document())
+        ->setDisplayName($documentDisplayName)
+        ->setMimeType($documentMimeType)
+        ->setKnowledgeTypes($documentKnowledgeTypes);
+    $request = (new UpdateDocumentRequest())
+        ->setDocument($document);
 
     // Call the API and handle any network failures.
     try {
@@ -73,5 +82,23 @@ function update_document_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $documentDisplayName = '[DISPLAY_NAME]';
+    $documentMimeType = '[MIME_TYPE]';
+    $documentKnowledgeTypesElement = KnowledgeType::KNOWLEDGE_TYPE_UNSPECIFIED;
+
+    update_document_sample($documentDisplayName, $documentMimeType, $documentKnowledgeTypesElement);
 }
 // [END dialogflow_v2_generated_Documents_UpdateDocument_sync]

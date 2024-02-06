@@ -71,7 +71,14 @@ class ImageFamilyViewsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ImageFamilyView();
         $transport->addResponse($expectedResponse);
-        $request = new GetImageFamilyViewRequest();
+        // Mock request
+        $family = 'family-1281860764';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new GetImageFamilyViewRequest())
+            ->setFamily($family)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -79,6 +86,12 @@ class ImageFamilyViewsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ImageFamilyViews/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getFamily();
+        $this->assertProtobufEquals($family, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -100,7 +113,14 @@ class ImageFamilyViewsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetImageFamilyViewRequest();
+        // Mock request
+        $family = 'family-1281860764';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new GetImageFamilyViewRequest())
+            ->setFamily($family)
+            ->setProject($project)
+            ->setZone($zone);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -125,7 +145,14 @@ class ImageFamilyViewsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ImageFamilyView();
         $transport->addResponse($expectedResponse);
-        $request = new GetImageFamilyViewRequest();
+        // Mock request
+        $family = 'family-1281860764';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new GetImageFamilyViewRequest())
+            ->setFamily($family)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->getAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -133,6 +160,12 @@ class ImageFamilyViewsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ImageFamilyViews/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getFamily();
+        $this->assertProtobufEquals($family, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

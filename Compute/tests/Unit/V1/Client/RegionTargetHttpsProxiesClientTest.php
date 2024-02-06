@@ -36,10 +36,12 @@ use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchRegionTargetHttpsProxyRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
+use Google\Cloud\Compute\V1\RegionTargetHttpsProxiesSetSslCertificatesRequest;
 use Google\Cloud\Compute\V1\SetSslCertificatesRegionTargetHttpsProxyRequest;
 use Google\Cloud\Compute\V1\SetUrlMapRegionTargetHttpsProxyRequest;
 use Google\Cloud\Compute\V1\TargetHttpsProxy;
 use Google\Cloud\Compute\V1\TargetHttpsProxyList;
+use Google\Cloud\Compute\V1\UrlMapReference;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -96,7 +98,14 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteRegionTargetHttpsProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetHttpsProxy = 'targetHttpsProxy-2095146900';
+        $request = (new DeleteRegionTargetHttpsProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpsProxy($targetHttpsProxy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -106,8 +115,16 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionTargetHttpsProxies/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetHttpsProxy();
+        $this->assertProtobufEquals($targetHttpsProxy, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -155,7 +172,14 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteRegionTargetHttpsProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetHttpsProxy = 'targetHttpsProxy-2095146900';
+        $request = (new DeleteRegionTargetHttpsProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpsProxy($targetHttpsProxy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -219,7 +243,14 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $expectedResponse->setSslPolicy($sslPolicy);
         $expectedResponse->setUrlMap($urlMap);
         $transport->addResponse($expectedResponse);
-        $request = new GetRegionTargetHttpsProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetHttpsProxy = 'targetHttpsProxy-2095146900';
+        $request = (new GetRegionTargetHttpsProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpsProxy($targetHttpsProxy);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -227,6 +258,12 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionTargetHttpsProxies/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getTargetHttpsProxy();
+        $this->assertProtobufEquals($targetHttpsProxy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -248,7 +285,14 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetRegionTargetHttpsProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetHttpsProxy = 'targetHttpsProxy-2095146900';
+        $request = (new GetRegionTargetHttpsProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpsProxy($targetHttpsProxy);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -287,7 +331,14 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertRegionTargetHttpsProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetHttpsProxyResource = new TargetHttpsProxy();
+        $request = (new InsertRegionTargetHttpsProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpsProxyResource($targetHttpsProxyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -297,8 +348,16 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionTargetHttpsProxies/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetHttpsProxyResource();
+        $this->assertProtobufEquals($targetHttpsProxyResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -346,7 +405,14 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertRegionTargetHttpsProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetHttpsProxyResource = new TargetHttpsProxy();
+        $request = (new InsertRegionTargetHttpsProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpsProxyResource($targetHttpsProxyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -391,7 +457,12 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListRegionTargetHttpsProxiesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListRegionTargetHttpsProxiesRequest())
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -402,6 +473,10 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionTargetHttpsProxies/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -423,7 +498,12 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListRegionTargetHttpsProxiesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListRegionTargetHttpsProxiesRequest())
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -462,7 +542,16 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PatchRegionTargetHttpsProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetHttpsProxy = 'targetHttpsProxy-2095146900';
+        $targetHttpsProxyResource = new TargetHttpsProxy();
+        $request = (new PatchRegionTargetHttpsProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpsProxy($targetHttpsProxy)
+            ->setTargetHttpsProxyResource($targetHttpsProxyResource);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -472,8 +561,18 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionTargetHttpsProxies/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetHttpsProxy();
+        $this->assertProtobufEquals($targetHttpsProxy, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetHttpsProxyResource();
+        $this->assertProtobufEquals($targetHttpsProxyResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -521,7 +620,16 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PatchRegionTargetHttpsProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetHttpsProxy = 'targetHttpsProxy-2095146900';
+        $targetHttpsProxyResource = new TargetHttpsProxy();
+        $request = (new PatchRegionTargetHttpsProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpsProxy($targetHttpsProxy)
+            ->setTargetHttpsProxyResource($targetHttpsProxyResource);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -567,7 +675,16 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setSslCertificatesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SetSslCertificatesRegionTargetHttpsProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionTargetHttpsProxiesSetSslCertificatesRequestResource = new RegionTargetHttpsProxiesSetSslCertificatesRequest();
+        $targetHttpsProxy = 'targetHttpsProxy-2095146900';
+        $request = (new SetSslCertificatesRegionTargetHttpsProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionTargetHttpsProxiesSetSslCertificatesRequestResource($regionTargetHttpsProxiesSetSslCertificatesRequestResource)
+            ->setTargetHttpsProxy($targetHttpsProxy);
         $response = $gapicClient->setSslCertificates($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -577,8 +694,18 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionTargetHttpsProxies/SetSslCertificates', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionTargetHttpsProxiesSetSslCertificatesRequestResource();
+        $this->assertProtobufEquals($regionTargetHttpsProxiesSetSslCertificatesRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetHttpsProxy();
+        $this->assertProtobufEquals($targetHttpsProxy, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -626,7 +753,16 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SetSslCertificatesRegionTargetHttpsProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionTargetHttpsProxiesSetSslCertificatesRequestResource = new RegionTargetHttpsProxiesSetSslCertificatesRequest();
+        $targetHttpsProxy = 'targetHttpsProxy-2095146900';
+        $request = (new SetSslCertificatesRegionTargetHttpsProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionTargetHttpsProxiesSetSslCertificatesRequestResource($regionTargetHttpsProxiesSetSslCertificatesRequestResource)
+            ->setTargetHttpsProxy($targetHttpsProxy);
         $response = $gapicClient->setSslCertificates($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -672,7 +808,16 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setUrlMapTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SetUrlMapRegionTargetHttpsProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetHttpsProxy = 'targetHttpsProxy-2095146900';
+        $urlMapReferenceResource = new UrlMapReference();
+        $request = (new SetUrlMapRegionTargetHttpsProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpsProxy($targetHttpsProxy)
+            ->setUrlMapReferenceResource($urlMapReferenceResource);
         $response = $gapicClient->setUrlMap($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -682,8 +827,18 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionTargetHttpsProxies/SetUrlMap', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetHttpsProxy();
+        $this->assertProtobufEquals($targetHttpsProxy, $actualValue);
+        $actualValue = $actualApiRequestObject->getUrlMapReferenceResource();
+        $this->assertProtobufEquals($urlMapReferenceResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -731,7 +886,16 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SetUrlMapRegionTargetHttpsProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetHttpsProxy = 'targetHttpsProxy-2095146900';
+        $urlMapReferenceResource = new UrlMapReference();
+        $request = (new SetUrlMapRegionTargetHttpsProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpsProxy($targetHttpsProxy)
+            ->setUrlMapReferenceResource($urlMapReferenceResource);
         $response = $gapicClient->setUrlMap($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -777,7 +941,14 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteRegionTargetHttpsProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetHttpsProxy = 'targetHttpsProxy-2095146900';
+        $request = (new DeleteRegionTargetHttpsProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetHttpsProxy($targetHttpsProxy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -787,8 +958,16 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionTargetHttpsProxies/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetHttpsProxy();
+        $this->assertProtobufEquals($targetHttpsProxy, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

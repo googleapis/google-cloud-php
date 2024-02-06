@@ -30,7 +30,8 @@ class DeleteEnvironmentRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the
      *                     [Environment][google.cloud.dialogflow.cx.v3.Environment] to delete. Format:
      *                     `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/environments/<Environment ID>`.
+     *                     ID>/environments/<Environment ID>`. Please see
+     *                     {@see EnvironmentsClient::environmentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\DeleteEnvironmentRequest
      *

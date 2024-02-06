@@ -25,7 +25,8 @@ class TerminateJobRunRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the `JobRun`. Format must be
-     *                     `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}`.
+     *                     `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}`. Please see
+     *                     {@see CloudDeployClient::jobRunName()} for help formatting this field.
      *
      * @return \Google\Cloud\Deploy\V1\TerminateJobRunRequest
      *

@@ -26,11 +26,13 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Dialogflow\V2\AnswerFeedback;
 use Google\Cloud\Dialogflow\V2\AnswerRecord;
 use Google\Cloud\Dialogflow\V2\AnswerRecordsClient;
 use Google\Cloud\Dialogflow\V2\ListAnswerRecordsResponse;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -80,7 +82,9 @@ class AnswerRecordsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAnswerRecords($answerRecords);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listAnswerRecords();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listAnswerRecords($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -90,6 +94,8 @@ class AnswerRecordsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.AnswerRecords/ListAnswerRecords', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -111,8 +117,10 @@ class AnswerRecordsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listAnswerRecords();
+            $gapicClient->listAnswerRecords($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -137,13 +145,22 @@ class AnswerRecordsClientTest extends GeneratedTest
         $expectedResponse = new AnswerRecord();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->updateAnswerRecord();
+        // Mock request
+        $answerRecord = new AnswerRecord();
+        $answerRecordAnswerFeedback = new AnswerFeedback();
+        $answerRecord->setAnswerFeedback($answerRecordAnswerFeedback);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateAnswerRecord($answerRecord, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.AnswerRecords/UpdateAnswerRecord', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAnswerRecord();
+        $this->assertProtobufEquals($answerRecord, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -165,8 +182,13 @@ class AnswerRecordsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $answerRecord = new AnswerRecord();
+        $answerRecordAnswerFeedback = new AnswerFeedback();
+        $answerRecord->setAnswerFeedback($answerRecordAnswerFeedback);
+        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateAnswerRecord();
+            $gapicClient->updateAnswerRecord($answerRecord, $updateMask);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

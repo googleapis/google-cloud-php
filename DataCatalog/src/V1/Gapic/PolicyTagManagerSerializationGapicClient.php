@@ -55,7 +55,11 @@ use Google\Cloud\DataCatalog\V1\Taxonomy;
  * ```
  * $policyTagManagerSerializationClient = new PolicyTagManagerSerializationClient();
  * try {
- *     $response = $policyTagManagerSerializationClient->exportTaxonomies();
+ *     $formattedParent = $policyTagManagerSerializationClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $formattedTaxonomies = [
+ *         $policyTagManagerSerializationClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]'),
+ *     ];
+ *     $response = $policyTagManagerSerializationClient->exportTaxonomies($formattedParent, $formattedTaxonomies);
  * } finally {
  *     $policyTagManagerSerializationClient->close();
  * }
@@ -301,20 +305,22 @@ class PolicyTagManagerSerializationGapicClient
      * ```
      * $policyTagManagerSerializationClient = new PolicyTagManagerSerializationClient();
      * try {
-     *     $response = $policyTagManagerSerializationClient->exportTaxonomies();
+     *     $formattedParent = $policyTagManagerSerializationClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedTaxonomies = [
+     *         $policyTagManagerSerializationClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]'),
+     *     ];
+     *     $response = $policyTagManagerSerializationClient->exportTaxonomies($formattedParent, $formattedTaxonomies);
      * } finally {
      *     $policyTagManagerSerializationClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $parent       Required. Resource name of the project that the exported taxonomies belong
+     *                               to.
+     * @param string[] $taxonomies   Required. Resource names of the taxonomies to export.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Resource name of the project that the exported taxonomies belong
-     *           to.
-     *     @type string[] $taxonomies
-     *           Required. Resource names of the taxonomies to export.
      *     @type bool $serializedTaxonomies
      *           Serialized export taxonomies that contain all the policy
      *           tags as nested protocol buffers.
@@ -328,19 +334,13 @@ class PolicyTagManagerSerializationGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function exportTaxonomies(array $optionalArgs = [])
+    public function exportTaxonomies($parent, $taxonomies, array $optionalArgs = [])
     {
         $request = new ExportTaxonomiesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['taxonomies'])) {
-            $request->setTaxonomies($optionalArgs['taxonomies']);
-        }
-
+        $request->setParent($parent);
+        $request->setTaxonomies($taxonomies);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['serializedTaxonomies'])) {
             $request->setSerializedTaxonomies($optionalArgs['serializedTaxonomies']);
         }
@@ -364,18 +364,18 @@ class PolicyTagManagerSerializationGapicClient
      * ```
      * $policyTagManagerSerializationClient = new PolicyTagManagerSerializationClient();
      * try {
-     *     $response = $policyTagManagerSerializationClient->importTaxonomies();
+     *     $formattedParent = $policyTagManagerSerializationClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $response = $policyTagManagerSerializationClient->importTaxonomies($formattedParent);
      * } finally {
      *     $policyTagManagerSerializationClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Resource name of project that the imported taxonomies will belong
+     *                             to.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Resource name of project that the imported taxonomies will belong
-     *           to.
      *     @type InlineSource $inlineSource
      *           Inline source taxonomy to import.
      *     @type CrossRegionalSource $crossRegionalSource
@@ -390,15 +390,12 @@ class PolicyTagManagerSerializationGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importTaxonomies(array $optionalArgs = [])
+    public function importTaxonomies($parent, array $optionalArgs = [])
     {
         $request = new ImportTaxonomiesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['inlineSource'])) {
             $request->setInlineSource($optionalArgs['inlineSource']);
         }
@@ -431,19 +428,19 @@ class PolicyTagManagerSerializationGapicClient
      * ```
      * $policyTagManagerSerializationClient = new PolicyTagManagerSerializationClient();
      * try {
-     *     $response = $policyTagManagerSerializationClient->replaceTaxonomy();
+     *     $formattedName = $policyTagManagerSerializationClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+     *     $serializedTaxonomy = new SerializedTaxonomy();
+     *     $response = $policyTagManagerSerializationClient->replaceTaxonomy($formattedName, $serializedTaxonomy);
      * } finally {
      *     $policyTagManagerSerializationClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string             $name               Required. Resource name of the taxonomy to update.
+     * @param SerializedTaxonomy $serializedTaxonomy Required. Taxonomy to update along with its child policy tags.
+     * @param array              $optionalArgs       {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Resource name of the taxonomy to update.
-     *     @type SerializedTaxonomy $serializedTaxonomy
-     *           Required. Taxonomy to update along with its child policy tags.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -454,19 +451,13 @@ class PolicyTagManagerSerializationGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function replaceTaxonomy(array $optionalArgs = [])
+    public function replaceTaxonomy($name, $serializedTaxonomy, array $optionalArgs = [])
     {
         $request = new ReplaceTaxonomyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['serializedTaxonomy'])) {
-            $request->setSerializedTaxonomy($optionalArgs['serializedTaxonomy']);
-        }
-
+        $request->setName($name);
+        $request->setSerializedTaxonomy($serializedTaxonomy);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ReplaceTaxonomy', Taxonomy::class, $optionalArgs, $request)->wait();

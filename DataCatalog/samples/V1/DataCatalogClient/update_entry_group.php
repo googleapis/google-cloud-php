@@ -48,7 +48,9 @@ function update_entry_group_sample(): void
     $dataCatalogClient = new DataCatalogClient();
 
     // Prepare the request message.
-    $request = new UpdateEntryGroupRequest();
+    $entryGroup = new EntryGroup();
+    $request = (new UpdateEntryGroupRequest())
+        ->setEntryGroup($entryGroup);
 
     // Call the API and handle any network failures.
     try {

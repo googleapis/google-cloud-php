@@ -32,19 +32,17 @@ use Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction;
 /**
  * Returns WorkflowInvocationActions in a given WorkflowInvocation.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The workflow invocation's name. Please see
+ *                              {@see DataformClient::workflowInvocationName()} for help formatting this field.
  */
-function query_workflow_invocation_actions_sample(): void
+function query_workflow_invocation_actions_sample(string $formattedName): void
 {
     // Create a client.
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $request = new QueryWorkflowInvocationActionsRequest();
+    $request = (new QueryWorkflowInvocationActionsRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +56,26 @@ function query_workflow_invocation_actions_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DataformClient::workflowInvocationName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[REPOSITORY]',
+        '[WORKFLOW_INVOCATION]'
+    );
+
+    query_workflow_invocation_actions_sample($formattedName);
 }
 // [END dataform_v1beta1_generated_Dataform_QueryWorkflowInvocationActions_sync]

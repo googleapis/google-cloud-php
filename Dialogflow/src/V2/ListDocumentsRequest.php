@@ -61,7 +61,8 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The knowledge base to list all documents for.
      *                       Format: `projects/<Project ID>/locations/<Location
-     *                       ID>/knowledgeBases/<Knowledge Base ID>`.
+     *                       ID>/knowledgeBases/<Knowledge Base ID>`. Please see
+     *                       {@see DocumentsClient::knowledgeBaseName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\ListDocumentsRequest
      *

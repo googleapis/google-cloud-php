@@ -65,7 +65,8 @@ class ListResourcesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent in whose context the Resources are listed. The parent
      *                       value is in the format:
-     *                       'projects/{project_id}/locations/{location}/deployments/{deployment}/revisions/{revision}'.
+     *                       'projects/{project_id}/locations/{location}/deployments/{deployment}/revisions/{revision}'. Please see
+     *                       {@see ConfigClient::revisionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Config\V1\ListResourcesRequest
      *

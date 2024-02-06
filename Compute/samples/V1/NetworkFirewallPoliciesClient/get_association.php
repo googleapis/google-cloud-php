@@ -30,13 +30,10 @@ use Google\Cloud\Compute\V1\NetworkFirewallPoliciesClient;
 /**
  * Gets an association with the specified name.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $firewallPolicy Name of the firewall policy to which the queried association belongs.
+ * @param string $project        Project ID for this request.
  */
-function get_association_sample(): void
+function get_association_sample(string $firewallPolicy, string $project): void
 {
     // Create a client.
     $networkFirewallPoliciesClient = new NetworkFirewallPoliciesClient();
@@ -44,10 +41,27 @@ function get_association_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var FirewallPolicyAssociation $response */
-        $response = $networkFirewallPoliciesClient->getAssociation();
+        $response = $networkFirewallPoliciesClient->getAssociation($firewallPolicy, $project);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $firewallPolicy = '[FIREWALL_POLICY]';
+    $project = '[PROJECT]';
+
+    get_association_sample($firewallPolicy, $project);
 }
 // [END compute_v1_generated_NetworkFirewallPolicies_GetAssociation_sync]

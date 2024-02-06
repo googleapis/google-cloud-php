@@ -32,19 +32,22 @@ use Google\Cloud\Config\V1\Statefile;
  * Imports Terraform state file in a given deployment. The state file does not
  * take effect until the Deployment has been unlocked.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent in whose context the statefile is listed. The parent
+ *                                value is in the format:
+ *                                'projects/{project_id}/locations/{location}/deployments/{deployment}'. Please see
+ *                                {@see ConfigClient::deploymentName()} for help formatting this field.
+ * @param int    $lockId          Lock ID of the lock file to verify that the user who is importing
+ *                                the state file previously locked the Deployment.
  */
-function import_statefile_sample(): void
+function import_statefile_sample(string $formattedParent, int $lockId): void
 {
     // Create a client.
     $configClient = new ConfigClient();
 
     // Prepare the request message.
-    $request = new ImportStatefileRequest();
+    $request = (new ImportStatefileRequest())
+        ->setParent($formattedParent)
+        ->setLockId($lockId);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +57,22 @@ function import_statefile_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ConfigClient::deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
+    $lockId = 0;
+
+    import_statefile_sample($formattedParent, $lockId);
 }
 // [END config_v1_generated_Config_ImportStatefile_sync]

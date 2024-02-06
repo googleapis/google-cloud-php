@@ -42,19 +42,33 @@ use Google\Cloud\DataCatalog\V1\Tag;
  * (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters)
  * used to create the tag must be in the same organization.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the resource to attach this tag to.
+ *
+ *                                Tags can be attached to entries or entry groups. An entry can have up to
+ *                                1000 attached tags.
+ *
+ *                                Note: The tag and its child resources might not be stored in
+ *                                the location specified in its name. Please see
+ *                                {@see DataCatalogClient::entryName()} for help formatting this field.
+ * @param string $tagTemplate     The resource name of the tag template this tag uses. Example:
+ *
+ *                                `projects/{PROJECT_ID}/locations/{LOCATION}/tagTemplates/{TAG_TEMPLATE_ID}`
+ *
+ *                                This field cannot be modified after creation.
  */
-function create_tag_sample(): void
+function create_tag_sample(string $formattedParent, string $tagTemplate): void
 {
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
     // Prepare the request message.
-    $request = new CreateTagRequest();
+    $tagFields = [];
+    $tag = (new Tag())
+        ->setTemplate($tagTemplate)
+        ->setFields($tagFields);
+    $request = (new CreateTagRequest())
+        ->setParent($formattedParent)
+        ->setTag($tag);
 
     // Call the API and handle any network failures.
     try {
@@ -64,5 +78,27 @@ function create_tag_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataCatalogClient::entryName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[ENTRY_GROUP]',
+        '[ENTRY]'
+    );
+    $tagTemplate = '[TEMPLATE]';
+
+    create_tag_sample($formattedParent, $tagTemplate);
 }
 // [END datacatalog_v1_generated_DataCatalog_CreateTag_sync]

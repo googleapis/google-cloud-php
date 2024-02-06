@@ -31,19 +31,21 @@ use Google\Cloud\Dialogflow\V2\Participant;
 /**
  * Creates a new participant in a conversation.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Resource identifier of the conversation adding the participant.
+ *                                Format: `projects/<Project ID>/locations/<Location
+ *                                ID>/conversations/<Conversation ID>`. Please see
+ *                                {@see ParticipantsClient::conversationName()} for help formatting this field.
  */
-function create_participant_sample(): void
+function create_participant_sample(string $formattedParent): void
 {
     // Create a client.
     $participantsClient = new ParticipantsClient();
 
     // Prepare the request message.
-    $request = new CreateParticipantRequest();
+    $participant = new Participant();
+    $request = (new CreateParticipantRequest())
+        ->setParent($formattedParent)
+        ->setParticipant($participant);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +55,21 @@ function create_participant_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ParticipantsClient::conversationName('[PROJECT]', '[CONVERSATION]');
+
+    create_participant_sample($formattedParent);
 }
 // [END dialogflow_v2_generated_Participants_CreateParticipant_sync]

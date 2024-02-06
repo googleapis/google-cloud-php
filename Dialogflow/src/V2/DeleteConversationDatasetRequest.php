@@ -29,6 +29,7 @@ class DeleteConversationDatasetRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The conversation dataset to delete. Format:
      *                     `projects/<Project ID>/locations/<Location
      *                     ID>/conversationDatasets/<Conversation Dataset ID>`
+     *                     Please see {@see ConversationDatasetsClient::conversationDatasetName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\DeleteConversationDatasetRequest
      *

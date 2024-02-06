@@ -5,7 +5,10 @@ return [
         'google.cloud.compute.v1.RegionInstanceGroups' => [
             'SetNamedPorts' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getRegion',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',

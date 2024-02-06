@@ -26,26 +26,33 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\RegionSecurityPoliciesClient;
+use Google\Cloud\Compute\V1\SecurityPolicy;
 use Google\Rpc\Status;
 
 /**
  * Patches the specified policy with the data included in the request. To clear fields in the policy, leave the fields empty and specify them in the updateMask. This cannot be used to be update the rules in the policy. Please use the per rule methods like addRule, patchRule, and removeRule instead.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project        Project ID for this request.
+ * @param string $region         Name of the region scoping this request.
+ * @param string $securityPolicy Name of the security policy to update.
  */
-function patch_sample(): void
+function patch_sample(string $project, string $region, string $securityPolicy): void
 {
     // Create a client.
     $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $securityPolicyResource = new SecurityPolicy();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionSecurityPoliciesClient->patch();
+        $response = $regionSecurityPoliciesClient->patch(
+            $project,
+            $region,
+            $securityPolicy,
+            $securityPolicyResource
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +65,23 @@ function patch_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+    $securityPolicy = '[SECURITY_POLICY]';
+
+    patch_sample($project, $region, $securityPolicy);
 }
 // [END compute_v1_generated_RegionSecurityPolicies_Patch_sync]

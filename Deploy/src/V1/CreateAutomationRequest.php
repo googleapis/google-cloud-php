@@ -62,7 +62,8 @@ class CreateAutomationRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                             $parent       Required. The parent collection in which the `Automation` should be
      *                                                         created. Format should be
-     *                                                         `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
+     *                                                         `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
+     *                                                         {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
      * @param \Google\Cloud\Deploy\V1\Automation $automation   Required. The `Automation` to create.
      * @param string                             $automationId Required. ID of the `Automation`.
      *

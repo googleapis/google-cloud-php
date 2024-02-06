@@ -36,19 +36,19 @@ use Google\Cloud\Dialogflow\V2\Client\ParticipantsClient;
  * sent to virtual agents. See [Versions and
  * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParticipant The name of the participant this text comes from.
+ *                                     Format: `projects/<Project ID>/locations/<Location
+ *                                     ID>/conversations/<Conversation ID>/participants/<Participant ID>`. Please see
+ *                                     {@see ParticipantsClient::participantName()} for help formatting this field.
  */
-function analyze_content_sample(): void
+function analyze_content_sample(string $formattedParticipant): void
 {
     // Create a client.
     $participantsClient = new ParticipantsClient();
 
     // Prepare the request message.
-    $request = new AnalyzeContentRequest();
+    $request = (new AnalyzeContentRequest())
+        ->setParticipant($formattedParticipant);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +58,25 @@ function analyze_content_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParticipant = ParticipantsClient::participantName(
+        '[PROJECT]',
+        '[CONVERSATION]',
+        '[PARTICIPANT]'
+    );
+
+    analyze_content_sample($formattedParticipant);
 }
 // [END dialogflow_v2_generated_Participants_AnalyzeContent_sync]

@@ -31,6 +31,7 @@ use Google\Cloud\Dialogflow\Cx\V3\BatchDeleteTestCasesRequest;
 use Google\Cloud\Dialogflow\Cx\V3\BatchRunTestCasesRequest;
 use Google\Cloud\Dialogflow\Cx\V3\BatchRunTestCasesResponse;
 use Google\Cloud\Dialogflow\Cx\V3\CalculateCoverageRequest;
+use Google\Cloud\Dialogflow\Cx\V3\CalculateCoverageRequest\CoverageType;
 use Google\Cloud\Dialogflow\Cx\V3\CalculateCoverageResponse;
 use Google\Cloud\Dialogflow\Cx\V3\Client\TestCasesClient;
 use Google\Cloud\Dialogflow\Cx\V3\CreateTestCaseRequest;
@@ -55,6 +56,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -100,13 +102,20 @@ class TestCasesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new BatchDeleteTestCasesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $formattedNames = [$gapicClient->testCaseName('[PROJECT]', '[LOCATION]', '[AGENT]', '[TEST_CASE]')];
+        $request = (new BatchDeleteTestCasesRequest())->setParent($formattedParent)->setNames($formattedNames);
         $gapicClient->batchDeleteTestCases($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.TestCases/BatchDeleteTestCases', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -131,7 +140,10 @@ class TestCasesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new BatchDeleteTestCasesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $formattedNames = [$gapicClient->testCaseName('[PROJECT]', '[LOCATION]', '[AGENT]', '[TEST_CASE]')];
+        $request = (new BatchDeleteTestCasesRequest())->setParent($formattedParent)->setNames($formattedNames);
         try {
             $gapicClient->batchDeleteTestCases($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -174,7 +186,10 @@ class TestCasesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new BatchRunTestCasesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $formattedTestCases = [$gapicClient->testCaseName('[PROJECT]', '[LOCATION]', '[AGENT]', '[TEST_CASE]')];
+        $request = (new BatchRunTestCasesRequest())->setParent($formattedParent)->setTestCases($formattedTestCases);
         $response = $gapicClient->batchRunTestCases($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -185,6 +200,10 @@ class TestCasesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.TestCases/BatchRunTestCases', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getTestCases();
+        $this->assertProtobufEquals($formattedTestCases, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchRunTestCasesTest');
         $response->pollUntilComplete([
@@ -238,7 +257,10 @@ class TestCasesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        $request = new BatchRunTestCasesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $formattedTestCases = [$gapicClient->testCaseName('[PROJECT]', '[LOCATION]', '[AGENT]', '[TEST_CASE]')];
+        $request = (new BatchRunTestCasesRequest())->setParent($formattedParent)->setTestCases($formattedTestCases);
         $response = $gapicClient->batchRunTestCases($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -274,7 +296,10 @@ class TestCasesClientTest extends GeneratedTest
         $expectedResponse = new CalculateCoverageResponse();
         $expectedResponse->setAgent($agent2);
         $transport->addResponse($expectedResponse);
-        $request = new CalculateCoverageRequest();
+        // Mock request
+        $formattedAgent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $type = CoverageType::COVERAGE_TYPE_UNSPECIFIED;
+        $request = (new CalculateCoverageRequest())->setAgent($formattedAgent)->setType($type);
         $response = $gapicClient->calculateCoverage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -282,6 +307,10 @@ class TestCasesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.TestCases/CalculateCoverage', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAgent();
+        $this->assertProtobufEquals($formattedAgent, $actualValue);
+        $actualValue = $actualRequestObject->getType();
+        $this->assertProtobufEquals($type, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -306,7 +335,10 @@ class TestCasesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new CalculateCoverageRequest();
+        // Mock request
+        $formattedAgent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $type = CoverageType::COVERAGE_TYPE_UNSPECIFIED;
+        $request = (new CalculateCoverageRequest())->setAgent($formattedAgent)->setType($type);
         try {
             $gapicClient->calculateCoverage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -337,7 +369,12 @@ class TestCasesClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNotes($notes);
         $transport->addResponse($expectedResponse);
-        $request = new CreateTestCaseRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $testCase = new \Google\Cloud\Dialogflow\Cx\V3\TestCase();
+        $testCaseDisplayName = 'testCaseDisplayName1109893675';
+        $testCase->setDisplayName($testCaseDisplayName);
+        $request = (new CreateTestCaseRequest())->setParent($formattedParent)->setTestCase($testCase);
         $response = $gapicClient->createTestCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -345,6 +382,10 @@ class TestCasesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.TestCases/CreateTestCase', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getTestCase();
+        $this->assertProtobufEquals($testCase, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -369,7 +410,12 @@ class TestCasesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new CreateTestCaseRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $testCase = new \Google\Cloud\Dialogflow\Cx\V3\TestCase();
+        $testCaseDisplayName = 'testCaseDisplayName1109893675';
+        $testCase->setDisplayName($testCaseDisplayName);
+        $request = (new CreateTestCaseRequest())->setParent($formattedParent)->setTestCase($testCase);
         try {
             $gapicClient->createTestCase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -414,7 +460,9 @@ class TestCasesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new ExportTestCasesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ExportTestCasesRequest())->setParent($formattedParent);
         $response = $gapicClient->exportTestCases($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -425,6 +473,8 @@ class TestCasesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.TestCases/ExportTestCases', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportTestCasesTest');
         $response->pollUntilComplete([
@@ -478,7 +528,9 @@ class TestCasesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        $request = new ExportTestCasesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ExportTestCasesRequest())->setParent($formattedParent);
         $response = $gapicClient->exportTestCases($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -518,7 +570,9 @@ class TestCasesClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNotes($notes);
         $transport->addResponse($expectedResponse);
-        $request = new GetTestCaseRequest();
+        // Mock request
+        $formattedName = $gapicClient->testCaseName('[PROJECT]', '[LOCATION]', '[AGENT]', '[TEST_CASE]');
+        $request = (new GetTestCaseRequest())->setName($formattedName);
         $response = $gapicClient->getTestCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -526,6 +580,8 @@ class TestCasesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.TestCases/GetTestCase', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -550,7 +606,9 @@ class TestCasesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetTestCaseRequest();
+        // Mock request
+        $formattedName = $gapicClient->testCaseName('[PROJECT]', '[LOCATION]', '[AGENT]', '[TEST_CASE]');
+        $request = (new GetTestCaseRequest())->setName($formattedName);
         try {
             $gapicClient->getTestCase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -579,7 +637,15 @@ class TestCasesClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setEnvironment($environment);
         $transport->addResponse($expectedResponse);
-        $request = new GetTestCaseResultRequest();
+        // Mock request
+        $formattedName = $gapicClient->testCaseResultName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AGENT]',
+            '[TEST_CASE]',
+            '[RESULT]'
+        );
+        $request = (new GetTestCaseResultRequest())->setName($formattedName);
         $response = $gapicClient->getTestCaseResult($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -587,6 +653,8 @@ class TestCasesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.TestCases/GetTestCaseResult', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -611,7 +679,15 @@ class TestCasesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetTestCaseResultRequest();
+        // Mock request
+        $formattedName = $gapicClient->testCaseResultName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AGENT]',
+            '[TEST_CASE]',
+            '[RESULT]'
+        );
+        $request = (new GetTestCaseResultRequest())->setName($formattedName);
         try {
             $gapicClient->getTestCaseResult($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -654,7 +730,9 @@ class TestCasesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new ImportTestCasesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ImportTestCasesRequest())->setParent($formattedParent);
         $response = $gapicClient->importTestCases($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -665,6 +743,8 @@ class TestCasesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.TestCases/ImportTestCases', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importTestCasesTest');
         $response->pollUntilComplete([
@@ -718,7 +798,9 @@ class TestCasesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        $request = new ImportTestCasesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ImportTestCasesRequest())->setParent($formattedParent);
         $response = $gapicClient->importTestCases($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -757,7 +839,9 @@ class TestCasesClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTestCaseResults($testCaseResults);
         $transport->addResponse($expectedResponse);
-        $request = new ListTestCaseResultsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->testCaseName('[PROJECT]', '[LOCATION]', '[AGENT]', '[TEST_CASE]');
+        $request = (new ListTestCaseResultsRequest())->setParent($formattedParent);
         $response = $gapicClient->listTestCaseResults($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -768,6 +852,8 @@ class TestCasesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.TestCases/ListTestCaseResults', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -792,7 +878,9 @@ class TestCasesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListTestCaseResultsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->testCaseName('[PROJECT]', '[LOCATION]', '[AGENT]', '[TEST_CASE]');
+        $request = (new ListTestCaseResultsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTestCaseResults($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -822,7 +910,9 @@ class TestCasesClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTestCases($testCases);
         $transport->addResponse($expectedResponse);
-        $request = new ListTestCasesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ListTestCasesRequest())->setParent($formattedParent);
         $response = $gapicClient->listTestCases($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -833,6 +923,8 @@ class TestCasesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.TestCases/ListTestCases', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -857,7 +949,9 @@ class TestCasesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListTestCasesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ListTestCasesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTestCases($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -900,7 +994,9 @@ class TestCasesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new RunTestCaseRequest();
+        // Mock request
+        $formattedName = $gapicClient->testCaseName('[PROJECT]', '[LOCATION]', '[AGENT]', '[TEST_CASE]');
+        $request = (new RunTestCaseRequest())->setName($formattedName);
         $response = $gapicClient->runTestCase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -911,6 +1007,8 @@ class TestCasesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.TestCases/RunTestCase', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/runTestCaseTest');
         $response->pollUntilComplete([
@@ -964,7 +1062,9 @@ class TestCasesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        $request = new RunTestCaseRequest();
+        // Mock request
+        $formattedName = $gapicClient->testCaseName('[PROJECT]', '[LOCATION]', '[AGENT]', '[TEST_CASE]');
+        $request = (new RunTestCaseRequest())->setName($formattedName);
         $response = $gapicClient->runTestCase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1004,7 +1104,12 @@ class TestCasesClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNotes($notes);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateTestCaseRequest();
+        // Mock request
+        $testCase = new \Google\Cloud\Dialogflow\Cx\V3\TestCase();
+        $testCaseDisplayName = 'testCaseDisplayName1109893675';
+        $testCase->setDisplayName($testCaseDisplayName);
+        $updateMask = new FieldMask();
+        $request = (new UpdateTestCaseRequest())->setTestCase($testCase)->setUpdateMask($updateMask);
         $response = $gapicClient->updateTestCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1012,6 +1117,10 @@ class TestCasesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.TestCases/UpdateTestCase', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTestCase();
+        $this->assertProtobufEquals($testCase, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1036,7 +1145,12 @@ class TestCasesClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new UpdateTestCaseRequest();
+        // Mock request
+        $testCase = new \Google\Cloud\Dialogflow\Cx\V3\TestCase();
+        $testCaseDisplayName = 'testCaseDisplayName1109893675';
+        $testCase->setDisplayName($testCaseDisplayName);
+        $updateMask = new FieldMask();
+        $request = (new UpdateTestCaseRequest())->setTestCase($testCase)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateTestCase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1189,13 +1303,20 @@ class TestCasesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new BatchDeleteTestCasesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $formattedNames = [$gapicClient->testCaseName('[PROJECT]', '[LOCATION]', '[AGENT]', '[TEST_CASE]')];
+        $request = (new BatchDeleteTestCasesRequest())->setParent($formattedParent)->setNames($formattedNames);
         $gapicClient->batchDeleteTestCasesAsync($request)->wait();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.TestCases/BatchDeleteTestCases', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

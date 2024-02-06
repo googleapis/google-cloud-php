@@ -18,16 +18,16 @@ class GcsFilesetSpec
         \GPBMetadata\Google\Cloud\Datacatalog\V1\Timestamps::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ﬁ
-2google/cloud/datacatalog/v1/gcs_fileset_spec.protogoogle.cloud.datacatalog.v1,google/cloud/datacatalog/v1/timestamps.proto"|
-GcsFilesetSpec
-file_patterns (	B‚AM
-sample_gcs_file_specs (2(.google.cloud.datacatalog.v1.GcsFileSpecB‚A"ç
-GcsFileSpec
-	file_path (	B‚AK
-gcs_timestamps (2-.google.cloud.datacatalog.v1.SystemTimestampsB‚A
+Ÿ
+2google/cloud/datacatalog/v1/gcs_fileset_spec.protogoogle.cloud.datacatalog.v1,google/cloud/datacatalog/v1/timestamps.proto"z
+GcsFilesetSpec
+file_patterns (	B‡AL
+sample_gcs_file_specs (2(.google.cloud.datacatalog.v1.GcsFileSpecB‡A"ä
+GcsFileSpec
+	file_path (	B‡AJ
+gcs_timestamps (2-.google.cloud.datacatalog.v1.SystemTimestampsB‡A
 
-size_bytes (B‚AB∆
+size_bytes (B‡AB∆
 com.google.cloud.datacatalog.v1PZAcloud.google.com/go/datacatalog/apiv1/datacatalogpb;datacatalogpb¯™Google.Cloud.DataCatalog.V1 Google\\Cloud\\DataCatalog\\V1ÍGoogle::Cloud::DataCatalog::V1bproto3'
         , true);
 

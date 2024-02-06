@@ -31,19 +31,19 @@ use Google\Cloud\Debugger\V2\ListDebuggeesResponse;
 /**
  * Lists all the debuggees that the user has access to.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project       Project number of a Google Cloud project whose debuggees to list.
+ * @param string $clientVersion The client version making the call.
+ *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
  */
-function list_debuggees_sample(): void
+function list_debuggees_sample(string $project, string $clientVersion): void
 {
     // Create a client.
     $debugger2Client = new Debugger2Client();
 
     // Prepare the request message.
-    $request = new ListDebuggeesRequest();
+    $request = (new ListDebuggeesRequest())
+        ->setProject($project)
+        ->setClientVersion($clientVersion);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +53,22 @@ function list_debuggees_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $clientVersion = '[CLIENT_VERSION]';
+
+    list_debuggees_sample($project, $clientVersion);
 }
 // [END clouddebugger_v2_generated_Debugger2_ListDebuggees_sync]

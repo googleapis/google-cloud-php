@@ -26,26 +26,29 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\ProjectsClient;
+use Google\Cloud\Compute\V1\ProjectsDisableXpnResourceRequest;
 use Google\Rpc\Status;
 
 /**
  * Disable a service resource (also known as service project) associated with this host project.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project Project ID for this request.
  */
-function disable_xpn_resource_sample(): void
+function disable_xpn_resource_sample(string $project): void
 {
     // Create a client.
     $projectsClient = new ProjectsClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $projectsDisableXpnResourceRequestResource = new ProjectsDisableXpnResourceRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->disableXpnResource();
+        $response = $projectsClient->disableXpnResource(
+            $project,
+            $projectsDisableXpnResourceRequestResource
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +61,21 @@ function disable_xpn_resource_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+
+    disable_xpn_resource_sample($project);
 }
 // [END compute_v1_generated_Projects_DisableXpnResource_sync]

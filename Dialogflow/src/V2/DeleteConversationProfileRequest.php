@@ -30,7 +30,8 @@ class DeleteConversationProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the conversation profile to delete.
      *                     Format: `projects/<Project ID>/locations/<Location
-     *                     ID>/conversationProfiles/<Conversation Profile ID>`.
+     *                     ID>/conversationProfiles/<Conversation Profile ID>`. Please see
+     *                     {@see ConversationProfilesClient::conversationProfileName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\DeleteConversationProfileRequest
      *

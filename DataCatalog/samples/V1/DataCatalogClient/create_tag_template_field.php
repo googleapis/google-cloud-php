@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
 use Google\Cloud\DataCatalog\V1\CreateTagTemplateFieldRequest;
+use Google\Cloud\DataCatalog\V1\FieldType;
 use Google\Cloud\DataCatalog\V1\TagTemplateField;
 
 /**
@@ -35,19 +36,33 @@ use Google\Cloud\DataCatalog\V1\TagTemplateField;
  * the `parent` parameter. For more information, see [Data Catalog resource
  * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent    The name of the project and the template location
+ *                                   [region](https://cloud.google.com/data-catalog/docs/concepts/regions). Please see
+ *                                   {@see DataCatalogClient::tagTemplateName()} for help formatting this field.
+ * @param string $tagTemplateFieldId The ID of the tag template field to create.
+ *
+ *                                   Note: Adding a required field to an existing template is *not* allowed.
+ *
+ *                                   Field IDs can contain letters (both uppercase and lowercase), numbers
+ *                                   (0-9), underscores (_) and dashes (-). Field IDs must be at least 1
+ *                                   character long and at most 128 characters long. Field IDs must also be
+ *                                   unique within their template.
  */
-function create_tag_template_field_sample(): void
-{
+function create_tag_template_field_sample(
+    string $formattedParent,
+    string $tagTemplateFieldId
+): void {
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
     // Prepare the request message.
-    $request = new CreateTagTemplateFieldRequest();
+    $tagTemplateFieldType = new FieldType();
+    $tagTemplateField = (new TagTemplateField())
+        ->setType($tagTemplateFieldType);
+    $request = (new CreateTagTemplateFieldRequest())
+        ->setParent($formattedParent)
+        ->setTagTemplateFieldId($tagTemplateFieldId)
+        ->setTagTemplateField($tagTemplateField);
 
     // Call the API and handle any network failures.
     try {
@@ -57,5 +72,22 @@ function create_tag_template_field_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataCatalogClient::tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
+    $tagTemplateFieldId = '[TAG_TEMPLATE_FIELD_ID]';
+
+    create_tag_template_field_sample($formattedParent, $tagTemplateFieldId);
 }
 // [END datacatalog_v1_generated_DataCatalog_CreateTagTemplateField_sync]

@@ -27,7 +27,8 @@ class DeleteTaxonomyRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Resource name of the taxonomy to delete.
      *
-     *                     Note: All policy tags in this taxonomy are also deleted.
+     *                     Note: All policy tags in this taxonomy are also deleted. Please see
+     *                     {@see PolicyTagManagerClient::taxonomyName()} for help formatting this field.
      *
      * @return \Google\Cloud\DataCatalog\V1\DeleteTaxonomyRequest
      *

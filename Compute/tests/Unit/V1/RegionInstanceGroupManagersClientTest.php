@@ -33,11 +33,21 @@ use Google\Cloud\Compute\V1\ManagedInstance;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PerInstanceConfig;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagerDeleteInstanceConfigReq;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagerList;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagerPatchInstanceConfigReq;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagerUpdateInstanceConfigReq;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersAbandonInstancesRequest;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersApplyUpdatesRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersCreateInstancesRequest;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersDeleteInstancesRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersListErrorsResponse;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersListInstanceConfigsResp;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersListInstancesResponse;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersRecreateRequest;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTargetPoolsRequest;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTemplateRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
@@ -95,7 +105,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/abandonInstancesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->abandonInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersAbandonInstancesRequestResource = new RegionInstanceGroupManagersAbandonInstancesRequest();
+        $response = $gapicClient->abandonInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersAbandonInstancesRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -104,8 +119,18 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/AbandonInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionInstanceGroupManagersAbandonInstancesRequestResource();
+        $this->assertProtobufEquals($regionInstanceGroupManagersAbandonInstancesRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -153,7 +178,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->abandonInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersAbandonInstancesRequestResource = new RegionInstanceGroupManagersAbandonInstancesRequest();
+        $response = $gapicClient->abandonInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersAbandonInstancesRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -198,7 +228,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/applyUpdatesToInstancesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->applyUpdatesToInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersApplyUpdatesRequestResource = new RegionInstanceGroupManagersApplyUpdatesRequest();
+        $response = $gapicClient->applyUpdatesToInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersApplyUpdatesRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -207,8 +242,18 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/ApplyUpdatesToInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionInstanceGroupManagersApplyUpdatesRequestResource();
+        $this->assertProtobufEquals($regionInstanceGroupManagersApplyUpdatesRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -256,7 +301,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->applyUpdatesToInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersApplyUpdatesRequestResource = new RegionInstanceGroupManagersApplyUpdatesRequest();
+        $response = $gapicClient->applyUpdatesToInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersApplyUpdatesRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -301,7 +351,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/createInstancesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->createInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersCreateInstancesRequestResource = new RegionInstanceGroupManagersCreateInstancesRequest();
+        $response = $gapicClient->createInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersCreateInstancesRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -310,8 +365,18 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/CreateInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionInstanceGroupManagersCreateInstancesRequestResource();
+        $this->assertProtobufEquals($regionInstanceGroupManagersCreateInstancesRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -359,7 +424,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->createInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersCreateInstancesRequestResource = new RegionInstanceGroupManagersCreateInstancesRequest();
+        $response = $gapicClient->createInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersCreateInstancesRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -404,7 +474,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->delete();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $response = $gapicClient->delete($instanceGroupManager, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -413,8 +487,16 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -462,7 +544,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->delete();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $response = $gapicClient->delete($instanceGroupManager, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -507,7 +593,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteInstancesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deleteInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersDeleteInstancesRequestResource = new RegionInstanceGroupManagersDeleteInstancesRequest();
+        $response = $gapicClient->deleteInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersDeleteInstancesRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -516,8 +607,18 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/DeleteInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionInstanceGroupManagersDeleteInstancesRequestResource();
+        $this->assertProtobufEquals($regionInstanceGroupManagersDeleteInstancesRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -565,7 +666,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deleteInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersDeleteInstancesRequestResource = new RegionInstanceGroupManagersDeleteInstancesRequest();
+        $response = $gapicClient->deleteInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersDeleteInstancesRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -610,7 +716,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deletePerInstanceConfigsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deletePerInstanceConfigs();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagerDeleteInstanceConfigReqResource = new RegionInstanceGroupManagerDeleteInstanceConfigReq();
+        $response = $gapicClient->deletePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerDeleteInstanceConfigReqResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -619,8 +730,18 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/DeletePerInstanceConfigs', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionInstanceGroupManagerDeleteInstanceConfigReqResource();
+        $this->assertProtobufEquals($regionInstanceGroupManagerDeleteInstanceConfigReqResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -668,7 +789,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deletePerInstanceConfigs();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagerDeleteInstanceConfigReqResource = new RegionInstanceGroupManagerDeleteInstanceConfigReq();
+        $response = $gapicClient->deletePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerDeleteInstanceConfigReqResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -727,13 +853,23 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setTargetSize($targetSize);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->get();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $response = $gapicClient->get($instanceGroupManager, $project, $region);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -755,8 +891,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
         try {
-            $gapicClient->get();
+            $gapicClient->get($instanceGroupManager, $project, $region);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -793,7 +933,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->insert();
+        // Mock request
+        $instanceGroupManagerResource = new InstanceGroupManager();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $response = $gapicClient->insert($instanceGroupManagerResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -802,8 +946,16 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagerResource();
+        $this->assertProtobufEquals($instanceGroupManagerResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -851,7 +1003,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->insert();
+        // Mock request
+        $instanceGroupManagerResource = new InstanceGroupManager();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $response = $gapicClient->insert($instanceGroupManagerResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -895,7 +1051,10 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->list();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $response = $gapicClient->list($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -905,6 +1064,10 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -926,8 +1089,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
         try {
-            $gapicClient->list();
+            $gapicClient->list($project, $region);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -957,7 +1123,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listErrors();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $response = $gapicClient->listErrors($instanceGroupManager, $project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -967,6 +1137,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/ListErrors', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -988,8 +1164,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
         try {
-            $gapicClient->listErrors();
+            $gapicClient->listErrors($instanceGroupManager, $project, $region);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1019,7 +1199,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setManagedInstances($managedInstances);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listManagedInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $response = $gapicClient->listManagedInstances($instanceGroupManager, $project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1029,6 +1213,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/ListManagedInstances', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1050,8 +1240,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
         try {
-            $gapicClient->listManagedInstances();
+            $gapicClient->listManagedInstances($instanceGroupManager, $project, $region);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1081,7 +1275,11 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listPerInstanceConfigs();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $response = $gapicClient->listPerInstanceConfigs($instanceGroupManager, $project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1091,6 +1289,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/ListPerInstanceConfigs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1112,8 +1316,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
         try {
-            $gapicClient->listPerInstanceConfigs();
+            $gapicClient->listPerInstanceConfigs($instanceGroupManager, $project, $region);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1150,7 +1358,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->patch();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagerResource = new InstanceGroupManager();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $response = $gapicClient->patch($instanceGroupManager, $instanceGroupManagerResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1159,8 +1372,18 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagerResource();
+        $this->assertProtobufEquals($instanceGroupManagerResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1208,7 +1431,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->patch();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagerResource = new InstanceGroupManager();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $response = $gapicClient->patch($instanceGroupManager, $instanceGroupManagerResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1253,7 +1481,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchPerInstanceConfigsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->patchPerInstanceConfigs();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagerPatchInstanceConfigReqResource = new RegionInstanceGroupManagerPatchInstanceConfigReq();
+        $response = $gapicClient->patchPerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerPatchInstanceConfigReqResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1262,8 +1495,18 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/PatchPerInstanceConfigs', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionInstanceGroupManagerPatchInstanceConfigReqResource();
+        $this->assertProtobufEquals($regionInstanceGroupManagerPatchInstanceConfigReqResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1311,7 +1554,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->patchPerInstanceConfigs();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagerPatchInstanceConfigReqResource = new RegionInstanceGroupManagerPatchInstanceConfigReq();
+        $response = $gapicClient->patchPerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerPatchInstanceConfigReqResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1356,7 +1604,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/recreateInstancesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->recreateInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersRecreateRequestResource = new RegionInstanceGroupManagersRecreateRequest();
+        $response = $gapicClient->recreateInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersRecreateRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1365,8 +1618,18 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/RecreateInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionInstanceGroupManagersRecreateRequestResource();
+        $this->assertProtobufEquals($regionInstanceGroupManagersRecreateRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1414,7 +1677,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->recreateInstances();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersRecreateRequestResource = new RegionInstanceGroupManagersRecreateRequest();
+        $response = $gapicClient->recreateInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersRecreateRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1459,7 +1727,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/resizeTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->resize();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $size = 3530753;
+        $response = $gapicClient->resize($instanceGroupManager, $project, $region, $size);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1468,8 +1741,18 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/Resize', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getSize();
+        $this->assertProtobufEquals($size, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1517,7 +1800,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->resize();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $size = 3530753;
+        $response = $gapicClient->resize($instanceGroupManager, $project, $region, $size);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1562,7 +1850,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setInstanceTemplateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->setInstanceTemplate();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersSetTemplateRequestResource = new RegionInstanceGroupManagersSetTemplateRequest();
+        $response = $gapicClient->setInstanceTemplate($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTemplateRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1571,8 +1864,18 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/SetInstanceTemplate', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionInstanceGroupManagersSetTemplateRequestResource();
+        $this->assertProtobufEquals($regionInstanceGroupManagersSetTemplateRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1620,7 +1923,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->setInstanceTemplate();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersSetTemplateRequestResource = new RegionInstanceGroupManagersSetTemplateRequest();
+        $response = $gapicClient->setInstanceTemplate($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTemplateRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1665,7 +1973,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setTargetPoolsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->setTargetPools();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersSetTargetPoolsRequestResource = new RegionInstanceGroupManagersSetTargetPoolsRequest();
+        $response = $gapicClient->setTargetPools($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTargetPoolsRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1674,8 +1987,18 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/SetTargetPools', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionInstanceGroupManagersSetTargetPoolsRequestResource();
+        $this->assertProtobufEquals($regionInstanceGroupManagersSetTargetPoolsRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1723,7 +2046,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->setTargetPools();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagersSetTargetPoolsRequestResource = new RegionInstanceGroupManagersSetTargetPoolsRequest();
+        $response = $gapicClient->setTargetPools($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTargetPoolsRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1768,7 +2096,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/updatePerInstanceConfigsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->updatePerInstanceConfigs();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagerUpdateInstanceConfigReqResource = new RegionInstanceGroupManagerUpdateInstanceConfigReq();
+        $response = $gapicClient->updatePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerUpdateInstanceConfigReqResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1777,8 +2110,18 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagers/UpdatePerInstanceConfigs', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionInstanceGroupManagerUpdateInstanceConfigReqResource();
+        $this->assertProtobufEquals($regionInstanceGroupManagerUpdateInstanceConfigReqResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1826,7 +2169,12 @@ class RegionInstanceGroupManagersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->updatePerInstanceConfigs();
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionInstanceGroupManagerUpdateInstanceConfigReqResource = new RegionInstanceGroupManagerUpdateInstanceConfigReq();
+        $response = $gapicClient->updatePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerUpdateInstanceConfigReqResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

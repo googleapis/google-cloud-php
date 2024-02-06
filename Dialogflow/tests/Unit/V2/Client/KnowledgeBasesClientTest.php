@@ -87,7 +87,14 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        $request = new CreateKnowledgeBaseRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $knowledgeBase = new KnowledgeBase();
+        $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
+        $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
+        $request = (new CreateKnowledgeBaseRequest())
+            ->setParent($formattedParent)
+            ->setKnowledgeBase($knowledgeBase);
         $response = $gapicClient->createKnowledgeBase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -95,6 +102,10 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.KnowledgeBases/CreateKnowledgeBase', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getKnowledgeBase();
+        $this->assertProtobufEquals($knowledgeBase, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -116,7 +127,14 @@ class KnowledgeBasesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateKnowledgeBaseRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $knowledgeBase = new KnowledgeBase();
+        $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
+        $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
+        $request = (new CreateKnowledgeBaseRequest())
+            ->setParent($formattedParent)
+            ->setKnowledgeBase($knowledgeBase);
         try {
             $gapicClient->createKnowledgeBase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -141,13 +159,18 @@ class KnowledgeBasesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteKnowledgeBaseRequest();
+        // Mock request
+        $formattedName = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+        $request = (new DeleteKnowledgeBaseRequest())
+            ->setName($formattedName);
         $gapicClient->deleteKnowledgeBase($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.KnowledgeBases/DeleteKnowledgeBase', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -169,7 +192,10 @@ class KnowledgeBasesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteKnowledgeBaseRequest();
+        // Mock request
+        $formattedName = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+        $request = (new DeleteKnowledgeBaseRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteKnowledgeBase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -200,7 +226,10 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        $request = new GetKnowledgeBaseRequest();
+        // Mock request
+        $formattedName = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+        $request = (new GetKnowledgeBaseRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getKnowledgeBase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -208,6 +237,8 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.KnowledgeBases/GetKnowledgeBase', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -229,7 +260,10 @@ class KnowledgeBasesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetKnowledgeBaseRequest();
+        // Mock request
+        $formattedName = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+        $request = (new GetKnowledgeBaseRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getKnowledgeBase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -261,7 +295,10 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setKnowledgeBases($knowledgeBases);
         $transport->addResponse($expectedResponse);
-        $request = new ListKnowledgeBasesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListKnowledgeBasesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listKnowledgeBases($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -272,6 +309,8 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.KnowledgeBases/ListKnowledgeBases', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -293,7 +332,10 @@ class KnowledgeBasesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListKnowledgeBasesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListKnowledgeBasesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listKnowledgeBases($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -324,7 +366,12 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateKnowledgeBaseRequest();
+        // Mock request
+        $knowledgeBase = new KnowledgeBase();
+        $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
+        $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
+        $request = (new UpdateKnowledgeBaseRequest())
+            ->setKnowledgeBase($knowledgeBase);
         $response = $gapicClient->updateKnowledgeBase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -332,6 +379,8 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.KnowledgeBases/UpdateKnowledgeBase', $actualFuncCall);
+        $actualValue = $actualRequestObject->getKnowledgeBase();
+        $this->assertProtobufEquals($knowledgeBase, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -353,7 +402,12 @@ class KnowledgeBasesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateKnowledgeBaseRequest();
+        // Mock request
+        $knowledgeBase = new KnowledgeBase();
+        $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
+        $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
+        $request = (new UpdateKnowledgeBaseRequest())
+            ->setKnowledgeBase($knowledgeBase);
         try {
             $gapicClient->updateKnowledgeBase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -508,7 +562,14 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        $request = new CreateKnowledgeBaseRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $knowledgeBase = new KnowledgeBase();
+        $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
+        $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
+        $request = (new CreateKnowledgeBaseRequest())
+            ->setParent($formattedParent)
+            ->setKnowledgeBase($knowledgeBase);
         $response = $gapicClient->createKnowledgeBaseAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -516,6 +577,10 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.KnowledgeBases/CreateKnowledgeBase', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getKnowledgeBase();
+        $this->assertProtobufEquals($knowledgeBase, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

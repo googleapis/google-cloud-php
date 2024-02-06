@@ -44,7 +44,8 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string   $parent       Required. The name of the entity type to delete entries for. Format:
-     *                               `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *                               `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`. Please see
+     *                               {@see EntityTypesClient::entityTypeName()} for help formatting this field.
      * @param string[] $entityValues Required. The reference `values` of the entities to delete. Note that
      *                               these are not fully-qualified names, i.e. they don't start with
      *                               `projects/<Project ID>`.
@@ -62,7 +63,8 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string   $parent       Required. The name of the entity type to delete entries for. Format:
-     *                               `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *                               `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`. Please see
+     *                               {@see EntityTypesClient::entityTypeName()} for help formatting this field.
      * @param string[] $entityValues Required. The reference `values` of the entities to delete. Note that
      *                               these are not fully-qualified names, i.e. they don't start with
      *                               `projects/<Project ID>`.

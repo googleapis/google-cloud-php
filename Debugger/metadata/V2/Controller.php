@@ -20,25 +20,25 @@ class Controller
         \GPBMetadata\Google\Devtools\Clouddebugger\V2\Data::initOnce();
         $pool->internalAddGeneratedFile(
             '
-®
-1google/devtools/clouddebugger/v2/controller.proto google.devtools.clouddebugger.v2google/api/client.protogoogle/api/field_behavior.proto+google/devtools/clouddebugger/v2/data.proto"]
-RegisterDebuggeeRequestB
-debuggee (2*.google.devtools.clouddebugger.v2.DebuggeeBâA"X
+ª
+1google/devtools/clouddebugger/v2/controller.proto google.devtools.clouddebugger.v2google/api/client.protogoogle/api/field_behavior.proto+google/devtools/clouddebugger/v2/data.proto"\\
+RegisterDebuggeeRequestA
+debuggee (2*.google.devtools.clouddebugger.v2.DebuggeeBàA"X
 RegisterDebuggeeResponse<
-debuggee (2*.google.devtools.clouddebugger.v2.Debuggee"i
-ListActiveBreakpointsRequest
-debuggee_id (	BâA
+debuggee (2*.google.devtools.clouddebugger.v2.Debuggee"h
+ListActiveBreakpointsRequest
+debuggee_id (	BàA
 
 wait_token (	
 success_on_timeout ("‘
 ListActiveBreakpointsResponseA
 breakpoints (2,.google.devtools.clouddebugger.v2.Breakpoint
 next_wait_token (	
-wait_expired ("‚
-UpdateActiveBreakpointRequest
-debuggee_id (	BâAF
+wait_expired ("€
+UpdateActiveBreakpointRequest
+debuggee_id (	BàAE
 
-breakpoint (2,.google.devtools.clouddebugger.v2.BreakpointBâA" 
+breakpoint (2,.google.devtools.clouddebugger.v2.BreakpointBàA" 
 UpdateActiveBreakpointResponse2¾
 Controller2Â
 RegisterDebuggee9.google.devtools.clouddebugger.v2.RegisterDebuggeeRequest:.google.devtools.clouddebugger.v2.RegisterDebuggeeResponse"7ÚAdebuggee‚Óä“&"!/v2/controller/debuggees/register:*â

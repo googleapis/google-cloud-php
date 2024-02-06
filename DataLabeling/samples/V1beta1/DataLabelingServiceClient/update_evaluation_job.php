@@ -48,7 +48,9 @@ function update_evaluation_job_sample(): void
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateEvaluationJobRequest();
+    $evaluationJob = new EvaluationJob();
+    $request = (new UpdateEvaluationJobRequest())
+        ->setEvaluationJob($evaluationJob);
 
     // Call the API and handle any network failures.
     try {

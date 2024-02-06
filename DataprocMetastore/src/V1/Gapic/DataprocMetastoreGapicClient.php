@@ -100,7 +100,10 @@ use Google\Protobuf\FieldMask;
  * ```
  * $dataprocMetastoreClient = new DataprocMetastoreClient();
  * try {
- *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation();
+ *     $formattedService = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+ *     $resourceName = 'resource_name';
+ *     $locationUri = 'location_uri';
+ *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation($formattedService, $resourceName, $locationUri);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -111,7 +114,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation();
+ *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation($formattedService, $resourceName, $locationUri);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'alterMetadataResourceLocation');
@@ -531,7 +534,10 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation();
+     *     $formattedService = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $resourceName = 'resource_name';
+     *     $locationUri = 'location_uri';
+     *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation($formattedService, $resourceName, $locationUri);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -542,7 +548,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation();
+     *     $operationResponse = $dataprocMetastoreClient->alterMetadataResourceLocation($formattedService, $resourceName, $locationUri);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'alterMetadataResourceLocation');
@@ -562,24 +568,21 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $service      Required. The relative resource name of the metastore service to mutate
+     *                             metadata, in the following format:
+     *
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
+     * @param string $resourceName Required. The relative metadata resource name in the following format.
+     *
+     *                             `databases/{database_id}`
+     *                             or
+     *                             `databases/{database_id}/tables/{table_id}`
+     *                             or
+     *                             `databases/{database_id}/tables/{table_id}/partitions/{partition_id}`
+     * @param string $locationUri  Required. The new location URI for the metadata resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $service
-     *           Required. The relative resource name of the metastore service to mutate
-     *           metadata, in the following format:
-     *
-     *           `projects/{project_id}/locations/{location_id}/services/{service_id}`.
-     *     @type string $resourceName
-     *           Required. The relative metadata resource name in the following format.
-     *
-     *           `databases/{database_id}`
-     *           or
-     *           `databases/{database_id}/tables/{table_id}`
-     *           or
-     *           `databases/{database_id}/tables/{table_id}/partitions/{partition_id}`
-     *     @type string $locationUri
-     *           Required. The new location URI for the metadata resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -590,23 +593,14 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function alterMetadataResourceLocation(array $optionalArgs = [])
+    public function alterMetadataResourceLocation($service, $resourceName, $locationUri, array $optionalArgs = [])
     {
         $request = new AlterMetadataResourceLocationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['service'])) {
-            $request->setService($optionalArgs['service']);
-            $requestParamHeaders['service'] = $optionalArgs['service'];
-        }
-
-        if (isset($optionalArgs['resourceName'])) {
-            $request->setResourceName($optionalArgs['resourceName']);
-        }
-
-        if (isset($optionalArgs['locationUri'])) {
-            $request->setLocationUri($optionalArgs['locationUri']);
-        }
-
+        $request->setService($service);
+        $request->setResourceName($resourceName);
+        $request->setLocationUri($locationUri);
+        $requestParamHeaders['service'] = $service;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('AlterMetadataResourceLocation', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -619,7 +613,10 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $operationResponse = $dataprocMetastoreClient->createBackup();
+     *     $formattedParent = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $backupId = 'backup_id';
+     *     $backup = new Backup();
+     *     $operationResponse = $dataprocMetastoreClient->createBackup($formattedParent, $backupId, $backup);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -630,7 +627,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataprocMetastoreClient->createBackup();
+     *     $operationResponse = $dataprocMetastoreClient->createBackup($formattedParent, $backupId, $backup);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'createBackup');
@@ -650,24 +647,21 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The relative resource name of the service in which to create a
+     *                             backup of the following form:
+     *
+     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}`.
+     * @param string $backupId     Required. The ID of the backup, which is used as the final component of the
+     *                             backup's name.
+     *
+     *                             This value must be between 1 and 64 characters long, begin with a letter,
+     *                             end with a letter or number, and consist of alpha-numeric ASCII characters
+     *                             or hyphens.
+     * @param Backup $backup       Required. The backup to create. The `name` field is ignored. The ID of the
+     *                             created backup must be provided in the request's `backup_id` field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The relative resource name of the service in which to create a
-     *           backup of the following form:
-     *
-     *           `projects/{project_number}/locations/{location_id}/services/{service_id}`.
-     *     @type string $backupId
-     *           Required. The ID of the backup, which is used as the final component of the
-     *           backup's name.
-     *
-     *           This value must be between 1 and 64 characters long, begin with a letter,
-     *           end with a letter or number, and consist of alpha-numeric ASCII characters
-     *           or hyphens.
-     *     @type Backup $backup
-     *           Required. The backup to create. The `name` field is ignored. The ID of the
-     *           created backup must be provided in the request's `backup_id` field.
      *     @type string $requestId
      *           Optional. A request ID. Specify a unique request ID to allow the server to
      *           ignore the request if it has completed. The server will ignore subsequent
@@ -691,23 +685,14 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createBackup(array $optionalArgs = [])
+    public function createBackup($parent, $backupId, $backup, array $optionalArgs = [])
     {
         $request = new CreateBackupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['backupId'])) {
-            $request->setBackupId($optionalArgs['backupId']);
-        }
-
-        if (isset($optionalArgs['backup'])) {
-            $request->setBackup($optionalArgs['backup']);
-        }
-
+        $request->setParent($parent);
+        $request->setBackupId($backupId);
+        $request->setBackup($backup);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -724,7 +709,10 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $operationResponse = $dataprocMetastoreClient->createMetadataImport();
+     *     $formattedParent = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $metadataImportId = 'metadata_import_id';
+     *     $metadataImport = new MetadataImport();
+     *     $operationResponse = $dataprocMetastoreClient->createMetadataImport($formattedParent, $metadataImportId, $metadataImport);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -735,7 +723,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataprocMetastoreClient->createMetadataImport();
+     *     $operationResponse = $dataprocMetastoreClient->createMetadataImport($formattedParent, $metadataImportId, $metadataImport);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'createMetadataImport');
@@ -755,25 +743,22 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string         $parent           Required. The relative resource name of the service in which to create a
+     *                                         metastore import, in the following form:
+     *
+     *                                         `projects/{project_number}/locations/{location_id}/services/{service_id}`.
+     * @param string         $metadataImportId Required. The ID of the metadata import, which is used as the final
+     *                                         component of the metadata import's name.
+     *
+     *                                         This value must be between 1 and 64 characters long, begin with a letter,
+     *                                         end with a letter or number, and consist of alpha-numeric ASCII characters
+     *                                         or hyphens.
+     * @param MetadataImport $metadataImport   Required. The metadata import to create. The `name` field is ignored. The
+     *                                         ID of the created metadata import must be provided in the request's
+     *                                         `metadata_import_id` field.
+     * @param array          $optionalArgs     {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The relative resource name of the service in which to create a
-     *           metastore import, in the following form:
-     *
-     *           `projects/{project_number}/locations/{location_id}/services/{service_id}`.
-     *     @type string $metadataImportId
-     *           Required. The ID of the metadata import, which is used as the final
-     *           component of the metadata import's name.
-     *
-     *           This value must be between 1 and 64 characters long, begin with a letter,
-     *           end with a letter or number, and consist of alpha-numeric ASCII characters
-     *           or hyphens.
-     *     @type MetadataImport $metadataImport
-     *           Required. The metadata import to create. The `name` field is ignored. The
-     *           ID of the created metadata import must be provided in the request's
-     *           `metadata_import_id` field.
      *     @type string $requestId
      *           Optional. A request ID. Specify a unique request ID to allow the server to
      *           ignore the request if it has completed. The server will ignore subsequent
@@ -797,23 +782,14 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createMetadataImport(array $optionalArgs = [])
+    public function createMetadataImport($parent, $metadataImportId, $metadataImport, array $optionalArgs = [])
     {
         $request = new CreateMetadataImportRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['metadataImportId'])) {
-            $request->setMetadataImportId($optionalArgs['metadataImportId']);
-        }
-
-        if (isset($optionalArgs['metadataImport'])) {
-            $request->setMetadataImport($optionalArgs['metadataImport']);
-        }
-
+        $request->setParent($parent);
+        $request->setMetadataImportId($metadataImportId);
+        $request->setMetadataImport($metadataImport);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -830,7 +806,10 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $operationResponse = $dataprocMetastoreClient->createService();
+     *     $formattedParent = $dataprocMetastoreClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $serviceId = 'service_id';
+     *     $service = new Service();
+     *     $operationResponse = $dataprocMetastoreClient->createService($formattedParent, $serviceId, $service);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -841,7 +820,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataprocMetastoreClient->createService();
+     *     $operationResponse = $dataprocMetastoreClient->createService($formattedParent, $serviceId, $service);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'createService');
@@ -861,25 +840,22 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string  $parent       Required. The relative resource name of the location in which to create a
+     *                              metastore service, in the following form:
+     *
+     *                              `projects/{project_number}/locations/{location_id}`.
+     * @param string  $serviceId    Required. The ID of the metastore service, which is used as the final
+     *                              component of the metastore service's name.
+     *
+     *                              This value must be between 2 and 63 characters long inclusive, begin with a
+     *                              letter, end with a letter or number, and consist of alpha-numeric
+     *                              ASCII characters or hyphens.
+     * @param Service $service      Required. The Metastore service to create. The `name` field is
+     *                              ignored. The ID of the created metastore service must be provided in
+     *                              the request's `service_id` field.
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The relative resource name of the location in which to create a
-     *           metastore service, in the following form:
-     *
-     *           `projects/{project_number}/locations/{location_id}`.
-     *     @type string $serviceId
-     *           Required. The ID of the metastore service, which is used as the final
-     *           component of the metastore service's name.
-     *
-     *           This value must be between 2 and 63 characters long inclusive, begin with a
-     *           letter, end with a letter or number, and consist of alpha-numeric
-     *           ASCII characters or hyphens.
-     *     @type Service $service
-     *           Required. The Metastore service to create. The `name` field is
-     *           ignored. The ID of the created metastore service must be provided in
-     *           the request's `service_id` field.
      *     @type string $requestId
      *           Optional. A request ID. Specify a unique request ID to allow the server to
      *           ignore the request if it has completed. The server will ignore subsequent
@@ -903,23 +879,14 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createService(array $optionalArgs = [])
+    public function createService($parent, $serviceId, $service, array $optionalArgs = [])
     {
         $request = new CreateServiceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['serviceId'])) {
-            $request->setServiceId($optionalArgs['serviceId']);
-        }
-
-        if (isset($optionalArgs['service'])) {
-            $request->setService($optionalArgs['service']);
-        }
-
+        $request->setParent($parent);
+        $request->setServiceId($serviceId);
+        $request->setService($service);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -936,7 +903,8 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $operationResponse = $dataprocMetastoreClient->deleteBackup();
+     *     $formattedName = $dataprocMetastoreClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+     *     $operationResponse = $dataprocMetastoreClient->deleteBackup($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -946,7 +914,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataprocMetastoreClient->deleteBackup();
+     *     $operationResponse = $dataprocMetastoreClient->deleteBackup($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'deleteBackup');
@@ -965,14 +933,13 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The relative resource name of the backup to delete, in the
+     *                             following form:
+     *
+     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The relative resource name of the backup to delete, in the
-     *           following form:
-     *
-     *           `projects/{project_number}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      *     @type string $requestId
      *           Optional. A request ID. Specify a unique request ID to allow the server to
      *           ignore the request if it has completed. The server will ignore subsequent
@@ -996,15 +963,12 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteBackup(array $optionalArgs = [])
+    public function deleteBackup($name, array $optionalArgs = [])
     {
         $request = new DeleteBackupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1021,7 +985,8 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $operationResponse = $dataprocMetastoreClient->deleteService();
+     *     $formattedName = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $operationResponse = $dataprocMetastoreClient->deleteService($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1031,7 +996,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataprocMetastoreClient->deleteService();
+     *     $operationResponse = $dataprocMetastoreClient->deleteService($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'deleteService');
@@ -1050,14 +1015,13 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The relative resource name of the metastore service to delete, in
+     *                             the following form:
+     *
+     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The relative resource name of the metastore service to delete, in
-     *           the following form:
-     *
-     *           `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *     @type string $requestId
      *           Optional. A request ID. Specify a unique request ID to allow the server to
      *           ignore the request if it has completed. The server will ignore subsequent
@@ -1081,15 +1045,12 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteService(array $optionalArgs = [])
+    public function deleteService($name, array $optionalArgs = [])
     {
         $request = new DeleteServiceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1106,7 +1067,8 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $operationResponse = $dataprocMetastoreClient->exportMetadata();
+     *     $formattedService = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $operationResponse = $dataprocMetastoreClient->exportMetadata($formattedService);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1117,7 +1079,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataprocMetastoreClient->exportMetadata();
+     *     $operationResponse = $dataprocMetastoreClient->exportMetadata($formattedService);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'exportMetadata');
@@ -1137,18 +1099,17 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $service      Required. The relative resource name of the metastore service to run
+     *                             export, in the following form:
+     *
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $destinationGcsFolder
      *           A Cloud Storage URI of a folder, in the format
      *           `gs://<bucket_name>/<path_inside_bucket>`. A sub-folder
      *           `<export_folder>` containing exported files will be created below it.
-     *     @type string $service
-     *           Required. The relative resource name of the metastore service to run
-     *           export, in the following form:
-     *
-     *           `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *     @type string $requestId
      *           Optional. A request ID. Specify a unique request ID to allow the server to
      *           ignore the request if it has completed. The server will ignore subsequent
@@ -1176,17 +1137,14 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function exportMetadata(array $optionalArgs = [])
+    public function exportMetadata($service, array $optionalArgs = [])
     {
         $request = new ExportMetadataRequest();
         $requestParamHeaders = [];
+        $request->setService($service);
+        $requestParamHeaders['service'] = $service;
         if (isset($optionalArgs['destinationGcsFolder'])) {
             $request->setDestinationGcsFolder($optionalArgs['destinationGcsFolder']);
-        }
-
-        if (isset($optionalArgs['service'])) {
-            $request->setService($optionalArgs['service']);
-            $requestParamHeaders['service'] = $optionalArgs['service'];
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -1209,20 +1167,20 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $response = $dataprocMetastoreClient->getBackup();
+     *     $formattedName = $dataprocMetastoreClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+     *     $response = $dataprocMetastoreClient->getBackup($formattedName);
      * } finally {
      *     $dataprocMetastoreClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The relative resource name of the backup to retrieve, in the
+     *                             following form:
+     *
+     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The relative resource name of the backup to retrieve, in the
-     *           following form:
-     *
-     *           `projects/{project_number}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1233,15 +1191,12 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getBackup(array $optionalArgs = [])
+    public function getBackup($name, array $optionalArgs = [])
     {
         $request = new GetBackupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetBackup', Backup::class, $optionalArgs, $request)->wait();
@@ -1254,20 +1209,20 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $response = $dataprocMetastoreClient->getMetadataImport();
+     *     $formattedName = $dataprocMetastoreClient->metadataImportName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[METADATA_IMPORT]');
+     *     $response = $dataprocMetastoreClient->getMetadataImport($formattedName);
      * } finally {
      *     $dataprocMetastoreClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The relative resource name of the metadata import to retrieve, in
+     *                             the following form:
+     *
+     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports/{import_id}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The relative resource name of the metadata import to retrieve, in
-     *           the following form:
-     *
-     *           `projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports/{import_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1278,15 +1233,12 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getMetadataImport(array $optionalArgs = [])
+    public function getMetadataImport($name, array $optionalArgs = [])
     {
         $request = new GetMetadataImportRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetMetadataImport', MetadataImport::class, $optionalArgs, $request)->wait();
@@ -1299,20 +1251,20 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $response = $dataprocMetastoreClient->getService();
+     *     $formattedName = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $response = $dataprocMetastoreClient->getService($formattedName);
      * } finally {
      *     $dataprocMetastoreClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The relative resource name of the metastore service to retrieve,
+     *                             in the following form:
+     *
+     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The relative resource name of the metastore service to retrieve,
-     *           in the following form:
-     *
-     *           `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1323,15 +1275,12 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getService(array $optionalArgs = [])
+    public function getService($name, array $optionalArgs = [])
     {
         $request = new GetServiceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetService', Service::class, $optionalArgs, $request)->wait();
@@ -1344,8 +1293,9 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
+     *     $formattedParent = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataprocMetastoreClient->listBackups();
+     *     $pagedResponse = $dataprocMetastoreClient->listBackups($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1353,7 +1303,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataprocMetastoreClient->listBackups();
+     *     $pagedResponse = $dataprocMetastoreClient->listBackups($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1362,14 +1312,13 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The relative resource name of the service whose backups to
+     *                             list, in the following form:
+     *
+     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}/backups`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The relative resource name of the service whose backups to
-     *           list, in the following form:
-     *
-     *           `projects/{project_number}/locations/{location_id}/services/{service_id}/backups`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1395,15 +1344,12 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listBackups(array $optionalArgs = [])
+    public function listBackups($parent, array $optionalArgs = [])
     {
         $request = new ListBackupsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1432,8 +1378,9 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
+     *     $formattedParent = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataprocMetastoreClient->listMetadataImports();
+     *     $pagedResponse = $dataprocMetastoreClient->listMetadataImports($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1441,7 +1388,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataprocMetastoreClient->listMetadataImports();
+     *     $pagedResponse = $dataprocMetastoreClient->listMetadataImports($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1450,14 +1397,13 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The relative resource name of the service whose metadata imports
+     *                             to list, in the following form:
+     *
+     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The relative resource name of the service whose metadata imports
-     *           to list, in the following form:
-     *
-     *           `projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1483,15 +1429,12 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listMetadataImports(array $optionalArgs = [])
+    public function listMetadataImports($parent, array $optionalArgs = [])
     {
         $request = new ListMetadataImportsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1520,8 +1463,9 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
+     *     $formattedParent = $dataprocMetastoreClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataprocMetastoreClient->listServices();
+     *     $pagedResponse = $dataprocMetastoreClient->listServices($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1529,7 +1473,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataprocMetastoreClient->listServices();
+     *     $pagedResponse = $dataprocMetastoreClient->listServices($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1538,14 +1482,13 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The relative resource name of the location of metastore services
+     *                             to list, in the following form:
+     *
+     *                             `projects/{project_number}/locations/{location_id}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The relative resource name of the location of metastore services
-     *           to list, in the following form:
-     *
-     *           `projects/{project_number}/locations/{location_id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1571,15 +1514,12 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listServices(array $optionalArgs = [])
+    public function listServices($parent, array $optionalArgs = [])
     {
         $request = new ListServicesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1608,7 +1548,11 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $operationResponse = $dataprocMetastoreClient->moveTableToDatabase();
+     *     $formattedService = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $tableName = 'table_name';
+     *     $dbName = 'db_name';
+     *     $destinationDbName = 'destination_db_name';
+     *     $operationResponse = $dataprocMetastoreClient->moveTableToDatabase($formattedService, $tableName, $dbName, $destinationDbName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1619,7 +1563,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataprocMetastoreClient->moveTableToDatabase();
+     *     $operationResponse = $dataprocMetastoreClient->moveTableToDatabase($formattedService, $tableName, $dbName, $destinationDbName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'moveTableToDatabase');
@@ -1639,20 +1583,16 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $service           Required. The relative resource name of the metastore service to mutate
+     *                                  metadata, in the following format:
+     *
+     *                                  `projects/{project_id}/locations/{location_id}/services/{service_id}`.
+     * @param string $tableName         Required. The name of the table to be moved.
+     * @param string $dbName            Required. The name of the database where the table resides.
+     * @param string $destinationDbName Required. The name of the database where the table should be moved.
+     * @param array  $optionalArgs      {
      *     Optional.
      *
-     *     @type string $service
-     *           Required. The relative resource name of the metastore service to mutate
-     *           metadata, in the following format:
-     *
-     *           `projects/{project_id}/locations/{location_id}/services/{service_id}`.
-     *     @type string $tableName
-     *           Required. The name of the table to be moved.
-     *     @type string $dbName
-     *           Required. The name of the database where the table resides.
-     *     @type string $destinationDbName
-     *           Required. The name of the database where the table should be moved.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1663,27 +1603,15 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function moveTableToDatabase(array $optionalArgs = [])
+    public function moveTableToDatabase($service, $tableName, $dbName, $destinationDbName, array $optionalArgs = [])
     {
         $request = new MoveTableToDatabaseRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['service'])) {
-            $request->setService($optionalArgs['service']);
-            $requestParamHeaders['service'] = $optionalArgs['service'];
-        }
-
-        if (isset($optionalArgs['tableName'])) {
-            $request->setTableName($optionalArgs['tableName']);
-        }
-
-        if (isset($optionalArgs['dbName'])) {
-            $request->setDbName($optionalArgs['dbName']);
-        }
-
-        if (isset($optionalArgs['destinationDbName'])) {
-            $request->setDestinationDbName($optionalArgs['destinationDbName']);
-        }
-
+        $request->setService($service);
+        $request->setTableName($tableName);
+        $request->setDbName($dbName);
+        $request->setDestinationDbName($destinationDbName);
+        $requestParamHeaders['service'] = $service;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('MoveTableToDatabase', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1696,7 +1624,9 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $operationResponse = $dataprocMetastoreClient->queryMetadata();
+     *     $formattedService = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $query = 'query';
+     *     $operationResponse = $dataprocMetastoreClient->queryMetadata($formattedService, $query);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1707,7 +1637,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataprocMetastoreClient->queryMetadata();
+     *     $operationResponse = $dataprocMetastoreClient->queryMetadata($formattedService, $query);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'queryMetadata');
@@ -1727,17 +1657,15 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $service      Required. The relative resource name of the metastore service to query
+     *                             metadata, in the following format:
+     *
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
+     * @param string $query        Required. A read-only SQL query to execute against the metadata database.
+     *                             The query cannot change or mutate the data.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $service
-     *           Required. The relative resource name of the metastore service to query
-     *           metadata, in the following format:
-     *
-     *           `projects/{project_id}/locations/{location_id}/services/{service_id}`.
-     *     @type string $query
-     *           Required. A read-only SQL query to execute against the metadata database.
-     *           The query cannot change or mutate the data.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1748,19 +1676,13 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function queryMetadata(array $optionalArgs = [])
+    public function queryMetadata($service, $query, array $optionalArgs = [])
     {
         $request = new QueryMetadataRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['service'])) {
-            $request->setService($optionalArgs['service']);
-            $requestParamHeaders['service'] = $optionalArgs['service'];
-        }
-
-        if (isset($optionalArgs['query'])) {
-            $request->setQuery($optionalArgs['query']);
-        }
-
+        $request->setService($service);
+        $request->setQuery($query);
+        $requestParamHeaders['service'] = $service;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('QueryMetadata', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1773,7 +1695,9 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $operationResponse = $dataprocMetastoreClient->restoreService();
+     *     $formattedService = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $formattedBackup = $dataprocMetastoreClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+     *     $operationResponse = $dataprocMetastoreClient->restoreService($formattedService, $formattedBackup);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1784,7 +1708,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataprocMetastoreClient->restoreService();
+     *     $operationResponse = $dataprocMetastoreClient->restoreService($formattedService, $formattedBackup);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'restoreService');
@@ -1804,19 +1728,17 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $service      Required. The relative resource name of the metastore service to run
+     *                             restore, in the following form:
+     *
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
+     * @param string $backup       Required. The relative resource name of the metastore service backup to
+     *                             restore from, in the following form:
+     *
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $service
-     *           Required. The relative resource name of the metastore service to run
-     *           restore, in the following form:
-     *
-     *           `projects/{project_id}/locations/{location_id}/services/{service_id}`.
-     *     @type string $backup
-     *           Required. The relative resource name of the metastore service backup to
-     *           restore from, in the following form:
-     *
-     *           `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      *     @type int $restoreType
      *           Optional. The type of restore. If unspecified, defaults to `METADATA_ONLY`.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Metastore\V1\Restore\RestoreType}
@@ -1843,19 +1765,13 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function restoreService(array $optionalArgs = [])
+    public function restoreService($service, $backup, array $optionalArgs = [])
     {
         $request = new RestoreServiceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['service'])) {
-            $request->setService($optionalArgs['service']);
-            $requestParamHeaders['service'] = $optionalArgs['service'];
-        }
-
-        if (isset($optionalArgs['backup'])) {
-            $request->setBackup($optionalArgs['backup']);
-        }
-
+        $request->setService($service);
+        $request->setBackup($backup);
+        $requestParamHeaders['service'] = $service;
         if (isset($optionalArgs['restoreType'])) {
             $request->setRestoreType($optionalArgs['restoreType']);
         }
@@ -1877,7 +1793,9 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $operationResponse = $dataprocMetastoreClient->updateMetadataImport();
+     *     $updateMask = new FieldMask();
+     *     $metadataImport = new MetadataImport();
+     *     $operationResponse = $dataprocMetastoreClient->updateMetadataImport($updateMask, $metadataImport);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1888,7 +1806,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataprocMetastoreClient->updateMetadataImport();
+     *     $operationResponse = $dataprocMetastoreClient->updateMetadataImport($updateMask, $metadataImport);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'updateMetadataImport');
@@ -1908,20 +1826,18 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param FieldMask      $updateMask     Required. A field mask used to specify the fields to be overwritten in the
+     *                                       metadata import resource by the update.
+     *                                       Fields specified in the `update_mask` are relative to the resource (not
+     *                                       to the full request). A field is overwritten if it is in the mask.
+     * @param MetadataImport $metadataImport Required. The metadata import to update. The server only merges fields
+     *                                       in the import if they are specified in `update_mask`.
+     *
+     *                                       The metadata import's `name` field is used to identify the metastore
+     *                                       import to be updated.
+     * @param array          $optionalArgs   {
      *     Optional.
      *
-     *     @type FieldMask $updateMask
-     *           Required. A field mask used to specify the fields to be overwritten in the
-     *           metadata import resource by the update.
-     *           Fields specified in the `update_mask` are relative to the resource (not
-     *           to the full request). A field is overwritten if it is in the mask.
-     *     @type MetadataImport $metadataImport
-     *           Required. The metadata import to update. The server only merges fields
-     *           in the import if they are specified in `update_mask`.
-     *
-     *           The metadata import's `name` field is used to identify the metastore
-     *           import to be updated.
      *     @type string $requestId
      *           Optional. A request ID. Specify a unique request ID to allow the server to
      *           ignore the request if it has completed. The server will ignore subsequent
@@ -1945,18 +1861,13 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateMetadataImport(array $optionalArgs = [])
+    public function updateMetadataImport($updateMask, $metadataImport, array $optionalArgs = [])
     {
         $request = new UpdateMetadataImportRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        if (isset($optionalArgs['metadataImport'])) {
-            $request->setMetadataImport($optionalArgs['metadataImport']);
-        }
-
+        $request->setUpdateMask($updateMask);
+        $request->setMetadataImport($metadataImport);
+        $requestParamHeaders['metadata_import.name'] = $metadataImport->getName();
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1973,7 +1884,9 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $operationResponse = $dataprocMetastoreClient->updateService();
+     *     $updateMask = new FieldMask();
+     *     $service = new Service();
+     *     $operationResponse = $dataprocMetastoreClient->updateService($updateMask, $service);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1984,7 +1897,7 @@ class DataprocMetastoreGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataprocMetastoreClient->updateService();
+     *     $operationResponse = $dataprocMetastoreClient->updateService($updateMask, $service);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'updateService');
@@ -2004,20 +1917,18 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param FieldMask $updateMask   Required. A field mask used to specify the fields to be overwritten in the
+     *                                metastore service resource by the update.
+     *                                Fields specified in the `update_mask` are relative to the resource (not
+     *                                to the full request). A field is overwritten if it is in the mask.
+     * @param Service   $service      Required. The metastore service to update. The server only merges fields
+     *                                in the service if they are specified in `update_mask`.
+     *
+     *                                The metastore service's `name` field is used to identify the metastore
+     *                                service to be updated.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type FieldMask $updateMask
-     *           Required. A field mask used to specify the fields to be overwritten in the
-     *           metastore service resource by the update.
-     *           Fields specified in the `update_mask` are relative to the resource (not
-     *           to the full request). A field is overwritten if it is in the mask.
-     *     @type Service $service
-     *           Required. The metastore service to update. The server only merges fields
-     *           in the service if they are specified in `update_mask`.
-     *
-     *           The metastore service's `name` field is used to identify the metastore
-     *           service to be updated.
      *     @type string $requestId
      *           Optional. A request ID. Specify a unique request ID to allow the server to
      *           ignore the request if it has completed. The server will ignore subsequent
@@ -2041,18 +1952,13 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateService(array $optionalArgs = [])
+    public function updateService($updateMask, $service, array $optionalArgs = [])
     {
         $request = new UpdateServiceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        if (isset($optionalArgs['service'])) {
-            $request->setService($optionalArgs['service']);
-        }
-
+        $request->setUpdateMask($updateMask);
+        $request->setService($service);
+        $requestParamHeaders['service.name'] = $service->getName();
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -2189,18 +2095,18 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $response = $dataprocMetastoreClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $dataprocMetastoreClient->getIamPolicy($resource);
      * } finally {
      *     $dataprocMetastoreClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -2214,15 +2120,12 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -2243,23 +2146,23 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $response = $dataprocMetastoreClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $dataprocMetastoreClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $dataprocMetastoreClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -2276,19 +2179,13 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2311,23 +2208,23 @@ class DataprocMetastoreGapicClient
      * ```
      * $dataprocMetastoreClient = new DataprocMetastoreClient();
      * try {
-     *     $response = $dataprocMetastoreClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $dataprocMetastoreClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $dataprocMetastoreClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2338,19 +2235,13 @@ class DataprocMetastoreGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();

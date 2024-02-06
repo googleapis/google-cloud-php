@@ -35,19 +35,22 @@ use Google\Cloud\Dialogflow\V2\Intent;
  * [training
  * documentation](https://cloud.google.com/dialogflow/es/docs/training).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent   The agent to create a intent for.
+ *                                  Format: `projects/<Project ID>/agent`. Please see
+ *                                  {@see IntentsClient::agentName()} for help formatting this field.
+ * @param string $intentDisplayName The name of this intent.
  */
-function create_intent_sample(): void
+function create_intent_sample(string $formattedParent, string $intentDisplayName): void
 {
     // Create a client.
     $intentsClient = new IntentsClient();
 
     // Prepare the request message.
-    $request = new CreateIntentRequest();
+    $intent = (new Intent())
+        ->setDisplayName($intentDisplayName);
+    $request = (new CreateIntentRequest())
+        ->setParent($formattedParent)
+        ->setIntent($intent);
 
     // Call the API and handle any network failures.
     try {
@@ -57,5 +60,22 @@ function create_intent_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = IntentsClient::agentName('[PROJECT]');
+    $intentDisplayName = '[DISPLAY_NAME]';
+
+    create_intent_sample($formattedParent, $intentDisplayName);
 }
 // [END dialogflow_v2_generated_Intents_CreateIntent_sync]

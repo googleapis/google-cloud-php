@@ -30,6 +30,7 @@ use Google\Cloud\Dialogflow\V2\Fulfillment;
 use Google\Cloud\Dialogflow\V2\FulfillmentsClient;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -78,13 +79,17 @@ class FulfillmentsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEnabled($enabled);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getFulfillment();
+        // Mock request
+        $formattedName = $gapicClient->fulfillmentName('[PROJECT]');
+        $response = $gapicClient->getFulfillment($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Fulfillments/GetFulfillment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -106,8 +111,10 @@ class FulfillmentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->fulfillmentName('[PROJECT]');
         try {
-            $gapicClient->getFulfillment();
+            $gapicClient->getFulfillment($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -136,13 +143,22 @@ class FulfillmentsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEnabled($enabled);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->updateFulfillment();
+        // Mock request
+        $fulfillment = new Fulfillment();
+        $fulfillmentName = 'fulfillmentName1097998729';
+        $fulfillment->setName($fulfillmentName);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateFulfillment($fulfillment, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Fulfillments/UpdateFulfillment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getFulfillment();
+        $this->assertProtobufEquals($fulfillment, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -164,8 +180,13 @@ class FulfillmentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $fulfillment = new Fulfillment();
+        $fulfillmentName = 'fulfillmentName1097998729';
+        $fulfillment->setName($fulfillmentName);
+        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateFulfillment();
+            $gapicClient->updateFulfillment($fulfillment, $updateMask);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -56,7 +56,9 @@ use Google\Cloud\Location\Location;
  * ```
  * $confidentialComputingClient = new ConfidentialComputingClient();
  * try {
- *     $response = $confidentialComputingClient->createChallenge();
+ *     $formattedParent = $confidentialComputingClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $challenge = new Challenge();
+ *     $response = $confidentialComputingClient->createChallenge($formattedParent, $challenge);
  * } finally {
  *     $confidentialComputingClient->close();
  * }
@@ -314,21 +316,21 @@ class ConfidentialComputingGapicClient
      * ```
      * $confidentialComputingClient = new ConfidentialComputingClient();
      * try {
-     *     $response = $confidentialComputingClient->createChallenge();
+     *     $formattedParent = $confidentialComputingClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $challenge = new Challenge();
+     *     $response = $confidentialComputingClient->createChallenge($formattedParent, $challenge);
      * } finally {
      *     $confidentialComputingClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string    $parent       Required. The resource name of the location where the Challenge will be
+     *                                used, in the format `projects/&#42;/locations/*`.
+     * @param Challenge $challenge    Required. The Challenge to be created. Currently this field can be empty as
+     *                                all the Challenge fields are set by the server.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the location where the Challenge will be
-     *           used, in the format `projects/&#42;/locations/*`.
-     *     @type Challenge $challenge
-     *           Required. The Challenge to be created. Currently this field can be empty as
-     *           all the Challenge fields are set by the server.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -339,19 +341,16 @@ class ConfidentialComputingGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createChallenge(array $optionalArgs = [])
-    {
+    public function createChallenge(
+        $parent,
+        $challenge,
+        array $optionalArgs = []
+    ) {
         $request = new CreateChallengeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['challenge'])) {
-            $request->setChallenge($optionalArgs['challenge']);
-        }
-
+        $request->setParent($parent);
+        $request->setChallenge($challenge);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -373,25 +372,25 @@ class ConfidentialComputingGapicClient
      * ```
      * $confidentialComputingClient = new ConfidentialComputingClient();
      * try {
-     *     $response = $confidentialComputingClient->verifyAttestation();
+     *     $formattedChallenge = $confidentialComputingClient->challengeName('[PROJECT]', '[LOCATION]', '[UUID]');
+     *     $tpmAttestation = new TpmAttestation();
+     *     $response = $confidentialComputingClient->verifyAttestation($formattedChallenge, $tpmAttestation);
      * } finally {
      *     $confidentialComputingClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string         $challenge      Required. The name of the Challenge whose nonce was used to generate the
+     *                                       attestation, in the format `projects/&#42;/locations/&#42;/challenges/*`. The
+     *                                       provided Challenge will be consumed, and cannot be used again.
+     * @param TpmAttestation $tpmAttestation Required. The TPM-specific data provided by the attesting platform, used to
+     *                                       populate any of the claims regarding platform state.
+     * @param array          $optionalArgs   {
      *     Optional.
      *
-     *     @type string $challenge
-     *           Required. The name of the Challenge whose nonce was used to generate the
-     *           attestation, in the format `projects/&#42;/locations/&#42;/challenges/*`. The
-     *           provided Challenge will be consumed, and cannot be used again.
      *     @type GcpCredentials $gcpCredentials
      *           Optional. Credentials used to populate the "emails" claim in the
      *           claims_token.
-     *     @type TpmAttestation $tpmAttestation
-     *           Required. The TPM-specific data provided by the attesting platform, used to
-     *           populate any of the claims regarding platform state.
      *     @type ConfidentialSpaceInfo $confidentialSpaceInfo
      *           Optional. Optional information related to the Confidential Space TEE.
      *     @type TokenOptions $tokenOptions
@@ -407,21 +406,18 @@ class ConfidentialComputingGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function verifyAttestation(array $optionalArgs = [])
-    {
+    public function verifyAttestation(
+        $challenge,
+        $tpmAttestation,
+        array $optionalArgs = []
+    ) {
         $request = new VerifyAttestationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['challenge'])) {
-            $request->setChallenge($optionalArgs['challenge']);
-            $requestParamHeaders['challenge'] = $optionalArgs['challenge'];
-        }
-
+        $request->setChallenge($challenge);
+        $request->setTpmAttestation($tpmAttestation);
+        $requestParamHeaders['challenge'] = $challenge;
         if (isset($optionalArgs['gcpCredentials'])) {
             $request->setGcpCredentials($optionalArgs['gcpCredentials']);
-        }
-
-        if (isset($optionalArgs['tpmAttestation'])) {
-            $request->setTpmAttestation($optionalArgs['tpmAttestation']);
         }
 
         if (isset($optionalArgs['confidentialSpaceInfo'])) {

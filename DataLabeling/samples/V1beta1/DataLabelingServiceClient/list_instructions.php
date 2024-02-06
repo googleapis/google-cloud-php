@@ -32,19 +32,18 @@ use Google\Cloud\DataLabeling\V1beta1\ListInstructionsRequest;
 /**
  * Lists instructions for a project. Pagination is supported.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Instruction resource parent, format:
+ *                                projects/{project_id}
+ *                                Please see {@see DataLabelingServiceClient::projectName()} for help formatting this field.
  */
-function list_instructions_sample(): void
+function list_instructions_sample(string $formattedParent): void
 {
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
     // Prepare the request message.
-    $request = new ListInstructionsRequest();
+    $request = (new ListInstructionsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function list_instructions_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataLabelingServiceClient::projectName('[PROJECT]');
+
+    list_instructions_sample($formattedParent);
 }
 // [END datalabeling_v1beta1_generated_DataLabelingService_ListInstructions_sync]

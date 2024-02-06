@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
 use Google\Cloud\ContactCenterInsights\V1\Settings;
 use Google\Cloud\ContactCenterInsights\V1\UpdateSettingsRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates project-level settings.
@@ -43,7 +44,11 @@ function update_settings_sample(): void
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $request = new UpdateSettingsRequest();
+    $settings = new Settings();
+    $updateMask = new FieldMask();
+    $request = (new UpdateSettingsRequest())
+        ->setSettings($settings)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {

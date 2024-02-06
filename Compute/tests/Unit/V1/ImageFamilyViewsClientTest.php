@@ -70,13 +70,23 @@ class ImageFamilyViewsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ImageFamilyView();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->get();
+        // Mock request
+        $family = 'family-1281860764';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $gapicClient->get($family, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ImageFamilyViews/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getFamily();
+        $this->assertProtobufEquals($family, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -98,8 +108,12 @@ class ImageFamilyViewsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $family = 'family-1281860764';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
         try {
-            $gapicClient->get();
+            $gapicClient->get($family, $project, $zone);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

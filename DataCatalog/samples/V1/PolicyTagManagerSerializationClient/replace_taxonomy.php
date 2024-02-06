@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\DataCatalog\V1\Client\PolicyTagManagerSerializationClient;
 use Google\Cloud\DataCatalog\V1\ReplaceTaxonomyRequest;
+use Google\Cloud\DataCatalog\V1\SerializedTaxonomy;
 use Google\Cloud\DataCatalog\V1\Taxonomy;
 
 /**
@@ -43,19 +44,24 @@ use Google\Cloud\DataCatalog\V1\Taxonomy;
  * new.
  * - Updates policy tags with valid resources names accordingly.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName                 Resource name of the taxonomy to update. Please see
+ *                                              {@see PolicyTagManagerSerializationClient::taxonomyName()} for help formatting this field.
+ * @param string $serializedTaxonomyDisplayName Display name of the taxonomy. At most 200 bytes when encoded in
+ *                                              UTF-8.
  */
-function replace_taxonomy_sample(): void
-{
+function replace_taxonomy_sample(
+    string $formattedName,
+    string $serializedTaxonomyDisplayName
+): void {
     // Create a client.
     $policyTagManagerSerializationClient = new PolicyTagManagerSerializationClient();
 
     // Prepare the request message.
-    $request = new ReplaceTaxonomyRequest();
+    $serializedTaxonomy = (new SerializedTaxonomy())
+        ->setDisplayName($serializedTaxonomyDisplayName);
+    $request = (new ReplaceTaxonomyRequest())
+        ->setName($formattedName)
+        ->setSerializedTaxonomy($serializedTaxonomy);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +71,26 @@ function replace_taxonomy_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = PolicyTagManagerSerializationClient::taxonomyName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[TAXONOMY]'
+    );
+    $serializedTaxonomyDisplayName = '[DISPLAY_NAME]';
+
+    replace_taxonomy_sample($formattedName, $serializedTaxonomyDisplayName);
 }
 // [END datacatalog_v1_generated_PolicyTagManagerSerialization_ReplaceTaxonomy_sync]

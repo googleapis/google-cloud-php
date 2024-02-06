@@ -28,7 +28,8 @@ class GetChangelogRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the changelog to get.
      *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/changelogs/<Changelog ID>`.
+     *                     ID>/changelogs/<Changelog ID>`. Please see
+     *                     {@see ChangelogsClient::changelogName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetChangelogRequest
      *

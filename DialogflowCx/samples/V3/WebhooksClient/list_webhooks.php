@@ -32,19 +32,18 @@ use Google\Cloud\Dialogflow\Cx\V3\Webhook;
 /**
  * Returns the list of all webhooks in the specified agent.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The agent to list all webhooks for.
+ *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                {@see WebhooksClient::agentName()} for help formatting this field.
  */
-function list_webhooks_sample(): void
+function list_webhooks_sample(string $formattedParent): void
 {
     // Create a client.
     $webhooksClient = new WebhooksClient();
 
     // Prepare the request message.
-    $request = new ListWebhooksRequest();
+    $request = (new ListWebhooksRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function list_webhooks_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = WebhooksClient::agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+
+    list_webhooks_sample($formattedParent);
 }
 // [END dialogflow_v3_generated_Webhooks_ListWebhooks_sync]

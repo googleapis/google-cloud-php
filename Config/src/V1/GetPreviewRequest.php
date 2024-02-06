@@ -25,7 +25,8 @@ class GetPreviewRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the preview. Format:
-     *                     'projects/{project_id}/locations/{location}/previews/{preview}'.
+     *                     'projects/{project_id}/locations/{location}/previews/{preview}'. Please see
+     *                     {@see ConfigClient::previewName()} for help formatting this field.
      *
      * @return \Google\Cloud\Config\V1\GetPreviewRequest
      *

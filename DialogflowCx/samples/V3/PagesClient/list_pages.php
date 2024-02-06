@@ -32,19 +32,19 @@ use Google\Cloud\Dialogflow\Cx\V3\Page;
 /**
  * Returns the list of all pages in the specified flow.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The flow to list all pages for.
+ *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+ *                                ID>/flows/<Flow ID>`. Please see
+ *                                {@see PagesClient::flowName()} for help formatting this field.
  */
-function list_pages_sample(): void
+function list_pages_sample(string $formattedParent): void
 {
     // Create a client.
     $pagesClient = new PagesClient();
 
     // Prepare the request message.
-    $request = new ListPagesRequest();
+    $request = (new ListPagesRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +58,21 @@ function list_pages_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = PagesClient::flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+
+    list_pages_sample($formattedParent);
 }
 // [END dialogflow_v3_generated_Pages_ListPages_sync]

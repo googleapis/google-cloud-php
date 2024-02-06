@@ -91,7 +91,9 @@ class ChangelogsClientTest extends GeneratedTest
         $expectedResponse->setType($type);
         $expectedResponse->setResource($resource);
         $transport->addResponse($expectedResponse);
-        $request = new GetChangelogRequest();
+        // Mock request
+        $formattedName = $gapicClient->changelogName('[PROJECT]', '[LOCATION]', '[AGENT]', '[CHANGELOG]');
+        $request = (new GetChangelogRequest())->setName($formattedName);
         $response = $gapicClient->getChangelog($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -99,6 +101,8 @@ class ChangelogsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Changelogs/GetChangelog', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -123,7 +127,9 @@ class ChangelogsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetChangelogRequest();
+        // Mock request
+        $formattedName = $gapicClient->changelogName('[PROJECT]', '[LOCATION]', '[AGENT]', '[CHANGELOG]');
+        $request = (new GetChangelogRequest())->setName($formattedName);
         try {
             $gapicClient->getChangelog($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -153,7 +159,9 @@ class ChangelogsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setChangelogs($changelogs);
         $transport->addResponse($expectedResponse);
-        $request = new ListChangelogsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ListChangelogsRequest())->setParent($formattedParent);
         $response = $gapicClient->listChangelogs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -164,6 +172,8 @@ class ChangelogsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Changelogs/ListChangelogs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -188,7 +198,9 @@ class ChangelogsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListChangelogsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ListChangelogsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listChangelogs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -353,7 +365,9 @@ class ChangelogsClientTest extends GeneratedTest
         $expectedResponse->setType($type);
         $expectedResponse->setResource($resource);
         $transport->addResponse($expectedResponse);
-        $request = new GetChangelogRequest();
+        // Mock request
+        $formattedName = $gapicClient->changelogName('[PROJECT]', '[LOCATION]', '[AGENT]', '[CHANGELOG]');
+        $request = (new GetChangelogRequest())->setName($formattedName);
         $response = $gapicClient->getChangelogAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -361,6 +375,8 @@ class ChangelogsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Changelogs/GetChangelog', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

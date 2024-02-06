@@ -115,7 +115,14 @@ class ConversationModelsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateConversationModelRequest();
+        // Mock request
+        $conversationModel = new ConversationModel();
+        $conversationModelDisplayName = 'conversationModelDisplayName-1078928857';
+        $conversationModel->setDisplayName($conversationModelDisplayName);
+        $conversationModelDatasets = [];
+        $conversationModel->setDatasets($conversationModelDatasets);
+        $request = (new CreateConversationModelRequest())
+            ->setConversationModel($conversationModel);
         $response = $gapicClient->createConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -126,6 +133,8 @@ class ConversationModelsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationModels/CreateConversationModel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getConversationModel();
+        $this->assertProtobufEquals($conversationModel, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createConversationModelTest');
         $response->pollUntilComplete([
@@ -176,7 +185,14 @@ class ConversationModelsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateConversationModelRequest();
+        // Mock request
+        $conversationModel = new ConversationModel();
+        $conversationModelDisplayName = 'conversationModelDisplayName-1078928857';
+        $conversationModel->setDisplayName($conversationModelDisplayName);
+        $conversationModelDatasets = [];
+        $conversationModel->setDatasets($conversationModelDatasets);
+        $request = (new CreateConversationModelRequest())
+            ->setConversationModel($conversationModel);
         $response = $gapicClient->createConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -234,7 +250,12 @@ class ConversationModelsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateConversationModelEvaluationRequest();
+        // Mock request
+        $formattedParent = $gapicClient->conversationModelName('[PROJECT]', '[LOCATION]', '[CONVERSATION_MODEL]');
+        $conversationModelEvaluation = new ConversationModelEvaluation();
+        $request = (new CreateConversationModelEvaluationRequest())
+            ->setParent($formattedParent)
+            ->setConversationModelEvaluation($conversationModelEvaluation);
         $response = $gapicClient->createConversationModelEvaluation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -245,6 +266,10 @@ class ConversationModelsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationModels/CreateConversationModelEvaluation', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getConversationModelEvaluation();
+        $this->assertProtobufEquals($conversationModelEvaluation, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createConversationModelEvaluationTest');
         $response->pollUntilComplete([
@@ -295,7 +320,12 @@ class ConversationModelsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateConversationModelEvaluationRequest();
+        // Mock request
+        $formattedParent = $gapicClient->conversationModelName('[PROJECT]', '[LOCATION]', '[CONVERSATION_MODEL]');
+        $conversationModelEvaluation = new ConversationModelEvaluation();
+        $request = (new CreateConversationModelEvaluationRequest())
+            ->setParent($formattedParent)
+            ->setConversationModelEvaluation($conversationModelEvaluation);
         $response = $gapicClient->createConversationModelEvaluation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -347,7 +377,10 @@ class ConversationModelsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteConversationModelRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new DeleteConversationModelRequest())
+            ->setName($name);
         $response = $gapicClient->deleteConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -358,6 +391,8 @@ class ConversationModelsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationModels/DeleteConversationModel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteConversationModelTest');
         $response->pollUntilComplete([
@@ -408,7 +443,10 @@ class ConversationModelsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteConversationModelRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new DeleteConversationModelRequest())
+            ->setName($name);
         $response = $gapicClient->deleteConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -460,7 +498,10 @@ class ConversationModelsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeployConversationModelRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new DeployConversationModelRequest())
+            ->setName($name);
         $response = $gapicClient->deployConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -471,6 +512,8 @@ class ConversationModelsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationModels/DeployConversationModel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deployConversationModelTest');
         $response->pollUntilComplete([
@@ -521,7 +564,10 @@ class ConversationModelsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeployConversationModelRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new DeployConversationModelRequest())
+            ->setName($name);
         $response = $gapicClient->deployConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -561,7 +607,10 @@ class ConversationModelsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        $request = new GetConversationModelRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new GetConversationModelRequest())
+            ->setName($name);
         $response = $gapicClient->getConversationModel($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -569,6 +618,8 @@ class ConversationModelsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationModels/GetConversationModel', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -590,7 +641,10 @@ class ConversationModelsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetConversationModelRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new GetConversationModelRequest())
+            ->setName($name);
         try {
             $gapicClient->getConversationModel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -621,7 +675,10 @@ class ConversationModelsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setRawHumanEvalTemplateCsv($rawHumanEvalTemplateCsv);
         $transport->addResponse($expectedResponse);
-        $request = new GetConversationModelEvaluationRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new GetConversationModelEvaluationRequest())
+            ->setName($name);
         $response = $gapicClient->getConversationModelEvaluation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -629,6 +686,8 @@ class ConversationModelsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationModels/GetConversationModelEvaluation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -650,7 +709,10 @@ class ConversationModelsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetConversationModelEvaluationRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new GetConversationModelEvaluationRequest())
+            ->setName($name);
         try {
             $gapicClient->getConversationModelEvaluation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -682,7 +744,10 @@ class ConversationModelsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConversationModelEvaluations($conversationModelEvaluations);
         $transport->addResponse($expectedResponse);
-        $request = new ListConversationModelEvaluationsRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new ListConversationModelEvaluationsRequest())
+            ->setParent($parent);
         $response = $gapicClient->listConversationModelEvaluations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -693,6 +758,8 @@ class ConversationModelsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationModels/ListConversationModelEvaluations', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -714,7 +781,10 @@ class ConversationModelsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListConversationModelEvaluationsRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new ListConversationModelEvaluationsRequest())
+            ->setParent($parent);
         try {
             $gapicClient->listConversationModelEvaluations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -746,7 +816,10 @@ class ConversationModelsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConversationModels($conversationModels);
         $transport->addResponse($expectedResponse);
-        $request = new ListConversationModelsRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new ListConversationModelsRequest())
+            ->setParent($parent);
         $response = $gapicClient->listConversationModels($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -757,6 +830,8 @@ class ConversationModelsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationModels/ListConversationModels', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -778,7 +853,10 @@ class ConversationModelsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListConversationModelsRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new ListConversationModelsRequest())
+            ->setParent($parent);
         try {
             $gapicClient->listConversationModels($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -821,7 +899,10 @@ class ConversationModelsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UndeployConversationModelRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new UndeployConversationModelRequest())
+            ->setName($name);
         $response = $gapicClient->undeployConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -832,6 +913,8 @@ class ConversationModelsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationModels/UndeployConversationModel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/undeployConversationModelTest');
         $response->pollUntilComplete([
@@ -882,7 +965,10 @@ class ConversationModelsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UndeployConversationModelRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new UndeployConversationModelRequest())
+            ->setName($name);
         $response = $gapicClient->undeployConversationModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1064,7 +1150,14 @@ class ConversationModelsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateConversationModelRequest();
+        // Mock request
+        $conversationModel = new ConversationModel();
+        $conversationModelDisplayName = 'conversationModelDisplayName-1078928857';
+        $conversationModel->setDisplayName($conversationModelDisplayName);
+        $conversationModelDatasets = [];
+        $conversationModel->setDatasets($conversationModelDatasets);
+        $request = (new CreateConversationModelRequest())
+            ->setConversationModel($conversationModel);
         $response = $gapicClient->createConversationModelAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1075,6 +1168,8 @@ class ConversationModelsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationModels/CreateConversationModel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getConversationModel();
+        $this->assertProtobufEquals($conversationModel, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createConversationModelTest');
         $response->pollUntilComplete([

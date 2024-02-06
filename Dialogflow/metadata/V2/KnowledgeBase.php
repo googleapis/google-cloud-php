@@ -22,35 +22,35 @@ class KnowledgeBase
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Á
-/google/cloud/dialogflow/v2/knowledge_base.protogoogle.cloud.dialogflow.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"˝
+ﬁ
+/google/cloud/dialogflow/v2/knowledge_base.protogoogle.cloud.dialogflow.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¸
 KnowledgeBase
-name (	
-display_name (	B‚A
+name (	
+display_name (	B‡A
 language_code (	:™ÍA¶
-\'dialogflow.googleapis.com/KnowledgeBase2projects/{project}/knowledgeBases/{knowledge_base}Gprojects/{project}/locations/{location}/knowledgeBases/{knowledge_base}"î
-ListKnowledgeBasesRequest@
-parent (	B0‚A˙A)\'dialogflow.googleapis.com/KnowledgeBase
+\'dialogflow.googleapis.com/KnowledgeBase2projects/{project}/knowledgeBases/{knowledge_base}Gprojects/{project}/locations/{location}/knowledgeBases/{knowledge_base}"ì
+ListKnowledgeBasesRequest?
+parent (	B/‡A˙A)\'dialogflow.googleapis.com/KnowledgeBase
 	page_size (
 
 page_token (	
 filter (	"y
 ListKnowledgeBasesResponseB
 knowledge_bases (2).google.cloud.dialogflow.v2.KnowledgeBase
-next_page_token (	"Y
-GetKnowledgeBaseRequest>
-name (	B0‚A˙A)
-\'dialogflow.googleapis.com/KnowledgeBase"ß
-CreateKnowledgeBaseRequest@
-parent (	B0‚A˙A)\'dialogflow.googleapis.com/KnowledgeBaseG
-knowledge_base (2).google.cloud.dialogflow.v2.KnowledgeBaseB‚A"q
-DeleteKnowledgeBaseRequest>
-name (	B0‚A˙A)
-\'dialogflow.googleapis.com/KnowledgeBase
-force (B‚A"ú
-UpdateKnowledgeBaseRequestG
-knowledge_base (2).google.cloud.dialogflow.v2.KnowledgeBaseB‚A5
-update_mask (2.google.protobuf.FieldMaskB‚A2¥
+next_page_token (	"X
+GetKnowledgeBaseRequest=
+name (	B/‡A˙A)
+\'dialogflow.googleapis.com/KnowledgeBase"•
+CreateKnowledgeBaseRequest?
+parent (	B/‡A˙A)\'dialogflow.googleapis.com/KnowledgeBaseF
+knowledge_base (2).google.cloud.dialogflow.v2.KnowledgeBaseB‡A"o
+DeleteKnowledgeBaseRequest=
+name (	B/‡A˙A)
+\'dialogflow.googleapis.com/KnowledgeBase
+force (B‡A"ö
+UpdateKnowledgeBaseRequestF
+knowledge_base (2).google.cloud.dialogflow.v2.KnowledgeBaseB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A2¥
 KnowledgeBases§
 ListKnowledgeBases5.google.cloud.dialogflow.v2.ListKnowledgeBasesRequest6.google.cloud.dialogflow.v2.ListKnowledgeBasesResponse"û⁄AparentÇ”‰ìé&/v2/{parent=projects/*}/knowledgeBasesZ42/v2/{parent=projects/*/locations/*}/knowledgeBasesZ.,/v2/{parent=projects/*/agent}/knowledgeBasesë
 GetKnowledgeBase3.google.cloud.dialogflow.v2.GetKnowledgeBaseRequest).google.cloud.dialogflow.v2.KnowledgeBase"ú⁄AnameÇ”‰ìé&/v2/{name=projects/*/knowledgeBases/*}Z42/v2/{name=projects/*/locations/*/knowledgeBases/*}Z.,/v2/{name=projects/*/agent/knowledgeBases/*}ÿ

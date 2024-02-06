@@ -25,27 +25,34 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InterconnectAttachments_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\InterconnectAttachment;
 use Google\Cloud\Compute\V1\InterconnectAttachmentsClient;
 use Google\Rpc\Status;
 
 /**
  * Updates the specified interconnect attachment with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $interconnectAttachment Name of the interconnect attachment to patch.
+ * @param string $project                Project ID for this request.
+ * @param string $region                 Name of the region scoping this request.
  */
-function patch_sample(): void
+function patch_sample(string $interconnectAttachment, string $project, string $region): void
 {
     // Create a client.
     $interconnectAttachmentsClient = new InterconnectAttachmentsClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $interconnectAttachmentResource = new InterconnectAttachment();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $interconnectAttachmentsClient->patch();
+        $response = $interconnectAttachmentsClient->patch(
+            $interconnectAttachment,
+            $interconnectAttachmentResource,
+            $project,
+            $region
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +65,23 @@ function patch_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $interconnectAttachment = '[INTERCONNECT_ATTACHMENT]';
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    patch_sample($interconnectAttachment, $project, $region);
 }
 // [END compute_v1_generated_InterconnectAttachments_Patch_sync]

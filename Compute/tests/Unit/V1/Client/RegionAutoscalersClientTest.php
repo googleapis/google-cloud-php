@@ -95,7 +95,14 @@ class RegionAutoscalersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteRegionAutoscalerRequest();
+        // Mock request
+        $autoscaler = 'autoscaler517258967';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new DeleteRegionAutoscalerRequest())
+            ->setAutoscaler($autoscaler)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -105,8 +112,16 @@ class RegionAutoscalersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionAutoscalers/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAutoscaler();
+        $this->assertProtobufEquals($autoscaler, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -154,7 +169,14 @@ class RegionAutoscalersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteRegionAutoscalerRequest();
+        // Mock request
+        $autoscaler = 'autoscaler517258967';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new DeleteRegionAutoscalerRequest())
+            ->setAutoscaler($autoscaler)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -208,7 +230,14 @@ class RegionAutoscalersClientTest extends GeneratedTest
         $expectedResponse->setTarget($target);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-        $request = new GetRegionAutoscalerRequest();
+        // Mock request
+        $autoscaler = 'autoscaler517258967';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new GetRegionAutoscalerRequest())
+            ->setAutoscaler($autoscaler)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -216,6 +245,12 @@ class RegionAutoscalersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionAutoscalers/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAutoscaler();
+        $this->assertProtobufEquals($autoscaler, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -237,7 +272,14 @@ class RegionAutoscalersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetRegionAutoscalerRequest();
+        // Mock request
+        $autoscaler = 'autoscaler517258967';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new GetRegionAutoscalerRequest())
+            ->setAutoscaler($autoscaler)
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -276,7 +318,14 @@ class RegionAutoscalersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertRegionAutoscalerRequest();
+        // Mock request
+        $autoscalerResource = new Autoscaler();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new InsertRegionAutoscalerRequest())
+            ->setAutoscalerResource($autoscalerResource)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -286,8 +335,16 @@ class RegionAutoscalersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionAutoscalers/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAutoscalerResource();
+        $this->assertProtobufEquals($autoscalerResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -335,7 +392,14 @@ class RegionAutoscalersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertRegionAutoscalerRequest();
+        // Mock request
+        $autoscalerResource = new Autoscaler();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new InsertRegionAutoscalerRequest())
+            ->setAutoscalerResource($autoscalerResource)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -380,7 +444,12 @@ class RegionAutoscalersClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListRegionAutoscalersRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListRegionAutoscalersRequest())
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -391,6 +460,10 @@ class RegionAutoscalersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionAutoscalers/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -412,7 +485,12 @@ class RegionAutoscalersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListRegionAutoscalersRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListRegionAutoscalersRequest())
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -451,7 +529,14 @@ class RegionAutoscalersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PatchRegionAutoscalerRequest();
+        // Mock request
+        $autoscalerResource = new Autoscaler();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new PatchRegionAutoscalerRequest())
+            ->setAutoscalerResource($autoscalerResource)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -461,8 +546,16 @@ class RegionAutoscalersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionAutoscalers/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAutoscalerResource();
+        $this->assertProtobufEquals($autoscalerResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -510,7 +603,14 @@ class RegionAutoscalersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PatchRegionAutoscalerRequest();
+        // Mock request
+        $autoscalerResource = new Autoscaler();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new PatchRegionAutoscalerRequest())
+            ->setAutoscalerResource($autoscalerResource)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -556,7 +656,14 @@ class RegionAutoscalersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/updateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateRegionAutoscalerRequest();
+        // Mock request
+        $autoscalerResource = new Autoscaler();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new UpdateRegionAutoscalerRequest())
+            ->setAutoscalerResource($autoscalerResource)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -566,8 +673,16 @@ class RegionAutoscalersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionAutoscalers/Update', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAutoscalerResource();
+        $this->assertProtobufEquals($autoscalerResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -615,7 +730,14 @@ class RegionAutoscalersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateRegionAutoscalerRequest();
+        // Mock request
+        $autoscalerResource = new Autoscaler();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new UpdateRegionAutoscalerRequest())
+            ->setAutoscalerResource($autoscalerResource)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -661,7 +783,14 @@ class RegionAutoscalersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteRegionAutoscalerRequest();
+        // Mock request
+        $autoscaler = 'autoscaler517258967';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new DeleteRegionAutoscalerRequest())
+            ->setAutoscaler($autoscaler)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -671,8 +800,16 @@ class RegionAutoscalersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionAutoscalers/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAutoscaler();
+        $this->assertProtobufEquals($autoscaler, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

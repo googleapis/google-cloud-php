@@ -31,13 +31,10 @@ use Google\Rpc\Status;
 /**
  * Moves the specified firewall policy.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $firewallPolicy Name of the firewall policy to update.
+ * @param string $parentId       The new parent of the firewall policy. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
  */
-function move_sample(): void
+function move_sample(string $firewallPolicy, string $parentId): void
 {
     // Create a client.
     $firewallPoliciesClient = new FirewallPoliciesClient();
@@ -45,7 +42,7 @@ function move_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $firewallPoliciesClient->move();
+        $response = $firewallPoliciesClient->move($firewallPolicy, $parentId);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +55,22 @@ function move_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $firewallPolicy = '[FIREWALL_POLICY]';
+    $parentId = '[PARENT_ID]';
+
+    move_sample($firewallPolicy, $parentId);
 }
 // [END compute_v1_generated_FirewallPolicies_Move_sync]

@@ -32,19 +32,18 @@ use Google\Cloud\Dialogflow\V2\ListConversationProfilesRequest;
 /**
  * Returns the list of all conversation profiles in the specified project.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The project to list all conversation profiles from.
+ *                                Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+ *                                {@see ConversationProfilesClient::projectName()} for help formatting this field.
  */
-function list_conversation_profiles_sample(): void
+function list_conversation_profiles_sample(string $formattedParent): void
 {
     // Create a client.
     $conversationProfilesClient = new ConversationProfilesClient();
 
     // Prepare the request message.
-    $request = new ListConversationProfilesRequest();
+    $request = (new ListConversationProfilesRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function list_conversation_profiles_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ConversationProfilesClient::projectName('[PROJECT]');
+
+    list_conversation_profiles_sample($formattedParent);
 }
 // [END dialogflow_v2_generated_ConversationProfiles_ListConversationProfiles_sync]

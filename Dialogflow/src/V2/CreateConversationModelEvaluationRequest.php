@@ -35,6 +35,7 @@ class CreateConversationModelEvaluationRequest extends \Google\Protobuf\Internal
      * @param string                                                  $parent                      Required. The conversation model resource name. Format:
      *                                                                                             `projects/<Project ID>/locations/<Location
      *                                                                                             ID>/conversationModels/<Conversation Model ID>`
+     *                                                                                             Please see {@see ConversationModelsClient::conversationModelName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\V2\ConversationModelEvaluation $conversationModelEvaluation Required. The conversation model evaluation to be created.
      *
      * @return \Google\Cloud\Dialogflow\V2\CreateConversationModelEvaluationRequest

@@ -35,7 +35,8 @@ class DeleteKnowledgeBaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the knowledge base to delete.
      *                     Format: `projects/<Project ID>/locations/<Location
-     *                     ID>/knowledgeBases/<Knowledge Base ID>`.
+     *                     ID>/knowledgeBases/<Knowledge Base ID>`. Please see
+     *                     {@see KnowledgeBasesClient::knowledgeBaseName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\DeleteKnowledgeBaseRequest
      *

@@ -30,13 +30,11 @@ use Google\Cloud\Compute\V1\NetworkAttachmentsClient;
 /**
  * Returns the specified NetworkAttachment resource in the given scope.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $networkAttachment Name of the NetworkAttachment resource to return.
+ * @param string $project           Project ID for this request.
+ * @param string $region            Name of the region of this request.
  */
-function get_sample(): void
+function get_sample(string $networkAttachment, string $project, string $region): void
 {
     // Create a client.
     $networkAttachmentsClient = new NetworkAttachmentsClient();
@@ -44,10 +42,28 @@ function get_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var NetworkAttachment $response */
-        $response = $networkAttachmentsClient->get();
+        $response = $networkAttachmentsClient->get($networkAttachment, $project, $region);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $networkAttachment = '[NETWORK_ATTACHMENT]';
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    get_sample($networkAttachment, $project, $region);
 }
 // [END compute_v1_generated_NetworkAttachments_Get_sync]

@@ -26,6 +26,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Compute\V1\CacheInvalidationRule;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\Operation;
@@ -35,6 +36,7 @@ use Google\Cloud\Compute\V1\UrlMapList;
 use Google\Cloud\Compute\V1\UrlMapsAggregatedList;
 use Google\Cloud\Compute\V1\UrlMapsClient;
 use Google\Cloud\Compute\V1\UrlMapsScopedList;
+use Google\Cloud\Compute\V1\UrlMapsValidateRequest;
 use Google\Cloud\Compute\V1\UrlMapsValidateResponse;
 use Google\Rpc\Code;
 use stdClass;
@@ -90,7 +92,9 @@ class UrlMapsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->aggregatedList();
+        // Mock request
+        $project = 'project-309310695';
+        $response = $gapicClient->aggregatedList($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -102,6 +106,8 @@ class UrlMapsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.UrlMaps/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -123,8 +129,10 @@ class UrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
         try {
-            $gapicClient->aggregatedList();
+            $gapicClient->aggregatedList($project);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -161,7 +169,10 @@ class UrlMapsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->delete();
+        // Mock request
+        $project = 'project-309310695';
+        $urlMap = 'urlMap-169850228';
+        $response = $gapicClient->delete($project, $urlMap);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -170,8 +181,13 @@ class UrlMapsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.UrlMaps/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getUrlMap();
+        $this->assertProtobufEquals($urlMap, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -219,7 +235,10 @@ class UrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->delete();
+        // Mock request
+        $project = 'project-309310695';
+        $urlMap = 'urlMap-169850228';
+        $response = $gapicClient->delete($project, $urlMap);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -268,13 +287,20 @@ class UrlMapsClientTest extends GeneratedTest
         $expectedResponse->setRegion($region);
         $expectedResponse->setSelfLink($selfLink);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->get();
+        // Mock request
+        $project = 'project-309310695';
+        $urlMap = 'urlMap-169850228';
+        $response = $gapicClient->get($project, $urlMap);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.UrlMaps/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getUrlMap();
+        $this->assertProtobufEquals($urlMap, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -296,8 +322,11 @@ class UrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $urlMap = 'urlMap-169850228';
         try {
-            $gapicClient->get();
+            $gapicClient->get($project, $urlMap);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -334,7 +363,10 @@ class UrlMapsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->insert();
+        // Mock request
+        $project = 'project-309310695';
+        $urlMapResource = new UrlMap();
+        $response = $gapicClient->insert($project, $urlMapResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -343,8 +375,13 @@ class UrlMapsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.UrlMaps/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getUrlMapResource();
+        $this->assertProtobufEquals($urlMapResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -392,7 +429,10 @@ class UrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->insert();
+        // Mock request
+        $project = 'project-309310695';
+        $urlMapResource = new UrlMap();
+        $response = $gapicClient->insert($project, $urlMapResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -437,7 +477,11 @@ class UrlMapsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/invalidateCacheTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->invalidateCache();
+        // Mock request
+        $cacheInvalidationRuleResource = new CacheInvalidationRule();
+        $project = 'project-309310695';
+        $urlMap = 'urlMap-169850228';
+        $response = $gapicClient->invalidateCache($cacheInvalidationRuleResource, $project, $urlMap);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -446,8 +490,15 @@ class UrlMapsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.UrlMaps/InvalidateCache', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getCacheInvalidationRuleResource();
+        $this->assertProtobufEquals($cacheInvalidationRuleResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getUrlMap();
+        $this->assertProtobufEquals($urlMap, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -495,7 +546,11 @@ class UrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->invalidateCache();
+        // Mock request
+        $cacheInvalidationRuleResource = new CacheInvalidationRule();
+        $project = 'project-309310695';
+        $urlMap = 'urlMap-169850228';
+        $response = $gapicClient->invalidateCache($cacheInvalidationRuleResource, $project, $urlMap);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -539,7 +594,9 @@ class UrlMapsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->list();
+        // Mock request
+        $project = 'project-309310695';
+        $response = $gapicClient->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -549,6 +606,8 @@ class UrlMapsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.UrlMaps/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -570,8 +629,10 @@ class UrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
         try {
-            $gapicClient->list();
+            $gapicClient->list($project);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -608,7 +669,11 @@ class UrlMapsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->patch();
+        // Mock request
+        $project = 'project-309310695';
+        $urlMap = 'urlMap-169850228';
+        $urlMapResource = new UrlMap();
+        $response = $gapicClient->patch($project, $urlMap, $urlMapResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -617,8 +682,15 @@ class UrlMapsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.UrlMaps/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getUrlMap();
+        $this->assertProtobufEquals($urlMap, $actualValue);
+        $actualValue = $actualApiRequestObject->getUrlMapResource();
+        $this->assertProtobufEquals($urlMapResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -666,7 +738,11 @@ class UrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->patch();
+        // Mock request
+        $project = 'project-309310695';
+        $urlMap = 'urlMap-169850228';
+        $urlMapResource = new UrlMap();
+        $response = $gapicClient->patch($project, $urlMap, $urlMapResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -711,7 +787,11 @@ class UrlMapsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/updateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->update();
+        // Mock request
+        $project = 'project-309310695';
+        $urlMap = 'urlMap-169850228';
+        $urlMapResource = new UrlMap();
+        $response = $gapicClient->update($project, $urlMap, $urlMapResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -720,8 +800,15 @@ class UrlMapsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.UrlMaps/Update', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getUrlMap();
+        $this->assertProtobufEquals($urlMap, $actualValue);
+        $actualValue = $actualApiRequestObject->getUrlMapResource();
+        $this->assertProtobufEquals($urlMapResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -769,7 +856,11 @@ class UrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->update();
+        // Mock request
+        $project = 'project-309310695';
+        $urlMap = 'urlMap-169850228';
+        $urlMapResource = new UrlMap();
+        $response = $gapicClient->update($project, $urlMap, $urlMapResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -800,13 +891,23 @@ class UrlMapsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new UrlMapsValidateResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->validate();
+        // Mock request
+        $project = 'project-309310695';
+        $urlMap = 'urlMap-169850228';
+        $urlMapsValidateRequestResource = new UrlMapsValidateRequest();
+        $response = $gapicClient->validate($project, $urlMap, $urlMapsValidateRequestResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.UrlMaps/Validate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getUrlMap();
+        $this->assertProtobufEquals($urlMap, $actualValue);
+        $actualValue = $actualRequestObject->getUrlMapsValidateRequestResource();
+        $this->assertProtobufEquals($urlMapsValidateRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -828,8 +929,12 @@ class UrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $urlMap = 'urlMap-169850228';
+        $urlMapsValidateRequestResource = new UrlMapsValidateRequest();
         try {
-            $gapicClient->validate();
+            $gapicClient->validate($project, $urlMap, $urlMapsValidateRequestResource);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

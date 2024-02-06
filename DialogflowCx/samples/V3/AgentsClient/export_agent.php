@@ -42,19 +42,18 @@ use Google\Rpc\Status;
  * - `response`:
  * [ExportAgentResponse][google.cloud.dialogflow.cx.v3.ExportAgentResponse]
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the agent to export.
+ *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                              {@see AgentsClient::agentName()} for help formatting this field.
  */
-function export_agent_sample(): void
+function export_agent_sample(string $formattedName): void
 {
     // Create a client.
     $agentsClient = new AgentsClient();
 
     // Prepare the request message.
-    $request = new ExportAgentRequest();
+    $request = (new ExportAgentRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -74,5 +73,21 @@ function export_agent_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AgentsClient::agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+
+    export_agent_sample($formattedName);
 }
 // [END dialogflow_v3_generated_Agents_ExportAgent_sync]

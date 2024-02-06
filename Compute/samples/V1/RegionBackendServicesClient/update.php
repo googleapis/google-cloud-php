@@ -25,27 +25,34 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionBackendServices_Update_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\BackendService;
 use Google\Cloud\Compute\V1\RegionBackendServicesClient;
 use Google\Rpc\Status;
 
 /**
  * Updates the specified regional BackendService resource with the data included in the request. For more information, see Backend services overview .
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $backendService Name of the BackendService resource to update.
+ * @param string $project        Project ID for this request.
+ * @param string $region         Name of the region scoping this request.
  */
-function update_sample(): void
+function update_sample(string $backendService, string $project, string $region): void
 {
     // Create a client.
     $regionBackendServicesClient = new RegionBackendServicesClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $backendServiceResource = new BackendService();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionBackendServicesClient->update();
+        $response = $regionBackendServicesClient->update(
+            $backendService,
+            $backendServiceResource,
+            $project,
+            $region
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +65,23 @@ function update_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $backendService = '[BACKEND_SERVICE]';
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    update_sample($backendService, $project, $region);
 }
 // [END compute_v1_generated_RegionBackendServices_Update_sync]

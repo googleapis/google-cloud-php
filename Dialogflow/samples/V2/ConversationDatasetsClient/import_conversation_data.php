@@ -28,6 +28,7 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dialogflow\V2\Client\ConversationDatasetsClient;
 use Google\Cloud\Dialogflow\V2\ImportConversationDataOperationResponse;
 use Google\Cloud\Dialogflow\V2\ImportConversationDataRequest;
+use Google\Cloud\Dialogflow\V2\InputConfig;
 use Google\Rpc\Status;
 
 /**
@@ -44,19 +45,21 @@ use Google\Rpc\Status;
  * - `response`:
  * [ImportConversationDataOperationResponse][google.cloud.dialogflow.v2.ImportConversationDataOperationResponse]
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Dataset resource name. Format:
+ *                              `projects/<Project ID>/locations/<Location
+ *                              ID>/conversationDatasets/<Conversation Dataset ID>`
+ *                              Please see {@see ConversationDatasetsClient::conversationDatasetName()} for help formatting this field.
  */
-function import_conversation_data_sample(): void
+function import_conversation_data_sample(string $formattedName): void
 {
     // Create a client.
     $conversationDatasetsClient = new ConversationDatasetsClient();
 
     // Prepare the request message.
-    $request = new ImportConversationDataRequest();
+    $inputConfig = new InputConfig();
+    $request = (new ImportConversationDataRequest())
+        ->setName($formattedName)
+        ->setInputConfig($inputConfig);
 
     // Call the API and handle any network failures.
     try {
@@ -76,5 +79,25 @@ function import_conversation_data_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ConversationDatasetsClient::conversationDatasetName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[CONVERSATION_DATASET]'
+    );
+
+    import_conversation_data_sample($formattedName);
 }
 // [END dialogflow_v2_generated_ConversationDatasets_ImportConversationData_sync]

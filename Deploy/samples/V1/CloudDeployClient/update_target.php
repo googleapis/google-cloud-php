@@ -28,6 +28,7 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
 use Google\Cloud\Deploy\V1\Target;
 use Google\Cloud\Deploy\V1\UpdateTargetRequest;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -45,7 +46,11 @@ function update_target_sample(): void
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = new UpdateTargetRequest();
+    $updateMask = new FieldMask();
+    $target = new Target();
+    $request = (new UpdateTargetRequest())
+        ->setUpdateMask($updateMask)
+        ->setTarget($target);
 
     // Call the API and handle any network failures.
     try {

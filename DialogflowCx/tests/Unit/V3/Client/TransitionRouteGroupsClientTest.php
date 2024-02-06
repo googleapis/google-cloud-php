@@ -87,7 +87,14 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $request = new CreateTransitionRouteGroupRequest();
+        // Mock request
+        $formattedParent = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $transitionRouteGroup = new TransitionRouteGroup();
+        $transitionRouteGroupDisplayName = 'transitionRouteGroupDisplayName-1406267262';
+        $transitionRouteGroup->setDisplayName($transitionRouteGroupDisplayName);
+        $request = (new CreateTransitionRouteGroupRequest())
+            ->setParent($formattedParent)
+            ->setTransitionRouteGroup($transitionRouteGroup);
         $response = $gapicClient->createTransitionRouteGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -98,6 +105,10 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
             '/google.cloud.dialogflow.cx.v3.TransitionRouteGroups/CreateTransitionRouteGroup',
             $actualFuncCall
         );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getTransitionRouteGroup();
+        $this->assertProtobufEquals($transitionRouteGroup, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -122,7 +133,14 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new CreateTransitionRouteGroupRequest();
+        // Mock request
+        $formattedParent = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $transitionRouteGroup = new TransitionRouteGroup();
+        $transitionRouteGroupDisplayName = 'transitionRouteGroupDisplayName-1406267262';
+        $transitionRouteGroup->setDisplayName($transitionRouteGroupDisplayName);
+        $request = (new CreateTransitionRouteGroupRequest())
+            ->setParent($formattedParent)
+            ->setTransitionRouteGroup($transitionRouteGroup);
         try {
             $gapicClient->createTransitionRouteGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -147,7 +165,15 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteTransitionRouteGroupRequest();
+        // Mock request
+        $formattedName = $gapicClient->transitionRouteGroupName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AGENT]',
+            '[FLOW]',
+            '[TRANSITION_ROUTE_GROUP]'
+        );
+        $request = (new DeleteTransitionRouteGroupRequest())->setName($formattedName);
         $gapicClient->deleteTransitionRouteGroup($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -157,6 +183,8 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
             '/google.cloud.dialogflow.cx.v3.TransitionRouteGroups/DeleteTransitionRouteGroup',
             $actualFuncCall
         );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -181,7 +209,15 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new DeleteTransitionRouteGroupRequest();
+        // Mock request
+        $formattedName = $gapicClient->transitionRouteGroupName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AGENT]',
+            '[FLOW]',
+            '[TRANSITION_ROUTE_GROUP]'
+        );
+        $request = (new DeleteTransitionRouteGroupRequest())->setName($formattedName);
         try {
             $gapicClient->deleteTransitionRouteGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -210,7 +246,15 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $request = new GetTransitionRouteGroupRequest();
+        // Mock request
+        $formattedName = $gapicClient->transitionRouteGroupName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AGENT]',
+            '[FLOW]',
+            '[TRANSITION_ROUTE_GROUP]'
+        );
+        $request = (new GetTransitionRouteGroupRequest())->setName($formattedName);
         $response = $gapicClient->getTransitionRouteGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -221,6 +265,8 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
             '/google.cloud.dialogflow.cx.v3.TransitionRouteGroups/GetTransitionRouteGroup',
             $actualFuncCall
         );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -245,7 +291,15 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetTransitionRouteGroupRequest();
+        // Mock request
+        $formattedName = $gapicClient->transitionRouteGroupName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[AGENT]',
+            '[FLOW]',
+            '[TRANSITION_ROUTE_GROUP]'
+        );
+        $request = (new GetTransitionRouteGroupRequest())->setName($formattedName);
         try {
             $gapicClient->getTransitionRouteGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -275,7 +329,9 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTransitionRouteGroups($transitionRouteGroups);
         $transport->addResponse($expectedResponse);
-        $request = new ListTransitionRouteGroupsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $request = (new ListTransitionRouteGroupsRequest())->setParent($formattedParent);
         $response = $gapicClient->listTransitionRouteGroups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -289,6 +345,8 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
             '/google.cloud.dialogflow.cx.v3.TransitionRouteGroups/ListTransitionRouteGroups',
             $actualFuncCall
         );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -313,7 +371,9 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListTransitionRouteGroupsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $request = (new ListTransitionRouteGroupsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTransitionRouteGroups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -342,7 +402,11 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateTransitionRouteGroupRequest();
+        // Mock request
+        $transitionRouteGroup = new TransitionRouteGroup();
+        $transitionRouteGroupDisplayName = 'transitionRouteGroupDisplayName-1406267262';
+        $transitionRouteGroup->setDisplayName($transitionRouteGroupDisplayName);
+        $request = (new UpdateTransitionRouteGroupRequest())->setTransitionRouteGroup($transitionRouteGroup);
         $response = $gapicClient->updateTransitionRouteGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -353,6 +417,8 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
             '/google.cloud.dialogflow.cx.v3.TransitionRouteGroups/UpdateTransitionRouteGroup',
             $actualFuncCall
         );
+        $actualValue = $actualRequestObject->getTransitionRouteGroup();
+        $this->assertProtobufEquals($transitionRouteGroup, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -377,7 +443,11 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new UpdateTransitionRouteGroupRequest();
+        // Mock request
+        $transitionRouteGroup = new TransitionRouteGroup();
+        $transitionRouteGroupDisplayName = 'transitionRouteGroupDisplayName-1406267262';
+        $transitionRouteGroup->setDisplayName($transitionRouteGroupDisplayName);
+        $request = (new UpdateTransitionRouteGroupRequest())->setTransitionRouteGroup($transitionRouteGroup);
         try {
             $gapicClient->updateTransitionRouteGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -534,7 +604,14 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $request = new CreateTransitionRouteGroupRequest();
+        // Mock request
+        $formattedParent = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $transitionRouteGroup = new TransitionRouteGroup();
+        $transitionRouteGroupDisplayName = 'transitionRouteGroupDisplayName-1406267262';
+        $transitionRouteGroup->setDisplayName($transitionRouteGroupDisplayName);
+        $request = (new CreateTransitionRouteGroupRequest())
+            ->setParent($formattedParent)
+            ->setTransitionRouteGroup($transitionRouteGroup);
         $response = $gapicClient->createTransitionRouteGroupAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -545,6 +622,10 @@ class TransitionRouteGroupsClientTest extends GeneratedTest
             '/google.cloud.dialogflow.cx.v3.TransitionRouteGroups/CreateTransitionRouteGroup',
             $actualFuncCall
         );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getTransitionRouteGroup();
+        $this->assertProtobufEquals($transitionRouteGroup, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

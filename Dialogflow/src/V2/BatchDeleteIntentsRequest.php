@@ -33,7 +33,8 @@ class BatchDeleteIntentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                               $parent  Required. The name of the agent to delete all entities types for. Format:
-     *                                                      `projects/<Project ID>/agent`.
+     *                                                      `projects/<Project ID>/agent`. Please see
+     *                                                      {@see IntentsClient::agentName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\V2\Intent[] $intents Required. The collection of intents to delete. Only intent `name` must be
      *                                                      filled in.
      *

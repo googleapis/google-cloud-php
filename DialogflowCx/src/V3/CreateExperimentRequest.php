@@ -36,7 +36,8 @@ class CreateExperimentRequest extends \Google\Protobuf\Internal\Message
      * @param string                                    $parent     Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to create an
      *                                                              [Environment][google.cloud.dialogflow.cx.v3.Environment] for. Format:
      *                                                              `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                                                              ID>/environments/<Environment ID>`.
+     *                                                              ID>/environments/<Environment ID>`. Please see
+     *                                                              {@see ExperimentsClient::environmentName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\Cx\V3\Experiment $experiment Required. The experiment to create.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\CreateExperimentRequest

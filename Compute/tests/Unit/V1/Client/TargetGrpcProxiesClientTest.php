@@ -94,7 +94,12 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteTargetGrpcProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetGrpcProxy = 'targetGrpcProxy-1605592453';
+        $request = (new DeleteTargetGrpcProxyRequest())
+            ->setProject($project)
+            ->setTargetGrpcProxy($targetGrpcProxy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -104,8 +109,13 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetGrpcProxies/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetGrpcProxy();
+        $this->assertProtobufEquals($targetGrpcProxy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -153,7 +163,12 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteTargetGrpcProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetGrpcProxy = 'targetGrpcProxy-1605592453';
+        $request = (new DeleteTargetGrpcProxyRequest())
+            ->setProject($project)
+            ->setTargetGrpcProxy($targetGrpcProxy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -205,7 +220,12 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $expectedResponse->setUrlMap($urlMap);
         $expectedResponse->setValidateForProxyless($validateForProxyless);
         $transport->addResponse($expectedResponse);
-        $request = new GetTargetGrpcProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetGrpcProxy = 'targetGrpcProxy-1605592453';
+        $request = (new GetTargetGrpcProxyRequest())
+            ->setProject($project)
+            ->setTargetGrpcProxy($targetGrpcProxy);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -213,6 +233,10 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetGrpcProxies/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getTargetGrpcProxy();
+        $this->assertProtobufEquals($targetGrpcProxy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -234,7 +258,12 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetTargetGrpcProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetGrpcProxy = 'targetGrpcProxy-1605592453';
+        $request = (new GetTargetGrpcProxyRequest())
+            ->setProject($project)
+            ->setTargetGrpcProxy($targetGrpcProxy);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -273,7 +302,12 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertTargetGrpcProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetGrpcProxyResource = new TargetGrpcProxy();
+        $request = (new InsertTargetGrpcProxyRequest())
+            ->setProject($project)
+            ->setTargetGrpcProxyResource($targetGrpcProxyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -283,8 +317,13 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetGrpcProxies/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetGrpcProxyResource();
+        $this->assertProtobufEquals($targetGrpcProxyResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -332,7 +371,12 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertTargetGrpcProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetGrpcProxyResource = new TargetGrpcProxy();
+        $request = (new InsertTargetGrpcProxyRequest())
+            ->setProject($project)
+            ->setTargetGrpcProxyResource($targetGrpcProxyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -377,7 +421,10 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListTargetGrpcProxiesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListTargetGrpcProxiesRequest())
+            ->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -388,6 +435,8 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetGrpcProxies/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -409,7 +458,10 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListTargetGrpcProxiesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListTargetGrpcProxiesRequest())
+            ->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -448,7 +500,14 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PatchTargetGrpcProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetGrpcProxy = 'targetGrpcProxy-1605592453';
+        $targetGrpcProxyResource = new TargetGrpcProxy();
+        $request = (new PatchTargetGrpcProxyRequest())
+            ->setProject($project)
+            ->setTargetGrpcProxy($targetGrpcProxy)
+            ->setTargetGrpcProxyResource($targetGrpcProxyResource);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -458,8 +517,15 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetGrpcProxies/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetGrpcProxy();
+        $this->assertProtobufEquals($targetGrpcProxy, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetGrpcProxyResource();
+        $this->assertProtobufEquals($targetGrpcProxyResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -507,7 +573,14 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PatchTargetGrpcProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetGrpcProxy = 'targetGrpcProxy-1605592453';
+        $targetGrpcProxyResource = new TargetGrpcProxy();
+        $request = (new PatchTargetGrpcProxyRequest())
+            ->setProject($project)
+            ->setTargetGrpcProxy($targetGrpcProxy)
+            ->setTargetGrpcProxyResource($targetGrpcProxyResource);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -553,7 +626,12 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteTargetGrpcProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetGrpcProxy = 'targetGrpcProxy-1605592453';
+        $request = (new DeleteTargetGrpcProxyRequest())
+            ->setProject($project)
+            ->setTargetGrpcProxy($targetGrpcProxy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -563,8 +641,13 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetGrpcProxies/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetGrpcProxy();
+        $this->assertProtobufEquals($targetGrpcProxy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

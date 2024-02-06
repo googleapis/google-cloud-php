@@ -87,7 +87,12 @@ class DatastoreClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new AllocateIdsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new AllocateIdsRequest();
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $keys = [];
+        $request = (new AllocateIdsRequest())
+            ->setProjectId($projectId)
+            ->setKeys($keys);
         $response = $gapicClient->allocateIds($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -95,6 +100,10 @@ class DatastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.v1.Datastore/AllocateIds', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProjectId();
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getKeys();
+        $this->assertProtobufEquals($keys, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -116,7 +125,12 @@ class DatastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AllocateIdsRequest();
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $keys = [];
+        $request = (new AllocateIdsRequest())
+            ->setProjectId($projectId)
+            ->setKeys($keys);
         try {
             $gapicClient->allocateIds($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -143,7 +157,10 @@ class DatastoreClientTest extends GeneratedTest
         $expectedResponse = new BeginTransactionResponse();
         $expectedResponse->setTransaction($transaction);
         $transport->addResponse($expectedResponse);
-        $request = new BeginTransactionRequest();
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $request = (new BeginTransactionRequest())
+            ->setProjectId($projectId);
         $response = $gapicClient->beginTransaction($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -151,6 +168,8 @@ class DatastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.v1.Datastore/BeginTransaction', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProjectId();
+        $this->assertProtobufEquals($projectId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -172,7 +191,10 @@ class DatastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new BeginTransactionRequest();
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $request = (new BeginTransactionRequest())
+            ->setProjectId($projectId);
         try {
             $gapicClient->beginTransaction($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -200,9 +222,11 @@ class DatastoreClientTest extends GeneratedTest
         $expectedResponse->setIndexUpdates($indexUpdates);
         $transport->addResponse($expectedResponse);
         // Mock request
+        $projectId = 'projectId-1969970175';
         $mode = Mode::MODE_UNSPECIFIED;
         $mutations = [];
         $request = (new CommitRequest())
+            ->setProjectId($projectId)
             ->setMode($mode)
             ->setMutations($mutations);
         $response = $gapicClient->commit($request);
@@ -212,6 +236,8 @@ class DatastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.v1.Datastore/Commit', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProjectId();
+        $this->assertProtobufEquals($projectId, $actualValue);
         $actualValue = $actualRequestObject->getMode();
         $this->assertProtobufEquals($mode, $actualValue);
         $actualValue = $actualRequestObject->getMutations();
@@ -238,9 +264,11 @@ class DatastoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
+        $projectId = 'projectId-1969970175';
         $mode = Mode::MODE_UNSPECIFIED;
         $mutations = [];
         $request = (new CommitRequest())
+            ->setProjectId($projectId)
             ->setMode($mode)
             ->setMutations($mutations);
         try {
@@ -269,7 +297,12 @@ class DatastoreClientTest extends GeneratedTest
         $expectedResponse = new LookupResponse();
         $expectedResponse->setTransaction($transaction);
         $transport->addResponse($expectedResponse);
-        $request = new LookupRequest();
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $keys = [];
+        $request = (new LookupRequest())
+            ->setProjectId($projectId)
+            ->setKeys($keys);
         $response = $gapicClient->lookup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -277,6 +310,10 @@ class DatastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.v1.Datastore/Lookup', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProjectId();
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getKeys();
+        $this->assertProtobufEquals($keys, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -298,7 +335,12 @@ class DatastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new LookupRequest();
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $keys = [];
+        $request = (new LookupRequest())
+            ->setProjectId($projectId)
+            ->setKeys($keys);
         try {
             $gapicClient->lookup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -323,7 +365,12 @@ class DatastoreClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ReserveIdsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new ReserveIdsRequest();
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $keys = [];
+        $request = (new ReserveIdsRequest())
+            ->setProjectId($projectId)
+            ->setKeys($keys);
         $response = $gapicClient->reserveIds($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -331,6 +378,10 @@ class DatastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.v1.Datastore/ReserveIds', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProjectId();
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getKeys();
+        $this->assertProtobufEquals($keys, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -352,7 +403,12 @@ class DatastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ReserveIdsRequest();
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $keys = [];
+        $request = (new ReserveIdsRequest())
+            ->setProjectId($projectId)
+            ->setKeys($keys);
         try {
             $gapicClient->reserveIds($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -377,7 +433,12 @@ class DatastoreClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new RollbackResponse();
         $transport->addResponse($expectedResponse);
-        $request = new RollbackRequest();
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $transaction = '-34';
+        $request = (new RollbackRequest())
+            ->setProjectId($projectId)
+            ->setTransaction($transaction);
         $response = $gapicClient->rollback($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -385,6 +446,10 @@ class DatastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.v1.Datastore/Rollback', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProjectId();
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getTransaction();
+        $this->assertProtobufEquals($transaction, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -406,7 +471,12 @@ class DatastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new RollbackRequest();
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $transaction = '-34';
+        $request = (new RollbackRequest())
+            ->setProjectId($projectId)
+            ->setTransaction($transaction);
         try {
             $gapicClient->rollback($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -433,7 +503,10 @@ class DatastoreClientTest extends GeneratedTest
         $expectedResponse = new RunAggregationQueryResponse();
         $expectedResponse->setTransaction($transaction);
         $transport->addResponse($expectedResponse);
-        $request = new RunAggregationQueryRequest();
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $request = (new RunAggregationQueryRequest())
+            ->setProjectId($projectId);
         $response = $gapicClient->runAggregationQuery($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -441,6 +514,8 @@ class DatastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.v1.Datastore/RunAggregationQuery', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProjectId();
+        $this->assertProtobufEquals($projectId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -462,7 +537,10 @@ class DatastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new RunAggregationQueryRequest();
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $request = (new RunAggregationQueryRequest())
+            ->setProjectId($projectId);
         try {
             $gapicClient->runAggregationQuery($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -490,8 +568,10 @@ class DatastoreClientTest extends GeneratedTest
         $expectedResponse->setTransaction($transaction);
         $transport->addResponse($expectedResponse);
         // Mock request
+        $projectId = 'projectId-1969970175';
         $partitionId = new PartitionId();
         $request = (new RunQueryRequest())
+            ->setProjectId($projectId)
             ->setPartitionId($partitionId);
         $response = $gapicClient->runQuery($request);
         $this->assertEquals($expectedResponse, $response);
@@ -500,6 +580,8 @@ class DatastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.v1.Datastore/RunQuery', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProjectId();
+        $this->assertProtobufEquals($projectId, $actualValue);
         $actualValue = $actualRequestObject->getPartitionId();
         $this->assertProtobufEquals($partitionId, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -524,8 +606,10 @@ class DatastoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
+        $projectId = 'projectId-1969970175';
         $partitionId = new PartitionId();
         $request = (new RunQueryRequest())
+            ->setProjectId($projectId)
             ->setPartitionId($partitionId);
         try {
             $gapicClient->runQuery($request);
@@ -551,7 +635,12 @@ class DatastoreClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new AllocateIdsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new AllocateIdsRequest();
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $keys = [];
+        $request = (new AllocateIdsRequest())
+            ->setProjectId($projectId)
+            ->setKeys($keys);
         $response = $gapicClient->allocateIdsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -559,6 +648,10 @@ class DatastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.v1.Datastore/AllocateIds', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProjectId();
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $actualValue = $actualRequestObject->getKeys();
+        $this->assertProtobufEquals($keys, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

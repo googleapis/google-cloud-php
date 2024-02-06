@@ -31,19 +31,17 @@ use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesResponse;
 /**
  * Fetches a Repository's remote branches.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The repository's name. Please see
+ *                              {@see DataformClient::repositoryName()} for help formatting this field.
  */
-function fetch_remote_branches_sample(): void
+function fetch_remote_branches_sample(string $formattedName): void
 {
     // Create a client.
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $request = new FetchRemoteBranchesRequest();
+    $request = (new FetchRemoteBranchesRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +51,21 @@ function fetch_remote_branches_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DataformClient::repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+
+    fetch_remote_branches_sample($formattedName);
 }
 // [END dataform_v1beta1_generated_Dataform_FetchRemoteBranches_sync]

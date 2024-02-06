@@ -33,6 +33,7 @@ use Google\Cloud\Dialogflow\V2\GetSessionEntityTypeRequest;
 use Google\Cloud\Dialogflow\V2\ListSessionEntityTypesRequest;
 use Google\Cloud\Dialogflow\V2\ListSessionEntityTypesResponse;
 use Google\Cloud\Dialogflow\V2\SessionEntityType;
+use Google\Cloud\Dialogflow\V2\SessionEntityType\EntityOverrideMode;
 use Google\Cloud\Dialogflow\V2\UpdateSessionEntityTypeRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
@@ -83,7 +84,18 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $expectedResponse = new SessionEntityType();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        $request = new CreateSessionEntityTypeRequest();
+        // Mock request
+        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
+        $sessionEntityType = new SessionEntityType();
+        $sessionEntityTypeName = 'sessionEntityTypeName-916646370';
+        $sessionEntityType->setName($sessionEntityTypeName);
+        $sessionEntityTypeEntityOverrideMode = EntityOverrideMode::ENTITY_OVERRIDE_MODE_UNSPECIFIED;
+        $sessionEntityType->setEntityOverrideMode($sessionEntityTypeEntityOverrideMode);
+        $sessionEntityTypeEntities = [];
+        $sessionEntityType->setEntities($sessionEntityTypeEntities);
+        $request = (new CreateSessionEntityTypeRequest())
+            ->setParent($formattedParent)
+            ->setSessionEntityType($sessionEntityType);
         $response = $gapicClient->createSessionEntityType($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -91,6 +103,10 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.SessionEntityTypes/CreateSessionEntityType', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getSessionEntityType();
+        $this->assertProtobufEquals($sessionEntityType, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -112,7 +128,18 @@ class SessionEntityTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateSessionEntityTypeRequest();
+        // Mock request
+        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
+        $sessionEntityType = new SessionEntityType();
+        $sessionEntityTypeName = 'sessionEntityTypeName-916646370';
+        $sessionEntityType->setName($sessionEntityTypeName);
+        $sessionEntityTypeEntityOverrideMode = EntityOverrideMode::ENTITY_OVERRIDE_MODE_UNSPECIFIED;
+        $sessionEntityType->setEntityOverrideMode($sessionEntityTypeEntityOverrideMode);
+        $sessionEntityTypeEntities = [];
+        $sessionEntityType->setEntities($sessionEntityTypeEntities);
+        $request = (new CreateSessionEntityTypeRequest())
+            ->setParent($formattedParent)
+            ->setSessionEntityType($sessionEntityType);
         try {
             $gapicClient->createSessionEntityType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -137,13 +164,18 @@ class SessionEntityTypesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteSessionEntityTypeRequest();
+        // Mock request
+        $formattedName = $gapicClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
+        $request = (new DeleteSessionEntityTypeRequest())
+            ->setName($formattedName);
         $gapicClient->deleteSessionEntityType($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.SessionEntityTypes/DeleteSessionEntityType', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -165,7 +197,10 @@ class SessionEntityTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteSessionEntityTypeRequest();
+        // Mock request
+        $formattedName = $gapicClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
+        $request = (new DeleteSessionEntityTypeRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteSessionEntityType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -192,7 +227,10 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $expectedResponse = new SessionEntityType();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $request = new GetSessionEntityTypeRequest();
+        // Mock request
+        $formattedName = $gapicClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
+        $request = (new GetSessionEntityTypeRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getSessionEntityType($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -200,6 +238,8 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.SessionEntityTypes/GetSessionEntityType', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -221,7 +261,10 @@ class SessionEntityTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetSessionEntityTypeRequest();
+        // Mock request
+        $formattedName = $gapicClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
+        $request = (new GetSessionEntityTypeRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getSessionEntityType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -253,7 +296,10 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSessionEntityTypes($sessionEntityTypes);
         $transport->addResponse($expectedResponse);
-        $request = new ListSessionEntityTypesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
+        $request = (new ListSessionEntityTypesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listSessionEntityTypes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -264,6 +310,8 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.SessionEntityTypes/ListSessionEntityTypes', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -285,7 +333,10 @@ class SessionEntityTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListSessionEntityTypesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
+        $request = (new ListSessionEntityTypesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listSessionEntityTypes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -312,7 +363,16 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $expectedResponse = new SessionEntityType();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateSessionEntityTypeRequest();
+        // Mock request
+        $sessionEntityType = new SessionEntityType();
+        $sessionEntityTypeName = 'sessionEntityTypeName-916646370';
+        $sessionEntityType->setName($sessionEntityTypeName);
+        $sessionEntityTypeEntityOverrideMode = EntityOverrideMode::ENTITY_OVERRIDE_MODE_UNSPECIFIED;
+        $sessionEntityType->setEntityOverrideMode($sessionEntityTypeEntityOverrideMode);
+        $sessionEntityTypeEntities = [];
+        $sessionEntityType->setEntities($sessionEntityTypeEntities);
+        $request = (new UpdateSessionEntityTypeRequest())
+            ->setSessionEntityType($sessionEntityType);
         $response = $gapicClient->updateSessionEntityType($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -320,6 +380,8 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.SessionEntityTypes/UpdateSessionEntityType', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSessionEntityType();
+        $this->assertProtobufEquals($sessionEntityType, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -341,7 +403,16 @@ class SessionEntityTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateSessionEntityTypeRequest();
+        // Mock request
+        $sessionEntityType = new SessionEntityType();
+        $sessionEntityTypeName = 'sessionEntityTypeName-916646370';
+        $sessionEntityType->setName($sessionEntityTypeName);
+        $sessionEntityTypeEntityOverrideMode = EntityOverrideMode::ENTITY_OVERRIDE_MODE_UNSPECIFIED;
+        $sessionEntityType->setEntityOverrideMode($sessionEntityTypeEntityOverrideMode);
+        $sessionEntityTypeEntities = [];
+        $sessionEntityType->setEntities($sessionEntityTypeEntities);
+        $request = (new UpdateSessionEntityTypeRequest())
+            ->setSessionEntityType($sessionEntityType);
         try {
             $gapicClient->updateSessionEntityType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -492,7 +563,18 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $expectedResponse = new SessionEntityType();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        $request = new CreateSessionEntityTypeRequest();
+        // Mock request
+        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
+        $sessionEntityType = new SessionEntityType();
+        $sessionEntityTypeName = 'sessionEntityTypeName-916646370';
+        $sessionEntityType->setName($sessionEntityTypeName);
+        $sessionEntityTypeEntityOverrideMode = EntityOverrideMode::ENTITY_OVERRIDE_MODE_UNSPECIFIED;
+        $sessionEntityType->setEntityOverrideMode($sessionEntityTypeEntityOverrideMode);
+        $sessionEntityTypeEntities = [];
+        $sessionEntityType->setEntities($sessionEntityTypeEntities);
+        $request = (new CreateSessionEntityTypeRequest())
+            ->setParent($formattedParent)
+            ->setSessionEntityType($sessionEntityType);
         $response = $gapicClient->createSessionEntityTypeAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -500,6 +582,10 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.SessionEntityTypes/CreateSessionEntityType', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getSessionEntityType();
+        $this->assertProtobufEquals($sessionEntityType, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

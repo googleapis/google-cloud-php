@@ -76,7 +76,14 @@ class ZoneOperationsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DeleteZoneOperationResponse();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteZoneOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new DeleteZoneOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->delete($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -84,6 +91,12 @@ class ZoneOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Delete', $actualFuncCall);
+        $actualValue = $actualRequestObject->getOperation();
+        $this->assertProtobufEquals($operation, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -105,7 +118,14 @@ class ZoneOperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteZoneOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new DeleteZoneOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project)
+            ->setZone($zone);
         try {
             $gapicClient->delete($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -172,7 +192,14 @@ class ZoneOperationsClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-        $request = new GetZoneOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new GetZoneOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -180,6 +207,12 @@ class ZoneOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getOperation();
+        $this->assertProtobufEquals($operation, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -201,7 +234,14 @@ class ZoneOperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetZoneOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new GetZoneOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project)
+            ->setZone($zone);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -239,7 +279,12 @@ class ZoneOperationsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListZoneOperationsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new ListZoneOperationsRequest())
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -250,6 +295,10 @@ class ZoneOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ZoneOperations/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -271,7 +320,12 @@ class ZoneOperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListZoneOperationsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new ListZoneOperationsRequest())
+            ->setProject($project)
+            ->setZone($zone);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -338,7 +392,14 @@ class ZoneOperationsClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-        $request = new WaitZoneOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new WaitZoneOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->wait($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -346,6 +407,12 @@ class ZoneOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Wait', $actualFuncCall);
+        $actualValue = $actualRequestObject->getOperation();
+        $this->assertProtobufEquals($operation, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -367,7 +434,14 @@ class ZoneOperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new WaitZoneOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new WaitZoneOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project)
+            ->setZone($zone);
         try {
             $gapicClient->wait($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -392,7 +466,14 @@ class ZoneOperationsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DeleteZoneOperationResponse();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteZoneOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new DeleteZoneOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->deleteAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -400,6 +481,12 @@ class ZoneOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Delete', $actualFuncCall);
+        $actualValue = $actualRequestObject->getOperation();
+        $this->assertProtobufEquals($operation, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

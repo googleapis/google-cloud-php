@@ -30,19 +30,18 @@ use Google\Cloud\Dialogflow\V2\DeleteAgentRequest;
 /**
  * Deletes the specified agent.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The project that the agent to delete is associated with.
+ *                                Format: `projects/<Project ID>`. Please see
+ *                                {@see AgentsClient::projectName()} for help formatting this field.
  */
-function delete_agent_sample(): void
+function delete_agent_sample(string $formattedParent): void
 {
     // Create a client.
     $agentsClient = new AgentsClient();
 
     // Prepare the request message.
-    $request = new DeleteAgentRequest();
+    $request = (new DeleteAgentRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -51,5 +50,21 @@ function delete_agent_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AgentsClient::projectName('[PROJECT]');
+
+    delete_agent_sample($formattedParent);
 }
 // [END dialogflow_v2_generated_Agents_DeleteAgent_sync]

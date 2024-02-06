@@ -28,7 +28,8 @@ class GetConversationRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the conversation. Format:
      *                     `projects/<Project ID>/locations/<Location ID>/conversations/<Conversation
-     *                     ID>`.
+     *                     ID>`. Please see
+     *                     {@see ConversationsClient::conversationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\GetConversationRequest
      *

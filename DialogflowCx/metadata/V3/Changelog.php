@@ -21,10 +21,10 @@ class Changelog
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-€
--google/cloud/dialogflow/cx/v3/changelog.protogoogle.cloud.dialogflow.cx.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"Œ
-ListChangelogsRequest<
-parent (	B,âAúA%#dialogflow.googleapis.com/Changelog
+þ
+-google/cloud/dialogflow/cx/v3/changelog.protogoogle.cloud.dialogflow.cx.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"‹
+ListChangelogsRequest;
+parent (	B+àAúA%#dialogflow.googleapis.com/Changelog
 filter (	
 	page_size (
 
@@ -32,9 +32,9 @@ page_token (	"o
 ListChangelogsResponse<
 
 changelogs (2(.google.cloud.dialogflow.cx.v3.Changelog
-next_page_token (	"Q
-GetChangelogRequest:
-name (	B,âAúA%
+next_page_token (	"P
+GetChangelogRequest9
+name (	B+àAúA%
 #dialogflow.googleapis.com/Changelog"
 	Changelog
 name (	

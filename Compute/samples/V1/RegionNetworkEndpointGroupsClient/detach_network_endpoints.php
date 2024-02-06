@@ -26,26 +26,36 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\RegionNetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\RegionNetworkEndpointGroupsDetachEndpointsRequest;
 use Google\Rpc\Status;
 
 /**
  * Detach the network endpoint from the specified network endpoint group.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $networkEndpointGroup The name of the network endpoint group you are detaching network endpoints from. It should comply with RFC1035.
+ * @param string $project              Project ID for this request.
+ * @param string $region               The name of the region where the network endpoint group is located. It should comply with RFC1035.
  */
-function detach_network_endpoints_sample(): void
-{
+function detach_network_endpoints_sample(
+    string $networkEndpointGroup,
+    string $project,
+    string $region
+): void {
     // Create a client.
     $regionNetworkEndpointGroupsClient = new RegionNetworkEndpointGroupsClient();
+
+    // Prepare any non-scalar elements to be passed along with the request.
+    $regionNetworkEndpointGroupsDetachEndpointsRequestResource = new RegionNetworkEndpointGroupsDetachEndpointsRequest();
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionNetworkEndpointGroupsClient->detachNetworkEndpoints();
+        $response = $regionNetworkEndpointGroupsClient->detachNetworkEndpoints(
+            $networkEndpointGroup,
+            $project,
+            $region,
+            $regionNetworkEndpointGroupsDetachEndpointsRequestResource
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +68,23 @@ function detach_network_endpoints_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $networkEndpointGroup = '[NETWORK_ENDPOINT_GROUP]';
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    detach_network_endpoints_sample($networkEndpointGroup, $project, $region);
 }
 // [END compute_v1_generated_RegionNetworkEndpointGroups_DetachNetworkEndpoints_sync]

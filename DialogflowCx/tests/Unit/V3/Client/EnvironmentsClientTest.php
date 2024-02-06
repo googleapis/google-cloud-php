@@ -51,6 +51,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -120,7 +121,12 @@ class EnvironmentsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateEnvironmentRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $environment = new Environment();
+        $environmentDisplayName = 'environmentDisplayName747655770';
+        $environment->setDisplayName($environmentDisplayName);
+        $request = (new CreateEnvironmentRequest())->setParent($formattedParent)->setEnvironment($environment);
         $response = $gapicClient->createEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -131,6 +137,10 @@ class EnvironmentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Environments/CreateEnvironment', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getEnvironment();
+        $this->assertProtobufEquals($environment, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createEnvironmentTest');
         $response->pollUntilComplete([
@@ -184,7 +194,12 @@ class EnvironmentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateEnvironmentRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $environment = new Environment();
+        $environmentDisplayName = 'environmentDisplayName747655770';
+        $environment->setDisplayName($environmentDisplayName);
+        $request = (new CreateEnvironmentRequest())->setParent($formattedParent)->setEnvironment($environment);
         $response = $gapicClient->createEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -218,13 +233,17 @@ class EnvironmentsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteEnvironmentRequest();
+        // Mock request
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[AGENT]', '[ENVIRONMENT]');
+        $request = (new DeleteEnvironmentRequest())->setName($formattedName);
         $gapicClient->deleteEnvironment($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Environments/DeleteEnvironment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -249,7 +268,9 @@ class EnvironmentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new DeleteEnvironmentRequest();
+        // Mock request
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[AGENT]', '[ENVIRONMENT]');
+        $request = (new DeleteEnvironmentRequest())->setName($formattedName);
         try {
             $gapicClient->deleteEnvironment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -294,7 +315,12 @@ class EnvironmentsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeployFlowRequest();
+        // Mock request
+        $formattedEnvironment = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[AGENT]', '[ENVIRONMENT]');
+        $formattedFlowVersion = $gapicClient->versionName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]', '[VERSION]');
+        $request = (new DeployFlowRequest())
+            ->setEnvironment($formattedEnvironment)
+            ->setFlowVersion($formattedFlowVersion);
         $response = $gapicClient->deployFlow($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -305,6 +331,10 @@ class EnvironmentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Environments/DeployFlow', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getEnvironment();
+        $this->assertProtobufEquals($formattedEnvironment, $actualValue);
+        $actualValue = $actualApiRequestObject->getFlowVersion();
+        $this->assertProtobufEquals($formattedFlowVersion, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deployFlowTest');
         $response->pollUntilComplete([
@@ -358,7 +388,12 @@ class EnvironmentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        $request = new DeployFlowRequest();
+        // Mock request
+        $formattedEnvironment = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[AGENT]', '[ENVIRONMENT]');
+        $formattedFlowVersion = $gapicClient->versionName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]', '[VERSION]');
+        $request = (new DeployFlowRequest())
+            ->setEnvironment($formattedEnvironment)
+            ->setFlowVersion($formattedFlowVersion);
         $response = $gapicClient->deployFlow($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -398,7 +433,9 @@ class EnvironmentsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $request = new GetEnvironmentRequest();
+        // Mock request
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[AGENT]', '[ENVIRONMENT]');
+        $request = (new GetEnvironmentRequest())->setName($formattedName);
         $response = $gapicClient->getEnvironment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -406,6 +443,8 @@ class EnvironmentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Environments/GetEnvironment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -430,7 +469,9 @@ class EnvironmentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetEnvironmentRequest();
+        // Mock request
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[AGENT]', '[ENVIRONMENT]');
+        $request = (new GetEnvironmentRequest())->setName($formattedName);
         try {
             $gapicClient->getEnvironment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -460,7 +501,9 @@ class EnvironmentsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setContinuousTestResults($continuousTestResults);
         $transport->addResponse($expectedResponse);
-        $request = new ListContinuousTestResultsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[AGENT]', '[ENVIRONMENT]');
+        $request = (new ListContinuousTestResultsRequest())->setParent($formattedParent);
         $response = $gapicClient->listContinuousTestResults($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -471,6 +514,8 @@ class EnvironmentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Environments/ListContinuousTestResults', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -495,7 +540,9 @@ class EnvironmentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListContinuousTestResultsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[AGENT]', '[ENVIRONMENT]');
+        $request = (new ListContinuousTestResultsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listContinuousTestResults($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -525,7 +572,9 @@ class EnvironmentsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEnvironments($environments);
         $transport->addResponse($expectedResponse);
-        $request = new ListEnvironmentsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ListEnvironmentsRequest())->setParent($formattedParent);
         $response = $gapicClient->listEnvironments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -536,6 +585,8 @@ class EnvironmentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Environments/ListEnvironments', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -560,7 +611,9 @@ class EnvironmentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListEnvironmentsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ListEnvironmentsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listEnvironments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -590,7 +643,9 @@ class EnvironmentsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEnvironments($environments);
         $transport->addResponse($expectedResponse);
-        $request = new LookupEnvironmentHistoryRequest();
+        // Mock request
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[AGENT]', '[ENVIRONMENT]');
+        $request = (new LookupEnvironmentHistoryRequest())->setName($formattedName);
         $response = $gapicClient->lookupEnvironmentHistory($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -601,6 +656,8 @@ class EnvironmentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Environments/LookupEnvironmentHistory', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -625,7 +682,9 @@ class EnvironmentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new LookupEnvironmentHistoryRequest();
+        // Mock request
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[AGENT]', '[ENVIRONMENT]');
+        $request = (new LookupEnvironmentHistoryRequest())->setName($formattedName);
         try {
             $gapicClient->lookupEnvironmentHistory($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -668,7 +727,9 @@ class EnvironmentsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new RunContinuousTestRequest();
+        // Mock request
+        $formattedEnvironment = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[AGENT]', '[ENVIRONMENT]');
+        $request = (new RunContinuousTestRequest())->setEnvironment($formattedEnvironment);
         $response = $gapicClient->runContinuousTest($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -679,6 +740,8 @@ class EnvironmentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Environments/RunContinuousTest', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getEnvironment();
+        $this->assertProtobufEquals($formattedEnvironment, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/runContinuousTestTest');
         $response->pollUntilComplete([
@@ -732,7 +795,9 @@ class EnvironmentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        $request = new RunContinuousTestRequest();
+        // Mock request
+        $formattedEnvironment = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[AGENT]', '[ENVIRONMENT]');
+        $request = (new RunContinuousTestRequest())->setEnvironment($formattedEnvironment);
         $response = $gapicClient->runContinuousTest($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -790,7 +855,12 @@ class EnvironmentsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateEnvironmentRequest();
+        // Mock request
+        $environment = new Environment();
+        $environmentDisplayName = 'environmentDisplayName747655770';
+        $environment->setDisplayName($environmentDisplayName);
+        $updateMask = new FieldMask();
+        $request = (new UpdateEnvironmentRequest())->setEnvironment($environment)->setUpdateMask($updateMask);
         $response = $gapicClient->updateEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -801,6 +871,10 @@ class EnvironmentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Environments/UpdateEnvironment', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getEnvironment();
+        $this->assertProtobufEquals($environment, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateEnvironmentTest');
         $response->pollUntilComplete([
@@ -854,7 +928,12 @@ class EnvironmentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateEnvironmentRequest();
+        // Mock request
+        $environment = new Environment();
+        $environmentDisplayName = 'environmentDisplayName747655770';
+        $environment->setDisplayName($environmentDisplayName);
+        $updateMask = new FieldMask();
+        $request = (new UpdateEnvironmentRequest())->setEnvironment($environment)->setUpdateMask($updateMask);
         $response = $gapicClient->updateEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1040,7 +1119,12 @@ class EnvironmentsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateEnvironmentRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $environment = new Environment();
+        $environmentDisplayName = 'environmentDisplayName747655770';
+        $environment->setDisplayName($environmentDisplayName);
+        $request = (new CreateEnvironmentRequest())->setParent($formattedParent)->setEnvironment($environment);
         $response = $gapicClient->createEnvironmentAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1051,6 +1135,10 @@ class EnvironmentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Environments/CreateEnvironment', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getEnvironment();
+        $this->assertProtobufEquals($environment, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createEnvironmentTest');
         $response->pollUntilComplete([

@@ -46,7 +46,8 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                   $parent       Required. Resource identifier of the project creating the conversation.
-     *                                                               Format: `projects/<Project ID>/locations/<Location ID>`.
+     *                                                               Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                                                               {@see ConversationsClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\V2\Conversation $conversation Required. The conversation to create.
      *
      * @return \Google\Cloud\Dialogflow\V2\CreateConversationRequest

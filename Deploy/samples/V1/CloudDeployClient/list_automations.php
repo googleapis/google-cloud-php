@@ -32,19 +32,19 @@ use Google\Cloud\Deploy\V1\ListAutomationsRequest;
 /**
  * Lists Automations in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent `Delivery Pipeline`, which owns this collection of
+ *                                automations. Format must be
+ *                                `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
+ *                                {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
  */
-function list_automations_sample(): void
+function list_automations_sample(string $formattedParent): void
 {
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = new ListAutomationsRequest();
+    $request = (new ListAutomationsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +58,25 @@ function list_automations_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = CloudDeployClient::deliveryPipelineName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[DELIVERY_PIPELINE]'
+    );
+
+    list_automations_sample($formattedParent);
 }
 // [END clouddeploy_v1_generated_CloudDeploy_ListAutomations_sync]

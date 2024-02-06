@@ -30,13 +30,11 @@ use Google\Cloud\Compute\V1\NetworkEndpointGroupsClient;
 /**
  * Returns the specified network endpoint group.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $networkEndpointGroup The name of the network endpoint group. It should comply with RFC1035.
+ * @param string $project              Project ID for this request.
+ * @param string $zone                 The name of the zone where the network endpoint group is located. It should comply with RFC1035.
  */
-function get_sample(): void
+function get_sample(string $networkEndpointGroup, string $project, string $zone): void
 {
     // Create a client.
     $networkEndpointGroupsClient = new NetworkEndpointGroupsClient();
@@ -44,10 +42,28 @@ function get_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var NetworkEndpointGroup $response */
-        $response = $networkEndpointGroupsClient->get();
+        $response = $networkEndpointGroupsClient->get($networkEndpointGroup, $project, $zone);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $networkEndpointGroup = '[NETWORK_ENDPOINT_GROUP]';
+    $project = '[PROJECT]';
+    $zone = '[ZONE]';
+
+    get_sample($networkEndpointGroup, $project, $zone);
 }
 // [END compute_v1_generated_NetworkEndpointGroups_Get_sync]

@@ -30,6 +30,7 @@ use Google\Cloud\Compute\V1\Client\LicenseCodesClient;
 use Google\Cloud\Compute\V1\GetLicenseCodeRequest;
 use Google\Cloud\Compute\V1\LicenseCode;
 use Google\Cloud\Compute\V1\TestIamPermissionsLicenseCodeRequest;
+use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Rpc\Code;
 use stdClass;
@@ -89,7 +90,12 @@ class LicenseCodesClientTest extends GeneratedTest
         $expectedResponse->setState($state);
         $expectedResponse->setTransferable($transferable);
         $transport->addResponse($expectedResponse);
-        $request = new GetLicenseCodeRequest();
+        // Mock request
+        $licenseCode = 'licenseCode1612079915';
+        $project = 'project-309310695';
+        $request = (new GetLicenseCodeRequest())
+            ->setLicenseCode($licenseCode)
+            ->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -97,6 +103,10 @@ class LicenseCodesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.LicenseCodes/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getLicenseCode();
+        $this->assertProtobufEquals($licenseCode, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -118,7 +128,12 @@ class LicenseCodesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetLicenseCodeRequest();
+        // Mock request
+        $licenseCode = 'licenseCode1612079915';
+        $project = 'project-309310695';
+        $request = (new GetLicenseCodeRequest())
+            ->setLicenseCode($licenseCode)
+            ->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -143,7 +158,14 @@ class LicenseCodesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsLicenseCodeRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsLicenseCodeRequest())
+            ->setProject($project)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -151,6 +173,12 @@ class LicenseCodesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.LicenseCodes/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
+        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -172,7 +200,14 @@ class LicenseCodesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsLicenseCodeRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsLicenseCodeRequest())
+            ->setProject($project)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -213,7 +248,12 @@ class LicenseCodesClientTest extends GeneratedTest
         $expectedResponse->setState($state);
         $expectedResponse->setTransferable($transferable);
         $transport->addResponse($expectedResponse);
-        $request = new GetLicenseCodeRequest();
+        // Mock request
+        $licenseCode = 'licenseCode1612079915';
+        $project = 'project-309310695';
+        $request = (new GetLicenseCodeRequest())
+            ->setLicenseCode($licenseCode)
+            ->setProject($project);
         $response = $gapicClient->getAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -221,6 +261,10 @@ class LicenseCodesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.LicenseCodes/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getLicenseCode();
+        $this->assertProtobufEquals($licenseCode, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

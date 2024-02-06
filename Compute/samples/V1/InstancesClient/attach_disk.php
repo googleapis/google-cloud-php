@@ -25,27 +25,29 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_AttachDisk_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\AttachedDisk;
 use Google\Cloud\Compute\V1\InstancesClient;
 use Google\Rpc\Status;
 
 /**
  * Attaches an existing Disk resource to an instance. You must first create the disk before you can attach it. It is not possible to create and attach a disk at the same time. For more information, read Adding a persistent disk to your instance.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $instance The instance name for this request.
+ * @param string $project  Project ID for this request.
+ * @param string $zone     The name of the zone for this request.
  */
-function attach_disk_sample(): void
+function attach_disk_sample(string $instance, string $project, string $zone): void
 {
     // Create a client.
     $instancesClient = new InstancesClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $attachedDiskResource = new AttachedDisk();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->attachDisk();
+        $response = $instancesClient->attachDisk($attachedDiskResource, $instance, $project, $zone);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +60,23 @@ function attach_disk_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $instance = '[INSTANCE]';
+    $project = '[PROJECT]';
+    $zone = '[ZONE]';
+
+    attach_disk_sample($instance, $project, $zone);
 }
 // [END compute_v1_generated_Instances_AttachDisk_sync]

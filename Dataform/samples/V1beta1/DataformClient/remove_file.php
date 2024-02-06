@@ -30,19 +30,20 @@ use Google\Cloud\Dataform\V1beta1\RemoveFileRequest;
 /**
  * Deletes a file (inside a Workspace).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedWorkspace The workspace's name. Please see
+ *                                   {@see DataformClient::workspaceName()} for help formatting this field.
+ * @param string $path               The file's full path including filename, relative to the
+ *                                   workspace root.
  */
-function remove_file_sample(): void
+function remove_file_sample(string $formattedWorkspace, string $path): void
 {
     // Create a client.
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $request = new RemoveFileRequest();
+    $request = (new RemoveFileRequest())
+        ->setWorkspace($formattedWorkspace)
+        ->setPath($path);
 
     // Call the API and handle any network failures.
     try {
@@ -51,5 +52,27 @@ function remove_file_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedWorkspace = DataformClient::workspaceName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[REPOSITORY]',
+        '[WORKSPACE]'
+    );
+    $path = '[PATH]';
+
+    remove_file_sample($formattedWorkspace, $path);
 }
 // [END dataform_v1beta1_generated_Dataform_RemoveFile_sync]

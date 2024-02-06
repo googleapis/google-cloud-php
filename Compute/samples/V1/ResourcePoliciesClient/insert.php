@@ -26,26 +26,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\ResourcePoliciesClient;
+use Google\Cloud\Compute\V1\ResourcePolicy;
 use Google\Rpc\Status;
 
 /**
  * Creates a new resource policy.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project Project ID for this request.
+ * @param string $region  Name of the region for this request.
  */
-function insert_sample(): void
+function insert_sample(string $project, string $region): void
 {
     // Create a client.
     $resourcePoliciesClient = new ResourcePoliciesClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $resourcePolicyResource = new ResourcePolicy();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $resourcePoliciesClient->insert();
+        $response = $resourcePoliciesClient->insert($project, $region, $resourcePolicyResource);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +59,22 @@ function insert_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    insert_sample($project, $region);
 }
 // [END compute_v1_generated_ResourcePolicies_Insert_sync]

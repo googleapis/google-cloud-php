@@ -24,7 +24,8 @@ class GetTagTemplateRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the tag template to get.
+     * @param string $name Required. The name of the tag template to get. Please see
+     *                     {@see DataCatalogClient::tagTemplateName()} for help formatting this field.
      *
      * @return \Google\Cloud\DataCatalog\V1\GetTagTemplateRequest
      *

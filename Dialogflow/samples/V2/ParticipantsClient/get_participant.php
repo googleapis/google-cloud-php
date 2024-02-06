@@ -31,19 +31,19 @@ use Google\Cloud\Dialogflow\V2\Participant;
 /**
  * Retrieves a conversation participant.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the participant. Format:
+ *                              `projects/<Project ID>/locations/<Location ID>/conversations/<Conversation
+ *                              ID>/participants/<Participant ID>`. Please see
+ *                              {@see ParticipantsClient::participantName()} for help formatting this field.
  */
-function get_participant_sample(): void
+function get_participant_sample(string $formattedName): void
 {
     // Create a client.
     $participantsClient = new ParticipantsClient();
 
     // Prepare the request message.
-    $request = new GetParticipantRequest();
+    $request = (new GetParticipantRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +53,25 @@ function get_participant_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ParticipantsClient::participantName(
+        '[PROJECT]',
+        '[CONVERSATION]',
+        '[PARTICIPANT]'
+    );
+
+    get_participant_sample($formattedName);
 }
 // [END dialogflow_v2_generated_Participants_GetParticipant_sync]

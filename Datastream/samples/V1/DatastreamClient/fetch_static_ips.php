@@ -32,19 +32,18 @@ use Google\Cloud\Datastream\V1\FetchStaticIpsRequest;
  * The FetchStaticIps API call exposes the static IP addresses used by
  * Datastream.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name for the location for which static IPs should be
+ *                              returned. Must be in the format `projects/&#42;/locations/*`. Please see
+ *                              {@see DatastreamClient::locationName()} for help formatting this field.
  */
-function fetch_static_ips_sample(): void
+function fetch_static_ips_sample(string $formattedName): void
 {
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
     // Prepare the request message.
-    $request = new FetchStaticIpsRequest();
+    $request = (new FetchStaticIpsRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function fetch_static_ips_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DatastreamClient::locationName('[PROJECT]', '[LOCATION]');
+
+    fetch_static_ips_sample($formattedName);
 }
 // [END datastream_v1_generated_Datastream_FetchStaticIps_sync]

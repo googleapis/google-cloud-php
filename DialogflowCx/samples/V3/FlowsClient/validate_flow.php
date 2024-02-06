@@ -33,19 +33,19 @@ use Google\Cloud\Dialogflow\Cx\V3\ValidateFlowRequest;
  * Please call this API after the training is completed to get the complete
  * validation results.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The flow to validate.
+ *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+ *                              ID>/flows/<Flow ID>`. Please see
+ *                              {@see FlowsClient::flowName()} for help formatting this field.
  */
-function validate_flow_sample(): void
+function validate_flow_sample(string $formattedName): void
 {
     // Create a client.
     $flowsClient = new FlowsClient();
 
     // Prepare the request message.
-    $request = new ValidateFlowRequest();
+    $request = (new ValidateFlowRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -55,5 +55,21 @@ function validate_flow_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = FlowsClient::flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+
+    validate_flow_sample($formattedName);
 }
 // [END dialogflow_v3_generated_Flows_ValidateFlow_sync]

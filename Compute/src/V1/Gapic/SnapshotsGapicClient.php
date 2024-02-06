@@ -60,7 +60,9 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  * ```
  * $snapshotsClient = new SnapshotsClient();
  * try {
- *     $operationResponse = $snapshotsClient->delete();
+ *     $project = 'project';
+ *     $snapshot = 'snapshot';
+ *     $operationResponse = $snapshotsClient->delete($project, $snapshot);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -70,7 +72,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $snapshotsClient->delete();
+ *     $operationResponse = $snapshotsClient->delete($project, $snapshot);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $snapshotsClient->resumeOperation($operationName, 'delete');
@@ -170,7 +172,9 @@ class SnapshotsGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -266,7 +270,9 @@ class SnapshotsGapicClient
      * ```
      * $snapshotsClient = new SnapshotsClient();
      * try {
-     *     $operationResponse = $snapshotsClient->delete();
+     *     $project = 'project';
+     *     $snapshot = 'snapshot';
+     *     $operationResponse = $snapshotsClient->delete($project, $snapshot);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -276,7 +282,7 @@ class SnapshotsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $snapshotsClient->delete();
+     *     $operationResponse = $snapshotsClient->delete($project, $snapshot);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $snapshotsClient->resumeOperation($operationName, 'delete');
@@ -295,15 +301,13 @@ class SnapshotsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $snapshot     Name of the Snapshot resource to delete.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $snapshot
-     *           Name of the Snapshot resource to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -314,22 +318,16 @@ class SnapshotsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete(array $optionalArgs = [])
+    public function delete($project, $snapshot, array $optionalArgs = [])
     {
         $request = new DeleteSnapshotRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setProject($project);
+        $request->setSnapshot($snapshot);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['snapshot'] = $snapshot;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['snapshot'])) {
-            $request->setSnapshot($optionalArgs['snapshot']);
-            $requestParamHeaders['snapshot'] = $optionalArgs['snapshot'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -344,19 +342,19 @@ class SnapshotsGapicClient
      * ```
      * $snapshotsClient = new SnapshotsClient();
      * try {
-     *     $response = $snapshotsClient->get();
+     *     $project = 'project';
+     *     $snapshot = 'snapshot';
+     *     $response = $snapshotsClient->get($project, $snapshot);
      * } finally {
      *     $snapshotsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $snapshot     Name of the Snapshot resource to return.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $snapshot
-     *           Name of the Snapshot resource to return.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -367,20 +365,14 @@ class SnapshotsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($project, $snapshot, array $optionalArgs = [])
     {
         $request = new GetSnapshotRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['snapshot'])) {
-            $request->setSnapshot($optionalArgs['snapshot']);
-            $requestParamHeaders['snapshot'] = $optionalArgs['snapshot'];
-        }
-
+        $request->setProject($project);
+        $request->setSnapshot($snapshot);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['snapshot'] = $snapshot;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', Snapshot::class, $optionalArgs, $request)->wait();
@@ -393,21 +385,21 @@ class SnapshotsGapicClient
      * ```
      * $snapshotsClient = new SnapshotsClient();
      * try {
-     *     $response = $snapshotsClient->getIamPolicy();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $response = $snapshotsClient->getIamPolicy($project, $resource);
      * } finally {
      *     $snapshotsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $resource     Name or id of the resource for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type int $optionsRequestedPolicyVersion
      *           Requested IAM Policy version.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $resource
-     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -418,22 +410,16 @@ class SnapshotsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($project, $resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicySnapshotRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['optionsRequestedPolicyVersion'])) {
             $request->setOptionsRequestedPolicyVersion($optionalArgs['optionsRequestedPolicyVersion']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -448,7 +434,9 @@ class SnapshotsGapicClient
      * ```
      * $snapshotsClient = new SnapshotsClient();
      * try {
-     *     $operationResponse = $snapshotsClient->insert();
+     *     $project = 'project';
+     *     $snapshotResource = new Snapshot();
+     *     $operationResponse = $snapshotsClient->insert($project, $snapshotResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -458,7 +446,7 @@ class SnapshotsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $snapshotsClient->insert();
+     *     $operationResponse = $snapshotsClient->insert($project, $snapshotResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $snapshotsClient->resumeOperation($operationName, 'insert');
@@ -477,15 +465,13 @@ class SnapshotsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $project          Project ID for this request.
+     * @param Snapshot $snapshotResource The body resource for this request
+     * @param array    $optionalArgs     {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type Snapshot $snapshotResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -496,21 +482,15 @@ class SnapshotsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert(array $optionalArgs = [])
+    public function insert($project, $snapshotResource, array $optionalArgs = [])
     {
         $request = new InsertSnapshotRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setProject($project);
+        $request->setSnapshotResource($snapshotResource);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['snapshotResource'])) {
-            $request->setSnapshotResource($optionalArgs['snapshotResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -525,8 +505,9 @@ class SnapshotsGapicClient
      * ```
      * $snapshotsClient = new SnapshotsClient();
      * try {
+     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $snapshotsClient->list();
+     *     $pagedResponse = $snapshotsClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -534,7 +515,7 @@ class SnapshotsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $snapshotsClient->list();
+     *     $pagedResponse = $snapshotsClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -543,7 +524,8 @@ class SnapshotsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -557,8 +539,6 @@ class SnapshotsGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -571,10 +551,12 @@ class SnapshotsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list(array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListSnapshotsRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -589,11 +571,6 @@ class SnapshotsGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -612,21 +589,21 @@ class SnapshotsGapicClient
      * ```
      * $snapshotsClient = new SnapshotsClient();
      * try {
-     *     $response = $snapshotsClient->setIamPolicy();
+     *     $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $response = $snapshotsClient->setIamPolicy($globalSetPolicyRequestResource, $project, $resource);
      * } finally {
      *     $snapshotsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param GlobalSetPolicyRequest $globalSetPolicyRequestResource The body resource for this request
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param array                  $optionalArgs                   {
      *     Optional.
      *
-     *     @type GlobalSetPolicyRequest $globalSetPolicyRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $resource
-     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -637,24 +614,15 @@ class SnapshotsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($globalSetPolicyRequestResource, $project, $resource, array $optionalArgs = [])
     {
         $request = new SetIamPolicySnapshotRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['globalSetPolicyRequestResource'])) {
-            $request->setGlobalSetPolicyRequestResource($optionalArgs['globalSetPolicyRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setGlobalSetPolicyRequestResource($globalSetPolicyRequestResource);
+        $request->setProject($project);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
@@ -667,7 +635,10 @@ class SnapshotsGapicClient
      * ```
      * $snapshotsClient = new SnapshotsClient();
      * try {
-     *     $operationResponse = $snapshotsClient->setLabels();
+     *     $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $operationResponse = $snapshotsClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -677,7 +648,7 @@ class SnapshotsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $snapshotsClient->setLabels();
+     *     $operationResponse = $snapshotsClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $snapshotsClient->resumeOperation($operationName, 'setLabels');
@@ -696,15 +667,12 @@ class SnapshotsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param GlobalSetLabelsRequest $globalSetLabelsRequestResource The body resource for this request
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param array                  $optionalArgs                   {
      *     Optional.
      *
-     *     @type GlobalSetLabelsRequest $globalSetLabelsRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $resource
-     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -715,24 +683,15 @@ class SnapshotsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setLabels(array $optionalArgs = [])
+    public function setLabels($globalSetLabelsRequestResource, $project, $resource, array $optionalArgs = [])
     {
         $request = new SetLabelsSnapshotRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['globalSetLabelsRequestResource'])) {
-            $request->setGlobalSetLabelsRequestResource($optionalArgs['globalSetLabelsRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource);
+        $request->setProject($project);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('SetLabels', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
@@ -745,21 +704,21 @@ class SnapshotsGapicClient
      * ```
      * $snapshotsClient = new SnapshotsClient();
      * try {
-     *     $response = $snapshotsClient->testIamPermissions();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $testPermissionsRequestResource = new TestPermissionsRequest();
+     *     $response = $snapshotsClient->testIamPermissions($project, $resource, $testPermissionsRequestResource);
      * } finally {
      *     $snapshotsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param TestPermissionsRequest $testPermissionsRequestResource The body resource for this request
+     * @param array                  $optionalArgs                   {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $resource
-     *           Name or id of the resource for this request.
-     *     @type TestPermissionsRequest $testPermissionsRequestResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -770,24 +729,15 @@ class SnapshotsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
+    public function testIamPermissions($project, $resource, $testPermissionsRequestResource, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsSnapshotRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['testPermissionsRequestResource'])) {
-            $request->setTestPermissionsRequestResource($optionalArgs['testPermissionsRequestResource']);
-        }
-
+        $request->setProject($project);
+        $request->setResource($resource);
+        $request->setTestPermissionsRequestResource($testPermissionsRequestResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestPermissionsResponse::class, $optionalArgs, $request)->wait();

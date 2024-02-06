@@ -69,6 +69,7 @@ use Google\Cloud\Metastore\V1\UpdateServiceRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -130,7 +131,14 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new AlterMetadataResourceLocationRequest();
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $resourceName = 'resourceName979421212';
+        $locationUri = 'locationUri-57953822';
+        $request = (new AlterMetadataResourceLocationRequest())
+            ->setService($formattedService)
+            ->setResourceName($resourceName)
+            ->setLocationUri($locationUri);
         $response = $gapicClient->alterMetadataResourceLocation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -141,6 +149,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/AlterMetadataResourceLocation', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getService();
+        $this->assertProtobufEquals($formattedService, $actualValue);
+        $actualValue = $actualApiRequestObject->getResourceName();
+        $this->assertProtobufEquals($resourceName, $actualValue);
+        $actualValue = $actualApiRequestObject->getLocationUri();
+        $this->assertProtobufEquals($locationUri, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/alterMetadataResourceLocationTest');
         $response->pollUntilComplete([
@@ -191,7 +205,14 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new AlterMetadataResourceLocationRequest();
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $resourceName = 'resourceName979421212';
+        $locationUri = 'locationUri-57953822';
+        $request = (new AlterMetadataResourceLocationRequest())
+            ->setService($formattedService)
+            ->setResourceName($resourceName)
+            ->setLocationUri($locationUri);
         $response = $gapicClient->alterMetadataResourceLocation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -247,7 +268,14 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateBackupRequest();
+        // Mock request
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $backupId = 'backupId1355353272';
+        $backup = new Backup();
+        $request = (new CreateBackupRequest())
+            ->setParent($formattedParent)
+            ->setBackupId($backupId)
+            ->setBackup($backup);
         $response = $gapicClient->createBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -258,6 +286,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/CreateBackup', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackupId();
+        $this->assertProtobufEquals($backupId, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackup();
+        $this->assertProtobufEquals($backup, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBackupTest');
         $response->pollUntilComplete([
@@ -308,7 +342,14 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateBackupRequest();
+        // Mock request
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $backupId = 'backupId1355353272';
+        $backup = new Backup();
+        $request = (new CreateBackupRequest())
+            ->setParent($formattedParent)
+            ->setBackupId($backupId)
+            ->setBackup($backup);
         $response = $gapicClient->createBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -364,7 +405,14 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateMetadataImportRequest();
+        // Mock request
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $metadataImportId = 'metadataImportId-476076315';
+        $metadataImport = new MetadataImport();
+        $request = (new CreateMetadataImportRequest())
+            ->setParent($formattedParent)
+            ->setMetadataImportId($metadataImportId)
+            ->setMetadataImport($metadataImport);
         $response = $gapicClient->createMetadataImport($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -375,6 +423,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/CreateMetadataImport', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getMetadataImportId();
+        $this->assertProtobufEquals($metadataImportId, $actualValue);
+        $actualValue = $actualApiRequestObject->getMetadataImport();
+        $this->assertProtobufEquals($metadataImport, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createMetadataImportTest');
         $response->pollUntilComplete([
@@ -425,7 +479,14 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateMetadataImportRequest();
+        // Mock request
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $metadataImportId = 'metadataImportId-476076315';
+        $metadataImport = new MetadataImport();
+        $request = (new CreateMetadataImportRequest())
+            ->setParent($formattedParent)
+            ->setMetadataImportId($metadataImportId)
+            ->setMetadataImport($metadataImport);
         $response = $gapicClient->createMetadataImport($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -491,7 +552,14 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateServiceRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $serviceId = 'serviceId-1724763419';
+        $service = new Service();
+        $request = (new CreateServiceRequest())
+            ->setParent($formattedParent)
+            ->setServiceId($serviceId)
+            ->setService($service);
         $response = $gapicClient->createService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -502,6 +570,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/CreateService', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getServiceId();
+        $this->assertProtobufEquals($serviceId, $actualValue);
+        $actualValue = $actualApiRequestObject->getService();
+        $this->assertProtobufEquals($service, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createServiceTest');
         $response->pollUntilComplete([
@@ -552,7 +626,14 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateServiceRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $serviceId = 'serviceId-1724763419';
+        $service = new Service();
+        $request = (new CreateServiceRequest())
+            ->setParent($formattedParent)
+            ->setServiceId($serviceId)
+            ->setService($service);
         $response = $gapicClient->createService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -604,7 +685,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteBackupRequest();
+        // Mock request
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+        $request = (new DeleteBackupRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -615,6 +699,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/DeleteBackup', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteBackupTest');
         $response->pollUntilComplete([
@@ -665,7 +751,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteBackupRequest();
+        // Mock request
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+        $request = (new DeleteBackupRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -717,7 +806,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteServiceRequest();
+        // Mock request
+        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $request = (new DeleteServiceRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -728,6 +820,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/DeleteService', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteServiceTest');
         $response->pollUntilComplete([
@@ -778,7 +872,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteServiceRequest();
+        // Mock request
+        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $request = (new DeleteServiceRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -832,7 +929,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new ExportMetadataRequest();
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $request = (new ExportMetadataRequest())
+            ->setService($formattedService);
         $response = $gapicClient->exportMetadata($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -843,6 +943,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/ExportMetadata', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getService();
+        $this->assertProtobufEquals($formattedService, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportMetadataTest');
         $response->pollUntilComplete([
@@ -893,7 +995,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new ExportMetadataRequest();
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $request = (new ExportMetadataRequest())
+            ->setService($formattedService);
         $response = $gapicClient->exportMetadata($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -931,7 +1036,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $request = new GetBackupRequest();
+        // Mock request
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+        $request = (new GetBackupRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getBackup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -939,6 +1047,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/GetBackup', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -960,7 +1070,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetBackupRequest();
+        // Mock request
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+        $request = (new GetBackupRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -989,7 +1102,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $request = new GetMetadataImportRequest();
+        // Mock request
+        $formattedName = $gapicClient->metadataImportName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[METADATA_IMPORT]');
+        $request = (new GetMetadataImportRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getMetadataImport($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -997,6 +1113,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/GetMetadataImport', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1018,7 +1136,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetMetadataImportRequest();
+        // Mock request
+        $formattedName = $gapicClient->metadataImportName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[METADATA_IMPORT]');
+        $request = (new GetMetadataImportRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getMetadataImport($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1057,7 +1178,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $expectedResponse->setArtifactGcsUri($artifactGcsUri);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        $request = new GetServiceRequest();
+        // Mock request
+        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $request = (new GetServiceRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getService($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1065,6 +1189,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/GetService', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1086,7 +1212,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetServiceRequest();
+        // Mock request
+        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $request = (new GetServiceRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getService($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1118,7 +1247,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBackups($backups);
         $transport->addResponse($expectedResponse);
-        $request = new ListBackupsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $request = (new ListBackupsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listBackups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1129,6 +1261,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/ListBackups', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1150,7 +1284,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListBackupsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $request = (new ListBackupsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listBackups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1182,7 +1319,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMetadataImports($metadataImports);
         $transport->addResponse($expectedResponse);
-        $request = new ListMetadataImportsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $request = (new ListMetadataImportsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listMetadataImports($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1193,6 +1333,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/ListMetadataImports', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1214,7 +1356,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListMetadataImportsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $request = (new ListMetadataImportsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listMetadataImports($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1246,7 +1391,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServices($services);
         $transport->addResponse($expectedResponse);
-        $request = new ListServicesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListServicesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listServices($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1257,6 +1405,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/ListServices', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1278,7 +1428,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListServicesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListServicesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listServices($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1321,7 +1474,16 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new MoveTableToDatabaseRequest();
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $tableName = 'tableName-1504630692';
+        $dbName = 'dbName1452819884';
+        $destinationDbName = 'destinationDbName-1322761605';
+        $request = (new MoveTableToDatabaseRequest())
+            ->setService($formattedService)
+            ->setTableName($tableName)
+            ->setDbName($dbName)
+            ->setDestinationDbName($destinationDbName);
         $response = $gapicClient->moveTableToDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1332,6 +1494,14 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/MoveTableToDatabase', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getService();
+        $this->assertProtobufEquals($formattedService, $actualValue);
+        $actualValue = $actualApiRequestObject->getTableName();
+        $this->assertProtobufEquals($tableName, $actualValue);
+        $actualValue = $actualApiRequestObject->getDbName();
+        $this->assertProtobufEquals($dbName, $actualValue);
+        $actualValue = $actualApiRequestObject->getDestinationDbName();
+        $this->assertProtobufEquals($destinationDbName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/moveTableToDatabaseTest');
         $response->pollUntilComplete([
@@ -1382,7 +1552,16 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new MoveTableToDatabaseRequest();
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $tableName = 'tableName-1504630692';
+        $dbName = 'dbName1452819884';
+        $destinationDbName = 'destinationDbName-1322761605';
+        $request = (new MoveTableToDatabaseRequest())
+            ->setService($formattedService)
+            ->setTableName($tableName)
+            ->setDbName($dbName)
+            ->setDestinationDbName($destinationDbName);
         $response = $gapicClient->moveTableToDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1436,7 +1615,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new QueryMetadataRequest();
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $query = 'query107944136';
+        $request = (new QueryMetadataRequest())
+            ->setService($formattedService)
+            ->setQuery($query);
         $response = $gapicClient->queryMetadata($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1447,6 +1631,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/QueryMetadata', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getService();
+        $this->assertProtobufEquals($formattedService, $actualValue);
+        $actualValue = $actualApiRequestObject->getQuery();
+        $this->assertProtobufEquals($query, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/queryMetadataTest');
         $response->pollUntilComplete([
@@ -1497,7 +1685,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new QueryMetadataRequest();
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $query = 'query107944136';
+        $request = (new QueryMetadataRequest())
+            ->setService($formattedService)
+            ->setQuery($query);
         $response = $gapicClient->queryMetadata($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1553,7 +1746,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new RestoreServiceRequest();
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $formattedBackup = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+        $request = (new RestoreServiceRequest())
+            ->setService($formattedService)
+            ->setBackup($formattedBackup);
         $response = $gapicClient->restoreService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1564,6 +1762,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/RestoreService', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getService();
+        $this->assertProtobufEquals($formattedService, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackup();
+        $this->assertProtobufEquals($formattedBackup, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/restoreServiceTest');
         $response->pollUntilComplete([
@@ -1614,7 +1816,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new RestoreServiceRequest();
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $formattedBackup = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+        $request = (new RestoreServiceRequest())
+            ->setService($formattedService)
+            ->setBackup($formattedBackup);
         $response = $gapicClient->restoreService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1670,7 +1877,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateMetadataImportRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $metadataImport = new MetadataImport();
+        $request = (new UpdateMetadataImportRequest())
+            ->setUpdateMask($updateMask)
+            ->setMetadataImport($metadataImport);
         $response = $gapicClient->updateMetadataImport($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1681,6 +1893,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/UpdateMetadataImport', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualApiRequestObject->getMetadataImport();
+        $this->assertProtobufEquals($metadataImport, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateMetadataImportTest');
         $response->pollUntilComplete([
@@ -1731,7 +1947,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateMetadataImportRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $metadataImport = new MetadataImport();
+        $request = (new UpdateMetadataImportRequest())
+            ->setUpdateMask($updateMask)
+            ->setMetadataImport($metadataImport);
         $response = $gapicClient->updateMetadataImport($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1797,7 +2018,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateServiceRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $service = new Service();
+        $request = (new UpdateServiceRequest())
+            ->setUpdateMask($updateMask)
+            ->setService($service);
         $response = $gapicClient->updateService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1808,6 +2034,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/UpdateService', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualApiRequestObject->getService();
+        $this->assertProtobufEquals($service, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateServiceTest');
         $response->pollUntilComplete([
@@ -1858,7 +2088,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateServiceRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $service = new Service();
+        $request = (new UpdateServiceRequest())
+            ->setUpdateMask($updateMask)
+            ->setService($service);
         $response = $gapicClient->updateService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2020,7 +2255,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2028,6 +2266,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2049,7 +2289,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2078,7 +2321,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2086,6 +2334,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2107,7 +2359,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2132,7 +2389,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2140,6 +2402,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2161,7 +2427,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2204,7 +2475,14 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new AlterMetadataResourceLocationRequest();
+        // Mock request
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $resourceName = 'resourceName979421212';
+        $locationUri = 'locationUri-57953822';
+        $request = (new AlterMetadataResourceLocationRequest())
+            ->setService($formattedService)
+            ->setResourceName($resourceName)
+            ->setLocationUri($locationUri);
         $response = $gapicClient->alterMetadataResourceLocationAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2215,6 +2493,12 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastore/AlterMetadataResourceLocation', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getService();
+        $this->assertProtobufEquals($formattedService, $actualValue);
+        $actualValue = $actualApiRequestObject->getResourceName();
+        $this->assertProtobufEquals($resourceName, $actualValue);
+        $actualValue = $actualApiRequestObject->getLocationUri();
+        $this->assertProtobufEquals($locationUri, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/alterMetadataResourceLocationTest');
         $response->pollUntilComplete([

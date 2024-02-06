@@ -27,7 +27,8 @@ class DeletePolicyTagRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Resource name of the policy tag to delete.
      *
-     *                     Note: All of its descendant policy tags are also deleted.
+     *                     Note: All of its descendant policy tags are also deleted. Please see
+     *                     {@see PolicyTagManagerClient::policyTagName()} for help formatting this field.
      *
      * @return \Google\Cloud\DataCatalog\V1\DeletePolicyTagRequest
      *

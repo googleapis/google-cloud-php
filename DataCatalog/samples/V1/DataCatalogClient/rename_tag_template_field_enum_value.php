@@ -33,19 +33,22 @@ use Google\Cloud\DataCatalog\V1\TagTemplateField;
  *
  * Within a single enum field, enum values must be unique.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName           The name of the enum field value. Please see
+ *                                        {@see DataCatalogClient::tagTemplateFieldEnumValueName()} for help formatting this field.
+ * @param string $newEnumValueDisplayName The new display name of the enum value. For example,
+ *                                        `my_new_enum_value`.
  */
-function rename_tag_template_field_enum_value_sample(): void
-{
+function rename_tag_template_field_enum_value_sample(
+    string $formattedName,
+    string $newEnumValueDisplayName
+): void {
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
     // Prepare the request message.
-    $request = new RenameTagTemplateFieldEnumValueRequest();
+    $request = (new RenameTagTemplateFieldEnumValueRequest())
+        ->setName($formattedName)
+        ->setNewEnumValueDisplayName($newEnumValueDisplayName);
 
     // Call the API and handle any network failures.
     try {
@@ -55,5 +58,28 @@ function rename_tag_template_field_enum_value_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DataCatalogClient::tagTemplateFieldEnumValueName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[TAG_TEMPLATE]',
+        '[TAG_TEMPLATE_FIELD_ID]',
+        '[ENUM_VALUE_DISPLAY_NAME]'
+    );
+    $newEnumValueDisplayName = '[NEW_ENUM_VALUE_DISPLAY_NAME]';
+
+    rename_tag_template_field_enum_value_sample($formattedName, $newEnumValueDisplayName);
 }
 // [END datacatalog_v1_generated_DataCatalog_RenameTagTemplateFieldEnumValue_sync]

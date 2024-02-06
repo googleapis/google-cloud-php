@@ -31,19 +31,32 @@ use Google\Cloud\Dataform\V1beta1\ReleaseConfig;
 /**
  * Creates a new ReleaseConfig in a given Repository.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent           The repository in which to create the release config. Must be in
+ *                                          the format `projects/&#42;/locations/&#42;/repositories/*`. Please see
+ *                                          {@see DataformClient::repositoryName()} for help formatting this field.
+ * @param string $releaseConfigGitCommitish Git commit/tag/branch name at which the repository should be
+ *                                          compiled. Must exist in the remote repository. Examples:
+ *                                          - a commit SHA: `12ade345`
+ *                                          - a tag: `tag1`
+ *                                          - a branch name: `branch1`
+ * @param string $releaseConfigId           The ID to use for the release config, which will become the final
+ *                                          component of the release config's resource name.
  */
-function create_release_config_sample(): void
-{
+function create_release_config_sample(
+    string $formattedParent,
+    string $releaseConfigGitCommitish,
+    string $releaseConfigId
+): void {
     // Create a client.
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $request = new CreateReleaseConfigRequest();
+    $releaseConfig = (new ReleaseConfig())
+        ->setGitCommitish($releaseConfigGitCommitish);
+    $request = (new CreateReleaseConfigRequest())
+        ->setParent($formattedParent)
+        ->setReleaseConfig($releaseConfig)
+        ->setReleaseConfigId($releaseConfigId);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +66,23 @@ function create_release_config_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataformClient::repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+    $releaseConfigGitCommitish = '[GIT_COMMITISH]';
+    $releaseConfigId = '[RELEASE_CONFIG_ID]';
+
+    create_release_config_sample($formattedParent, $releaseConfigGitCommitish, $releaseConfigId);
 }
 // [END dataform_v1beta1_generated_Dataform_CreateReleaseConfig_sync]

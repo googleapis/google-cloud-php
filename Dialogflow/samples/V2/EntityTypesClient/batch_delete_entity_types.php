@@ -45,19 +45,24 @@ use Google\Rpc\Status;
  * [training
  * documentation](https://cloud.google.com/dialogflow/es/docs/training).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent        The name of the agent to delete all entities types for. Format:
+ *                                       `projects/<Project ID>/agent`. Please see
+ *                                       {@see EntityTypesClient::agentName()} for help formatting this field.
+ * @param string $entityTypeNamesElement The names entity types to delete. All names must point to the
+ *                                       same agent as `parent`.
  */
-function batch_delete_entity_types_sample(): void
-{
+function batch_delete_entity_types_sample(
+    string $formattedParent,
+    string $entityTypeNamesElement
+): void {
     // Create a client.
     $entityTypesClient = new EntityTypesClient();
 
     // Prepare the request message.
-    $request = new BatchDeleteEntityTypesRequest();
+    $entityTypeNames = [$entityTypeNamesElement,];
+    $request = (new BatchDeleteEntityTypesRequest())
+        ->setParent($formattedParent)
+        ->setEntityTypeNames($entityTypeNames);
 
     // Call the API and handle any network failures.
     try {
@@ -75,5 +80,22 @@ function batch_delete_entity_types_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = EntityTypesClient::agentName('[PROJECT]');
+    $entityTypeNamesElement = '[ENTITY_TYPE_NAMES]';
+
+    batch_delete_entity_types_sample($formattedParent, $entityTypeNamesElement);
 }
 // [END dialogflow_v2_generated_EntityTypes_BatchDeleteEntityTypes_sync]

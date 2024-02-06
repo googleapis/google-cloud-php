@@ -45,19 +45,26 @@ use Google\Cloud\DataCatalog\Lineage\V1\ProcessLinks;
  * have the `datalineage.events.get` permission. The project provided in the
  * URL is used for Billing and Quota.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The project and location where you want to search. Please see
+ *                                {@see LineageClient::locationName()} for help formatting this field.
+ * @param string $linksElement    An array of links to check for their associated LineageProcesses.
+ *
+ *                                The maximum number of items in this array is 100.
+ *                                If the request contains more than 100 links, it returns the
+ *                                `INVALID_ARGUMENT` error.
+ *
+ *                                Format: `projects/{project}/locations/{location}/links/{link}`.
  */
-function batch_search_link_processes_sample(): void
+function batch_search_link_processes_sample(string $formattedParent, string $linksElement): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
     // Prepare the request message.
-    $request = new BatchSearchLinkProcessesRequest();
+    $links = [$linksElement,];
+    $request = (new BatchSearchLinkProcessesRequest())
+        ->setParent($formattedParent)
+        ->setLinks($links);
 
     // Call the API and handle any network failures.
     try {
@@ -71,5 +78,22 @@ function batch_search_link_processes_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = LineageClient::locationName('[PROJECT]', '[LOCATION]');
+    $linksElement = '[LINKS]';
+
+    batch_search_link_processes_sample($formattedParent, $linksElement);
 }
 // [END datalineage_v1_generated_Lineage_BatchSearchLinkProcesses_sync]

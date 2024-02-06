@@ -33,19 +33,16 @@ use Google\Cloud\Container\V1\SetNodePoolSizeRequest;
  * replicas, including future replicas created by modifying
  * [NodePool.locations][google.container.v1.NodePool.locations].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param int $nodeCount The desired node count for the pool.
  */
-function set_node_pool_size_sample(): void
+function set_node_pool_size_sample(int $nodeCount): void
 {
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
     // Prepare the request message.
-    $request = new SetNodePoolSizeRequest();
+    $request = (new SetNodePoolSizeRequest())
+        ->setNodeCount($nodeCount);
 
     // Call the API and handle any network failures.
     try {
@@ -55,5 +52,21 @@ function set_node_pool_size_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $nodeCount = 0;
+
+    set_node_pool_size_sample($nodeCount);
 }
 // [END container_v1_generated_ClusterManager_SetNodePoolSize_sync]

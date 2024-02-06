@@ -42,19 +42,24 @@ use Google\Rpc\Status;
  * - `response`:
  * [ExportIntentsResponse][google.cloud.dialogflow.cx.v3.ExportIntentsResponse]
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the parent agent to export intents.
+ *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+ *                                ID>`. Please see
+ *                                {@see IntentsClient::agentName()} for help formatting this field.
+ * @param string $intentsElement  The name of the intents to export.
+ *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+ *                                ID>/intents/<Intent ID>`.
  */
-function export_intents_sample(): void
+function export_intents_sample(string $formattedParent, string $intentsElement): void
 {
     // Create a client.
     $intentsClient = new IntentsClient();
 
     // Prepare the request message.
-    $request = new ExportIntentsRequest();
+    $intents = [$intentsElement,];
+    $request = (new ExportIntentsRequest())
+        ->setParent($formattedParent)
+        ->setIntents($intents);
 
     // Call the API and handle any network failures.
     try {
@@ -74,5 +79,22 @@ function export_intents_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = IntentsClient::agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+    $intentsElement = '[INTENTS]';
+
+    export_intents_sample($formattedParent, $intentsElement);
 }
 // [END dialogflow_v3_generated_Intents_ExportIntents_sync]

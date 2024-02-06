@@ -91,7 +91,10 @@ class GlobalOperationsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListGlobalOperationsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListGlobalOperationsRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -104,6 +107,8 @@ class GlobalOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.GlobalOperations/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -125,7 +130,10 @@ class GlobalOperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AggregatedListGlobalOperationsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListGlobalOperationsRequest())
+            ->setProject($project);
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -150,7 +158,12 @@ class GlobalOperationsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DeleteGlobalOperationResponse();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteGlobalOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $request = (new DeleteGlobalOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -158,6 +171,10 @@ class GlobalOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Delete', $actualFuncCall);
+        $actualValue = $actualRequestObject->getOperation();
+        $this->assertProtobufEquals($operation, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -179,7 +196,12 @@ class GlobalOperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteGlobalOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $request = (new DeleteGlobalOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project);
         try {
             $gapicClient->delete($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -246,7 +268,12 @@ class GlobalOperationsClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-        $request = new GetGlobalOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $request = (new GetGlobalOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -254,6 +281,10 @@ class GlobalOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getOperation();
+        $this->assertProtobufEquals($operation, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -275,7 +306,12 @@ class GlobalOperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetGlobalOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $request = (new GetGlobalOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -313,7 +349,10 @@ class GlobalOperationsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListGlobalOperationsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListGlobalOperationsRequest())
+            ->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -324,6 +363,8 @@ class GlobalOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.GlobalOperations/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -345,7 +386,10 @@ class GlobalOperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListGlobalOperationsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListGlobalOperationsRequest())
+            ->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -412,7 +456,12 @@ class GlobalOperationsClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-        $request = new WaitGlobalOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $request = (new WaitGlobalOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project);
         $response = $gapicClient->wait($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -420,6 +469,10 @@ class GlobalOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Wait', $actualFuncCall);
+        $actualValue = $actualRequestObject->getOperation();
+        $this->assertProtobufEquals($operation, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -441,7 +494,12 @@ class GlobalOperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new WaitGlobalOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $request = (new WaitGlobalOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project);
         try {
             $gapicClient->wait($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -478,7 +536,10 @@ class GlobalOperationsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListGlobalOperationsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListGlobalOperationsRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -491,6 +552,8 @@ class GlobalOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.GlobalOperations/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

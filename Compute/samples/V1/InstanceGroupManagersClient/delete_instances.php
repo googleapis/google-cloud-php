@@ -26,26 +26,36 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\InstanceGroupManagersDeleteInstancesRequest;
 use Google\Rpc\Status;
 
 /**
  * Flags the specified instances in the managed instance group for immediate deletion. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted. You can specify a maximum of 1000 instances with this method per request.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $instanceGroupManager The name of the managed instance group.
+ * @param string $project              Project ID for this request.
+ * @param string $zone                 The name of the zone where the managed instance group is located.
  */
-function delete_instances_sample(): void
-{
+function delete_instances_sample(
+    string $instanceGroupManager,
+    string $project,
+    string $zone
+): void {
     // Create a client.
     $instanceGroupManagersClient = new InstanceGroupManagersClient();
+
+    // Prepare any non-scalar elements to be passed along with the request.
+    $instanceGroupManagersDeleteInstancesRequestResource = new InstanceGroupManagersDeleteInstancesRequest();
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceGroupManagersClient->deleteInstances();
+        $response = $instanceGroupManagersClient->deleteInstances(
+            $instanceGroupManager,
+            $instanceGroupManagersDeleteInstancesRequestResource,
+            $project,
+            $zone
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +68,23 @@ function delete_instances_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $instanceGroupManager = '[INSTANCE_GROUP_MANAGER]';
+    $project = '[PROJECT]';
+    $zone = '[ZONE]';
+
+    delete_instances_sample($instanceGroupManager, $project, $zone);
 }
 // [END compute_v1_generated_InstanceGroupManagers_DeleteInstances_sync]

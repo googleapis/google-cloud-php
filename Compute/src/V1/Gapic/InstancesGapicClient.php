@@ -126,7 +126,12 @@ use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
  * ```
  * $instancesClient = new InstancesClient();
  * try {
- *     $operationResponse = $instancesClient->addAccessConfig();
+ *     $accessConfigResource = new AccessConfig();
+ *     $instance = 'instance';
+ *     $networkInterface = 'network_interface';
+ *     $project = 'project';
+ *     $zone = 'zone';
+ *     $operationResponse = $instancesClient->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -136,7 +141,7 @@ use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $instancesClient->addAccessConfig();
+ *     $operationResponse = $instancesClient->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'addAccessConfig');
@@ -236,7 +241,10 @@ class InstancesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+                'getZone',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -332,7 +340,12 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->addAccessConfig();
+     *     $accessConfigResource = new AccessConfig();
+     *     $instance = 'instance';
+     *     $networkInterface = 'network_interface';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -342,7 +355,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->addAccessConfig();
+     *     $operationResponse = $instancesClient->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'addAccessConfig');
@@ -361,21 +374,16 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param AccessConfig $accessConfigResource The body resource for this request
+     * @param string       $instance             The instance name for this request.
+     * @param string       $networkInterface     The name of the network interface to add to this instance.
+     * @param string       $project              Project ID for this request.
+     * @param string       $zone                 The name of the zone for this request.
+     * @param array        $optionalArgs         {
      *     Optional.
      *
-     *     @type AccessConfig $accessConfigResource
-     *           The body resource for this request
-     *     @type string $instance
-     *           The instance name for this request.
-     *     @type string $networkInterface
-     *           The name of the network interface to add to this instance.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -386,35 +394,20 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addAccessConfig(array $optionalArgs = [])
+    public function addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone, array $optionalArgs = [])
     {
         $request = new AddAccessConfigInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['accessConfigResource'])) {
-            $request->setAccessConfigResource($optionalArgs['accessConfigResource']);
-        }
-
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['networkInterface'])) {
-            $request->setNetworkInterface($optionalArgs['networkInterface']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setAccessConfigResource($accessConfigResource);
+        $request->setInstance($instance);
+        $request->setNetworkInterface($networkInterface);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -429,7 +422,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->addResourcePolicies();
+     *     $instance = 'instance';
+     *     $instancesAddResourcePoliciesRequestResource = new InstancesAddResourcePoliciesRequest();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->addResourcePolicies($instance, $instancesAddResourcePoliciesRequestResource, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -439,7 +436,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->addResourcePolicies();
+     *     $operationResponse = $instancesClient->addResourcePolicies($instance, $instancesAddResourcePoliciesRequestResource, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'addResourcePolicies');
@@ -458,19 +455,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                              $instance                                    The instance name for this request.
+     * @param InstancesAddResourcePoliciesRequest $instancesAddResourcePoliciesRequestResource The body resource for this request
+     * @param string                              $project                                     Project ID for this request.
+     * @param string                              $zone                                        The name of the zone for this request.
+     * @param array                               $optionalArgs                                {
      *     Optional.
      *
-     *     @type string $instance
-     *           The instance name for this request.
-     *     @type InstancesAddResourcePoliciesRequest $instancesAddResourcePoliciesRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -481,31 +474,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addResourcePolicies(array $optionalArgs = [])
+    public function addResourcePolicies($instance, $instancesAddResourcePoliciesRequestResource, $project, $zone, array $optionalArgs = [])
     {
         $request = new AddResourcePoliciesInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['instancesAddResourcePoliciesRequestResource'])) {
-            $request->setInstancesAddResourcePoliciesRequestResource($optionalArgs['instancesAddResourcePoliciesRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setInstancesAddResourcePoliciesRequestResource($instancesAddResourcePoliciesRequestResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -520,8 +501,9 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
+     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $instancesClient->aggregatedList();
+     *     $pagedResponse = $instancesClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
@@ -529,7 +511,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $instancesClient->aggregatedList();
+     *     $pagedResponse = $instancesClient->aggregatedList($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -538,7 +520,8 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -554,8 +537,6 @@ class InstancesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type int $serviceProjectNumber
@@ -569,10 +550,12 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function aggregatedList(array $optionalArgs = [])
+    public function aggregatedList($project, array $optionalArgs = [])
     {
         $request = new AggregatedListInstancesRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -591,11 +574,6 @@ class InstancesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -618,7 +596,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->attachDisk();
+     *     $attachedDiskResource = new AttachedDisk();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->attachDisk($attachedDiskResource, $instance, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -628,7 +610,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->attachDisk();
+     *     $operationResponse = $instancesClient->attachDisk($attachedDiskResource, $instance, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'attachDisk');
@@ -647,21 +629,17 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param AttachedDisk $attachedDiskResource The body resource for this request
+     * @param string       $instance             The instance name for this request.
+     * @param string       $project              Project ID for this request.
+     * @param string       $zone                 The name of the zone for this request.
+     * @param array        $optionalArgs         {
      *     Optional.
      *
-     *     @type AttachedDisk $attachedDiskResource
-     *           The body resource for this request
      *     @type bool $forceAttach
      *           Whether to force attach the regional disk even if it's currently attached to another instance. If you try to force attach a zonal disk to an instance, you will receive an error.
-     *     @type string $instance
-     *           The instance name for this request.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -672,35 +650,23 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function attachDisk(array $optionalArgs = [])
+    public function attachDisk($attachedDiskResource, $instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new AttachDiskInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['attachedDiskResource'])) {
-            $request->setAttachedDiskResource($optionalArgs['attachedDiskResource']);
-        }
-
+        $request->setAttachedDiskResource($attachedDiskResource);
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['forceAttach'])) {
             $request->setForceAttach($optionalArgs['forceAttach']);
         }
 
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -715,7 +681,10 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->bulkInsert();
+     *     $bulkInsertInstanceResourceResource = new BulkInsertInstanceResource();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->bulkInsert($bulkInsertInstanceResourceResource, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -725,7 +694,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->bulkInsert();
+     *     $operationResponse = $instancesClient->bulkInsert($bulkInsertInstanceResourceResource, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'bulkInsert');
@@ -744,17 +713,14 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param BulkInsertInstanceResource $bulkInsertInstanceResourceResource The body resource for this request
+     * @param string                     $project                            Project ID for this request.
+     * @param string                     $zone                               The name of the zone for this request.
+     * @param array                      $optionalArgs                       {
      *     Optional.
      *
-     *     @type BulkInsertInstanceResource $bulkInsertInstanceResourceResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -765,26 +731,17 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function bulkInsert(array $optionalArgs = [])
+    public function bulkInsert($bulkInsertInstanceResourceResource, $project, $zone, array $optionalArgs = [])
     {
         $request = new BulkInsertInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['bulkInsertInstanceResourceResource'])) {
-            $request->setBulkInsertInstanceResourceResource($optionalArgs['bulkInsertInstanceResourceResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setBulkInsertInstanceResourceResource($bulkInsertInstanceResourceResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -799,7 +756,10 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->delete();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->delete($instance, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -809,7 +769,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->delete();
+     *     $operationResponse = $instancesClient->delete($instance, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'delete');
@@ -828,17 +788,14 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Name of the instance resource to delete.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance resource to delete.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -849,27 +806,18 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete(array $optionalArgs = [])
+    public function delete($instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new DeleteInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -884,7 +832,12 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->deleteAccessConfig();
+     *     $accessConfig = 'access_config';
+     *     $instance = 'instance';
+     *     $networkInterface = 'network_interface';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->deleteAccessConfig($accessConfig, $instance, $networkInterface, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -894,7 +847,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->deleteAccessConfig();
+     *     $operationResponse = $instancesClient->deleteAccessConfig($accessConfig, $instance, $networkInterface, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'deleteAccessConfig');
@@ -913,21 +866,16 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $accessConfig     The name of the access config to delete.
+     * @param string $instance         The instance name for this request.
+     * @param string $networkInterface The name of the network interface.
+     * @param string $project          Project ID for this request.
+     * @param string $zone             The name of the zone for this request.
+     * @param array  $optionalArgs     {
      *     Optional.
      *
-     *     @type string $accessConfig
-     *           The name of the access config to delete.
-     *     @type string $instance
-     *           The instance name for this request.
-     *     @type string $networkInterface
-     *           The name of the network interface.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -938,35 +886,20 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAccessConfig(array $optionalArgs = [])
+    public function deleteAccessConfig($accessConfig, $instance, $networkInterface, $project, $zone, array $optionalArgs = [])
     {
         $request = new DeleteAccessConfigInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['accessConfig'])) {
-            $request->setAccessConfig($optionalArgs['accessConfig']);
-        }
-
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['networkInterface'])) {
-            $request->setNetworkInterface($optionalArgs['networkInterface']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setAccessConfig($accessConfig);
+        $request->setInstance($instance);
+        $request->setNetworkInterface($networkInterface);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -981,7 +914,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->detachDisk();
+     *     $deviceName = 'device_name';
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->detachDisk($deviceName, $instance, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -991,7 +928,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->detachDisk();
+     *     $operationResponse = $instancesClient->detachDisk($deviceName, $instance, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'detachDisk');
@@ -1010,19 +947,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $deviceName   The device name of the disk to detach. Make a get() request on the instance to view currently attached disks and device names.
+     * @param string $instance     Instance name for this request.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $deviceName
-     *           The device name of the disk to detach. Make a get() request on the instance to view currently attached disks and device names.
-     *     @type string $instance
-     *           Instance name for this request.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1033,31 +966,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function detachDisk(array $optionalArgs = [])
+    public function detachDisk($deviceName, $instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new DetachDiskInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['deviceName'])) {
-            $request->setDeviceName($optionalArgs['deviceName']);
-        }
-
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setDeviceName($deviceName);
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1072,21 +993,21 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $response = $instancesClient->get();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $response = $instancesClient->get($instance, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Name of the instance resource to return.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance resource to return.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1097,25 +1018,16 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new GetInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', Instance::class, $optionalArgs, $request)->wait();
@@ -1128,23 +1040,23 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $response = $instancesClient->getEffectiveFirewalls();
+     *     $instance = 'instance';
+     *     $networkInterface = 'network_interface';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $response = $instancesClient->getEffectiveFirewalls($instance, $networkInterface, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance         Name of the instance scoping this request.
+     * @param string $networkInterface The name of the network interface to get the effective firewalls.
+     * @param string $project          Project ID for this request.
+     * @param string $zone             The name of the zone for this request.
+     * @param array  $optionalArgs     {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance scoping this request.
-     *     @type string $networkInterface
-     *           The name of the network interface to get the effective firewalls.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1155,29 +1067,17 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEffectiveFirewalls(array $optionalArgs = [])
+    public function getEffectiveFirewalls($instance, $networkInterface, $project, $zone, array $optionalArgs = [])
     {
         $request = new GetEffectiveFirewallsInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['networkInterface'])) {
-            $request->setNetworkInterface($optionalArgs['networkInterface']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
-        }
-
+        $request->setInstance($instance);
+        $request->setNetworkInterface($networkInterface);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetEffectiveFirewalls', InstancesGetEffectiveFirewallsResponse::class, $optionalArgs, $request)->wait();
@@ -1190,25 +1090,25 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $response = $instancesClient->getGuestAttributes();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $response = $instancesClient->getGuestAttributes($instance, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Name of the instance scoping this request.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance scoping this request.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $queryPath
      *           Specifies the guest attributes path to be queried.
      *     @type string $variableKey
      *           Specifies the key for the guest attributes entry.
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1219,31 +1119,22 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getGuestAttributes(array $optionalArgs = [])
+    public function getGuestAttributes($instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new GetGuestAttributesInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['queryPath'])) {
             $request->setQueryPath($optionalArgs['queryPath']);
         }
 
         if (isset($optionalArgs['variableKey'])) {
             $request->setVariableKey($optionalArgs['variableKey']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1258,23 +1149,23 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $response = $instancesClient->getIamPolicy();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $zone = 'zone';
+     *     $response = $instancesClient->getIamPolicy($project, $resource, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $resource     Name or id of the resource for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type int $optionsRequestedPolicyVersion
      *           Requested IAM Policy version.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $resource
-     *           Name or id of the resource for this request.
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1285,27 +1176,18 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($project, $resource, $zone, array $optionalArgs = [])
     {
         $request = new GetIamPolicyInstanceRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setResource($resource);
+        $request->setZone($zone);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['optionsRequestedPolicyVersion'])) {
             $request->setOptionsRequestedPolicyVersion($optionalArgs['optionsRequestedPolicyVersion']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1320,21 +1202,21 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $response = $instancesClient->getScreenshot();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $response = $instancesClient->getScreenshot($instance, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Name of the instance scoping this request.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance scoping this request.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1345,25 +1227,16 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getScreenshot(array $optionalArgs = [])
+    public function getScreenshot($instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new GetScreenshotInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetScreenshot', Screenshot::class, $optionalArgs, $request)->wait();
@@ -1376,25 +1249,25 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $response = $instancesClient->getSerialPortOutput();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $response = $instancesClient->getSerialPortOutput($instance, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Name of the instance for this request.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance for this request.
      *     @type int $port
      *           Specifies which COM or serial port to retrieve data from.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type int $start
      *           Specifies the starting byte position of the output to return. To start with the first byte of output to the specified port, omit this field or set it to `0`. If the output for that byte position is available, this field matches the `start` parameter sent with the request. If the amount of serial console output exceeds the size of the buffer (1 MB), the oldest output is discarded and is no longer available. If the requested start position refers to discarded output, the start position is adjusted to the oldest output still available, and the adjusted start position is returned as the `start` property value. You can also provide a negative start position, which translates to the most recent number of bytes written to the serial port. For example, -3 is interpreted as the most recent 3 bytes written to the serial console.
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1405,31 +1278,22 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSerialPortOutput(array $optionalArgs = [])
+    public function getSerialPortOutput($instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new GetSerialPortOutputInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['port'])) {
             $request->setPort($optionalArgs['port']);
         }
 
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
         if (isset($optionalArgs['start'])) {
             $request->setStart($optionalArgs['start']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1444,21 +1308,21 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $response = $instancesClient->getShieldedInstanceIdentity();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $response = $instancesClient->getShieldedInstanceIdentity($instance, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Name or id of the instance scoping this request.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name or id of the instance scoping this request.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1469,25 +1333,16 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getShieldedInstanceIdentity(array $optionalArgs = [])
+    public function getShieldedInstanceIdentity($instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new GetShieldedInstanceIdentityInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetShieldedInstanceIdentity', ShieldedInstanceIdentity::class, $optionalArgs, $request)->wait();
@@ -1500,7 +1355,10 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->insert();
+     *     $instanceResource = new Instance();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->insert($instanceResource, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1510,7 +1368,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->insert();
+     *     $operationResponse = $instancesClient->insert($instanceResource, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'insert');
@@ -1529,21 +1387,18 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Instance $instanceResource The body resource for this request
+     * @param string   $project          Project ID for this request.
+     * @param string   $zone             The name of the zone for this request.
+     * @param array    $optionalArgs     {
      *     Optional.
      *
-     *     @type Instance $instanceResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type string $sourceInstanceTemplate
      *           Specifies instance template to create the instance. This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template: - https://www.googleapis.com/compute/v1/projects/project /global/instanceTemplates/instanceTemplate - projects/project/global/instanceTemplates/instanceTemplate - global/instanceTemplates/instanceTemplate
      *     @type string $sourceMachineImage
      *           Specifies the machine image to use to create the instance. This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to a machine image: - https://www.googleapis.com/compute/v1/projects/project/global/global /machineImages/machineImage - projects/project/global/global/machineImages/machineImage - global/machineImages/machineImage
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1554,19 +1409,15 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert(array $optionalArgs = [])
+    public function insert($instanceResource, $project, $zone, array $optionalArgs = [])
     {
         $request = new InsertInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceResource'])) {
-            $request->setInstanceResource($optionalArgs['instanceResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstanceResource($instanceResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1577,11 +1428,6 @@ class InstancesGapicClient
 
         if (isset($optionalArgs['sourceMachineImage'])) {
             $request->setSourceMachineImage($optionalArgs['sourceMachineImage']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1596,8 +1442,10 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
+     *     $project = 'project';
+     *     $zone = 'zone';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $instancesClient->list();
+     *     $pagedResponse = $instancesClient->list($project, $zone);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1605,7 +1453,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $instancesClient->list();
+     *     $pagedResponse = $instancesClient->list($project, $zone);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1614,7 +1462,9 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -1628,12 +1478,8 @@ class InstancesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1644,10 +1490,14 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list(array $optionalArgs = [])
+    public function list($project, $zone, array $optionalArgs = [])
     {
         $request = new ListInstancesRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1664,18 +1514,8 @@ class InstancesGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
         if (isset($optionalArgs['returnPartialSuccess'])) {
             $request->setReturnPartialSuccess($optionalArgs['returnPartialSuccess']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1690,8 +1530,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $instancesClient->listReferrers();
+     *     $pagedResponse = $instancesClient->listReferrers($instance, $project, $zone);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1699,7 +1542,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $instancesClient->listReferrers();
+     *     $pagedResponse = $instancesClient->listReferrers($instance, $project, $zone);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1708,13 +1551,14 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Name of the target instance scoping this request, or '-' if the request should span over all instances in the container.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
      *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
-     *     @type string $instance
-     *           Name of the target instance scoping this request, or '-' if the request should span over all instances in the container.
      *     @type int $maxResults
      *           The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     @type string $orderBy
@@ -1724,12 +1568,8 @@ class InstancesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1740,17 +1580,18 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listReferrers(array $optionalArgs = [])
+    public function listReferrers($instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new ListReferrersInstancesRequest();
         $requestParamHeaders = [];
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
-        }
-
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
         }
 
         if (isset($optionalArgs['maxResults'])) {
@@ -1765,18 +1606,8 @@ class InstancesGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
         if (isset($optionalArgs['returnPartialSuccess'])) {
             $request->setReturnPartialSuccess($optionalArgs['returnPartialSuccess']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1791,7 +1622,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->removeResourcePolicies();
+     *     $instance = 'instance';
+     *     $instancesRemoveResourcePoliciesRequestResource = new InstancesRemoveResourcePoliciesRequest();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->removeResourcePolicies($instance, $instancesRemoveResourcePoliciesRequestResource, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1801,7 +1636,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->removeResourcePolicies();
+     *     $operationResponse = $instancesClient->removeResourcePolicies($instance, $instancesRemoveResourcePoliciesRequestResource, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'removeResourcePolicies');
@@ -1820,19 +1655,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                                 $instance                                       The instance name for this request.
+     * @param InstancesRemoveResourcePoliciesRequest $instancesRemoveResourcePoliciesRequestResource The body resource for this request
+     * @param string                                 $project                                        Project ID for this request.
+     * @param string                                 $zone                                           The name of the zone for this request.
+     * @param array                                  $optionalArgs                                   {
      *     Optional.
      *
-     *     @type string $instance
-     *           The instance name for this request.
-     *     @type InstancesRemoveResourcePoliciesRequest $instancesRemoveResourcePoliciesRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1843,31 +1674,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function removeResourcePolicies(array $optionalArgs = [])
+    public function removeResourcePolicies($instance, $instancesRemoveResourcePoliciesRequestResource, $project, $zone, array $optionalArgs = [])
     {
         $request = new RemoveResourcePoliciesInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['instancesRemoveResourcePoliciesRequestResource'])) {
-            $request->setInstancesRemoveResourcePoliciesRequestResource($optionalArgs['instancesRemoveResourcePoliciesRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setInstancesRemoveResourcePoliciesRequestResource($instancesRemoveResourcePoliciesRequestResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1882,7 +1701,10 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->reset();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->reset($instance, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1892,7 +1714,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->reset();
+     *     $operationResponse = $instancesClient->reset($instance, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'reset');
@@ -1911,17 +1733,14 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Name of the instance scoping this request.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance scoping this request.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1932,27 +1751,18 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function reset(array $optionalArgs = [])
+    public function reset($instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new ResetInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1967,7 +1777,10 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->resume();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->resume($instance, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1977,7 +1790,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->resume();
+     *     $operationResponse = $instancesClient->resume($instance, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'resume');
@@ -1996,17 +1809,14 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Name of the instance resource to resume.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance resource to resume.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2017,27 +1827,18 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function resume(array $optionalArgs = [])
+    public function resume($instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new ResumeInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -2052,21 +1853,21 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $response = $instancesClient->sendDiagnosticInterrupt();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $response = $instancesClient->sendDiagnosticInterrupt($instance, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Name of the instance scoping this request.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance scoping this request.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2077,25 +1878,16 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function sendDiagnosticInterrupt(array $optionalArgs = [])
+    public function sendDiagnosticInterrupt($instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new SendDiagnosticInterruptInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SendDiagnosticInterrupt', SendDiagnosticInterruptInstanceResponse::class, $optionalArgs, $request)->wait();
@@ -2108,7 +1900,10 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->setDeletionProtection();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->setDeletionProtection($project, $resource, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -2118,7 +1913,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setDeletionProtection();
+     *     $operationResponse = $instancesClient->setDeletionProtection($project, $resource, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setDeletionProtection');
@@ -2137,19 +1932,16 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $resource     Name or id of the resource for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type bool $deletionProtection
      *           Whether the resource should be protected against deletion.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $resource
-     *           Name or id of the resource for this request.
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2160,31 +1952,22 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setDeletionProtection(array $optionalArgs = [])
+    public function setDeletionProtection($project, $resource, $zone, array $optionalArgs = [])
     {
         $request = new SetDeletionProtectionInstanceRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setResource($resource);
+        $request->setZone($zone);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['deletionProtection'])) {
             $request->setDeletionProtection($optionalArgs['deletionProtection']);
         }
 
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -2199,7 +1982,12 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->setDiskAutoDelete();
+     *     $autoDelete = false;
+     *     $deviceName = 'device_name';
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->setDiskAutoDelete($autoDelete, $deviceName, $instance, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -2209,7 +1997,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setDiskAutoDelete();
+     *     $operationResponse = $instancesClient->setDiskAutoDelete($autoDelete, $deviceName, $instance, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setDiskAutoDelete');
@@ -2228,21 +2016,16 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param bool   $autoDelete   Whether to auto-delete the disk when the instance is deleted.
+     * @param string $deviceName   The device name of the disk to modify. Make a get() request on the instance to view currently attached disks and device names.
+     * @param string $instance     The instance name for this request.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type bool $autoDelete
-     *           Whether to auto-delete the disk when the instance is deleted.
-     *     @type string $deviceName
-     *           The device name of the disk to modify. Make a get() request on the instance to view currently attached disks and device names.
-     *     @type string $instance
-     *           The instance name for this request.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2253,35 +2036,20 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setDiskAutoDelete(array $optionalArgs = [])
+    public function setDiskAutoDelete($autoDelete, $deviceName, $instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new SetDiskAutoDeleteInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['autoDelete'])) {
-            $request->setAutoDelete($optionalArgs['autoDelete']);
-        }
-
-        if (isset($optionalArgs['deviceName'])) {
-            $request->setDeviceName($optionalArgs['deviceName']);
-        }
-
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setAutoDelete($autoDelete);
+        $request->setDeviceName($deviceName);
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -2296,23 +2064,23 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $response = $instancesClient->setIamPolicy();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $zone = 'zone';
+     *     $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
+     *     $response = $instancesClient->setIamPolicy($project, $resource, $zone, $zoneSetPolicyRequestResource);
      * } finally {
      *     $instancesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string               $project                      Project ID for this request.
+     * @param string               $resource                     Name or id of the resource for this request.
+     * @param string               $zone                         The name of the zone for this request.
+     * @param ZoneSetPolicyRequest $zoneSetPolicyRequestResource The body resource for this request
+     * @param array                $optionalArgs                 {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $resource
-     *           Name or id of the resource for this request.
-     *     @type string $zone
-     *           The name of the zone for this request.
-     *     @type ZoneSetPolicyRequest $zoneSetPolicyRequestResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2323,29 +2091,17 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($project, $resource, $zone, $zoneSetPolicyRequestResource, array $optionalArgs = [])
     {
         $request = new SetIamPolicyInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
-        }
-
-        if (isset($optionalArgs['zoneSetPolicyRequestResource'])) {
-            $request->setZoneSetPolicyRequestResource($optionalArgs['zoneSetPolicyRequestResource']);
-        }
-
+        $request->setProject($project);
+        $request->setResource($resource);
+        $request->setZone($zone);
+        $request->setZoneSetPolicyRequestResource($zoneSetPolicyRequestResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
+        $requestParamHeaders['zone'] = $zone;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
@@ -2358,7 +2114,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->setLabels();
+     *     $instance = 'instance';
+     *     $instancesSetLabelsRequestResource = new InstancesSetLabelsRequest();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->setLabels($instance, $instancesSetLabelsRequestResource, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -2368,7 +2128,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setLabels();
+     *     $operationResponse = $instancesClient->setLabels($instance, $instancesSetLabelsRequestResource, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setLabels');
@@ -2387,19 +2147,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                    $instance                          Name of the instance scoping this request.
+     * @param InstancesSetLabelsRequest $instancesSetLabelsRequestResource The body resource for this request
+     * @param string                    $project                           Project ID for this request.
+     * @param string                    $zone                              The name of the zone for this request.
+     * @param array                     $optionalArgs                      {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance scoping this request.
-     *     @type InstancesSetLabelsRequest $instancesSetLabelsRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2410,31 +2166,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setLabels(array $optionalArgs = [])
+    public function setLabels($instance, $instancesSetLabelsRequestResource, $project, $zone, array $optionalArgs = [])
     {
         $request = new SetLabelsInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['instancesSetLabelsRequestResource'])) {
-            $request->setInstancesSetLabelsRequestResource($optionalArgs['instancesSetLabelsRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setInstancesSetLabelsRequestResource($instancesSetLabelsRequestResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -2449,7 +2193,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->setMachineResources();
+     *     $instance = 'instance';
+     *     $instancesSetMachineResourcesRequestResource = new InstancesSetMachineResourcesRequest();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->setMachineResources($instance, $instancesSetMachineResourcesRequestResource, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -2459,7 +2207,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setMachineResources();
+     *     $operationResponse = $instancesClient->setMachineResources($instance, $instancesSetMachineResourcesRequestResource, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setMachineResources');
@@ -2478,19 +2226,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                              $instance                                    Name of the instance scoping this request.
+     * @param InstancesSetMachineResourcesRequest $instancesSetMachineResourcesRequestResource The body resource for this request
+     * @param string                              $project                                     Project ID for this request.
+     * @param string                              $zone                                        The name of the zone for this request.
+     * @param array                               $optionalArgs                                {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance scoping this request.
-     *     @type InstancesSetMachineResourcesRequest $instancesSetMachineResourcesRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2501,31 +2245,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setMachineResources(array $optionalArgs = [])
+    public function setMachineResources($instance, $instancesSetMachineResourcesRequestResource, $project, $zone, array $optionalArgs = [])
     {
         $request = new SetMachineResourcesInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['instancesSetMachineResourcesRequestResource'])) {
-            $request->setInstancesSetMachineResourcesRequestResource($optionalArgs['instancesSetMachineResourcesRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setInstancesSetMachineResourcesRequestResource($instancesSetMachineResourcesRequestResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -2540,7 +2272,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->setMachineType();
+     *     $instance = 'instance';
+     *     $instancesSetMachineTypeRequestResource = new InstancesSetMachineTypeRequest();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->setMachineType($instance, $instancesSetMachineTypeRequestResource, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -2550,7 +2286,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setMachineType();
+     *     $operationResponse = $instancesClient->setMachineType($instance, $instancesSetMachineTypeRequestResource, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setMachineType');
@@ -2569,19 +2305,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                         $instance                               Name of the instance scoping this request.
+     * @param InstancesSetMachineTypeRequest $instancesSetMachineTypeRequestResource The body resource for this request
+     * @param string                         $project                                Project ID for this request.
+     * @param string                         $zone                                   The name of the zone for this request.
+     * @param array                          $optionalArgs                           {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance scoping this request.
-     *     @type InstancesSetMachineTypeRequest $instancesSetMachineTypeRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2592,31 +2324,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setMachineType(array $optionalArgs = [])
+    public function setMachineType($instance, $instancesSetMachineTypeRequestResource, $project, $zone, array $optionalArgs = [])
     {
         $request = new SetMachineTypeInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['instancesSetMachineTypeRequestResource'])) {
-            $request->setInstancesSetMachineTypeRequestResource($optionalArgs['instancesSetMachineTypeRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setInstancesSetMachineTypeRequestResource($instancesSetMachineTypeRequestResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -2631,7 +2351,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->setMetadata();
+     *     $instance = 'instance';
+     *     $metadataResource = new Metadata();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->setMetadata($instance, $metadataResource, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -2641,7 +2365,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setMetadata();
+     *     $operationResponse = $instancesClient->setMetadata($instance, $metadataResource, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setMetadata');
@@ -2660,19 +2384,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $instance         Name of the instance scoping this request.
+     * @param Metadata $metadataResource The body resource for this request
+     * @param string   $project          Project ID for this request.
+     * @param string   $zone             The name of the zone for this request.
+     * @param array    $optionalArgs     {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance scoping this request.
-     *     @type Metadata $metadataResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2683,31 +2403,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setMetadata(array $optionalArgs = [])
+    public function setMetadata($instance, $metadataResource, $project, $zone, array $optionalArgs = [])
     {
         $request = new SetMetadataInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['metadataResource'])) {
-            $request->setMetadataResource($optionalArgs['metadataResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setMetadataResource($metadataResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -2722,7 +2430,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->setMinCpuPlatform();
+     *     $instance = 'instance';
+     *     $instancesSetMinCpuPlatformRequestResource = new InstancesSetMinCpuPlatformRequest();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->setMinCpuPlatform($instance, $instancesSetMinCpuPlatformRequestResource, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -2732,7 +2444,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setMinCpuPlatform();
+     *     $operationResponse = $instancesClient->setMinCpuPlatform($instance, $instancesSetMinCpuPlatformRequestResource, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setMinCpuPlatform');
@@ -2751,19 +2463,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                            $instance                                  Name of the instance scoping this request.
+     * @param InstancesSetMinCpuPlatformRequest $instancesSetMinCpuPlatformRequestResource The body resource for this request
+     * @param string                            $project                                   Project ID for this request.
+     * @param string                            $zone                                      The name of the zone for this request.
+     * @param array                             $optionalArgs                              {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance scoping this request.
-     *     @type InstancesSetMinCpuPlatformRequest $instancesSetMinCpuPlatformRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2774,31 +2482,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setMinCpuPlatform(array $optionalArgs = [])
+    public function setMinCpuPlatform($instance, $instancesSetMinCpuPlatformRequestResource, $project, $zone, array $optionalArgs = [])
     {
         $request = new SetMinCpuPlatformInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['instancesSetMinCpuPlatformRequestResource'])) {
-            $request->setInstancesSetMinCpuPlatformRequestResource($optionalArgs['instancesSetMinCpuPlatformRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setInstancesSetMinCpuPlatformRequestResource($instancesSetMinCpuPlatformRequestResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -2813,7 +2509,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->setName();
+     *     $instance = 'instance';
+     *     $instancesSetNameRequestResource = new InstancesSetNameRequest();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->setName($instance, $instancesSetNameRequestResource, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -2823,7 +2523,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setName();
+     *     $operationResponse = $instancesClient->setName($instance, $instancesSetNameRequestResource, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setName');
@@ -2842,19 +2542,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                  $instance                        The instance name for this request.
+     * @param InstancesSetNameRequest $instancesSetNameRequestResource The body resource for this request
+     * @param string                  $project                         Project ID for this request.
+     * @param string                  $zone                            The name of the zone for this request.
+     * @param array                   $optionalArgs                    {
      *     Optional.
      *
-     *     @type string $instance
-     *           The instance name for this request.
-     *     @type InstancesSetNameRequest $instancesSetNameRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2865,31 +2561,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setName(array $optionalArgs = [])
+    public function setName($instance, $instancesSetNameRequestResource, $project, $zone, array $optionalArgs = [])
     {
         $request = new SetNameInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['instancesSetNameRequestResource'])) {
-            $request->setInstancesSetNameRequestResource($optionalArgs['instancesSetNameRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setInstancesSetNameRequestResource($instancesSetNameRequestResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -2904,7 +2588,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->setScheduling();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $schedulingResource = new Scheduling();
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->setScheduling($instance, $project, $schedulingResource, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -2914,7 +2602,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setScheduling();
+     *     $operationResponse = $instancesClient->setScheduling($instance, $project, $schedulingResource, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setScheduling');
@@ -2933,19 +2621,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string     $instance           Instance name for this request.
+     * @param string     $project            Project ID for this request.
+     * @param Scheduling $schedulingResource The body resource for this request
+     * @param string     $zone               The name of the zone for this request.
+     * @param array      $optionalArgs       {
      *     Optional.
      *
-     *     @type string $instance
-     *           Instance name for this request.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type Scheduling $schedulingResource
-     *           The body resource for this request
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2956,31 +2640,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setScheduling(array $optionalArgs = [])
+    public function setScheduling($instance, $project, $schedulingResource, $zone, array $optionalArgs = [])
     {
         $request = new SetSchedulingInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setSchedulingResource($schedulingResource);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['schedulingResource'])) {
-            $request->setSchedulingResource($optionalArgs['schedulingResource']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -2995,7 +2667,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->setSecurityPolicy();
+     *     $instance = 'instance';
+     *     $instancesSetSecurityPolicyRequestResource = new InstancesSetSecurityPolicyRequest();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->setSecurityPolicy($instance, $instancesSetSecurityPolicyRequestResource, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -3005,7 +2681,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setSecurityPolicy();
+     *     $operationResponse = $instancesClient->setSecurityPolicy($instance, $instancesSetSecurityPolicyRequestResource, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setSecurityPolicy');
@@ -3024,19 +2700,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                            $instance                                  Name of the Instance resource to which the security policy should be set. The name should conform to RFC1035.
+     * @param InstancesSetSecurityPolicyRequest $instancesSetSecurityPolicyRequestResource The body resource for this request
+     * @param string                            $project                                   Project ID for this request.
+     * @param string                            $zone                                      Name of the zone scoping this request.
+     * @param array                             $optionalArgs                              {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the Instance resource to which the security policy should be set. The name should conform to RFC1035.
-     *     @type InstancesSetSecurityPolicyRequest $instancesSetSecurityPolicyRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           Name of the zone scoping this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3047,31 +2719,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setSecurityPolicy(array $optionalArgs = [])
+    public function setSecurityPolicy($instance, $instancesSetSecurityPolicyRequestResource, $project, $zone, array $optionalArgs = [])
     {
         $request = new SetSecurityPolicyInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['instancesSetSecurityPolicyRequestResource'])) {
-            $request->setInstancesSetSecurityPolicyRequestResource($optionalArgs['instancesSetSecurityPolicyRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setInstancesSetSecurityPolicyRequestResource($instancesSetSecurityPolicyRequestResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3086,7 +2746,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->setServiceAccount();
+     *     $instance = 'instance';
+     *     $instancesSetServiceAccountRequestResource = new InstancesSetServiceAccountRequest();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->setServiceAccount($instance, $instancesSetServiceAccountRequestResource, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -3096,7 +2760,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setServiceAccount();
+     *     $operationResponse = $instancesClient->setServiceAccount($instance, $instancesSetServiceAccountRequestResource, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setServiceAccount');
@@ -3115,19 +2779,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                            $instance                                  Name of the instance resource to start.
+     * @param InstancesSetServiceAccountRequest $instancesSetServiceAccountRequestResource The body resource for this request
+     * @param string                            $project                                   Project ID for this request.
+     * @param string                            $zone                                      The name of the zone for this request.
+     * @param array                             $optionalArgs                              {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance resource to start.
-     *     @type InstancesSetServiceAccountRequest $instancesSetServiceAccountRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3138,31 +2798,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setServiceAccount(array $optionalArgs = [])
+    public function setServiceAccount($instance, $instancesSetServiceAccountRequestResource, $project, $zone, array $optionalArgs = [])
     {
         $request = new SetServiceAccountInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['instancesSetServiceAccountRequestResource'])) {
-            $request->setInstancesSetServiceAccountRequestResource($optionalArgs['instancesSetServiceAccountRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setInstancesSetServiceAccountRequestResource($instancesSetServiceAccountRequestResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3177,7 +2825,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->setShieldedInstanceIntegrityPolicy();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $shieldedInstanceIntegrityPolicyResource = new ShieldedInstanceIntegrityPolicy();
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->setShieldedInstanceIntegrityPolicy($instance, $project, $shieldedInstanceIntegrityPolicyResource, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -3187,7 +2839,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setShieldedInstanceIntegrityPolicy();
+     *     $operationResponse = $instancesClient->setShieldedInstanceIntegrityPolicy($instance, $project, $shieldedInstanceIntegrityPolicyResource, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setShieldedInstanceIntegrityPolicy');
@@ -3206,19 +2858,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                          $instance                                Name or id of the instance scoping this request.
+     * @param string                          $project                                 Project ID for this request.
+     * @param ShieldedInstanceIntegrityPolicy $shieldedInstanceIntegrityPolicyResource The body resource for this request
+     * @param string                          $zone                                    The name of the zone for this request.
+     * @param array                           $optionalArgs                            {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name or id of the instance scoping this request.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type ShieldedInstanceIntegrityPolicy $shieldedInstanceIntegrityPolicyResource
-     *           The body resource for this request
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3229,31 +2877,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setShieldedInstanceIntegrityPolicy(array $optionalArgs = [])
+    public function setShieldedInstanceIntegrityPolicy($instance, $project, $shieldedInstanceIntegrityPolicyResource, $zone, array $optionalArgs = [])
     {
         $request = new SetShieldedInstanceIntegrityPolicyInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setShieldedInstanceIntegrityPolicyResource($shieldedInstanceIntegrityPolicyResource);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['shieldedInstanceIntegrityPolicyResource'])) {
-            $request->setShieldedInstanceIntegrityPolicyResource($optionalArgs['shieldedInstanceIntegrityPolicyResource']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3268,7 +2904,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->setTags();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $tagsResource = new Tags();
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->setTags($instance, $project, $tagsResource, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -3278,7 +2918,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setTags();
+     *     $operationResponse = $instancesClient->setTags($instance, $project, $tagsResource, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setTags');
@@ -3297,19 +2937,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Name of the instance scoping this request.
+     * @param string $project      Project ID for this request.
+     * @param Tags   $tagsResource The body resource for this request
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance scoping this request.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type Tags $tagsResource
-     *           The body resource for this request
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3320,31 +2956,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setTags(array $optionalArgs = [])
+    public function setTags($instance, $project, $tagsResource, $zone, array $optionalArgs = [])
     {
         $request = new SetTagsInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setTagsResource($tagsResource);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['tagsResource'])) {
-            $request->setTagsResource($optionalArgs['tagsResource']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3359,7 +2983,10 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->simulateMaintenanceEvent();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->simulateMaintenanceEvent($instance, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -3369,7 +2996,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->simulateMaintenanceEvent();
+     *     $operationResponse = $instancesClient->simulateMaintenanceEvent($instance, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'simulateMaintenanceEvent');
@@ -3388,17 +3015,14 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Name of the instance scoping this request.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance scoping this request.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3409,27 +3033,18 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function simulateMaintenanceEvent(array $optionalArgs = [])
+    public function simulateMaintenanceEvent($instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new SimulateMaintenanceEventInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3444,7 +3059,10 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->start();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->start($instance, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -3454,7 +3072,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->start();
+     *     $operationResponse = $instancesClient->start($instance, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'start');
@@ -3473,17 +3091,14 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Name of the instance resource to start.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance resource to start.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3494,27 +3109,18 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function start(array $optionalArgs = [])
+    public function start($instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new StartInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3529,7 +3135,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->startWithEncryptionKey();
+     *     $instance = 'instance';
+     *     $instancesStartWithEncryptionKeyRequestResource = new InstancesStartWithEncryptionKeyRequest();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->startWithEncryptionKey($instance, $instancesStartWithEncryptionKeyRequestResource, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -3539,7 +3149,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->startWithEncryptionKey();
+     *     $operationResponse = $instancesClient->startWithEncryptionKey($instance, $instancesStartWithEncryptionKeyRequestResource, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'startWithEncryptionKey');
@@ -3558,19 +3168,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                                 $instance                                       Name of the instance resource to start.
+     * @param InstancesStartWithEncryptionKeyRequest $instancesStartWithEncryptionKeyRequestResource The body resource for this request
+     * @param string                                 $project                                        Project ID for this request.
+     * @param string                                 $zone                                           The name of the zone for this request.
+     * @param array                                  $optionalArgs                                   {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance resource to start.
-     *     @type InstancesStartWithEncryptionKeyRequest $instancesStartWithEncryptionKeyRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3581,31 +3187,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function startWithEncryptionKey(array $optionalArgs = [])
+    public function startWithEncryptionKey($instance, $instancesStartWithEncryptionKeyRequestResource, $project, $zone, array $optionalArgs = [])
     {
         $request = new StartWithEncryptionKeyInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['instancesStartWithEncryptionKeyRequestResource'])) {
-            $request->setInstancesStartWithEncryptionKeyRequestResource($optionalArgs['instancesStartWithEncryptionKeyRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setInstancesStartWithEncryptionKeyRequestResource($instancesStartWithEncryptionKeyRequestResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3620,7 +3214,10 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->stop();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->stop($instance, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -3630,7 +3227,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->stop();
+     *     $operationResponse = $instancesClient->stop($instance, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'stop');
@@ -3649,19 +3246,16 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Name of the instance resource to stop.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type bool $discardLocalSsd
      *           If true, discard the contents of any attached localSSD partitions. Default value is false.
-     *     @type string $instance
-     *           Name of the instance resource to stop.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3672,31 +3266,22 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function stop(array $optionalArgs = [])
+    public function stop($instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new StopInstanceRequest();
         $requestParamHeaders = [];
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['discardLocalSsd'])) {
             $request->setDiscardLocalSsd($optionalArgs['discardLocalSsd']);
         }
 
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3711,7 +3296,10 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->suspend();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->suspend($instance, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -3721,7 +3309,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->suspend();
+     *     $operationResponse = $instancesClient->suspend($instance, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'suspend');
@@ -3740,19 +3328,16 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Name of the instance resource to suspend.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type bool $discardLocalSsd
      *           If true, discard the contents of any attached localSSD partitions. Default value is false.
-     *     @type string $instance
-     *           Name of the instance resource to suspend.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3763,31 +3348,22 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function suspend(array $optionalArgs = [])
+    public function suspend($instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new SuspendInstanceRequest();
         $requestParamHeaders = [];
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['discardLocalSsd'])) {
             $request->setDiscardLocalSsd($optionalArgs['discardLocalSsd']);
         }
 
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3802,23 +3378,23 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $response = $instancesClient->testIamPermissions();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $testPermissionsRequestResource = new TestPermissionsRequest();
+     *     $zone = 'zone';
+     *     $response = $instancesClient->testIamPermissions($project, $resource, $testPermissionsRequestResource, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param TestPermissionsRequest $testPermissionsRequestResource The body resource for this request
+     * @param string                 $zone                           The name of the zone for this request.
+     * @param array                  $optionalArgs                   {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $resource
-     *           Name or id of the resource for this request.
-     *     @type TestPermissionsRequest $testPermissionsRequestResource
-     *           The body resource for this request
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3829,29 +3405,17 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
+    public function testIamPermissions($project, $resource, $testPermissionsRequestResource, $zone, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['testPermissionsRequestResource'])) {
-            $request->setTestPermissionsRequestResource($optionalArgs['testPermissionsRequestResource']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
-        }
-
+        $request->setProject($project);
+        $request->setResource($resource);
+        $request->setTestPermissionsRequestResource($testPermissionsRequestResource);
+        $request->setZone($zone);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
+        $requestParamHeaders['zone'] = $zone;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestPermissionsResponse::class, $optionalArgs, $request)->wait();
@@ -3864,7 +3428,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->update();
+     *     $instance = 'instance';
+     *     $instanceResource = new Instance();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->update($instance, $instanceResource, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -3874,7 +3442,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->update();
+     *     $operationResponse = $instancesClient->update($instance, $instanceResource, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'update');
@@ -3893,25 +3461,21 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $instance         Name of the instance resource to update.
+     * @param Instance $instanceResource The body resource for this request
+     * @param string   $project          Project ID for this request.
+     * @param string   $zone             The name of the zone for this request.
+     * @param array    $optionalArgs     {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name of the instance resource to update.
-     *     @type Instance $instanceResource
-     *           The body resource for this request
      *     @type string $minimalAction
      *           Specifies the action to take when updating an instance even if the updated properties do not require it. If not specified, then Compute Engine acts based on the minimum action that the updated properties require.
      *           Check the MinimalAction enum for the list of possible values.
      *     @type string $mostDisruptiveAllowedAction
      *           Specifies the most disruptive action that can be taken on the instance as part of the update. Compute Engine returns an error if the instance properties require a more disruptive action as part of the instance update. Valid options from lowest to highest are NO_EFFECT, REFRESH, and RESTART.
      *           Check the MostDisruptiveAllowedAction enum for the list of possible values.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3922,19 +3486,17 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function update(array $optionalArgs = [])
+    public function update($instance, $instanceResource, $project, $zone, array $optionalArgs = [])
     {
         $request = new UpdateInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['instanceResource'])) {
-            $request->setInstanceResource($optionalArgs['instanceResource']);
-        }
-
+        $request->setInstance($instance);
+        $request->setInstanceResource($instanceResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['minimalAction'])) {
             $request->setMinimalAction($optionalArgs['minimalAction']);
         }
@@ -3943,18 +3505,8 @@ class InstancesGapicClient
             $request->setMostDisruptiveAllowedAction($optionalArgs['mostDisruptiveAllowedAction']);
         }
 
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3969,7 +3521,12 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->updateAccessConfig();
+     *     $accessConfigResource = new AccessConfig();
+     *     $instance = 'instance';
+     *     $networkInterface = 'network_interface';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->updateAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -3979,7 +3536,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->updateAccessConfig();
+     *     $operationResponse = $instancesClient->updateAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'updateAccessConfig');
@@ -3998,21 +3555,16 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param AccessConfig $accessConfigResource The body resource for this request
+     * @param string       $instance             The instance name for this request.
+     * @param string       $networkInterface     The name of the network interface where the access config is attached.
+     * @param string       $project              Project ID for this request.
+     * @param string       $zone                 The name of the zone for this request.
+     * @param array        $optionalArgs         {
      *     Optional.
      *
-     *     @type AccessConfig $accessConfigResource
-     *           The body resource for this request
-     *     @type string $instance
-     *           The instance name for this request.
-     *     @type string $networkInterface
-     *           The name of the network interface where the access config is attached.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4023,35 +3575,20 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAccessConfig(array $optionalArgs = [])
+    public function updateAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone, array $optionalArgs = [])
     {
         $request = new UpdateAccessConfigInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['accessConfigResource'])) {
-            $request->setAccessConfigResource($optionalArgs['accessConfigResource']);
-        }
-
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['networkInterface'])) {
-            $request->setNetworkInterface($optionalArgs['networkInterface']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setAccessConfigResource($accessConfigResource);
+        $request->setInstance($instance);
+        $request->setNetworkInterface($networkInterface);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -4066,7 +3603,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->updateDisplayDevice();
+     *     $displayDeviceResource = new DisplayDevice();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->updateDisplayDevice($displayDeviceResource, $instance, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -4076,7 +3617,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->updateDisplayDevice();
+     *     $operationResponse = $instancesClient->updateDisplayDevice($displayDeviceResource, $instance, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'updateDisplayDevice');
@@ -4095,19 +3636,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param DisplayDevice $displayDeviceResource The body resource for this request
+     * @param string        $instance              Name of the instance scoping this request.
+     * @param string        $project               Project ID for this request.
+     * @param string        $zone                  The name of the zone for this request.
+     * @param array         $optionalArgs          {
      *     Optional.
      *
-     *     @type DisplayDevice $displayDeviceResource
-     *           The body resource for this request
-     *     @type string $instance
-     *           Name of the instance scoping this request.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4118,31 +3655,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDisplayDevice(array $optionalArgs = [])
+    public function updateDisplayDevice($displayDeviceResource, $instance, $project, $zone, array $optionalArgs = [])
     {
         $request = new UpdateDisplayDeviceInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['displayDeviceResource'])) {
-            $request->setDisplayDeviceResource($optionalArgs['displayDeviceResource']);
-        }
-
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setDisplayDeviceResource($displayDeviceResource);
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -4157,7 +3682,12 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->updateNetworkInterface();
+     *     $instance = 'instance';
+     *     $networkInterface = 'network_interface';
+     *     $networkInterfaceResource = new NetworkInterface();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->updateNetworkInterface($instance, $networkInterface, $networkInterfaceResource, $project, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -4167,7 +3697,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->updateNetworkInterface();
+     *     $operationResponse = $instancesClient->updateNetworkInterface($instance, $networkInterface, $networkInterfaceResource, $project, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'updateNetworkInterface');
@@ -4186,21 +3716,16 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string           $instance                 The instance name for this request.
+     * @param string           $networkInterface         The name of the network interface to update.
+     * @param NetworkInterface $networkInterfaceResource The body resource for this request
+     * @param string           $project                  Project ID for this request.
+     * @param string           $zone                     The name of the zone for this request.
+     * @param array            $optionalArgs             {
      *     Optional.
      *
-     *     @type string $instance
-     *           The instance name for this request.
-     *     @type string $networkInterface
-     *           The name of the network interface to update.
-     *     @type NetworkInterface $networkInterfaceResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4211,35 +3736,20 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateNetworkInterface(array $optionalArgs = [])
+    public function updateNetworkInterface($instance, $networkInterface, $networkInterfaceResource, $project, $zone, array $optionalArgs = [])
     {
         $request = new UpdateNetworkInterfaceInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['networkInterface'])) {
-            $request->setNetworkInterface($optionalArgs['networkInterface']);
-        }
-
-        if (isset($optionalArgs['networkInterfaceResource'])) {
-            $request->setNetworkInterfaceResource($optionalArgs['networkInterfaceResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setNetworkInterface($networkInterface);
+        $request->setNetworkInterfaceResource($networkInterfaceResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -4254,7 +3764,11 @@ class InstancesGapicClient
      * ```
      * $instancesClient = new InstancesClient();
      * try {
-     *     $operationResponse = $instancesClient->updateShieldedInstanceConfig();
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $shieldedInstanceConfigResource = new ShieldedInstanceConfig();
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->updateShieldedInstanceConfig($instance, $project, $shieldedInstanceConfigResource, $zone);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -4264,7 +3778,7 @@ class InstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->updateShieldedInstanceConfig();
+     *     $operationResponse = $instancesClient->updateShieldedInstanceConfig($instance, $project, $shieldedInstanceConfigResource, $zone);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'updateShieldedInstanceConfig');
@@ -4283,19 +3797,15 @@ class InstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                 $instance                       Name or id of the instance scoping this request.
+     * @param string                 $project                        Project ID for this request.
+     * @param ShieldedInstanceConfig $shieldedInstanceConfigResource The body resource for this request
+     * @param string                 $zone                           The name of the zone for this request.
+     * @param array                  $optionalArgs                   {
      *     Optional.
      *
-     *     @type string $instance
-     *           Name or id of the instance scoping this request.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type ShieldedInstanceConfig $shieldedInstanceConfigResource
-     *           The body resource for this request
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4306,31 +3816,19 @@ class InstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateShieldedInstanceConfig(array $optionalArgs = [])
+    public function updateShieldedInstanceConfig($instance, $project, $shieldedInstanceConfigResource, $zone, array $optionalArgs = [])
     {
         $request = new UpdateShieldedInstanceConfigInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setShieldedInstanceConfigResource($shieldedInstanceConfigResource);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['shieldedInstanceConfigResource'])) {
-            $request->setShieldedInstanceConfigResource($optionalArgs['shieldedInstanceConfigResource']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

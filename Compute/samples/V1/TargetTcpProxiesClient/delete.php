@@ -31,13 +31,10 @@ use Google\Rpc\Status;
 /**
  * Deletes the specified TargetTcpProxy resource.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project        Project ID for this request.
+ * @param string $targetTcpProxy Name of the TargetTcpProxy resource to delete.
  */
-function delete_sample(): void
+function delete_sample(string $project, string $targetTcpProxy): void
 {
     // Create a client.
     $targetTcpProxiesClient = new TargetTcpProxiesClient();
@@ -45,7 +42,7 @@ function delete_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetTcpProxiesClient->delete();
+        $response = $targetTcpProxiesClient->delete($project, $targetTcpProxy);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +55,22 @@ function delete_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $targetTcpProxy = '[TARGET_TCP_PROXY]';
+
+    delete_sample($project, $targetTcpProxy);
 }
 // [END compute_v1_generated_TargetTcpProxies_Delete_sync]

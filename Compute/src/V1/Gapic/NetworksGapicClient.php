@@ -63,7 +63,10 @@ use Google\Cloud\Compute\V1\UpdatePeeringNetworkRequest;
  * ```
  * $networksClient = new NetworksClient();
  * try {
- *     $operationResponse = $networksClient->addPeering();
+ *     $network = 'network';
+ *     $networksAddPeeringRequestResource = new NetworksAddPeeringRequest();
+ *     $project = 'project';
+ *     $operationResponse = $networksClient->addPeering($network, $networksAddPeeringRequestResource, $project);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -73,7 +76,7 @@ use Google\Cloud\Compute\V1\UpdatePeeringNetworkRequest;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $networksClient->addPeering();
+ *     $operationResponse = $networksClient->addPeering($network, $networksAddPeeringRequestResource, $project);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'addPeering');
@@ -173,7 +176,9 @@ class NetworksGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -269,7 +274,10 @@ class NetworksGapicClient
      * ```
      * $networksClient = new NetworksClient();
      * try {
-     *     $operationResponse = $networksClient->addPeering();
+     *     $network = 'network';
+     *     $networksAddPeeringRequestResource = new NetworksAddPeeringRequest();
+     *     $project = 'project';
+     *     $operationResponse = $networksClient->addPeering($network, $networksAddPeeringRequestResource, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -279,7 +287,7 @@ class NetworksGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networksClient->addPeering();
+     *     $operationResponse = $networksClient->addPeering($network, $networksAddPeeringRequestResource, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'addPeering');
@@ -298,15 +306,12 @@ class NetworksGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                    $network                           Name of the network resource to add peering to.
+     * @param NetworksAddPeeringRequest $networksAddPeeringRequestResource The body resource for this request
+     * @param string                    $project                           Project ID for this request.
+     * @param array                     $optionalArgs                      {
      *     Optional.
      *
-     *     @type string $network
-     *           Name of the network resource to add peering to.
-     *     @type NetworksAddPeeringRequest $networksAddPeeringRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -319,24 +324,15 @@ class NetworksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addPeering(array $optionalArgs = [])
+    public function addPeering($network, $networksAddPeeringRequestResource, $project, array $optionalArgs = [])
     {
         $request = new AddPeeringNetworkRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['network'])) {
-            $request->setNetwork($optionalArgs['network']);
-            $requestParamHeaders['network'] = $optionalArgs['network'];
-        }
-
-        if (isset($optionalArgs['networksAddPeeringRequestResource'])) {
-            $request->setNetworksAddPeeringRequestResource($optionalArgs['networksAddPeeringRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setNetwork($network);
+        $request->setNetworksAddPeeringRequestResource($networksAddPeeringRequestResource);
+        $request->setProject($project);
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -353,7 +349,9 @@ class NetworksGapicClient
      * ```
      * $networksClient = new NetworksClient();
      * try {
-     *     $operationResponse = $networksClient->delete();
+     *     $network = 'network';
+     *     $project = 'project';
+     *     $operationResponse = $networksClient->delete($network, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -363,7 +361,7 @@ class NetworksGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networksClient->delete();
+     *     $operationResponse = $networksClient->delete($network, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'delete');
@@ -382,13 +380,11 @@ class NetworksGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $network      Name of the network to delete.
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $network
-     *           Name of the network to delete.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -401,20 +397,14 @@ class NetworksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete(array $optionalArgs = [])
+    public function delete($network, $project, array $optionalArgs = [])
     {
         $request = new DeleteNetworkRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['network'])) {
-            $request->setNetwork($optionalArgs['network']);
-            $requestParamHeaders['network'] = $optionalArgs['network'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setNetwork($network);
+        $request->setProject($project);
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -431,19 +421,19 @@ class NetworksGapicClient
      * ```
      * $networksClient = new NetworksClient();
      * try {
-     *     $response = $networksClient->get();
+     *     $network = 'network';
+     *     $project = 'project';
+     *     $response = $networksClient->get($network, $project);
      * } finally {
      *     $networksClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $network      Name of the network to return.
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $network
-     *           Name of the network to return.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -454,20 +444,14 @@ class NetworksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($network, $project, array $optionalArgs = [])
     {
         $request = new GetNetworkRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['network'])) {
-            $request->setNetwork($optionalArgs['network']);
-            $requestParamHeaders['network'] = $optionalArgs['network'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setNetwork($network);
+        $request->setProject($project);
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', Network::class, $optionalArgs, $request)->wait();
@@ -480,19 +464,19 @@ class NetworksGapicClient
      * ```
      * $networksClient = new NetworksClient();
      * try {
-     *     $response = $networksClient->getEffectiveFirewalls();
+     *     $network = 'network';
+     *     $project = 'project';
+     *     $response = $networksClient->getEffectiveFirewalls($network, $project);
      * } finally {
      *     $networksClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $network      Name of the network for this request.
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $network
-     *           Name of the network for this request.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -503,20 +487,14 @@ class NetworksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEffectiveFirewalls(array $optionalArgs = [])
+    public function getEffectiveFirewalls($network, $project, array $optionalArgs = [])
     {
         $request = new GetEffectiveFirewallsNetworkRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['network'])) {
-            $request->setNetwork($optionalArgs['network']);
-            $requestParamHeaders['network'] = $optionalArgs['network'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setNetwork($network);
+        $request->setProject($project);
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetEffectiveFirewalls', NetworksGetEffectiveFirewallsResponse::class, $optionalArgs, $request)->wait();
@@ -529,7 +507,9 @@ class NetworksGapicClient
      * ```
      * $networksClient = new NetworksClient();
      * try {
-     *     $operationResponse = $networksClient->insert();
+     *     $networkResource = new Network();
+     *     $project = 'project';
+     *     $operationResponse = $networksClient->insert($networkResource, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -539,7 +519,7 @@ class NetworksGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networksClient->insert();
+     *     $operationResponse = $networksClient->insert($networkResource, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'insert');
@@ -558,13 +538,11 @@ class NetworksGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Network $networkResource The body resource for this request
+     * @param string  $project         Project ID for this request.
+     * @param array   $optionalArgs    {
      *     Optional.
      *
-     *     @type Network $networkResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -577,19 +555,13 @@ class NetworksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert(array $optionalArgs = [])
+    public function insert($networkResource, $project, array $optionalArgs = [])
     {
         $request = new InsertNetworkRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['networkResource'])) {
-            $request->setNetworkResource($optionalArgs['networkResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setNetworkResource($networkResource);
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -606,8 +578,9 @@ class NetworksGapicClient
      * ```
      * $networksClient = new NetworksClient();
      * try {
+     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $networksClient->list();
+     *     $pagedResponse = $networksClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -615,7 +588,7 @@ class NetworksGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $networksClient->list();
+     *     $pagedResponse = $networksClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -624,7 +597,8 @@ class NetworksGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -638,8 +612,6 @@ class NetworksGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -652,10 +624,12 @@ class NetworksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list(array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListNetworksRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -670,11 +644,6 @@ class NetworksGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -693,8 +662,10 @@ class NetworksGapicClient
      * ```
      * $networksClient = new NetworksClient();
      * try {
+     *     $network = 'network';
+     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $networksClient->listPeeringRoutes();
+     *     $pagedResponse = $networksClient->listPeeringRoutes($network, $project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -702,7 +673,7 @@ class NetworksGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $networksClient->listPeeringRoutes();
+     *     $pagedResponse = $networksClient->listPeeringRoutes($network, $project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -711,7 +682,9 @@ class NetworksGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $network      Name of the network for this request.
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $direction
@@ -721,8 +694,6 @@ class NetworksGapicClient
      *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
      *     @type int $maxResults
      *           The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
-     *     @type string $network
-     *           Name of the network for this request.
      *     @type string $orderBy
      *           Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *     @type string $pageToken
@@ -732,8 +703,6 @@ class NetworksGapicClient
      *           been generated by a previous call to the API.
      *     @type string $peeringName
      *           The response will show routes exchanged over the given peering connection.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $region
      *           The region of the request. The response will include all subnet routes, static routes and dynamic routes in the region.
      *     @type bool $returnPartialSuccess
@@ -748,10 +717,14 @@ class NetworksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPeeringRoutes(array $optionalArgs = [])
+    public function listPeeringRoutes($network, $project, array $optionalArgs = [])
     {
         $request = new ListPeeringRoutesNetworksRequest();
         $requestParamHeaders = [];
+        $request->setNetwork($network);
+        $request->setProject($project);
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['direction'])) {
             $request->setDirection($optionalArgs['direction']);
         }
@@ -764,11 +737,6 @@ class NetworksGapicClient
             $request->setMaxResults($optionalArgs['maxResults']);
         }
 
-        if (isset($optionalArgs['network'])) {
-            $request->setNetwork($optionalArgs['network']);
-            $requestParamHeaders['network'] = $optionalArgs['network'];
-        }
-
         if (isset($optionalArgs['orderBy'])) {
             $request->setOrderBy($optionalArgs['orderBy']);
         }
@@ -779,11 +747,6 @@ class NetworksGapicClient
 
         if (isset($optionalArgs['peeringName'])) {
             $request->setPeeringName($optionalArgs['peeringName']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['region'])) {
@@ -806,7 +769,10 @@ class NetworksGapicClient
      * ```
      * $networksClient = new NetworksClient();
      * try {
-     *     $operationResponse = $networksClient->patch();
+     *     $network = 'network';
+     *     $networkResource = new Network();
+     *     $project = 'project';
+     *     $operationResponse = $networksClient->patch($network, $networkResource, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -816,7 +782,7 @@ class NetworksGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networksClient->patch();
+     *     $operationResponse = $networksClient->patch($network, $networkResource, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'patch');
@@ -835,15 +801,12 @@ class NetworksGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string  $network         Name of the network to update.
+     * @param Network $networkResource The body resource for this request
+     * @param string  $project         Project ID for this request.
+     * @param array   $optionalArgs    {
      *     Optional.
      *
-     *     @type string $network
-     *           Name of the network to update.
-     *     @type Network $networkResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -856,24 +819,15 @@ class NetworksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch(array $optionalArgs = [])
+    public function patch($network, $networkResource, $project, array $optionalArgs = [])
     {
         $request = new PatchNetworkRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['network'])) {
-            $request->setNetwork($optionalArgs['network']);
-            $requestParamHeaders['network'] = $optionalArgs['network'];
-        }
-
-        if (isset($optionalArgs['networkResource'])) {
-            $request->setNetworkResource($optionalArgs['networkResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setNetwork($network);
+        $request->setNetworkResource($networkResource);
+        $request->setProject($project);
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -890,7 +844,10 @@ class NetworksGapicClient
      * ```
      * $networksClient = new NetworksClient();
      * try {
-     *     $operationResponse = $networksClient->removePeering();
+     *     $network = 'network';
+     *     $networksRemovePeeringRequestResource = new NetworksRemovePeeringRequest();
+     *     $project = 'project';
+     *     $operationResponse = $networksClient->removePeering($network, $networksRemovePeeringRequestResource, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -900,7 +857,7 @@ class NetworksGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networksClient->removePeering();
+     *     $operationResponse = $networksClient->removePeering($network, $networksRemovePeeringRequestResource, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'removePeering');
@@ -919,15 +876,12 @@ class NetworksGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                       $network                              Name of the network resource to remove peering from.
+     * @param NetworksRemovePeeringRequest $networksRemovePeeringRequestResource The body resource for this request
+     * @param string                       $project                              Project ID for this request.
+     * @param array                        $optionalArgs                         {
      *     Optional.
      *
-     *     @type string $network
-     *           Name of the network resource to remove peering from.
-     *     @type NetworksRemovePeeringRequest $networksRemovePeeringRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -940,24 +894,15 @@ class NetworksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function removePeering(array $optionalArgs = [])
+    public function removePeering($network, $networksRemovePeeringRequestResource, $project, array $optionalArgs = [])
     {
         $request = new RemovePeeringNetworkRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['network'])) {
-            $request->setNetwork($optionalArgs['network']);
-            $requestParamHeaders['network'] = $optionalArgs['network'];
-        }
-
-        if (isset($optionalArgs['networksRemovePeeringRequestResource'])) {
-            $request->setNetworksRemovePeeringRequestResource($optionalArgs['networksRemovePeeringRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setNetwork($network);
+        $request->setNetworksRemovePeeringRequestResource($networksRemovePeeringRequestResource);
+        $request->setProject($project);
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -974,7 +919,9 @@ class NetworksGapicClient
      * ```
      * $networksClient = new NetworksClient();
      * try {
-     *     $operationResponse = $networksClient->switchToCustomMode();
+     *     $network = 'network';
+     *     $project = 'project';
+     *     $operationResponse = $networksClient->switchToCustomMode($network, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -984,7 +931,7 @@ class NetworksGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networksClient->switchToCustomMode();
+     *     $operationResponse = $networksClient->switchToCustomMode($network, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'switchToCustomMode');
@@ -1003,13 +950,11 @@ class NetworksGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $network      Name of the network to be updated.
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $network
-     *           Name of the network to be updated.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -1022,20 +967,14 @@ class NetworksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function switchToCustomMode(array $optionalArgs = [])
+    public function switchToCustomMode($network, $project, array $optionalArgs = [])
     {
         $request = new SwitchToCustomModeNetworkRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['network'])) {
-            $request->setNetwork($optionalArgs['network']);
-            $requestParamHeaders['network'] = $optionalArgs['network'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setNetwork($network);
+        $request->setProject($project);
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1052,7 +991,10 @@ class NetworksGapicClient
      * ```
      * $networksClient = new NetworksClient();
      * try {
-     *     $operationResponse = $networksClient->updatePeering();
+     *     $network = 'network';
+     *     $networksUpdatePeeringRequestResource = new NetworksUpdatePeeringRequest();
+     *     $project = 'project';
+     *     $operationResponse = $networksClient->updatePeering($network, $networksUpdatePeeringRequestResource, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1062,7 +1004,7 @@ class NetworksGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networksClient->updatePeering();
+     *     $operationResponse = $networksClient->updatePeering($network, $networksUpdatePeeringRequestResource, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'updatePeering');
@@ -1081,15 +1023,12 @@ class NetworksGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                       $network                              Name of the network resource which the updated peering is belonging to.
+     * @param NetworksUpdatePeeringRequest $networksUpdatePeeringRequestResource The body resource for this request
+     * @param string                       $project                              Project ID for this request.
+     * @param array                        $optionalArgs                         {
      *     Optional.
      *
-     *     @type string $network
-     *           Name of the network resource which the updated peering is belonging to.
-     *     @type NetworksUpdatePeeringRequest $networksUpdatePeeringRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -1102,24 +1041,15 @@ class NetworksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updatePeering(array $optionalArgs = [])
+    public function updatePeering($network, $networksUpdatePeeringRequestResource, $project, array $optionalArgs = [])
     {
         $request = new UpdatePeeringNetworkRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['network'])) {
-            $request->setNetwork($optionalArgs['network']);
-            $requestParamHeaders['network'] = $optionalArgs['network'];
-        }
-
-        if (isset($optionalArgs['networksUpdatePeeringRequestResource'])) {
-            $request->setNetworksUpdatePeeringRequestResource($optionalArgs['networksUpdatePeeringRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setNetwork($network);
+        $request->setNetworksUpdatePeeringRequestResource($networksUpdatePeeringRequestResource);
+        $request->setProject($project);
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }

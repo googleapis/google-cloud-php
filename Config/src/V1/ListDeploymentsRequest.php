@@ -69,7 +69,8 @@ class ListDeploymentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent in whose context the Deployments are listed. The
      *                       parent value is in the format:
-     *                       'projects/{project_id}/locations/{location}'.
+     *                       'projects/{project_id}/locations/{location}'. Please see
+     *                       {@see ConfigClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Config\V1\ListDeploymentsRequest
      *

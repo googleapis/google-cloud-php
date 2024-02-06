@@ -33,19 +33,19 @@ use Google\Cloud\Dialogflow\V2\ListAnswerRecordsRequest;
  * Returns the list of all answer records in the specified project in reverse
  * chronological order.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The project to list all answer records for in reverse
+ *                                chronological order. Format: `projects/<Project ID>/locations/<Location
+ *                                ID>`. Please see
+ *                                {@see AnswerRecordsClient::projectName()} for help formatting this field.
  */
-function list_answer_records_sample(): void
+function list_answer_records_sample(string $formattedParent): void
 {
     // Create a client.
     $answerRecordsClient = new AnswerRecordsClient();
 
     // Prepare the request message.
-    $request = new ListAnswerRecordsRequest();
+    $request = (new ListAnswerRecordsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -59,5 +59,21 @@ function list_answer_records_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AnswerRecordsClient::projectName('[PROJECT]');
+
+    list_answer_records_sample($formattedParent);
 }
 // [END dialogflow_v2_generated_AnswerRecords_ListAnswerRecords_sync]

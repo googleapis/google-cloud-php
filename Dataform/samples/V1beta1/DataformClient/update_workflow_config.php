@@ -31,19 +31,21 @@ use Google\Cloud\Dataform\V1beta1\WorkflowConfig;
 /**
  * Updates a single WorkflowConfig.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedWorkflowConfigReleaseConfig The name of the release config whose release_compilation_result
+ *                                                     should be executed. Must be in the format
+ *                                                     `projects/&#42;/locations/&#42;/repositories/&#42;/releaseConfigs/*`. Please see
+ *                                                     {@see DataformClient::releaseConfigName()} for help formatting this field.
  */
-function update_workflow_config_sample(): void
+function update_workflow_config_sample(string $formattedWorkflowConfigReleaseConfig): void
 {
     // Create a client.
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $request = new UpdateWorkflowConfigRequest();
+    $workflowConfig = (new WorkflowConfig())
+        ->setReleaseConfig($formattedWorkflowConfigReleaseConfig);
+    $request = (new UpdateWorkflowConfigRequest())
+        ->setWorkflowConfig($workflowConfig);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +55,26 @@ function update_workflow_config_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedWorkflowConfigReleaseConfig = DataformClient::releaseConfigName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[REPOSITORY]',
+        '[RELEASE_CONFIG]'
+    );
+
+    update_workflow_config_sample($formattedWorkflowConfigReleaseConfig);
 }
 // [END dataform_v1beta1_generated_Dataform_UpdateWorkflowConfig_sync]

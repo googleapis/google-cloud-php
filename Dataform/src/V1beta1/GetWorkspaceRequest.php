@@ -23,7 +23,8 @@ class GetWorkspaceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The workspace's name.
+     * @param string $name Required. The workspace's name. Please see
+     *                     {@see DataformClient::workspaceName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataform\V1beta1\GetWorkspaceRequest
      *

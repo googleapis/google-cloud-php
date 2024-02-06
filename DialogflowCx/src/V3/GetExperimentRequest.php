@@ -30,7 +30,8 @@ class GetExperimentRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the
      *                     [Environment][google.cloud.dialogflow.cx.v3.Environment]. Format:
      *                     `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/environments/<Environment ID>/experiments/<Experiment ID>`.
+     *                     ID>/environments/<Environment ID>/experiments/<Experiment ID>`. Please see
+     *                     {@see ExperimentsClient::experimentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetExperimentRequest
      *

@@ -26,25 +26,25 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\ProjectsClient;
+use Google\Cloud\Compute\V1\ProjectsListXpnHostsRequest;
 
 /**
  * Lists all shared VPC host projects visible to the user in an organization.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project Project ID for this request.
  */
-function list_xpn_hosts_sample(): void
+function list_xpn_hosts_sample(string $project): void
 {
     // Create a client.
     $projectsClient = new ProjectsClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $projectsListXpnHostsRequestResource = new ProjectsListXpnHostsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $projectsClient->listXpnHosts();
+        $response = $projectsClient->listXpnHosts($project, $projectsListXpnHostsRequestResource);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -52,5 +52,21 @@ function list_xpn_hosts_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+
+    list_xpn_hosts_sample($project);
 }
 // [END compute_v1_generated_Projects_ListXpnHosts_sync]

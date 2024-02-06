@@ -93,7 +93,14 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteRegionNotificationEndpointRequest();
+        // Mock request
+        $notificationEndpoint = 'notificationEndpoint-696934807';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new DeleteRegionNotificationEndpointRequest())
+            ->setNotificationEndpoint($notificationEndpoint)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -103,8 +110,16 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNotificationEndpoints/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNotificationEndpoint();
+        $this->assertProtobufEquals($notificationEndpoint, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -152,7 +167,14 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteRegionNotificationEndpointRequest();
+        // Mock request
+        $notificationEndpoint = 'notificationEndpoint-696934807';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new DeleteRegionNotificationEndpointRequest())
+            ->setNotificationEndpoint($notificationEndpoint)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -198,7 +220,14 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);
         $transport->addResponse($expectedResponse);
-        $request = new GetRegionNotificationEndpointRequest();
+        // Mock request
+        $notificationEndpoint = 'notificationEndpoint-696934807';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new GetRegionNotificationEndpointRequest())
+            ->setNotificationEndpoint($notificationEndpoint)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -206,6 +235,12 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNotificationEndpoints/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getNotificationEndpoint();
+        $this->assertProtobufEquals($notificationEndpoint, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -227,7 +262,14 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetRegionNotificationEndpointRequest();
+        // Mock request
+        $notificationEndpoint = 'notificationEndpoint-696934807';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new GetRegionNotificationEndpointRequest())
+            ->setNotificationEndpoint($notificationEndpoint)
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -266,7 +308,14 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertRegionNotificationEndpointRequest();
+        // Mock request
+        $notificationEndpointResource = new NotificationEndpoint();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new InsertRegionNotificationEndpointRequest())
+            ->setNotificationEndpointResource($notificationEndpointResource)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -276,8 +325,16 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNotificationEndpoints/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNotificationEndpointResource();
+        $this->assertProtobufEquals($notificationEndpointResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -325,7 +382,14 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertRegionNotificationEndpointRequest();
+        // Mock request
+        $notificationEndpointResource = new NotificationEndpoint();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new InsertRegionNotificationEndpointRequest())
+            ->setNotificationEndpointResource($notificationEndpointResource)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -370,7 +434,12 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListRegionNotificationEndpointsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListRegionNotificationEndpointsRequest())
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -381,6 +450,10 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNotificationEndpoints/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -402,7 +475,12 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListRegionNotificationEndpointsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListRegionNotificationEndpointsRequest())
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -441,7 +519,14 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteRegionNotificationEndpointRequest();
+        // Mock request
+        $notificationEndpoint = 'notificationEndpoint-696934807';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new DeleteRegionNotificationEndpointRequest())
+            ->setNotificationEndpoint($notificationEndpoint)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -451,8 +536,16 @@ class RegionNotificationEndpointsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNotificationEndpoints/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNotificationEndpoint();
+        $this->assertProtobufEquals($notificationEndpoint, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

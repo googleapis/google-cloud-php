@@ -26,25 +26,32 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\InstanceGroupsClient;
+use Google\Cloud\Compute\V1\InstanceGroupsListInstancesRequest;
 
 /**
  * Lists the instances in the specified instance group. The orderBy query parameter is not supported. The filter query parameter is supported, but only for expressions that use `eq` (equal) or `ne` (not equal) operators.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $instanceGroup The name of the instance group from which you want to generate a list of included instances.
+ * @param string $project       Project ID for this request.
+ * @param string $zone          The name of the zone where the instance group is located.
  */
-function list_instances_sample(): void
+function list_instances_sample(string $instanceGroup, string $project, string $zone): void
 {
     // Create a client.
     $instanceGroupsClient = new InstanceGroupsClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $instanceGroupsListInstancesRequestResource = new InstanceGroupsListInstancesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $instanceGroupsClient->listInstances();
+        $response = $instanceGroupsClient->listInstances(
+            $instanceGroup,
+            $instanceGroupsListInstancesRequestResource,
+            $project,
+            $zone
+        );
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -52,5 +59,23 @@ function list_instances_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $instanceGroup = '[INSTANCE_GROUP]';
+    $project = '[PROJECT]';
+    $zone = '[ZONE]';
+
+    list_instances_sample($instanceGroup, $project, $zone);
 }
 // [END compute_v1_generated_InstanceGroups_ListInstances_sync]

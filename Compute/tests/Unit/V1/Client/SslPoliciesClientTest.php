@@ -99,7 +99,10 @@ class SslPoliciesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListSslPoliciesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListSslPoliciesRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -112,6 +115,8 @@ class SslPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SslPolicies/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -133,7 +138,10 @@ class SslPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AggregatedListSslPoliciesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListSslPoliciesRequest())
+            ->setProject($project);
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -172,7 +180,12 @@ class SslPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteSslPolicyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $sslPolicy = 'sslPolicy-1852293435';
+        $request = (new DeleteSslPolicyRequest())
+            ->setProject($project)
+            ->setSslPolicy($sslPolicy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -182,8 +195,13 @@ class SslPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SslPolicies/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getSslPolicy();
+        $this->assertProtobufEquals($sslPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -231,7 +249,12 @@ class SslPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteSslPolicyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $sslPolicy = 'sslPolicy-1852293435';
+        $request = (new DeleteSslPolicyRequest())
+            ->setProject($project)
+            ->setSslPolicy($sslPolicy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -283,7 +306,12 @@ class SslPoliciesClientTest extends GeneratedTest
         $expectedResponse->setRegion($region);
         $expectedResponse->setSelfLink($selfLink);
         $transport->addResponse($expectedResponse);
-        $request = new GetSslPolicyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $sslPolicy = 'sslPolicy-1852293435';
+        $request = (new GetSslPolicyRequest())
+            ->setProject($project)
+            ->setSslPolicy($sslPolicy);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -291,6 +319,10 @@ class SslPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SslPolicies/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getSslPolicy();
+        $this->assertProtobufEquals($sslPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -312,7 +344,12 @@ class SslPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetSslPolicyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $sslPolicy = 'sslPolicy-1852293435';
+        $request = (new GetSslPolicyRequest())
+            ->setProject($project)
+            ->setSslPolicy($sslPolicy);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -351,7 +388,12 @@ class SslPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertSslPolicyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $sslPolicyResource = new SslPolicy();
+        $request = (new InsertSslPolicyRequest())
+            ->setProject($project)
+            ->setSslPolicyResource($sslPolicyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -361,8 +403,13 @@ class SslPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SslPolicies/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getSslPolicyResource();
+        $this->assertProtobufEquals($sslPolicyResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -410,7 +457,12 @@ class SslPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertSslPolicyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $sslPolicyResource = new SslPolicy();
+        $request = (new InsertSslPolicyRequest())
+            ->setProject($project)
+            ->setSslPolicyResource($sslPolicyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -455,7 +507,10 @@ class SslPoliciesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListSslPoliciesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListSslPoliciesRequest())
+            ->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -466,6 +521,8 @@ class SslPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SslPolicies/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -487,7 +544,10 @@ class SslPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListSslPoliciesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListSslPoliciesRequest())
+            ->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -512,7 +572,10 @@ class SslPoliciesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SslPoliciesListAvailableFeaturesResponse();
         $transport->addResponse($expectedResponse);
-        $request = new ListAvailableFeaturesSslPoliciesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListAvailableFeaturesSslPoliciesRequest())
+            ->setProject($project);
         $response = $gapicClient->listAvailableFeatures($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -520,6 +583,8 @@ class SslPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SslPolicies/ListAvailableFeatures', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -541,7 +606,10 @@ class SslPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListAvailableFeaturesSslPoliciesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListAvailableFeaturesSslPoliciesRequest())
+            ->setProject($project);
         try {
             $gapicClient->listAvailableFeatures($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -580,7 +648,14 @@ class SslPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PatchSslPolicyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $sslPolicy = 'sslPolicy-1852293435';
+        $sslPolicyResource = new SslPolicy();
+        $request = (new PatchSslPolicyRequest())
+            ->setProject($project)
+            ->setSslPolicy($sslPolicy)
+            ->setSslPolicyResource($sslPolicyResource);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -590,8 +665,15 @@ class SslPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SslPolicies/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getSslPolicy();
+        $this->assertProtobufEquals($sslPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getSslPolicyResource();
+        $this->assertProtobufEquals($sslPolicyResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -639,7 +721,14 @@ class SslPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PatchSslPolicyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $sslPolicy = 'sslPolicy-1852293435';
+        $sslPolicyResource = new SslPolicy();
+        $request = (new PatchSslPolicyRequest())
+            ->setProject($project)
+            ->setSslPolicy($sslPolicy)
+            ->setSslPolicyResource($sslPolicyResource);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -685,7 +774,10 @@ class SslPoliciesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListSslPoliciesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListSslPoliciesRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -698,6 +790,8 @@ class SslPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SslPolicies/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

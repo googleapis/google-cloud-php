@@ -26,26 +26,29 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\ProjectsClient;
+use Google\Cloud\Compute\V1\ProjectsSetDefaultNetworkTierRequest;
 use Google\Rpc\Status;
 
 /**
  * Sets the default network tier of the project. The default network tier is used when an address/forwardingRule/instance is created without specifying the network tier field.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project Project ID for this request.
  */
-function set_default_network_tier_sample(): void
+function set_default_network_tier_sample(string $project): void
 {
     // Create a client.
     $projectsClient = new ProjectsClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $projectsSetDefaultNetworkTierRequestResource = new ProjectsSetDefaultNetworkTierRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->setDefaultNetworkTier();
+        $response = $projectsClient->setDefaultNetworkTier(
+            $project,
+            $projectsSetDefaultNetworkTierRequestResource
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +61,21 @@ function set_default_network_tier_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+
+    set_default_network_tier_sample($project);
 }
 // [END compute_v1_generated_Projects_SetDefaultNetworkTier_sync]

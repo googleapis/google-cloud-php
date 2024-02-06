@@ -25,27 +25,28 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetInstances_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\TargetInstance;
 use Google\Cloud\Compute\V1\TargetInstancesClient;
 use Google\Rpc\Status;
 
 /**
  * Creates a TargetInstance resource in the specified project and zone using the data included in the request.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project Project ID for this request.
+ * @param string $zone    Name of the zone scoping this request.
  */
-function insert_sample(): void
+function insert_sample(string $project, string $zone): void
 {
     // Create a client.
     $targetInstancesClient = new TargetInstancesClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $targetInstanceResource = new TargetInstance();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetInstancesClient->insert();
+        $response = $targetInstancesClient->insert($project, $targetInstanceResource, $zone);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +59,22 @@ function insert_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $zone = '[ZONE]';
+
+    insert_sample($project, $zone);
 }
 // [END compute_v1_generated_TargetInstances_Insert_sync]

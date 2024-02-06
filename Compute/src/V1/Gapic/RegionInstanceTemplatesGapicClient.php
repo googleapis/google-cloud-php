@@ -51,7 +51,10 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
  * ```
  * $regionInstanceTemplatesClient = new RegionInstanceTemplatesClient();
  * try {
- *     $operationResponse = $regionInstanceTemplatesClient->delete();
+ *     $instanceTemplate = 'instance_template';
+ *     $project = 'project';
+ *     $region = 'region';
+ *     $operationResponse = $regionInstanceTemplatesClient->delete($instanceTemplate, $project, $region);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -61,7 +64,7 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $regionInstanceTemplatesClient->delete();
+ *     $operationResponse = $regionInstanceTemplatesClient->delete($instanceTemplate, $project, $region);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $regionInstanceTemplatesClient->resumeOperation($operationName, 'delete');
@@ -161,7 +164,10 @@ class RegionInstanceTemplatesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+                'getRegion',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -257,7 +263,10 @@ class RegionInstanceTemplatesGapicClient
      * ```
      * $regionInstanceTemplatesClient = new RegionInstanceTemplatesClient();
      * try {
-     *     $operationResponse = $regionInstanceTemplatesClient->delete();
+     *     $instanceTemplate = 'instance_template';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $operationResponse = $regionInstanceTemplatesClient->delete($instanceTemplate, $project, $region);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -267,7 +276,7 @@ class RegionInstanceTemplatesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceTemplatesClient->delete();
+     *     $operationResponse = $regionInstanceTemplatesClient->delete($instanceTemplate, $project, $region);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceTemplatesClient->resumeOperation($operationName, 'delete');
@@ -286,15 +295,12 @@ class RegionInstanceTemplatesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instanceTemplate The name of the instance template to delete.
+     * @param string $project          Project ID for this request.
+     * @param string $region           The name of the region for this request.
+     * @param array  $optionalArgs     {
      *     Optional.
      *
-     *     @type string $instanceTemplate
-     *           The name of the instance template to delete.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           The name of the region for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -307,25 +313,16 @@ class RegionInstanceTemplatesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete(array $optionalArgs = [])
+    public function delete($instanceTemplate, $project, $region, array $optionalArgs = [])
     {
         $request = new DeleteRegionInstanceTemplateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceTemplate'])) {
-            $request->setInstanceTemplate($optionalArgs['instanceTemplate']);
-            $requestParamHeaders['instance_template'] = $optionalArgs['instanceTemplate'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setInstanceTemplate($instanceTemplate);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['instance_template'] = $instanceTemplate;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -342,21 +339,21 @@ class RegionInstanceTemplatesGapicClient
      * ```
      * $regionInstanceTemplatesClient = new RegionInstanceTemplatesClient();
      * try {
-     *     $response = $regionInstanceTemplatesClient->get();
+     *     $instanceTemplate = 'instance_template';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $response = $regionInstanceTemplatesClient->get($instanceTemplate, $project, $region);
      * } finally {
      *     $regionInstanceTemplatesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instanceTemplate The name of the instance template.
+     * @param string $project          Project ID for this request.
+     * @param string $region           The name of the region for this request.
+     * @param array  $optionalArgs     {
      *     Optional.
      *
-     *     @type string $instanceTemplate
-     *           The name of the instance template.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           The name of the region for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -367,25 +364,16 @@ class RegionInstanceTemplatesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($instanceTemplate, $project, $region, array $optionalArgs = [])
     {
         $request = new GetRegionInstanceTemplateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceTemplate'])) {
-            $request->setInstanceTemplate($optionalArgs['instanceTemplate']);
-            $requestParamHeaders['instance_template'] = $optionalArgs['instanceTemplate'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setInstanceTemplate($instanceTemplate);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['instance_template'] = $instanceTemplate;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', InstanceTemplate::class, $optionalArgs, $request)->wait();
@@ -398,7 +386,10 @@ class RegionInstanceTemplatesGapicClient
      * ```
      * $regionInstanceTemplatesClient = new RegionInstanceTemplatesClient();
      * try {
-     *     $operationResponse = $regionInstanceTemplatesClient->insert();
+     *     $instanceTemplateResource = new InstanceTemplate();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $operationResponse = $regionInstanceTemplatesClient->insert($instanceTemplateResource, $project, $region);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -408,7 +399,7 @@ class RegionInstanceTemplatesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceTemplatesClient->insert();
+     *     $operationResponse = $regionInstanceTemplatesClient->insert($instanceTemplateResource, $project, $region);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceTemplatesClient->resumeOperation($operationName, 'insert');
@@ -427,15 +418,12 @@ class RegionInstanceTemplatesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param InstanceTemplate $instanceTemplateResource The body resource for this request
+     * @param string           $project                  Project ID for this request.
+     * @param string           $region                   The name of the region for this request.
+     * @param array            $optionalArgs             {
      *     Optional.
      *
-     *     @type InstanceTemplate $instanceTemplateResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           The name of the region for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -448,24 +436,15 @@ class RegionInstanceTemplatesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert(array $optionalArgs = [])
+    public function insert($instanceTemplateResource, $project, $region, array $optionalArgs = [])
     {
         $request = new InsertRegionInstanceTemplateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceTemplateResource'])) {
-            $request->setInstanceTemplateResource($optionalArgs['instanceTemplateResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setInstanceTemplateResource($instanceTemplateResource);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -482,8 +461,10 @@ class RegionInstanceTemplatesGapicClient
      * ```
      * $regionInstanceTemplatesClient = new RegionInstanceTemplatesClient();
      * try {
+     *     $project = 'project';
+     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionInstanceTemplatesClient->list();
+     *     $pagedResponse = $regionInstanceTemplatesClient->list($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -491,7 +472,7 @@ class RegionInstanceTemplatesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionInstanceTemplatesClient->list();
+     *     $pagedResponse = $regionInstanceTemplatesClient->list($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -500,7 +481,9 @@ class RegionInstanceTemplatesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $region       The name of the regions for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -514,10 +497,6 @@ class RegionInstanceTemplatesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           The name of the regions for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -530,10 +509,14 @@ class RegionInstanceTemplatesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list(array $optionalArgs = [])
+    public function list($project, $region, array $optionalArgs = [])
     {
         $request = new ListRegionInstanceTemplatesRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -548,16 +531,6 @@ class RegionInstanceTemplatesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {

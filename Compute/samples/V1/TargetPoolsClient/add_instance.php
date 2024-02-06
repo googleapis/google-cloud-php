@@ -25,27 +25,34 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetPools_AddInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\TargetPoolsAddInstanceRequest;
 use Google\Cloud\Compute\V1\TargetPoolsClient;
 use Google\Rpc\Status;
 
 /**
  * Adds an instance to a target pool.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project    Project ID for this request.
+ * @param string $region     Name of the region scoping this request.
+ * @param string $targetPool Name of the TargetPool resource to add instances to.
  */
-function add_instance_sample(): void
+function add_instance_sample(string $project, string $region, string $targetPool): void
 {
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $targetPoolsAddInstanceRequestResource = new TargetPoolsAddInstanceRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetPoolsClient->addInstance();
+        $response = $targetPoolsClient->addInstance(
+            $project,
+            $region,
+            $targetPool,
+            $targetPoolsAddInstanceRequestResource
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +65,23 @@ function add_instance_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+    $targetPool = '[TARGET_POOL]';
+
+    add_instance_sample($project, $region, $targetPool);
 }
 // [END compute_v1_generated_TargetPools_AddInstance_sync]

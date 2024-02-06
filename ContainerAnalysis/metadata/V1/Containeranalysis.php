@@ -23,10 +23,10 @@ class Containeranalysis
         \GPBMetadata\Grafeas\V1\Severity::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ï
-<google/devtools/containeranalysis/v1/containeranalysis.proto$google.devtools.containeranalysis.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protografeas/v1/severity.proto"
-)GetVulnerabilityOccurrencesSummaryRequestD
-parent (	B4âAúA-
+Î
+<google/devtools/containeranalysis/v1/containeranalysis.proto$google.devtools.containeranalysis.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protografeas/v1/severity.proto"€
+)GetVulnerabilityOccurrencesSummaryRequestC
+parent (	B3àAúA-
 +cloudresourcemanager.googleapis.com/Project
 filter (	"
 VulnerabilityOccurrencesSummaryj

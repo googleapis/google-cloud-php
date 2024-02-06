@@ -36,8 +36,11 @@ use Google\Cloud\DataLabeling\V1beta1\Evaluation;
 use Google\Cloud\DataLabeling\V1beta1\EvaluationJob;
 use Google\Cloud\DataLabeling\V1beta1\Example;
 use Google\Cloud\DataLabeling\V1beta1\ExportDataOperationResponse;
+use Google\Cloud\DataLabeling\V1beta1\HumanAnnotationConfig;
 use Google\Cloud\DataLabeling\V1beta1\ImportDataOperationResponse;
+use Google\Cloud\DataLabeling\V1beta1\InputConfig;
 use Google\Cloud\DataLabeling\V1beta1\Instruction;
+use Google\Cloud\DataLabeling\V1beta1\LabelImageRequest\Feature;
 use Google\Cloud\DataLabeling\V1beta1\ListAnnotatedDatasetsResponse;
 use Google\Cloud\DataLabeling\V1beta1\ListAnnotationSpecSetsResponse;
 use Google\Cloud\DataLabeling\V1beta1\ListDataItemsResponse;
@@ -45,6 +48,7 @@ use Google\Cloud\DataLabeling\V1beta1\ListDatasetsResponse;
 use Google\Cloud\DataLabeling\V1beta1\ListEvaluationJobsResponse;
 use Google\Cloud\DataLabeling\V1beta1\ListExamplesResponse;
 use Google\Cloud\DataLabeling\V1beta1\ListInstructionsResponse;
+use Google\Cloud\DataLabeling\V1beta1\OutputConfig;
 use Google\Cloud\DataLabeling\V1beta1\SearchEvaluationsResponse;
 use Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsResponse;
 use Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsResponse\ExampleComparison;
@@ -100,13 +104,20 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createAnnotationSpecSet();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $annotationSpecSet = new AnnotationSpecSet();
+        $response = $gapicClient->createAnnotationSpecSet($formattedParent, $annotationSpecSet);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateAnnotationSpecSet', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAnnotationSpecSet();
+        $this->assertProtobufEquals($annotationSpecSet, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -128,8 +139,11 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $annotationSpecSet = new AnnotationSpecSet();
         try {
-            $gapicClient->createAnnotationSpecSet();
+            $gapicClient->createAnnotationSpecSet($formattedParent, $annotationSpecSet);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -160,13 +174,20 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setDataItemCount($dataItemCount);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createDataset();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $dataset = new Dataset();
+        $response = $gapicClient->createDataset($formattedParent, $dataset);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateDataset', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getDataset();
+        $this->assertProtobufEquals($dataset, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -188,8 +209,11 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $dataset = new Dataset();
         try {
-            $gapicClient->createDataset();
+            $gapicClient->createDataset($formattedParent, $dataset);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -224,13 +248,20 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setAnnotationSpecSet($annotationSpecSet);
         $expectedResponse->setLabelMissingGroundTruth($labelMissingGroundTruth);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createEvaluationJob();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $job = new EvaluationJob();
+        $response = $gapicClient->createEvaluationJob($formattedParent, $job);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateEvaluationJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getJob();
+        $this->assertProtobufEquals($job, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -252,8 +283,11 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $job = new EvaluationJob();
         try {
-            $gapicClient->createEvaluationJob();
+            $gapicClient->createEvaluationJob($formattedParent, $job);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -300,7 +334,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->createInstruction();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $instruction = new Instruction();
+        $response = $gapicClient->createInstruction($formattedParent, $instruction);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -310,6 +347,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/CreateInstruction', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstruction();
+        $this->assertProtobufEquals($instruction, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInstructionTest');
         $response->pollUntilComplete([
@@ -360,7 +401,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->createInstruction();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $instruction = new Instruction();
+        $response = $gapicClient->createInstruction($formattedParent, $instruction);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -393,12 +437,16 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteAnnotatedDataset();
+        // Mock request
+        $formattedName = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
+        $gapicClient->deleteAnnotatedDataset($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteAnnotatedDataset', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -420,8 +468,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
         try {
-            $gapicClient->deleteAnnotatedDataset();
+            $gapicClient->deleteAnnotatedDataset($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -444,12 +494,16 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteAnnotationSpecSet();
+        // Mock request
+        $formattedName = $gapicClient->annotationSpecSetName('[PROJECT]', '[ANNOTATION_SPEC_SET]');
+        $gapicClient->deleteAnnotationSpecSet($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteAnnotationSpecSet', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -471,8 +525,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->annotationSpecSetName('[PROJECT]', '[ANNOTATION_SPEC_SET]');
         try {
-            $gapicClient->deleteAnnotationSpecSet();
+            $gapicClient->deleteAnnotationSpecSet($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -495,12 +551,16 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteDataset();
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
+        $gapicClient->deleteDataset($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteDataset', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -522,8 +582,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
         try {
-            $gapicClient->deleteDataset();
+            $gapicClient->deleteDataset($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -546,12 +608,16 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteEvaluationJob();
+        // Mock request
+        $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
+        $gapicClient->deleteEvaluationJob($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteEvaluationJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -573,8 +639,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
         try {
-            $gapicClient->deleteEvaluationJob();
+            $gapicClient->deleteEvaluationJob($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -597,12 +665,16 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteInstruction();
+        // Mock request
+        $formattedName = $gapicClient->instructionName('[PROJECT]', '[INSTRUCTION]');
+        $gapicClient->deleteInstruction($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/DeleteInstruction', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -624,8 +696,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->instructionName('[PROJECT]', '[INSTRUCTION]');
         try {
-            $gapicClient->deleteInstruction();
+            $gapicClient->deleteInstruction($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -672,7 +746,11 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->exportData();
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
+        $formattedAnnotatedDataset = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
+        $outputConfig = new OutputConfig();
+        $response = $gapicClient->exportData($formattedName, $formattedAnnotatedDataset, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -682,6 +760,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/ExportData', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getAnnotatedDataset();
+        $this->assertProtobufEquals($formattedAnnotatedDataset, $actualValue);
+        $actualValue = $actualApiRequestObject->getOutputConfig();
+        $this->assertProtobufEquals($outputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportDataTest');
         $response->pollUntilComplete([
@@ -732,7 +816,11 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->exportData();
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
+        $formattedAnnotatedDataset = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
+        $outputConfig = new OutputConfig();
+        $response = $gapicClient->exportData($formattedName, $formattedAnnotatedDataset, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -775,13 +863,17 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setExampleCount($exampleCount);
         $expectedResponse->setCompletedExampleCount($completedExampleCount);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getAnnotatedDataset();
+        // Mock request
+        $formattedName = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
+        $response = $gapicClient->getAnnotatedDataset($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/GetAnnotatedDataset', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -803,8 +895,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
         try {
-            $gapicClient->getAnnotatedDataset();
+            $gapicClient->getAnnotatedDataset($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -833,13 +927,17 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getAnnotationSpecSet();
+        // Mock request
+        $formattedName = $gapicClient->annotationSpecSetName('[PROJECT]', '[ANNOTATION_SPEC_SET]');
+        $response = $gapicClient->getAnnotationSpecSet($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/GetAnnotationSpecSet', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -861,8 +959,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->annotationSpecSetName('[PROJECT]', '[ANNOTATION_SPEC_SET]');
         try {
-            $gapicClient->getAnnotationSpecSet();
+            $gapicClient->getAnnotationSpecSet($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -887,13 +987,17 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse = new DataItem();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getDataItem();
+        // Mock request
+        $formattedName = $gapicClient->dataItemName('[PROJECT]', '[DATASET]', '[DATA_ITEM]');
+        $response = $gapicClient->getDataItem($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/GetDataItem', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -915,8 +1019,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->dataItemName('[PROJECT]', '[DATASET]', '[DATA_ITEM]');
         try {
-            $gapicClient->getDataItem();
+            $gapicClient->getDataItem($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -947,13 +1053,17 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setDataItemCount($dataItemCount);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getDataset();
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
+        $response = $gapicClient->getDataset($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/GetDataset', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -975,8 +1085,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
         try {
-            $gapicClient->getDataset();
+            $gapicClient->getDataset($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1003,13 +1115,17 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setEvaluatedItemCount($evaluatedItemCount);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getEvaluation();
+        // Mock request
+        $formattedName = $gapicClient->evaluationName('[PROJECT]', '[DATASET]', '[EVALUATION]');
+        $response = $gapicClient->getEvaluation($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/GetEvaluation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1031,8 +1147,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->evaluationName('[PROJECT]', '[DATASET]', '[EVALUATION]');
         try {
-            $gapicClient->getEvaluation();
+            $gapicClient->getEvaluation($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1067,13 +1185,17 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setAnnotationSpecSet($annotationSpecSet);
         $expectedResponse->setLabelMissingGroundTruth($labelMissingGroundTruth);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getEvaluationJob();
+        // Mock request
+        $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
+        $response = $gapicClient->getEvaluationJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/GetEvaluationJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1095,8 +1217,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
         try {
-            $gapicClient->getEvaluationJob();
+            $gapicClient->getEvaluationJob($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1121,13 +1245,17 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse = new Example();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getExample();
+        // Mock request
+        $formattedName = $gapicClient->exampleName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]', '[EXAMPLE]');
+        $response = $gapicClient->getExample($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/GetExample', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1149,8 +1277,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->exampleName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]', '[EXAMPLE]');
         try {
-            $gapicClient->getExample();
+            $gapicClient->getExample($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1179,13 +1309,17 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getInstruction();
+        // Mock request
+        $formattedName = $gapicClient->instructionName('[PROJECT]', '[INSTRUCTION]');
+        $response = $gapicClient->getInstruction($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/GetInstruction', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1207,8 +1341,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->instructionName('[PROJECT]', '[INSTRUCTION]');
         try {
-            $gapicClient->getInstruction();
+            $gapicClient->getInstruction($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1255,7 +1391,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->importData();
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
+        $inputConfig = new InputConfig();
+        $response = $gapicClient->importData($formattedName, $inputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1265,6 +1404,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/ImportData', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getInputConfig();
+        $this->assertProtobufEquals($inputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importDataTest');
         $response->pollUntilComplete([
@@ -1315,7 +1458,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->importData();
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
+        $inputConfig = new InputConfig();
+        $response = $gapicClient->importData($formattedName, $inputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1376,7 +1522,15 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->labelImage();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
+        $basicConfig = new HumanAnnotationConfig();
+        $basicConfigInstruction = 'basicConfigInstruction-1726324386';
+        $basicConfig->setInstruction($basicConfigInstruction);
+        $basicConfigAnnotatedDatasetDisplayName = 'basicConfigAnnotatedDatasetDisplayName568435293';
+        $basicConfig->setAnnotatedDatasetDisplayName($basicConfigAnnotatedDatasetDisplayName);
+        $feature = Feature::FEATURE_UNSPECIFIED;
+        $response = $gapicClient->labelImage($formattedParent, $basicConfig, $feature);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1386,6 +1540,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/LabelImage', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getBasicConfig();
+        $this->assertProtobufEquals($basicConfig, $actualValue);
+        $actualValue = $actualApiRequestObject->getFeature();
+        $this->assertProtobufEquals($feature, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/labelImageTest');
         $response->pollUntilComplete([
@@ -1436,7 +1596,15 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->labelImage();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
+        $basicConfig = new HumanAnnotationConfig();
+        $basicConfigInstruction = 'basicConfigInstruction-1726324386';
+        $basicConfig->setInstruction($basicConfigInstruction);
+        $basicConfigAnnotatedDatasetDisplayName = 'basicConfigAnnotatedDatasetDisplayName568435293';
+        $basicConfig->setAnnotatedDatasetDisplayName($basicConfigAnnotatedDatasetDisplayName);
+        $feature = Feature::FEATURE_UNSPECIFIED;
+        $response = $gapicClient->labelImage($formattedParent, $basicConfig, $feature);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1497,7 +1665,15 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->labelText();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
+        $basicConfig = new HumanAnnotationConfig();
+        $basicConfigInstruction = 'basicConfigInstruction-1726324386';
+        $basicConfig->setInstruction($basicConfigInstruction);
+        $basicConfigAnnotatedDatasetDisplayName = 'basicConfigAnnotatedDatasetDisplayName568435293';
+        $basicConfig->setAnnotatedDatasetDisplayName($basicConfigAnnotatedDatasetDisplayName);
+        $feature = \Google\Cloud\DataLabeling\V1beta1\LabelTextRequest\Feature::FEATURE_UNSPECIFIED;
+        $response = $gapicClient->labelText($formattedParent, $basicConfig, $feature);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1507,6 +1683,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/LabelText', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getBasicConfig();
+        $this->assertProtobufEquals($basicConfig, $actualValue);
+        $actualValue = $actualApiRequestObject->getFeature();
+        $this->assertProtobufEquals($feature, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/labelTextTest');
         $response->pollUntilComplete([
@@ -1557,7 +1739,15 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->labelText();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
+        $basicConfig = new HumanAnnotationConfig();
+        $basicConfigInstruction = 'basicConfigInstruction-1726324386';
+        $basicConfig->setInstruction($basicConfigInstruction);
+        $basicConfigAnnotatedDatasetDisplayName = 'basicConfigAnnotatedDatasetDisplayName568435293';
+        $basicConfig->setAnnotatedDatasetDisplayName($basicConfigAnnotatedDatasetDisplayName);
+        $feature = \Google\Cloud\DataLabeling\V1beta1\LabelTextRequest\Feature::FEATURE_UNSPECIFIED;
+        $response = $gapicClient->labelText($formattedParent, $basicConfig, $feature);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1618,7 +1808,15 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->labelVideo();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
+        $basicConfig = new HumanAnnotationConfig();
+        $basicConfigInstruction = 'basicConfigInstruction-1726324386';
+        $basicConfig->setInstruction($basicConfigInstruction);
+        $basicConfigAnnotatedDatasetDisplayName = 'basicConfigAnnotatedDatasetDisplayName568435293';
+        $basicConfig->setAnnotatedDatasetDisplayName($basicConfigAnnotatedDatasetDisplayName);
+        $feature = \Google\Cloud\DataLabeling\V1beta1\LabelVideoRequest\Feature::FEATURE_UNSPECIFIED;
+        $response = $gapicClient->labelVideo($formattedParent, $basicConfig, $feature);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1628,6 +1826,12 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/LabelVideo', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getBasicConfig();
+        $this->assertProtobufEquals($basicConfig, $actualValue);
+        $actualValue = $actualApiRequestObject->getFeature();
+        $this->assertProtobufEquals($feature, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/labelVideoTest');
         $response->pollUntilComplete([
@@ -1678,7 +1882,15 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->labelVideo();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
+        $basicConfig = new HumanAnnotationConfig();
+        $basicConfigInstruction = 'basicConfigInstruction-1726324386';
+        $basicConfig->setInstruction($basicConfigInstruction);
+        $basicConfigAnnotatedDatasetDisplayName = 'basicConfigAnnotatedDatasetDisplayName568435293';
+        $basicConfig->setAnnotatedDatasetDisplayName($basicConfigAnnotatedDatasetDisplayName);
+        $feature = \Google\Cloud\DataLabeling\V1beta1\LabelVideoRequest\Feature::FEATURE_UNSPECIFIED;
+        $response = $gapicClient->labelVideo($formattedParent, $basicConfig, $feature);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1718,7 +1930,9 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAnnotatedDatasets($annotatedDatasets);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listAnnotatedDatasets();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
+        $response = $gapicClient->listAnnotatedDatasets($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1728,6 +1942,8 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/ListAnnotatedDatasets', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1749,8 +1965,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
         try {
-            $gapicClient->listAnnotatedDatasets();
+            $gapicClient->listAnnotatedDatasets($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1780,7 +1998,9 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAnnotationSpecSets($annotationSpecSets);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listAnnotationSpecSets();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listAnnotationSpecSets($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1790,6 +2010,8 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/ListAnnotationSpecSets', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1811,8 +2033,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listAnnotationSpecSets();
+            $gapicClient->listAnnotationSpecSets($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1842,7 +2066,9 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataItems($dataItems);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listDataItems();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
+        $response = $gapicClient->listDataItems($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1852,6 +2078,8 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/ListDataItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1873,8 +2101,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[DATASET]');
         try {
-            $gapicClient->listDataItems();
+            $gapicClient->listDataItems($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1904,7 +2134,9 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDatasets($datasets);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listDatasets();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listDatasets($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1914,6 +2146,8 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/ListDatasets', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1935,8 +2169,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listDatasets();
+            $gapicClient->listDatasets($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1966,7 +2202,9 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEvaluationJobs($evaluationJobs);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listEvaluationJobs();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listEvaluationJobs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1976,6 +2214,8 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/ListEvaluationJobs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1997,8 +2237,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listEvaluationJobs();
+            $gapicClient->listEvaluationJobs($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2028,7 +2270,9 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setExamples($examples);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listExamples();
+        // Mock request
+        $formattedParent = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
+        $response = $gapicClient->listExamples($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2038,6 +2282,8 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/ListExamples', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2059,8 +2305,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
         try {
-            $gapicClient->listExamples();
+            $gapicClient->listExamples($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2090,7 +2338,9 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInstructions($instructions);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listInstructions();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listInstructions($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2100,6 +2350,8 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/ListInstructions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2121,8 +2373,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listInstructions();
+            $gapicClient->listInstructions($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2145,12 +2399,16 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->pauseEvaluationJob();
+        // Mock request
+        $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
+        $gapicClient->pauseEvaluationJob($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/PauseEvaluationJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2172,8 +2430,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
         try {
-            $gapicClient->pauseEvaluationJob();
+            $gapicClient->pauseEvaluationJob($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2196,12 +2456,16 @@ class DataLabelingServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->resumeEvaluationJob();
+        // Mock request
+        $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
+        $gapicClient->resumeEvaluationJob($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/ResumeEvaluationJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2223,8 +2487,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
         try {
-            $gapicClient->resumeEvaluationJob();
+            $gapicClient->resumeEvaluationJob($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2254,7 +2520,9 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEvaluations($evaluations);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->searchEvaluations();
+        // Mock request
+        $formattedParent = $gapicClient->evaluationName('[PROJECT]', '[DATASET]', '[EVALUATION]');
+        $response = $gapicClient->searchEvaluations($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2264,6 +2532,8 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/SearchEvaluations', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2285,8 +2555,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->evaluationName('[PROJECT]', '[DATASET]', '[EVALUATION]');
         try {
-            $gapicClient->searchEvaluations();
+            $gapicClient->searchEvaluations($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2316,7 +2588,9 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setExampleComparisons($exampleComparisons);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->searchExampleComparisons();
+        // Mock request
+        $formattedParent = $gapicClient->evaluationName('[PROJECT]', '[DATASET]', '[EVALUATION]');
+        $response = $gapicClient->searchExampleComparisons($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2326,6 +2600,8 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/SearchExampleComparisons', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2347,8 +2623,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->evaluationName('[PROJECT]', '[DATASET]', '[EVALUATION]');
         try {
-            $gapicClient->searchExampleComparisons();
+            $gapicClient->searchExampleComparisons($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2383,13 +2661,17 @@ class DataLabelingServiceClientTest extends GeneratedTest
         $expectedResponse->setAnnotationSpecSet($annotationSpecSet);
         $expectedResponse->setLabelMissingGroundTruth($labelMissingGroundTruth);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->updateEvaluationJob();
+        // Mock request
+        $evaluationJob = new EvaluationJob();
+        $response = $gapicClient->updateEvaluationJob($evaluationJob);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datalabeling.v1beta1.DataLabelingService/UpdateEvaluationJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getEvaluationJob();
+        $this->assertProtobufEquals($evaluationJob, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2411,8 +2693,10 @@ class DataLabelingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $evaluationJob = new EvaluationJob();
         try {
-            $gapicClient->updateEvaluationJob();
+            $gapicClient->updateEvaluationJob($evaluationJob);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

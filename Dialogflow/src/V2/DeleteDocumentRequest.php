@@ -28,7 +28,8 @@ class DeleteDocumentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the document to delete.
      *                     Format: `projects/<Project ID>/locations/<Location
-     *                     ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
+     *                     ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`. Please see
+     *                     {@see DocumentsClient::documentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\DeleteDocumentRequest
      *

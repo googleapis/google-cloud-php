@@ -43,7 +43,8 @@ class DeleteFederationRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The relative resource name of the metastore federation to delete,
      *                     in the following form:
      *
-     *                     `projects/{project_number}/locations/{location_id}/federations/{federation_id}`.
+     *                     `projects/{project_number}/locations/{location_id}/federations/{federation_id}`. Please see
+     *                     {@see DataprocMetastoreFederationClient::federationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Metastore\V1\DeleteFederationRequest
      *

@@ -32,7 +32,8 @@ class CreateChallengeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                           $parent    Required. The resource name of the location where the Challenge will be
-     *                                                                    used, in the format `projects/&#42;/locations/*`.
+     *                                                                    used, in the format `projects/&#42;/locations/*`. Please see
+     *                                                                    {@see ConfidentialComputingClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\ConfidentialComputing\V1\Challenge $challenge Required. The Challenge to be created. Currently this field can be empty as
      *                                                                    all the Challenge fields are set by the server.
      *

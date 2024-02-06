@@ -23,7 +23,8 @@ class GetRouteRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the Route resource to get.
+     * @param string $name Required. The name of the Route resource to get. Please see
+     *                     {@see DatastreamClient::routeName()} for help formatting this field.
      *
      * @return \Google\Cloud\Datastream\V1\GetRouteRequest
      *

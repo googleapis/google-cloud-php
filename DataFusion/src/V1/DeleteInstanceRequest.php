@@ -26,6 +26,7 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The instance resource name in the format
      *                     projects/{project}/locations/{location}/instances/{instance}
+     *                     Please see {@see DataFusionClient::instanceName()} for help formatting this field.
      *
      * @return \Google\Cloud\DataFusion\V1\DeleteInstanceRequest
      *

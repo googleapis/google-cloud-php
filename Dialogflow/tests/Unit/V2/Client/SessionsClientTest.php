@@ -30,6 +30,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\Client\SessionsClient;
 use Google\Cloud\Dialogflow\V2\DetectIntentRequest;
 use Google\Cloud\Dialogflow\V2\DetectIntentResponse;
+use Google\Cloud\Dialogflow\V2\QueryInput;
 use Google\Cloud\Dialogflow\V2\StreamingDetectIntentRequest;
 use Google\Cloud\Dialogflow\V2\StreamingDetectIntentResponse;
 use Google\Cloud\Location\GetLocationRequest;
@@ -82,7 +83,12 @@ class SessionsClientTest extends GeneratedTest
         $expectedResponse->setResponseId($responseId);
         $expectedResponse->setOutputAudio($outputAudio);
         $transport->addResponse($expectedResponse);
-        $request = new DetectIntentRequest();
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
+        $queryInput = new QueryInput();
+        $request = (new DetectIntentRequest())
+            ->setSession($formattedSession)
+            ->setQueryInput($queryInput);
         $response = $gapicClient->detectIntent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -90,6 +96,10 @@ class SessionsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Sessions/DetectIntent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getQueryInput();
+        $this->assertProtobufEquals($queryInput, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -111,7 +121,12 @@ class SessionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DetectIntentRequest();
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
+        $queryInput = new QueryInput();
+        $request = (new DetectIntentRequest())
+            ->setSession($formattedSession)
+            ->setQueryInput($queryInput);
         try {
             $gapicClient->detectIntent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -153,9 +168,21 @@ class SessionsClientTest extends GeneratedTest
         $expectedResponse3->setOutputAudio($outputAudio3);
         $transport->addResponse($expectedResponse3);
         // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
+        $queryInput = new QueryInput();
         $request = new StreamingDetectIntentRequest();
+        $request->setSession($formattedSession);
+        $request->setQueryInput($queryInput);
+        $formattedSession2 = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
+        $queryInput2 = new QueryInput();
         $request2 = new StreamingDetectIntentRequest();
+        $request2->setSession($formattedSession2);
+        $request2->setQueryInput($queryInput2);
+        $formattedSession3 = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
+        $queryInput3 = new QueryInput();
         $request3 = new StreamingDetectIntentRequest();
+        $request3->setSession($formattedSession3);
+        $request3->setQueryInput($queryInput3);
         $bidi = $gapicClient->streamingDetectIntent();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
@@ -364,7 +391,12 @@ class SessionsClientTest extends GeneratedTest
         $expectedResponse->setResponseId($responseId);
         $expectedResponse->setOutputAudio($outputAudio);
         $transport->addResponse($expectedResponse);
-        $request = new DetectIntentRequest();
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
+        $queryInput = new QueryInput();
+        $request = (new DetectIntentRequest())
+            ->setSession($formattedSession)
+            ->setQueryInput($queryInput);
         $response = $gapicClient->detectIntentAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -372,6 +404,10 @@ class SessionsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Sessions/DetectIntent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getQueryInput();
+        $this->assertProtobufEquals($queryInput, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

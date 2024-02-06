@@ -23,7 +23,8 @@ class GetAnalysisRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the analysis to get.
+     * @param string $name Required. The name of the analysis to get. Please see
+     *                     {@see ContactCenterInsightsClient::analysisName()} for help formatting this field.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\GetAnalysisRequest
      *

@@ -30,19 +30,25 @@ use Google\Cloud\Dialogflow\Cx\V3\Client\TestCasesClient;
 /**
  * Batch deletes test cases.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent       The agent to delete test cases from.
+ *                                      Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                      {@see TestCasesClient::agentName()} for help formatting this field.
+ * @param string $formattedNamesElement Format of test case names: `projects/<Project ID>/locations/
+ *                                      <Location ID>/agents/<AgentID>/testCases/<TestCase ID>`. Please see
+ *                                      {@see TestCasesClient::testCaseName()} for help formatting this field.
  */
-function batch_delete_test_cases_sample(): void
-{
+function batch_delete_test_cases_sample(
+    string $formattedParent,
+    string $formattedNamesElement
+): void {
     // Create a client.
     $testCasesClient = new TestCasesClient();
 
     // Prepare the request message.
-    $request = new BatchDeleteTestCasesRequest();
+    $formattedNames = [$formattedNamesElement,];
+    $request = (new BatchDeleteTestCasesRequest())
+        ->setParent($formattedParent)
+        ->setNames($formattedNames);
 
     // Call the API and handle any network failures.
     try {
@@ -51,5 +57,27 @@ function batch_delete_test_cases_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = TestCasesClient::agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+    $formattedNamesElement = TestCasesClient::testCaseName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[AGENT]',
+        '[TEST_CASE]'
+    );
+
+    batch_delete_test_cases_sample($formattedParent, $formattedNamesElement);
 }
 // [END dialogflow_v3_generated_TestCases_BatchDeleteTestCases_sync]

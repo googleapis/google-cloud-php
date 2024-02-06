@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Metastore\V1alpha\DataprocMetastoreClient;
 use Google\Cloud\Metastore\V1alpha\MetadataImport;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -44,10 +45,14 @@ function update_metadata_import_sample(): void
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $updateMask = new FieldMask();
+    $metadataImport = new MetadataImport();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreClient->updateMetadataImport();
+        $response = $dataprocMetastoreClient->updateMetadataImport($updateMask, $metadataImport);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

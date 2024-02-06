@@ -31,13 +31,10 @@ use Google\Rpc\Status;
 /**
  * Deletes the specified license. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $license Name of the license resource to delete.
+ * @param string $project Project ID for this request.
  */
-function delete_sample(): void
+function delete_sample(string $license, string $project): void
 {
     // Create a client.
     $licensesClient = new LicensesClient();
@@ -45,7 +42,7 @@ function delete_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $licensesClient->delete();
+        $response = $licensesClient->delete($license, $project);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +55,22 @@ function delete_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $license = '[LICENSE]';
+    $project = '[PROJECT]';
+
+    delete_sample($license, $project);
 }
 // [END compute_v1_generated_Licenses_Delete_sync]

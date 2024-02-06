@@ -65,7 +65,8 @@ class ListPagesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The flow to list all pages for.
      *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                       ID>/flows/<Flow ID>`.
+     *                       ID>/flows/<Flow ID>`. Please see
+     *                       {@see PagesClient::flowName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\ListPagesRequest
      *

@@ -31,19 +31,22 @@ use Google\Cloud\Dialogflow\Cx\V3\Webhook;
 /**
  * Creates a webhook in the specified agent.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent    The agent to create a webhook for.
+ *                                   Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                   {@see WebhooksClient::agentName()} for help formatting this field.
+ * @param string $webhookDisplayName The human-readable name of the webhook, unique within the agent.
  */
-function create_webhook_sample(): void
+function create_webhook_sample(string $formattedParent, string $webhookDisplayName): void
 {
     // Create a client.
     $webhooksClient = new WebhooksClient();
 
     // Prepare the request message.
-    $request = new CreateWebhookRequest();
+    $webhook = (new Webhook())
+        ->setDisplayName($webhookDisplayName);
+    $request = (new CreateWebhookRequest())
+        ->setParent($formattedParent)
+        ->setWebhook($webhook);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +56,22 @@ function create_webhook_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = WebhooksClient::agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+    $webhookDisplayName = '[DISPLAY_NAME]';
+
+    create_webhook_sample($formattedParent, $webhookDisplayName);
 }
 // [END dialogflow_v3_generated_Webhooks_CreateWebhook_sync]

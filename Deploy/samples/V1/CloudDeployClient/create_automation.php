@@ -26,6 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Deploy\V1\Automation;
+use Google\Cloud\Deploy\V1\AutomationResourceSelector;
+use Google\Cloud\Deploy\V1\AutomationRule;
 use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
 use Google\Cloud\Deploy\V1\CreateAutomationRequest;
 use Google\Rpc\Status;
@@ -33,19 +35,33 @@ use Google\Rpc\Status;
 /**
  * Creates a new Automation in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent          The parent collection in which the `Automation` should be
+ *                                         created. Format should be
+ *                                         `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
+ *                                         {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
+ * @param string $automationId             ID of the `Automation`.
+ * @param string $automationServiceAccount Email address of the user-managed IAM service account that
+ *                                         creates Cloud Deploy release and rollout resources.
  */
-function create_automation_sample(): void
-{
+function create_automation_sample(
+    string $formattedParent,
+    string $automationId,
+    string $automationServiceAccount
+): void {
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = new CreateAutomationRequest();
+    $automationSelector = new AutomationResourceSelector();
+    $automationRules = [new AutomationRule()];
+    $automation = (new Automation())
+        ->setServiceAccount($automationServiceAccount)
+        ->setSelector($automationSelector)
+        ->setRules($automationRules);
+    $request = (new CreateAutomationRequest())
+        ->setParent($formattedParent)
+        ->setAutomationId($automationId)
+        ->setAutomation($automation);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +81,27 @@ function create_automation_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = CloudDeployClient::deliveryPipelineName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[DELIVERY_PIPELINE]'
+    );
+    $automationId = '[AUTOMATION_ID]';
+    $automationServiceAccount = '[SERVICE_ACCOUNT]';
+
+    create_automation_sample($formattedParent, $automationId, $automationServiceAccount);
 }
 // [END clouddeploy_v1_generated_CloudDeploy_CreateAutomation_sync]

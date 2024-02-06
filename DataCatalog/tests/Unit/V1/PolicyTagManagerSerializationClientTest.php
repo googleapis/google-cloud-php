@@ -29,6 +29,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DataCatalog\V1\ExportTaxonomiesResponse;
 use Google\Cloud\DataCatalog\V1\ImportTaxonomiesResponse;
 use Google\Cloud\DataCatalog\V1\PolicyTagManagerSerializationClient;
+use Google\Cloud\DataCatalog\V1\SerializedTaxonomy;
 use Google\Cloud\DataCatalog\V1\Taxonomy;
 use Google\Rpc\Code;
 use stdClass;
@@ -72,13 +73,22 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ExportTaxonomiesResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->exportTaxonomies();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedTaxonomies = [
+            $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]'),
+        ];
+        $response = $gapicClient->exportTaxonomies($formattedParent, $formattedTaxonomies);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.PolicyTagManagerSerialization/ExportTaxonomies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getTaxonomies();
+        $this->assertProtobufEquals($formattedTaxonomies, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -100,8 +110,13 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedTaxonomies = [
+            $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]'),
+        ];
         try {
-            $gapicClient->exportTaxonomies();
+            $gapicClient->exportTaxonomies($formattedParent, $formattedTaxonomies);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -124,13 +139,17 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ImportTaxonomiesResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->importTaxonomies();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->importTaxonomies($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.PolicyTagManagerSerialization/ImportTaxonomies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -152,8 +171,10 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->importTaxonomies();
+            $gapicClient->importTaxonomies($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -184,13 +205,22 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setPolicyTagCount($policyTagCount);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->replaceTaxonomy();
+        // Mock request
+        $formattedName = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $serializedTaxonomy = new SerializedTaxonomy();
+        $serializedTaxonomyDisplayName = 'serializedTaxonomyDisplayName1493662264';
+        $serializedTaxonomy->setDisplayName($serializedTaxonomyDisplayName);
+        $response = $gapicClient->replaceTaxonomy($formattedName, $serializedTaxonomy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.PolicyTagManagerSerialization/ReplaceTaxonomy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getSerializedTaxonomy();
+        $this->assertProtobufEquals($serializedTaxonomy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -212,8 +242,13 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $serializedTaxonomy = new SerializedTaxonomy();
+        $serializedTaxonomyDisplayName = 'serializedTaxonomyDisplayName1493662264';
+        $serializedTaxonomy->setDisplayName($serializedTaxonomyDisplayName);
         try {
-            $gapicClient->replaceTaxonomy();
+            $gapicClient->replaceTaxonomy($formattedName, $serializedTaxonomy);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

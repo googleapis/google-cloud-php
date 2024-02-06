@@ -24,11 +24,37 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Routers_Preview_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Router;
 use Google\Cloud\Compute\V1\RoutersClient;
 use Google\Cloud\Compute\V1\RoutersPreviewResponse;
 
 /**
  * Preview fields auto-generated during router create and update operations. Calling this method does NOT create or update the router.
+ *
+ * @param string $project Project ID for this request.
+ * @param string $region  Name of the region for this request.
+ * @param string $router  Name of the Router resource to query.
+ */
+function preview_sample(string $project, string $region, string $router): void
+{
+    // Create a client.
+    $routersClient = new RoutersClient();
+
+    // Prepare any non-scalar elements to be passed along with the request.
+    $routerResource = new Router();
+
+    // Call the API and handle any network failures.
+    try {
+        /** @var RoutersPreviewResponse $response */
+        $response = $routersClient->preview($project, $region, $router, $routerResource);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
+}
+
+/**
+ * Helper to execute the sample.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -36,18 +62,12 @@ use Google\Cloud\Compute\V1\RoutersPreviewResponse;
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function preview_sample(): void
+function callSample(): void
 {
-    // Create a client.
-    $routersClient = new RoutersClient();
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+    $router = '[ROUTER]';
 
-    // Call the API and handle any network failures.
-    try {
-        /** @var RoutersPreviewResponse $response */
-        $response = $routersClient->preview();
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
+    preview_sample($project, $region, $router);
 }
 // [END compute_v1_generated_Routers_Preview_sync]

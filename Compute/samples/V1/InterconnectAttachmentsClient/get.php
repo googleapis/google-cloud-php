@@ -30,13 +30,11 @@ use Google\Cloud\Compute\V1\InterconnectAttachmentsClient;
 /**
  * Returns the specified interconnect attachment.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $interconnectAttachment Name of the interconnect attachment to return.
+ * @param string $project                Project ID for this request.
+ * @param string $region                 Name of the region for this request.
  */
-function get_sample(): void
+function get_sample(string $interconnectAttachment, string $project, string $region): void
 {
     // Create a client.
     $interconnectAttachmentsClient = new InterconnectAttachmentsClient();
@@ -44,10 +42,28 @@ function get_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var InterconnectAttachment $response */
-        $response = $interconnectAttachmentsClient->get();
+        $response = $interconnectAttachmentsClient->get($interconnectAttachment, $project, $region);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $interconnectAttachment = '[INTERCONNECT_ATTACHMENT]';
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    get_sample($interconnectAttachment, $project, $region);
 }
 // [END compute_v1_generated_InterconnectAttachments_Get_sync]

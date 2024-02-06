@@ -39,7 +39,8 @@ class DeleteConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string $name Required. The name of the connection profile resource to delete.
+     * @param string $name Required. The name of the connection profile resource to delete. Please see
+     *                     {@see DatastreamClient::connectionProfileName()} for help formatting this field.
      *
      * @return \Google\Cloud\Datastream\V1\DeleteConnectionProfileRequest
      *

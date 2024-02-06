@@ -23,36 +23,36 @@ class TransitionRouteGroup
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ˆ
-:google/cloud/dialogflow/cx/v3/transition_route_group.protogoogle.cloud.dialogflow.cx.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/cloud/dialogflow/cx/v3/page.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto" 
+Ô
+:google/cloud/dialogflow/cx/v3/transition_route_group.protogoogle.cloud.dialogflow.cx.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/cloud/dialogflow/cx/v3/page.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"…
 TransitionRouteGroup
-name (	
-display_name (	B‚AI
+name (	
+display_name (	B‡AI
 transition_routes (2..google.cloud.dialogflow.cx.v3.TransitionRoute:ºÍA∏
-.dialogflow.googleapis.com/TransitionRouteGrouprprojects/{project}/locations/{location}/agents/{agent}/flows/{flow}/transitionRouteGroups/{transition_route_group}eprojects/{project}/locations/{location}/agents/{agent}/transitionRouteGroups/{transition_route_group}*transitionRouteGroups2transitionRouteGroup"©
- ListTransitionRouteGroupsRequestG
-parent (	B7‚A˙A0.dialogflow.googleapis.com/TransitionRouteGroup
+.dialogflow.googleapis.com/TransitionRouteGrouprprojects/{project}/locations/{location}/agents/{agent}/flows/{flow}/transitionRouteGroups/{transition_route_group}eprojects/{project}/locations/{location}/agents/{agent}/transitionRouteGroups/{transition_route_group}*transitionRouteGroups2transitionRouteGroup"®
+ ListTransitionRouteGroupsRequestF
+parent (	B6‡A˙A0.dialogflow.googleapis.com/TransitionRouteGroup
 	page_size (
 
 page_token (	
 language_code (	"í
 !ListTransitionRouteGroupsResponseT
 transition_route_groups (23.google.cloud.dialogflow.cx.v3.TransitionRouteGroup
-next_page_token (	"~
-GetTransitionRouteGroupRequestE
-name (	B7‚A˙A0
+next_page_token (	"}
+GetTransitionRouteGroupRequestD
+name (	B6‡A˙A0
 .dialogflow.googleapis.com/TransitionRouteGroup
-language_code (	"ﬁ
-!CreateTransitionRouteGroupRequestG
-parent (	B7‚A˙A0.dialogflow.googleapis.com/TransitionRouteGroupY
-transition_route_group (23.google.cloud.dialogflow.cx.v3.TransitionRouteGroupB‚A
-language_code (	"∆
-!UpdateTransitionRouteGroupRequestY
-transition_route_group (23.google.cloud.dialogflow.cx.v3.TransitionRouteGroupB‚A/
+language_code (	"‹
+!CreateTransitionRouteGroupRequestF
+parent (	B6‡A˙A0.dialogflow.googleapis.com/TransitionRouteGroupX
+transition_route_group (23.google.cloud.dialogflow.cx.v3.TransitionRouteGroupB‡A
+language_code (	"≈
+!UpdateTransitionRouteGroupRequestX
+transition_route_group (23.google.cloud.dialogflow.cx.v3.TransitionRouteGroupB‡A/
 update_mask (2.google.protobuf.FieldMask
-language_code (	"y
-!DeleteTransitionRouteGroupRequestE
-name (	B7‚A˙A0
+language_code (	"x
+!DeleteTransitionRouteGroupRequestD
+name (	B6‡A˙A0
 .dialogflow.googleapis.com/TransitionRouteGroup
 force (2›
 TransitionRouteGroups√

@@ -31,19 +31,19 @@ use Google\Cloud\DataLabeling\V1beta1\PauseEvaluationJobRequest;
  * Pauses an evaluation job. Pausing an evaluation job that is already in a
  * `PAUSED` state is a no-op.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Name of the evaluation job that is going to be paused. Format:
+ *
+ *                              "projects/<var>{project_id}</var>/evaluationJobs/<var>{evaluation_job_id}</var>"
+ *                              Please see {@see DataLabelingServiceClient::evaluationJobName()} for help formatting this field.
  */
-function pause_evaluation_job_sample(): void
+function pause_evaluation_job_sample(string $formattedName): void
 {
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
     // Prepare the request message.
-    $request = new PauseEvaluationJobRequest();
+    $request = (new PauseEvaluationJobRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -52,5 +52,21 @@ function pause_evaluation_job_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DataLabelingServiceClient::evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
+
+    pause_evaluation_job_sample($formattedName);
 }
 // [END datalabeling_v1beta1_generated_DataLabelingService_PauseEvaluationJob_sync]

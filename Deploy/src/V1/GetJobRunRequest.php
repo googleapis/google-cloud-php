@@ -25,7 +25,8 @@ class GetJobRunRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the `JobRun`. Format must be
-     *                     `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}/jobRuns/{job_run_name}`.
+     *                     `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}/jobRuns/{job_run_name}`. Please see
+     *                     {@see CloudDeployClient::jobRunName()} for help formatting this field.
      *
      * @return \Google\Cloud\Deploy\V1\GetJobRunRequest
      *

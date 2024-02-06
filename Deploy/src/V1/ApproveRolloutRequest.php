@@ -31,7 +31,8 @@ class ApproveRolloutRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the Rollout. Format is
-     *                     `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
+     *                     `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`. Please see
+     *                     {@see CloudDeployClient::rolloutName()} for help formatting this field.
      *
      * @return \Google\Cloud\Deploy\V1\ApproveRolloutRequest
      *

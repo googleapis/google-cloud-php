@@ -40,7 +40,8 @@ class CreateProcessRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                       $parent  Required. The name of the project and its location that should own the
-     *                                                              process.
+     *                                                              process. Please see
+     *                                                              {@see LineageClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\DataCatalog\Lineage\V1\Process $process Required. The process to create.
      *
      * @return \Google\Cloud\DataCatalog\Lineage\V1\CreateProcessRequest

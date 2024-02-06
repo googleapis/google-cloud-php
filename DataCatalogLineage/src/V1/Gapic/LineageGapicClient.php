@@ -79,8 +79,10 @@ use Google\Protobuf\Struct;
  * ```
  * $lineageClient = new LineageClient();
  * try {
+ *     $formattedParent = $lineageClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $links = [];
  *     // Iterate over pages of elements
- *     $pagedResponse = $lineageClient->batchSearchLinkProcesses();
+ *     $pagedResponse = $lineageClient->batchSearchLinkProcesses($formattedParent, $links);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -88,7 +90,7 @@ use Google\Protobuf\Struct;
  *     }
  *     // Alternatively:
  *     // Iterate through all elements
- *     $pagedResponse = $lineageClient->batchSearchLinkProcesses();
+ *     $pagedResponse = $lineageClient->batchSearchLinkProcesses($formattedParent, $links);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -447,8 +449,10 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
+     *     $formattedParent = $lineageClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $links = [];
      *     // Iterate over pages of elements
-     *     $pagedResponse = $lineageClient->batchSearchLinkProcesses();
+     *     $pagedResponse = $lineageClient->batchSearchLinkProcesses($formattedParent, $links);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -456,7 +460,7 @@ class LineageGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $lineageClient->batchSearchLinkProcesses();
+     *     $pagedResponse = $lineageClient->batchSearchLinkProcesses($formattedParent, $links);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -465,19 +469,17 @@ class LineageGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $parent       Required. The project and location where you want to search.
+     * @param string[] $links        Required. An array of links to check for their associated LineageProcesses.
+     *
+     *                               The maximum number of items in this array is 100.
+     *                               If the request contains more than 100 links, it returns the
+     *                               `INVALID_ARGUMENT` error.
+     *
+     *                               Format: `projects/{project}/locations/{location}/links/{link}`.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The project and location where you want to search.
-     *     @type string[] $links
-     *           Required. An array of links to check for their associated LineageProcesses.
-     *
-     *           The maximum number of items in this array is 100.
-     *           If the request contains more than 100 links, it returns the
-     *           `INVALID_ARGUMENT` error.
-     *
-     *           Format: `projects/{project}/locations/{location}/links/{link}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -497,19 +499,13 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchSearchLinkProcesses(array $optionalArgs = [])
+    public function batchSearchLinkProcesses($parent, $links, array $optionalArgs = [])
     {
         $request = new BatchSearchLinkProcessesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['links'])) {
-            $request->setLinks($optionalArgs['links']);
-        }
-
+        $request->setParent($parent);
+        $request->setLinks($links);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -530,19 +526,19 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
-     *     $response = $lineageClient->createLineageEvent();
+     *     $formattedParent = $lineageClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
+     *     $lineageEvent = new LineageEvent();
+     *     $response = $lineageClient->createLineageEvent($formattedParent, $lineageEvent);
      * } finally {
      *     $lineageClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string       $parent       Required. The name of the run that should own the lineage event.
+     * @param LineageEvent $lineageEvent Required. The lineage event to create.
+     * @param array        $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the run that should own the lineage event.
-     *     @type LineageEvent $lineageEvent
-     *           Required. The lineage event to create.
      *     @type string $requestId
      *           A unique identifier for this request. Restricted to 36 ASCII characters.
      *           A random UUID is recommended. This request is idempotent only if a
@@ -557,19 +553,13 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createLineageEvent(array $optionalArgs = [])
+    public function createLineageEvent($parent, $lineageEvent, array $optionalArgs = [])
     {
         $request = new CreateLineageEventRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['lineageEvent'])) {
-            $request->setLineageEvent($optionalArgs['lineageEvent']);
-        }
-
+        $request->setParent($parent);
+        $request->setLineageEvent($lineageEvent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -586,20 +576,20 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
-     *     $response = $lineageClient->createProcess();
+     *     $formattedParent = $lineageClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $process = new Process();
+     *     $response = $lineageClient->createProcess($formattedParent, $process);
      * } finally {
      *     $lineageClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string  $parent       Required. The name of the project and its location that should own the
+     *                              process.
+     * @param Process $process      Required. The process to create.
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the project and its location that should own the
-     *           process.
-     *     @type Process $process
-     *           Required. The process to create.
      *     @type string $requestId
      *           A unique identifier for this request. Restricted to 36 ASCII characters.
      *           A random UUID is recommended. This request is idempotent only if a
@@ -614,19 +604,13 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createProcess(array $optionalArgs = [])
+    public function createProcess($parent, $process, array $optionalArgs = [])
     {
         $request = new CreateProcessRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['process'])) {
-            $request->setProcess($optionalArgs['process']);
-        }
-
+        $request->setParent($parent);
+        $request->setProcess($process);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -643,19 +627,19 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
-     *     $response = $lineageClient->createRun();
+     *     $formattedParent = $lineageClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
+     *     $run = new Run();
+     *     $response = $lineageClient->createRun($formattedParent, $run);
      * } finally {
      *     $lineageClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the process that should own the run.
+     * @param Run    $run          Required. The run to create.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the process that should own the run.
-     *     @type Run $run
-     *           Required. The run to create.
      *     @type string $requestId
      *           A unique identifier for this request. Restricted to 36 ASCII characters.
      *           A random UUID is recommended. This request is idempotent only if a
@@ -670,19 +654,13 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createRun(array $optionalArgs = [])
+    public function createRun($parent, $run, array $optionalArgs = [])
     {
         $request = new CreateRunRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['run'])) {
-            $request->setRun($optionalArgs['run']);
-        }
-
+        $request->setParent($parent);
+        $request->setRun($run);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -699,17 +677,17 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
-     *     $lineageClient->deleteLineageEvent();
+     *     $formattedName = $lineageClient->lineageEventName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]', '[LINEAGE_EVENT]');
+     *     $lineageClient->deleteLineageEvent($formattedName);
      * } finally {
      *     $lineageClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the lineage event to delete.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the lineage event to delete.
      *     @type bool $allowMissing
      *           If set to true and the lineage event is not found, the request
      *           succeeds but the server doesn't perform any actions.
@@ -721,15 +699,12 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteLineageEvent(array $optionalArgs = [])
+    public function deleteLineageEvent($name, array $optionalArgs = [])
     {
         $request = new DeleteLineageEventRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['allowMissing'])) {
             $request->setAllowMissing($optionalArgs['allowMissing']);
         }
@@ -746,7 +721,8 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
-     *     $operationResponse = $lineageClient->deleteProcess();
+     *     $formattedName = $lineageClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
+     *     $operationResponse = $lineageClient->deleteProcess($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -756,7 +732,7 @@ class LineageGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $lineageClient->deleteProcess();
+     *     $operationResponse = $lineageClient->deleteProcess($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $lineageClient->resumeOperation($operationName, 'deleteProcess');
@@ -775,11 +751,10 @@ class LineageGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the process to delete.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the process to delete.
      *     @type bool $allowMissing
      *           If set to true and the process is not found, the request
      *           succeeds but the server doesn't perform any actions.
@@ -793,15 +768,12 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteProcess(array $optionalArgs = [])
+    public function deleteProcess($name, array $optionalArgs = [])
     {
         $request = new DeleteProcessRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['allowMissing'])) {
             $request->setAllowMissing($optionalArgs['allowMissing']);
         }
@@ -818,7 +790,8 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
-     *     $operationResponse = $lineageClient->deleteRun();
+     *     $formattedName = $lineageClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
+     *     $operationResponse = $lineageClient->deleteRun($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -828,7 +801,7 @@ class LineageGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $lineageClient->deleteRun();
+     *     $operationResponse = $lineageClient->deleteRun($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $lineageClient->resumeOperation($operationName, 'deleteRun');
@@ -847,11 +820,10 @@ class LineageGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the run to delete.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the run to delete.
      *     @type bool $allowMissing
      *           If set to true and the run is not found, the request
      *           succeeds but the server doesn't perform any actions.
@@ -865,15 +837,12 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteRun(array $optionalArgs = [])
+    public function deleteRun($name, array $optionalArgs = [])
     {
         $request = new DeleteRunRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['allowMissing'])) {
             $request->setAllowMissing($optionalArgs['allowMissing']);
         }
@@ -890,17 +859,17 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
-     *     $response = $lineageClient->getLineageEvent();
+     *     $formattedName = $lineageClient->lineageEventName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]', '[LINEAGE_EVENT]');
+     *     $response = $lineageClient->getLineageEvent($formattedName);
      * } finally {
      *     $lineageClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the lineage event to get.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the lineage event to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -911,15 +880,12 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getLineageEvent(array $optionalArgs = [])
+    public function getLineageEvent($name, array $optionalArgs = [])
     {
         $request = new GetLineageEventRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetLineageEvent', LineageEvent::class, $optionalArgs, $request)->wait();
@@ -932,17 +898,17 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
-     *     $response = $lineageClient->getProcess();
+     *     $formattedName = $lineageClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
+     *     $response = $lineageClient->getProcess($formattedName);
      * } finally {
      *     $lineageClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the process to get.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the process to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -953,15 +919,12 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getProcess(array $optionalArgs = [])
+    public function getProcess($name, array $optionalArgs = [])
     {
         $request = new GetProcessRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetProcess', Process::class, $optionalArgs, $request)->wait();
@@ -974,17 +937,17 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
-     *     $response = $lineageClient->getRun();
+     *     $formattedName = $lineageClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
+     *     $response = $lineageClient->getRun($formattedName);
      * } finally {
      *     $lineageClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the run to get.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the run to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -995,15 +958,12 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRun(array $optionalArgs = [])
+    public function getRun($name, array $optionalArgs = [])
     {
         $request = new GetRunRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetRun', Run::class, $optionalArgs, $request)->wait();
@@ -1017,8 +977,9 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
+     *     $formattedParent = $lineageClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $lineageClient->listLineageEvents();
+     *     $pagedResponse = $lineageClient->listLineageEvents($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1026,7 +987,7 @@ class LineageGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $lineageClient->listLineageEvents();
+     *     $pagedResponse = $lineageClient->listLineageEvents($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1035,12 +996,11 @@ class LineageGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the run that owns the collection of lineage events to
+     *                             get.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the run that owns the collection of lineage events to
-     *           get.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1060,15 +1020,12 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listLineageEvents(array $optionalArgs = [])
+    public function listLineageEvents($parent, array $optionalArgs = [])
     {
         $request = new ListLineageEventsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1090,8 +1047,9 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
+     *     $formattedParent = $lineageClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $lineageClient->listProcesses();
+     *     $pagedResponse = $lineageClient->listProcesses($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1099,7 +1057,7 @@ class LineageGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $lineageClient->listProcesses();
+     *     $pagedResponse = $lineageClient->listProcesses($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1108,12 +1066,11 @@ class LineageGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the project and its location that owns this
+     *                             collection of processes.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the project and its location that owns this
-     *           collection of processes.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1133,15 +1090,12 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listProcesses(array $optionalArgs = [])
+    public function listProcesses($parent, array $optionalArgs = [])
     {
         $request = new ListProcessesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1163,8 +1117,9 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
+     *     $formattedParent = $lineageClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $lineageClient->listRuns();
+     *     $pagedResponse = $lineageClient->listRuns($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1172,7 +1127,7 @@ class LineageGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $lineageClient->listRuns();
+     *     $pagedResponse = $lineageClient->listRuns($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1181,11 +1136,10 @@ class LineageGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of process that owns this collection of runs.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of process that owns this collection of runs.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1205,15 +1159,12 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listRuns(array $optionalArgs = [])
+    public function listRuns($parent, array $optionalArgs = [])
     {
         $request = new ListRunsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1237,21 +1188,21 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
-     *     $response = $lineageClient->processOpenLineageRunEvent();
+     *     $parent = 'parent';
+     *     $openLineage = new Struct();
+     *     $response = $lineageClient->processOpenLineageRunEvent($parent, $openLineage);
      * } finally {
      *     $lineageClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the project and its location that should own the
+     *                             process, run, and lineage event.
+     * @param Struct $openLineage  Required. OpenLineage message following OpenLineage format:
+     *                             https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.json
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the project and its location that should own the
-     *           process, run, and lineage event.
-     *     @type Struct $openLineage
-     *           Required. OpenLineage message following OpenLineage format:
-     *           https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.json
      *     @type string $requestId
      *           A unique identifier for this request. Restricted to 36 ASCII characters.
      *           A random UUID is recommended. This request is idempotent only if a
@@ -1266,19 +1217,13 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function processOpenLineageRunEvent(array $optionalArgs = [])
+    public function processOpenLineageRunEvent($parent, $openLineage, array $optionalArgs = [])
     {
         $request = new ProcessOpenLineageRunEventRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['openLineage'])) {
-            $request->setOpenLineage($optionalArgs['openLineage']);
-        }
-
+        $request->setParent($parent);
+        $request->setOpenLineage($openLineage);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1303,8 +1248,9 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
+     *     $formattedParent = $lineageClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $lineageClient->searchLinks();
+     *     $pagedResponse = $lineageClient->searchLinks($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1312,7 +1258,7 @@ class LineageGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $lineageClient->searchLinks();
+     *     $pagedResponse = $lineageClient->searchLinks($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1321,11 +1267,10 @@ class LineageGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The project and location you want search in.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The project and location you want search in.
      *     @type EntityReference $source
      *           Optional. Send asset information in the **source** field to retrieve all
      *           links that lead from the specified asset to downstream assets.
@@ -1351,15 +1296,12 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function searchLinks(array $optionalArgs = [])
+    public function searchLinks($parent, array $optionalArgs = [])
     {
         $request = new SearchLinksRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['source'])) {
             $request->setSource($optionalArgs['source']);
         }
@@ -1388,19 +1330,19 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
-     *     $response = $lineageClient->updateProcess();
+     *     $process = new Process();
+     *     $response = $lineageClient->updateProcess($process);
      * } finally {
      *     $lineageClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Process $process      Required. The lineage process to update.
+     *
+     *                              The process's `name` field is used to identify the process to update.
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type Process $process
-     *           Required. The lineage process to update.
-     *
-     *           The process's `name` field is used to identify the process to update.
      *     @type FieldMask $updateMask
      *           The list of fields to update. Currently not used. The whole message is
      *           updated.
@@ -1416,14 +1358,12 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateProcess(array $optionalArgs = [])
+    public function updateProcess($process, array $optionalArgs = [])
     {
         $request = new UpdateProcessRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['process'])) {
-            $request->setProcess($optionalArgs['process']);
-        }
-
+        $request->setProcess($process);
+        $requestParamHeaders['process.name'] = $process->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1444,22 +1384,22 @@ class LineageGapicClient
      * ```
      * $lineageClient = new LineageClient();
      * try {
-     *     $response = $lineageClient->updateRun();
+     *     $run = new Run();
+     *     $response = $lineageClient->updateRun($run);
      * } finally {
      *     $lineageClient->close();
      * }
      * ```
      *
+     * @param Run   $run          Required. The lineage run to update.
+     *
+     *                            The run's `name` field is used to identify the run to update.
+     *
+     *                            Format:
+     *                            `projects/{project}/locations/{location}/processes/{process}/runs/{run}`.
      * @param array $optionalArgs {
      *     Optional.
      *
-     *     @type Run $run
-     *           Required. The lineage run to update.
-     *
-     *           The run's `name` field is used to identify the run to update.
-     *
-     *           Format:
-     *           `projects/{project}/locations/{location}/processes/{process}/runs/{run}`.
      *     @type FieldMask $updateMask
      *           The list of fields to update. Currently not used. The whole message is
      *           updated.
@@ -1475,14 +1415,12 @@ class LineageGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateRun(array $optionalArgs = [])
+    public function updateRun($run, array $optionalArgs = [])
     {
         $request = new UpdateRunRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['run'])) {
-            $request->setRun($optionalArgs['run']);
-        }
-
+        $request->setRun($run);
+        $requestParamHeaders['run.name'] = $run->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

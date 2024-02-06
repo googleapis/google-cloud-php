@@ -45,19 +45,23 @@ use Google\Rpc\Status;
  * [training
  * documentation](https://cloud.google.com/dialogflow/es/docs/training).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent     The name of the entity type to delete entries for. Format:
+ *                                    `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`. Please see
+ *                                    {@see EntityTypesClient::entityTypeName()} for help formatting this field.
+ * @param string $entityValuesElement The reference `values` of the entities to delete. Note that
+ *                                    these are not fully-qualified names, i.e. they don't start with
+ *                                    `projects/<Project ID>`.
  */
-function batch_delete_entities_sample(): void
+function batch_delete_entities_sample(string $formattedParent, string $entityValuesElement): void
 {
     // Create a client.
     $entityTypesClient = new EntityTypesClient();
 
     // Prepare the request message.
-    $request = new BatchDeleteEntitiesRequest();
+    $entityValues = [$entityValuesElement,];
+    $request = (new BatchDeleteEntitiesRequest())
+        ->setParent($formattedParent)
+        ->setEntityValues($entityValues);
 
     // Call the API and handle any network failures.
     try {
@@ -75,5 +79,22 @@ function batch_delete_entities_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = EntityTypesClient::entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+    $entityValuesElement = '[ENTITY_VALUES]';
+
+    batch_delete_entities_sample($formattedParent, $entityValuesElement);
 }
 // [END dialogflow_v2_generated_EntityTypes_BatchDeleteEntities_sync]

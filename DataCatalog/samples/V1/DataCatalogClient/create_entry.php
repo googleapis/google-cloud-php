@@ -41,19 +41,28 @@ use Google\Cloud\DataCatalog\V1\Entry;
  *
  * An entry group can have a maximum of 100,000 entries.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the entry group this entry belongs to.
+ *
+ *                                Note: The entry itself and its child resources might not be stored in
+ *                                the location specified in its name. Please see
+ *                                {@see DataCatalogClient::entryGroupName()} for help formatting this field.
+ * @param string $entryId         The ID of the entry to create.
+ *
+ *                                The ID must contain only letters (a-z, A-Z), numbers (0-9),
+ *                                and underscores (_).
+ *                                The maximum size is 64 bytes when encoded in UTF-8.
  */
-function create_entry_sample(): void
+function create_entry_sample(string $formattedParent, string $entryId): void
 {
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
     // Prepare the request message.
-    $request = new CreateEntryRequest();
+    $entry = new Entry();
+    $request = (new CreateEntryRequest())
+        ->setParent($formattedParent)
+        ->setEntryId($entryId)
+        ->setEntry($entry);
 
     // Call the API and handle any network failures.
     try {
@@ -63,5 +72,22 @@ function create_entry_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataCatalogClient::entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+    $entryId = '[ENTRY_ID]';
+
+    create_entry_sample($formattedParent, $entryId);
 }
 // [END datacatalog_v1_generated_DataCatalog_CreateEntry_sync]

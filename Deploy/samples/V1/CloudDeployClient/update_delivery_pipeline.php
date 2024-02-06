@@ -28,6 +28,7 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
 use Google\Cloud\Deploy\V1\DeliveryPipeline;
 use Google\Cloud\Deploy\V1\UpdateDeliveryPipelineRequest;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -45,7 +46,11 @@ function update_delivery_pipeline_sample(): void
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = new UpdateDeliveryPipelineRequest();
+    $updateMask = new FieldMask();
+    $deliveryPipeline = new DeliveryPipeline();
+    $request = (new UpdateDeliveryPipelineRequest())
+        ->setUpdateMask($updateMask)
+        ->setDeliveryPipeline($deliveryPipeline);
 
     // Call the API and handle any network failures.
     try {

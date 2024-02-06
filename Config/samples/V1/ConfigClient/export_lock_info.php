@@ -31,19 +31,18 @@ use Google\Cloud\Config\V1\LockInfo;
 /**
  * Exports the lock info on a locked deployment.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the deployment in the format:
+ *                              'projects/{project_id}/locations/{location}/deployments/{deployment}'. Please see
+ *                              {@see ConfigClient::deploymentName()} for help formatting this field.
  */
-function export_lock_info_sample(): void
+function export_lock_info_sample(string $formattedName): void
 {
     // Create a client.
     $configClient = new ConfigClient();
 
     // Prepare the request message.
-    $request = new ExportLockInfoRequest();
+    $request = (new ExportLockInfoRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,21 @@ function export_lock_info_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ConfigClient::deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
+
+    export_lock_info_sample($formattedName);
 }
 // [END config_v1_generated_Config_ExportLockInfo_sync]
