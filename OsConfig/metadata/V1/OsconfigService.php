@@ -26,17 +26,17 @@ class OsconfigService
 /google/cloud/osconfig/v1/osconfig_service.protogoogle.cloud.osconfig.v1google/api/resource.proto0google/cloud/osconfig/v1/patch_deployments.proto)google/cloud/osconfig/v1/patch_jobs.protogoogle/protobuf/empty.protogoogle/api/annotations.proto2¨
 OsConfigServiceù
 ExecutePatchJob0.google.cloud.osconfig.v1.ExecutePatchJobRequest".google.cloud.osconfig.v1.PatchJob"4Ç”‰ì.")/v1/{parent=projects/*}/patchJobs:execute:*ë
-GetPatchJob,.google.cloud.osconfig.v1.GetPatchJobRequest".google.cloud.osconfig.v1.PatchJob"0Ç”‰ì#!/v1/{name=projects/*/patchJobs/*}⁄Anameö
+GetPatchJob,.google.cloud.osconfig.v1.GetPatchJobRequest".google.cloud.osconfig.v1.PatchJob"0⁄AnameÇ”‰ì#!/v1/{name=projects/*/patchJobs/*}ö
 CancelPatchJob/.google.cloud.osconfig.v1.CancelPatchJobRequest".google.cloud.osconfig.v1.PatchJob"3Ç”‰ì-"(/v1/{name=projects/*/patchJobs/*}:cancel:*§
-ListPatchJobs..google.cloud.osconfig.v1.ListPatchJobsRequest/.google.cloud.osconfig.v1.ListPatchJobsResponse"2Ç”‰ì#!/v1/{parent=projects/*}/patchJobs⁄Aparent‡
-ListPatchJobInstanceDetails<.google.cloud.osconfig.v1.ListPatchJobInstanceDetailsRequest=.google.cloud.osconfig.v1.ListPatchJobInstanceDetailsResponse"DÇ”‰ì53/v1/{parent=projects/*/patchJobs/*}/instanceDetails⁄AparentÏ
-CreatePatchDeployment6.google.cloud.osconfig.v1.CreatePatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"pÇ”‰ì<"(/v1/{parent=projects/*}/patchDeployments:patch_deployment⁄A+parent,patch_deployment,patch_deployment_id≠
-GetPatchDeployment3.google.cloud.osconfig.v1.GetPatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"7Ç”‰ì*(/v1/{name=projects/*/patchDeployments/*}⁄Aname¿
-ListPatchDeployments5.google.cloud.osconfig.v1.ListPatchDeploymentsRequest6.google.cloud.osconfig.v1.ListPatchDeploymentsResponse"9Ç”‰ì*(/v1/{parent=projects/*}/patchDeployments⁄Aparent†
-DeletePatchDeployment6.google.cloud.osconfig.v1.DeletePatchDeploymentRequest.google.protobuf.Empty"7Ç”‰ì**(/v1/{name=projects/*/patchDeployments/*}⁄AnameÓ
-UpdatePatchDeployment6.google.cloud.osconfig.v1.UpdatePatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"rÇ”‰ìM29/v1/{patch_deployment.name=projects/*/patchDeployments/*}:patch_deployment⁄Apatch_deployment,update_mask∫
-PausePatchDeployment5.google.cloud.osconfig.v1.PausePatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"@Ç”‰ì3"./v1/{name=projects/*/patchDeployments/*}:pause:*⁄AnameΩ
-ResumePatchDeployment6.google.cloud.osconfig.v1.ResumePatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"AÇ”‰ì4"//v1/{name=projects/*/patchDeployments/*}:resume:*⁄AnameK Aosconfig.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB‘
+ListPatchJobs..google.cloud.osconfig.v1.ListPatchJobsRequest/.google.cloud.osconfig.v1.ListPatchJobsResponse"2⁄AparentÇ”‰ì#!/v1/{parent=projects/*}/patchJobs‡
+ListPatchJobInstanceDetails<.google.cloud.osconfig.v1.ListPatchJobInstanceDetailsRequest=.google.cloud.osconfig.v1.ListPatchJobInstanceDetailsResponse"D⁄AparentÇ”‰ì53/v1/{parent=projects/*/patchJobs/*}/instanceDetailsÏ
+CreatePatchDeployment6.google.cloud.osconfig.v1.CreatePatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"p⁄A+parent,patch_deployment,patch_deployment_idÇ”‰ì<"(/v1/{parent=projects/*}/patchDeployments:patch_deployment≠
+GetPatchDeployment3.google.cloud.osconfig.v1.GetPatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"7⁄AnameÇ”‰ì*(/v1/{name=projects/*/patchDeployments/*}¿
+ListPatchDeployments5.google.cloud.osconfig.v1.ListPatchDeploymentsRequest6.google.cloud.osconfig.v1.ListPatchDeploymentsResponse"9⁄AparentÇ”‰ì*(/v1/{parent=projects/*}/patchDeployments†
+DeletePatchDeployment6.google.cloud.osconfig.v1.DeletePatchDeploymentRequest.google.protobuf.Empty"7⁄AnameÇ”‰ì**(/v1/{name=projects/*/patchDeployments/*}Ó
+UpdatePatchDeployment6.google.cloud.osconfig.v1.UpdatePatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"r⁄Apatch_deployment,update_maskÇ”‰ìM29/v1/{patch_deployment.name=projects/*/patchDeployments/*}:patch_deployment∫
+PausePatchDeployment5.google.cloud.osconfig.v1.PausePatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"@⁄AnameÇ”‰ì3"./v1/{name=projects/*/patchDeployments/*}:pause:*Ω
+ResumePatchDeployment6.google.cloud.osconfig.v1.ResumePatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"A⁄AnameÇ”‰ì4"//v1/{name=projects/*/patchDeployments/*}:resume:*K Aosconfig.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB‘
 com.google.cloud.osconfig.v1BOsConfigProtoZ8cloud.google.com/go/osconfig/apiv1/osconfigpb;osconfigpb™Google.Cloud.OsConfig.V1 Google\\Cloud\\OsConfig\\V1ÍGoogle::Cloud::OsConfig::V1ÍAï
 compute.googleapis.com/Instance4projects/{project}/zones/{zone}/instances/{instance}<projects/{project}/locations/{location}/instances/{instance}bproto3'
         , true);

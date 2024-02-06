@@ -64,13 +64,13 @@ project_id (	
 ssh_public_key (2).google.cloud.oslogin.common.SshPublicKeyBàA/
 update_mask (2.google.protobuf.FieldMask2†
 OsLoginServiceÇ
-CreateSshPublicKey2.google.cloud.oslogin.v1.CreateSshPublicKeyRequest).google.cloud.oslogin.common.SshPublicKey"R‚Óä“4""/v1/{parent=users/*}/sshPublicKeys:ssh_public_keyÚAparent,ssh_public_keyŽ
-DeletePosixAccount2.google.cloud.oslogin.v1.DeletePosixAccountRequest.google.protobuf.Empty",‚Óä“*/v1/{name=users/*/projects/*}ÚAname“
-DeleteSshPublicKey2.google.cloud.oslogin.v1.DeleteSshPublicKeyRequest.google.protobuf.Empty"1‚Óä“$*"/v1/{name=users/*/sshPublicKeys/*}ÚAname™
-GetLoginProfile/.google.cloud.oslogin.v1.GetLoginProfileRequest%.google.cloud.oslogin.v1.LoginProfile".‚Óä“!/v1/{name=users/*}/loginProfileÚAname 
-GetSshPublicKey/.google.cloud.oslogin.v1.GetSshPublicKeyRequest).google.cloud.oslogin.common.SshPublicKey"1‚Óä“$"/v1/{name=users/*/sshPublicKeys/*}ÚAnameù
-ImportSshPublicKey2.google.cloud.oslogin.v1.ImportSshPublicKeyRequest3.google.cloud.oslogin.v1.ImportSshPublicKeyResponse"z‚Óä“9"\'/v1/{parent=users/*}:importSshPublicKey:ssh_public_keyÚAparent,ssh_public_keyÚA parent,ssh_public_key,project_idç
-UpdateSshPublicKey2.google.cloud.oslogin.v1.UpdateSshPublicKeyRequest).google.cloud.oslogin.common.SshPublicKey"r‚Óä“42"/v1/{name=users/*/sshPublicKeys/*}:ssh_public_keyÚAname,ssh_public_keyÚAname,ssh_public_key,update_maskÝÊAoslogin.googleapis.comÒAÀhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-only,https://www.googleapis.com/auth/compute,https://www.googleapis.com/auth/compute.readonlyBµ
+CreateSshPublicKey2.google.cloud.oslogin.v1.CreateSshPublicKeyRequest).google.cloud.oslogin.common.SshPublicKey"RÚAparent,ssh_public_key‚Óä“4""/v1/{parent=users/*}/sshPublicKeys:ssh_public_keyŽ
+DeletePosixAccount2.google.cloud.oslogin.v1.DeletePosixAccountRequest.google.protobuf.Empty",ÚAname‚Óä“*/v1/{name=users/*/projects/*}“
+DeleteSshPublicKey2.google.cloud.oslogin.v1.DeleteSshPublicKeyRequest.google.protobuf.Empty"1ÚAname‚Óä“$*"/v1/{name=users/*/sshPublicKeys/*}™
+GetLoginProfile/.google.cloud.oslogin.v1.GetLoginProfileRequest%.google.cloud.oslogin.v1.LoginProfile".ÚAname‚Óä“!/v1/{name=users/*}/loginProfile 
+GetSshPublicKey/.google.cloud.oslogin.v1.GetSshPublicKeyRequest).google.cloud.oslogin.common.SshPublicKey"1ÚAname‚Óä“$"/v1/{name=users/*/sshPublicKeys/*}ù
+ImportSshPublicKey2.google.cloud.oslogin.v1.ImportSshPublicKeyRequest3.google.cloud.oslogin.v1.ImportSshPublicKeyResponse"zÚAparent,ssh_public_keyÚA parent,ssh_public_key,project_id‚Óä“9"\'/v1/{parent=users/*}:importSshPublicKey:ssh_public_keyç
+UpdateSshPublicKey2.google.cloud.oslogin.v1.UpdateSshPublicKeyRequest).google.cloud.oslogin.common.SshPublicKey"rÚAname,ssh_public_keyÚAname,ssh_public_key,update_mask‚Óä“42"/v1/{name=users/*/sshPublicKeys/*}:ssh_public_keyÝÊAoslogin.googleapis.comÒAÀhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-only,https://www.googleapis.com/auth/compute,https://www.googleapis.com/auth/compute.readonlyBµ
 com.google.cloud.oslogin.v1BOsLoginProtoPZ5cloud.google.com/go/oslogin/apiv1/osloginpb;osloginpbªGoogle.Cloud.OsLogin.V1ÊGoogle\\Cloud\\OsLogin\\V1êGoogle::Cloud::OsLogin::V1bproto3'
         , true);
 
