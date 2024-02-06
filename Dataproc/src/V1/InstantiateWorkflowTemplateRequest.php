@@ -69,6 +69,7 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
      *                     * For `projects.locations.workflowTemplates.instantiate`, the resource name
      *                     of the template has the following format:
      *                     `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+     *                     Please see {@see WorkflowTemplateServiceClient::workflowTemplateName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataproc\V1\InstantiateWorkflowTemplateRequest
      *
@@ -91,6 +92,7 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
      *                           * For `projects.locations.workflowTemplates.instantiate`, the resource name
      *                           of the template has the following format:
      *                           `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+     *                           Please see {@see WorkflowTemplateServiceClient::workflowTemplateName()} for help formatting this field.
      * @param array  $parameters Optional. Map from parameter names to values that should be used for those
      *                           parameters. Values may not exceed 1000 characters.
      *

@@ -34,19 +34,21 @@ use Google\Rpc\Status;
  * [Operation.metadata][google.longrunning.Operation.metadata] will be
  * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $projectId   The ID of the Google Cloud Platform project that the cluster
+ *                            belongs to.
+ * @param string $region      The Dataproc region in which to handle the request.
+ * @param string $clusterName The cluster name.
  */
-function delete_cluster_sample(): void
+function delete_cluster_sample(string $projectId, string $region, string $clusterName): void
 {
     // Create a client.
     $clusterControllerClient = new ClusterControllerClient();
 
     // Prepare the request message.
-    $request = new DeleteClusterRequest();
+    $request = (new DeleteClusterRequest())
+        ->setProjectId($projectId)
+        ->setRegion($region)
+        ->setClusterName($clusterName);
 
     // Call the API and handle any network failures.
     try {
@@ -64,5 +66,23 @@ function delete_cluster_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $projectId = '[PROJECT_ID]';
+    $region = '[REGION]';
+    $clusterName = '[CLUSTER_NAME]';
+
+    delete_cluster_sample($projectId, $region, $clusterName);
 }
 // [END dataproc_v1_generated_ClusterController_DeleteCluster_sync]

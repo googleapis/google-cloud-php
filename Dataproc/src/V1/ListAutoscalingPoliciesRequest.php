@@ -54,6 +54,7 @@ class ListAutoscalingPoliciesRequest extends \Google\Protobuf\Internal\Message
      *                       * For `projects.locations.autoscalingPolicies.list`, the resource name
      *                       of the location has the following format:
      *                       `projects/{project_id}/locations/{location}`
+     *                       Please see {@see AutoscalingPolicyServiceClient::regionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataproc\V1\ListAutoscalingPoliciesRequest
      *

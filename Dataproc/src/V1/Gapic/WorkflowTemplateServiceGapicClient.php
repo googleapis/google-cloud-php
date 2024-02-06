@@ -66,7 +66,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
  * try {
- *     $response = $workflowTemplateServiceClient->createWorkflowTemplate();
+ *     $formattedParent = $workflowTemplateServiceClient->regionName('[PROJECT]', '[REGION]');
+ *     $template = new WorkflowTemplate();
+ *     $response = $workflowTemplateServiceClient->createWorkflowTemplate($formattedParent, $template);
  * } finally {
  *     $workflowTemplateServiceClient->close();
  * }
@@ -531,28 +533,28 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $response = $workflowTemplateServiceClient->createWorkflowTemplate();
+     *     $formattedParent = $workflowTemplateServiceClient->regionName('[PROJECT]', '[REGION]');
+     *     $template = new WorkflowTemplate();
+     *     $response = $workflowTemplateServiceClient->createWorkflowTemplate($formattedParent, $template);
      * } finally {
      *     $workflowTemplateServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string           $parent       Required. The resource name of the region or location, as described
+     *                                       in https://cloud.google.com/apis/design/resource_names.
+     *
+     *                                       * For `projects.regions.workflowTemplates.create`, the resource name of the
+     *                                       region has the following format:
+     *                                       `projects/{project_id}/regions/{region}`
+     *
+     *                                       * For `projects.locations.workflowTemplates.create`, the resource name of
+     *                                       the location has the following format:
+     *                                       `projects/{project_id}/locations/{location}`
+     * @param WorkflowTemplate $template     Required. The Dataproc workflow template to create.
+     * @param array            $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the region or location, as described
-     *           in https://cloud.google.com/apis/design/resource_names.
-     *
-     *           * For `projects.regions.workflowTemplates.create`, the resource name of the
-     *           region has the following format:
-     *           `projects/{project_id}/regions/{region}`
-     *
-     *           * For `projects.locations.workflowTemplates.create`, the resource name of
-     *           the location has the following format:
-     *           `projects/{project_id}/locations/{location}`
-     *     @type WorkflowTemplate $template
-     *           Required. The Dataproc workflow template to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -563,19 +565,13 @@ class WorkflowTemplateServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createWorkflowTemplate(array $optionalArgs = [])
+    public function createWorkflowTemplate($parent, $template, array $optionalArgs = [])
     {
         $request = new CreateWorkflowTemplateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['template'])) {
-            $request->setTemplate($optionalArgs['template']);
-        }
-
+        $request->setParent($parent);
+        $request->setTemplate($template);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateWorkflowTemplate', WorkflowTemplate::class, $optionalArgs, $request)->wait();
@@ -588,26 +584,26 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $workflowTemplateServiceClient->deleteWorkflowTemplate();
+     *     $formattedName = $workflowTemplateServiceClient->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
+     *     $workflowTemplateServiceClient->deleteWorkflowTemplate($formattedName);
      * } finally {
      *     $workflowTemplateServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the workflow template, as described
+     *                             in https://cloud.google.com/apis/design/resource_names.
+     *
+     *                             * For `projects.regions.workflowTemplates.delete`, the resource name
+     *                             of the template has the following format:
+     *                             `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *
+     *                             * For `projects.locations.workflowTemplates.instantiate`, the resource name
+     *                             of the template has the following format:
+     *                             `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the workflow template, as described
-     *           in https://cloud.google.com/apis/design/resource_names.
-     *
-     *           * For `projects.regions.workflowTemplates.delete`, the resource name
-     *           of the template has the following format:
-     *           `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
-     *
-     *           * For `projects.locations.workflowTemplates.instantiate`, the resource name
-     *           of the template has the following format:
-     *           `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *     @type int $version
      *           Optional. The version of workflow template to delete. If specified,
      *           will only delete the template if the current server version matches
@@ -620,15 +616,12 @@ class WorkflowTemplateServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteWorkflowTemplate(array $optionalArgs = [])
+    public function deleteWorkflowTemplate($name, array $optionalArgs = [])
     {
         $request = new DeleteWorkflowTemplateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['version'])) {
             $request->setVersion($optionalArgs['version']);
         }
@@ -648,26 +641,26 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $response = $workflowTemplateServiceClient->getWorkflowTemplate();
+     *     $formattedName = $workflowTemplateServiceClient->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
+     *     $response = $workflowTemplateServiceClient->getWorkflowTemplate($formattedName);
      * } finally {
      *     $workflowTemplateServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the workflow template, as described
+     *                             in https://cloud.google.com/apis/design/resource_names.
+     *
+     *                             * For `projects.regions.workflowTemplates.get`, the resource name of the
+     *                             template has the following format:
+     *                             `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *
+     *                             * For `projects.locations.workflowTemplates.get`, the resource name of the
+     *                             template has the following format:
+     *                             `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the workflow template, as described
-     *           in https://cloud.google.com/apis/design/resource_names.
-     *
-     *           * For `projects.regions.workflowTemplates.get`, the resource name of the
-     *           template has the following format:
-     *           `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
-     *
-     *           * For `projects.locations.workflowTemplates.get`, the resource name of the
-     *           template has the following format:
-     *           `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *     @type int $version
      *           Optional. The version of workflow template to retrieve. Only previously
      *           instantiated versions can be retrieved.
@@ -683,15 +676,12 @@ class WorkflowTemplateServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getWorkflowTemplate(array $optionalArgs = [])
+    public function getWorkflowTemplate($name, array $optionalArgs = [])
     {
         $request = new GetWorkflowTemplateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['version'])) {
             $request->setVersion($optionalArgs['version']);
         }
@@ -732,7 +722,9 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $operationResponse = $workflowTemplateServiceClient->instantiateInlineWorkflowTemplate();
+     *     $formattedParent = $workflowTemplateServiceClient->regionName('[PROJECT]', '[REGION]');
+     *     $template = new WorkflowTemplate();
+     *     $operationResponse = $workflowTemplateServiceClient->instantiateInlineWorkflowTemplate($formattedParent, $template);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -742,7 +734,7 @@ class WorkflowTemplateServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $workflowTemplateServiceClient->instantiateInlineWorkflowTemplate();
+     *     $operationResponse = $workflowTemplateServiceClient->instantiateInlineWorkflowTemplate($formattedParent, $template);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $workflowTemplateServiceClient->resumeOperation($operationName, 'instantiateInlineWorkflowTemplate');
@@ -761,22 +753,20 @@ class WorkflowTemplateServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string           $parent       Required. The resource name of the region or location, as described
+     *                                       in https://cloud.google.com/apis/design/resource_names.
+     *
+     *                                       * For `projects.regions.workflowTemplates,instantiateinline`, the resource
+     *                                       name of the region has the following format:
+     *                                       `projects/{project_id}/regions/{region}`
+     *
+     *                                       * For `projects.locations.workflowTemplates.instantiateinline`, the
+     *                                       resource name of the location has the following format:
+     *                                       `projects/{project_id}/locations/{location}`
+     * @param WorkflowTemplate $template     Required. The workflow template to instantiate.
+     * @param array            $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the region or location, as described
-     *           in https://cloud.google.com/apis/design/resource_names.
-     *
-     *           * For `projects.regions.workflowTemplates,instantiateinline`, the resource
-     *           name of the region has the following format:
-     *           `projects/{project_id}/regions/{region}`
-     *
-     *           * For `projects.locations.workflowTemplates.instantiateinline`, the
-     *           resource name of the location has the following format:
-     *           `projects/{project_id}/locations/{location}`
-     *     @type WorkflowTemplate $template
-     *           Required. The workflow template to instantiate.
      *     @type string $requestId
      *           Optional. A tag that prevents multiple concurrent workflow
      *           instances with the same tag from running. This mitigates risk of
@@ -797,19 +787,13 @@ class WorkflowTemplateServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function instantiateInlineWorkflowTemplate(array $optionalArgs = [])
+    public function instantiateInlineWorkflowTemplate($parent, $template, array $optionalArgs = [])
     {
         $request = new InstantiateInlineWorkflowTemplateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['template'])) {
-            $request->setTemplate($optionalArgs['template']);
-        }
-
+        $request->setParent($parent);
+        $request->setTemplate($template);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -845,7 +829,8 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $operationResponse = $workflowTemplateServiceClient->instantiateWorkflowTemplate();
+     *     $formattedName = $workflowTemplateServiceClient->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
+     *     $operationResponse = $workflowTemplateServiceClient->instantiateWorkflowTemplate($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -855,7 +840,7 @@ class WorkflowTemplateServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $workflowTemplateServiceClient->instantiateWorkflowTemplate();
+     *     $operationResponse = $workflowTemplateServiceClient->instantiateWorkflowTemplate($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $workflowTemplateServiceClient->resumeOperation($operationName, 'instantiateWorkflowTemplate');
@@ -874,20 +859,19 @@ class WorkflowTemplateServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the workflow template, as described
+     *                             in https://cloud.google.com/apis/design/resource_names.
+     *
+     *                             * For `projects.regions.workflowTemplates.instantiate`, the resource name
+     *                             of the template has the following format:
+     *                             `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *
+     *                             * For `projects.locations.workflowTemplates.instantiate`, the resource name
+     *                             of the template has the following format:
+     *                             `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the workflow template, as described
-     *           in https://cloud.google.com/apis/design/resource_names.
-     *
-     *           * For `projects.regions.workflowTemplates.instantiate`, the resource name
-     *           of the template has the following format:
-     *           `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
-     *
-     *           * For `projects.locations.workflowTemplates.instantiate`, the resource name
-     *           of the template has the following format:
-     *           `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *     @type int $version
      *           Optional. The version of workflow template to instantiate. If specified,
      *           the workflow will be instantiated only if the current version of
@@ -918,15 +902,12 @@ class WorkflowTemplateServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function instantiateWorkflowTemplate(array $optionalArgs = [])
+    public function instantiateWorkflowTemplate($name, array $optionalArgs = [])
     {
         $request = new InstantiateWorkflowTemplateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['version'])) {
             $request->setVersion($optionalArgs['version']);
         }
@@ -951,8 +932,9 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
+     *     $formattedParent = $workflowTemplateServiceClient->regionName('[PROJECT]', '[REGION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $workflowTemplateServiceClient->listWorkflowTemplates();
+     *     $pagedResponse = $workflowTemplateServiceClient->listWorkflowTemplates($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -960,7 +942,7 @@ class WorkflowTemplateServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $workflowTemplateServiceClient->listWorkflowTemplates();
+     *     $pagedResponse = $workflowTemplateServiceClient->listWorkflowTemplates($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -969,20 +951,19 @@ class WorkflowTemplateServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the region or location, as described
+     *                             in https://cloud.google.com/apis/design/resource_names.
+     *
+     *                             * For `projects.regions.workflowTemplates,list`, the resource
+     *                             name of the region has the following format:
+     *                             `projects/{project_id}/regions/{region}`
+     *
+     *                             * For `projects.locations.workflowTemplates.list`, the
+     *                             resource name of the location has the following format:
+     *                             `projects/{project_id}/locations/{location}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the region or location, as described
-     *           in https://cloud.google.com/apis/design/resource_names.
-     *
-     *           * For `projects.regions.workflowTemplates,list`, the resource
-     *           name of the region has the following format:
-     *           `projects/{project_id}/regions/{region}`
-     *
-     *           * For `projects.locations.workflowTemplates.list`, the
-     *           resource name of the location has the following format:
-     *           `projects/{project_id}/locations/{location}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1002,15 +983,12 @@ class WorkflowTemplateServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listWorkflowTemplates(array $optionalArgs = [])
+    public function listWorkflowTemplates($parent, array $optionalArgs = [])
     {
         $request = new ListWorkflowTemplatesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1032,19 +1010,19 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $response = $workflowTemplateServiceClient->updateWorkflowTemplate();
+     *     $template = new WorkflowTemplate();
+     *     $response = $workflowTemplateServiceClient->updateWorkflowTemplate($template);
      * } finally {
      *     $workflowTemplateServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param WorkflowTemplate $template     Required. The updated workflow template.
+     *
+     *                                       The `template.version` field must match the current version.
+     * @param array            $optionalArgs {
      *     Optional.
      *
-     *     @type WorkflowTemplate $template
-     *           Required. The updated workflow template.
-     *
-     *           The `template.version` field must match the current version.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1055,14 +1033,12 @@ class WorkflowTemplateServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateWorkflowTemplate(array $optionalArgs = [])
+    public function updateWorkflowTemplate($template, array $optionalArgs = [])
     {
         $request = new UpdateWorkflowTemplateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['template'])) {
-            $request->setTemplate($optionalArgs['template']);
-        }
-
+        $request->setTemplate($template);
+        $requestParamHeaders['template.name'] = $template->getName();
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateWorkflowTemplate', WorkflowTemplate::class, $optionalArgs, $request)->wait();
@@ -1076,18 +1052,18 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $response = $workflowTemplateServiceClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $workflowTemplateServiceClient->getIamPolicy($resource);
      * } finally {
      *     $workflowTemplateServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1101,15 +1077,12 @@ class WorkflowTemplateServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1130,23 +1103,23 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $response = $workflowTemplateServiceClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $workflowTemplateServiceClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $workflowTemplateServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1163,19 +1136,13 @@ class WorkflowTemplateServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1198,23 +1165,23 @@ class WorkflowTemplateServiceGapicClient
      * ```
      * $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
      * try {
-     *     $response = $workflowTemplateServiceClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $workflowTemplateServiceClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $workflowTemplateServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1225,19 +1192,13 @@ class WorkflowTemplateServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();

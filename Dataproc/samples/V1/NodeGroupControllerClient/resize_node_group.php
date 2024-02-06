@@ -35,19 +35,22 @@ use Google\Rpc\Status;
  * [Operation.metadata][google.longrunning.Operation.metadata] is
  * [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $name The name of the node group to resize.
+ *                     Format:
+ *                     `projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{nodeGroup}`
+ * @param int    $size The number of running instances for the node group to maintain.
+ *                     The group adds or removes instances to maintain the number of instances
+ *                     specified by this parameter.
  */
-function resize_node_group_sample(): void
+function resize_node_group_sample(string $name, int $size): void
 {
     // Create a client.
     $nodeGroupControllerClient = new NodeGroupControllerClient();
 
     // Prepare the request message.
-    $request = new ResizeNodeGroupRequest();
+    $request = (new ResizeNodeGroupRequest())
+        ->setName($name)
+        ->setSize($size);
 
     // Call the API and handle any network failures.
     try {
@@ -67,5 +70,22 @@ function resize_node_group_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $name = '[NAME]';
+    $size = 0;
+
+    resize_node_group_sample($name, $size);
 }
 // [END dataproc_v1_generated_NodeGroupController_ResizeNodeGroup_sync]

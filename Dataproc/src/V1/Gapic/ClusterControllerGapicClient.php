@@ -69,7 +69,10 @@ use Google\Type\Interval;
  * ```
  * $clusterControllerClient = new ClusterControllerClient();
  * try {
- *     $operationResponse = $clusterControllerClient->createCluster();
+ *     $projectId = 'project_id';
+ *     $region = 'region';
+ *     $cluster = new Cluster();
+ *     $operationResponse = $clusterControllerClient->createCluster($projectId, $region, $cluster);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -80,7 +83,7 @@ use Google\Type\Interval;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $clusterControllerClient->createCluster();
+ *     $operationResponse = $clusterControllerClient->createCluster($projectId, $region, $cluster);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $clusterControllerClient->resumeOperation($operationName, 'createCluster');
@@ -437,7 +440,10 @@ class ClusterControllerGapicClient
      * ```
      * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $operationResponse = $clusterControllerClient->createCluster();
+     *     $projectId = 'project_id';
+     *     $region = 'region';
+     *     $cluster = new Cluster();
+     *     $operationResponse = $clusterControllerClient->createCluster($projectId, $region, $cluster);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -448,7 +454,7 @@ class ClusterControllerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $clusterControllerClient->createCluster();
+     *     $operationResponse = $clusterControllerClient->createCluster($projectId, $region, $cluster);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $clusterControllerClient->resumeOperation($operationName, 'createCluster');
@@ -468,16 +474,13 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string  $projectId    Required. The ID of the Google Cloud Platform project that the cluster
+     *                              belongs to.
+     * @param string  $region       Required. The Dataproc region in which to handle the request.
+     * @param Cluster $cluster      Required. The cluster to create.
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type string $projectId
-     *           Required. The ID of the Google Cloud Platform project that the cluster
-     *           belongs to.
-     *     @type string $region
-     *           Required. The Dataproc region in which to handle the request.
-     *     @type Cluster $cluster
-     *           Required. The cluster to create.
      *     @type string $requestId
      *           Optional. A unique ID used to identify the request. If the server receives
      *           two
@@ -504,24 +507,15 @@ class ClusterControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCluster(array $optionalArgs = [])
+    public function createCluster($projectId, $region, $cluster, array $optionalArgs = [])
     {
         $request = new CreateClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['projectId'])) {
-            $request->setProjectId($optionalArgs['projectId']);
-            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['cluster'])) {
-            $request->setCluster($optionalArgs['cluster']);
-        }
-
+        $request->setProjectId($projectId);
+        $request->setRegion($region);
+        $request->setCluster($cluster);
+        $requestParamHeaders['project_id'] = $projectId;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -544,7 +538,10 @@ class ClusterControllerGapicClient
      * ```
      * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $operationResponse = $clusterControllerClient->deleteCluster();
+     *     $projectId = 'project_id';
+     *     $region = 'region';
+     *     $clusterName = 'cluster_name';
+     *     $operationResponse = $clusterControllerClient->deleteCluster($projectId, $region, $clusterName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -554,7 +551,7 @@ class ClusterControllerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $clusterControllerClient->deleteCluster();
+     *     $operationResponse = $clusterControllerClient->deleteCluster($projectId, $region, $clusterName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $clusterControllerClient->resumeOperation($operationName, 'deleteCluster');
@@ -573,16 +570,13 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
+     *                             belongs to.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
+     * @param string $clusterName  Required. The cluster name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $projectId
-     *           Required. The ID of the Google Cloud Platform project that the cluster
-     *           belongs to.
-     *     @type string $region
-     *           Required. The Dataproc region in which to handle the request.
-     *     @type string $clusterName
-     *           Required. The cluster name.
      *     @type string $clusterUuid
      *           Optional. Specifying the `cluster_uuid` means the RPC should fail
      *           (with error NOT_FOUND) if cluster with specified UUID does not exist.
@@ -609,25 +603,16 @@ class ClusterControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteCluster(array $optionalArgs = [])
+    public function deleteCluster($projectId, $region, $clusterName, array $optionalArgs = [])
     {
         $request = new DeleteClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['projectId'])) {
-            $request->setProjectId($optionalArgs['projectId']);
-            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['clusterName'])) {
-            $request->setClusterName($optionalArgs['clusterName']);
-            $requestParamHeaders['cluster_name'] = $optionalArgs['clusterName'];
-        }
-
+        $request->setProjectId($projectId);
+        $request->setRegion($region);
+        $request->setClusterName($clusterName);
+        $requestParamHeaders['project_id'] = $projectId;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['cluster_name'] = $clusterName;
         if (isset($optionalArgs['clusterUuid'])) {
             $request->setClusterUuid($optionalArgs['clusterUuid']);
         }
@@ -654,7 +639,10 @@ class ClusterControllerGapicClient
      * ```
      * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $operationResponse = $clusterControllerClient->diagnoseCluster();
+     *     $projectId = 'project_id';
+     *     $region = 'region';
+     *     $clusterName = 'cluster_name';
+     *     $operationResponse = $clusterControllerClient->diagnoseCluster($projectId, $region, $clusterName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -665,7 +653,7 @@ class ClusterControllerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $clusterControllerClient->diagnoseCluster();
+     *     $operationResponse = $clusterControllerClient->diagnoseCluster($projectId, $region, $clusterName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $clusterControllerClient->resumeOperation($operationName, 'diagnoseCluster');
@@ -685,16 +673,13 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
+     *                             belongs to.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
+     * @param string $clusterName  Required. The cluster name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $projectId
-     *           Required. The ID of the Google Cloud Platform project that the cluster
-     *           belongs to.
-     *     @type string $region
-     *           Required. The Dataproc region in which to handle the request.
-     *     @type string $clusterName
-     *           Required. The cluster name.
      *     @type string $tarballGcsDir
      *           Optional. The output Cloud Storage directory for the diagnostic
      *           tarball. If not specified, a task-specific directory in the cluster's
@@ -718,25 +703,16 @@ class ClusterControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function diagnoseCluster(array $optionalArgs = [])
+    public function diagnoseCluster($projectId, $region, $clusterName, array $optionalArgs = [])
     {
         $request = new DiagnoseClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['projectId'])) {
-            $request->setProjectId($optionalArgs['projectId']);
-            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['clusterName'])) {
-            $request->setClusterName($optionalArgs['clusterName']);
-            $requestParamHeaders['cluster_name'] = $optionalArgs['clusterName'];
-        }
-
+        $request->setProjectId($projectId);
+        $request->setRegion($region);
+        $request->setClusterName($clusterName);
+        $requestParamHeaders['project_id'] = $projectId;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['cluster_name'] = $clusterName;
         if (isset($optionalArgs['tarballGcsDir'])) {
             $request->setTarballGcsDir($optionalArgs['tarballGcsDir']);
         }
@@ -765,22 +741,22 @@ class ClusterControllerGapicClient
      * ```
      * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $response = $clusterControllerClient->getCluster();
+     *     $projectId = 'project_id';
+     *     $region = 'region';
+     *     $clusterName = 'cluster_name';
+     *     $response = $clusterControllerClient->getCluster($projectId, $region, $clusterName);
      * } finally {
      *     $clusterControllerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
+     *                             belongs to.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
+     * @param string $clusterName  Required. The cluster name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $projectId
-     *           Required. The ID of the Google Cloud Platform project that the cluster
-     *           belongs to.
-     *     @type string $region
-     *           Required. The Dataproc region in which to handle the request.
-     *     @type string $clusterName
-     *           Required. The cluster name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -791,25 +767,16 @@ class ClusterControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCluster(array $optionalArgs = [])
+    public function getCluster($projectId, $region, $clusterName, array $optionalArgs = [])
     {
         $request = new GetClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['projectId'])) {
-            $request->setProjectId($optionalArgs['projectId']);
-            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['clusterName'])) {
-            $request->setClusterName($optionalArgs['clusterName']);
-            $requestParamHeaders['cluster_name'] = $optionalArgs['clusterName'];
-        }
-
+        $request->setProjectId($projectId);
+        $request->setRegion($region);
+        $request->setClusterName($clusterName);
+        $requestParamHeaders['project_id'] = $projectId;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['cluster_name'] = $clusterName;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCluster', Cluster::class, $optionalArgs, $request)->wait();
@@ -822,8 +789,10 @@ class ClusterControllerGapicClient
      * ```
      * $clusterControllerClient = new ClusterControllerClient();
      * try {
+     *     $projectId = 'project_id';
+     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $clusterControllerClient->listClusters();
+     *     $pagedResponse = $clusterControllerClient->listClusters($projectId, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -831,7 +800,7 @@ class ClusterControllerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $clusterControllerClient->listClusters();
+     *     $pagedResponse = $clusterControllerClient->listClusters($projectId, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -840,14 +809,12 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the cluster
+     *                             belongs to.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $projectId
-     *           Required. The ID of the Google Cloud Platform project that the cluster
-     *           belongs to.
-     *     @type string $region
-     *           Required. The Dataproc region in which to handle the request.
      *     @type string $filter
      *           Optional. A filter constraining the clusters to list. Filters are
      *           case-sensitive and have the following syntax:
@@ -887,20 +854,14 @@ class ClusterControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listClusters(array $optionalArgs = [])
+    public function listClusters($projectId, $region, array $optionalArgs = [])
     {
         $request = new ListClustersRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['projectId'])) {
-            $request->setProjectId($optionalArgs['projectId']);
-            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setProjectId($projectId);
+        $request->setRegion($region);
+        $requestParamHeaders['project_id'] = $projectId;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -925,7 +886,10 @@ class ClusterControllerGapicClient
      * ```
      * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $operationResponse = $clusterControllerClient->startCluster();
+     *     $projectId = 'project_id';
+     *     $region = 'region';
+     *     $clusterName = 'cluster_name';
+     *     $operationResponse = $clusterControllerClient->startCluster($projectId, $region, $clusterName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -936,7 +900,7 @@ class ClusterControllerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $clusterControllerClient->startCluster();
+     *     $operationResponse = $clusterControllerClient->startCluster($projectId, $region, $clusterName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $clusterControllerClient->resumeOperation($operationName, 'startCluster');
@@ -956,16 +920,13 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project the
+     *                             cluster belongs to.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
+     * @param string $clusterName  Required. The cluster name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $projectId
-     *           Required. The ID of the Google Cloud Platform project the
-     *           cluster belongs to.
-     *     @type string $region
-     *           Required. The Dataproc region in which to handle the request.
-     *     @type string $clusterName
-     *           Required. The cluster name.
      *     @type string $clusterUuid
      *           Optional. Specifying the `cluster_uuid` means the RPC will fail
      *           (with error NOT_FOUND) if a cluster with the specified UUID does not exist.
@@ -992,25 +953,16 @@ class ClusterControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function startCluster(array $optionalArgs = [])
+    public function startCluster($projectId, $region, $clusterName, array $optionalArgs = [])
     {
         $request = new StartClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['projectId'])) {
-            $request->setProjectId($optionalArgs['projectId']);
-            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['clusterName'])) {
-            $request->setClusterName($optionalArgs['clusterName']);
-            $requestParamHeaders['cluster_name'] = $optionalArgs['clusterName'];
-        }
-
+        $request->setProjectId($projectId);
+        $request->setRegion($region);
+        $request->setClusterName($clusterName);
+        $requestParamHeaders['project_id'] = $projectId;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['cluster_name'] = $clusterName;
         if (isset($optionalArgs['clusterUuid'])) {
             $request->setClusterUuid($optionalArgs['clusterUuid']);
         }
@@ -1031,7 +983,10 @@ class ClusterControllerGapicClient
      * ```
      * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $operationResponse = $clusterControllerClient->stopCluster();
+     *     $projectId = 'project_id';
+     *     $region = 'region';
+     *     $clusterName = 'cluster_name';
+     *     $operationResponse = $clusterControllerClient->stopCluster($projectId, $region, $clusterName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1042,7 +997,7 @@ class ClusterControllerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $clusterControllerClient->stopCluster();
+     *     $operationResponse = $clusterControllerClient->stopCluster($projectId, $region, $clusterName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $clusterControllerClient->resumeOperation($operationName, 'stopCluster');
@@ -1062,16 +1017,13 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project the
+     *                             cluster belongs to.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
+     * @param string $clusterName  Required. The cluster name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $projectId
-     *           Required. The ID of the Google Cloud Platform project the
-     *           cluster belongs to.
-     *     @type string $region
-     *           Required. The Dataproc region in which to handle the request.
-     *     @type string $clusterName
-     *           Required. The cluster name.
      *     @type string $clusterUuid
      *           Optional. Specifying the `cluster_uuid` means the RPC will fail
      *           (with error NOT_FOUND) if a cluster with the specified UUID does not exist.
@@ -1098,25 +1050,16 @@ class ClusterControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function stopCluster(array $optionalArgs = [])
+    public function stopCluster($projectId, $region, $clusterName, array $optionalArgs = [])
     {
         $request = new StopClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['projectId'])) {
-            $request->setProjectId($optionalArgs['projectId']);
-            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['clusterName'])) {
-            $request->setClusterName($optionalArgs['clusterName']);
-            $requestParamHeaders['cluster_name'] = $optionalArgs['clusterName'];
-        }
-
+        $request->setProjectId($projectId);
+        $request->setRegion($region);
+        $request->setClusterName($clusterName);
+        $requestParamHeaders['project_id'] = $projectId;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['cluster_name'] = $clusterName;
         if (isset($optionalArgs['clusterUuid'])) {
             $request->setClusterUuid($optionalArgs['clusterUuid']);
         }
@@ -1142,7 +1085,12 @@ class ClusterControllerGapicClient
      * ```
      * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $operationResponse = $clusterControllerClient->updateCluster();
+     *     $projectId = 'project_id';
+     *     $region = 'region';
+     *     $clusterName = 'cluster_name';
+     *     $cluster = new Cluster();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $clusterControllerClient->updateCluster($projectId, $region, $clusterName, $cluster, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1153,7 +1101,7 @@ class ClusterControllerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $clusterControllerClient->updateCluster();
+     *     $operationResponse = $clusterControllerClient->updateCluster($projectId, $region, $clusterName, $cluster, $updateMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $clusterControllerClient->resumeOperation($operationName, 'updateCluster');
@@ -1173,18 +1121,65 @@ class ClusterControllerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string    $projectId    Required. The ID of the Google Cloud Platform project the
+     *                                cluster belongs to.
+     * @param string    $region       Required. The Dataproc region in which to handle the request.
+     * @param string    $clusterName  Required. The cluster name.
+     * @param Cluster   $cluster      Required. The changes to the cluster.
+     * @param FieldMask $updateMask   Required. Specifies the path, relative to `Cluster`, of
+     *                                the field to update. For example, to change the number of workers
+     *                                in a cluster to 5, the `update_mask` parameter would be
+     *                                specified as `config.worker_config.num_instances`,
+     *                                and the `PATCH` request body would specify the new value, as follows:
+     *
+     *                                {
+     *                                "config":{
+     *                                "workerConfig":{
+     *                                "numInstances":"5"
+     *                                }
+     *                                }
+     *                                }
+     *                                Similarly, to change the number of preemptible workers in a cluster to 5,
+     *                                the `update_mask` parameter would be
+     *                                `config.secondary_worker_config.num_instances`, and the `PATCH` request
+     *                                body would be set as follows:
+     *
+     *                                {
+     *                                "config":{
+     *                                "secondaryWorkerConfig":{
+     *                                "numInstances":"5"
+     *                                }
+     *                                }
+     *                                }
+     *                                <strong>Note:</strong> Currently, only the following fields can be updated:
+     *
+     *                                <table>
+     *                                <tbody>
+     *                                <tr>
+     *                                <td><strong>Mask</strong></td>
+     *                                <td><strong>Purpose</strong></td>
+     *                                </tr>
+     *                                <tr>
+     *                                <td><strong><em>labels</em></strong></td>
+     *                                <td>Update labels</td>
+     *                                </tr>
+     *                                <tr>
+     *                                <td><strong><em>config.worker_config.num_instances</em></strong></td>
+     *                                <td>Resize primary worker group</td>
+     *                                </tr>
+     *                                <tr>
+     *                                <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>
+     *                                <td>Resize secondary worker group</td>
+     *                                </tr>
+     *                                <tr>
+     *                                <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or
+     *                                change autoscaling policies</td>
+     *                                </tr>
+     *                                </tbody>
+     *                                </table>
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type string $projectId
-     *           Required. The ID of the Google Cloud Platform project the
-     *           cluster belongs to.
-     *     @type string $region
-     *           Required. The Dataproc region in which to handle the request.
-     *     @type string $clusterName
-     *           Required. The cluster name.
-     *     @type Cluster $cluster
-     *           Required. The changes to the cluster.
      *     @type Duration $gracefulDecommissionTimeout
      *           Optional. Timeout for graceful YARN decommissioning. Graceful
      *           decommissioning allows removing nodes from the cluster without
@@ -1195,58 +1190,6 @@ class ClusterControllerGapicClient
      *           [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
      *           Only supported on Dataproc image versions 1.2 and higher.
-     *     @type FieldMask $updateMask
-     *           Required. Specifies the path, relative to `Cluster`, of
-     *           the field to update. For example, to change the number of workers
-     *           in a cluster to 5, the `update_mask` parameter would be
-     *           specified as `config.worker_config.num_instances`,
-     *           and the `PATCH` request body would specify the new value, as follows:
-     *
-     *           {
-     *           "config":{
-     *           "workerConfig":{
-     *           "numInstances":"5"
-     *           }
-     *           }
-     *           }
-     *           Similarly, to change the number of preemptible workers in a cluster to 5,
-     *           the `update_mask` parameter would be
-     *           `config.secondary_worker_config.num_instances`, and the `PATCH` request
-     *           body would be set as follows:
-     *
-     *           {
-     *           "config":{
-     *           "secondaryWorkerConfig":{
-     *           "numInstances":"5"
-     *           }
-     *           }
-     *           }
-     *           <strong>Note:</strong> Currently, only the following fields can be updated:
-     *
-     *           <table>
-     *           <tbody>
-     *           <tr>
-     *           <td><strong>Mask</strong></td>
-     *           <td><strong>Purpose</strong></td>
-     *           </tr>
-     *           <tr>
-     *           <td><strong><em>labels</em></strong></td>
-     *           <td>Update labels</td>
-     *           </tr>
-     *           <tr>
-     *           <td><strong><em>config.worker_config.num_instances</em></strong></td>
-     *           <td>Resize primary worker group</td>
-     *           </tr>
-     *           <tr>
-     *           <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>
-     *           <td>Resize secondary worker group</td>
-     *           </tr>
-     *           <tr>
-     *           <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or
-     *           change autoscaling policies</td>
-     *           </tr>
-     *           </tbody>
-     *           </table>
      *     @type string $requestId
      *           Optional. A unique ID used to identify the request. If the server
      *           receives two
@@ -1270,35 +1213,20 @@ class ClusterControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCluster(array $optionalArgs = [])
+    public function updateCluster($projectId, $region, $clusterName, $cluster, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['projectId'])) {
-            $request->setProjectId($optionalArgs['projectId']);
-            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['clusterName'])) {
-            $request->setClusterName($optionalArgs['clusterName']);
-            $requestParamHeaders['cluster_name'] = $optionalArgs['clusterName'];
-        }
-
-        if (isset($optionalArgs['cluster'])) {
-            $request->setCluster($optionalArgs['cluster']);
-        }
-
+        $request->setProjectId($projectId);
+        $request->setRegion($region);
+        $request->setClusterName($clusterName);
+        $request->setCluster($cluster);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['project_id'] = $projectId;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['cluster_name'] = $clusterName;
         if (isset($optionalArgs['gracefulDecommissionTimeout'])) {
             $request->setGracefulDecommissionTimeout($optionalArgs['gracefulDecommissionTimeout']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -1318,18 +1246,18 @@ class ClusterControllerGapicClient
      * ```
      * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $response = $clusterControllerClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $clusterControllerClient->getIamPolicy($resource);
      * } finally {
      *     $clusterControllerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1343,15 +1271,12 @@ class ClusterControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1372,23 +1297,23 @@ class ClusterControllerGapicClient
      * ```
      * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $response = $clusterControllerClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $clusterControllerClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $clusterControllerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1405,19 +1330,13 @@ class ClusterControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1440,23 +1359,23 @@ class ClusterControllerGapicClient
      * ```
      * $clusterControllerClient = new ClusterControllerClient();
      * try {
-     *     $response = $clusterControllerClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $clusterControllerClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $clusterControllerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1467,19 +1386,13 @@ class ClusterControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();

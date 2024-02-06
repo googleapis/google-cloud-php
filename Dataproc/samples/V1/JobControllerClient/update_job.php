@@ -26,24 +26,40 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dataproc\V1\Client\JobControllerClient;
 use Google\Cloud\Dataproc\V1\Job;
+use Google\Cloud\Dataproc\V1\JobPlacement;
 use Google\Cloud\Dataproc\V1\UpdateJobRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a job in a project.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $projectId               The ID of the Google Cloud Platform project that the job
+ *                                        belongs to.
+ * @param string $region                  The Dataproc region in which to handle the request.
+ * @param string $jobId                   The job ID.
+ * @param string $jobPlacementClusterName The name of the cluster where the job will be submitted.
  */
-function update_job_sample(): void
-{
+function update_job_sample(
+    string $projectId,
+    string $region,
+    string $jobId,
+    string $jobPlacementClusterName
+): void {
     // Create a client.
     $jobControllerClient = new JobControllerClient();
 
     // Prepare the request message.
-    $request = new UpdateJobRequest();
+    $jobPlacement = (new JobPlacement())
+        ->setClusterName($jobPlacementClusterName);
+    $job = (new Job())
+        ->setPlacement($jobPlacement);
+    $updateMask = new FieldMask();
+    $request = (new UpdateJobRequest())
+        ->setProjectId($projectId)
+        ->setRegion($region)
+        ->setJobId($jobId)
+        ->setJob($job)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +69,24 @@ function update_job_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $projectId = '[PROJECT_ID]';
+    $region = '[REGION]';
+    $jobId = '[JOB_ID]';
+    $jobPlacementClusterName = '[CLUSTER_NAME]';
+
+    update_job_sample($projectId, $region, $jobId, $jobPlacementClusterName);
 }
 // [END dataproc_v1_generated_JobController_UpdateJob_sync]

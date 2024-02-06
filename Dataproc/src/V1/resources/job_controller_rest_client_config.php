@@ -138,6 +138,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
         ],
         'google.iam.v1.IAMPolicy' => [

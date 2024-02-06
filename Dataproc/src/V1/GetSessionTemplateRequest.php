@@ -23,7 +23,8 @@ class GetSessionTemplateRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the session template to retrieve.
+     * @param string $name Required. The name of the session template to retrieve. Please see
+     *                     {@see SessionTemplateControllerClient::sessionTemplateName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataproc\V1\GetSessionTemplateRequest
      *

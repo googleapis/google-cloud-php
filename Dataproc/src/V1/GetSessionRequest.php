@@ -23,7 +23,8 @@ class GetSessionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the session to retrieve.
+     * @param string $name Required. The name of the session to retrieve. Please see
+     *                     {@see SessionControllerClient::sessionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataproc\V1\GetSessionRequest
      *

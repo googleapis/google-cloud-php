@@ -40,6 +40,7 @@ class GetAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
      *                     * For `projects.locations.autoscalingPolicies.get`, the resource name
      *                     of the policy has the following format:
      *                     `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
+     *                     Please see {@see AutoscalingPolicyServiceClient::autoscalingPolicyName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataproc\V1\GetAutoscalingPolicyRequest
      *

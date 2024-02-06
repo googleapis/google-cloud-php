@@ -14,6 +14,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'session_id',
+                ],
             ],
             'DeleteSession' => [
                 'method' => 'delete',

@@ -32,19 +32,17 @@ use Google\Cloud\Dataproc\V1\ListBatchesRequest;
 /**
  * Lists batch workloads.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent, which owns this collection of batches. Please see
+ *                                {@see BatchControllerClient::locationName()} for help formatting this field.
  */
-function list_batches_sample(): void
+function list_batches_sample(string $formattedParent): void
 {
     // Create a client.
     $batchControllerClient = new BatchControllerClient();
 
     // Prepare the request message.
-    $request = new ListBatchesRequest();
+    $request = (new ListBatchesRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +56,21 @@ function list_batches_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = BatchControllerClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_batches_sample($formattedParent);
 }
 // [END dataproc_v1_generated_BatchController_ListBatches_sync]

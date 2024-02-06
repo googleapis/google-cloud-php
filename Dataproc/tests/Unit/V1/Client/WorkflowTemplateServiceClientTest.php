@@ -37,6 +37,7 @@ use Google\Cloud\Dataproc\V1\ListWorkflowTemplatesRequest;
 use Google\Cloud\Dataproc\V1\ListWorkflowTemplatesResponse;
 use Google\Cloud\Dataproc\V1\UpdateWorkflowTemplateRequest;
 use Google\Cloud\Dataproc\V1\WorkflowTemplate;
+use Google\Cloud\Dataproc\V1\WorkflowTemplatePlacement;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -94,7 +95,18 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        $request = new CreateWorkflowTemplateRequest();
+        // Mock request
+        $formattedParent = $gapicClient->regionName('[PROJECT]', '[REGION]');
+        $template = new WorkflowTemplate();
+        $templateId = 'templateId1304010549';
+        $template->setId($templateId);
+        $templatePlacement = new WorkflowTemplatePlacement();
+        $template->setPlacement($templatePlacement);
+        $templateJobs = [];
+        $template->setJobs($templateJobs);
+        $request = (new CreateWorkflowTemplateRequest())
+            ->setParent($formattedParent)
+            ->setTemplate($template);
         $response = $gapicClient->createWorkflowTemplate($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -102,6 +114,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.WorkflowTemplateService/CreateWorkflowTemplate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getTemplate();
+        $this->assertProtobufEquals($template, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -123,7 +139,18 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateWorkflowTemplateRequest();
+        // Mock request
+        $formattedParent = $gapicClient->regionName('[PROJECT]', '[REGION]');
+        $template = new WorkflowTemplate();
+        $templateId = 'templateId1304010549';
+        $template->setId($templateId);
+        $templatePlacement = new WorkflowTemplatePlacement();
+        $template->setPlacement($templatePlacement);
+        $templateJobs = [];
+        $template->setJobs($templateJobs);
+        $request = (new CreateWorkflowTemplateRequest())
+            ->setParent($formattedParent)
+            ->setTemplate($template);
         try {
             $gapicClient->createWorkflowTemplate($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -148,13 +175,18 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteWorkflowTemplateRequest();
+        // Mock request
+        $formattedName = $gapicClient->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
+        $request = (new DeleteWorkflowTemplateRequest())
+            ->setName($formattedName);
         $gapicClient->deleteWorkflowTemplate($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.WorkflowTemplateService/DeleteWorkflowTemplate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -176,7 +208,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteWorkflowTemplateRequest();
+        // Mock request
+        $formattedName = $gapicClient->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
+        $request = (new DeleteWorkflowTemplateRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteWorkflowTemplate($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -207,7 +242,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setVersion($version2);
         $transport->addResponse($expectedResponse);
-        $request = new GetWorkflowTemplateRequest();
+        // Mock request
+        $formattedName = $gapicClient->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
+        $request = (new GetWorkflowTemplateRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getWorkflowTemplate($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -215,6 +253,8 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.WorkflowTemplateService/GetWorkflowTemplate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -236,7 +276,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetWorkflowTemplateRequest();
+        // Mock request
+        $formattedName = $gapicClient->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
+        $request = (new GetWorkflowTemplateRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getWorkflowTemplate($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -279,7 +322,18 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InstantiateInlineWorkflowTemplateRequest();
+        // Mock request
+        $formattedParent = $gapicClient->regionName('[PROJECT]', '[REGION]');
+        $template = new WorkflowTemplate();
+        $templateId = 'templateId1304010549';
+        $template->setId($templateId);
+        $templatePlacement = new WorkflowTemplatePlacement();
+        $template->setPlacement($templatePlacement);
+        $templateJobs = [];
+        $template->setJobs($templateJobs);
+        $request = (new InstantiateInlineWorkflowTemplateRequest())
+            ->setParent($formattedParent)
+            ->setTemplate($template);
         $response = $gapicClient->instantiateInlineWorkflowTemplate($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -290,6 +344,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.WorkflowTemplateService/InstantiateInlineWorkflowTemplate', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getTemplate();
+        $this->assertProtobufEquals($template, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/instantiateInlineWorkflowTemplateTest');
         $response->pollUntilComplete([
@@ -340,7 +398,18 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InstantiateInlineWorkflowTemplateRequest();
+        // Mock request
+        $formattedParent = $gapicClient->regionName('[PROJECT]', '[REGION]');
+        $template = new WorkflowTemplate();
+        $templateId = 'templateId1304010549';
+        $template->setId($templateId);
+        $templatePlacement = new WorkflowTemplatePlacement();
+        $template->setPlacement($templatePlacement);
+        $templateJobs = [];
+        $template->setJobs($templateJobs);
+        $request = (new InstantiateInlineWorkflowTemplateRequest())
+            ->setParent($formattedParent)
+            ->setTemplate($template);
         $response = $gapicClient->instantiateInlineWorkflowTemplate($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -392,7 +461,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InstantiateWorkflowTemplateRequest();
+        // Mock request
+        $formattedName = $gapicClient->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
+        $request = (new InstantiateWorkflowTemplateRequest())
+            ->setName($formattedName);
         $response = $gapicClient->instantiateWorkflowTemplate($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -403,6 +475,8 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.WorkflowTemplateService/InstantiateWorkflowTemplate', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/instantiateWorkflowTemplateTest');
         $response->pollUntilComplete([
@@ -453,7 +527,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InstantiateWorkflowTemplateRequest();
+        // Mock request
+        $formattedName = $gapicClient->workflowTemplateName('[PROJECT]', '[REGION]', '[WORKFLOW_TEMPLATE]');
+        $request = (new InstantiateWorkflowTemplateRequest())
+            ->setName($formattedName);
         $response = $gapicClient->instantiateWorkflowTemplate($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -494,7 +571,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTemplates($templates);
         $transport->addResponse($expectedResponse);
-        $request = new ListWorkflowTemplatesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->regionName('[PROJECT]', '[REGION]');
+        $request = (new ListWorkflowTemplatesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listWorkflowTemplates($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -505,6 +585,8 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.WorkflowTemplateService/ListWorkflowTemplates', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -526,7 +608,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListWorkflowTemplatesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->regionName('[PROJECT]', '[REGION]');
+        $request = (new ListWorkflowTemplatesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listWorkflowTemplates($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -557,7 +642,16 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateWorkflowTemplateRequest();
+        // Mock request
+        $template = new WorkflowTemplate();
+        $templateId = 'templateId1304010549';
+        $template->setId($templateId);
+        $templatePlacement = new WorkflowTemplatePlacement();
+        $template->setPlacement($templatePlacement);
+        $templateJobs = [];
+        $template->setJobs($templateJobs);
+        $request = (new UpdateWorkflowTemplateRequest())
+            ->setTemplate($template);
         $response = $gapicClient->updateWorkflowTemplate($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -565,6 +659,8 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.WorkflowTemplateService/UpdateWorkflowTemplate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTemplate();
+        $this->assertProtobufEquals($template, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -586,7 +682,16 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateWorkflowTemplateRequest();
+        // Mock request
+        $template = new WorkflowTemplate();
+        $templateId = 'templateId1304010549';
+        $template->setId($templateId);
+        $templatePlacement = new WorkflowTemplatePlacement();
+        $template->setPlacement($templatePlacement);
+        $templateJobs = [];
+        $template->setJobs($templateJobs);
+        $request = (new UpdateWorkflowTemplateRequest())
+            ->setTemplate($template);
         try {
             $gapicClient->updateWorkflowTemplate($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -615,7 +720,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -623,6 +731,8 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -644,7 +754,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -673,7 +786,12 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -681,6 +799,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -702,7 +824,12 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -727,7 +854,12 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -735,6 +867,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -756,7 +892,12 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -787,7 +928,18 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        $request = new CreateWorkflowTemplateRequest();
+        // Mock request
+        $formattedParent = $gapicClient->regionName('[PROJECT]', '[REGION]');
+        $template = new WorkflowTemplate();
+        $templateId = 'templateId1304010549';
+        $template->setId($templateId);
+        $templatePlacement = new WorkflowTemplatePlacement();
+        $template->setPlacement($templatePlacement);
+        $templateJobs = [];
+        $template->setJobs($templateJobs);
+        $request = (new CreateWorkflowTemplateRequest())
+            ->setParent($formattedParent)
+            ->setTemplate($template);
         $response = $gapicClient->createWorkflowTemplateAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -795,6 +947,10 @@ class WorkflowTemplateServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.WorkflowTemplateService/CreateWorkflowTemplate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getTemplate();
+        $this->assertProtobufEquals($template, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

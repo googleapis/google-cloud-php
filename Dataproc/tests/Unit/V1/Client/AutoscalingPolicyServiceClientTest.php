@@ -27,10 +27,13 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataproc\V1\AutoscalingPolicy;
+use Google\Cloud\Dataproc\V1\BasicAutoscalingAlgorithm;
+use Google\Cloud\Dataproc\V1\BasicYarnAutoscalingConfig;
 use Google\Cloud\Dataproc\V1\Client\AutoscalingPolicyServiceClient;
 use Google\Cloud\Dataproc\V1\CreateAutoscalingPolicyRequest;
 use Google\Cloud\Dataproc\V1\DeleteAutoscalingPolicyRequest;
 use Google\Cloud\Dataproc\V1\GetAutoscalingPolicyRequest;
+use Google\Cloud\Dataproc\V1\InstanceGroupAutoscalingPolicyConfig;
 use Google\Cloud\Dataproc\V1\ListAutoscalingPoliciesRequest;
 use Google\Cloud\Dataproc\V1\ListAutoscalingPoliciesResponse;
 use Google\Cloud\Dataproc\V1\UpdateAutoscalingPolicyRequest;
@@ -39,6 +42,7 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Protobuf\Duration;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -86,7 +90,26 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        $request = new CreateAutoscalingPolicyRequest();
+        // Mock request
+        $formattedParent = $gapicClient->regionName('[PROJECT]', '[REGION]');
+        $policy = new AutoscalingPolicy();
+        $policyWorkerConfig = new InstanceGroupAutoscalingPolicyConfig();
+        $workerConfigMaxInstances = 339756550;
+        $policyWorkerConfig->setMaxInstances($workerConfigMaxInstances);
+        $policy->setWorkerConfig($policyWorkerConfig);
+        $policyBasicAlgorithm = new BasicAutoscalingAlgorithm();
+        $basicAlgorithmYarnConfig = new BasicYarnAutoscalingConfig();
+        $yarnConfigGracefulDecommissionTimeout = new Duration();
+        $basicAlgorithmYarnConfig->setGracefulDecommissionTimeout($yarnConfigGracefulDecommissionTimeout);
+        $yarnConfigScaleUpFactor = -4.1551534E7;
+        $basicAlgorithmYarnConfig->setScaleUpFactor($yarnConfigScaleUpFactor);
+        $yarnConfigScaleDownFactor = -1.72221005E8;
+        $basicAlgorithmYarnConfig->setScaleDownFactor($yarnConfigScaleDownFactor);
+        $policyBasicAlgorithm->setYarnConfig($basicAlgorithmYarnConfig);
+        $policy->setBasicAlgorithm($policyBasicAlgorithm);
+        $request = (new CreateAutoscalingPolicyRequest())
+            ->setParent($formattedParent)
+            ->setPolicy($policy);
         $response = $gapicClient->createAutoscalingPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -94,6 +117,10 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.AutoscalingPolicyService/CreateAutoscalingPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -115,7 +142,26 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateAutoscalingPolicyRequest();
+        // Mock request
+        $formattedParent = $gapicClient->regionName('[PROJECT]', '[REGION]');
+        $policy = new AutoscalingPolicy();
+        $policyWorkerConfig = new InstanceGroupAutoscalingPolicyConfig();
+        $workerConfigMaxInstances = 339756550;
+        $policyWorkerConfig->setMaxInstances($workerConfigMaxInstances);
+        $policy->setWorkerConfig($policyWorkerConfig);
+        $policyBasicAlgorithm = new BasicAutoscalingAlgorithm();
+        $basicAlgorithmYarnConfig = new BasicYarnAutoscalingConfig();
+        $yarnConfigGracefulDecommissionTimeout = new Duration();
+        $basicAlgorithmYarnConfig->setGracefulDecommissionTimeout($yarnConfigGracefulDecommissionTimeout);
+        $yarnConfigScaleUpFactor = -4.1551534E7;
+        $basicAlgorithmYarnConfig->setScaleUpFactor($yarnConfigScaleUpFactor);
+        $yarnConfigScaleDownFactor = -1.72221005E8;
+        $basicAlgorithmYarnConfig->setScaleDownFactor($yarnConfigScaleDownFactor);
+        $policyBasicAlgorithm->setYarnConfig($basicAlgorithmYarnConfig);
+        $policy->setBasicAlgorithm($policyBasicAlgorithm);
+        $request = (new CreateAutoscalingPolicyRequest())
+            ->setParent($formattedParent)
+            ->setPolicy($policy);
         try {
             $gapicClient->createAutoscalingPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -140,13 +186,18 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteAutoscalingPolicyRequest();
+        // Mock request
+        $formattedName = $gapicClient->autoscalingPolicyName('[PROJECT]', '[LOCATION]', '[AUTOSCALING_POLICY]');
+        $request = (new DeleteAutoscalingPolicyRequest())
+            ->setName($formattedName);
         $gapicClient->deleteAutoscalingPolicy($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.AutoscalingPolicyService/DeleteAutoscalingPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -168,7 +219,10 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteAutoscalingPolicyRequest();
+        // Mock request
+        $formattedName = $gapicClient->autoscalingPolicyName('[PROJECT]', '[LOCATION]', '[AUTOSCALING_POLICY]');
+        $request = (new DeleteAutoscalingPolicyRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteAutoscalingPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -197,7 +251,10 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $request = new GetAutoscalingPolicyRequest();
+        // Mock request
+        $formattedName = $gapicClient->autoscalingPolicyName('[PROJECT]', '[LOCATION]', '[AUTOSCALING_POLICY]');
+        $request = (new GetAutoscalingPolicyRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getAutoscalingPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -205,6 +262,8 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.AutoscalingPolicyService/GetAutoscalingPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -226,7 +285,10 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetAutoscalingPolicyRequest();
+        // Mock request
+        $formattedName = $gapicClient->autoscalingPolicyName('[PROJECT]', '[LOCATION]', '[AUTOSCALING_POLICY]');
+        $request = (new GetAutoscalingPolicyRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getAutoscalingPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -258,7 +320,10 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPolicies($policies);
         $transport->addResponse($expectedResponse);
-        $request = new ListAutoscalingPoliciesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->regionName('[PROJECT]', '[REGION]');
+        $request = (new ListAutoscalingPoliciesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listAutoscalingPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -269,6 +334,8 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.AutoscalingPolicyService/ListAutoscalingPolicies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -290,7 +357,10 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListAutoscalingPoliciesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->regionName('[PROJECT]', '[REGION]');
+        $request = (new ListAutoscalingPoliciesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listAutoscalingPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -319,7 +389,24 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateAutoscalingPolicyRequest();
+        // Mock request
+        $policy = new AutoscalingPolicy();
+        $policyWorkerConfig = new InstanceGroupAutoscalingPolicyConfig();
+        $workerConfigMaxInstances = 339756550;
+        $policyWorkerConfig->setMaxInstances($workerConfigMaxInstances);
+        $policy->setWorkerConfig($policyWorkerConfig);
+        $policyBasicAlgorithm = new BasicAutoscalingAlgorithm();
+        $basicAlgorithmYarnConfig = new BasicYarnAutoscalingConfig();
+        $yarnConfigGracefulDecommissionTimeout = new Duration();
+        $basicAlgorithmYarnConfig->setGracefulDecommissionTimeout($yarnConfigGracefulDecommissionTimeout);
+        $yarnConfigScaleUpFactor = -4.1551534E7;
+        $basicAlgorithmYarnConfig->setScaleUpFactor($yarnConfigScaleUpFactor);
+        $yarnConfigScaleDownFactor = -1.72221005E8;
+        $basicAlgorithmYarnConfig->setScaleDownFactor($yarnConfigScaleDownFactor);
+        $policyBasicAlgorithm->setYarnConfig($basicAlgorithmYarnConfig);
+        $policy->setBasicAlgorithm($policyBasicAlgorithm);
+        $request = (new UpdateAutoscalingPolicyRequest())
+            ->setPolicy($policy);
         $response = $gapicClient->updateAutoscalingPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -327,6 +414,8 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.AutoscalingPolicyService/UpdateAutoscalingPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -348,7 +437,24 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateAutoscalingPolicyRequest();
+        // Mock request
+        $policy = new AutoscalingPolicy();
+        $policyWorkerConfig = new InstanceGroupAutoscalingPolicyConfig();
+        $workerConfigMaxInstances = 339756550;
+        $policyWorkerConfig->setMaxInstances($workerConfigMaxInstances);
+        $policy->setWorkerConfig($policyWorkerConfig);
+        $policyBasicAlgorithm = new BasicAutoscalingAlgorithm();
+        $basicAlgorithmYarnConfig = new BasicYarnAutoscalingConfig();
+        $yarnConfigGracefulDecommissionTimeout = new Duration();
+        $basicAlgorithmYarnConfig->setGracefulDecommissionTimeout($yarnConfigGracefulDecommissionTimeout);
+        $yarnConfigScaleUpFactor = -4.1551534E7;
+        $basicAlgorithmYarnConfig->setScaleUpFactor($yarnConfigScaleUpFactor);
+        $yarnConfigScaleDownFactor = -1.72221005E8;
+        $basicAlgorithmYarnConfig->setScaleDownFactor($yarnConfigScaleDownFactor);
+        $policyBasicAlgorithm->setYarnConfig($basicAlgorithmYarnConfig);
+        $policy->setBasicAlgorithm($policyBasicAlgorithm);
+        $request = (new UpdateAutoscalingPolicyRequest())
+            ->setPolicy($policy);
         try {
             $gapicClient->updateAutoscalingPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -377,7 +483,10 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -385,6 +494,8 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -406,7 +517,10 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -435,7 +549,12 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -443,6 +562,10 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -464,7 +587,12 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -489,7 +617,12 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -497,6 +630,10 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -518,7 +655,12 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -547,7 +689,26 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        $request = new CreateAutoscalingPolicyRequest();
+        // Mock request
+        $formattedParent = $gapicClient->regionName('[PROJECT]', '[REGION]');
+        $policy = new AutoscalingPolicy();
+        $policyWorkerConfig = new InstanceGroupAutoscalingPolicyConfig();
+        $workerConfigMaxInstances = 339756550;
+        $policyWorkerConfig->setMaxInstances($workerConfigMaxInstances);
+        $policy->setWorkerConfig($policyWorkerConfig);
+        $policyBasicAlgorithm = new BasicAutoscalingAlgorithm();
+        $basicAlgorithmYarnConfig = new BasicYarnAutoscalingConfig();
+        $yarnConfigGracefulDecommissionTimeout = new Duration();
+        $basicAlgorithmYarnConfig->setGracefulDecommissionTimeout($yarnConfigGracefulDecommissionTimeout);
+        $yarnConfigScaleUpFactor = -4.1551534E7;
+        $basicAlgorithmYarnConfig->setScaleUpFactor($yarnConfigScaleUpFactor);
+        $yarnConfigScaleDownFactor = -1.72221005E8;
+        $basicAlgorithmYarnConfig->setScaleDownFactor($yarnConfigScaleDownFactor);
+        $policyBasicAlgorithm->setYarnConfig($basicAlgorithmYarnConfig);
+        $policy->setBasicAlgorithm($policyBasicAlgorithm);
+        $request = (new CreateAutoscalingPolicyRequest())
+            ->setParent($formattedParent)
+            ->setPolicy($policy);
         $response = $gapicClient->createAutoscalingPolicyAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -555,6 +716,10 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.AutoscalingPolicyService/CreateAutoscalingPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

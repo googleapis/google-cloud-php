@@ -23,23 +23,23 @@ class NodeGroups
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ñ
-*google/cloud/dataproc/v1/node_groups.protogoogle.cloud.dataproc.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto\'google/cloud/dataproc/v1/clusters.proto#google/longrunning/operations.protogoogle/protobuf/duration.proto"Ê
-CreateNodeGroupRequest:
-parent (	B*âAúA#!dataproc.googleapis.com/NodeGroup=
+È
+*google/cloud/dataproc/v1/node_groups.protogoogle.cloud.dataproc.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto\'google/cloud/dataproc/v1/clusters.proto#google/longrunning/operations.protogoogle/protobuf/duration.proto"Æ
+CreateNodeGroupRequest9
+parent (	B)àAúA#!dataproc.googleapis.com/NodeGroup<
 
-node_group (2#.google.cloud.dataproc.v1.NodeGroupBâA
-node_group_id (	BâA
+node_group (2#.google.cloud.dataproc.v1.NodeGroupBàA
+node_group_id (	BàA
 
-request_id (	BâA"¢
-ResizeNodeGroupRequest
-name (	BâA
-size (BâA
+request_id (	BàA"ž
+ResizeNodeGroupRequest
+name (	BàA
+size (BàA
 
-request_id (	BâAF
-graceful_decommission_timeout (2.google.protobuf.DurationBâA"O
-GetNodeGroupRequest8
-name (	B*âAúA#
+request_id (	BàAE
+graceful_decommission_timeout (2.google.protobuf.DurationBàA"N
+GetNodeGroupRequest7
+name (	B)àAúA#
 !dataproc.googleapis.com/NodeGroup2§
 NodeGroupController•
 CreateNodeGroup0.google.cloud.dataproc.v1.CreateNodeGroupRequest.google.longrunning.Operation"°ÊA@

@@ -31,19 +31,26 @@ use Google\Cloud\Dataproc\V1\DeleteAutoscalingPolicyRequest;
  * Deletes an autoscaling policy. It is an error to delete an autoscaling
  * policy that is in use by one or more clusters.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The "resource name" of the autoscaling policy, as described
+ *                              in https://cloud.google.com/apis/design/resource_names.
+ *
+ *                              * For `projects.regions.autoscalingPolicies.delete`, the resource name
+ *                              of the policy has the following format:
+ *                              `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+ *
+ *                              * For `projects.locations.autoscalingPolicies.delete`, the resource name
+ *                              of the policy has the following format:
+ *                              `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
+ *                              Please see {@see AutoscalingPolicyServiceClient::autoscalingPolicyName()} for help formatting this field.
  */
-function delete_autoscaling_policy_sample(): void
+function delete_autoscaling_policy_sample(string $formattedName): void
 {
     // Create a client.
     $autoscalingPolicyServiceClient = new AutoscalingPolicyServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteAutoscalingPolicyRequest();
+    $request = (new DeleteAutoscalingPolicyRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -52,5 +59,25 @@ function delete_autoscaling_policy_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AutoscalingPolicyServiceClient::autoscalingPolicyName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[AUTOSCALING_POLICY]'
+    );
+
+    delete_autoscaling_policy_sample($formattedName);
 }
 // [END dataproc_v1_generated_AutoscalingPolicyService_DeleteAutoscalingPolicy_sync]

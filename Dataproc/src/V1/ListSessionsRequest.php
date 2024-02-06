@@ -53,7 +53,8 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
-     * @param string $parent Required. The parent, which owns this collection of sessions.
+     * @param string $parent Required. The parent, which owns this collection of sessions. Please see
+     *                       {@see SessionControllerClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataproc\V1\ListSessionsRequest
      *

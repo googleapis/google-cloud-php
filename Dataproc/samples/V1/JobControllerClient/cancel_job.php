@@ -35,19 +35,21 @@ use Google\Cloud\Dataproc\V1\Job;
  * or
  * [regions/{region}/jobs.get](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.jobs/get).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $projectId The ID of the Google Cloud Platform project that the job
+ *                          belongs to.
+ * @param string $region    The Dataproc region in which to handle the request.
+ * @param string $jobId     The job ID.
  */
-function cancel_job_sample(): void
+function cancel_job_sample(string $projectId, string $region, string $jobId): void
 {
     // Create a client.
     $jobControllerClient = new JobControllerClient();
 
     // Prepare the request message.
-    $request = new CancelJobRequest();
+    $request = (new CancelJobRequest())
+        ->setProjectId($projectId)
+        ->setRegion($region)
+        ->setJobId($jobId);
 
     // Call the API and handle any network failures.
     try {
@@ -57,5 +59,23 @@ function cancel_job_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $projectId = '[PROJECT_ID]';
+    $region = '[REGION]';
+    $jobId = '[JOB_ID]';
+
+    cancel_job_sample($projectId, $region, $jobId);
 }
 // [END dataproc_v1_generated_JobController_CancelJob_sync]

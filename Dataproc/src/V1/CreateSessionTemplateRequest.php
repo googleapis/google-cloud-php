@@ -29,7 +29,8 @@ class CreateSessionTemplateRequest extends \Google\Protobuf\Internal\Message
     private $session_template = null;
 
     /**
-     * @param string                                    $parent          Required. The parent resource where this session template will be created.
+     * @param string                                    $parent          Required. The parent resource where this session template will be created. Please see
+     *                                                                   {@see SessionTemplateControllerClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Dataproc\V1\SessionTemplate $sessionTemplate Required. The session template to create.
      *
      * @return \Google\Cloud\Dataproc\V1\CreateSessionTemplateRequest

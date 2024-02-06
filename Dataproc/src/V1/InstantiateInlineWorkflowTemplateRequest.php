@@ -58,6 +58,7 @@ class InstantiateInlineWorkflowTemplateRequest extends \Google\Protobuf\Internal
      *                                                             * For `projects.locations.workflowTemplates.instantiateinline`, the
      *                                                             resource name of the location has the following format:
      *                                                             `projects/{project_id}/locations/{location}`
+     *                                                             Please see {@see WorkflowTemplateServiceClient::regionName()} for help formatting this field.
      * @param \Google\Cloud\Dataproc\V1\WorkflowTemplate $template Required. The workflow template to instantiate.
      *
      * @return \Google\Cloud\Dataproc\V1\InstantiateInlineWorkflowTemplateRequest

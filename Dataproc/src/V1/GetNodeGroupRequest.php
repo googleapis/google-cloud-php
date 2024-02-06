@@ -28,6 +28,7 @@ class GetNodeGroupRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the node group to retrieve.
      *                     Format:
      *                     `projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{nodeGroup}`
+     *                     Please see {@see NodeGroupControllerClient::nodeGroupName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataproc\V1\GetNodeGroupRequest
      *

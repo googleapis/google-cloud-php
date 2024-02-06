@@ -90,7 +90,14 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $expectedResponse->setCreator($creator);
         $expectedResponse->setUuid($uuid);
         $transport->addResponse($expectedResponse);
-        $request = new CreateSessionTemplateRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $sessionTemplate = new SessionTemplate();
+        $sessionTemplateName = 'sessionTemplateName-1744858149';
+        $sessionTemplate->setName($sessionTemplateName);
+        $request = (new CreateSessionTemplateRequest())
+            ->setParent($formattedParent)
+            ->setSessionTemplate($sessionTemplate);
         $response = $gapicClient->createSessionTemplate($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -98,6 +105,10 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.SessionTemplateController/CreateSessionTemplate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getSessionTemplate();
+        $this->assertProtobufEquals($sessionTemplate, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -119,7 +130,14 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateSessionTemplateRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $sessionTemplate = new SessionTemplate();
+        $sessionTemplateName = 'sessionTemplateName-1744858149';
+        $sessionTemplate->setName($sessionTemplateName);
+        $request = (new CreateSessionTemplateRequest())
+            ->setParent($formattedParent)
+            ->setSessionTemplate($sessionTemplate);
         try {
             $gapicClient->createSessionTemplate($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -144,13 +162,18 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteSessionTemplateRequest();
+        // Mock request
+        $formattedName = $gapicClient->sessionTemplateName('[PROJECT]', '[LOCATION]', '[TEMPLATE]');
+        $request = (new DeleteSessionTemplateRequest())
+            ->setName($formattedName);
         $gapicClient->deleteSessionTemplate($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.SessionTemplateController/DeleteSessionTemplate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -172,7 +195,10 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteSessionTemplateRequest();
+        // Mock request
+        $formattedName = $gapicClient->sessionTemplateName('[PROJECT]', '[LOCATION]', '[TEMPLATE]');
+        $request = (new DeleteSessionTemplateRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteSessionTemplate($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -205,7 +231,10 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $expectedResponse->setCreator($creator);
         $expectedResponse->setUuid($uuid);
         $transport->addResponse($expectedResponse);
-        $request = new GetSessionTemplateRequest();
+        // Mock request
+        $formattedName = $gapicClient->sessionTemplateName('[PROJECT]', '[LOCATION]', '[TEMPLATE]');
+        $request = (new GetSessionTemplateRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getSessionTemplate($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -213,6 +242,8 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.SessionTemplateController/GetSessionTemplate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -234,7 +265,10 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetSessionTemplateRequest();
+        // Mock request
+        $formattedName = $gapicClient->sessionTemplateName('[PROJECT]', '[LOCATION]', '[TEMPLATE]');
+        $request = (new GetSessionTemplateRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getSessionTemplate($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -266,7 +300,10 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSessionTemplates($sessionTemplates);
         $transport->addResponse($expectedResponse);
-        $request = new ListSessionTemplatesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListSessionTemplatesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listSessionTemplates($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -277,6 +314,8 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.SessionTemplateController/ListSessionTemplates', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -298,7 +337,10 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListSessionTemplatesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListSessionTemplatesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listSessionTemplates($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -331,7 +373,12 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $expectedResponse->setCreator($creator);
         $expectedResponse->setUuid($uuid);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateSessionTemplateRequest();
+        // Mock request
+        $sessionTemplate = new SessionTemplate();
+        $sessionTemplateName = 'sessionTemplateName-1744858149';
+        $sessionTemplate->setName($sessionTemplateName);
+        $request = (new UpdateSessionTemplateRequest())
+            ->setSessionTemplate($sessionTemplate);
         $response = $gapicClient->updateSessionTemplate($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -339,6 +386,8 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.SessionTemplateController/UpdateSessionTemplate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSessionTemplate();
+        $this->assertProtobufEquals($sessionTemplate, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -360,7 +409,12 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateSessionTemplateRequest();
+        // Mock request
+        $sessionTemplate = new SessionTemplate();
+        $sessionTemplateName = 'sessionTemplateName-1744858149';
+        $sessionTemplate->setName($sessionTemplateName);
+        $request = (new UpdateSessionTemplateRequest())
+            ->setSessionTemplate($sessionTemplate);
         try {
             $gapicClient->updateSessionTemplate($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -389,7 +443,10 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -397,6 +454,8 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -418,7 +477,10 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -447,7 +509,12 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -455,6 +522,10 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -476,7 +547,12 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -501,7 +577,12 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -509,6 +590,10 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -530,7 +615,12 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -563,7 +653,14 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $expectedResponse->setCreator($creator);
         $expectedResponse->setUuid($uuid);
         $transport->addResponse($expectedResponse);
-        $request = new CreateSessionTemplateRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $sessionTemplate = new SessionTemplate();
+        $sessionTemplateName = 'sessionTemplateName-1744858149';
+        $sessionTemplate->setName($sessionTemplateName);
+        $request = (new CreateSessionTemplateRequest())
+            ->setParent($formattedParent)
+            ->setSessionTemplate($sessionTemplate);
         $response = $gapicClient->createSessionTemplateAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -571,6 +668,10 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.SessionTemplateController/CreateSessionTemplate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getSessionTemplate();
+        $this->assertProtobufEquals($sessionTemplate, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }
