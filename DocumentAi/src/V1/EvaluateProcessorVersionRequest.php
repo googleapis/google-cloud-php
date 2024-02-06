@@ -39,6 +39,7 @@ class EvaluateProcessorVersionRequest extends \Google\Protobuf\Internal\Message
      *                                 [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to
      *                                 evaluate.
      *                                 `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+     *                                 Please see {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
      *
      * @return \Google\Cloud\DocumentAI\V1\EvaluateProcessorVersionRequest
      *

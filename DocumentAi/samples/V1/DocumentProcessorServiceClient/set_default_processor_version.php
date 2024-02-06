@@ -37,19 +37,27 @@ use Google\Rpc\Status;
  * and
  * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedProcessor               The resource name of the
+ *                                                 [Processor][google.cloud.documentai.v1.Processor] to change default
+ *                                                 version. Please see
+ *                                                 {@see DocumentProcessorServiceClient::processorName()} for help formatting this field.
+ * @param string $formattedDefaultProcessorVersion The resource name of child
+ *                                                 [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as
+ *                                                 default. Format:
+ *                                                 `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{version}`
+ *                                                 Please see {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
  */
-function set_default_processor_version_sample(): void
-{
+function set_default_processor_version_sample(
+    string $formattedProcessor,
+    string $formattedDefaultProcessorVersion
+): void {
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
     // Prepare the request message.
-    $request = new SetDefaultProcessorVersionRequest();
+    $request = (new SetDefaultProcessorVersionRequest())
+        ->setProcessor($formattedProcessor)
+        ->setDefaultProcessorVersion($formattedDefaultProcessorVersion);
 
     // Call the API and handle any network failures.
     try {
@@ -69,5 +77,31 @@ function set_default_processor_version_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedProcessor = DocumentProcessorServiceClient::processorName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[PROCESSOR]'
+    );
+    $formattedDefaultProcessorVersion = DocumentProcessorServiceClient::processorVersionName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[PROCESSOR]',
+        '[PROCESSOR_VERSION]'
+    );
+
+    set_default_processor_version_sample($formattedProcessor, $formattedDefaultProcessorVersion);
 }
 // [END documentai_v1_generated_DocumentProcessorService_SetDefaultProcessorVersion_sync]

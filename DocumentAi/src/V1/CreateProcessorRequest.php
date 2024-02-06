@@ -40,6 +40,7 @@ class CreateProcessorRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                $parent    Required. The parent (project and location) under which to create the
      *                                                         processor. Format: `projects/{project}/locations/{location}`
+     *                                                         Please see {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\DocumentAI\V1\Processor $processor Required. The processor to be created, requires
      *                                                         [Processor.type][google.cloud.documentai.v1.Processor.type] and
      *                                                         [Processor.display_name]][] to be set. Also, the

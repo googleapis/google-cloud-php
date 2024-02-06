@@ -34,19 +34,19 @@ use Google\Rpc\Status;
  * Send a document for Human Review. The input document should be processed by
  * the specified processor.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedHumanReviewConfig The resource name of the
+ *                                           [HumanReviewConfig][google.cloud.documentai.v1.HumanReviewConfig] that the
+ *                                           document will be reviewed with. Please see
+ *                                           {@see DocumentProcessorServiceClient::humanReviewConfigName()} for help formatting this field.
  */
-function review_document_sample(): void
+function review_document_sample(string $formattedHumanReviewConfig): void
 {
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
     // Prepare the request message.
-    $request = new ReviewDocumentRequest();
+    $request = (new ReviewDocumentRequest())
+        ->setHumanReviewConfig($formattedHumanReviewConfig);
 
     // Call the API and handle any network failures.
     try {
@@ -66,5 +66,25 @@ function review_document_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedHumanReviewConfig = DocumentProcessorServiceClient::humanReviewConfigName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[PROCESSOR]'
+    );
+
+    review_document_sample($formattedHumanReviewConfig);
 }
 // [END documentai_v1_generated_DocumentProcessorService_ReviewDocument_sync]

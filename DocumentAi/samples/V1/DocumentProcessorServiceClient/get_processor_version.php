@@ -31,19 +31,17 @@ use Google\Cloud\DocumentAI\V1\ProcessorVersion;
 /**
  * Gets a processor version detail.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The processor resource name. Please see
+ *                              {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
  */
-function get_processor_version_sample(): void
+function get_processor_version_sample(string $formattedName): void
 {
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
     // Prepare the request message.
-    $request = new GetProcessorVersionRequest();
+    $request = (new GetProcessorVersionRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +51,26 @@ function get_processor_version_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DocumentProcessorServiceClient::processorVersionName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[PROCESSOR]',
+        '[PROCESSOR_VERSION]'
+    );
+
+    get_processor_version_sample($formattedName);
 }
 // [END documentai_v1_generated_DocumentProcessorService_GetProcessorVersion_sync]

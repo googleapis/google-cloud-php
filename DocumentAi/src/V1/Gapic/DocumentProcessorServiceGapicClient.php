@@ -98,7 +98,8 @@ use Google\Protobuf\FieldMask;
  * ```
  * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
  * try {
- *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments();
+ *     $name = 'name';
+ *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments($name);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -109,7 +110,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments();
+ *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments($name);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'batchProcessDocuments');
@@ -577,7 +578,8 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments();
+     *     $name = 'name';
+     *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments($name);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -588,7 +590,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments();
+     *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments($name);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'batchProcessDocuments');
@@ -608,16 +610,15 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of
+     *                             [Processor][google.cloud.documentai.v1.Processor] or
+     *                             [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+     *                             Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     *                             or
+     *                             `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of
-     *           [Processor][google.cloud.documentai.v1.Processor] or
-     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
-     *           Format: `projects/{project}/locations/{location}/processors/{processor}`,
-     *           or
-     *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *     @type BatchDocumentsInputConfig $inputDocuments
      *           The input documents for the
      *           [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
@@ -641,15 +642,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchProcessDocuments(array $optionalArgs = [])
+    public function batchProcessDocuments($name, array $optionalArgs = [])
     {
         $request = new BatchProcessRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['inputDocuments'])) {
             $request->setInputDocuments($optionalArgs['inputDocuments']);
         }
@@ -691,24 +689,24 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $response = $documentProcessorServiceClient->createProcessor();
+     *     $formattedParent = $documentProcessorServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $processor = new Processor();
+     *     $response = $documentProcessorServiceClient->createProcessor($formattedParent, $processor);
      * } finally {
      *     $documentProcessorServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string    $parent       Required. The parent (project and location) under which to create the
+     *                                processor. Format: `projects/{project}/locations/{location}`
+     * @param Processor $processor    Required. The processor to be created, requires
+     *                                [Processor.type][google.cloud.documentai.v1.Processor.type] and
+     *                                [Processor.display_name]][] to be set. Also, the
+     *                                [Processor.kms_key_name][google.cloud.documentai.v1.Processor.kms_key_name]
+     *                                field must be set if the processor is under CMEK.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent (project and location) under which to create the
-     *           processor. Format: `projects/{project}/locations/{location}`
-     *     @type Processor $processor
-     *           Required. The processor to be created, requires
-     *           [Processor.type][google.cloud.documentai.v1.Processor.type] and
-     *           [Processor.display_name]][] to be set. Also, the
-     *           [Processor.kms_key_name][google.cloud.documentai.v1.Processor.kms_key_name]
-     *           field must be set if the processor is under CMEK.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -719,19 +717,16 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createProcessor(array $optionalArgs = [])
-    {
+    public function createProcessor(
+        $parent,
+        $processor,
+        array $optionalArgs = []
+    ) {
         $request = new CreateProcessorRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['processor'])) {
-            $request->setProcessor($optionalArgs['processor']);
-        }
-
+        $request->setParent($parent);
+        $request->setProcessor($processor);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -754,7 +749,8 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $operationResponse = $documentProcessorServiceClient->deleteProcessor();
+     *     $formattedName = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+     *     $operationResponse = $documentProcessorServiceClient->deleteProcessor($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -764,7 +760,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentProcessorServiceClient->deleteProcessor();
+     *     $operationResponse = $documentProcessorServiceClient->deleteProcessor($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'deleteProcessor');
@@ -783,11 +779,10 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The processor resource name to be deleted.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The processor resource name to be deleted.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -798,15 +793,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteProcessor(array $optionalArgs = [])
+    public function deleteProcessor($name, array $optionalArgs = [])
     {
         $request = new DeleteProcessorRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -829,7 +821,8 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $operationResponse = $documentProcessorServiceClient->deleteProcessorVersion();
+     *     $formattedName = $documentProcessorServiceClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
+     *     $operationResponse = $documentProcessorServiceClient->deleteProcessorVersion($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -839,7 +832,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentProcessorServiceClient->deleteProcessorVersion();
+     *     $operationResponse = $documentProcessorServiceClient->deleteProcessorVersion($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'deleteProcessorVersion');
@@ -858,11 +851,10 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The processor version resource name to be deleted.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The processor version resource name to be deleted.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -873,15 +865,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteProcessorVersion(array $optionalArgs = [])
+    public function deleteProcessorVersion($name, array $optionalArgs = [])
     {
         $request = new DeleteProcessorVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -903,7 +892,8 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $operationResponse = $documentProcessorServiceClient->deployProcessorVersion();
+     *     $formattedName = $documentProcessorServiceClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
+     *     $operationResponse = $documentProcessorServiceClient->deployProcessorVersion($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -914,7 +904,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentProcessorServiceClient->deployProcessorVersion();
+     *     $operationResponse = $documentProcessorServiceClient->deployProcessorVersion($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'deployProcessorVersion');
@@ -934,11 +924,10 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The processor version resource name to be deployed.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The processor version resource name to be deployed.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -949,15 +938,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deployProcessorVersion(array $optionalArgs = [])
+    public function deployProcessorVersion($name, array $optionalArgs = [])
     {
         $request = new DeployProcessorVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -979,7 +965,8 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $operationResponse = $documentProcessorServiceClient->disableProcessor();
+     *     $formattedName = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+     *     $operationResponse = $documentProcessorServiceClient->disableProcessor($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -990,7 +977,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentProcessorServiceClient->disableProcessor();
+     *     $operationResponse = $documentProcessorServiceClient->disableProcessor($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'disableProcessor');
@@ -1010,11 +997,10 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The processor resource name to be disabled.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The processor resource name to be disabled.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1025,15 +1011,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function disableProcessor(array $optionalArgs = [])
+    public function disableProcessor($name, array $optionalArgs = [])
     {
         $request = new DisableProcessorRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1055,7 +1038,8 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $operationResponse = $documentProcessorServiceClient->enableProcessor();
+     *     $formattedName = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+     *     $operationResponse = $documentProcessorServiceClient->enableProcessor($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1066,7 +1050,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentProcessorServiceClient->enableProcessor();
+     *     $operationResponse = $documentProcessorServiceClient->enableProcessor($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'enableProcessor');
@@ -1086,11 +1070,10 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The processor resource name to be enabled.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The processor resource name to be enabled.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1101,15 +1084,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function enableProcessor(array $optionalArgs = [])
+    public function enableProcessor($name, array $optionalArgs = [])
     {
         $request = new EnableProcessorRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1132,7 +1112,8 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $operationResponse = $documentProcessorServiceClient->evaluateProcessorVersion();
+     *     $formattedProcessorVersion = $documentProcessorServiceClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
+     *     $operationResponse = $documentProcessorServiceClient->evaluateProcessorVersion($formattedProcessorVersion);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1143,7 +1124,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentProcessorServiceClient->evaluateProcessorVersion();
+     *     $operationResponse = $documentProcessorServiceClient->evaluateProcessorVersion($formattedProcessorVersion);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'evaluateProcessorVersion');
@@ -1163,14 +1144,13 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $processorVersion Required. The resource name of the
+     *                                 [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to
+     *                                 evaluate.
+     *                                 `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+     * @param array  $optionalArgs     {
      *     Optional.
      *
-     *     @type string $processorVersion
-     *           Required. The resource name of the
-     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to
-     *           evaluate.
-     *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *     @type BatchDocumentsInputConfig $evaluationDocuments
      *           Optional. The documents used in the evaluation. If unspecified, use the
      *           processor's dataset as evaluation input.
@@ -1184,16 +1164,14 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function evaluateProcessorVersion(array $optionalArgs = [])
-    {
+    public function evaluateProcessorVersion(
+        $processorVersion,
+        array $optionalArgs = []
+    ) {
         $request = new EvaluateProcessorVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['processorVersion'])) {
-            $request->setProcessorVersion($optionalArgs['processorVersion']);
-            $requestParamHeaders['processor_version'] =
-                $optionalArgs['processorVersion'];
-        }
-
+        $request->setProcessorVersion($processorVersion);
+        $requestParamHeaders['processor_version'] = $processorVersion;
         if (isset($optionalArgs['evaluationDocuments'])) {
             $request->setEvaluationDocuments(
                 $optionalArgs['evaluationDocuments']
@@ -1223,18 +1201,18 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $response = $documentProcessorServiceClient->fetchProcessorTypes();
+     *     $formattedParent = $documentProcessorServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $response = $documentProcessorServiceClient->fetchProcessorTypes($formattedParent);
      * } finally {
      *     $documentProcessorServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The location of processor types to list.
+     *                             Format: `projects/{project}/locations/{location}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The location of processor types to list.
-     *           Format: `projects/{project}/locations/{location}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1245,15 +1223,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function fetchProcessorTypes(array $optionalArgs = [])
+    public function fetchProcessorTypes($parent, array $optionalArgs = [])
     {
         $request = new FetchProcessorTypesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1275,19 +1250,19 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $response = $documentProcessorServiceClient->getEvaluation();
+     *     $formattedName = $documentProcessorServiceClient->evaluationName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]', '[EVALUATION]');
+     *     $response = $documentProcessorServiceClient->getEvaluation($formattedName);
      * } finally {
      *     $documentProcessorServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the
+     *                             [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
+     *                             `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}/evaluations/{evaluation}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the
-     *           [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
-     *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}/evaluations/{evaluation}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1298,15 +1273,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEvaluation(array $optionalArgs = [])
+    public function getEvaluation($name, array $optionalArgs = [])
     {
         $request = new GetEvaluationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1328,17 +1300,17 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $response = $documentProcessorServiceClient->getProcessor();
+     *     $formattedName = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+     *     $response = $documentProcessorServiceClient->getProcessor($formattedName);
      * } finally {
      *     $documentProcessorServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The processor resource name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The processor resource name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1349,15 +1321,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getProcessor(array $optionalArgs = [])
+    public function getProcessor($name, array $optionalArgs = [])
     {
         $request = new GetProcessorRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1379,17 +1348,17 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $response = $documentProcessorServiceClient->getProcessorType();
+     *     $formattedName = $documentProcessorServiceClient->processorTypeName('[PROJECT]', '[LOCATION]', '[PROCESSOR_TYPE]');
+     *     $response = $documentProcessorServiceClient->getProcessorType($formattedName);
      * } finally {
      *     $documentProcessorServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The processor type resource name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The processor type resource name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1400,15 +1369,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getProcessorType(array $optionalArgs = [])
+    public function getProcessorType($name, array $optionalArgs = [])
     {
         $request = new GetProcessorTypeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1430,17 +1396,17 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $response = $documentProcessorServiceClient->getProcessorVersion();
+     *     $formattedName = $documentProcessorServiceClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
+     *     $response = $documentProcessorServiceClient->getProcessorVersion($formattedName);
      * } finally {
      *     $documentProcessorServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The processor resource name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The processor resource name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1451,15 +1417,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getProcessorVersion(array $optionalArgs = [])
+    public function getProcessorVersion($name, array $optionalArgs = [])
     {
         $request = new GetProcessorVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1481,8 +1444,9 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
+     *     $formattedParent = $documentProcessorServiceClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $documentProcessorServiceClient->listEvaluations();
+     *     $pagedResponse = $documentProcessorServiceClient->listEvaluations($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1490,7 +1454,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $documentProcessorServiceClient->listEvaluations();
+     *     $pagedResponse = $documentProcessorServiceClient->listEvaluations($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1499,14 +1463,13 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the
+     *                             [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list
+     *                             evaluations for.
+     *                             `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the
-     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list
-     *           evaluations for.
-     *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1526,15 +1489,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listEvaluations(array $optionalArgs = [])
+    public function listEvaluations($parent, array $optionalArgs = [])
     {
         $request = new ListEvaluationsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1564,8 +1524,9 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
+     *     $formattedParent = $documentProcessorServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $documentProcessorServiceClient->listProcessorTypes();
+     *     $pagedResponse = $documentProcessorServiceClient->listProcessorTypes($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1573,7 +1534,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $documentProcessorServiceClient->listProcessorTypes();
+     *     $pagedResponse = $documentProcessorServiceClient->listProcessorTypes($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1582,12 +1543,11 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The location of processor types to list.
+     *                             Format: `projects/{project}/locations/{location}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The location of processor types to list.
-     *           Format: `projects/{project}/locations/{location}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1607,15 +1567,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listProcessorTypes(array $optionalArgs = [])
+    public function listProcessorTypes($parent, array $optionalArgs = [])
     {
         $request = new ListProcessorTypesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1645,8 +1602,9 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
+     *     $formattedParent = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $documentProcessorServiceClient->listProcessorVersions();
+     *     $pagedResponse = $documentProcessorServiceClient->listProcessorVersions($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1654,7 +1612,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $documentProcessorServiceClient->listProcessorVersions();
+     *     $pagedResponse = $documentProcessorServiceClient->listProcessorVersions($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1663,13 +1621,12 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The parent (project, location and processor) to list all
+     *                             versions. Format:
+     *                             `projects/{project}/locations/{location}/processors/{processor}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent (project, location and processor) to list all
-     *           versions. Format:
-     *           `projects/{project}/locations/{location}/processors/{processor}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1689,15 +1646,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listProcessorVersions(array $optionalArgs = [])
+    public function listProcessorVersions($parent, array $optionalArgs = [])
     {
         $request = new ListProcessorVersionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1727,8 +1681,9 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
+     *     $formattedParent = $documentProcessorServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $documentProcessorServiceClient->listProcessors();
+     *     $pagedResponse = $documentProcessorServiceClient->listProcessors($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1736,7 +1691,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $documentProcessorServiceClient->listProcessors();
+     *     $pagedResponse = $documentProcessorServiceClient->listProcessors($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1745,12 +1700,11 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The parent (project and location) which owns this collection of
+     *                             Processors. Format: `projects/{project}/locations/{location}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent (project and location) which owns this collection of
-     *           Processors. Format: `projects/{project}/locations/{location}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1770,15 +1724,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listProcessors(array $optionalArgs = [])
+    public function listProcessors($parent, array $optionalArgs = [])
     {
         $request = new ListProcessorsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1808,13 +1759,24 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $response = $documentProcessorServiceClient->processDocument();
+     *     $name = 'name';
+     *     $response = $documentProcessorServiceClient->processDocument($name);
      * } finally {
      *     $documentProcessorServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the
+     *                             [Processor][google.cloud.documentai.v1.Processor] or
+     *                             [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
+     *                             to use for processing. If a
+     *                             [Processor][google.cloud.documentai.v1.Processor] is specified, the server
+     *                             will use its [default
+     *                             version][google.cloud.documentai.v1.Processor.default_processor_version].
+     *                             Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     *                             or
+     *                             `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type Document $inlineDocument
@@ -1823,17 +1785,6 @@ class DocumentProcessorServiceGapicClient
      *           A raw document content (bytes).
      *     @type GcsDocument $gcsDocument
      *           A raw document on Google Cloud Storage.
-     *     @type string $name
-     *           Required. The resource name of the
-     *           [Processor][google.cloud.documentai.v1.Processor] or
-     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     *           to use for processing. If a
-     *           [Processor][google.cloud.documentai.v1.Processor] is specified, the server
-     *           will use its [default
-     *           version][google.cloud.documentai.v1.Processor.default_processor_version].
-     *           Format: `projects/{project}/locations/{location}/processors/{processor}`,
-     *           or
-     *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *     @type bool $skipHumanReview
      *           Whether human review should be skipped for this request. Default to
      *           `false`.
@@ -1854,10 +1805,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function processDocument(array $optionalArgs = [])
+    public function processDocument($name, array $optionalArgs = [])
     {
         $request = new ProcessRequest();
         $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['inlineDocument'])) {
             $request->setInlineDocument($optionalArgs['inlineDocument']);
         }
@@ -1868,11 +1821,6 @@ class DocumentProcessorServiceGapicClient
 
         if (isset($optionalArgs['gcsDocument'])) {
             $request->setGcsDocument($optionalArgs['gcsDocument']);
-        }
-
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
         }
 
         if (isset($optionalArgs['skipHumanReview'])) {
@@ -1909,7 +1857,8 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $operationResponse = $documentProcessorServiceClient->reviewDocument();
+     *     $formattedHumanReviewConfig = $documentProcessorServiceClient->humanReviewConfigName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+     *     $operationResponse = $documentProcessorServiceClient->reviewDocument($formattedHumanReviewConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1920,7 +1869,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentProcessorServiceClient->reviewDocument();
+     *     $operationResponse = $documentProcessorServiceClient->reviewDocument($formattedHumanReviewConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'reviewDocument');
@@ -1940,15 +1889,14 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $humanReviewConfig Required. The resource name of the
+     *                                  [HumanReviewConfig][google.cloud.documentai.v1.HumanReviewConfig] that the
+     *                                  document will be reviewed with.
+     * @param array  $optionalArgs      {
      *     Optional.
      *
      *     @type Document $inlineDocument
      *           An inline document proto.
-     *     @type string $humanReviewConfig
-     *           Required. The resource name of the
-     *           [HumanReviewConfig][google.cloud.documentai.v1.HumanReviewConfig] that the
-     *           document will be reviewed with.
      *     @type bool $enableSchemaValidation
      *           Whether the validation should be performed on the ad-hoc review request.
      *     @type int $priority
@@ -1966,18 +1914,14 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function reviewDocument(array $optionalArgs = [])
+    public function reviewDocument($humanReviewConfig, array $optionalArgs = [])
     {
         $request = new ReviewDocumentRequest();
         $requestParamHeaders = [];
+        $request->setHumanReviewConfig($humanReviewConfig);
+        $requestParamHeaders['human_review_config'] = $humanReviewConfig;
         if (isset($optionalArgs['inlineDocument'])) {
             $request->setInlineDocument($optionalArgs['inlineDocument']);
-        }
-
-        if (isset($optionalArgs['humanReviewConfig'])) {
-            $request->setHumanReviewConfig($optionalArgs['humanReviewConfig']);
-            $requestParamHeaders['human_review_config'] =
-                $optionalArgs['humanReviewConfig'];
         }
 
         if (isset($optionalArgs['enableSchemaValidation'])) {
@@ -2019,7 +1963,9 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $operationResponse = $documentProcessorServiceClient->setDefaultProcessorVersion();
+     *     $formattedProcessor = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+     *     $formattedDefaultProcessorVersion = $documentProcessorServiceClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
+     *     $operationResponse = $documentProcessorServiceClient->setDefaultProcessorVersion($formattedProcessor, $formattedDefaultProcessorVersion);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2030,7 +1976,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentProcessorServiceClient->setDefaultProcessorVersion();
+     *     $operationResponse = $documentProcessorServiceClient->setDefaultProcessorVersion($formattedProcessor, $formattedDefaultProcessorVersion);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'setDefaultProcessorVersion');
@@ -2050,18 +1996,16 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $processor               Required. The resource name of the
+     *                                        [Processor][google.cloud.documentai.v1.Processor] to change default
+     *                                        version.
+     * @param string $defaultProcessorVersion Required. The resource name of child
+     *                                        [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as
+     *                                        default. Format:
+     *                                        `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{version}`
+     * @param array  $optionalArgs            {
      *     Optional.
      *
-     *     @type string $processor
-     *           Required. The resource name of the
-     *           [Processor][google.cloud.documentai.v1.Processor] to change default
-     *           version.
-     *     @type string $defaultProcessorVersion
-     *           Required. The resource name of child
-     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as
-     *           default. Format:
-     *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{version}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2072,21 +2016,16 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setDefaultProcessorVersion(array $optionalArgs = [])
-    {
+    public function setDefaultProcessorVersion(
+        $processor,
+        $defaultProcessorVersion,
+        array $optionalArgs = []
+    ) {
         $request = new SetDefaultProcessorVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['processor'])) {
-            $request->setProcessor($optionalArgs['processor']);
-            $requestParamHeaders['processor'] = $optionalArgs['processor'];
-        }
-
-        if (isset($optionalArgs['defaultProcessorVersion'])) {
-            $request->setDefaultProcessorVersion(
-                $optionalArgs['defaultProcessorVersion']
-            );
-        }
-
+        $request->setProcessor($processor);
+        $request->setDefaultProcessorVersion($defaultProcessorVersion);
+        $requestParamHeaders['processor'] = $processor;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2110,7 +2049,9 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $operationResponse = $documentProcessorServiceClient->trainProcessorVersion();
+     *     $formattedParent = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+     *     $processorVersion = new ProcessorVersion();
+     *     $operationResponse = $documentProcessorServiceClient->trainProcessorVersion($formattedParent, $processorVersion);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2121,7 +2062,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentProcessorServiceClient->trainProcessorVersion();
+     *     $operationResponse = $documentProcessorServiceClient->trainProcessorVersion($formattedParent, $processorVersion);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'trainProcessorVersion');
@@ -2141,17 +2082,15 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string           $parent           Required. The parent (project, location and processor) to create the new
+     *                                           version for. Format:
+     *                                           `projects/{project}/locations/{location}/processors/{processor}`.
+     * @param ProcessorVersion $processorVersion Required. The processor version to be created.
+     * @param array            $optionalArgs     {
      *     Optional.
      *
      *     @type CustomDocumentExtractionOptions $customDocumentExtractionOptions
      *           Options to control Custom Document Extraction (CDE) Processor.
-     *     @type string $parent
-     *           Required. The parent (project, location and processor) to create the new
-     *           version for. Format:
-     *           `projects/{project}/locations/{location}/processors/{processor}`.
-     *     @type ProcessorVersion $processorVersion
-     *           Required. The processor version to be created.
      *     @type DocumentSchema $documentSchema
      *           Optional. The schema the processor version will be trained with.
      *     @type InputData $inputData
@@ -2171,23 +2110,20 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function trainProcessorVersion(array $optionalArgs = [])
-    {
+    public function trainProcessorVersion(
+        $parent,
+        $processorVersion,
+        array $optionalArgs = []
+    ) {
         $request = new TrainProcessorVersionRequest();
         $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setProcessorVersion($processorVersion);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['customDocumentExtractionOptions'])) {
             $request->setCustomDocumentExtractionOptions(
                 $optionalArgs['customDocumentExtractionOptions']
             );
-        }
-
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['processorVersion'])) {
-            $request->setProcessorVersion($optionalArgs['processorVersion']);
         }
 
         if (isset($optionalArgs['documentSchema'])) {
@@ -2225,7 +2161,8 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $operationResponse = $documentProcessorServiceClient->undeployProcessorVersion();
+     *     $formattedName = $documentProcessorServiceClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
+     *     $operationResponse = $documentProcessorServiceClient->undeployProcessorVersion($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2236,7 +2173,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentProcessorServiceClient->undeployProcessorVersion();
+     *     $operationResponse = $documentProcessorServiceClient->undeployProcessorVersion($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'undeployProcessorVersion');
@@ -2256,11 +2193,10 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The processor version resource name to be undeployed.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The processor version resource name to be undeployed.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2271,15 +2207,12 @@ class DocumentProcessorServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function undeployProcessorVersion(array $optionalArgs = [])
+    public function undeployProcessorVersion($name, array $optionalArgs = [])
     {
         $request = new UndeployProcessorVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

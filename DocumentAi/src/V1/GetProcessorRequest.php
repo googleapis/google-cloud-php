@@ -25,7 +25,8 @@ class GetProcessorRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The processor resource name.
+     * @param string $name Required. The processor resource name. Please see
+     *                     {@see DocumentProcessorServiceClient::processorName()} for help formatting this field.
      *
      * @return \Google\Cloud\DocumentAI\V1\GetProcessorRequest
      *

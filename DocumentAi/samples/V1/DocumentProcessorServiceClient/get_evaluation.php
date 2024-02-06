@@ -31,19 +31,19 @@ use Google\Cloud\DocumentAI\V1\GetEvaluationRequest;
 /**
  * Retrieves a specific evaluation.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the
+ *                              [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
+ *                              `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}/evaluations/{evaluation}`
+ *                              Please see {@see DocumentProcessorServiceClient::evaluationName()} for help formatting this field.
  */
-function get_evaluation_sample(): void
+function get_evaluation_sample(string $formattedName): void
 {
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
     // Prepare the request message.
-    $request = new GetEvaluationRequest();
+    $request = (new GetEvaluationRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +53,27 @@ function get_evaluation_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DocumentProcessorServiceClient::evaluationName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[PROCESSOR]',
+        '[PROCESSOR_VERSION]',
+        '[EVALUATION]'
+    );
+
+    get_evaluation_sample($formattedName);
 }
 // [END documentai_v1_generated_DocumentProcessorService_GetEvaluation_sync]

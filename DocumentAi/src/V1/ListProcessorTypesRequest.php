@@ -42,7 +42,8 @@ class ListProcessorTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The location of processor types to list.
-     *                       Format: `projects/{project}/locations/{location}`.
+     *                       Format: `projects/{project}/locations/{location}`. Please see
+     *                       {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\DocumentAI\V1\ListProcessorTypesRequest
      *

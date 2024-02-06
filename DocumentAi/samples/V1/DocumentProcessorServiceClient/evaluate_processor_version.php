@@ -34,19 +34,20 @@ use Google\Rpc\Status;
  * Evaluates a ProcessorVersion against annotated documents, producing an
  * Evaluation.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedProcessorVersion The resource name of the
+ *                                          [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to
+ *                                          evaluate.
+ *                                          `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+ *                                          Please see {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
  */
-function evaluate_processor_version_sample(): void
+function evaluate_processor_version_sample(string $formattedProcessorVersion): void
 {
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
     // Prepare the request message.
-    $request = new EvaluateProcessorVersionRequest();
+    $request = (new EvaluateProcessorVersionRequest())
+        ->setProcessorVersion($formattedProcessorVersion);
 
     // Call the API and handle any network failures.
     try {
@@ -66,5 +67,26 @@ function evaluate_processor_version_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedProcessorVersion = DocumentProcessorServiceClient::processorVersionName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[PROCESSOR]',
+        '[PROCESSOR_VERSION]'
+    );
+
+    evaluate_processor_version_sample($formattedProcessorVersion);
 }
 // [END documentai_v1_generated_DocumentProcessorService_EvaluateProcessorVersion_sync]
