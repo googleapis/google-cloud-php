@@ -27,7 +27,7 @@ class EventService
 parent (	B#àAúAjobs.googleapis.com/CompanyC
 client_event (2(.google.cloud.talent.v4beta1.ClientEventBàA2ú
 EventServiceû
-CreateClientEvent5.google.cloud.talent.v4beta1.CreateClientEventRequest(.google.cloud.talent.v4beta1.ClientEvent"„‚Óä“h"3/v4beta1/{parent=projects/*/tenants/*}/clientEvents:*Z.")/v4beta1/{parent=projects/*}/clientEvents:*ÚAparent,client_eventlÊAjobs.googleapis.comÒAShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBu
+CreateClientEvent5.google.cloud.talent.v4beta1.CreateClientEventRequest(.google.cloud.talent.v4beta1.ClientEvent"„ÚAparent,client_event‚Óä“h"3/v4beta1/{parent=projects/*/tenants/*}/clientEvents:*Z.")/v4beta1/{parent=projects/*}/clientEvents:*lÊAjobs.googleapis.comÒAShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBu
 com.google.cloud.talent.v4beta1BEventServiceProtoPZ7cloud.google.com/go/talent/apiv4beta1/talentpb;talentpb¢CTSbproto3'
         , true);
 
