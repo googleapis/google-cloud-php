@@ -29,8 +29,8 @@ use Google\Cloud\AIPlatform\V1\DirectPredictRequest;
 use Google\Cloud\AIPlatform\V1\DirectPredictResponse;
 
 /**
- * Perform an unary online prediction request for Vertex first-party products
- * and frameworks.
+ * Perform an unary online prediction request to a gRPC model server for
+ * Vertex first-party products and frameworks.
  *
  * @param string $formattedEndpoint The name of the Endpoint requested to serve the prediction.
  *                                  Format:

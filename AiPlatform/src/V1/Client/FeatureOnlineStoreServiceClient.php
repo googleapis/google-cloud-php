@@ -46,7 +46,7 @@ use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
- * Service Description:
+ * Service Description: A service for fetching feature values from the online store.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.

@@ -39,6 +39,25 @@ return [
                     ],
                 ],
             ],
+            'GenerateContent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{model=projects/*/locations/*/endpoints/*}:generateContent',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{model=projects/*/locations/*/publishers/*/models/*}:generateContent',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'model' => [
+                        'getters' => [
+                            'getModel',
+                        ],
+                    ],
+                ],
+            ],
             'Predict' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/endpoints/*}:predict',
@@ -111,6 +130,25 @@ return [
                     'model' => [
                         'getters' => [
                             'getModel',
+                        ],
+                    ],
+                ],
+            ],
+            'StreamRawPredict' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/endpoints/*}:streamRawPredict',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:streamRawPredict',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'endpoint' => [
+                        'getters' => [
+                            'getEndpoint',
                         ],
                     ],
                 ],

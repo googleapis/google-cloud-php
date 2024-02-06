@@ -224,47 +224,47 @@ page_token (	
 max_hops (
 filter (	2±:
 MetadataService›
-CreateMetadataStore6.google.cloud.aiplatform.v1.CreateMetadataStoreRequest.google.longrunning.Operation"¬‚Óä“D"2/v1/{parent=projects/*/locations/*}/metadataStores:metadata_storeÚA\'parent,metadata_store,metadata_store_idÊA5
-MetadataStore$CreateMetadataStoreOperationMetadataµ
-GetMetadataStore3.google.cloud.aiplatform.v1.GetMetadataStoreRequest).google.cloud.aiplatform.v1.MetadataStore"A‚Óä“42/v1/{name=projects/*/locations/*/metadataStores/*}ÚAnameÈ
-ListMetadataStores5.google.cloud.aiplatform.v1.ListMetadataStoresRequest6.google.cloud.aiplatform.v1.ListMetadataStoresResponse"C‚Óä“42/v1/{parent=projects/*/locations/*}/metadataStoresÚAparentð
-DeleteMetadataStore6.google.cloud.aiplatform.v1.DeleteMetadataStoreRequest.google.longrunning.Operation"‚Óä“4*2/v1/{name=projects/*/locations/*/metadataStores/*}ÚAnameÊA=
-google.protobuf.Empty$DeleteMetadataStoreOperationMetadataÙ
-CreateArtifact1.google.cloud.aiplatform.v1.CreateArtifactRequest$.google.cloud.aiplatform.v1.Artifact"n‚Óä“J">/v1/{parent=projects/*/locations/*/metadataStores/*}/artifacts:artifactÚAparent,artifact,artifact_id²
-GetArtifact..google.cloud.aiplatform.v1.GetArtifactRequest$.google.cloud.aiplatform.v1.Artifact"M‚Óä“@>/v1/{name=projects/*/locations/*/metadataStores/*/artifacts/*}ÚAnameÅ
-ListArtifacts0.google.cloud.aiplatform.v1.ListArtifactsRequest1.google.cloud.aiplatform.v1.ListArtifactsResponse"O‚Óä“@>/v1/{parent=projects/*/locations/*/metadataStores/*}/artifactsÚAparentÛ
-UpdateArtifact1.google.cloud.aiplatform.v1.UpdateArtifactRequest$.google.cloud.aiplatform.v1.Artifact"p‚Óä“S2G/v1/{artifact.name=projects/*/locations/*/metadataStores/*/artifacts/*}:artifactÚAartifact,update_maskå
-DeleteArtifact1.google.cloud.aiplatform.v1.DeleteArtifactRequest.google.longrunning.Operation"€‚Óä“@*>/v1/{name=projects/*/locations/*/metadataStores/*/artifacts/*}ÚAnameÊA0
-google.protobuf.EmptyDeleteOperationMetadatað
-PurgeArtifacts1.google.cloud.aiplatform.v1.PurgeArtifactsRequest.google.longrunning.Operation"‹‚Óä“I"D/v1/{parent=projects/*/locations/*/metadataStores/*}/artifacts:purge:*ÚAparentÊA0
-PurgeArtifactsResponsePurgeArtifactsMetadataÒ
-CreateContext0.google.cloud.aiplatform.v1.CreateContextRequest#.google.cloud.aiplatform.v1.Context"j‚Óä“H"=/v1/{parent=projects/*/locations/*/metadataStores/*}/contexts:contextÚAparent,context,context_id®
+CreateMetadataStore6.google.cloud.aiplatform.v1.CreateMetadataStoreRequest.google.longrunning.Operation"¬ÊA5
+MetadataStore$CreateMetadataStoreOperationMetadataÚA\'parent,metadata_store,metadata_store_id‚Óä“D"2/v1/{parent=projects/*/locations/*}/metadataStores:metadata_storeµ
+GetMetadataStore3.google.cloud.aiplatform.v1.GetMetadataStoreRequest).google.cloud.aiplatform.v1.MetadataStore"AÚAname‚Óä“42/v1/{name=projects/*/locations/*/metadataStores/*}È
+ListMetadataStores5.google.cloud.aiplatform.v1.ListMetadataStoresRequest6.google.cloud.aiplatform.v1.ListMetadataStoresResponse"CÚAparent‚Óä“42/v1/{parent=projects/*/locations/*}/metadataStoresð
+DeleteMetadataStore6.google.cloud.aiplatform.v1.DeleteMetadataStoreRequest.google.longrunning.Operation"ÊA=
+google.protobuf.Empty$DeleteMetadataStoreOperationMetadataÚAname‚Óä“4*2/v1/{name=projects/*/locations/*/metadataStores/*}Ù
+CreateArtifact1.google.cloud.aiplatform.v1.CreateArtifactRequest$.google.cloud.aiplatform.v1.Artifact"nÚAparent,artifact,artifact_id‚Óä“J">/v1/{parent=projects/*/locations/*/metadataStores/*}/artifacts:artifact²
+GetArtifact..google.cloud.aiplatform.v1.GetArtifactRequest$.google.cloud.aiplatform.v1.Artifact"MÚAname‚Óä“@>/v1/{name=projects/*/locations/*/metadataStores/*/artifacts/*}Å
+ListArtifacts0.google.cloud.aiplatform.v1.ListArtifactsRequest1.google.cloud.aiplatform.v1.ListArtifactsResponse"OÚAparent‚Óä“@>/v1/{parent=projects/*/locations/*/metadataStores/*}/artifactsÛ
+UpdateArtifact1.google.cloud.aiplatform.v1.UpdateArtifactRequest$.google.cloud.aiplatform.v1.Artifact"pÚAartifact,update_mask‚Óä“S2G/v1/{artifact.name=projects/*/locations/*/metadataStores/*/artifacts/*}:artifactå
+DeleteArtifact1.google.cloud.aiplatform.v1.DeleteArtifactRequest.google.longrunning.Operation"€ÊA0
+google.protobuf.EmptyDeleteOperationMetadataÚAname‚Óä“@*>/v1/{name=projects/*/locations/*/metadataStores/*/artifacts/*}ð
+PurgeArtifacts1.google.cloud.aiplatform.v1.PurgeArtifactsRequest.google.longrunning.Operation"‹ÊA0
+PurgeArtifactsResponsePurgeArtifactsMetadataÚAparent‚Óä“I"D/v1/{parent=projects/*/locations/*/metadataStores/*}/artifacts:purge:*Ò
+CreateContext0.google.cloud.aiplatform.v1.CreateContextRequest#.google.cloud.aiplatform.v1.Context"jÚAparent,context,context_id‚Óä“H"=/v1/{parent=projects/*/locations/*/metadataStores/*}/contexts:context®
 
-GetContext-.google.cloud.aiplatform.v1.GetContextRequest#.google.cloud.aiplatform.v1.Context"L‚Óä“?=/v1/{name=projects/*/locations/*/metadataStores/*/contexts/*}ÚAnameÁ
-ListContexts/.google.cloud.aiplatform.v1.ListContextsRequest0.google.cloud.aiplatform.v1.ListContextsResponse"N‚Óä“?=/v1/{parent=projects/*/locations/*/metadataStores/*}/contextsÚAparentÔ
-UpdateContext0.google.cloud.aiplatform.v1.UpdateContextRequest#.google.cloud.aiplatform.v1.Context"l‚Óä“P2E/v1/{context.name=projects/*/locations/*/metadataStores/*/contexts/*}:contextÚAcontext,update_maská
-DeleteContext0.google.cloud.aiplatform.v1.DeleteContextRequest.google.longrunning.Operation"‚Óä“?*=/v1/{name=projects/*/locations/*/metadataStores/*/contexts/*}ÚAnameÊA0
-google.protobuf.EmptyDeleteOperationMetadataë
-PurgeContexts0.google.cloud.aiplatform.v1.PurgeContextsRequest.google.longrunning.Operation"ˆ‚Óä“H"C/v1/{parent=projects/*/locations/*/metadataStores/*}/contexts:purge:*ÚAparentÊA.
-PurgeContextsResponsePurgeContextsMetadata»
- AddContextArtifactsAndExecutionsC.google.cloud.aiplatform.v1.AddContextArtifactsAndExecutionsRequestD.google.cloud.aiplatform.v1.AddContextArtifactsAndExecutionsResponse"‹‚Óä“f"a/v1/{context=projects/*/locations/*/metadataStores/*/contexts/*}:addContextArtifactsAndExecutions:*ÚAcontext,artifacts,executionsü
-AddContextChildren5.google.cloud.aiplatform.v1.AddContextChildrenRequest6.google.cloud.aiplatform.v1.AddContextChildrenResponse"w‚Óä“X"S/v1/{context=projects/*/locations/*/metadataStores/*/contexts/*}:addContextChildren:*ÚAcontext,child_contextsˆ
-RemoveContextChildren8.google.cloud.aiplatform.v1.RemoveContextChildrenRequest9.google.cloud.aiplatform.v1.RemoveContextChildrenResponse"z‚Óä“["V/v1/{context=projects/*/locations/*/metadataStores/*/contexts/*}:removeContextChildren:*ÚAcontext,child_contextsú
-QueryContextLineageSubgraph>.google.cloud.aiplatform.v1.QueryContextLineageSubgraphRequest+.google.cloud.aiplatform.v1.LineageSubgraph"n‚Óä“^\\/v1/{context=projects/*/locations/*/metadataStores/*/contexts/*}:queryContextLineageSubgraphÚAcontextà
-CreateExecution2.google.cloud.aiplatform.v1.CreateExecutionRequest%.google.cloud.aiplatform.v1.Execution"r‚Óä“L"?/v1/{parent=projects/*/locations/*/metadataStores/*}/executions:	executionÚAparent,execution,execution_id¶
-GetExecution/.google.cloud.aiplatform.v1.GetExecutionRequest%.google.cloud.aiplatform.v1.Execution"N‚Óä“A?/v1/{name=projects/*/locations/*/metadataStores/*/executions/*}ÚAnameÉ
-ListExecutions1.google.cloud.aiplatform.v1.ListExecutionsRequest2.google.cloud.aiplatform.v1.ListExecutionsResponse"P‚Óä“A?/v1/{parent=projects/*/locations/*/metadataStores/*}/executionsÚAparentâ
-UpdateExecution2.google.cloud.aiplatform.v1.UpdateExecutionRequest%.google.cloud.aiplatform.v1.Execution"t‚Óä“V2I/v1/{execution.name=projects/*/locations/*/metadataStores/*/executions/*}:	executionÚAexecution,update_maskè
-DeleteExecution2.google.cloud.aiplatform.v1.DeleteExecutionRequest.google.longrunning.Operation"‚Óä“A*?/v1/{name=projects/*/locations/*/metadataStores/*/executions/*}ÚAnameÊA0
-google.protobuf.EmptyDeleteOperationMetadataõ
-PurgeExecutions2.google.cloud.aiplatform.v1.PurgeExecutionsRequest.google.longrunning.Operation"Ž‚Óä“J"E/v1/{parent=projects/*/locations/*/metadataStores/*}/executions:purge:*ÚAparentÊA2
-PurgeExecutionsResponsePurgeExecutionsMetadataú
-AddExecutionEvents5.google.cloud.aiplatform.v1.AddExecutionEventsRequest6.google.cloud.aiplatform.v1.AddExecutionEventsResponse"u‚Óä“\\"W/v1/{execution=projects/*/locations/*/metadataStores/*/executions/*}:addExecutionEvents:*ÚAexecution,events‰
-QueryExecutionInputsAndOutputsA.google.cloud.aiplatform.v1.QueryExecutionInputsAndOutputsRequest+.google.cloud.aiplatform.v1.LineageSubgraph"w‚Óä“ec/v1/{execution=projects/*/locations/*/metadataStores/*/executions/*}:queryExecutionInputsAndOutputsÚA	execution‡
-CreateMetadataSchema7.google.cloud.aiplatform.v1.CreateMetadataSchemaRequest*.google.cloud.aiplatform.v1.MetadataSchema"‰‚Óä“W"D/v1/{parent=projects/*/locations/*/metadataStores/*}/metadataSchemas:metadata_schemaÚA)parent,metadata_schema,metadata_schema_idÊ
-GetMetadataSchema4.google.cloud.aiplatform.v1.GetMetadataSchemaRequest*.google.cloud.aiplatform.v1.MetadataSchema"S‚Óä“FD/v1/{name=projects/*/locations/*/metadataStores/*/metadataSchemas/*}ÚAnameÝ
-ListMetadataSchemas6.google.cloud.aiplatform.v1.ListMetadataSchemasRequest7.google.cloud.aiplatform.v1.ListMetadataSchemasResponse"U‚Óä“FD/v1/{parent=projects/*/locations/*/metadataStores/*}/metadataSchemasÚAparent€
-QueryArtifactLineageSubgraph?.google.cloud.aiplatform.v1.QueryArtifactLineageSubgraphRequest+.google.cloud.aiplatform.v1.LineageSubgraph"r‚Óä“a_/v1/{artifact=projects/*/locations/*/metadataStores/*/artifacts/*}:queryArtifactLineageSubgraphÚAartifactMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÒ
+GetContext-.google.cloud.aiplatform.v1.GetContextRequest#.google.cloud.aiplatform.v1.Context"LÚAname‚Óä“?=/v1/{name=projects/*/locations/*/metadataStores/*/contexts/*}Á
+ListContexts/.google.cloud.aiplatform.v1.ListContextsRequest0.google.cloud.aiplatform.v1.ListContextsResponse"NÚAparent‚Óä“?=/v1/{parent=projects/*/locations/*/metadataStores/*}/contextsÔ
+UpdateContext0.google.cloud.aiplatform.v1.UpdateContextRequest#.google.cloud.aiplatform.v1.Context"lÚAcontext,update_mask‚Óä“P2E/v1/{context.name=projects/*/locations/*/metadataStores/*/contexts/*}:contextá
+DeleteContext0.google.cloud.aiplatform.v1.DeleteContextRequest.google.longrunning.Operation"ÊA0
+google.protobuf.EmptyDeleteOperationMetadataÚAname‚Óä“?*=/v1/{name=projects/*/locations/*/metadataStores/*/contexts/*}ë
+PurgeContexts0.google.cloud.aiplatform.v1.PurgeContextsRequest.google.longrunning.Operation"ˆÊA.
+PurgeContextsResponsePurgeContextsMetadataÚAparent‚Óä“H"C/v1/{parent=projects/*/locations/*/metadataStores/*}/contexts:purge:*»
+ AddContextArtifactsAndExecutionsC.google.cloud.aiplatform.v1.AddContextArtifactsAndExecutionsRequestD.google.cloud.aiplatform.v1.AddContextArtifactsAndExecutionsResponse"‹ÚAcontext,artifacts,executions‚Óä“f"a/v1/{context=projects/*/locations/*/metadataStores/*/contexts/*}:addContextArtifactsAndExecutions:*ü
+AddContextChildren5.google.cloud.aiplatform.v1.AddContextChildrenRequest6.google.cloud.aiplatform.v1.AddContextChildrenResponse"wÚAcontext,child_contexts‚Óä“X"S/v1/{context=projects/*/locations/*/metadataStores/*/contexts/*}:addContextChildren:*ˆ
+RemoveContextChildren8.google.cloud.aiplatform.v1.RemoveContextChildrenRequest9.google.cloud.aiplatform.v1.RemoveContextChildrenResponse"zÚAcontext,child_contexts‚Óä“["V/v1/{context=projects/*/locations/*/metadataStores/*/contexts/*}:removeContextChildren:*ú
+QueryContextLineageSubgraph>.google.cloud.aiplatform.v1.QueryContextLineageSubgraphRequest+.google.cloud.aiplatform.v1.LineageSubgraph"nÚAcontext‚Óä“^\\/v1/{context=projects/*/locations/*/metadataStores/*/contexts/*}:queryContextLineageSubgraphà
+CreateExecution2.google.cloud.aiplatform.v1.CreateExecutionRequest%.google.cloud.aiplatform.v1.Execution"rÚAparent,execution,execution_id‚Óä“L"?/v1/{parent=projects/*/locations/*/metadataStores/*}/executions:	execution¶
+GetExecution/.google.cloud.aiplatform.v1.GetExecutionRequest%.google.cloud.aiplatform.v1.Execution"NÚAname‚Óä“A?/v1/{name=projects/*/locations/*/metadataStores/*/executions/*}É
+ListExecutions1.google.cloud.aiplatform.v1.ListExecutionsRequest2.google.cloud.aiplatform.v1.ListExecutionsResponse"PÚAparent‚Óä“A?/v1/{parent=projects/*/locations/*/metadataStores/*}/executionsâ
+UpdateExecution2.google.cloud.aiplatform.v1.UpdateExecutionRequest%.google.cloud.aiplatform.v1.Execution"tÚAexecution,update_mask‚Óä“V2I/v1/{execution.name=projects/*/locations/*/metadataStores/*/executions/*}:	executionè
+DeleteExecution2.google.cloud.aiplatform.v1.DeleteExecutionRequest.google.longrunning.Operation"ÊA0
+google.protobuf.EmptyDeleteOperationMetadataÚAname‚Óä“A*?/v1/{name=projects/*/locations/*/metadataStores/*/executions/*}õ
+PurgeExecutions2.google.cloud.aiplatform.v1.PurgeExecutionsRequest.google.longrunning.Operation"ŽÊA2
+PurgeExecutionsResponsePurgeExecutionsMetadataÚAparent‚Óä“J"E/v1/{parent=projects/*/locations/*/metadataStores/*}/executions:purge:*ú
+AddExecutionEvents5.google.cloud.aiplatform.v1.AddExecutionEventsRequest6.google.cloud.aiplatform.v1.AddExecutionEventsResponse"uÚAexecution,events‚Óä“\\"W/v1/{execution=projects/*/locations/*/metadataStores/*/executions/*}:addExecutionEvents:*‰
+QueryExecutionInputsAndOutputsA.google.cloud.aiplatform.v1.QueryExecutionInputsAndOutputsRequest+.google.cloud.aiplatform.v1.LineageSubgraph"wÚA	execution‚Óä“ec/v1/{execution=projects/*/locations/*/metadataStores/*/executions/*}:queryExecutionInputsAndOutputs‡
+CreateMetadataSchema7.google.cloud.aiplatform.v1.CreateMetadataSchemaRequest*.google.cloud.aiplatform.v1.MetadataSchema"‰ÚA)parent,metadata_schema,metadata_schema_id‚Óä“W"D/v1/{parent=projects/*/locations/*/metadataStores/*}/metadataSchemas:metadata_schemaÊ
+GetMetadataSchema4.google.cloud.aiplatform.v1.GetMetadataSchemaRequest*.google.cloud.aiplatform.v1.MetadataSchema"SÚAname‚Óä“FD/v1/{name=projects/*/locations/*/metadataStores/*/metadataSchemas/*}Ý
+ListMetadataSchemas6.google.cloud.aiplatform.v1.ListMetadataSchemasRequest7.google.cloud.aiplatform.v1.ListMetadataSchemasResponse"UÚAparent‚Óä“FD/v1/{parent=projects/*/locations/*/metadataStores/*}/metadataSchemas€
+QueryArtifactLineageSubgraph?.google.cloud.aiplatform.v1.QueryArtifactLineageSubgraphRequest+.google.cloud.aiplatform.v1.LineageSubgraph"rÚAartifact‚Óä“a_/v1/{artifact=projects/*/locations/*/metadataStores/*/artifacts/*}:queryArtifactLineageSubgraphMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÒ
 com.google.cloud.aiplatform.v1BMetadataServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,34 +22,39 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START aiplatform_v1_generated_PredictionService_DirectRawPredict_sync]
+// [START aiplatform_v1_generated_PredictionService_GenerateContent_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\PredictionServiceClient;
-use Google\Cloud\AIPlatform\V1\DirectRawPredictRequest;
-use Google\Cloud\AIPlatform\V1\DirectRawPredictResponse;
+use Google\Cloud\AIPlatform\V1\Content;
+use Google\Cloud\AIPlatform\V1\GenerateContentRequest;
+use Google\Cloud\AIPlatform\V1\GenerateContentResponse;
+use Google\Cloud\AIPlatform\V1\Part;
 
 /**
- * Perform an unary online prediction request to a gRPC model server for
- * custom containers.
+ * Generate content with multimodal inputs.
  *
- * @param string $formattedEndpoint The name of the Endpoint requested to serve the prediction.
- *                                  Format:
- *                                  `projects/{project}/locations/{location}/endpoints/{endpoint}`
- *                                  Please see {@see PredictionServiceClient::endpointName()} for help formatting this field.
+ * @param string $model The name of the publisher model requested to serve the
+ *                      prediction. Format:
+ *                      `projects/{project}/locations/{location}/publishers/&#42;/models/*`
  */
-function direct_raw_predict_sample(string $formattedEndpoint): void
+function generate_content_sample(string $model): void
 {
     // Create a client.
     $predictionServiceClient = new PredictionServiceClient();
 
     // Prepare the request message.
-    $request = (new DirectRawPredictRequest())
-        ->setEndpoint($formattedEndpoint);
+    $contentsParts = [new Part()];
+    $content = (new Content())
+        ->setParts($contentsParts);
+    $contents = [$content,];
+    $request = (new GenerateContentRequest())
+        ->setModel($model)
+        ->setContents($contents);
 
     // Call the API and handle any network failures.
     try {
-        /** @var DirectRawPredictResponse $response */
-        $response = $predictionServiceClient->directRawPredict($request);
+        /** @var GenerateContentResponse $response */
+        $response = $predictionServiceClient->generateContent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -67,8 +72,8 @@ function direct_raw_predict_sample(string $formattedEndpoint): void
  */
 function callSample(): void
 {
-    $formattedEndpoint = PredictionServiceClient::endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+    $model = '[MODEL]';
 
-    direct_raw_predict_sample($formattedEndpoint);
+    generate_content_sample($model);
 }
-// [END aiplatform_v1_generated_PredictionService_DirectRawPredict_sync]
+// [END aiplatform_v1_generated_PredictionService_GenerateContent_sync]

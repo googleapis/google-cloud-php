@@ -63,13 +63,13 @@ page_token (	"ã
 total_deployed_model_count (
 total_endpoint_count (2ù
 DeploymentResourcePoolServiceœ
-CreateDeploymentResourcePool?.google.cloud.aiplatform.v1.CreateDeploymentResourcePoolRequest.google.longrunning.Operation"ŒÇ”‰ì@";/v1/{parent=projects/*/locations/*}/deploymentResourcePools:*⁄A;parent,deployment_resource_pool,deployment_resource_pool_id AG
-DeploymentResourcePool-CreateDeploymentResourcePoolOperationMetadataŸ
-GetDeploymentResourcePool<.google.cloud.aiplatform.v1.GetDeploymentResourcePoolRequest2.google.cloud.aiplatform.v1.DeploymentResourcePool"JÇ”‰ì=;/v1/{name=projects/*/locations/*/deploymentResourcePools/*}⁄AnameÏ
-ListDeploymentResourcePools>.google.cloud.aiplatform.v1.ListDeploymentResourcePoolsRequest?.google.cloud.aiplatform.v1.ListDeploymentResourcePoolsResponse"LÇ”‰ì=;/v1/{parent=projects/*/locations/*}/deploymentResourcePools⁄Aparent˝
-DeleteDeploymentResourcePool?.google.cloud.aiplatform.v1.DeleteDeploymentResourcePoolRequest.google.longrunning.Operation"}Ç”‰ì=*;/v1/{name=projects/*/locations/*/deploymentResourcePools/*}⁄Aname A0
-google.protobuf.EmptyDeleteOperationMetadataè
-QueryDeployedModels6.google.cloud.aiplatform.v1.QueryDeployedModelsRequest7.google.cloud.aiplatform.v1.QueryDeployedModelsResponse"ÜÇ”‰ìec/v1/{deployment_resource_pool=projects/*/locations/*/deploymentResourcePools/*}:queryDeployedModels⁄Adeployment_resource_poolM Aaiplatform.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB‡
+CreateDeploymentResourcePool?.google.cloud.aiplatform.v1.CreateDeploymentResourcePoolRequest.google.longrunning.Operation"Œ AG
+DeploymentResourcePool-CreateDeploymentResourcePoolOperationMetadata⁄A;parent,deployment_resource_pool,deployment_resource_pool_idÇ”‰ì@";/v1/{parent=projects/*/locations/*}/deploymentResourcePools:*Ÿ
+GetDeploymentResourcePool<.google.cloud.aiplatform.v1.GetDeploymentResourcePoolRequest2.google.cloud.aiplatform.v1.DeploymentResourcePool"J⁄AnameÇ”‰ì=;/v1/{name=projects/*/locations/*/deploymentResourcePools/*}Ï
+ListDeploymentResourcePools>.google.cloud.aiplatform.v1.ListDeploymentResourcePoolsRequest?.google.cloud.aiplatform.v1.ListDeploymentResourcePoolsResponse"L⁄AparentÇ”‰ì=;/v1/{parent=projects/*/locations/*}/deploymentResourcePools˝
+DeleteDeploymentResourcePool?.google.cloud.aiplatform.v1.DeleteDeploymentResourcePoolRequest.google.longrunning.Operation"} A0
+google.protobuf.EmptyDeleteOperationMetadata⁄AnameÇ”‰ì=*;/v1/{name=projects/*/locations/*/deploymentResourcePools/*}è
+QueryDeployedModels6.google.cloud.aiplatform.v1.QueryDeployedModelsRequest7.google.cloud.aiplatform.v1.QueryDeployedModelsResponse"Ü⁄Adeployment_resource_poolÇ”‰ìec/v1/{deployment_resource_pool=projects/*/locations/*/deploymentResourcePools/*}:queryDeployedModelsM Aaiplatform.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB‡
 com.google.cloud.aiplatform.v1B"DeploymentResourcePoolServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb™Google.Cloud.AIPlatform.V1 Google\\Cloud\\AIPlatform\\V1ÍGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 
