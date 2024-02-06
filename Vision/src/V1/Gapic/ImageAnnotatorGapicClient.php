@@ -403,6 +403,13 @@ class ImageAnnotatorGapicClient
      *           `eu`: The European Union.
      *
      *           Example: `projects/project-A/locations/eu`.
+     *     @type array $labels
+     *           Optional. The labels with user-defined metadata for the request.
+     *
+     *           Label keys and values can be no longer than 63 characters
+     *           (Unicode codepoints), can only contain lowercase letters, numeric
+     *           characters, underscores and dashes. International characters are allowed.
+     *           Label values are optional. Label keys must start with a letter.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -421,6 +428,10 @@ class ImageAnnotatorGapicClient
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -503,6 +514,13 @@ class ImageAnnotatorGapicClient
      *           `eu`: The European Union.
      *
      *           Example: `projects/project-A/locations/eu`.
+     *     @type array $labels
+     *           Optional. The labels with user-defined metadata for the request.
+     *
+     *           Label keys and values can be no longer than 63 characters
+     *           (Unicode codepoints), can only contain lowercase letters, numeric
+     *           characters, underscores and dashes. International characters are allowed.
+     *           Label values are optional. Label keys must start with a letter.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -525,6 +543,10 @@ class ImageAnnotatorGapicClient
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -561,8 +583,8 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param AnnotateFileRequest[] $requests     Required. The list of file annotation requests. Right now we support only one
-     *                                            AnnotateFileRequest in BatchAnnotateFilesRequest.
+     * @param AnnotateFileRequest[] $requests     Required. The list of file annotation requests. Right now we support only
+     *                                            one AnnotateFileRequest in BatchAnnotateFilesRequest.
      * @param array                 $optionalArgs {
      *     Optional.
      *
@@ -579,6 +601,13 @@ class ImageAnnotatorGapicClient
      *           `eu`: The European Union.
      *
      *           Example: `projects/project-A/locations/eu`.
+     *     @type array $labels
+     *           Optional. The labels with user-defined metadata for the request.
+     *
+     *           Label keys and values can be no longer than 63 characters
+     *           (Unicode codepoints), can only contain lowercase letters, numeric
+     *           characters, underscores and dashes. International characters are allowed.
+     *           Label values are optional. Label keys must start with a letter.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -597,6 +626,10 @@ class ImageAnnotatorGapicClient
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -644,6 +677,13 @@ class ImageAnnotatorGapicClient
      *           `eu`: The European Union.
      *
      *           Example: `projects/project-A/locations/eu`.
+     *     @type array $labels
+     *           Optional. The labels with user-defined metadata for the request.
+     *
+     *           Label keys and values can be no longer than 63 characters
+     *           (Unicode codepoints), can only contain lowercase letters, numeric
+     *           characters, underscores and dashes. International characters are allowed.
+     *           Label values are optional. Label keys must start with a letter.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -662,6 +702,10 @@ class ImageAnnotatorGapicClient
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

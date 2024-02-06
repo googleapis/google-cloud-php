@@ -49,7 +49,8 @@ use Google\Cloud\Vision\V1\ReferenceImage;
  * compatible with the parent product's product_category is detected.
  * * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
  *
- * @param string $formattedParent   Resource name of the product in which to create the reference image.
+ * @param string $formattedParent   Resource name of the product in which to create the reference
+ *                                  image.
  *
  *                                  Format is
  *                                  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. Please see

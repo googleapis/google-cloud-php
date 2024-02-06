@@ -35,7 +35,8 @@ use Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest;
  *                                 Format is:
  *                                 `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
  *                                 Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
- * @param string $formattedProduct The resource name for the Product to be removed from this ProductSet.
+ * @param string $formattedProduct The resource name for the Product to be removed from this
+ *                                 ProductSet.
  *
  *                                 Format is:
  *                                 `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
