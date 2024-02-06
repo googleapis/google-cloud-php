@@ -36,19 +36,23 @@ use Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest;
  * Returns an error if called on a key whose purpose is not
  * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName      The resource name of the
+ *                                   [CryptoKey][google.cloud.kms.v1.CryptoKey] to update. Please see
+ *                                   {@see KeyManagementServiceClient::cryptoKeyName()} for help formatting this field.
+ * @param string $cryptoKeyVersionId The id of the child
+ *                                   [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
  */
-function update_crypto_key_primary_version_sample(): void
-{
+function update_crypto_key_primary_version_sample(
+    string $formattedName,
+    string $cryptoKeyVersionId
+): void {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateCryptoKeyPrimaryVersionRequest();
+    $request = (new UpdateCryptoKeyPrimaryVersionRequest())
+        ->setName($formattedName)
+        ->setCryptoKeyVersionId($cryptoKeyVersionId);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +62,27 @@ function update_crypto_key_primary_version_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = KeyManagementServiceClient::cryptoKeyName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[KEY_RING]',
+        '[CRYPTO_KEY]'
+    );
+    $cryptoKeyVersionId = '[CRYPTO_KEY_VERSION_ID]';
+
+    update_crypto_key_primary_version_sample($formattedName, $cryptoKeyVersionId);
 }
 // [END cloudkms_v1_generated_KeyManagementService_UpdateCryptoKeyPrimaryVersion_sync]

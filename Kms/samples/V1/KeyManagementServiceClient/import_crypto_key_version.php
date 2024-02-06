@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Kms\V1\Client\KeyManagementServiceClient;
 use Google\Cloud\Kms\V1\CryptoKeyVersion;
+use Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm;
 use Google\Cloud\Kms\V1\ImportCryptoKeyVersionRequest;
 
 /**
@@ -38,19 +39,34 @@ use Google\Cloud\Kms\V1\ImportCryptoKeyVersionRequest;
  * version. Otherwise, a new version will be created, and will be assigned the
  * next sequential id within the [CryptoKey][google.cloud.kms.v1.CryptoKey].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The [name][google.cloud.kms.v1.CryptoKey.name] of the
+ *                                [CryptoKey][google.cloud.kms.v1.CryptoKey] to be imported into.
+ *
+ *                                The create permission is only required on this key when creating a new
+ *                                [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Please see
+ *                                {@see KeyManagementServiceClient::cryptoKeyName()} for help formatting this field.
+ * @param int    $algorithm       The
+ *                                [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
+ *                                of the key being imported. This does not need to match the
+ *                                [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the
+ *                                [CryptoKey][google.cloud.kms.v1.CryptoKey] this version imports into.
+ * @param string $importJob       The [name][google.cloud.kms.v1.ImportJob.name] of the
+ *                                [ImportJob][google.cloud.kms.v1.ImportJob] that was used to wrap this key
+ *                                material.
  */
-function import_crypto_key_version_sample(): void
-{
+function import_crypto_key_version_sample(
+    string $formattedParent,
+    int $algorithm,
+    string $importJob
+): void {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = new ImportCryptoKeyVersionRequest();
+    $request = (new ImportCryptoKeyVersionRequest())
+        ->setParent($formattedParent)
+        ->setAlgorithm($algorithm)
+        ->setImportJob($importJob);
 
     // Call the API and handle any network failures.
     try {
@@ -60,5 +76,28 @@ function import_crypto_key_version_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = KeyManagementServiceClient::cryptoKeyName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[KEY_RING]',
+        '[CRYPTO_KEY]'
+    );
+    $algorithm = CryptoKeyVersionAlgorithm::CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED;
+    $importJob = '[IMPORT_JOB]';
+
+    import_crypto_key_version_sample($formattedParent, $algorithm, $importJob);
 }
 // [END cloudkms_v1_generated_KeyManagementService_ImportCryptoKeyVersion_sync]

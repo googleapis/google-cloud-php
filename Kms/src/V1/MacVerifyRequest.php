@@ -86,7 +86,8 @@ class MacVerifyRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The resource name of the
      *                     [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     *                     verification.
+     *                     verification. Please see
+     *                     {@see KeyManagementServiceClient::cryptoKeyVersionName()} for help formatting this field.
      * @param string $data Required. The data used previously as a
      *                     [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] to generate
      *                     the MAC tag.

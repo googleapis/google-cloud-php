@@ -65,7 +65,8 @@ class ListEkmConnectionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name of the location associated with the
      *                       [EkmConnections][google.cloud.kms.v1.EkmConnection] to list, in the format
-     *                       `projects/&#42;/locations/*`.
+     *                       `projects/&#42;/locations/*`. Please see
+     *                       {@see EkmServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Kms\V1\ListEkmConnectionsRequest
      *

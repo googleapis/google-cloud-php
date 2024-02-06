@@ -32,19 +32,24 @@ use Google\Cloud\Kms\V1\KeyRing;
  * Create a new [KeyRing][google.cloud.kms.v1.KeyRing] in a given Project and
  * Location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the location associated with the
+ *                                [KeyRings][google.cloud.kms.v1.KeyRing], in the format
+ *                                `projects/&#42;/locations/*`. Please see
+ *                                {@see KeyManagementServiceClient::locationName()} for help formatting this field.
+ * @param string $keyRingId       It must be unique within a location and match the regular
+ *                                expression `[a-zA-Z0-9_-]{1,63}`
  */
-function create_key_ring_sample(): void
+function create_key_ring_sample(string $formattedParent, string $keyRingId): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = new CreateKeyRingRequest();
+    $keyRing = new KeyRing();
+    $request = (new CreateKeyRingRequest())
+        ->setParent($formattedParent)
+        ->setKeyRingId($keyRingId)
+        ->setKeyRing($keyRing);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +59,22 @@ function create_key_ring_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = KeyManagementServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $keyRingId = '[KEY_RING_ID]';
+
+    create_key_ring_sample($formattedParent, $keyRingId);
 }
 // [END cloudkms_v1_generated_KeyManagementService_CreateKeyRing_sync]

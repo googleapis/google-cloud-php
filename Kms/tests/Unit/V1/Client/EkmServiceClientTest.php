@@ -47,6 +47,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -95,7 +96,14 @@ class EkmServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setCryptoSpacePath($cryptoSpacePath);
         $transport->addResponse($expectedResponse);
-        $request = new CreateEkmConnectionRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $ekmConnectionId = 'ekmConnectionId270499940';
+        $ekmConnection = new EkmConnection();
+        $request = (new CreateEkmConnectionRequest())
+            ->setParent($formattedParent)
+            ->setEkmConnectionId($ekmConnectionId)
+            ->setEkmConnection($ekmConnection);
         $response = $gapicClient->createEkmConnection($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -103,6 +111,12 @@ class EkmServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.EkmService/CreateEkmConnection', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getEkmConnectionId();
+        $this->assertProtobufEquals($ekmConnectionId, $actualValue);
+        $actualValue = $actualRequestObject->getEkmConnection();
+        $this->assertProtobufEquals($ekmConnection, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -124,7 +138,14 @@ class EkmServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateEkmConnectionRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $ekmConnectionId = 'ekmConnectionId270499940';
+        $ekmConnection = new EkmConnection();
+        $request = (new CreateEkmConnectionRequest())
+            ->setParent($formattedParent)
+            ->setEkmConnectionId($ekmConnectionId)
+            ->setEkmConnection($ekmConnection);
         try {
             $gapicClient->createEkmConnection($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -153,7 +174,10 @@ class EkmServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDefaultEkmConnection($defaultEkmConnection);
         $transport->addResponse($expectedResponse);
-        $request = new GetEkmConfigRequest();
+        // Mock request
+        $formattedName = $gapicClient->ekmConfigName('[PROJECT]', '[LOCATION]');
+        $request = (new GetEkmConfigRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getEkmConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -161,6 +185,8 @@ class EkmServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.EkmService/GetEkmConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -182,7 +208,10 @@ class EkmServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetEkmConfigRequest();
+        // Mock request
+        $formattedName = $gapicClient->ekmConfigName('[PROJECT]', '[LOCATION]');
+        $request = (new GetEkmConfigRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getEkmConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -213,7 +242,10 @@ class EkmServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setCryptoSpacePath($cryptoSpacePath);
         $transport->addResponse($expectedResponse);
-        $request = new GetEkmConnectionRequest();
+        // Mock request
+        $formattedName = $gapicClient->ekmConnectionName('[PROJECT]', '[LOCATION]', '[EKM_CONNECTION]');
+        $request = (new GetEkmConnectionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getEkmConnection($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -221,6 +253,8 @@ class EkmServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.EkmService/GetEkmConnection', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -242,7 +276,10 @@ class EkmServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetEkmConnectionRequest();
+        // Mock request
+        $formattedName = $gapicClient->ekmConnectionName('[PROJECT]', '[LOCATION]', '[EKM_CONNECTION]');
+        $request = (new GetEkmConnectionRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getEkmConnection($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -276,7 +313,10 @@ class EkmServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setEkmConnections($ekmConnections);
         $transport->addResponse($expectedResponse);
-        $request = new ListEkmConnectionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListEkmConnectionsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listEkmConnections($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -287,6 +327,8 @@ class EkmServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.EkmService/ListEkmConnections', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -308,7 +350,10 @@ class EkmServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListEkmConnectionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListEkmConnectionsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listEkmConnections($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -337,7 +382,12 @@ class EkmServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDefaultEkmConnection($defaultEkmConnection);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateEkmConfigRequest();
+        // Mock request
+        $ekmConfig = new EkmConfig();
+        $updateMask = new FieldMask();
+        $request = (new UpdateEkmConfigRequest())
+            ->setEkmConfig($ekmConfig)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateEkmConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -345,6 +395,10 @@ class EkmServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.EkmService/UpdateEkmConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getEkmConfig();
+        $this->assertProtobufEquals($ekmConfig, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -366,7 +420,12 @@ class EkmServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateEkmConfigRequest();
+        // Mock request
+        $ekmConfig = new EkmConfig();
+        $updateMask = new FieldMask();
+        $request = (new UpdateEkmConfigRequest())
+            ->setEkmConfig($ekmConfig)
+            ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateEkmConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -397,7 +456,12 @@ class EkmServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setCryptoSpacePath($cryptoSpacePath);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateEkmConnectionRequest();
+        // Mock request
+        $ekmConnection = new EkmConnection();
+        $updateMask = new FieldMask();
+        $request = (new UpdateEkmConnectionRequest())
+            ->setEkmConnection($ekmConnection)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateEkmConnection($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -405,6 +469,10 @@ class EkmServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.EkmService/UpdateEkmConnection', $actualFuncCall);
+        $actualValue = $actualRequestObject->getEkmConnection();
+        $this->assertProtobufEquals($ekmConnection, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -426,7 +494,12 @@ class EkmServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateEkmConnectionRequest();
+        // Mock request
+        $ekmConnection = new EkmConnection();
+        $updateMask = new FieldMask();
+        $request = (new UpdateEkmConnectionRequest())
+            ->setEkmConnection($ekmConnection)
+            ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateEkmConnection($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -451,7 +524,10 @@ class EkmServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new VerifyConnectivityResponse();
         $transport->addResponse($expectedResponse);
-        $request = new VerifyConnectivityRequest();
+        // Mock request
+        $formattedName = $gapicClient->ekmConnectionName('[PROJECT]', '[LOCATION]', '[EKM_CONNECTION]');
+        $request = (new VerifyConnectivityRequest())
+            ->setName($formattedName);
         $response = $gapicClient->verifyConnectivity($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -459,6 +535,8 @@ class EkmServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.EkmService/VerifyConnectivity', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -480,7 +558,10 @@ class EkmServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new VerifyConnectivityRequest();
+        // Mock request
+        $formattedName = $gapicClient->ekmConnectionName('[PROJECT]', '[LOCATION]', '[EKM_CONNECTION]');
+        $request = (new VerifyConnectivityRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->verifyConnectivity($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -633,7 +714,10 @@ class EkmServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -641,6 +725,8 @@ class EkmServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -662,7 +748,10 @@ class EkmServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -691,7 +780,12 @@ class EkmServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -699,6 +793,10 @@ class EkmServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -720,7 +818,12 @@ class EkmServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -745,7 +848,12 @@ class EkmServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -753,6 +861,10 @@ class EkmServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -774,7 +886,12 @@ class EkmServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -805,7 +922,14 @@ class EkmServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setCryptoSpacePath($cryptoSpacePath);
         $transport->addResponse($expectedResponse);
-        $request = new CreateEkmConnectionRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $ekmConnectionId = 'ekmConnectionId270499940';
+        $ekmConnection = new EkmConnection();
+        $request = (new CreateEkmConnectionRequest())
+            ->setParent($formattedParent)
+            ->setEkmConnectionId($ekmConnectionId)
+            ->setEkmConnection($ekmConnection);
         $response = $gapicClient->createEkmConnectionAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -813,6 +937,12 @@ class EkmServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.EkmService/CreateEkmConnection', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getEkmConnectionId();
+        $this->assertProtobufEquals($ekmConnectionId, $actualValue);
+        $actualValue = $actualRequestObject->getEkmConnection();
+        $this->assertProtobufEquals($ekmConnection, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

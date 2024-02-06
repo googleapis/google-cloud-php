@@ -14,6 +14,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'ekm_connection_id',
+                ],
             ],
             'GetEkmConfig' => [
                 'method' => 'get',
@@ -60,6 +63,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateEkmConnection' => [
                 'method' => 'patch',
@@ -72,6 +78,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'VerifyConnectivity' => [

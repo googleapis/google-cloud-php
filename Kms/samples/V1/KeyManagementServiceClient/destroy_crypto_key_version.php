@@ -51,19 +51,18 @@ use Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest;
  * [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion]
  * may be called to reverse the process.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the
+ *                              [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy. Please see
+ *                              {@see KeyManagementServiceClient::cryptoKeyVersionName()} for help formatting this field.
  */
-function destroy_crypto_key_version_sample(): void
+function destroy_crypto_key_version_sample(string $formattedName): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = new DestroyCryptoKeyVersionRequest();
+    $request = (new DestroyCryptoKeyVersionRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -73,5 +72,27 @@ function destroy_crypto_key_version_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = KeyManagementServiceClient::cryptoKeyVersionName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[KEY_RING]',
+        '[CRYPTO_KEY]',
+        '[CRYPTO_KEY_VERSION]'
+    );
+
+    destroy_crypto_key_version_sample($formattedName);
 }
 // [END cloudkms_v1_generated_KeyManagementService_DestroyCryptoKeyVersion_sync]

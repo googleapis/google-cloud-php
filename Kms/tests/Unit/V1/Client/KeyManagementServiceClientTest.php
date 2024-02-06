@@ -42,6 +42,7 @@ use Google\Cloud\Kms\V1\CreateImportJobRequest;
 use Google\Cloud\Kms\V1\CreateKeyRingRequest;
 use Google\Cloud\Kms\V1\CryptoKey;
 use Google\Cloud\Kms\V1\CryptoKeyVersion;
+use Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm;
 use Google\Cloud\Kms\V1\DecryptRequest;
 use Google\Cloud\Kms\V1\DecryptResponse;
 use Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest;
@@ -57,6 +58,7 @@ use Google\Cloud\Kms\V1\GetKeyRingRequest;
 use Google\Cloud\Kms\V1\GetPublicKeyRequest;
 use Google\Cloud\Kms\V1\ImportCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\ImportJob;
+use Google\Cloud\Kms\V1\ImportJob\ImportMethod;
 use Google\Cloud\Kms\V1\KeyRing;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsRequest;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsResponse;
@@ -70,6 +72,7 @@ use Google\Cloud\Kms\V1\MacSignRequest;
 use Google\Cloud\Kms\V1\MacSignResponse;
 use Google\Cloud\Kms\V1\MacVerifyRequest;
 use Google\Cloud\Kms\V1\MacVerifyResponse;
+use Google\Cloud\Kms\V1\ProtectionLevel;
 use Google\Cloud\Kms\V1\PublicKey;
 use Google\Cloud\Kms\V1\RawDecryptRequest;
 use Google\Cloud\Kms\V1\RawDecryptResponse;
@@ -83,6 +86,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -129,7 +133,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setPlaintext($plaintext);
         $expectedResponse->setVerifiedCiphertextCrc32c($verifiedCiphertextCrc32c);
         $transport->addResponse($expectedResponse);
-        $request = new AsymmetricDecryptRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $ciphertext = '-72';
+        $request = (new AsymmetricDecryptRequest())
+            ->setName($formattedName)
+            ->setCiphertext($ciphertext);
         $response = $gapicClient->asymmetricDecrypt($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -137,6 +146,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/AsymmetricDecrypt', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getCiphertext();
+        $this->assertProtobufEquals($ciphertext, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -158,7 +171,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AsymmetricDecryptRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $ciphertext = '-72';
+        $request = (new AsymmetricDecryptRequest())
+            ->setName($formattedName)
+            ->setCiphertext($ciphertext);
         try {
             $gapicClient->asymmetricDecrypt($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -192,8 +210,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setVerifiedDataCrc32c($verifiedDataCrc32c);
         $transport->addResponse($expectedResponse);
         // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
         $digest = new Digest();
         $request = (new AsymmetricSignRequest())
+            ->setName($formattedName)
             ->setDigest($digest);
         $response = $gapicClient->asymmetricSign($request);
         $this->assertEquals($expectedResponse, $response);
@@ -202,6 +222,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/AsymmetricSign', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualRequestObject->getDigest();
         $this->assertProtobufEquals($digest, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -226,8 +248,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
         $digest = new Digest();
         $request = (new AsymmetricSignRequest())
+            ->setName($formattedName)
             ->setDigest($digest);
         try {
             $gapicClient->asymmetricSign($request);
@@ -259,7 +283,14 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setImportOnly($importOnly);
         $expectedResponse->setCryptoKeyBackend($cryptoKeyBackend);
         $transport->addResponse($expectedResponse);
-        $request = new CreateCryptoKeyRequest();
+        // Mock request
+        $formattedParent = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+        $cryptoKeyId = 'cryptoKeyId-2123094983';
+        $cryptoKey = new CryptoKey();
+        $request = (new CreateCryptoKeyRequest())
+            ->setParent($formattedParent)
+            ->setCryptoKeyId($cryptoKeyId)
+            ->setCryptoKey($cryptoKey);
         $response = $gapicClient->createCryptoKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -267,6 +298,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/CreateCryptoKey', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getCryptoKeyId();
+        $this->assertProtobufEquals($cryptoKeyId, $actualValue);
+        $actualValue = $actualRequestObject->getCryptoKey();
+        $this->assertProtobufEquals($cryptoKey, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -288,7 +325,14 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateCryptoKeyRequest();
+        // Mock request
+        $formattedParent = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+        $cryptoKeyId = 'cryptoKeyId-2123094983';
+        $cryptoKey = new CryptoKey();
+        $request = (new CreateCryptoKeyRequest())
+            ->setParent($formattedParent)
+            ->setCryptoKeyId($cryptoKeyId)
+            ->setCryptoKey($cryptoKey);
         try {
             $gapicClient->createCryptoKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -325,7 +369,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
-        $request = new CreateCryptoKeyVersionRequest();
+        // Mock request
+        $formattedParent = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $cryptoKeyVersion = new CryptoKeyVersion();
+        $request = (new CreateCryptoKeyVersionRequest())
+            ->setParent($formattedParent)
+            ->setCryptoKeyVersion($cryptoKeyVersion);
         $response = $gapicClient->createCryptoKeyVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -333,6 +382,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/CreateCryptoKeyVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getCryptoKeyVersion();
+        $this->assertProtobufEquals($cryptoKeyVersion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -354,7 +407,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateCryptoKeyVersionRequest();
+        // Mock request
+        $formattedParent = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $cryptoKeyVersion = new CryptoKeyVersion();
+        $request = (new CreateCryptoKeyVersionRequest())
+            ->setParent($formattedParent)
+            ->setCryptoKeyVersion($cryptoKeyVersion);
         try {
             $gapicClient->createCryptoKeyVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -381,7 +439,18 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse = new ImportJob();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        $request = new CreateImportJobRequest();
+        // Mock request
+        $formattedParent = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+        $importJobId = 'importJobId-1620773193';
+        $importJob = new ImportJob();
+        $importJobImportMethod = ImportMethod::IMPORT_METHOD_UNSPECIFIED;
+        $importJob->setImportMethod($importJobImportMethod);
+        $importJobProtectionLevel = ProtectionLevel::PROTECTION_LEVEL_UNSPECIFIED;
+        $importJob->setProtectionLevel($importJobProtectionLevel);
+        $request = (new CreateImportJobRequest())
+            ->setParent($formattedParent)
+            ->setImportJobId($importJobId)
+            ->setImportJob($importJob);
         $response = $gapicClient->createImportJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -389,6 +458,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/CreateImportJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getImportJobId();
+        $this->assertProtobufEquals($importJobId, $actualValue);
+        $actualValue = $actualRequestObject->getImportJob();
+        $this->assertProtobufEquals($importJob, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -410,7 +485,18 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateImportJobRequest();
+        // Mock request
+        $formattedParent = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+        $importJobId = 'importJobId-1620773193';
+        $importJob = new ImportJob();
+        $importJobImportMethod = ImportMethod::IMPORT_METHOD_UNSPECIFIED;
+        $importJob->setImportMethod($importJobImportMethod);
+        $importJobProtectionLevel = ProtectionLevel::PROTECTION_LEVEL_UNSPECIFIED;
+        $importJob->setProtectionLevel($importJobProtectionLevel);
+        $request = (new CreateImportJobRequest())
+            ->setParent($formattedParent)
+            ->setImportJobId($importJobId)
+            ->setImportJob($importJob);
         try {
             $gapicClient->createImportJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -437,7 +523,14 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse = new KeyRing();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        $request = new CreateKeyRingRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $keyRingId = 'keyRingId-2056646742';
+        $keyRing = new KeyRing();
+        $request = (new CreateKeyRingRequest())
+            ->setParent($formattedParent)
+            ->setKeyRingId($keyRingId)
+            ->setKeyRing($keyRing);
         $response = $gapicClient->createKeyRing($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -445,6 +538,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/CreateKeyRing', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getKeyRingId();
+        $this->assertProtobufEquals($keyRingId, $actualValue);
+        $actualValue = $actualRequestObject->getKeyRing();
+        $this->assertProtobufEquals($keyRing, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -466,7 +565,14 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateKeyRingRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $keyRingId = 'keyRingId-2056646742';
+        $keyRing = new KeyRing();
+        $request = (new CreateKeyRingRequest())
+            ->setParent($formattedParent)
+            ->setKeyRingId($keyRingId)
+            ->setKeyRing($keyRing);
         try {
             $gapicClient->createKeyRing($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -495,7 +601,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setPlaintext($plaintext);
         $expectedResponse->setUsedPrimary($usedPrimary);
         $transport->addResponse($expectedResponse);
-        $request = new DecryptRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $ciphertext = '-72';
+        $request = (new DecryptRequest())
+            ->setName($formattedName)
+            ->setCiphertext($ciphertext);
         $response = $gapicClient->decrypt($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -503,6 +614,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/Decrypt', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getCiphertext();
+        $this->assertProtobufEquals($ciphertext, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -524,7 +639,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DecryptRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $ciphertext = '-72';
+        $request = (new DecryptRequest())
+            ->setName($formattedName)
+            ->setCiphertext($ciphertext);
         try {
             $gapicClient->decrypt($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -561,7 +681,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
-        $request = new DestroyCryptoKeyVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $request = (new DestroyCryptoKeyVersionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->destroyCryptoKeyVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -569,6 +692,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/DestroyCryptoKeyVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -590,7 +715,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DestroyCryptoKeyVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $request = (new DestroyCryptoKeyVersionRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->destroyCryptoKeyVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -623,7 +751,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setVerifiedPlaintextCrc32c($verifiedPlaintextCrc32c);
         $expectedResponse->setVerifiedAdditionalAuthenticatedDataCrc32c($verifiedAdditionalAuthenticatedDataCrc32c);
         $transport->addResponse($expectedResponse);
-        $request = new EncryptRequest();
+        // Mock request
+        $name = 'name3373707';
+        $plaintext = '-9';
+        $request = (new EncryptRequest())
+            ->setName($name)
+            ->setPlaintext($plaintext);
         $response = $gapicClient->encrypt($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -631,6 +764,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/Encrypt', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualRequestObject->getPlaintext();
+        $this->assertProtobufEquals($plaintext, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -652,7 +789,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new EncryptRequest();
+        // Mock request
+        $name = 'name3373707';
+        $plaintext = '-9';
+        $request = (new EncryptRequest())
+            ->setName($name)
+            ->setPlaintext($plaintext);
         try {
             $gapicClient->encrypt($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -739,7 +881,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setImportOnly($importOnly);
         $expectedResponse->setCryptoKeyBackend($cryptoKeyBackend);
         $transport->addResponse($expectedResponse);
-        $request = new GetCryptoKeyRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $request = (new GetCryptoKeyRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getCryptoKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -747,6 +892,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/GetCryptoKey', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -768,7 +915,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetCryptoKeyRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $request = (new GetCryptoKeyRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getCryptoKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -805,7 +955,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
-        $request = new GetCryptoKeyVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $request = (new GetCryptoKeyVersionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getCryptoKeyVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -813,6 +966,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/GetCryptoKeyVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -834,7 +989,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetCryptoKeyVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $request = (new GetCryptoKeyVersionRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getCryptoKeyVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -861,7 +1019,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse = new ImportJob();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $request = new GetImportJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[IMPORT_JOB]');
+        $request = (new GetImportJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getImportJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -869,6 +1030,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/GetImportJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -890,7 +1053,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetImportJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[IMPORT_JOB]');
+        $request = (new GetImportJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getImportJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -917,7 +1083,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse = new KeyRing();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $request = new GetKeyRingRequest();
+        // Mock request
+        $formattedName = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+        $request = (new GetKeyRingRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getKeyRing($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -925,6 +1094,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/GetKeyRing', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -946,7 +1117,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetKeyRingRequest();
+        // Mock request
+        $formattedName = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+        $request = (new GetKeyRingRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getKeyRing($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -975,7 +1149,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setPem($pem);
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $request = new GetPublicKeyRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $request = (new GetPublicKeyRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getPublicKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -983,6 +1160,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/GetPublicKey', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1004,7 +1183,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetPublicKeyRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $request = (new GetPublicKeyRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getPublicKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1041,7 +1223,14 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
-        $request = new ImportCryptoKeyVersionRequest();
+        // Mock request
+        $formattedParent = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $algorithm = CryptoKeyVersionAlgorithm::CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED;
+        $importJob = 'importJob2125587491';
+        $request = (new ImportCryptoKeyVersionRequest())
+            ->setParent($formattedParent)
+            ->setAlgorithm($algorithm)
+            ->setImportJob($importJob);
         $response = $gapicClient->importCryptoKeyVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1049,6 +1238,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/ImportCryptoKeyVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAlgorithm();
+        $this->assertProtobufEquals($algorithm, $actualValue);
+        $actualValue = $actualRequestObject->getImportJob();
+        $this->assertProtobufEquals($importJob, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1070,7 +1265,14 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ImportCryptoKeyVersionRequest();
+        // Mock request
+        $formattedParent = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $algorithm = CryptoKeyVersionAlgorithm::CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED;
+        $importJob = 'importJob2125587491';
+        $request = (new ImportCryptoKeyVersionRequest())
+            ->setParent($formattedParent)
+            ->setAlgorithm($algorithm)
+            ->setImportJob($importJob);
         try {
             $gapicClient->importCryptoKeyVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1104,7 +1306,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setCryptoKeyVersions($cryptoKeyVersions);
         $transport->addResponse($expectedResponse);
-        $request = new ListCryptoKeyVersionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $request = (new ListCryptoKeyVersionsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listCryptoKeyVersions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1115,6 +1320,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/ListCryptoKeyVersions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1136,7 +1343,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListCryptoKeyVersionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $request = (new ListCryptoKeyVersionsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listCryptoKeyVersions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1170,7 +1380,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setCryptoKeys($cryptoKeys);
         $transport->addResponse($expectedResponse);
-        $request = new ListCryptoKeysRequest();
+        // Mock request
+        $formattedParent = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+        $request = (new ListCryptoKeysRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listCryptoKeys($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1181,6 +1394,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/ListCryptoKeys', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1202,7 +1417,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListCryptoKeysRequest();
+        // Mock request
+        $formattedParent = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+        $request = (new ListCryptoKeysRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listCryptoKeys($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1236,7 +1454,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setImportJobs($importJobs);
         $transport->addResponse($expectedResponse);
-        $request = new ListImportJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+        $request = (new ListImportJobsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listImportJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1247,6 +1468,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/ListImportJobs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1268,7 +1491,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListImportJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+        $request = (new ListImportJobsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listImportJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1302,7 +1528,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setKeyRings($keyRings);
         $transport->addResponse($expectedResponse);
-        $request = new ListKeyRingsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListKeyRingsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listKeyRings($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1313,6 +1542,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/ListKeyRings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1334,7 +1565,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListKeyRingsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListKeyRingsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listKeyRings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1365,7 +1599,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setMac($mac);
         $expectedResponse->setVerifiedDataCrc32c($verifiedDataCrc32c);
         $transport->addResponse($expectedResponse);
-        $request = new MacSignRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $data = '-86';
+        $request = (new MacSignRequest())
+            ->setName($formattedName)
+            ->setData($data);
         $response = $gapicClient->macSign($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1373,6 +1612,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/MacSign', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getData();
+        $this->assertProtobufEquals($data, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1394,7 +1637,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new MacSignRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $data = '-86';
+        $request = (new MacSignRequest())
+            ->setName($formattedName)
+            ->setData($data);
         try {
             $gapicClient->macSign($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1429,7 +1677,14 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setVerifiedMacCrc32c($verifiedMacCrc32c);
         $expectedResponse->setVerifiedSuccessIntegrity($verifiedSuccessIntegrity);
         $transport->addResponse($expectedResponse);
-        $request = new MacVerifyRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $data = '-86';
+        $mac = '79';
+        $request = (new MacVerifyRequest())
+            ->setName($formattedName)
+            ->setData($data)
+            ->setMac($mac);
         $response = $gapicClient->macVerify($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1437,6 +1692,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/MacVerify', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getData();
+        $this->assertProtobufEquals($data, $actualValue);
+        $actualValue = $actualRequestObject->getMac();
+        $this->assertProtobufEquals($mac, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1458,7 +1719,14 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new MacVerifyRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $data = '-86';
+        $mac = '79';
+        $request = (new MacVerifyRequest())
+            ->setName($formattedName)
+            ->setData($data)
+            ->setMac($mac);
         try {
             $gapicClient->macVerify($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1491,7 +1759,14 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setVerifiedAdditionalAuthenticatedDataCrc32c($verifiedAdditionalAuthenticatedDataCrc32c);
         $expectedResponse->setVerifiedInitializationVectorCrc32c($verifiedInitializationVectorCrc32c);
         $transport->addResponse($expectedResponse);
-        $request = new RawDecryptRequest();
+        // Mock request
+        $name = 'name3373707';
+        $ciphertext = '-72';
+        $initializationVector = '-62';
+        $request = (new RawDecryptRequest())
+            ->setName($name)
+            ->setCiphertext($ciphertext)
+            ->setInitializationVector($initializationVector);
         $response = $gapicClient->rawDecrypt($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1499,6 +1774,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/RawDecrypt', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualRequestObject->getCiphertext();
+        $this->assertProtobufEquals($ciphertext, $actualValue);
+        $actualValue = $actualRequestObject->getInitializationVector();
+        $this->assertProtobufEquals($initializationVector, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1520,7 +1801,14 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new RawDecryptRequest();
+        // Mock request
+        $name = 'name3373707';
+        $ciphertext = '-72';
+        $initializationVector = '-62';
+        $request = (new RawDecryptRequest())
+            ->setName($name)
+            ->setCiphertext($ciphertext)
+            ->setInitializationVector($initializationVector);
         try {
             $gapicClient->rawDecrypt($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1559,7 +1847,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setVerifiedInitializationVectorCrc32c($verifiedInitializationVectorCrc32c);
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $request = new RawEncryptRequest();
+        // Mock request
+        $name = 'name3373707';
+        $plaintext = '-9';
+        $request = (new RawEncryptRequest())
+            ->setName($name)
+            ->setPlaintext($plaintext);
         $response = $gapicClient->rawEncrypt($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1567,6 +1860,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/RawEncrypt', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualRequestObject->getPlaintext();
+        $this->assertProtobufEquals($plaintext, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1588,7 +1885,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new RawEncryptRequest();
+        // Mock request
+        $name = 'name3373707';
+        $plaintext = '-9';
+        $request = (new RawEncryptRequest())
+            ->setName($name)
+            ->setPlaintext($plaintext);
         try {
             $gapicClient->rawEncrypt($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1625,7 +1927,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
-        $request = new RestoreCryptoKeyVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $request = (new RestoreCryptoKeyVersionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->restoreCryptoKeyVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1633,6 +1938,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/RestoreCryptoKeyVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1654,7 +1961,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new RestoreCryptoKeyVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $request = (new RestoreCryptoKeyVersionRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->restoreCryptoKeyVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1685,7 +1995,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setImportOnly($importOnly);
         $expectedResponse->setCryptoKeyBackend($cryptoKeyBackend);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateCryptoKeyRequest();
+        // Mock request
+        $cryptoKey = new CryptoKey();
+        $updateMask = new FieldMask();
+        $request = (new UpdateCryptoKeyRequest())
+            ->setCryptoKey($cryptoKey)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateCryptoKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1693,6 +2008,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/UpdateCryptoKey', $actualFuncCall);
+        $actualValue = $actualRequestObject->getCryptoKey();
+        $this->assertProtobufEquals($cryptoKey, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1714,7 +2033,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateCryptoKeyRequest();
+        // Mock request
+        $cryptoKey = new CryptoKey();
+        $updateMask = new FieldMask();
+        $request = (new UpdateCryptoKeyRequest())
+            ->setCryptoKey($cryptoKey)
+            ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateCryptoKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1745,7 +2069,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setImportOnly($importOnly);
         $expectedResponse->setCryptoKeyBackend($cryptoKeyBackend);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateCryptoKeyPrimaryVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $cryptoKeyVersionId = 'cryptoKeyVersionId729489152';
+        $request = (new UpdateCryptoKeyPrimaryVersionRequest())
+            ->setName($formattedName)
+            ->setCryptoKeyVersionId($cryptoKeyVersionId);
         $response = $gapicClient->updateCryptoKeyPrimaryVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1753,6 +2082,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/UpdateCryptoKeyPrimaryVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getCryptoKeyVersionId();
+        $this->assertProtobufEquals($cryptoKeyVersionId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1774,7 +2107,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateCryptoKeyPrimaryVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $cryptoKeyVersionId = 'cryptoKeyVersionId729489152';
+        $request = (new UpdateCryptoKeyPrimaryVersionRequest())
+            ->setName($formattedName)
+            ->setCryptoKeyVersionId($cryptoKeyVersionId);
         try {
             $gapicClient->updateCryptoKeyPrimaryVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1811,7 +2149,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateCryptoKeyVersionRequest();
+        // Mock request
+        $cryptoKeyVersion = new CryptoKeyVersion();
+        $updateMask = new FieldMask();
+        $request = (new UpdateCryptoKeyVersionRequest())
+            ->setCryptoKeyVersion($cryptoKeyVersion)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateCryptoKeyVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1819,6 +2162,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/UpdateCryptoKeyVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getCryptoKeyVersion();
+        $this->assertProtobufEquals($cryptoKeyVersion, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1840,7 +2187,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateCryptoKeyVersionRequest();
+        // Mock request
+        $cryptoKeyVersion = new CryptoKeyVersion();
+        $updateMask = new FieldMask();
+        $request = (new UpdateCryptoKeyVersionRequest())
+            ->setCryptoKeyVersion($cryptoKeyVersion)
+            ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateCryptoKeyVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1993,7 +2345,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2001,6 +2356,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2022,7 +2379,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2051,7 +2411,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2059,6 +2424,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2080,7 +2449,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2105,7 +2479,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2113,6 +2492,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2134,7 +2517,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2163,7 +2551,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setPlaintext($plaintext);
         $expectedResponse->setVerifiedCiphertextCrc32c($verifiedCiphertextCrc32c);
         $transport->addResponse($expectedResponse);
-        $request = new AsymmetricDecryptRequest();
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+        $ciphertext = '-72';
+        $request = (new AsymmetricDecryptRequest())
+            ->setName($formattedName)
+            ->setCiphertext($ciphertext);
         $response = $gapicClient->asymmetricDecryptAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2171,6 +2564,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.v1.KeyManagementService/AsymmetricDecrypt', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getCiphertext();
+        $this->assertProtobufEquals($ciphertext, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

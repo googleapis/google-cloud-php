@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Kms\V1\Client\EkmServiceClient;
 use Google\Cloud\Kms\V1\EkmConnection;
 use Google\Cloud\Kms\V1\UpdateEkmConnectionRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates an [EkmConnection][google.cloud.kms.v1.EkmConnection]'s metadata.
@@ -43,7 +44,11 @@ function update_ekm_connection_sample(): void
     $ekmServiceClient = new EkmServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateEkmConnectionRequest();
+    $ekmConnection = new EkmConnection();
+    $updateMask = new FieldMask();
+    $request = (new UpdateEkmConnectionRequest())
+        ->setEkmConnection($ekmConnection)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {

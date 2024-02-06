@@ -35,19 +35,23 @@ use Google\Cloud\Kms\V1\Client\KeyManagementServiceClient;
  * with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * ASYMMETRIC_DECRYPT.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the
+ *                              [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+ *                              decryption. Please see
+ *                              {@see KeyManagementServiceClient::cryptoKeyVersionName()} for help formatting this field.
+ * @param string $ciphertext    The data encrypted with the named
+ *                              [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s public key using
+ *                              OAEP.
  */
-function asymmetric_decrypt_sample(): void
+function asymmetric_decrypt_sample(string $formattedName, string $ciphertext): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = new AsymmetricDecryptRequest();
+    $request = (new AsymmetricDecryptRequest())
+        ->setName($formattedName)
+        ->setCiphertext($ciphertext);
 
     // Call the API and handle any network failures.
     try {
@@ -57,5 +61,28 @@ function asymmetric_decrypt_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = KeyManagementServiceClient::cryptoKeyVersionName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[KEY_RING]',
+        '[CRYPTO_KEY]',
+        '[CRYPTO_KEY_VERSION]'
+    );
+    $ciphertext = '...';
+
+    asymmetric_decrypt_sample($formattedName, $ciphertext);
 }
 // [END cloudkms_v1_generated_KeyManagementService_AsymmetricDecrypt_sync]

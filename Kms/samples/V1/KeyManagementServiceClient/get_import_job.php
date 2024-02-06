@@ -31,19 +31,18 @@ use Google\Cloud\Kms\V1\ImportJob;
 /**
  * Returns metadata for a given [ImportJob][google.cloud.kms.v1.ImportJob].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The [name][google.cloud.kms.v1.ImportJob.name] of the
+ *                              [ImportJob][google.cloud.kms.v1.ImportJob] to get. Please see
+ *                              {@see KeyManagementServiceClient::importJobName()} for help formatting this field.
  */
-function get_import_job_sample(): void
+function get_import_job_sample(string $formattedName): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = new GetImportJobRequest();
+    $request = (new GetImportJobRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,26 @@ function get_import_job_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = KeyManagementServiceClient::importJobName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[KEY_RING]',
+        '[IMPORT_JOB]'
+    );
+
+    get_import_job_sample($formattedName);
 }
 // [END cloudkms_v1_generated_KeyManagementService_GetImportJob_sync]

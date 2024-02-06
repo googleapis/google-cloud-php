@@ -39,19 +39,18 @@ use Google\Cloud\Kms\V1\RestoreCryptoKeyVersionRequest;
  * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will
  * be cleared.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the
+ *                              [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to restore. Please see
+ *                              {@see KeyManagementServiceClient::cryptoKeyVersionName()} for help formatting this field.
  */
-function restore_crypto_key_version_sample(): void
+function restore_crypto_key_version_sample(string $formattedName): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = new RestoreCryptoKeyVersionRequest();
+    $request = (new RestoreCryptoKeyVersionRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -61,5 +60,27 @@ function restore_crypto_key_version_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = KeyManagementServiceClient::cryptoKeyVersionName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[KEY_RING]',
+        '[CRYPTO_KEY]',
+        '[CRYPTO_KEY_VERSION]'
+    );
+
+    restore_crypto_key_version_sample($formattedName);
 }
 // [END cloudkms_v1_generated_KeyManagementService_RestoreCryptoKeyVersion_sync]

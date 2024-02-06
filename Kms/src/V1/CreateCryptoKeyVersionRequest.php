@@ -35,7 +35,8 @@ class CreateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                $parent           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
      *                                                                [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with the
-     *                                                                [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
+     *                                                                [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]. Please see
+     *                                                                {@see KeyManagementServiceClient::cryptoKeyName()} for help formatting this field.
      * @param \Google\Cloud\Kms\V1\CryptoKeyVersion $cryptoKeyVersion Required. A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
      *                                                                initial field values.
      *

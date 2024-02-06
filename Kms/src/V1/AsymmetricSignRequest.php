@@ -96,7 +96,8 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                      $name   Required. The resource name of the
      *                                            [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     *                                            signing.
+     *                                            signing. Please see
+     *                                            {@see KeyManagementServiceClient::cryptoKeyVersionName()} for help formatting this field.
      * @param \Google\Cloud\Kms\V1\Digest $digest Optional. The digest of the data to sign. The digest must be produced with
      *                                            the same digest algorithm as specified by the key version's
      *                                            [algorithm][google.cloud.kms.v1.CryptoKeyVersion.algorithm].

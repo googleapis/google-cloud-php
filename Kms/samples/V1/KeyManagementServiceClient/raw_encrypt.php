@@ -36,19 +36,28 @@ use Google\Cloud\Kms\V1\RawEncryptResponse;
  * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
  * [RAW_ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.RAW_ENCRYPT_DECRYPT].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $name      The resource name of the
+ *                          [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+ *                          encryption.
+ * @param string $plaintext The data to encrypt. Must be no larger than 64KiB.
+ *
+ *                          The maximum size depends on the key version's
+ *                          [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
+ *                          For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
+ *                          plaintext must be no larger than 64KiB. For
+ *                          [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
+ *                          the plaintext and additional_authenticated_data fields must be no larger
+ *                          than 8KiB.
  */
-function raw_encrypt_sample(): void
+function raw_encrypt_sample(string $name, string $plaintext): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = new RawEncryptRequest();
+    $request = (new RawEncryptRequest())
+        ->setName($name)
+        ->setPlaintext($plaintext);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +67,22 @@ function raw_encrypt_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $name = '[NAME]';
+    $plaintext = '...';
+
+    raw_encrypt_sample($name, $plaintext);
 }
 // [END cloudkms_v1_generated_KeyManagementService_RawEncrypt_sync]

@@ -26,7 +26,8 @@ class RestoreCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the
-     *                     [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to restore.
+     *                     [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to restore. Please see
+     *                     {@see KeyManagementServiceClient::cryptoKeyVersionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Kms\V1\RestoreCryptoKeyVersionRequest
      *

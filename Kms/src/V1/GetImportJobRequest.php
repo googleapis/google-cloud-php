@@ -26,7 +26,8 @@ class GetImportJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
-     *                     [ImportJob][google.cloud.kms.v1.ImportJob] to get.
+     *                     [ImportJob][google.cloud.kms.v1.ImportJob] to get. Please see
+     *                     {@see KeyManagementServiceClient::importJobName()} for help formatting this field.
      *
      * @return \Google\Cloud\Kms\V1\GetImportJobRequest
      *

@@ -26,7 +26,8 @@ class GetKeyRingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
-     *                     [KeyRing][google.cloud.kms.v1.KeyRing] to get.
+     *                     [KeyRing][google.cloud.kms.v1.KeyRing] to get. Please see
+     *                     {@see KeyManagementServiceClient::keyRingName()} for help formatting this field.
      *
      * @return \Google\Cloud\Kms\V1\GetKeyRingRequest
      *

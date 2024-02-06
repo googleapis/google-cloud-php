@@ -34,19 +34,25 @@ use Google\Cloud\Kms\V1\MacVerifyResponse;
  * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] MAC, and returns
  * a response that indicates whether or not the verification was successful.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the
+ *                              [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+ *                              verification. Please see
+ *                              {@see KeyManagementServiceClient::cryptoKeyVersionName()} for help formatting this field.
+ * @param string $data          The data used previously as a
+ *                              [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] to generate
+ *                              the MAC tag.
+ * @param string $mac           The signature to verify.
  */
-function mac_verify_sample(): void
+function mac_verify_sample(string $formattedName, string $data, string $mac): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = new MacVerifyRequest();
+    $request = (new MacVerifyRequest())
+        ->setName($formattedName)
+        ->setData($data)
+        ->setMac($mac);
 
     // Call the API and handle any network failures.
     try {
@@ -56,5 +62,29 @@ function mac_verify_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = KeyManagementServiceClient::cryptoKeyVersionName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[KEY_RING]',
+        '[CRYPTO_KEY]',
+        '[CRYPTO_KEY_VERSION]'
+    );
+    $data = '...';
+    $mac = '...';
+
+    mac_verify_sample($formattedName, $data, $mac);
 }
 // [END cloudkms_v1_generated_KeyManagementService_MacVerify_sync]

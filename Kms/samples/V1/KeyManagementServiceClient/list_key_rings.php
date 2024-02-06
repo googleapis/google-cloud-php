@@ -32,19 +32,19 @@ use Google\Cloud\Kms\V1\ListKeyRingsRequest;
 /**
  * Lists [KeyRings][google.cloud.kms.v1.KeyRing].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the location associated with the
+ *                                [KeyRings][google.cloud.kms.v1.KeyRing], in the format
+ *                                `projects/&#42;/locations/*`. Please see
+ *                                {@see KeyManagementServiceClient::locationName()} for help formatting this field.
  */
-function list_key_rings_sample(): void
+function list_key_rings_sample(string $formattedParent): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = new ListKeyRingsRequest();
+    $request = (new ListKeyRingsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +58,21 @@ function list_key_rings_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = KeyManagementServiceClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_key_rings_sample($formattedParent);
 }
 // [END cloudkms_v1_generated_KeyManagementService_ListKeyRings_sync]

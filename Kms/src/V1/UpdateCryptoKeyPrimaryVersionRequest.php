@@ -33,7 +33,8 @@ class UpdateCryptoKeyPrimaryVersionRequest extends \Google\Protobuf\Internal\Mes
 
     /**
      * @param string $name               Required. The resource name of the
-     *                                   [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
+     *                                   [CryptoKey][google.cloud.kms.v1.CryptoKey] to update. Please see
+     *                                   {@see KeyManagementServiceClient::cryptoKeyName()} for help formatting this field.
      * @param string $cryptoKeyVersionId Required. The id of the child
      *                                   [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
      *

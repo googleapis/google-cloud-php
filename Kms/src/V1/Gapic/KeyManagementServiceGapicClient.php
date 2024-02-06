@@ -116,7 +116,9 @@ use Google\Protobuf\Int64Value;
  * ```
  * $keyManagementServiceClient = new KeyManagementServiceClient();
  * try {
- *     $response = $keyManagementServiceClient->asymmetricDecrypt();
+ *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+ *     $ciphertext = '...';
+ *     $response = $keyManagementServiceClient->asymmetricDecrypt($formattedName, $ciphertext);
  * } finally {
  *     $keyManagementServiceClient->close();
  * }
@@ -466,23 +468,23 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->asymmetricDecrypt();
+     *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+     *     $ciphertext = '...';
+     *     $response = $keyManagementServiceClient->asymmetricDecrypt($formattedName, $ciphertext);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                             decryption.
+     * @param string $ciphertext   Required. The data encrypted with the named
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s public key using
+     *                             OAEP.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     *           decryption.
-     *     @type string $ciphertext
-     *           Required. The data encrypted with the named
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s public key using
-     *           OAEP.
      *     @type Int64Value $ciphertextCrc32c
      *           Optional. An optional CRC32C checksum of the
      *           [AsymmetricDecryptRequest.ciphertext][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext].
@@ -513,19 +515,13 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function asymmetricDecrypt(array $optionalArgs = [])
+    public function asymmetricDecrypt($name, $ciphertext, array $optionalArgs = [])
     {
         $request = new AsymmetricDecryptRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['ciphertext'])) {
-            $request->setCiphertext($optionalArgs['ciphertext']);
-        }
-
+        $request->setName($name);
+        $request->setCiphertext($ciphertext);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['ciphertextCrc32c'])) {
             $request->setCiphertextCrc32c($optionalArgs['ciphertextCrc32c']);
         }
@@ -546,13 +542,17 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
+     *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
      *     $digest = new Digest();
-     *     $response = $keyManagementServiceClient->asymmetricSign($digest);
+     *     $response = $keyManagementServiceClient->asymmetricSign($formattedName, $digest);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                             signing.
      * @param Digest $digest       Optional. The digest of the data to sign. The digest must be produced with
      *                             the same digest algorithm as specified by the key version's
      *                             [algorithm][google.cloud.kms.v1.CryptoKeyVersion.algorithm].
@@ -563,10 +563,6 @@ class KeyManagementServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     *           signing.
      *     @type Int64Value $digestCrc32c
      *           Optional. An optional CRC32C checksum of the
      *           [AsymmetricSignRequest.digest][google.cloud.kms.v1.AsymmetricSignRequest.digest].
@@ -622,16 +618,13 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function asymmetricSign($digest, array $optionalArgs = [])
+    public function asymmetricSign($name, $digest, array $optionalArgs = [])
     {
         $request = new AsymmetricSignRequest();
         $requestParamHeaders = [];
+        $request->setName($name);
         $request->setDigest($digest);
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['digestCrc32c'])) {
             $request->setDigestCrc32c($optionalArgs['digestCrc32c']);
         }
@@ -661,24 +654,24 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->createCryptoKey();
+     *     $formattedParent = $keyManagementServiceClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+     *     $cryptoKeyId = 'crypto_key_id';
+     *     $cryptoKey = new CryptoKey();
+     *     $response = $keyManagementServiceClient->createCryptoKey($formattedParent, $cryptoKeyId, $cryptoKey);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string    $parent       Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing
+     *                                associated with the [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     * @param string    $cryptoKeyId  Required. It must be unique within a KeyRing and match the regular
+     *                                expression `[a-zA-Z0-9_-]{1,63}`
+     * @param CryptoKey $cryptoKey    Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field
+     *                                values.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing
-     *           associated with the [CryptoKeys][google.cloud.kms.v1.CryptoKey].
-     *     @type string $cryptoKeyId
-     *           Required. It must be unique within a KeyRing and match the regular
-     *           expression `[a-zA-Z0-9_-]{1,63}`
-     *     @type CryptoKey $cryptoKey
-     *           Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field
-     *           values.
      *     @type bool $skipInitialVersionCreation
      *           If set to true, the request will create a
      *           [CryptoKey][google.cloud.kms.v1.CryptoKey] without any
@@ -698,23 +691,14 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCryptoKey(array $optionalArgs = [])
+    public function createCryptoKey($parent, $cryptoKeyId, $cryptoKey, array $optionalArgs = [])
     {
         $request = new CreateCryptoKeyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['cryptoKeyId'])) {
-            $request->setCryptoKeyId($optionalArgs['cryptoKeyId']);
-        }
-
-        if (isset($optionalArgs['cryptoKey'])) {
-            $request->setCryptoKey($optionalArgs['cryptoKey']);
-        }
-
+        $request->setParent($parent);
+        $request->setCryptoKeyId($cryptoKeyId);
+        $request->setCryptoKey($cryptoKey);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['skipInitialVersionCreation'])) {
             $request->setSkipInitialVersionCreation($optionalArgs['skipInitialVersionCreation']);
         }
@@ -736,22 +720,22 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->createCryptoKeyVersion();
+     *     $formattedParent = $keyManagementServiceClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+     *     $cryptoKeyVersion = new CryptoKeyVersion();
+     *     $response = $keyManagementServiceClient->createCryptoKeyVersion($formattedParent, $cryptoKeyVersion);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string           $parent           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
+     *                                           [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with the
+     *                                           [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
+     * @param CryptoKeyVersion $cryptoKeyVersion Required. A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
+     *                                           initial field values.
+     * @param array            $optionalArgs     {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
-     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with the
-     *           [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
-     *     @type CryptoKeyVersion $cryptoKeyVersion
-     *           Required. A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
-     *           initial field values.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -762,19 +746,13 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCryptoKeyVersion(array $optionalArgs = [])
+    public function createCryptoKeyVersion($parent, $cryptoKeyVersion, array $optionalArgs = [])
     {
         $request = new CreateCryptoKeyVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['cryptoKeyVersion'])) {
-            $request->setCryptoKeyVersion($optionalArgs['cryptoKeyVersion']);
-        }
-
+        $request->setParent($parent);
+        $request->setCryptoKeyVersion($cryptoKeyVersion);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateCryptoKeyVersion', CryptoKeyVersion::class, $optionalArgs, $request)->wait();
@@ -791,25 +769,25 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->createImportJob();
+     *     $formattedParent = $keyManagementServiceClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+     *     $importJobId = 'import_job_id';
+     *     $importJob = new ImportJob();
+     *     $response = $keyManagementServiceClient->createImportJob($formattedParent, $importJobId, $importJob);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string    $parent       Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
+     *                                [KeyRing][google.cloud.kms.v1.KeyRing] associated with the
+     *                                [ImportJobs][google.cloud.kms.v1.ImportJob].
+     * @param string    $importJobId  Required. It must be unique within a KeyRing and match the regular
+     *                                expression `[a-zA-Z0-9_-]{1,63}`
+     * @param ImportJob $importJob    Required. An [ImportJob][google.cloud.kms.v1.ImportJob] with initial field
+     *                                values.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
-     *           [KeyRing][google.cloud.kms.v1.KeyRing] associated with the
-     *           [ImportJobs][google.cloud.kms.v1.ImportJob].
-     *     @type string $importJobId
-     *           Required. It must be unique within a KeyRing and match the regular
-     *           expression `[a-zA-Z0-9_-]{1,63}`
-     *     @type ImportJob $importJob
-     *           Required. An [ImportJob][google.cloud.kms.v1.ImportJob] with initial field
-     *           values.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -820,23 +798,14 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createImportJob(array $optionalArgs = [])
+    public function createImportJob($parent, $importJobId, $importJob, array $optionalArgs = [])
     {
         $request = new CreateImportJobRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['importJobId'])) {
-            $request->setImportJobId($optionalArgs['importJobId']);
-        }
-
-        if (isset($optionalArgs['importJob'])) {
-            $request->setImportJob($optionalArgs['importJob']);
-        }
-
+        $request->setParent($parent);
+        $request->setImportJobId($importJobId);
+        $request->setImportJob($importJob);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateImportJob', ImportJob::class, $optionalArgs, $request)->wait();
@@ -850,25 +819,25 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->createKeyRing();
+     *     $formattedParent = $keyManagementServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $keyRingId = 'key_ring_id';
+     *     $keyRing = new KeyRing();
+     *     $response = $keyManagementServiceClient->createKeyRing($formattedParent, $keyRingId, $keyRing);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string  $parent       Required. The resource name of the location associated with the
+     *                              [KeyRings][google.cloud.kms.v1.KeyRing], in the format
+     *                              `projects/&#42;/locations/*`.
+     * @param string  $keyRingId    Required. It must be unique within a location and match the regular
+     *                              expression `[a-zA-Z0-9_-]{1,63}`
+     * @param KeyRing $keyRing      Required. A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field
+     *                              values.
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the location associated with the
-     *           [KeyRings][google.cloud.kms.v1.KeyRing], in the format
-     *           `projects/&#42;/locations/*`.
-     *     @type string $keyRingId
-     *           Required. It must be unique within a location and match the regular
-     *           expression `[a-zA-Z0-9_-]{1,63}`
-     *     @type KeyRing $keyRing
-     *           Required. A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field
-     *           values.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -879,23 +848,14 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createKeyRing(array $optionalArgs = [])
+    public function createKeyRing($parent, $keyRingId, $keyRing, array $optionalArgs = [])
     {
         $request = new CreateKeyRingRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['keyRingId'])) {
-            $request->setKeyRingId($optionalArgs['keyRingId']);
-        }
-
-        if (isset($optionalArgs['keyRing'])) {
-            $request->setKeyRing($optionalArgs['keyRing']);
-        }
-
+        $request->setParent($parent);
+        $request->setKeyRingId($keyRingId);
+        $request->setKeyRing($keyRing);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateKeyRing', KeyRing::class, $optionalArgs, $request)->wait();
@@ -911,22 +871,22 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->decrypt();
+     *     $formattedName = $keyManagementServiceClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+     *     $ciphertext = '...';
+     *     $response = $keyManagementServiceClient->decrypt($formattedName, $ciphertext);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption. The
+     *                             server will choose the appropriate version.
+     * @param string $ciphertext   Required. The encrypted data originally returned in
+     *                             [EncryptResponse.ciphertext][google.cloud.kms.v1.EncryptResponse.ciphertext].
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the
-     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption. The
-     *           server will choose the appropriate version.
-     *     @type string $ciphertext
-     *           Required. The encrypted data originally returned in
-     *           [EncryptResponse.ciphertext][google.cloud.kms.v1.EncryptResponse.ciphertext].
      *     @type string $additionalAuthenticatedData
      *           Optional. Optional data that must match the data originally supplied in
      *           [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data].
@@ -980,19 +940,13 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function decrypt(array $optionalArgs = [])
+    public function decrypt($name, $ciphertext, array $optionalArgs = [])
     {
         $request = new DecryptRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['ciphertext'])) {
-            $request->setCiphertext($optionalArgs['ciphertext']);
-        }
-
+        $request->setName($name);
+        $request->setCiphertext($ciphertext);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['additionalAuthenticatedData'])) {
             $request->setAdditionalAuthenticatedData($optionalArgs['additionalAuthenticatedData']);
         }
@@ -1037,18 +991,18 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->destroyCryptoKeyVersion();
+     *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+     *     $response = $keyManagementServiceClient->destroyCryptoKeyVersion($formattedName);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1059,15 +1013,12 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function destroyCryptoKeyVersion(array $optionalArgs = [])
+    public function destroyCryptoKeyVersion($name, array $optionalArgs = [])
     {
         $request = new DestroyCryptoKeyVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DestroyCryptoKeyVersion', CryptoKeyVersion::class, $optionalArgs, $request)->wait();
@@ -1083,35 +1034,35 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->encrypt();
+     *     $name = 'name';
+     *     $plaintext = '...';
+     *     $response = $keyManagementServiceClient->encrypt($name, $plaintext);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey] or
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                             encryption.
+     *
+     *                             If a [CryptoKey][google.cloud.kms.v1.CryptoKey] is specified, the server
+     *                             will use its [primary version][google.cloud.kms.v1.CryptoKey.primary].
+     * @param string $plaintext    Required. The data to encrypt. Must be no larger than 64KiB.
+     *
+     *                             The maximum size depends on the key version's
+     *                             [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
+     *                             For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE],
+     *                             [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL], and
+     *                             [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC] keys, the
+     *                             plaintext must be no larger than 64KiB. For
+     *                             [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
+     *                             the plaintext and additional_authenticated_data fields must be no larger
+     *                             than 8KiB.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the
-     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] or
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     *           encryption.
-     *
-     *           If a [CryptoKey][google.cloud.kms.v1.CryptoKey] is specified, the server
-     *           will use its [primary version][google.cloud.kms.v1.CryptoKey.primary].
-     *     @type string $plaintext
-     *           Required. The data to encrypt. Must be no larger than 64KiB.
-     *
-     *           The maximum size depends on the key version's
-     *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
-     *           For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE],
-     *           [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL], and
-     *           [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC] keys, the
-     *           plaintext must be no larger than 64KiB. For
-     *           [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
-     *           the plaintext and additional_authenticated_data fields must be no larger
-     *           than 8KiB.
      *     @type string $additionalAuthenticatedData
      *           Optional. Optional data that, if specified, must also be provided during
      *           decryption through
@@ -1176,19 +1127,13 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function encrypt(array $optionalArgs = [])
+    public function encrypt($name, $plaintext, array $optionalArgs = [])
     {
         $request = new EncryptRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['plaintext'])) {
-            $request->setPlaintext($optionalArgs['plaintext']);
-        }
-
+        $request->setName($name);
+        $request->setPlaintext($plaintext);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['additionalAuthenticatedData'])) {
             $request->setAdditionalAuthenticatedData($optionalArgs['additionalAuthenticatedData']);
         }
@@ -1276,18 +1221,18 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->getCryptoKey();
+     *     $formattedName = $keyManagementServiceClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+     *     $response = $keyManagementServiceClient->getCryptoKey($formattedName);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
+     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey] to get.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
-     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1298,15 +1243,12 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCryptoKey(array $optionalArgs = [])
+    public function getCryptoKey($name, array $optionalArgs = [])
     {
         $request = new GetCryptoKeyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCryptoKey', CryptoKey::class, $optionalArgs, $request)->wait();
@@ -1320,18 +1262,18 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->getCryptoKeyVersion();
+     *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+     *     $response = $keyManagementServiceClient->getCryptoKeyVersion($formattedName);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to get.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1342,15 +1284,12 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCryptoKeyVersion(array $optionalArgs = [])
+    public function getCryptoKeyVersion($name, array $optionalArgs = [])
     {
         $request = new GetCryptoKeyVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCryptoKeyVersion', CryptoKeyVersion::class, $optionalArgs, $request)->wait();
@@ -1363,18 +1302,18 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->getImportJob();
+     *     $formattedName = $keyManagementServiceClient->importJobName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[IMPORT_JOB]');
+     *     $response = $keyManagementServiceClient->getImportJob($formattedName);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
+     *                             [ImportJob][google.cloud.kms.v1.ImportJob] to get.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
-     *           [ImportJob][google.cloud.kms.v1.ImportJob] to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1385,15 +1324,12 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getImportJob(array $optionalArgs = [])
+    public function getImportJob($name, array $optionalArgs = [])
     {
         $request = new GetImportJobRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetImportJob', ImportJob::class, $optionalArgs, $request)->wait();
@@ -1406,18 +1342,18 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->getKeyRing();
+     *     $formattedName = $keyManagementServiceClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+     *     $response = $keyManagementServiceClient->getKeyRing($formattedName);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
+     *                             [KeyRing][google.cloud.kms.v1.KeyRing] to get.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
-     *           [KeyRing][google.cloud.kms.v1.KeyRing] to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1428,15 +1364,12 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getKeyRing(array $optionalArgs = [])
+    public function getKeyRing($name, array $optionalArgs = [])
     {
         $request = new GetKeyRingRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetKeyRing', KeyRing::class, $optionalArgs, $request)->wait();
@@ -1454,18 +1387,18 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->getPublicKey();
+     *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+     *     $response = $keyManagementServiceClient->getPublicKey($formattedName);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to get.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1476,15 +1409,12 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getPublicKey(array $optionalArgs = [])
+    public function getPublicKey($name, array $optionalArgs = [])
     {
         $request = new GetPublicKeyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetPublicKey', PublicKey::class, $optionalArgs, $request)->wait();
@@ -1504,21 +1434,32 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->importCryptoKeyVersion();
+     *     $formattedParent = $keyManagementServiceClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+     *     $algorithm = CryptoKeyVersionAlgorithm::CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED;
+     *     $importJob = 'import_job';
+     *     $response = $keyManagementServiceClient->importCryptoKeyVersion($formattedParent, $algorithm, $importJob);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
+     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey] to be imported into.
+     *
+     *                             The create permission is only required on this key when creating a new
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     * @param int    $algorithm    Required. The
+     *                             [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
+     *                             of the key being imported. This does not need to match the
+     *                             [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the
+     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey] this version imports into.
+     *                             For allowed values, use constants defined on {@see \Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm}
+     * @param string $importJob    Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
+     *                             [ImportJob][google.cloud.kms.v1.ImportJob] that was used to wrap this key
+     *                             material.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
-     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] to be imported into.
-     *
-     *           The create permission is only required on this key when creating a new
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *     @type string $cryptoKeyVersion
      *           Optional. The optional [name][google.cloud.kms.v1.CryptoKeyVersion.name] of
      *           an existing [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to
@@ -1540,17 +1481,6 @@ class KeyManagementServiceGapicClient
      *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] exactly if the
      *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] has ever contained
      *           key material.
-     *     @type int $algorithm
-     *           Required. The
-     *           [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
-     *           of the key being imported. This does not need to match the
-     *           [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the
-     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] this version imports into.
-     *           For allowed values, use constants defined on {@see \Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm}
-     *     @type string $importJob
-     *           Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
-     *           [ImportJob][google.cloud.kms.v1.ImportJob] that was used to wrap this key
-     *           material.
      *     @type string $wrappedKey
      *           Optional. The wrapped key material to import.
      *
@@ -1606,25 +1536,16 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importCryptoKeyVersion(array $optionalArgs = [])
+    public function importCryptoKeyVersion($parent, $algorithm, $importJob, array $optionalArgs = [])
     {
         $request = new ImportCryptoKeyVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $request->setAlgorithm($algorithm);
+        $request->setImportJob($importJob);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['cryptoKeyVersion'])) {
             $request->setCryptoKeyVersion($optionalArgs['cryptoKeyVersion']);
-        }
-
-        if (isset($optionalArgs['algorithm'])) {
-            $request->setAlgorithm($optionalArgs['algorithm']);
-        }
-
-        if (isset($optionalArgs['importJob'])) {
-            $request->setImportJob($optionalArgs['importJob']);
         }
 
         if (isset($optionalArgs['wrappedKey'])) {
@@ -1647,8 +1568,9 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
+     *     $formattedParent = $keyManagementServiceClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $keyManagementServiceClient->listCryptoKeyVersions();
+     *     $pagedResponse = $keyManagementServiceClient->listCryptoKeyVersions($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1656,7 +1578,7 @@ class KeyManagementServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $keyManagementServiceClient->listCryptoKeyVersions();
+     *     $pagedResponse = $keyManagementServiceClient->listCryptoKeyVersions($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1665,13 +1587,12 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the
+     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
+     *                             `projects/&#42;/locations/&#42;/keyRings/&#42;/cryptoKeys/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the
-     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
-     *           `projects/&#42;/locations/&#42;/keyRings/&#42;/cryptoKeys/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1704,15 +1625,12 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCryptoKeyVersions(array $optionalArgs = [])
+    public function listCryptoKeyVersions($parent, array $optionalArgs = [])
     {
         $request = new ListCryptoKeyVersionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1745,8 +1663,9 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
+     *     $formattedParent = $keyManagementServiceClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $keyManagementServiceClient->listCryptoKeys();
+     *     $pagedResponse = $keyManagementServiceClient->listCryptoKeys($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1754,7 +1673,7 @@ class KeyManagementServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $keyManagementServiceClient->listCryptoKeys();
+     *     $pagedResponse = $keyManagementServiceClient->listCryptoKeys($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1763,12 +1682,11 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
+     *                             to list, in the format `projects/&#42;/locations/&#42;/keyRings/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
-     *           to list, in the format `projects/&#42;/locations/&#42;/keyRings/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1801,15 +1719,12 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCryptoKeys(array $optionalArgs = [])
+    public function listCryptoKeys($parent, array $optionalArgs = [])
     {
         $request = new ListCryptoKeysRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1842,8 +1757,9 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
+     *     $formattedParent = $keyManagementServiceClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $keyManagementServiceClient->listImportJobs();
+     *     $pagedResponse = $keyManagementServiceClient->listImportJobs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1851,7 +1767,7 @@ class KeyManagementServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $keyManagementServiceClient->listImportJobs();
+     *     $pagedResponse = $keyManagementServiceClient->listImportJobs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1860,12 +1776,11 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
+     *                             to list, in the format `projects/&#42;/locations/&#42;/keyRings/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
-     *           to list, in the format `projects/&#42;/locations/&#42;/keyRings/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1895,15 +1810,12 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listImportJobs(array $optionalArgs = [])
+    public function listImportJobs($parent, array $optionalArgs = [])
     {
         $request = new ListImportJobsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1932,8 +1844,9 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
+     *     $formattedParent = $keyManagementServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $keyManagementServiceClient->listKeyRings();
+     *     $pagedResponse = $keyManagementServiceClient->listKeyRings($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1941,7 +1854,7 @@ class KeyManagementServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $keyManagementServiceClient->listKeyRings();
+     *     $pagedResponse = $keyManagementServiceClient->listKeyRings($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1950,13 +1863,12 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the location associated with the
+     *                             [KeyRings][google.cloud.kms.v1.KeyRing], in the format
+     *                             `projects/&#42;/locations/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the location associated with the
-     *           [KeyRings][google.cloud.kms.v1.KeyRing], in the format
-     *           `projects/&#42;/locations/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1986,15 +1898,12 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listKeyRings(array $optionalArgs = [])
+    public function listKeyRings($parent, array $optionalArgs = [])
     {
         $request = new ListKeyRingsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2025,22 +1934,22 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->macSign();
+     *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+     *     $data = '...';
+     *     $response = $keyManagementServiceClient->macSign($formattedName, $data);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                             signing.
+     * @param string $data         Required. The data to sign. The MAC tag is computed over this data field
+     *                             based on the specific algorithm.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     *           signing.
-     *     @type string $data
-     *           Required. The data to sign. The MAC tag is computed over this data field
-     *           based on the specific algorithm.
      *     @type Int64Value $dataCrc32c
      *           Optional. An optional CRC32C checksum of the
      *           [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]. If
@@ -2069,19 +1978,13 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function macSign(array $optionalArgs = [])
+    public function macSign($name, $data, array $optionalArgs = [])
     {
         $request = new MacSignRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['data'])) {
-            $request->setData($optionalArgs['data']);
-        }
-
+        $request->setName($name);
+        $request->setData($data);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['dataCrc32c'])) {
             $request->setDataCrc32c($optionalArgs['dataCrc32c']);
         }
@@ -2101,23 +2004,25 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->macVerify();
+     *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+     *     $data = '...';
+     *     $mac = '...';
+     *     $response = $keyManagementServiceClient->macVerify($formattedName, $data, $mac);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                             verification.
+     * @param string $data         Required. The data used previously as a
+     *                             [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] to generate
+     *                             the MAC tag.
+     * @param string $mac          Required. The signature to verify.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     *           verification.
-     *     @type string $data
-     *           Required. The data used previously as a
-     *           [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] to generate
-     *           the MAC tag.
      *     @type Int64Value $dataCrc32c
      *           Optional. An optional CRC32C checksum of the
      *           [MacVerifyRequest.data][google.cloud.kms.v1.MacVerifyRequest.data]. If
@@ -2137,8 +2042,6 @@ class KeyManagementServiceGapicClient
      *           languages. However, it is a non-negative integer, which will never exceed
      *           2^32-1, and can be safely downconverted to uint32 in languages that support
      *           this type.
-     *     @type string $mac
-     *           Required. The signature to verify.
      *     @type Int64Value $macCrc32c
      *           Optional. An optional CRC32C checksum of the
      *           [MacVerifyRequest.mac][google.cloud.kms.v1.MacVerifyRequest.mac]. If
@@ -2166,25 +2069,16 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function macVerify(array $optionalArgs = [])
+    public function macVerify($name, $data, $mac, array $optionalArgs = [])
     {
         $request = new MacVerifyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['data'])) {
-            $request->setData($optionalArgs['data']);
-        }
-
+        $request->setName($name);
+        $request->setData($data);
+        $request->setMac($mac);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['dataCrc32c'])) {
             $request->setDataCrc32c($optionalArgs['dataCrc32c']);
-        }
-
-        if (isset($optionalArgs['mac'])) {
-            $request->setMac($optionalArgs['mac']);
         }
 
         if (isset($optionalArgs['macCrc32c'])) {
@@ -2206,29 +2100,29 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->rawDecrypt();
+     *     $name = 'name';
+     *     $ciphertext = '...';
+     *     $initializationVector = '...';
+     *     $response = $keyManagementServiceClient->rawDecrypt($name, $ciphertext, $initializationVector);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name                 Required. The resource name of the
+     *                                     [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                                     decryption.
+     * @param string $ciphertext           Required. The encrypted data originally returned in
+     *                                     [RawEncryptResponse.ciphertext][google.cloud.kms.v1.RawEncryptResponse.ciphertext].
+     * @param string $initializationVector Required. The initialization vector (IV) used during encryption, which must
+     *                                     match the data originally provided in
+     *                                     [RawEncryptResponse.initialization_vector][google.cloud.kms.v1.RawEncryptResponse.initialization_vector].
+     * @param array  $optionalArgs         {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     *           decryption.
-     *     @type string $ciphertext
-     *           Required. The encrypted data originally returned in
-     *           [RawEncryptResponse.ciphertext][google.cloud.kms.v1.RawEncryptResponse.ciphertext].
      *     @type string $additionalAuthenticatedData
      *           Optional. Optional data that must match the data originally supplied in
      *           [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
-     *     @type string $initializationVector
-     *           Required. The initialization vector (IV) used during encryption, which must
-     *           match the data originally provided in
-     *           [RawEncryptResponse.initialization_vector][google.cloud.kms.v1.RawEncryptResponse.initialization_vector].
      *     @type int $tagLength
      *           The length of the authentication tag that is appended to the end of
      *           the ciphertext. If unspecified (0), the default value for the key's
@@ -2292,25 +2186,16 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function rawDecrypt(array $optionalArgs = [])
+    public function rawDecrypt($name, $ciphertext, $initializationVector, array $optionalArgs = [])
     {
         $request = new RawDecryptRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['ciphertext'])) {
-            $request->setCiphertext($optionalArgs['ciphertext']);
-        }
-
+        $request->setName($name);
+        $request->setCiphertext($ciphertext);
+        $request->setInitializationVector($initializationVector);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['additionalAuthenticatedData'])) {
             $request->setAdditionalAuthenticatedData($optionalArgs['additionalAuthenticatedData']);
-        }
-
-        if (isset($optionalArgs['initializationVector'])) {
-            $request->setInitializationVector($optionalArgs['initializationVector']);
         }
 
         if (isset($optionalArgs['tagLength'])) {
@@ -2346,29 +2231,29 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->rawEncrypt();
+     *     $name = 'name';
+     *     $plaintext = '...';
+     *     $response = $keyManagementServiceClient->rawEncrypt($name, $plaintext);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                             encryption.
+     * @param string $plaintext    Required. The data to encrypt. Must be no larger than 64KiB.
+     *
+     *                             The maximum size depends on the key version's
+     *                             [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
+     *                             For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
+     *                             plaintext must be no larger than 64KiB. For
+     *                             [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
+     *                             the plaintext and additional_authenticated_data fields must be no larger
+     *                             than 8KiB.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     *           encryption.
-     *     @type string $plaintext
-     *           Required. The data to encrypt. Must be no larger than 64KiB.
-     *
-     *           The maximum size depends on the key version's
-     *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
-     *           For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
-     *           plaintext must be no larger than 64KiB. For
-     *           [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
-     *           the plaintext and additional_authenticated_data fields must be no larger
-     *           than 8KiB.
      *     @type string $additionalAuthenticatedData
      *           Optional. Optional data that, if specified, must also be provided during
      *           decryption through
@@ -2450,19 +2335,13 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function rawEncrypt(array $optionalArgs = [])
+    public function rawEncrypt($name, $plaintext, array $optionalArgs = [])
     {
         $request = new RawEncryptRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['plaintext'])) {
-            $request->setPlaintext($optionalArgs['plaintext']);
-        }
-
+        $request->setName($name);
+        $request->setPlaintext($plaintext);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['additionalAuthenticatedData'])) {
             $request->setAdditionalAuthenticatedData($optionalArgs['additionalAuthenticatedData']);
         }
@@ -2503,18 +2382,18 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->restoreCryptoKeyVersion();
+     *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
+     *     $response = $keyManagementServiceClient->restoreCryptoKeyVersion($formattedName);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to restore.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to restore.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2525,15 +2404,12 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function restoreCryptoKeyVersion(array $optionalArgs = [])
+    public function restoreCryptoKeyVersion($name, array $optionalArgs = [])
     {
         $request = new RestoreCryptoKeyVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('RestoreCryptoKeyVersion', CryptoKeyVersion::class, $optionalArgs, $request)->wait();
@@ -2546,19 +2422,19 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->updateCryptoKey();
+     *     $cryptoKey = new CryptoKey();
+     *     $updateMask = new FieldMask();
+     *     $response = $keyManagementServiceClient->updateCryptoKey($cryptoKey, $updateMask);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param CryptoKey $cryptoKey    Required. [CryptoKey][google.cloud.kms.v1.CryptoKey] with updated values.
+     * @param FieldMask $updateMask   Required. List of fields to be updated in this request.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type CryptoKey $cryptoKey
-     *           Required. [CryptoKey][google.cloud.kms.v1.CryptoKey] with updated values.
-     *     @type FieldMask $updateMask
-     *           Required. List of fields to be updated in this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2569,18 +2445,13 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCryptoKey(array $optionalArgs = [])
+    public function updateCryptoKey($cryptoKey, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateCryptoKeyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['cryptoKey'])) {
-            $request->setCryptoKey($optionalArgs['cryptoKey']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setCryptoKey($cryptoKey);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['crypto_key.name'] = $cryptoKey->getName();
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateCryptoKey', CryptoKey::class, $optionalArgs, $request)->wait();
@@ -2598,21 +2469,21 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->updateCryptoKeyPrimaryVersion();
+     *     $formattedName = $keyManagementServiceClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+     *     $cryptoKeyVersionId = 'crypto_key_version_id';
+     *     $response = $keyManagementServiceClient->updateCryptoKeyPrimaryVersion($formattedName, $cryptoKeyVersionId);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name               Required. The resource name of the
+     *                                   [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
+     * @param string $cryptoKeyVersionId Required. The id of the child
+     *                                   [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
+     * @param array  $optionalArgs       {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the
-     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
-     *     @type string $cryptoKeyVersionId
-     *           Required. The id of the child
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2623,19 +2494,13 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCryptoKeyPrimaryVersion(array $optionalArgs = [])
+    public function updateCryptoKeyPrimaryVersion($name, $cryptoKeyVersionId, array $optionalArgs = [])
     {
         $request = new UpdateCryptoKeyPrimaryVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['cryptoKeyVersionId'])) {
-            $request->setCryptoKeyVersionId($optionalArgs['cryptoKeyVersionId']);
-        }
-
+        $request->setName($name);
+        $request->setCryptoKeyVersionId($cryptoKeyVersionId);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateCryptoKeyPrimaryVersion', CryptoKey::class, $optionalArgs, $request)->wait();
@@ -2659,20 +2524,20 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->updateCryptoKeyVersion();
+     *     $cryptoKeyVersion = new CryptoKeyVersion();
+     *     $updateMask = new FieldMask();
+     *     $response = $keyManagementServiceClient->updateCryptoKeyVersion($cryptoKeyVersion, $updateMask);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param CryptoKeyVersion $cryptoKeyVersion Required. [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
+     *                                           updated values.
+     * @param FieldMask        $updateMask       Required. List of fields to be updated in this request.
+     * @param array            $optionalArgs     {
      *     Optional.
      *
-     *     @type CryptoKeyVersion $cryptoKeyVersion
-     *           Required. [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
-     *           updated values.
-     *     @type FieldMask $updateMask
-     *           Required. List of fields to be updated in this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2683,18 +2548,13 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCryptoKeyVersion(array $optionalArgs = [])
+    public function updateCryptoKeyVersion($cryptoKeyVersion, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateCryptoKeyVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['cryptoKeyVersion'])) {
-            $request->setCryptoKeyVersion($optionalArgs['cryptoKeyVersion']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setCryptoKeyVersion($cryptoKeyVersion);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['crypto_key_version.name'] = $cryptoKeyVersion->getName();
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateCryptoKeyVersion', CryptoKeyVersion::class, $optionalArgs, $request)->wait();
@@ -2827,18 +2687,18 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $keyManagementServiceClient->getIamPolicy($resource);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -2852,15 +2712,12 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -2881,23 +2738,23 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $keyManagementServiceClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -2914,19 +2771,13 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2949,23 +2800,23 @@ class KeyManagementServiceGapicClient
      * ```
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
-     *     $response = $keyManagementServiceClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $keyManagementServiceClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $keyManagementServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2976,19 +2827,13 @@ class KeyManagementServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();

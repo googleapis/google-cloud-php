@@ -36,19 +36,21 @@ use Google\Cloud\Kms\V1\CryptoKeyVersion;
  * [state][google.cloud.kms.v1.CryptoKeyVersion.state] will be set to
  * [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The [name][google.cloud.kms.v1.CryptoKey.name] of the
+ *                                [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with the
+ *                                [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]. Please see
+ *                                {@see KeyManagementServiceClient::cryptoKeyName()} for help formatting this field.
  */
-function create_crypto_key_version_sample(): void
+function create_crypto_key_version_sample(string $formattedParent): void
 {
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
     // Prepare the request message.
-    $request = new CreateCryptoKeyVersionRequest();
+    $cryptoKeyVersion = new CryptoKeyVersion();
+    $request = (new CreateCryptoKeyVersionRequest())
+        ->setParent($formattedParent)
+        ->setCryptoKeyVersion($cryptoKeyVersion);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +60,26 @@ function create_crypto_key_version_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = KeyManagementServiceClient::cryptoKeyName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[KEY_RING]',
+        '[CRYPTO_KEY]'
+    );
+
+    create_crypto_key_version_sample($formattedParent);
 }
 // [END cloudkms_v1_generated_KeyManagementService_CreateCryptoKeyVersion_sync]

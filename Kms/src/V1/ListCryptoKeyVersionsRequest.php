@@ -71,7 +71,8 @@ class ListCryptoKeyVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name of the
      *                       [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
-     *                       `projects/&#42;/locations/&#42;/keyRings/&#42;/cryptoKeys/*`.
+     *                       `projects/&#42;/locations/&#42;/keyRings/&#42;/cryptoKeys/*`. Please see
+     *                       {@see KeyManagementServiceClient::cryptoKeyName()} for help formatting this field.
      *
      * @return \Google\Cloud\Kms\V1\ListCryptoKeyVersionsRequest
      *
