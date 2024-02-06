@@ -36,6 +36,7 @@ use Google\Cloud\Vision\V1\BatchAnnotateFilesResponse;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
 use Google\Cloud\Vision\V1\Client\ImageAnnotatorClient;
+use Google\Cloud\Vision\V1\OutputConfig;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -99,7 +100,10 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new AsyncBatchAnnotateFilesRequest();
+        // Mock request
+        $requests = [];
+        $request = (new AsyncBatchAnnotateFilesRequest())
+            ->setRequests($requests);
         $response = $gapicClient->asyncBatchAnnotateFiles($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -110,6 +114,8 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ImageAnnotator/AsyncBatchAnnotateFiles', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/asyncBatchAnnotateFilesTest');
         $response->pollUntilComplete([
@@ -160,7 +166,10 @@ class ImageAnnotatorClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new AsyncBatchAnnotateFilesRequest();
+        // Mock request
+        $requests = [];
+        $request = (new AsyncBatchAnnotateFilesRequest())
+            ->setRequests($requests);
         $response = $gapicClient->asyncBatchAnnotateFiles($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -212,7 +221,12 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new AsyncBatchAnnotateImagesRequest();
+        // Mock request
+        $requests = [];
+        $outputConfig = new OutputConfig();
+        $request = (new AsyncBatchAnnotateImagesRequest())
+            ->setRequests($requests)
+            ->setOutputConfig($outputConfig);
         $response = $gapicClient->asyncBatchAnnotateImages($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -223,6 +237,10 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ImageAnnotator/AsyncBatchAnnotateImages', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
+        $actualValue = $actualApiRequestObject->getOutputConfig();
+        $this->assertProtobufEquals($outputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/asyncBatchAnnotateImagesTest');
         $response->pollUntilComplete([
@@ -273,7 +291,12 @@ class ImageAnnotatorClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new AsyncBatchAnnotateImagesRequest();
+        // Mock request
+        $requests = [];
+        $outputConfig = new OutputConfig();
+        $request = (new AsyncBatchAnnotateImagesRequest())
+            ->setRequests($requests)
+            ->setOutputConfig($outputConfig);
         $response = $gapicClient->asyncBatchAnnotateImages($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -307,7 +330,10 @@ class ImageAnnotatorClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchAnnotateFilesResponse();
         $transport->addResponse($expectedResponse);
-        $request = new BatchAnnotateFilesRequest();
+        // Mock request
+        $requests = [];
+        $request = (new BatchAnnotateFilesRequest())
+            ->setRequests($requests);
         $response = $gapicClient->batchAnnotateFiles($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -315,6 +341,8 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateFiles', $actualFuncCall);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -336,7 +364,10 @@ class ImageAnnotatorClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new BatchAnnotateFilesRequest();
+        // Mock request
+        $requests = [];
+        $request = (new BatchAnnotateFilesRequest())
+            ->setRequests($requests);
         try {
             $gapicClient->batchAnnotateFiles($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -361,7 +392,10 @@ class ImageAnnotatorClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchAnnotateImagesResponse();
         $transport->addResponse($expectedResponse);
-        $request = new BatchAnnotateImagesRequest();
+        // Mock request
+        $requests = [];
+        $request = (new BatchAnnotateImagesRequest())
+            ->setRequests($requests);
         $response = $gapicClient->batchAnnotateImages($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -369,6 +403,8 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages', $actualFuncCall);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -390,7 +426,10 @@ class ImageAnnotatorClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new BatchAnnotateImagesRequest();
+        // Mock request
+        $requests = [];
+        $request = (new BatchAnnotateImagesRequest())
+            ->setRequests($requests);
         try {
             $gapicClient->batchAnnotateImages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -433,7 +472,10 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new AsyncBatchAnnotateFilesRequest();
+        // Mock request
+        $requests = [];
+        $request = (new AsyncBatchAnnotateFilesRequest())
+            ->setRequests($requests);
         $response = $gapicClient->asyncBatchAnnotateFilesAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -444,6 +486,8 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ImageAnnotator/AsyncBatchAnnotateFiles', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/asyncBatchAnnotateFilesTest');
         $response->pollUntilComplete([

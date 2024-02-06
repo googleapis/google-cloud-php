@@ -42,7 +42,8 @@ class ListReferenceImagesRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. Resource name of the product containing the reference images.
      *
      *                       Format is
-     *                       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+     *                       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. Please see
+     *                       {@see ProductSearchClient::productName()} for help formatting this field.
      *
      * @return \Google\Cloud\Vision\V1\ListReferenceImagesRequest
      *

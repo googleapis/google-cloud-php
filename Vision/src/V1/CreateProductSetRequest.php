@@ -41,7 +41,8 @@ class CreateProductSetRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                             $parent       Required. The project in which the ProductSet should be created.
      *
-     *                                                         Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     *                                                         Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+     *                                                         {@see ProductSearchClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Vision\V1\ProductSet $productSet   Required. The ProductSet to create.
      * @param string                             $productSetId A user-supplied resource id for this ProductSet. If set, the server will
      *                                                         attempt to use this value as the resource id. If it is already in use, an

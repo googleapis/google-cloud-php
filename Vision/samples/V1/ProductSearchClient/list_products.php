@@ -36,19 +36,20 @@ use Google\Cloud\Vision\V1\Product;
  *
  * * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The project OR ProductSet from which Products should be listed.
+ *
+ *                                Format:
+ *                                `projects/PROJECT_ID/locations/LOC_ID`
+ *                                Please see {@see ProductSearchClient::locationName()} for help formatting this field.
  */
-function list_products_sample(): void
+function list_products_sample(string $formattedParent): void
 {
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
     // Prepare the request message.
-    $request = new ListProductsRequest();
+    $request = (new ListProductsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -62,5 +63,21 @@ function list_products_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_products_sample($formattedParent);
 }
 // [END vision_v1_generated_ProductSearch_ListProducts_sync]

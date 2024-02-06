@@ -46,7 +46,8 @@ class CreateReferenceImageRequest extends \Google\Protobuf\Internal\Message
      *                                                                 image.
      *
      *                                                                 Format is
-     *                                                                 `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+     *                                                                 `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. Please see
+     *                                                                 {@see ProductSearchClient::productName()} for help formatting this field.
      * @param \Google\Cloud\Vision\V1\ReferenceImage $referenceImage   Required. The reference image to create.
      *                                                                 If an image ID is specified, it is ignored.
      * @param string                                 $referenceImageId A user-supplied resource id for the ReferenceImage to be added. If set,

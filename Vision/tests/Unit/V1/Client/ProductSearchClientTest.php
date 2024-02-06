@@ -38,6 +38,7 @@ use Google\Cloud\Vision\V1\DeleteReferenceImageRequest;
 use Google\Cloud\Vision\V1\GetProductRequest;
 use Google\Cloud\Vision\V1\GetProductSetRequest;
 use Google\Cloud\Vision\V1\GetReferenceImageRequest;
+use Google\Cloud\Vision\V1\ImportProductSetsInputConfig;
 use Google\Cloud\Vision\V1\ImportProductSetsRequest;
 use Google\Cloud\Vision\V1\ImportProductSetsResponse;
 use Google\Cloud\Vision\V1\ListProductSetsRequest;
@@ -101,13 +102,22 @@ class ProductSearchClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new AddProductToProductSetRequest();
+        // Mock request
+        $formattedName = $gapicClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+        $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+        $request = (new AddProductToProductSetRequest())
+            ->setName($formattedName)
+            ->setProduct($formattedProduct);
         $gapicClient->addProductToProductSet($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/AddProductToProductSet', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getProduct();
+        $this->assertProtobufEquals($formattedProduct, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -129,7 +139,12 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AddProductToProductSetRequest();
+        // Mock request
+        $formattedName = $gapicClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+        $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+        $request = (new AddProductToProductSetRequest())
+            ->setName($formattedName)
+            ->setProduct($formattedProduct);
         try {
             $gapicClient->addProductToProductSet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -162,7 +177,12 @@ class ProductSearchClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setProductCategory($productCategory);
         $transport->addResponse($expectedResponse);
-        $request = new CreateProductRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $product = new Product();
+        $request = (new CreateProductRequest())
+            ->setParent($formattedParent)
+            ->setProduct($product);
         $response = $gapicClient->createProduct($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -170,6 +190,10 @@ class ProductSearchClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/CreateProduct', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getProduct();
+        $this->assertProtobufEquals($product, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -191,7 +215,12 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateProductRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $product = new Product();
+        $request = (new CreateProductRequest())
+            ->setParent($formattedParent)
+            ->setProduct($product);
         try {
             $gapicClient->createProduct($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -220,7 +249,12 @@ class ProductSearchClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $request = new CreateProductSetRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $productSet = new ProductSet();
+        $request = (new CreateProductSetRequest())
+            ->setParent($formattedParent)
+            ->setProductSet($productSet);
         $response = $gapicClient->createProductSet($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -228,6 +262,10 @@ class ProductSearchClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/CreateProductSet', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getProductSet();
+        $this->assertProtobufEquals($productSet, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -249,7 +287,12 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateProductSetRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $productSet = new ProductSet();
+        $request = (new CreateProductSetRequest())
+            ->setParent($formattedParent)
+            ->setProductSet($productSet);
         try {
             $gapicClient->createProductSet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -278,7 +321,14 @@ class ProductSearchClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setUri($uri);
         $transport->addResponse($expectedResponse);
-        $request = new CreateReferenceImageRequest();
+        // Mock request
+        $formattedParent = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+        $referenceImage = new ReferenceImage();
+        $referenceImageUri = 'referenceImageUri-707360132';
+        $referenceImage->setUri($referenceImageUri);
+        $request = (new CreateReferenceImageRequest())
+            ->setParent($formattedParent)
+            ->setReferenceImage($referenceImage);
         $response = $gapicClient->createReferenceImage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -286,6 +336,10 @@ class ProductSearchClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/CreateReferenceImage', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getReferenceImage();
+        $this->assertProtobufEquals($referenceImage, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -307,7 +361,14 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateReferenceImageRequest();
+        // Mock request
+        $formattedParent = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+        $referenceImage = new ReferenceImage();
+        $referenceImageUri = 'referenceImageUri-707360132';
+        $referenceImage->setUri($referenceImageUri);
+        $request = (new CreateReferenceImageRequest())
+            ->setParent($formattedParent)
+            ->setReferenceImage($referenceImage);
         try {
             $gapicClient->createReferenceImage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -332,13 +393,18 @@ class ProductSearchClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteProductRequest();
+        // Mock request
+        $formattedName = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+        $request = (new DeleteProductRequest())
+            ->setName($formattedName);
         $gapicClient->deleteProduct($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/DeleteProduct', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -360,7 +426,10 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteProductRequest();
+        // Mock request
+        $formattedName = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+        $request = (new DeleteProductRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteProduct($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -385,13 +454,18 @@ class ProductSearchClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteProductSetRequest();
+        // Mock request
+        $formattedName = $gapicClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+        $request = (new DeleteProductSetRequest())
+            ->setName($formattedName);
         $gapicClient->deleteProductSet($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/DeleteProductSet', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -413,7 +487,10 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteProductSetRequest();
+        // Mock request
+        $formattedName = $gapicClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+        $request = (new DeleteProductSetRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteProductSet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -438,13 +515,18 @@ class ProductSearchClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteReferenceImageRequest();
+        // Mock request
+        $formattedName = $gapicClient->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
+        $request = (new DeleteReferenceImageRequest())
+            ->setName($formattedName);
         $gapicClient->deleteReferenceImage($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/DeleteReferenceImage', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -466,7 +548,10 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteReferenceImageRequest();
+        // Mock request
+        $formattedName = $gapicClient->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
+        $request = (new DeleteReferenceImageRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteReferenceImage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -499,7 +584,10 @@ class ProductSearchClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setProductCategory($productCategory);
         $transport->addResponse($expectedResponse);
-        $request = new GetProductRequest();
+        // Mock request
+        $formattedName = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+        $request = (new GetProductRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getProduct($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -507,6 +595,8 @@ class ProductSearchClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/GetProduct', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -528,7 +618,10 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetProductRequest();
+        // Mock request
+        $formattedName = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+        $request = (new GetProductRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getProduct($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -557,7 +650,10 @@ class ProductSearchClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $request = new GetProductSetRequest();
+        // Mock request
+        $formattedName = $gapicClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+        $request = (new GetProductSetRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getProductSet($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -565,6 +661,8 @@ class ProductSearchClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/GetProductSet', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -586,7 +684,10 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetProductSetRequest();
+        // Mock request
+        $formattedName = $gapicClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+        $request = (new GetProductSetRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getProductSet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -615,7 +716,10 @@ class ProductSearchClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setUri($uri);
         $transport->addResponse($expectedResponse);
-        $request = new GetReferenceImageRequest();
+        // Mock request
+        $formattedName = $gapicClient->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
+        $request = (new GetReferenceImageRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getReferenceImage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -623,6 +727,8 @@ class ProductSearchClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/GetReferenceImage', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -644,7 +750,10 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetReferenceImageRequest();
+        // Mock request
+        $formattedName = $gapicClient->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
+        $request = (new GetReferenceImageRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getReferenceImage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -687,7 +796,12 @@ class ProductSearchClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new ImportProductSetsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $inputConfig = new ImportProductSetsInputConfig();
+        $request = (new ImportProductSetsRequest())
+            ->setParent($formattedParent)
+            ->setInputConfig($inputConfig);
         $response = $gapicClient->importProductSets($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -698,6 +812,10 @@ class ProductSearchClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/ImportProductSets', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getInputConfig();
+        $this->assertProtobufEquals($inputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importProductSetsTest');
         $response->pollUntilComplete([
@@ -748,7 +866,12 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new ImportProductSetsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $inputConfig = new ImportProductSetsInputConfig();
+        $request = (new ImportProductSetsRequest())
+            ->setParent($formattedParent)
+            ->setInputConfig($inputConfig);
         $response = $gapicClient->importProductSets($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -789,7 +912,10 @@ class ProductSearchClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProductSets($productSets);
         $transport->addResponse($expectedResponse);
-        $request = new ListProductSetsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListProductSetsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listProductSets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -800,6 +926,8 @@ class ProductSearchClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/ListProductSets', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -821,7 +949,10 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListProductSetsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListProductSetsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listProductSets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -853,7 +984,10 @@ class ProductSearchClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProducts($products);
         $transport->addResponse($expectedResponse);
-        $request = new ListProductsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListProductsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listProducts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -864,6 +998,8 @@ class ProductSearchClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/ListProducts', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -885,7 +1021,10 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListProductsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListProductsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listProducts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -917,7 +1056,10 @@ class ProductSearchClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProducts($products);
         $transport->addResponse($expectedResponse);
-        $request = new ListProductsInProductSetRequest();
+        // Mock request
+        $formattedName = $gapicClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+        $request = (new ListProductsInProductSetRequest())
+            ->setName($formattedName);
         $response = $gapicClient->listProductsInProductSet($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -928,6 +1070,8 @@ class ProductSearchClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/ListProductsInProductSet', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -949,7 +1093,10 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListProductsInProductSetRequest();
+        // Mock request
+        $formattedName = $gapicClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+        $request = (new ListProductsInProductSetRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->listProductsInProductSet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -983,7 +1130,10 @@ class ProductSearchClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReferenceImages($referenceImages);
         $transport->addResponse($expectedResponse);
-        $request = new ListReferenceImagesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+        $request = (new ListReferenceImagesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listReferenceImages($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -994,6 +1144,8 @@ class ProductSearchClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/ListReferenceImages', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1015,7 +1167,10 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListReferenceImagesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+        $request = (new ListReferenceImagesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listReferenceImages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1058,7 +1213,10 @@ class ProductSearchClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PurgeProductsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new PurgeProductsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->purgeProducts($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1069,6 +1227,8 @@ class ProductSearchClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/PurgeProducts', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/purgeProductsTest');
         $response->pollUntilComplete([
@@ -1119,7 +1279,10 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PurgeProductsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new PurgeProductsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->purgeProducts($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1153,13 +1316,22 @@ class ProductSearchClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new RemoveProductFromProductSetRequest();
+        // Mock request
+        $formattedName = $gapicClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+        $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+        $request = (new RemoveProductFromProductSetRequest())
+            ->setName($formattedName)
+            ->setProduct($formattedProduct);
         $gapicClient->removeProductFromProductSet($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/RemoveProductFromProductSet', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getProduct();
+        $this->assertProtobufEquals($formattedProduct, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1181,7 +1353,12 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new RemoveProductFromProductSetRequest();
+        // Mock request
+        $formattedName = $gapicClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+        $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+        $request = (new RemoveProductFromProductSetRequest())
+            ->setName($formattedName)
+            ->setProduct($formattedProduct);
         try {
             $gapicClient->removeProductFromProductSet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1214,7 +1391,10 @@ class ProductSearchClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setProductCategory($productCategory);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateProductRequest();
+        // Mock request
+        $product = new Product();
+        $request = (new UpdateProductRequest())
+            ->setProduct($product);
         $response = $gapicClient->updateProduct($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1222,6 +1402,8 @@ class ProductSearchClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/UpdateProduct', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProduct();
+        $this->assertProtobufEquals($product, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1243,7 +1425,10 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateProductRequest();
+        // Mock request
+        $product = new Product();
+        $request = (new UpdateProductRequest())
+            ->setProduct($product);
         try {
             $gapicClient->updateProduct($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1272,7 +1457,10 @@ class ProductSearchClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateProductSetRequest();
+        // Mock request
+        $productSet = new ProductSet();
+        $request = (new UpdateProductSetRequest())
+            ->setProductSet($productSet);
         $response = $gapicClient->updateProductSet($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1280,6 +1468,8 @@ class ProductSearchClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/UpdateProductSet', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProductSet();
+        $this->assertProtobufEquals($productSet, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1301,7 +1491,10 @@ class ProductSearchClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateProductSetRequest();
+        // Mock request
+        $productSet = new ProductSet();
+        $request = (new UpdateProductSetRequest())
+            ->setProductSet($productSet);
         try {
             $gapicClient->updateProductSet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1326,13 +1519,22 @@ class ProductSearchClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new AddProductToProductSetRequest();
+        // Mock request
+        $formattedName = $gapicClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+        $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+        $request = (new AddProductToProductSetRequest())
+            ->setName($formattedName)
+            ->setProduct($formattedProduct);
         $gapicClient->addProductToProductSetAsync($request)->wait();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.vision.v1.ProductSearch/AddProductToProductSet', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getProduct();
+        $this->assertProtobufEquals($formattedProduct, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

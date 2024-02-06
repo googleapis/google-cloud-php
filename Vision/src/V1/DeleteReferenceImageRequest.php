@@ -29,6 +29,7 @@ class DeleteReferenceImageRequest extends \Google\Protobuf\Internal\Message
      *
      *                     Format is:
      *                     `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
+     *                     Please see {@see ProductSearchClient::referenceImageName()} for help formatting this field.
      *
      * @return \Google\Cloud\Vision\V1\DeleteReferenceImageRequest
      *

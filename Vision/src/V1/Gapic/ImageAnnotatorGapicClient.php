@@ -61,7 +61,8 @@ use Google\LongRunning\Operation;
  * ```
  * $imageAnnotatorClient = new ImageAnnotatorClient();
  * try {
- *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles();
+ *     $requests = [];
+ *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -72,7 +73,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles();
+ *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $imageAnnotatorClient->resumeOperation($operationName, 'asyncBatchAnnotateFiles');
@@ -353,7 +354,8 @@ class ImageAnnotatorGapicClient
      * ```
      * $imageAnnotatorClient = new ImageAnnotatorClient();
      * try {
-     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles();
+     *     $requests = [];
+     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -364,7 +366,7 @@ class ImageAnnotatorGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles();
+     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $imageAnnotatorClient->resumeOperation($operationName, 'asyncBatchAnnotateFiles');
@@ -384,11 +386,10 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param AsyncAnnotateFileRequest[] $requests     Required. Individual async file annotation requests for this batch.
+     * @param array                      $optionalArgs {
      *     Optional.
      *
-     *     @type AsyncAnnotateFileRequest[] $requests
-     *           Required. Individual async file annotation requests for this batch.
      *     @type string $parent
      *           Optional. Target project and location to make a call.
      *
@@ -419,14 +420,11 @@ class ImageAnnotatorGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function asyncBatchAnnotateFiles(array $optionalArgs = [])
+    public function asyncBatchAnnotateFiles($requests, array $optionalArgs = [])
     {
         $request = new AsyncBatchAnnotateFilesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['requests'])) {
-            $request->setRequests($optionalArgs['requests']);
-        }
-
+        $request->setRequests($requests);
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
@@ -465,7 +463,9 @@ class ImageAnnotatorGapicClient
      * ```
      * $imageAnnotatorClient = new ImageAnnotatorClient();
      * try {
-     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateImages();
+     *     $requests = [];
+     *     $outputConfig = new OutputConfig();
+     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -476,7 +476,7 @@ class ImageAnnotatorGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateImages();
+     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $imageAnnotatorClient->resumeOperation($operationName, 'asyncBatchAnnotateImages');
@@ -496,13 +496,11 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param AnnotateImageRequest[] $requests     Required. Individual image annotation requests for this batch.
+     * @param OutputConfig           $outputConfig Required. The desired output location and metadata (e.g. format).
+     * @param array                  $optionalArgs {
      *     Optional.
      *
-     *     @type AnnotateImageRequest[] $requests
-     *           Required. Individual image annotation requests for this batch.
-     *     @type OutputConfig $outputConfig
-     *           Required. The desired output location and metadata (e.g. format).
      *     @type string $parent
      *           Optional. Target project and location to make a call.
      *
@@ -533,18 +531,15 @@ class ImageAnnotatorGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function asyncBatchAnnotateImages(array $optionalArgs = [])
-    {
+    public function asyncBatchAnnotateImages(
+        $requests,
+        $outputConfig,
+        array $optionalArgs = []
+    ) {
         $request = new AsyncBatchAnnotateImagesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['requests'])) {
-            $request->setRequests($optionalArgs['requests']);
-        }
-
-        if (isset($optionalArgs['outputConfig'])) {
-            $request->setOutputConfig($optionalArgs['outputConfig']);
-        }
-
+        $request->setRequests($requests);
+        $request->setOutputConfig($outputConfig);
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
@@ -581,18 +576,18 @@ class ImageAnnotatorGapicClient
      * ```
      * $imageAnnotatorClient = new ImageAnnotatorClient();
      * try {
-     *     $response = $imageAnnotatorClient->batchAnnotateFiles();
+     *     $requests = [];
+     *     $response = $imageAnnotatorClient->batchAnnotateFiles($requests);
      * } finally {
      *     $imageAnnotatorClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param AnnotateFileRequest[] $requests     Required. The list of file annotation requests. Right now we support only
+     *                                            one AnnotateFileRequest in BatchAnnotateFilesRequest.
+     * @param array                 $optionalArgs {
      *     Optional.
      *
-     *     @type AnnotateFileRequest[] $requests
-     *           Required. The list of file annotation requests. Right now we support only
-     *           one AnnotateFileRequest in BatchAnnotateFilesRequest.
      *     @type string $parent
      *           Optional. Target project and location to make a call.
      *
@@ -623,14 +618,11 @@ class ImageAnnotatorGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchAnnotateFiles(array $optionalArgs = [])
+    public function batchAnnotateFiles($requests, array $optionalArgs = [])
     {
         $request = new BatchAnnotateFilesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['requests'])) {
-            $request->setRequests($optionalArgs['requests']);
-        }
-
+        $request->setRequests($requests);
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
@@ -661,17 +653,17 @@ class ImageAnnotatorGapicClient
      * ```
      * $imageAnnotatorClient = new ImageAnnotatorClient();
      * try {
-     *     $response = $imageAnnotatorClient->batchAnnotateImages();
+     *     $requests = [];
+     *     $response = $imageAnnotatorClient->batchAnnotateImages($requests);
      * } finally {
      *     $imageAnnotatorClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param AnnotateImageRequest[] $requests     Required. Individual image annotation requests for this batch.
+     * @param array                  $optionalArgs {
      *     Optional.
      *
-     *     @type AnnotateImageRequest[] $requests
-     *           Required. Individual image annotation requests for this batch.
      *     @type string $parent
      *           Optional. Target project and location to make a call.
      *
@@ -702,14 +694,11 @@ class ImageAnnotatorGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchAnnotateImages(array $optionalArgs = [])
+    public function batchAnnotateImages($requests, array $optionalArgs = [])
     {
         $request = new BatchAnnotateImagesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['requests'])) {
-            $request->setRequests($optionalArgs['requests']);
-        }
-
+        $request->setRequests($requests);
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];

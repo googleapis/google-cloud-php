@@ -37,19 +37,26 @@ use Google\Cloud\Vision\V1\Client\ProductSearchClient;
  *
  * * Returns NOT_FOUND if the Product or the ProductSet doesn't exist.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName    The resource name for the ProductSet to modify.
+ *
+ *                                 Format is:
+ *                                 `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+ *                                 Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
+ * @param string $formattedProduct The resource name for the Product to be added to this ProductSet.
+ *
+ *                                 Format is:
+ *                                 `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+ *                                 Please see {@see ProductSearchClient::productName()} for help formatting this field.
  */
-function add_product_to_product_set_sample(): void
+function add_product_to_product_set_sample(string $formattedName, string $formattedProduct): void
 {
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
     // Prepare the request message.
-    $request = new AddProductToProductSetRequest();
+    $request = (new AddProductToProductSetRequest())
+        ->setName($formattedName)
+        ->setProduct($formattedProduct);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +65,22 @@ function add_product_to_product_set_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+    $formattedProduct = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+
+    add_product_to_product_set_sample($formattedName, $formattedProduct);
 }
 // [END vision_v1_generated_ProductSearch_AddProductToProductSet_sync]

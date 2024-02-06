@@ -38,11 +38,13 @@ class RemoveProductFromProductSetRequest extends \Google\Protobuf\Internal\Messa
      *
      *                        Format is:
      *                        `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     *                        Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
      * @param string $product Required. The resource name for the Product to be removed from this
      *                        ProductSet.
      *
      *                        Format is:
      *                        `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+     *                        Please see {@see ProductSearchClient::productName()} for help formatting this field.
      *
      * @return \Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest
      *
