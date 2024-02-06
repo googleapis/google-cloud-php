@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vision_v1_generated_ImageAnnotator_AsyncBatchAnnotateFiles_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Vision\V1\AsyncAnnotateFileRequest;
 use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest;
 use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesResponse;
 use Google\Cloud\Vision\V1\Client\ImageAnnotatorClient;
@@ -51,9 +50,7 @@ function async_batch_annotate_files_sample(): void
     $imageAnnotatorClient = new ImageAnnotatorClient();
 
     // Prepare the request message.
-    $requests = [new AsyncAnnotateFileRequest()];
-    $request = (new AsyncBatchAnnotateFilesRequest())
-        ->setRequests($requests);
+    $request = new AsyncBatchAnnotateFilesRequest();
 
     // Call the API and handle any network failures.
     try {

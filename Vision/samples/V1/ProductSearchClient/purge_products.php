@@ -51,23 +51,23 @@ use Google\Rpc\Status;
  * ProductSet, you must wait until the PurgeProducts operation has finished
  * for that ProductSet.
  *
- * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
- * progress and results of the request.
+ * The [google.longrunning.Operation][google.longrunning.Operation] API can be
+ * used to keep track of the progress and results of the request.
  * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
  *
- * @param string $formattedParent The project and location in which the Products should be deleted.
- *
- *                                Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
- *                                {@see ProductSearchClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function purge_products_sample(string $formattedParent): void
+function purge_products_sample(): void
 {
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
     // Prepare the request message.
-    $request = (new PurgeProductsRequest())
-        ->setParent($formattedParent);
+    $request = new PurgeProductsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -85,21 +85,5 @@ function purge_products_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
-
-    purge_products_sample($formattedParent);
 }
 // [END vision_v1_generated_ProductSearch_PurgeProducts_sync]

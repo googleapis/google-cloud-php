@@ -73,16 +73,18 @@ use Google\Protobuf\GPBEmpty;
  * Service Description: Manages Products and ProductSets of reference images for use in product
  * search. It uses the following resource model:
  *
- * - The API has a collection of [ProductSet][google.cloud.vision.v1.ProductSet] resources, named
- * `projects/&#42;/locations/&#42;/productSets/*`, which acts as a way to put different
- * products into groups to limit identification.
+ * - The API has a collection of [ProductSet][google.cloud.vision.v1.ProductSet]
+ * resources, named `projects/&#42;/locations/&#42;/productSets/*`, which acts as a way
+ * to put different products into groups to limit identification.
  *
  * In parallel,
  *
- * - The API has a collection of [Product][google.cloud.vision.v1.Product] resources, named
+ * - The API has a collection of [Product][google.cloud.vision.v1.Product]
+ * resources, named
  * `projects/&#42;/locations/&#42;/products/*`
  *
- * - Each [Product][google.cloud.vision.v1.Product] has a collection of [ReferenceImage][google.cloud.vision.v1.ReferenceImage] resources, named
+ * - Each [Product][google.cloud.vision.v1.Product] has a collection of
+ * [ReferenceImage][google.cloud.vision.v1.ReferenceImage] resources, named
  * `projects/&#42;/locations/&#42;/products/&#42;/referenceImages/*`
  *
  * This class provides the ability to make remote calls to the backing service through method
@@ -91,9 +93,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $productSearchClient = new ProductSearchClient();
  * try {
- *     $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
- *     $formattedProduct = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
- *     $productSearchClient->addProductToProductSet($formattedName, $formattedProduct);
+ *     $productSearchClient->addProductToProductSet();
  * } finally {
  *     $productSearchClient->close();
  * }
@@ -468,25 +468,25 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-     *     $formattedProduct = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-     *     $productSearchClient->addProductToProductSet($formattedName, $formattedProduct);
+     *     $productSearchClient->addProductToProductSet();
      * } finally {
      *     $productSearchClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for the ProductSet to modify.
-     *
-     *                             Format is:
-     *                             `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param string $product      Required. The resource name for the Product to be added to this ProductSet.
-     *
-     *                             Format is:
-     *                             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name for the ProductSet to modify.
+     *
+     *           Format is:
+     *           `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     *     @type string $product
+     *           Required. The resource name for the Product to be added to this ProductSet.
+     *
+     *           Format is:
+     *           `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -495,16 +495,19 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addProductToProductSet(
-        $name,
-        $product,
-        array $optionalArgs = []
-    ) {
+    public function addProductToProductSet(array $optionalArgs = [])
+    {
         $request = new AddProductToProductSetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setProduct($product);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['product'])) {
+            $request->setProduct($optionalArgs['product']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -533,22 +536,22 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $product = new Product();
-     *     $response = $productSearchClient->createProduct($formattedParent, $product);
+     *     $response = $productSearchClient->createProduct();
      * } finally {
      *     $productSearchClient->close();
      * }
      * ```
      *
-     * @param string  $parent       Required. The project in which the Product should be created.
-     *
-     *                              Format is
-     *                              `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param Product $product      Required. The product to create.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project in which the Product should be created.
+     *
+     *           Format is
+     *           `projects/PROJECT_ID/locations/LOC_ID`.
+     *     @type Product $product
+     *           Required. The product to create.
      *     @type string $productId
      *           A user-supplied resource id for this Product. If set, the server will
      *           attempt to use this value as the resource id. If it is already in use, an
@@ -564,13 +567,19 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createProduct($parent, $product, array $optionalArgs = [])
+    public function createProduct(array $optionalArgs = [])
     {
         $request = new CreateProductRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setProduct($product);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['product'])) {
+            $request->setProduct($optionalArgs['product']);
+        }
+
         if (isset($optionalArgs['productId'])) {
             $request->setProductId($optionalArgs['productId']);
         }
@@ -601,21 +610,21 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $productSet = new ProductSet();
-     *     $response = $productSearchClient->createProductSet($formattedParent, $productSet);
+     *     $response = $productSearchClient->createProductSet();
      * } finally {
      *     $productSearchClient->close();
      * }
      * ```
      *
-     * @param string     $parent       Required. The project in which the ProductSet should be created.
-     *
-     *                                 Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param ProductSet $productSet   Required. The ProductSet to create.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project in which the ProductSet should be created.
+     *
+     *           Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     *     @type ProductSet $productSet
+     *           Required. The ProductSet to create.
      *     @type string $productSetId
      *           A user-supplied resource id for this ProductSet. If set, the server will
      *           attempt to use this value as the resource id. If it is already in use, an
@@ -631,16 +640,19 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createProductSet(
-        $parent,
-        $productSet,
-        array $optionalArgs = []
-    ) {
+    public function createProductSet(array $optionalArgs = [])
+    {
         $request = new CreateProductSetRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setProductSet($productSet);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['productSet'])) {
+            $request->setProductSet($optionalArgs['productSet']);
+        }
+
         if (isset($optionalArgs['productSetId'])) {
             $request->setProductSetId($optionalArgs['productSetId']);
         }
@@ -684,23 +696,24 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedParent = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-     *     $referenceImage = new ReferenceImage();
-     *     $response = $productSearchClient->createReferenceImage($formattedParent, $referenceImage);
+     *     $response = $productSearchClient->createReferenceImage();
      * } finally {
      *     $productSearchClient->close();
      * }
      * ```
      *
-     * @param string         $parent         Required. Resource name of the product in which to create the reference image.
-     *
-     *                                       Format is
-     *                                       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-     * @param ReferenceImage $referenceImage Required. The reference image to create.
-     *                                       If an image ID is specified, it is ignored.
-     * @param array          $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the product in which to create the reference
+     *           image.
+     *
+     *           Format is
+     *           `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+     *     @type ReferenceImage $referenceImage
+     *           Required. The reference image to create.
+     *           If an image ID is specified, it is ignored.
      *     @type string $referenceImageId
      *           A user-supplied resource id for the ReferenceImage to be added. If set,
      *           the server will attempt to use this value as the resource id. If it is
@@ -716,16 +729,19 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createReferenceImage(
-        $parent,
-        $referenceImage,
-        array $optionalArgs = []
-    ) {
+    public function createReferenceImage(array $optionalArgs = [])
+    {
         $request = new CreateReferenceImageRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setReferenceImage($referenceImage);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['referenceImage'])) {
+            $request->setReferenceImage($optionalArgs['referenceImage']);
+        }
+
         if (isset($optionalArgs['referenceImageId'])) {
             $request->setReferenceImageId($optionalArgs['referenceImageId']);
         }
@@ -755,20 +771,20 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedName = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-     *     $productSearchClient->deleteProduct($formattedName);
+     *     $productSearchClient->deleteProduct();
      * } finally {
      *     $productSearchClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of product to delete.
-     *
-     *                             Format is:
-     *                             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of product to delete.
+     *
+     *           Format is:
+     *           `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -777,12 +793,15 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteProduct($name, array $optionalArgs = [])
+    public function deleteProduct(array $optionalArgs = [])
     {
         $request = new DeleteProductRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -807,20 +826,20 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-     *     $productSearchClient->deleteProductSet($formattedName);
+     *     $productSearchClient->deleteProductSet();
      * } finally {
      *     $productSearchClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the ProductSet to delete.
-     *
-     *                             Format is:
-     *                             `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the ProductSet to delete.
+     *
+     *           Format is:
+     *           `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -829,12 +848,15 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteProductSet($name, array $optionalArgs = [])
+    public function deleteProductSet(array $optionalArgs = [])
     {
         $request = new DeleteProductSetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -862,20 +884,20 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedName = $productSearchClient->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
-     *     $productSearchClient->deleteReferenceImage($formattedName);
+     *     $productSearchClient->deleteReferenceImage();
      * } finally {
      *     $productSearchClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the reference image to delete.
-     *
-     *                             Format is:
-     *                             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the reference image to delete.
+     *
+     *           Format is:
+     *           `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -884,12 +906,15 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteReferenceImage($name, array $optionalArgs = [])
+    public function deleteReferenceImage(array $optionalArgs = [])
     {
         $request = new DeleteReferenceImageRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -915,20 +940,20 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedName = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-     *     $response = $productSearchClient->getProduct($formattedName);
+     *     $response = $productSearchClient->getProduct();
      * } finally {
      *     $productSearchClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the Product to get.
-     *
-     *                             Format is:
-     *                             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the Product to get.
+     *
+     *           Format is:
+     *           `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -939,12 +964,15 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getProduct($name, array $optionalArgs = [])
+    public function getProduct(array $optionalArgs = [])
     {
         $request = new GetProductRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -970,20 +998,20 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-     *     $response = $productSearchClient->getProductSet($formattedName);
+     *     $response = $productSearchClient->getProductSet();
      * } finally {
      *     $productSearchClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the ProductSet to get.
-     *
-     *                             Format is:
-     *                             `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the ProductSet to get.
+     *
+     *           Format is:
+     *           `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -994,12 +1022,15 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getProductSet($name, array $optionalArgs = [])
+    public function getProductSet(array $optionalArgs = [])
     {
         $request = new GetProductSetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1025,20 +1056,20 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedName = $productSearchClient->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
-     *     $response = $productSearchClient->getReferenceImage($formattedName);
+     *     $response = $productSearchClient->getReferenceImage();
      * } finally {
      *     $productSearchClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the ReferenceImage to get.
-     *
-     *                             Format is:
-     *                             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the ReferenceImage to get.
+     *
+     *           Format is:
+     *           `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1049,12 +1080,15 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getReferenceImage($name, array $optionalArgs = [])
+    public function getReferenceImage(array $optionalArgs = [])
     {
         $request = new GetReferenceImageRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1073,8 +1107,8 @@ class ProductSearchGapicClient
      * Asynchronous API that imports a list of reference images to specified
      * product sets based on a list of image information.
      *
-     * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
-     * progress and results of the request.
+     * The [google.longrunning.Operation][google.longrunning.Operation] API can be
+     * used to keep track of the progress and results of the request.
      * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
      * `Operation.response` contains `ImportProductSetsResponse`. (results)
      *
@@ -1086,9 +1120,7 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $inputConfig = new ImportProductSetsInputConfig();
-     *     $operationResponse = $productSearchClient->importProductSets($formattedParent, $inputConfig);
+     *     $operationResponse = $productSearchClient->importProductSets();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1099,7 +1131,7 @@ class ProductSearchGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $productSearchClient->importProductSets($formattedParent, $inputConfig);
+     *     $operationResponse = $productSearchClient->importProductSets();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $productSearchClient->resumeOperation($operationName, 'importProductSets');
@@ -1119,13 +1151,15 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string                       $parent       Required. The project in which the ProductSets should be imported.
-     *
-     *                                                   Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param ImportProductSetsInputConfig $inputConfig  Required. The input content for the list of requests.
-     * @param array                        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project in which the ProductSets should be imported.
+     *
+     *           Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     *     @type ImportProductSetsInputConfig $inputConfig
+     *           Required. The input content for the list of requests.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1136,16 +1170,19 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importProductSets(
-        $parent,
-        $inputConfig,
-        array $optionalArgs = []
-    ) {
+    public function importProductSets(array $optionalArgs = [])
+    {
         $request = new ImportProductSetsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setInputConfig($inputConfig);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['inputConfig'])) {
+            $request->setInputConfig($optionalArgs['inputConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1172,9 +1209,8 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $productSearchClient->listProductSets($formattedParent);
+     *     $pagedResponse = $productSearchClient->listProductSets();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1182,7 +1218,7 @@ class ProductSearchGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $productSearchClient->listProductSets($formattedParent);
+     *     $pagedResponse = $productSearchClient->listProductSets();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1191,12 +1227,13 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project from which ProductSets should be listed.
-     *
-     *                             Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project from which ProductSets should be listed.
+     *
+     *           Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1216,12 +1253,15 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listProductSets($parent, array $optionalArgs = [])
+    public function listProductSets(array $optionalArgs = [])
     {
         $request = new ListProductSetsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1255,9 +1295,8 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $productSearchClient->listProducts($formattedParent);
+     *     $pagedResponse = $productSearchClient->listProducts();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1265,7 +1304,7 @@ class ProductSearchGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $productSearchClient->listProducts($formattedParent);
+     *     $pagedResponse = $productSearchClient->listProducts();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1274,13 +1313,14 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project OR ProductSet from which Products should be listed.
-     *
-     *                             Format:
-     *                             `projects/PROJECT_ID/locations/LOC_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project OR ProductSet from which Products should be listed.
+     *
+     *           Format:
+     *           `projects/PROJECT_ID/locations/LOC_ID`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1300,12 +1340,15 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listProducts($parent, array $optionalArgs = [])
+    public function listProducts(array $optionalArgs = [])
     {
         $request = new ListProductsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1341,9 +1384,8 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $productSearchClient->listProductsInProductSet($formattedName);
+     *     $pagedResponse = $productSearchClient->listProductsInProductSet();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1351,7 +1393,7 @@ class ProductSearchGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $productSearchClient->listProductsInProductSet($formattedName);
+     *     $pagedResponse = $productSearchClient->listProductsInProductSet();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1360,13 +1402,14 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The ProductSet resource for which to retrieve Products.
-     *
-     *                             Format is:
-     *                             `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The ProductSet resource for which to retrieve Products.
+     *
+     *           Format is:
+     *           `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1386,12 +1429,15 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listProductsInProductSet($name, array $optionalArgs = [])
+    public function listProductsInProductSet(array $optionalArgs = [])
     {
         $request = new ListProductsInProductSetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1427,9 +1473,8 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedParent = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $productSearchClient->listReferenceImages($formattedParent);
+     *     $pagedResponse = $productSearchClient->listReferenceImages();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1437,7 +1482,7 @@ class ProductSearchGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $productSearchClient->listReferenceImages($formattedParent);
+     *     $pagedResponse = $productSearchClient->listReferenceImages();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1446,13 +1491,14 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the product containing the reference images.
-     *
-     *                             Format is
-     *                             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the product containing the reference images.
+     *
+     *           Format is
+     *           `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1472,12 +1518,15 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listReferenceImages($parent, array $optionalArgs = [])
+    public function listReferenceImages(array $optionalArgs = [])
     {
         $request = new ListReferenceImagesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1522,16 +1571,15 @@ class ProductSearchGapicClient
      * ProductSet, you must wait until the PurgeProducts operation has finished
      * for that ProductSet.
      *
-     * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
-     * progress and results of the request.
+     * The [google.longrunning.Operation][google.longrunning.Operation] API can be
+     * used to keep track of the progress and results of the request.
      * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
      *
      * Sample code:
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $operationResponse = $productSearchClient->purgeProducts($formattedParent);
+     *     $operationResponse = $productSearchClient->purgeProducts();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1541,7 +1589,7 @@ class ProductSearchGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $productSearchClient->purgeProducts($formattedParent);
+     *     $operationResponse = $productSearchClient->purgeProducts();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $productSearchClient->resumeOperation($operationName, 'purgeProducts');
@@ -1560,10 +1608,7 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location in which the Products should be deleted.
-     *
-     *                             Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type ProductSetPurgeConfig $productSetPurgeConfig
@@ -1571,6 +1616,10 @@ class ProductSearchGapicClient
      *     @type bool $deleteOrphanProducts
      *           If delete_orphan_products is true, all Products that are not in any
      *           ProductSet will be deleted.
+     *     @type string $parent
+     *           Required. The project and location in which the Products should be deleted.
+     *
+     *           Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *     @type bool $force
      *           The default value is false. Override this value to true to actually perform
      *           the purge.
@@ -1584,12 +1633,10 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function purgeProducts($parent, array $optionalArgs = [])
+    public function purgeProducts(array $optionalArgs = [])
     {
         $request = new PurgeProductsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['productSetPurgeConfig'])) {
             $request->setProductSetPurgeConfig(
                 $optionalArgs['productSetPurgeConfig']
@@ -1600,6 +1647,11 @@ class ProductSearchGapicClient
             $request->setDeleteOrphanProducts(
                 $optionalArgs['deleteOrphanProducts']
             );
+        }
+
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
         }
 
         if (isset($optionalArgs['force'])) {
@@ -1627,25 +1679,26 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-     *     $formattedProduct = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-     *     $productSearchClient->removeProductFromProductSet($formattedName, $formattedProduct);
+     *     $productSearchClient->removeProductFromProductSet();
      * } finally {
      *     $productSearchClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for the ProductSet to modify.
-     *
-     *                             Format is:
-     *                             `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param string $product      Required. The resource name for the Product to be removed from this ProductSet.
-     *
-     *                             Format is:
-     *                             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name for the ProductSet to modify.
+     *
+     *           Format is:
+     *           `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     *     @type string $product
+     *           Required. The resource name for the Product to be removed from this
+     *           ProductSet.
+     *
+     *           Format is:
+     *           `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1654,16 +1707,19 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function removeProductFromProductSet(
-        $name,
-        $product,
-        array $optionalArgs = []
-    ) {
+    public function removeProductFromProductSet(array $optionalArgs = [])
+    {
         $request = new RemoveProductFromProductSetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setProduct($product);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['product'])) {
+            $request->setProduct($optionalArgs['product']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1699,18 +1755,18 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $product = new Product();
-     *     $response = $productSearchClient->updateProduct($product);
+     *     $response = $productSearchClient->updateProduct();
      * } finally {
      *     $productSearchClient->close();
      * }
      * ```
      *
-     * @param Product $product      Required. The Product resource which replaces the one on the server.
-     *                              product.name is immutable.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Product $product
+     *           Required. The Product resource which replaces the one on the server.
+     *           product.name is immutable.
      *     @type FieldMask $updateMask
      *           The [FieldMask][google.protobuf.FieldMask] that specifies which fields
      *           to update.
@@ -1727,12 +1783,14 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateProduct($product, array $optionalArgs = [])
+    public function updateProduct(array $optionalArgs = [])
     {
         $request = new UpdateProductRequest();
         $requestParamHeaders = [];
-        $request->setProduct($product);
-        $requestParamHeaders['product.name'] = $product->getName();
+        if (isset($optionalArgs['product'])) {
+            $request->setProduct($optionalArgs['product']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1765,17 +1823,17 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $productSet = new ProductSet();
-     *     $response = $productSearchClient->updateProductSet($productSet);
+     *     $response = $productSearchClient->updateProductSet();
      * } finally {
      *     $productSearchClient->close();
      * }
      * ```
      *
-     * @param ProductSet $productSet   Required. The ProductSet resource which replaces the one on the server.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type ProductSet $productSet
+     *           Required. The ProductSet resource which replaces the one on the server.
      *     @type FieldMask $updateMask
      *           The [FieldMask][google.protobuf.FieldMask] that specifies which fields to
      *           update.
@@ -1791,12 +1849,14 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateProductSet($productSet, array $optionalArgs = [])
+    public function updateProductSet(array $optionalArgs = [])
     {
         $request = new UpdateProductSetRequest();
         $requestParamHeaders = [];
-        $request->setProductSet($productSet);
-        $requestParamHeaders['product_set.name'] = $productSet->getName();
+        if (isset($optionalArgs['productSet'])) {
+            $request->setProductSet($optionalArgs['productSet']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

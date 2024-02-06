@@ -41,7 +41,6 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      *
      *                       Format:
      *                       `projects/PROJECT_ID/locations/LOC_ID`
-     *                       Please see {@see ProductSearchClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Vision\V1\ListProductsRequest
      *

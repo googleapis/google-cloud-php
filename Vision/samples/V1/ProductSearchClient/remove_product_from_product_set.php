@@ -30,28 +30,19 @@ use Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest;
 /**
  * Removes a Product from the specified ProductSet.
  *
- * @param string $formattedName    The resource name for the ProductSet to modify.
- *
- *                                 Format is:
- *                                 `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
- *                                 Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
- * @param string $formattedProduct The resource name for the Product to be removed from this ProductSet.
- *
- *                                 Format is:
- *                                 `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
- *                                 Please see {@see ProductSearchClient::productName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function remove_product_from_product_set_sample(
-    string $formattedName,
-    string $formattedProduct
-): void {
+function remove_product_from_product_set_sample(): void
+{
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
     // Prepare the request message.
-    $request = (new RemoveProductFromProductSetRequest())
-        ->setName($formattedName)
-        ->setProduct($formattedProduct);
+    $request = new RemoveProductFromProductSetRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,22 +51,5 @@ function remove_product_from_product_set_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-    $formattedProduct = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-
-    remove_product_from_product_set_sample($formattedName, $formattedProduct);
 }
 // [END vision_v1_generated_ProductSearch_RemoveProductFromProductSet_sync]

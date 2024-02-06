@@ -35,20 +35,19 @@ use Google\Cloud\Vision\V1\Product;
  *
  * * Returns NOT_FOUND if the Product does not exist.
  *
- * @param string $formattedName Resource name of the Product to get.
- *
- *                              Format is:
- *                              `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
- *                              Please see {@see ProductSearchClient::productName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_product_sample(string $formattedName): void
+function get_product_sample(): void
 {
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
     // Prepare the request message.
-    $request = (new GetProductRequest())
-        ->setName($formattedName);
+    $request = new GetProductRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +57,5 @@ function get_product_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-
-    get_product_sample($formattedName);
 }
 // [END vision_v1_generated_ProductSearch_GetProduct_sync]

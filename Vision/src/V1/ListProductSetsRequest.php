@@ -38,8 +38,7 @@ class ListProductSetsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The project from which ProductSets should be listed.
      *
-     *                       Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
-     *                       {@see ProductSearchClient::locationName()} for help formatting this field.
+     *                       Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *
      * @return \Google\Cloud\Vision\V1\ListProductSetsRequest
      *

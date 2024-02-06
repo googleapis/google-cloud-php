@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Vision\V1\Client\ProductSearchClient;
-use Google\Cloud\Vision\V1\ImportProductSetsInputConfig;
 use Google\Cloud\Vision\V1\ImportProductSetsRequest;
 use Google\Cloud\Vision\V1\ImportProductSetsResponse;
 use Google\Rpc\Status;
@@ -35,8 +34,8 @@ use Google\Rpc\Status;
  * Asynchronous API that imports a list of reference images to specified
  * product sets based on a list of image information.
  *
- * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
- * progress and results of the request.
+ * The [google.longrunning.Operation][google.longrunning.Operation] API can be
+ * used to keep track of the progress and results of the request.
  * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
  * `Operation.response` contains `ImportProductSetsResponse`. (results)
  *
@@ -44,21 +43,19 @@ use Google\Rpc\Status;
  * For the format of the csv file please see
  * [ImportProductSetsGcsSource.csv_file_uri][google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri].
  *
- * @param string $formattedParent The project in which the ProductSets should be imported.
- *
- *                                Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
- *                                {@see ProductSearchClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function import_product_sets_sample(string $formattedParent): void
+function import_product_sets_sample(): void
 {
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
     // Prepare the request message.
-    $inputConfig = new ImportProductSetsInputConfig();
-    $request = (new ImportProductSetsRequest())
-        ->setParent($formattedParent)
-        ->setInputConfig($inputConfig);
+    $request = new ImportProductSetsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -78,21 +75,5 @@ function import_product_sets_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
-
-    import_product_sets_sample($formattedParent);
 }
 // [END vision_v1_generated_ProductSearch_ImportProductSets_sync]

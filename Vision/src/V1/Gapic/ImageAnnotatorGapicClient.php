@@ -61,8 +61,7 @@ use Google\LongRunning\Operation;
  * ```
  * $imageAnnotatorClient = new ImageAnnotatorClient();
  * try {
- *     $requests = [];
- *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
+ *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -73,7 +72,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
+ *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $imageAnnotatorClient->resumeOperation($operationName, 'asyncBatchAnnotateFiles');
@@ -354,8 +353,7 @@ class ImageAnnotatorGapicClient
      * ```
      * $imageAnnotatorClient = new ImageAnnotatorClient();
      * try {
-     *     $requests = [];
-     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
+     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -366,7 +364,7 @@ class ImageAnnotatorGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
+     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateFiles();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $imageAnnotatorClient->resumeOperation($operationName, 'asyncBatchAnnotateFiles');
@@ -386,10 +384,11 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param AsyncAnnotateFileRequest[] $requests     Required. Individual async file annotation requests for this batch.
-     * @param array                      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type AsyncAnnotateFileRequest[] $requests
+     *           Required. Individual async file annotation requests for this batch.
      *     @type string $parent
      *           Optional. Target project and location to make a call.
      *
@@ -403,6 +402,13 @@ class ImageAnnotatorGapicClient
      *           `eu`: The European Union.
      *
      *           Example: `projects/project-A/locations/eu`.
+     *     @type array $labels
+     *           Optional. The labels with user-defined metadata for the request.
+     *
+     *           Label keys and values can be no longer than 63 characters
+     *           (Unicode codepoints), can only contain lowercase letters, numeric
+     *           characters, underscores and dashes. International characters are allowed.
+     *           Label values are optional. Label keys must start with a letter.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -413,14 +419,21 @@ class ImageAnnotatorGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function asyncBatchAnnotateFiles($requests, array $optionalArgs = [])
+    public function asyncBatchAnnotateFiles(array $optionalArgs = [])
     {
         $request = new AsyncBatchAnnotateFilesRequest();
         $requestParamHeaders = [];
-        $request->setRequests($requests);
+        if (isset($optionalArgs['requests'])) {
+            $request->setRequests($optionalArgs['requests']);
+        }
+
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -452,9 +465,7 @@ class ImageAnnotatorGapicClient
      * ```
      * $imageAnnotatorClient = new ImageAnnotatorClient();
      * try {
-     *     $requests = [];
-     *     $outputConfig = new OutputConfig();
-     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
+     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateImages();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -465,7 +476,7 @@ class ImageAnnotatorGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
+     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateImages();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $imageAnnotatorClient->resumeOperation($operationName, 'asyncBatchAnnotateImages');
@@ -485,11 +496,13 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param AnnotateImageRequest[] $requests     Required. Individual image annotation requests for this batch.
-     * @param OutputConfig           $outputConfig Required. The desired output location and metadata (e.g. format).
-     * @param array                  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type AnnotateImageRequest[] $requests
+     *           Required. Individual image annotation requests for this batch.
+     *     @type OutputConfig $outputConfig
+     *           Required. The desired output location and metadata (e.g. format).
      *     @type string $parent
      *           Optional. Target project and location to make a call.
      *
@@ -503,6 +516,13 @@ class ImageAnnotatorGapicClient
      *           `eu`: The European Union.
      *
      *           Example: `projects/project-A/locations/eu`.
+     *     @type array $labels
+     *           Optional. The labels with user-defined metadata for the request.
+     *
+     *           Label keys and values can be no longer than 63 characters
+     *           (Unicode codepoints), can only contain lowercase letters, numeric
+     *           characters, underscores and dashes. International characters are allowed.
+     *           Label values are optional. Label keys must start with a letter.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -513,18 +533,25 @@ class ImageAnnotatorGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function asyncBatchAnnotateImages(
-        $requests,
-        $outputConfig,
-        array $optionalArgs = []
-    ) {
+    public function asyncBatchAnnotateImages(array $optionalArgs = [])
+    {
         $request = new AsyncBatchAnnotateImagesRequest();
         $requestParamHeaders = [];
-        $request->setRequests($requests);
-        $request->setOutputConfig($outputConfig);
+        if (isset($optionalArgs['requests'])) {
+            $request->setRequests($optionalArgs['requests']);
+        }
+
+        if (isset($optionalArgs['outputConfig'])) {
+            $request->setOutputConfig($optionalArgs['outputConfig']);
+        }
+
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -554,18 +581,18 @@ class ImageAnnotatorGapicClient
      * ```
      * $imageAnnotatorClient = new ImageAnnotatorClient();
      * try {
-     *     $requests = [];
-     *     $response = $imageAnnotatorClient->batchAnnotateFiles($requests);
+     *     $response = $imageAnnotatorClient->batchAnnotateFiles();
      * } finally {
      *     $imageAnnotatorClient->close();
      * }
      * ```
      *
-     * @param AnnotateFileRequest[] $requests     Required. The list of file annotation requests. Right now we support only one
-     *                                            AnnotateFileRequest in BatchAnnotateFilesRequest.
-     * @param array                 $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type AnnotateFileRequest[] $requests
+     *           Required. The list of file annotation requests. Right now we support only
+     *           one AnnotateFileRequest in BatchAnnotateFilesRequest.
      *     @type string $parent
      *           Optional. Target project and location to make a call.
      *
@@ -579,6 +606,13 @@ class ImageAnnotatorGapicClient
      *           `eu`: The European Union.
      *
      *           Example: `projects/project-A/locations/eu`.
+     *     @type array $labels
+     *           Optional. The labels with user-defined metadata for the request.
+     *
+     *           Label keys and values can be no longer than 63 characters
+     *           (Unicode codepoints), can only contain lowercase letters, numeric
+     *           characters, underscores and dashes. International characters are allowed.
+     *           Label values are optional. Label keys must start with a letter.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -589,14 +623,21 @@ class ImageAnnotatorGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchAnnotateFiles($requests, array $optionalArgs = [])
+    public function batchAnnotateFiles(array $optionalArgs = [])
     {
         $request = new BatchAnnotateFilesRequest();
         $requestParamHeaders = [];
-        $request->setRequests($requests);
+        if (isset($optionalArgs['requests'])) {
+            $request->setRequests($optionalArgs['requests']);
+        }
+
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -620,17 +661,17 @@ class ImageAnnotatorGapicClient
      * ```
      * $imageAnnotatorClient = new ImageAnnotatorClient();
      * try {
-     *     $requests = [];
-     *     $response = $imageAnnotatorClient->batchAnnotateImages($requests);
+     *     $response = $imageAnnotatorClient->batchAnnotateImages();
      * } finally {
      *     $imageAnnotatorClient->close();
      * }
      * ```
      *
-     * @param AnnotateImageRequest[] $requests     Required. Individual image annotation requests for this batch.
-     * @param array                  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type AnnotateImageRequest[] $requests
+     *           Required. Individual image annotation requests for this batch.
      *     @type string $parent
      *           Optional. Target project and location to make a call.
      *
@@ -644,6 +685,13 @@ class ImageAnnotatorGapicClient
      *           `eu`: The European Union.
      *
      *           Example: `projects/project-A/locations/eu`.
+     *     @type array $labels
+     *           Optional. The labels with user-defined metadata for the request.
+     *
+     *           Label keys and values can be no longer than 63 characters
+     *           (Unicode codepoints), can only contain lowercase letters, numeric
+     *           characters, underscores and dashes. International characters are allowed.
+     *           Label values are optional. Label keys must start with a letter.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -654,14 +702,21 @@ class ImageAnnotatorGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchAnnotateImages($requests, array $optionalArgs = [])
+    public function batchAnnotateImages(array $optionalArgs = [])
     {
         $request = new BatchAnnotateImagesRequest();
         $requestParamHeaders = [];
-        $request->setRequests($requests);
+        if (isset($optionalArgs['requests'])) {
+            $request->setRequests($optionalArgs['requests']);
+        }
+
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

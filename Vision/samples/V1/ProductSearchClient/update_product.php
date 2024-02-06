@@ -57,9 +57,7 @@ function update_product_sample(): void
     $productSearchClient = new ProductSearchClient();
 
     // Prepare the request message.
-    $product = new Product();
-    $request = (new UpdateProductRequest())
-        ->setProduct($product);
+    $request = new UpdateProductRequest();
 
     // Call the API and handle any network failures.
     try {

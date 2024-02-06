@@ -41,7 +41,6 @@ class ListProductsInProductSetRequest extends \Google\Protobuf\Internal\Message
      *
      *                     Format is:
      *                     `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     *                     Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
      *
      * @return \Google\Cloud\Vision\V1\ListProductsInProductSetRequest
      *

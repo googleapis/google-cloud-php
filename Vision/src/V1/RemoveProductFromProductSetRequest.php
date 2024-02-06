@@ -24,7 +24,8 @@ class RemoveProductFromProductSetRequest extends \Google\Protobuf\Internal\Messa
      */
     private $name = '';
     /**
-     * Required. The resource name for the Product to be removed from this ProductSet.
+     * Required. The resource name for the Product to be removed from this
+     * ProductSet.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      *
@@ -37,12 +38,11 @@ class RemoveProductFromProductSetRequest extends \Google\Protobuf\Internal\Messa
      *
      *                        Format is:
      *                        `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     *                        Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
-     * @param string $product Required. The resource name for the Product to be removed from this ProductSet.
+     * @param string $product Required. The resource name for the Product to be removed from this
+     *                        ProductSet.
      *
      *                        Format is:
      *                        `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
-     *                        Please see {@see ProductSearchClient::productName()} for help formatting this field.
      *
      * @return \Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest
      *
@@ -66,7 +66,8 @@ class RemoveProductFromProductSetRequest extends \Google\Protobuf\Internal\Messa
      *           Format is:
      *           `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      *     @type string $product
-     *           Required. The resource name for the Product to be removed from this ProductSet.
+     *           Required. The resource name for the Product to be removed from this
+     *           ProductSet.
      *           Format is:
      *           `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      * }
@@ -107,7 +108,8 @@ class RemoveProductFromProductSetRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. The resource name for the Product to be removed from this ProductSet.
+     * Required. The resource name for the Product to be removed from this
+     * ProductSet.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      *
@@ -120,7 +122,8 @@ class RemoveProductFromProductSetRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. The resource name for the Product to be removed from this ProductSet.
+     * Required. The resource name for the Product to be removed from this
+     * ProductSet.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      *

@@ -36,20 +36,19 @@ use Google\Cloud\Vision\V1\DeleteReferenceImageRequest;
  *
  * The actual image files are not deleted from Google Cloud Storage.
  *
- * @param string $formattedName The resource name of the reference image to delete.
- *
- *                              Format is:
- *                              `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
- *                              Please see {@see ProductSearchClient::referenceImageName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_reference_image_sample(string $formattedName): void
+function delete_reference_image_sample(): void
 {
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
     // Prepare the request message.
-    $request = (new DeleteReferenceImageRequest())
-        ->setName($formattedName);
+    $request = new DeleteReferenceImageRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,26 +57,5 @@ function delete_reference_image_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ProductSearchClient::referenceImageName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[PRODUCT]',
-        '[REFERENCE_IMAGE]'
-    );
-
-    delete_reference_image_sample($formattedName);
 }
 // [END vision_v1_generated_ProductSearch_DeleteReferenceImage_sync]

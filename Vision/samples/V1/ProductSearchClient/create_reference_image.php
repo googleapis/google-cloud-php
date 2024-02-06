@@ -49,26 +49,19 @@ use Google\Cloud\Vision\V1\ReferenceImage;
  * compatible with the parent product's product_category is detected.
  * * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
  *
- * @param string $formattedParent   Resource name of the product in which to create the reference image.
- *
- *                                  Format is
- *                                  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. Please see
- *                                  {@see ProductSearchClient::productName()} for help formatting this field.
- * @param string $referenceImageUri The Google Cloud Storage URI of the reference image.
- *
- *                                  The URI must start with `gs://`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_reference_image_sample(string $formattedParent, string $referenceImageUri): void
+function create_reference_image_sample(): void
 {
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
     // Prepare the request message.
-    $referenceImage = (new ReferenceImage())
-        ->setUri($referenceImageUri);
-    $request = (new CreateReferenceImageRequest())
-        ->setParent($formattedParent)
-        ->setReferenceImage($referenceImage);
+    $request = new CreateReferenceImageRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -78,22 +71,5 @@ function create_reference_image_sample(string $formattedParent, string $referenc
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-    $referenceImageUri = '[URI]';
-
-    create_reference_image_sample($formattedParent, $referenceImageUri);
 }
 // [END vision_v1_generated_ProductSearch_CreateReferenceImage_sync]
