@@ -260,8 +260,8 @@ Likelihood
 LIKELY
 VERY_LIKELY2À
 VideoIntelligenceServiceÍ
-AnnotateVideo7.google.cloud.videointelligence.v1.AnnotateVideoRequest.google.longrunning.Operation"d‚Óä“"/v1/videos:annotate:*ÚAinput_uri,featuresÊA.
-AnnotateVideoResponseAnnotateVideoProgressTÊA videointelligence.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBŒ
+AnnotateVideo7.google.cloud.videointelligence.v1.AnnotateVideoRequest.google.longrunning.Operation"dÊA.
+AnnotateVideoResponseAnnotateVideoProgressÚAinput_uri,features‚Óä“"/v1/videos:annotate:*TÊA videointelligence.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBŒ
 %com.google.cloud.videointelligence.v1BVideoIntelligenceServiceProtoPZScloud.google.com/go/videointelligence/apiv1/videointelligencepb;videointelligencepbª!Google.Cloud.VideoIntelligence.V1Ê!Google\\Cloud\\VideoIntelligence\\V1ê$Google::Cloud::VideoIntelligence::V1bproto3'
         , true);
 
