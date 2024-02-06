@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\TelcoAutomation\V1\Client\TelcoAutomationClient;
 use Google\Cloud\TelcoAutomation\V1\HydratedDeployment;
 use Google\Cloud\TelcoAutomation\V1\UpdateHydratedDeploymentRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a hydrated deployment.
@@ -43,7 +44,11 @@ function update_hydrated_deployment_sample(): void
     $telcoAutomationClient = new TelcoAutomationClient();
 
     // Prepare the request message.
-    $request = new UpdateHydratedDeploymentRequest();
+    $hydratedDeployment = new HydratedDeployment();
+    $updateMask = new FieldMask();
+    $request = (new UpdateHydratedDeploymentRequest())
+        ->setHydratedDeployment($hydratedDeployment)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {

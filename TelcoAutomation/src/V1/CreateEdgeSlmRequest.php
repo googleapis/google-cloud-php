@@ -53,7 +53,8 @@ class CreateEdgeSlmRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string                                   $parent    Required. Value for parent.
+     * @param string                                   $parent    Required. Value for parent. Please see
+     *                                                            {@see TelcoAutomationClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\TelcoAutomation\V1\EdgeSlm $edgeSlm   Required. The resource being created
      * @param string                                   $edgeSlmId Required. Id of the requesting object
      *                                                            If auto-generating Id server-side, remove this field and

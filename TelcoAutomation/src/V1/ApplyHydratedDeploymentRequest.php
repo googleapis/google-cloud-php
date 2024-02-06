@@ -23,7 +23,8 @@ class ApplyHydratedDeploymentRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the hydrated deployment to apply.
+     * @param string $name Required. The name of the hydrated deployment to apply. Please see
+     *                     {@see TelcoAutomationClient::hydratedDeploymentName()} for help formatting this field.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\ApplyHydratedDeploymentRequest
      *

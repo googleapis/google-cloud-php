@@ -27,23 +27,26 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\TelcoAutomation\V1\Blueprint;
 use Google\Cloud\TelcoAutomation\V1\Client\TelcoAutomationClient;
 use Google\Cloud\TelcoAutomation\V1\UpdateBlueprintRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a blueprint.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $blueprintSourceBlueprint Immutable. The public blueprint ID from which this blueprint was
+ *                                         created.
  */
-function update_blueprint_sample(): void
+function update_blueprint_sample(string $blueprintSourceBlueprint): void
 {
     // Create a client.
     $telcoAutomationClient = new TelcoAutomationClient();
 
     // Prepare the request message.
-    $request = new UpdateBlueprintRequest();
+    $blueprint = (new Blueprint())
+        ->setSourceBlueprint($blueprintSourceBlueprint);
+    $updateMask = new FieldMask();
+    $request = (new UpdateBlueprintRequest())
+        ->setBlueprint($blueprint)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +56,21 @@ function update_blueprint_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $blueprintSourceBlueprint = '[SOURCE_BLUEPRINT]';
+
+    update_blueprint_sample($blueprintSourceBlueprint);
 }
 // [END telcoautomation_v1_generated_TelcoAutomation_UpdateBlueprint_sync]

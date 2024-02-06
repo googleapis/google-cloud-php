@@ -23,7 +23,8 @@ class DiscardBlueprintChangesRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the blueprint of which changes are being discarded.
+     * @param string $name Required. The name of the blueprint of which changes are being discarded. Please see
+     *                     {@see TelcoAutomationClient::blueprintName()} for help formatting this field.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\DiscardBlueprintChangesRequest
      *

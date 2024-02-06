@@ -24,6 +24,7 @@ class GetOrchestrationClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the resource
+     *                     Please see {@see TelcoAutomationClient::orchestrationClusterName()} for help formatting this field.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\GetOrchestrationClusterRequest
      *

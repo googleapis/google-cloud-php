@@ -36,7 +36,8 @@ class ListBlueprintRevisionsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
-     * @param string $name Required. The name of the blueprint to list revisions for.
+     * @param string $name Required. The name of the blueprint to list revisions for. Please see
+     *                     {@see TelcoAutomationClient::blueprintName()} for help formatting this field.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\ListBlueprintRevisionsRequest
      *

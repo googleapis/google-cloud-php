@@ -31,19 +31,21 @@ use Google\Cloud\TelcoAutomation\V1\GetBlueprintRequest;
 /**
  * Returns the requested blueprint.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the blueprint.
+ *                              Case 1: If the name provided in the request is
+ *                              {blueprint_id}&#64;{revision_id}, then the revision with revision_id will be
+ *                              returned. Case 2: If the name provided in the request is {blueprint}, then
+ *                              the current state of the blueprint is returned. Please see
+ *                              {@see TelcoAutomationClient::blueprintName()} for help formatting this field.
  */
-function get_blueprint_sample(): void
+function get_blueprint_sample(string $formattedName): void
 {
     // Create a client.
     $telcoAutomationClient = new TelcoAutomationClient();
 
     // Prepare the request message.
-    $request = new GetBlueprintRequest();
+    $request = (new GetBlueprintRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +55,26 @@ function get_blueprint_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = TelcoAutomationClient::blueprintName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[ORCHESTRATION_CLUSTER]',
+        '[BLUEPRINT]'
+    );
+
+    get_blueprint_sample($formattedName);
 }
 // [END telcoautomation_v1_generated_TelcoAutomation_GetBlueprint_sync]
