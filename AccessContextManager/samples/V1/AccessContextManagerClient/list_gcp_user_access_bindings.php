@@ -34,19 +34,17 @@ use Google\Identity\AccessContextManager\V1\ListGcpUserAccessBindingsRequest;
  * [google.identity.accesscontextmanager.v1.GcpUserAccessBinding] for a
  * Google Cloud organization.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Example: "organizations/256"
+ *                                Please see {@see AccessContextManagerClient::organizationName()} for help formatting this field.
  */
-function list_gcp_user_access_bindings_sample(): void
+function list_gcp_user_access_bindings_sample(string $formattedParent): void
 {
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
     // Prepare the request message.
-    $request = new ListGcpUserAccessBindingsRequest();
+    $request = (new ListGcpUserAccessBindingsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -60,5 +58,21 @@ function list_gcp_user_access_bindings_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AccessContextManagerClient::organizationName('[ORGANIZATION]');
+
+    list_gcp_user_access_bindings_sample($formattedParent);
 }
 // [END accesscontextmanager_v1_generated_AccessContextManager_ListGcpUserAccessBindings_sync]

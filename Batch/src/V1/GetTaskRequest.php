@@ -23,7 +23,8 @@ class GetTaskRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. Task name.
+     * @param string $name Required. Task name. Please see
+     *                     {@see BatchServiceClient::taskName()} for help formatting this field.
      *
      * @return \Google\Cloud\Batch\V1\GetTaskRequest
      *

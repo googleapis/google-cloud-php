@@ -17,12 +17,12 @@ class Location
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‹
-"google/appengine/v1/location.protogoogle.appengine.v1"†
+Š
+"google/appengine/v1/location.protogoogle.appengine.v1"…
 LocationMetadata&
 standard_environment_available (&
-flexible_environment_available ("
-search_api_available (BâAB¾
+flexible_environment_available (!
+search_api_available (BàAB¾
 com.google.appengine.v1BLocationProtoPZ;cloud.google.com/go/appengine/apiv1/appenginepb;appenginepbªGoogle.Cloud.AppEngine.V1ÊGoogle\\Cloud\\AppEngine\\V1êGoogle::Cloud::AppEngine::V1bproto3'
         , true);
 

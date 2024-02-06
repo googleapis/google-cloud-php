@@ -48,7 +48,8 @@ class DeleteUserRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the resource. For the required format, see the
-     *                     comment on the User.name field.
+     *                     comment on the User.name field. Please see
+     *                     {@see AlloyDBAdminClient::userName()} for help formatting this field.
      *
      * @return \Google\Cloud\AlloyDb\V1\DeleteUserRequest
      *

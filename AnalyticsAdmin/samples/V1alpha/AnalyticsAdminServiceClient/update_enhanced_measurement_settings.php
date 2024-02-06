@@ -27,25 +27,29 @@ use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings;
 use Google\Analytics\Admin\V1alpha\UpdateEnhancedMeasurementSettingsRequest;
 use Google\ApiCore\ApiException;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates the enhanced measurement settings for this data stream.
  * Note that the stream must enable enhanced measurement for these settings to
  * take effect.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $enhancedMeasurementSettingsSearchQueryParameter URL query parameters to interpret as site search parameters.
+ *                                                                Max length is 1024 characters. Must not be empty.
  */
-function update_enhanced_measurement_settings_sample(): void
-{
+function update_enhanced_measurement_settings_sample(
+    string $enhancedMeasurementSettingsSearchQueryParameter
+): void {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateEnhancedMeasurementSettingsRequest();
+    $enhancedMeasurementSettings = (new EnhancedMeasurementSettings())
+        ->setSearchQueryParameter($enhancedMeasurementSettingsSearchQueryParameter);
+    $updateMask = new FieldMask();
+    $request = (new UpdateEnhancedMeasurementSettingsRequest())
+        ->setEnhancedMeasurementSettings($enhancedMeasurementSettings)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
@@ -55,5 +59,21 @@ function update_enhanced_measurement_settings_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $enhancedMeasurementSettingsSearchQueryParameter = '[SEARCH_QUERY_PARAMETER]';
+
+    update_enhanced_measurement_settings_sample($enhancedMeasurementSettingsSearchQueryParameter);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateEnhancedMeasurementSettings_sync]

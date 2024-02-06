@@ -37,19 +37,17 @@ use Google\Rpc\Status;
  * NOTE: Key is a global resource; hence the only supported value for
  * location is `global`.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the API key to be deleted. Please see
+ *                              {@see ApiKeysClient::keyName()} for help formatting this field.
  */
-function delete_key_sample(): void
+function delete_key_sample(string $formattedName): void
 {
     // Create a client.
     $apiKeysClient = new ApiKeysClient();
 
     // Prepare the request message.
-    $request = new DeleteKeyRequest();
+    $request = (new DeleteKeyRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -69,5 +67,21 @@ function delete_key_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ApiKeysClient::keyName('[PROJECT]', '[LOCATION]', '[KEY]');
+
+    delete_key_sample($formattedName);
 }
 // [END apikeys_v2_generated_ApiKeys_DeleteKey_sync]

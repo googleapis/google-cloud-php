@@ -24,6 +24,7 @@ class DeleteGoogleAdsLinkRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Example format: properties/1234/googleAdsLinks/5678
+     *                     Please see {@see AnalyticsAdminServiceClient::googleAdsLinkName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1beta\DeleteGoogleAdsLinkRequest
      *

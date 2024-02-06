@@ -32,19 +32,18 @@ use Google\Cloud\BeyondCorp\AppConnections\V1\ListAppConnectionsRequest;
 /**
  * Lists AppConnections in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the AppConnection location using the form:
+ *                                `projects/{project_id}/locations/{location_id}`
+ *                                Please see {@see AppConnectionsServiceClient::locationName()} for help formatting this field.
  */
-function list_app_connections_sample(): void
+function list_app_connections_sample(string $formattedParent): void
 {
     // Create a client.
     $appConnectionsServiceClient = new AppConnectionsServiceClient();
 
     // Prepare the request message.
-    $request = new ListAppConnectionsRequest();
+    $request = (new ListAppConnectionsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function list_app_connections_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AppConnectionsServiceClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_app_connections_sample($formattedParent);
 }
 // [END beyondcorp_v1_generated_AppConnectionsService_ListAppConnections_sync]

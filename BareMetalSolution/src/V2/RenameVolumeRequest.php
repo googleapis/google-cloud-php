@@ -32,6 +32,7 @@ class RenameVolumeRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name        Required. The `name` field is used to identify the volume.
      *                            Format: projects/{project}/locations/{location}/volumes/{volume}
+     *                            Please see {@see BareMetalSolutionClient::volumeName()} for help formatting this field.
      * @param string $newVolumeId Required. The new `id` of the volume.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\RenameVolumeRequest

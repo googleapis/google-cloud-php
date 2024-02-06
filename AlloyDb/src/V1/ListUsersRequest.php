@@ -49,6 +49,7 @@ class ListUsersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Parent value for ListUsersRequest
+     *                       Please see {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
      *
      * @return \Google\Cloud\AlloyDb\V1\ListUsersRequest
      *

@@ -31,19 +31,33 @@ use Google\Cloud\Asset\V1\SavedQuery;
 /**
  * Creates a saved query in a parent project/folder/organization.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the project/folder/organization where this
+ *                                saved_query should be created in. It can only be an organization number
+ *                                (such as "organizations/123"), a folder number (such as "folders/123"), a
+ *                                project ID (such as "projects/my-project-id"), or a project number (such as
+ *                                "projects/12345"). Please see
+ *                                {@see AssetServiceClient::projectName()} for help formatting this field.
+ * @param string $savedQueryId    The ID to use for the saved query, which must be unique in the
+ *                                specified parent. It will become the final component of the saved query's
+ *                                resource name.
+ *
+ *                                This value should be 4-63 characters, and valid characters
+ *                                are `[a-z][0-9]-`.
+ *
+ *                                Notice that this field is required in the saved query creation, and the
+ *                                `name` field of the `saved_query` will be ignored.
  */
-function create_saved_query_sample(): void
+function create_saved_query_sample(string $formattedParent, string $savedQueryId): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $request = new CreateSavedQueryRequest();
+    $savedQuery = new SavedQuery();
+    $request = (new CreateSavedQueryRequest())
+        ->setParent($formattedParent)
+        ->setSavedQuery($savedQuery)
+        ->setSavedQueryId($savedQueryId);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +67,22 @@ function create_saved_query_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AssetServiceClient::projectName('[PROJECT]');
+    $savedQueryId = '[SAVED_QUERY_ID]';
+
+    create_saved_query_sample($formattedParent, $savedQueryId);
 }
 // [END cloudasset_v1_generated_AssetService_CreateSavedQuery_sync]

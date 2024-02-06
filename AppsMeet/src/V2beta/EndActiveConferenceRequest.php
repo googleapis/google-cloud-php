@@ -23,7 +23,8 @@ class EndActiveConferenceRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. Resource name of the space.
+     * @param string $name Required. Resource name of the space. Please see
+     *                     {@see SpacesServiceClient::spaceName()} for help formatting this field.
      *
      * @return \Google\Apps\Meet\V2beta\EndActiveConferenceRequest
      *

@@ -28,24 +28,33 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
 use Google\Cloud\AlloyDb\V1\CreateSecondaryInstanceRequest;
 use Google\Cloud\AlloyDb\V1\Instance;
+use Google\Cloud\AlloyDb\V1\Instance\InstanceType;
 use Google\Rpc\Status;
 
 /**
  * Creates a new SECONDARY Instance in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent      The name of the parent resource. For the required format, see the
+ *                                     comment on the Instance.name field. Please see
+ *                                     {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
+ * @param string $instanceId           ID of the requesting object.
+ * @param int    $instanceInstanceType The type of the instance. Specified at creation time.
  */
-function create_secondary_instance_sample(): void
-{
+function create_secondary_instance_sample(
+    string $formattedParent,
+    string $instanceId,
+    int $instanceInstanceType
+): void {
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
     // Prepare the request message.
-    $request = new CreateSecondaryInstanceRequest();
+    $instance = (new Instance())
+        ->setInstanceType($instanceInstanceType);
+    $request = (new CreateSecondaryInstanceRequest())
+        ->setParent($formattedParent)
+        ->setInstanceId($instanceId)
+        ->setInstance($instance);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +74,23 @@ function create_secondary_instance_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AlloyDBAdminClient::clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+    $instanceId = '[INSTANCE_ID]';
+    $instanceInstanceType = InstanceType::INSTANCE_TYPE_UNSPECIFIED;
+
+    create_secondary_instance_sample($formattedParent, $instanceId, $instanceInstanceType);
 }
 // [END alloydb_v1_generated_AlloyDBAdmin_CreateSecondaryInstance_sync]

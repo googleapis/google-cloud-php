@@ -23,7 +23,8 @@ class UndeployModelRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. Resource name of the model to undeploy.
+     * @param string $name Required. Resource name of the model to undeploy. Please see
+     *                     {@see AutoMlClient::modelName()} for help formatting this field.
      *
      * @return \Google\Cloud\AutoMl\V1\UndeployModelRequest
      *

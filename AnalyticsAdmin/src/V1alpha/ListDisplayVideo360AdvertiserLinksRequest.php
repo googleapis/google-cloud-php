@@ -42,6 +42,7 @@ class ListDisplayVideo360AdvertiserLinksRequest extends \Google\Protobuf\Interna
 
     /**
      * @param string $parent Required. Example format: properties/1234
+     *                       Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksRequest
      *

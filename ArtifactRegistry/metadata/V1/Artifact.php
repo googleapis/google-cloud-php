@@ -19,90 +19,90 @@ class Artifact
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˜
-2google/devtools/artifactregistry/v1/artifact.proto#google.devtools.artifactregistry.v1google/api/resource.protogoogle/protobuf/timestamp.proto"õ
-DockerImage
-name (	B‚A
-uri (	B‚A
+·
+2google/devtools/artifactregistry/v1/artifact.proto#google.devtools.artifactregistry.v1google/api/resource.protogoogle/protobuf/timestamp.proto"ò
+DockerImage
+name (	B‡A
+uri (	B‡A
 tags (	
 image_size_bytes (/
 upload_time (2.google.protobuf.Timestamp
 
 media_type (	.
 
-build_time (2.google.protobuf.Timestamp5
-update_time (2.google.protobuf.TimestampB‚A:êÍAå
-+artifactregistry.googleapis.com/DockerImage]projects/{project}/locations/{location}/repositories/{repository}/dockerImages/{docker_image}"h
-ListDockerImagesRequest
-parent (	B‚A
+build_time (2.google.protobuf.Timestamp4
+update_time (2.google.protobuf.TimestampB‡A:êÍAå
++artifactregistry.googleapis.com/DockerImage]projects/{project}/locations/{location}/repositories/{repository}/dockerImages/{docker_image}"g
+ListDockerImagesRequest
+parent (	B‡A
 	page_size (
 
 page_token (	
 order_by (	"|
 ListDockerImagesResponseG
 docker_images (20.google.devtools.artifactregistry.v1.DockerImage
-next_page_token (	"[
-GetDockerImageRequestB
-name (	B4‚A˙A-
-+artifactregistry.googleapis.com/DockerImage"˘
-MavenArtifact
-name (	B‚A
-pom_uri (	B‚A
+next_page_token (	"Z
+GetDockerImageRequestA
+name (	B3‡A˙A-
++artifactregistry.googleapis.com/DockerImage"ı
+MavenArtifact
+name (	B‡A
+pom_uri (	B‡A
 group_id (	
 artifact_id (	
-version (	5
-create_time (2.google.protobuf.TimestampB‚A5
-update_time (2.google.protobuf.TimestampB‚A:ñÍAí
--artifactregistry.googleapis.com/MavenArtifactaprojects/{project}/locations/{location}/repositories/{repository}/mavenArtifacts/{maven_artifact}"ä
-ListMavenArtifactsRequestF
-parent (	B6‚A˙A/-artifactregistry.googleapis.com/MavenArtifact
+version (	4
+create_time (2.google.protobuf.TimestampB‡A4
+update_time (2.google.protobuf.TimestampB‡A:ñÍAí
+-artifactregistry.googleapis.com/MavenArtifactaprojects/{project}/locations/{location}/repositories/{repository}/mavenArtifacts/{maven_artifact}"â
+ListMavenArtifactsRequestE
+parent (	B5‡A˙A/-artifactregistry.googleapis.com/MavenArtifact
 	page_size (
 
 page_token (	"Ç
 ListMavenArtifactsResponseK
 maven_artifacts (22.google.devtools.artifactregistry.v1.MavenArtifact
-next_page_token (	"_
-GetMavenArtifactRequestD
-name (	B6‚A˙A/
--artifactregistry.googleapis.com/MavenArtifact"”
+next_page_token (	"^
+GetMavenArtifactRequestC
+name (	B5‡A˙A/
+-artifactregistry.googleapis.com/MavenArtifact"–
 
-NpmPackage
-name (	B‚A
+NpmPackage
+name (	B‡A
 package_name (	
 version (	
-tags (	5
-create_time (2.google.protobuf.TimestampB‚A5
-update_time (2.google.protobuf.TimestampB‚A:çÍAâ
-*artifactregistry.googleapis.com/NpmPackage[projects/{project}/locations/{location}/repositories/{repository}/npmPackages/{npm_package}"Ñ
-ListNpmPackagesRequestC
-parent (	B3‚A˙A,*artifactregistry.googleapis.com/NpmPackage
+tags (	4
+create_time (2.google.protobuf.TimestampB‡A4
+update_time (2.google.protobuf.TimestampB‡A:çÍAâ
+*artifactregistry.googleapis.com/NpmPackage[projects/{project}/locations/{location}/repositories/{repository}/npmPackages/{npm_package}"É
+ListNpmPackagesRequestB
+parent (	B2‡A˙A,*artifactregistry.googleapis.com/NpmPackage
 	page_size (
 
 page_token (	"y
 ListNpmPackagesResponseE
 npm_packages (2/.google.devtools.artifactregistry.v1.NpmPackage
-next_page_token (	"Y
-GetNpmPackageRequestA
-name (	B3‚A˙A,
-*artifactregistry.googleapis.com/NpmPackage"‰
-PythonPackage
-name (	B‚A
-uri (	B‚A
+next_page_token (	"X
+GetNpmPackageRequest@
+name (	B2‡A˙A,
+*artifactregistry.googleapis.com/NpmPackage"‡
+PythonPackage
+name (	B‡A
+uri (	B‡A
 package_name (	
-version (	5
-create_time (2.google.protobuf.TimestampB‚A5
-update_time (2.google.protobuf.TimestampB‚A:ñÍAí
--artifactregistry.googleapis.com/PythonPackageaprojects/{project}/locations/{location}/repositories/{repository}/pythonPackages/{python_package}"ä
-ListPythonPackagesRequestF
-parent (	B6‚A˙A/-artifactregistry.googleapis.com/PythonPackage
+version (	4
+create_time (2.google.protobuf.TimestampB‡A4
+update_time (2.google.protobuf.TimestampB‡A:ñÍAí
+-artifactregistry.googleapis.com/PythonPackageaprojects/{project}/locations/{location}/repositories/{repository}/pythonPackages/{python_package}"â
+ListPythonPackagesRequestE
+parent (	B5‡A˙A/-artifactregistry.googleapis.com/PythonPackage
 	page_size (
 
 page_token (	"Ç
 ListPythonPackagesResponseK
 python_packages (22.google.devtools.artifactregistry.v1.PythonPackage
-next_page_token (	"_
-GetPythonPackageRequestD
-name (	B6‚A˙A/
+next_page_token (	"^
+GetPythonPackageRequestC
+name (	B5‡A˙A/
 -artifactregistry.googleapis.com/PythonPackageB¯
 \'com.google.devtools.artifactregistry.v1BArtifactProtoPZPcloud.google.com/go/artifactregistry/apiv1/artifactregistrypb;artifactregistrypb™ Google.Cloud.ArtifactRegistry.V1  Google\\Cloud\\ArtifactRegistry\\V1Í#Google::Cloud::ArtifactRegistry::V1bproto3'
         , true);

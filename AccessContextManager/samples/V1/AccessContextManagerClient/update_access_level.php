@@ -28,6 +28,7 @@ use Google\ApiCore\OperationResponse;
 use Google\Identity\AccessContextManager\V1\AccessLevel;
 use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
 use Google\Identity\AccessContextManager\V1\UpdateAccessLevelRequest;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -52,7 +53,11 @@ function update_access_level_sample(): void
     $accessContextManagerClient = new AccessContextManagerClient();
 
     // Prepare the request message.
-    $request = new UpdateAccessLevelRequest();
+    $accessLevel = new AccessLevel();
+    $updateMask = new FieldMask();
+    $request = (new UpdateAccessLevelRequest())
+        ->setAccessLevel($accessLevel)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {

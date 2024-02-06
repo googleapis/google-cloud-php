@@ -44,6 +44,7 @@ class ListAudienceExportsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. All audience exports for this property will be listed in the
      *                       response. Format: `properties/{property}`
+     *                       Please see {@see BetaAnalyticsDataClient::propertyName()} for help formatting this field.
      *
      * @return \Google\Analytics\Data\V1beta\ListAudienceExportsRequest
      *

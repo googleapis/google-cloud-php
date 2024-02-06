@@ -32,6 +32,7 @@ class CreateChannelGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                       $parent       Required. The property for which to create a ChannelGroup.
      *                                                                   Example format: properties/1234
+     *                                                                   Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      * @param \Google\Analytics\Admin\V1alpha\ChannelGroup $channelGroup Required. The ChannelGroup to create.
      *
      * @return \Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest

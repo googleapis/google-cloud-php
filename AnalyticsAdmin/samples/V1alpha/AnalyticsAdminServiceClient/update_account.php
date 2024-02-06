@@ -27,23 +27,25 @@ use Google\Analytics\Admin\V1alpha\Account;
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\ApiCore\ApiException;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates an account.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $accountDisplayName Human-readable display name for this account.
  */
-function update_account_sample(): void
+function update_account_sample(string $accountDisplayName): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateAccountRequest();
+    $account = (new Account())
+        ->setDisplayName($accountDisplayName);
+    $updateMask = new FieldMask();
+    $request = (new UpdateAccountRequest())
+        ->setAccount($account)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +55,21 @@ function update_account_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $accountDisplayName = '[DISPLAY_NAME]';
+
+    update_account_sample($accountDisplayName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateAccount_sync]

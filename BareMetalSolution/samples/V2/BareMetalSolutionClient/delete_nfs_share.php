@@ -32,19 +32,17 @@ use Google\Rpc\Status;
 /**
  * Delete an NFS share. The underlying volume is automatically deleted.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the NFS share to delete. Please see
+ *                              {@see BareMetalSolutionClient::nFSShareName()} for help formatting this field.
  */
-function delete_nfs_share_sample(): void
+function delete_nfs_share_sample(string $formattedName): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = new DeleteNfsShareRequest();
+    $request = (new DeleteNfsShareRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -62,5 +60,21 @@ function delete_nfs_share_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = BareMetalSolutionClient::nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
+
+    delete_nfs_share_sample($formattedName);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_DeleteNfsShare_sync]

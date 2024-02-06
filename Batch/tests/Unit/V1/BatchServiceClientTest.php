@@ -86,13 +86,22 @@ class BatchServiceClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setPriority($priority);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createJob();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $job = new Job();
+        $jobTaskGroups = [];
+        $job->setTaskGroups($jobTaskGroups);
+        $response = $gapicClient->createJob($formattedParent, $job);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.batch.v1.BatchService/CreateJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getJob();
+        $this->assertProtobufEquals($job, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -114,8 +123,13 @@ class BatchServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $job = new Job();
+        $jobTaskGroups = [];
+        $job->setTaskGroups($jobTaskGroups);
         try {
-            $gapicClient->createJob();
+            $gapicClient->createJob($formattedParent, $job);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -255,13 +269,17 @@ class BatchServiceClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setPriority($priority);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getJob();
+        // Mock request
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $response = $gapicClient->getJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.batch.v1.BatchService/GetJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -283,8 +301,10 @@ class BatchServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
         try {
-            $gapicClient->getJob();
+            $gapicClient->getJob($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -309,13 +329,17 @@ class BatchServiceClientTest extends GeneratedTest
         $expectedResponse = new Task();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getTask();
+        // Mock request
+        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[JOB]', '[TASK_GROUP]', '[TASK]');
+        $response = $gapicClient->getTask($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.batch.v1.BatchService/GetTask', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -337,8 +361,10 @@ class BatchServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[JOB]', '[TASK_GROUP]', '[TASK]');
         try {
-            $gapicClient->getTask();
+            $gapicClient->getTask($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -430,7 +456,9 @@ class BatchServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTasks($tasks);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listTasks();
+        // Mock request
+        $formattedParent = $gapicClient->taskGroupName('[PROJECT]', '[LOCATION]', '[JOB]', '[TASK_GROUP]');
+        $response = $gapicClient->listTasks($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -440,6 +468,8 @@ class BatchServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.batch.v1.BatchService/ListTasks', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -461,8 +491,10 @@ class BatchServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->taskGroupName('[PROJECT]', '[LOCATION]', '[JOB]', '[TASK_GROUP]');
         try {
-            $gapicClient->listTasks();
+            $gapicClient->listTasks($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -49,19 +49,17 @@ use Google\ApiCore\ApiException;
  * [Google Analytics Audience Export API
  * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $name The name of the audience export to retrieve users from.
+ *                     Format: `properties/{property}/audienceExports/{audience_export}`
  */
-function query_audience_export_sample(): void
+function query_audience_export_sample(string $name): void
 {
     // Create a client.
     $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
 
     // Prepare the request message.
-    $request = new QueryAudienceExportRequest();
+    $request = (new QueryAudienceExportRequest())
+        ->setName($name);
 
     // Call the API and handle any network failures.
     try {
@@ -71,5 +69,21 @@ function query_audience_export_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $name = '[NAME]';
+
+    query_audience_export_sample($name);
 }
 // [END analyticsdata_v1beta_generated_BetaAnalyticsData_QueryAudienceExport_sync]

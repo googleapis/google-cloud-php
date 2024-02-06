@@ -31,19 +31,19 @@ use Google\Cloud\AssuredWorkloads\V1\Violation;
 /**
  * Retrieves Assured Workload Violation based on ID.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the Violation to fetch (ie. Violation.name).
+ *                              Format:
+ *                              organizations/{organization}/locations/{location}/workloads/{workload}/violations/{violation}
+ *                              Please see {@see AssuredWorkloadsServiceClient::violationName()} for help formatting this field.
  */
-function get_violation_sample(): void
+function get_violation_sample(string $formattedName): void
 {
     // Create a client.
     $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
 
     // Prepare the request message.
-    $request = new GetViolationRequest();
+    $request = (new GetViolationRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +53,26 @@ function get_violation_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AssuredWorkloadsServiceClient::violationName(
+        '[ORGANIZATION]',
+        '[LOCATION]',
+        '[WORKLOAD]',
+        '[VIOLATION]'
+    );
+
+    get_violation_sample($formattedName);
 }
 // [END assuredworkloads_v1_generated_AssuredWorkloadsService_GetViolation_sync]

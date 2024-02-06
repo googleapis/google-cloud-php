@@ -108,7 +108,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $artifactRegistryClient = new ArtifactRegistryClient();
  * try {
- *     $operationResponse = $artifactRegistryClient->createRepository();
+ *     $formattedParent = $artifactRegistryClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $operationResponse = $artifactRegistryClient->createRepository($formattedParent);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -119,7 +120,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $artifactRegistryClient->createRepository();
+ *     $operationResponse = $artifactRegistryClient->createRepository($formattedParent);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $artifactRegistryClient->resumeOperation($operationName, 'createRepository');
@@ -490,7 +491,8 @@ class ArtifactRegistryGapicClient
      * ```
      * $artifactRegistryClient = new ArtifactRegistryClient();
      * try {
-     *     $operationResponse = $artifactRegistryClient->createRepository();
+     *     $formattedParent = $artifactRegistryClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $operationResponse = $artifactRegistryClient->createRepository($formattedParent);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -501,7 +503,7 @@ class ArtifactRegistryGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $artifactRegistryClient->createRepository();
+     *     $operationResponse = $artifactRegistryClient->createRepository($formattedParent);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $artifactRegistryClient->resumeOperation($operationName, 'createRepository');
@@ -521,11 +523,10 @@ class ArtifactRegistryGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the parent resource where the repository will be created.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the parent resource where the repository will be created.
      *     @type string $repositoryId
      *           The repository id to use for this repository.
      *     @type Repository $repository
@@ -542,15 +543,12 @@ class ArtifactRegistryGapicClient
      *
      * @experimental
      */
-    public function createRepository(array $optionalArgs = [])
+    public function createRepository($parent, array $optionalArgs = [])
     {
         $request = new CreateRepositoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['repositoryId'])) {
             $request->setRepositoryId($optionalArgs['repositoryId']);
         }
@@ -697,7 +695,8 @@ class ArtifactRegistryGapicClient
      * ```
      * $artifactRegistryClient = new ArtifactRegistryClient();
      * try {
-     *     $operationResponse = $artifactRegistryClient->deleteRepository();
+     *     $formattedName = $artifactRegistryClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $operationResponse = $artifactRegistryClient->deleteRepository($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -707,7 +706,7 @@ class ArtifactRegistryGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $artifactRegistryClient->deleteRepository();
+     *     $operationResponse = $artifactRegistryClient->deleteRepository($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $artifactRegistryClient->resumeOperation($operationName, 'deleteRepository');
@@ -726,11 +725,10 @@ class ArtifactRegistryGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the repository to delete.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the repository to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -743,15 +741,12 @@ class ArtifactRegistryGapicClient
      *
      * @experimental
      */
-    public function deleteRepository(array $optionalArgs = [])
+    public function deleteRepository($name, array $optionalArgs = [])
     {
         $request = new DeleteRepositoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteRepository', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1018,17 +1013,17 @@ class ArtifactRegistryGapicClient
      * ```
      * $artifactRegistryClient = new ArtifactRegistryClient();
      * try {
-     *     $response = $artifactRegistryClient->getProjectSettings();
+     *     $formattedName = $artifactRegistryClient->projectSettingsName('[PROJECT]');
+     *     $response = $artifactRegistryClient->getProjectSettings($formattedName);
      * } finally {
      *     $artifactRegistryClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the projectSettings resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the projectSettings resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1041,15 +1036,12 @@ class ArtifactRegistryGapicClient
      *
      * @experimental
      */
-    public function getProjectSettings(array $optionalArgs = [])
+    public function getProjectSettings($name, array $optionalArgs = [])
     {
         $request = new GetProjectSettingsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetProjectSettings', ProjectSettings::class, $optionalArgs, $request)->wait();
@@ -1062,17 +1054,17 @@ class ArtifactRegistryGapicClient
      * ```
      * $artifactRegistryClient = new ArtifactRegistryClient();
      * try {
-     *     $response = $artifactRegistryClient->getRepository();
+     *     $formattedName = $artifactRegistryClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $response = $artifactRegistryClient->getRepository($formattedName);
      * } finally {
      *     $artifactRegistryClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the repository to retrieve.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the repository to retrieve.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1085,15 +1077,12 @@ class ArtifactRegistryGapicClient
      *
      * @experimental
      */
-    public function getRepository(array $optionalArgs = [])
+    public function getRepository($name, array $optionalArgs = [])
     {
         $request = new GetRepositoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetRepository', Repository::class, $optionalArgs, $request)->wait();
@@ -1521,8 +1510,9 @@ class ArtifactRegistryGapicClient
      * ```
      * $artifactRegistryClient = new ArtifactRegistryClient();
      * try {
+     *     $formattedParent = $artifactRegistryClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $artifactRegistryClient->listRepositories();
+     *     $pagedResponse = $artifactRegistryClient->listRepositories($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1530,7 +1520,7 @@ class ArtifactRegistryGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $artifactRegistryClient->listRepositories();
+     *     $pagedResponse = $artifactRegistryClient->listRepositories($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1539,11 +1529,10 @@ class ArtifactRegistryGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the parent resource whose repositories will be listed.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the parent resource whose repositories will be listed.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1565,15 +1554,12 @@ class ArtifactRegistryGapicClient
      *
      * @experimental
      */
-    public function listRepositories(array $optionalArgs = [])
+    public function listRepositories($parent, array $optionalArgs = [])
     {
         $request = new ListRepositoriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

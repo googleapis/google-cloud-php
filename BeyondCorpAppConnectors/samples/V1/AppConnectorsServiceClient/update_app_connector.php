@@ -26,26 +26,32 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector;
+use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector\PrincipalInfo;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\Client\AppConnectorsServiceClient;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\UpdateAppConnectorRequest;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates the parameters of a single AppConnector.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $appConnectorName Unique resource name of the AppConnector.
+ *                                 The name is ignored when creating a AppConnector.
  */
-function update_app_connector_sample(): void
+function update_app_connector_sample(string $appConnectorName): void
 {
     // Create a client.
     $appConnectorsServiceClient = new AppConnectorsServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateAppConnectorRequest();
+    $updateMask = new FieldMask();
+    $appConnectorPrincipalInfo = new PrincipalInfo();
+    $appConnector = (new AppConnector())
+        ->setName($appConnectorName)
+        ->setPrincipalInfo($appConnectorPrincipalInfo);
+    $request = (new UpdateAppConnectorRequest())
+        ->setUpdateMask($updateMask)
+        ->setAppConnector($appConnector);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +71,21 @@ function update_app_connector_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $appConnectorName = '[NAME]';
+
+    update_app_connector_sample($appConnectorName);
 }
 // [END beyondcorp_v1_generated_AppConnectorsService_UpdateAppConnector_sync]

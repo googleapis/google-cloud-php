@@ -24,26 +24,40 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateChannelGroup_sync]
 use Google\Analytics\Admin\V1alpha\ChannelGroup;
+use Google\Analytics\Admin\V1alpha\ChannelGroupFilterExpression;
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\GroupingRule;
 use Google\Analytics\Admin\V1alpha\UpdateChannelGroupRequest;
 use Google\ApiCore\ApiException;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a ChannelGroup.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $channelGroupDisplayName             The display name of the Channel Group. Max length of 80
+ *                                                    characters.
+ * @param string $channelGroupGroupingRuleDisplayName Customer defined display name for the channel.
  */
-function update_channel_group_sample(): void
-{
+function update_channel_group_sample(
+    string $channelGroupDisplayName,
+    string $channelGroupGroupingRuleDisplayName
+): void {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateChannelGroupRequest();
+    $channelGroupGroupingRuleExpression = new ChannelGroupFilterExpression();
+    $groupingRule = (new GroupingRule())
+        ->setDisplayName($channelGroupGroupingRuleDisplayName)
+        ->setExpression($channelGroupGroupingRuleExpression);
+    $channelGroupGroupingRule = [$groupingRule,];
+    $channelGroup = (new ChannelGroup())
+        ->setDisplayName($channelGroupDisplayName)
+        ->setGroupingRule($channelGroupGroupingRule);
+    $updateMask = new FieldMask();
+    $request = (new UpdateChannelGroupRequest())
+        ->setChannelGroup($channelGroup)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +67,22 @@ function update_channel_group_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $channelGroupDisplayName = '[DISPLAY_NAME]';
+    $channelGroupGroupingRuleDisplayName = '[DISPLAY_NAME]';
+
+    update_channel_group_sample($channelGroupDisplayName, $channelGroupGroupingRuleDisplayName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateChannelGroup_sync]

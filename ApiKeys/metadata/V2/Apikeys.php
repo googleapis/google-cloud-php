@@ -24,43 +24,43 @@ class Apikeys
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∆
-#google/api/apikeys/v2/apikeys.protogoogle.api.apikeys.v2%google/api/apikeys/v2/resources.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Ü
-CreateKeyRequest3
-parent (	B#‚A˙Aapikeys.googleapis.com/Key-
-key (2.google.api.apikeys.v2.KeyB‚A
-key_id (	"ï
-ListKeysRequest3
-parent (	B#‚A˙Aapikeys.googleapis.com/Key
-	page_size (B‚A
+π
+#google/api/apikeys/v2/apikeys.protogoogle.api.apikeys.v2%google/api/apikeys/v2/resources.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Ñ
+CreateKeyRequest2
+parent (	B"‡A˙Aapikeys.googleapis.com/Key,
+key (2.google.api.apikeys.v2.KeyB‡A
+key_id (	"ë
+ListKeysRequest2
+parent (	B"‡A˙Aapikeys.googleapis.com/Key
+	page_size (B‡A
 
-page_token (	B‚A
-show_deleted (B‚A"U
+page_token (	B‡A
+show_deleted (B‡A"U
 ListKeysResponse(
 keys (2.google.api.apikeys.v2.Key
-next_page_token (	"B
-GetKeyRequest1
-name (	B#‚A˙A
-apikeys.googleapis.com/Key"H
-GetKeyStringRequest1
-name (	B#‚A˙A
+next_page_token (	"A
+GetKeyRequest0
+name (	B"‡A˙A
+apikeys.googleapis.com/Key"G
+GetKeyStringRequest0
+name (	B"‡A˙A
 apikeys.googleapis.com/Key"*
 GetKeyStringResponse
 
-key_string (	"r
-UpdateKeyRequest-
-key (2.google.api.apikeys.v2.KeyB‚A/
-update_mask (2.google.protobuf.FieldMask"Y
-DeleteKeyRequest1
-name (	B#‚A˙A
-apikeys.googleapis.com/Key
-etag (	B‚A"G
-UndeleteKeyRequest1
-name (	B#‚A˙A
-apikeys.googleapis.com/Key",
-LookupKeyRequest
+key_string (	"q
+UpdateKeyRequest,
+key (2.google.api.apikeys.v2.KeyB‡A/
+update_mask (2.google.protobuf.FieldMask"W
+DeleteKeyRequest0
+name (	B"‡A˙A
+apikeys.googleapis.com/Key
+etag (	B‡A"F
+UndeleteKeyRequest0
+name (	B"‡A˙A
+apikeys.googleapis.com/Key"+
+LookupKeyRequest
 
-key_string (	B‚A"1
+key_string (	B‡A"1
 LookupKeyResponse
 parent (	
 name (	2æ

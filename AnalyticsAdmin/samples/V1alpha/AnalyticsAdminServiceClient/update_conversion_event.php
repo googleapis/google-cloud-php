@@ -27,6 +27,7 @@ use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\ConversionEvent;
 use Google\Analytics\Admin\V1alpha\UpdateConversionEventRequest;
 use Google\ApiCore\ApiException;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a conversion event with the specified attributes.
@@ -43,7 +44,11 @@ function update_conversion_event_sample(): void
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateConversionEventRequest();
+    $conversionEvent = new ConversionEvent();
+    $updateMask = new FieldMask();
+    $request = (new UpdateConversionEventRequest())
+        ->setConversionEvent($conversionEvent)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {

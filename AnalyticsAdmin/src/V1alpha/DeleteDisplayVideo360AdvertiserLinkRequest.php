@@ -26,6 +26,7 @@ class DeleteDisplayVideo360AdvertiserLinkRequest extends \Google\Protobuf\Intern
     /**
      * @param string $name Required. The name of the DisplayVideo360AdvertiserLink to delete.
      *                     Example format: properties/1234/displayVideo360AdvertiserLinks/5678
+     *                     Please see {@see AnalyticsAdminServiceClient::displayVideo360AdvertiserLinkName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkRequest
      *

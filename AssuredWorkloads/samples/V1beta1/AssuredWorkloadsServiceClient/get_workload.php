@@ -30,13 +30,14 @@ use Google\Cloud\AssuredWorkloads\V1beta1\Workload;
 /**
  * Gets Assured Workload associated with a CRM Node
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the Workload to fetch. This is the workloads's
+ *                              relative path in the API, formatted as
+ *                              "organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}".
+ *                              For example,
+ *                              "organizations/123/locations/us-east1/workloads/assured-workload-1". Please see
+ *                              {@see AssuredWorkloadsServiceClient::workloadName()} for help formatting this field.
  */
-function get_workload_sample(): void
+function get_workload_sample(string $formattedName): void
 {
     // Create a client.
     $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
@@ -44,10 +45,30 @@ function get_workload_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var Workload $response */
-        $response = $assuredWorkloadsServiceClient->getWorkload();
+        $response = $assuredWorkloadsServiceClient->getWorkload($formattedName);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AssuredWorkloadsServiceClient::workloadName(
+        '[ORGANIZATION]',
+        '[LOCATION]',
+        '[WORKLOAD]'
+    );
+
+    get_workload_sample($formattedName);
 }
 // [END assuredworkloads_v1beta1_generated_AssuredWorkloadsService_GetWorkload_sync]

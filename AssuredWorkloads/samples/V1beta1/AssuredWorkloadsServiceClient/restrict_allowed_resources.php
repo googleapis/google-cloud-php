@@ -25,6 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START assuredworkloads_v1beta1_generated_AssuredWorkloadsService_RestrictAllowedResources_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
+use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesRequest\RestrictionType;
 use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesResponse;
 
 /**
@@ -35,13 +36,14 @@ use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesResponse;
  * also have orgpolicy.policy.set permission on the folder resource
  * to use this functionality.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $name            The resource name of the Workload. This is the workloads's
+ *                                relative path in the API, formatted as
+ *                                "organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}".
+ *                                For example,
+ *                                "organizations/123/locations/us-east1/workloads/assured-workload-1".
+ * @param int    $restrictionType The type of restriction for using gcp products in the Workload environment.
  */
-function restrict_allowed_resources_sample(): void
+function restrict_allowed_resources_sample(string $name, int $restrictionType): void
 {
     // Create a client.
     $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
@@ -49,10 +51,27 @@ function restrict_allowed_resources_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var RestrictAllowedResourcesResponse $response */
-        $response = $assuredWorkloadsServiceClient->restrictAllowedResources();
+        $response = $assuredWorkloadsServiceClient->restrictAllowedResources($name, $restrictionType);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $name = '[NAME]';
+    $restrictionType = RestrictionType::RESTRICTION_TYPE_UNSPECIFIED;
+
+    restrict_allowed_resources_sample($name, $restrictionType);
 }
 // [END assuredworkloads_v1beta1_generated_AssuredWorkloadsService_RestrictAllowedResources_sync]

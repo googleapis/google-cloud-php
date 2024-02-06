@@ -25,7 +25,8 @@ class DeleteSSHKeyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the SSH key to delete.
-     *                     Currently, the only valid value for the location is "global".
+     *                     Currently, the only valid value for the location is "global". Please see
+     *                     {@see BareMetalSolutionClient::sshKeyName()} for help formatting this field.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\DeleteSSHKeyRequest
      *

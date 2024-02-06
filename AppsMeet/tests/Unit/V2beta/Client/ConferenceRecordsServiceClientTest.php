@@ -99,7 +99,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setSpace($space);
         $transport->addResponse($expectedResponse);
-        $request = new GetConferenceRecordRequest();
+        // Mock request
+        $formattedName = $gapicClient->conferenceRecordName('[CONFERENCE_RECORD]');
+        $request = (new GetConferenceRecordRequest())->setName($formattedName);
         $response = $gapicClient->getConferenceRecord($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -107,6 +109,8 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.apps.meet.v2beta.ConferenceRecordsService/GetConferenceRecord', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -131,7 +135,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetConferenceRecordRequest();
+        // Mock request
+        $formattedName = $gapicClient->conferenceRecordName('[CONFERENCE_RECORD]');
+        $request = (new GetConferenceRecordRequest())->setName($formattedName);
         try {
             $gapicClient->getConferenceRecord($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -158,7 +164,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $expectedResponse = new Participant();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $request = new GetParticipantRequest();
+        // Mock request
+        $formattedName = $gapicClient->participantName('[CONFERENCE_RECORD]', '[PARTICIPANT]');
+        $request = (new GetParticipantRequest())->setName($formattedName);
         $response = $gapicClient->getParticipant($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -166,6 +174,8 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.apps.meet.v2beta.ConferenceRecordsService/GetParticipant', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -190,7 +200,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetParticipantRequest();
+        // Mock request
+        $formattedName = $gapicClient->participantName('[CONFERENCE_RECORD]', '[PARTICIPANT]');
+        $request = (new GetParticipantRequest())->setName($formattedName);
         try {
             $gapicClient->getParticipant($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -217,7 +229,13 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $expectedResponse = new ParticipantSession();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $request = new GetParticipantSessionRequest();
+        // Mock request
+        $formattedName = $gapicClient->participantSessionName(
+            '[CONFERENCE_RECORD]',
+            '[PARTICIPANT]',
+            '[PARTICIPANT_SESSION]'
+        );
+        $request = (new GetParticipantSessionRequest())->setName($formattedName);
         $response = $gapicClient->getParticipantSession($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -225,6 +243,8 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.apps.meet.v2beta.ConferenceRecordsService/GetParticipantSession', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -249,7 +269,13 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetParticipantSessionRequest();
+        // Mock request
+        $formattedName = $gapicClient->participantSessionName(
+            '[CONFERENCE_RECORD]',
+            '[PARTICIPANT]',
+            '[PARTICIPANT_SESSION]'
+        );
+        $request = (new GetParticipantSessionRequest())->setName($formattedName);
         try {
             $gapicClient->getParticipantSession($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -276,7 +302,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $expectedResponse = new Recording();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $request = new GetRecordingRequest();
+        // Mock request
+        $formattedName = $gapicClient->recordingName('[CONFERENCE_RECORD]', '[RECORDING]');
+        $request = (new GetRecordingRequest())->setName($formattedName);
         $response = $gapicClient->getRecording($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -284,6 +312,8 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.apps.meet.v2beta.ConferenceRecordsService/GetRecording', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -308,7 +338,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetRecordingRequest();
+        // Mock request
+        $formattedName = $gapicClient->recordingName('[CONFERENCE_RECORD]', '[RECORDING]');
+        $request = (new GetRecordingRequest())->setName($formattedName);
         try {
             $gapicClient->getRecording($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -335,7 +367,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $expectedResponse = new Transcript();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $request = new GetTranscriptRequest();
+        // Mock request
+        $formattedName = $gapicClient->transcriptName('[CONFERENCE_RECORD]', '[TRANSCRIPT]');
+        $request = (new GetTranscriptRequest())->setName($formattedName);
         $response = $gapicClient->getTranscript($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -343,6 +377,8 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.apps.meet.v2beta.ConferenceRecordsService/GetTranscript', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -367,7 +403,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetTranscriptRequest();
+        // Mock request
+        $formattedName = $gapicClient->transcriptName('[CONFERENCE_RECORD]', '[TRANSCRIPT]');
+        $request = (new GetTranscriptRequest())->setName($formattedName);
         try {
             $gapicClient->getTranscript($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -400,7 +438,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $expectedResponse->setText($text);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        $request = new GetTranscriptEntryRequest();
+        // Mock request
+        $formattedName = $gapicClient->transcriptEntryName('[CONFERENCE_RECORD]', '[TRANSCRIPT]', '[ENTRY]');
+        $request = (new GetTranscriptEntryRequest())->setName($formattedName);
         $response = $gapicClient->getTranscriptEntry($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -408,6 +448,8 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.apps.meet.v2beta.ConferenceRecordsService/GetTranscriptEntry', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -432,7 +474,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetTranscriptEntryRequest();
+        // Mock request
+        $formattedName = $gapicClient->transcriptEntryName('[CONFERENCE_RECORD]', '[TRANSCRIPT]', '[ENTRY]');
+        $request = (new GetTranscriptEntryRequest())->setName($formattedName);
         try {
             $gapicClient->getTranscriptEntry($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -527,7 +571,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setParticipantSessions($participantSessions);
         $transport->addResponse($expectedResponse);
-        $request = new ListParticipantSessionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->participantName('[CONFERENCE_RECORD]', '[PARTICIPANT]');
+        $request = (new ListParticipantSessionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listParticipantSessions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -538,6 +584,8 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.apps.meet.v2beta.ConferenceRecordsService/ListParticipantSessions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -562,7 +610,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListParticipantSessionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->participantName('[CONFERENCE_RECORD]', '[PARTICIPANT]');
+        $request = (new ListParticipantSessionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listParticipantSessions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -594,7 +644,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setParticipants($participants);
         $transport->addResponse($expectedResponse);
-        $request = new ListParticipantsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->conferenceRecordName('[CONFERENCE_RECORD]');
+        $request = (new ListParticipantsRequest())->setParent($formattedParent);
         $response = $gapicClient->listParticipants($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -605,6 +657,8 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.apps.meet.v2beta.ConferenceRecordsService/ListParticipants', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -629,7 +683,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListParticipantsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->conferenceRecordName('[CONFERENCE_RECORD]');
+        $request = (new ListParticipantsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listParticipants($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -659,7 +715,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRecordings($recordings);
         $transport->addResponse($expectedResponse);
-        $request = new ListRecordingsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->conferenceRecordName('[CONFERENCE_RECORD]');
+        $request = (new ListRecordingsRequest())->setParent($formattedParent);
         $response = $gapicClient->listRecordings($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -670,6 +728,8 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.apps.meet.v2beta.ConferenceRecordsService/ListRecordings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -694,7 +754,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListRecordingsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->conferenceRecordName('[CONFERENCE_RECORD]');
+        $request = (new ListRecordingsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRecordings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -724,7 +786,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTranscriptEntries($transcriptEntries);
         $transport->addResponse($expectedResponse);
-        $request = new ListTranscriptEntriesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->transcriptName('[CONFERENCE_RECORD]', '[TRANSCRIPT]');
+        $request = (new ListTranscriptEntriesRequest())->setParent($formattedParent);
         $response = $gapicClient->listTranscriptEntries($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -735,6 +799,8 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.apps.meet.v2beta.ConferenceRecordsService/ListTranscriptEntries', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -759,7 +825,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListTranscriptEntriesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->transcriptName('[CONFERENCE_RECORD]', '[TRANSCRIPT]');
+        $request = (new ListTranscriptEntriesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTranscriptEntries($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -789,7 +857,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTranscripts($transcripts);
         $transport->addResponse($expectedResponse);
-        $request = new ListTranscriptsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->conferenceRecordName('[CONFERENCE_RECORD]');
+        $request = (new ListTranscriptsRequest())->setParent($formattedParent);
         $response = $gapicClient->listTranscripts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -800,6 +870,8 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.apps.meet.v2beta.ConferenceRecordsService/ListTranscripts', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -824,7 +896,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListTranscriptsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->conferenceRecordName('[CONFERENCE_RECORD]');
+        $request = (new ListTranscriptsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTranscripts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -853,7 +927,9 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setSpace($space);
         $transport->addResponse($expectedResponse);
-        $request = new GetConferenceRecordRequest();
+        // Mock request
+        $formattedName = $gapicClient->conferenceRecordName('[CONFERENCE_RECORD]');
+        $request = (new GetConferenceRecordRequest())->setName($formattedName);
         $response = $gapicClient->getConferenceRecordAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -861,6 +937,8 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.apps.meet.v2beta.ConferenceRecordsService/GetConferenceRecord', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

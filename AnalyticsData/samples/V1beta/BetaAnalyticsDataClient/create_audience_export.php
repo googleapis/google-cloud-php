@@ -23,6 +23,7 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsdata_v1beta_generated_BetaAnalyticsData_CreateAudienceExport_sync]
+use Google\Analytics\Data\V1beta\AudienceDimension;
 use Google\Analytics\Data\V1beta\AudienceExport;
 use Google\Analytics\Data\V1beta\Client\BetaAnalyticsDataClient;
 use Google\Analytics\Data\V1beta\CreateAudienceExportRequest;
@@ -57,19 +58,30 @@ use Google\Rpc\Status;
  * [Google Analytics Audience Export API
  * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent        The parent resource where this audience export will be created.
+ *                                       Format: `properties/{property}`
+ *                                       Please see {@see BetaAnalyticsDataClient::propertyName()} for help formatting this field.
+ * @param string $audienceExportAudience The audience resource name. This resource name identifies the
+ *                                       audience being listed and is shared between the Analytics Data & Admin
+ *                                       APIs.
+ *
+ *                                       Format: `properties/{property}/audiences/{audience}`
  */
-function create_audience_export_sample(): void
-{
+function create_audience_export_sample(
+    string $formattedParent,
+    string $audienceExportAudience
+): void {
     // Create a client.
     $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
 
     // Prepare the request message.
-    $request = new CreateAudienceExportRequest();
+    $audienceExportDimensions = [new AudienceDimension()];
+    $audienceExport = (new AudienceExport())
+        ->setAudience($audienceExportAudience)
+        ->setDimensions($audienceExportDimensions);
+    $request = (new CreateAudienceExportRequest())
+        ->setParent($formattedParent)
+        ->setAudienceExport($audienceExport);
 
     // Call the API and handle any network failures.
     try {
@@ -89,5 +101,22 @@ function create_audience_export_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = BetaAnalyticsDataClient::propertyName('[PROPERTY]');
+    $audienceExportAudience = '[AUDIENCE]';
+
+    create_audience_export_sample($formattedParent, $audienceExportAudience);
 }
 // [END analyticsdata_v1beta_generated_BetaAnalyticsData_CreateAudienceExport_sync]

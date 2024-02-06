@@ -31,19 +31,33 @@ use Google\Cloud\Asset\V1\Client\AssetServiceClient;
 /**
  * Gets effective IAM policies for a batch of resources.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $scope        Only IAM policies on or below the scope will be returned.
+ *
+ *                             This can only be an organization number (such as "organizations/123"), a
+ *                             folder number (such as "folders/123"), a project ID (such as
+ *                             "projects/my-project-id"), or a project number (such as "projects/12345").
+ *
+ *                             To know how to get organization id, visit [here
+ *                             ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).
+ *
+ *                             To know how to get folder or project id, visit [here
+ *                             ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+ * @param string $namesElement The names refer to the [full_resource_names]
+ *                             (https://cloud.google.com/asset-inventory/docs/resource-name-format)
+ *                             of [searchable asset
+ *                             types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
+ *                             A maximum of 20 resources' effective policies can be retrieved in a batch.
  */
-function batch_get_effective_iam_policies_sample(): void
+function batch_get_effective_iam_policies_sample(string $scope, string $namesElement): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $request = new BatchGetEffectiveIamPoliciesRequest();
+    $names = [$namesElement,];
+    $request = (new BatchGetEffectiveIamPoliciesRequest())
+        ->setScope($scope)
+        ->setNames($names);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +67,22 @@ function batch_get_effective_iam_policies_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $scope = '[SCOPE]';
+    $namesElement = '[NAMES]';
+
+    batch_get_effective_iam_policies_sample($scope, $namesElement);
 }
 // [END cloudasset_v1_generated_AssetService_BatchGetEffectiveIamPolicies_sync]

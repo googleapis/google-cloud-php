@@ -33,19 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a dataset.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the project to create the dataset for. Please see
+ *                                {@see AutoMlClient::locationName()} for help formatting this field.
  */
-function create_dataset_sample(): void
+function create_dataset_sample(string $formattedParent): void
 {
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
     // Prepare the request message.
-    $request = new CreateDatasetRequest();
+    $dataset = new Dataset();
+    $request = (new CreateDatasetRequest())
+        ->setParent($formattedParent)
+        ->setDataset($dataset);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +65,21 @@ function create_dataset_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AutoMlClient::locationName('[PROJECT]', '[LOCATION]');
+
+    create_dataset_sample($formattedParent);
 }
 // [END automl_v1_generated_AutoMl_CreateDataset_sync]

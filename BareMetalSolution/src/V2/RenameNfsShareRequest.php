@@ -32,6 +32,7 @@ class RenameNfsShareRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name          Required. The `name` field is used to identify the nfsshare.
      *                              Format: projects/{project}/locations/{location}/nfsshares/{nfsshare}
+     *                              Please see {@see BareMetalSolutionClient::nFSShareName()} for help formatting this field.
      * @param string $newNfsshareId Required. The new `id` of the nfsshare.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\RenameNfsShareRequest

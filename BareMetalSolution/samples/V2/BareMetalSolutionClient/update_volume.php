@@ -45,7 +45,9 @@ function update_volume_sample(): void
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = new UpdateVolumeRequest();
+    $volume = new Volume();
+    $request = (new UpdateVolumeRequest())
+        ->setVolume($volume);
 
     // Call the API and handle any network failures.
     try {

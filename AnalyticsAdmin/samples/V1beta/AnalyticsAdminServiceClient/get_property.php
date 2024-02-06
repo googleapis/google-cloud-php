@@ -31,19 +31,19 @@ use Google\ApiCore\ApiException;
 /**
  * Lookup for a single "GA4" Property.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the property to lookup.
+ *                              Format: properties/{property_id}
+ *                              Example: "properties/1000"
+ *                              Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
  */
-function get_property_sample(): void
+function get_property_sample(string $formattedName): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new GetPropertyRequest();
+    $request = (new GetPropertyRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +53,21 @@ function get_property_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AnalyticsAdminServiceClient::propertyName('[PROPERTY]');
+
+    get_property_sample($formattedName);
 }
 // [END analyticsadmin_v1beta_generated_AnalyticsAdminService_GetProperty_sync]

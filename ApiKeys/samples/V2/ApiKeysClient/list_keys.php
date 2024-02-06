@@ -36,19 +36,17 @@ use Google\Cloud\ApiKeys\V2\ListKeysRequest;
  * NOTE: Key is a global resource; hence the only supported value for
  * location is `global`.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Lists all API keys associated with this project. Please see
+ *                                {@see ApiKeysClient::locationName()} for help formatting this field.
  */
-function list_keys_sample(): void
+function list_keys_sample(string $formattedParent): void
 {
     // Create a client.
     $apiKeysClient = new ApiKeysClient();
 
     // Prepare the request message.
-    $request = new ListKeysRequest();
+    $request = (new ListKeysRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -62,5 +60,21 @@ function list_keys_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ApiKeysClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_keys_sample($formattedParent);
 }
 // [END apikeys_v2_generated_ApiKeys_ListKeys_sync]

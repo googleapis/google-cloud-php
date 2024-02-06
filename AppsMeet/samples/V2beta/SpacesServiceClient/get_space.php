@@ -32,19 +32,17 @@ use Google\Apps\Meet\V2beta\Space;
  * [Developer Preview](https://developers.google.com/workspace/preview).
  * Gets a space by `space_id` or `meeting_code`.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Resource name of the space. Please see
+ *                              {@see SpacesServiceClient::spaceName()} for help formatting this field.
  */
-function get_space_sample(): void
+function get_space_sample(string $formattedName): void
 {
     // Create a client.
     $spacesServiceClient = new SpacesServiceClient();
 
     // Prepare the request message.
-    $request = new GetSpaceRequest();
+    $request = (new GetSpaceRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +52,21 @@ function get_space_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = SpacesServiceClient::spaceName('[SPACE]');
+
+    get_space_sample($formattedName);
 }
 // [END meet_v2beta_generated_SpacesService_GetSpace_sync]

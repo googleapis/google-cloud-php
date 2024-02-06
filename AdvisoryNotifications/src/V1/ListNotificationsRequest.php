@@ -62,6 +62,7 @@ class ListNotificationsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The parent, which owns this collection of notifications.
      *                       Must be of the form "organizations/{organization}/locations/{location}"
      *                       or "projects/{project}/locations/{location}"
+     *                       Please see {@see AdvisoryNotificationsServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AdvisoryNotifications\V1\ListNotificationsRequest
      *

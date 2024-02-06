@@ -42,7 +42,8 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Parent name of the form:
-     *                       `projects/{project_number or project_id}/endpoints/{endpoint}`.
+     *                       `projects/{project_number or project_id}/endpoints/{endpoint}`. Please see
+     *                       {@see ConnectionServiceClient::endpointName()} for help formatting this field.
      *
      * @return \Google\Cloud\ApigeeConnect\V1\ListConnectionsRequest
      *

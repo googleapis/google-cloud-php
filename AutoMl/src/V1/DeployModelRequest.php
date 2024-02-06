@@ -24,7 +24,8 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
     protected $model_deployment_metadata;
 
     /**
-     * @param string $name Required. Resource name of the model to deploy.
+     * @param string $name Required. Resource name of the model to deploy. Please see
+     *                     {@see AutoMlClient::modelName()} for help formatting this field.
      *
      * @return \Google\Cloud\AutoMl\V1\DeployModelRequest
      *

@@ -28,6 +28,10 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\AlloyDb\V1\BatchCreateInstancesRequest;
 use Google\Cloud\AlloyDb\V1\BatchCreateInstancesResponse;
 use Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
+use Google\Cloud\AlloyDb\V1\CreateInstanceRequest;
+use Google\Cloud\AlloyDb\V1\CreateInstanceRequests;
+use Google\Cloud\AlloyDb\V1\Instance;
+use Google\Cloud\AlloyDb\V1\Instance\InstanceType;
 use Google\Rpc\Status;
 
 /**
@@ -42,19 +46,36 @@ use Google\Rpc\Status;
  * for external customers to consume. Please do not start relying on it; its
  * behavior is subject to change without notice.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent                                    The name of the parent resource. Please see
+ *                                                                   {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
+ * @param string $formattedRequestsCreateInstanceRequestsParent      The name of the parent resource. For the required format, see the
+ *                                                                   comment on the Instance.name field. Please see
+ *                                                                   {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
+ * @param string $requestsCreateInstanceRequestsInstanceId           ID of the requesting object.
+ * @param int    $requestsCreateInstanceRequestsInstanceInstanceType The type of the instance. Specified at creation time.
  */
-function batch_create_instances_sample(): void
-{
+function batch_create_instances_sample(
+    string $formattedParent,
+    string $formattedRequestsCreateInstanceRequestsParent,
+    string $requestsCreateInstanceRequestsInstanceId,
+    int $requestsCreateInstanceRequestsInstanceInstanceType
+): void {
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
     // Prepare the request message.
-    $request = new BatchCreateInstancesRequest();
+    $requestsCreateInstanceRequestsInstance = (new Instance())
+        ->setInstanceType($requestsCreateInstanceRequestsInstanceInstanceType);
+    $createInstanceRequest = (new CreateInstanceRequest())
+        ->setParent($formattedRequestsCreateInstanceRequestsParent)
+        ->setInstanceId($requestsCreateInstanceRequestsInstanceId)
+        ->setInstance($requestsCreateInstanceRequestsInstance);
+    $requestsCreateInstanceRequests = [$createInstanceRequest,];
+    $requests = (new CreateInstanceRequests())
+        ->setCreateInstanceRequests($requestsCreateInstanceRequests);
+    $request = (new BatchCreateInstancesRequest())
+        ->setParent($formattedParent)
+        ->setRequests($requests);
 
     // Call the API and handle any network failures.
     try {
@@ -74,5 +95,33 @@ function batch_create_instances_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AlloyDBAdminClient::clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+    $formattedRequestsCreateInstanceRequestsParent = AlloyDBAdminClient::clusterName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[CLUSTER]'
+    );
+    $requestsCreateInstanceRequestsInstanceId = '[INSTANCE_ID]';
+    $requestsCreateInstanceRequestsInstanceInstanceType = InstanceType::INSTANCE_TYPE_UNSPECIFIED;
+
+    batch_create_instances_sample(
+        $formattedParent,
+        $formattedRequestsCreateInstanceRequestsParent,
+        $requestsCreateInstanceRequestsInstanceId,
+        $requestsCreateInstanceRequestsInstanceInstanceType
+    );
 }
 // [END alloydb_v1_generated_AlloyDBAdmin_BatchCreateInstances_sync]

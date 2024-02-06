@@ -32,19 +32,20 @@ use Google\Cloud\BareMetalSolution\V2\Volume;
  * RenameVolume sets a new name for a volume.
  * Use with caution, previous names become immediately invalidated.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The `name` field is used to identify the volume.
+ *                              Format: projects/{project}/locations/{location}/volumes/{volume}
+ *                              Please see {@see BareMetalSolutionClient::volumeName()} for help formatting this field.
+ * @param string $newVolumeId   The new `id` of the volume.
  */
-function rename_volume_sample(): void
+function rename_volume_sample(string $formattedName, string $newVolumeId): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = new RenameVolumeRequest();
+    $request = (new RenameVolumeRequest())
+        ->setName($formattedName)
+        ->setNewVolumeId($newVolumeId);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +55,22 @@ function rename_volume_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = BareMetalSolutionClient::volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+    $newVolumeId = '[NEW_VOLUME_ID]';
+
+    rename_volume_sample($formattedName, $newVolumeId);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_RenameVolume_sync]

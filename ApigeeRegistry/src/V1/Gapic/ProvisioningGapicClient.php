@@ -63,7 +63,10 @@ use Google\Protobuf\FieldMask;
  * ```
  * $provisioningClient = new ProvisioningClient();
  * try {
- *     $operationResponse = $provisioningClient->createInstance();
+ *     $formattedParent = $provisioningClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $instanceId = 'instance_id';
+ *     $instance = new Instance();
+ *     $operationResponse = $provisioningClient->createInstance($formattedParent, $instanceId, $instance);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -74,7 +77,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $provisioningClient->createInstance();
+ *     $operationResponse = $provisioningClient->createInstance($formattedParent, $instanceId, $instance);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $provisioningClient->resumeOperation($operationName, 'createInstance');
@@ -381,7 +384,10 @@ class ProvisioningGapicClient
      * ```
      * $provisioningClient = new ProvisioningClient();
      * try {
-     *     $operationResponse = $provisioningClient->createInstance();
+     *     $formattedParent = $provisioningClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $instanceId = 'instance_id';
+     *     $instance = new Instance();
+     *     $operationResponse = $provisioningClient->createInstance($formattedParent, $instanceId, $instance);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -392,7 +398,7 @@ class ProvisioningGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $provisioningClient->createInstance();
+     *     $operationResponse = $provisioningClient->createInstance($formattedParent, $instanceId, $instance);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $provisioningClient->resumeOperation($operationName, 'createInstance');
@@ -412,16 +418,13 @@ class ProvisioningGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $parent       Required. Parent resource of the Instance, of the form: `projects/&#42;/locations/*`
+     * @param string   $instanceId   Required. Identifier to assign to the Instance. Must be unique within scope of the
+     *                               parent resource.
+     * @param Instance $instance     Required. The Instance.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent resource of the Instance, of the form: `projects/&#42;/locations/*`
-     *     @type string $instanceId
-     *           Required. Identifier to assign to the Instance. Must be unique within scope of the
-     *           parent resource.
-     *     @type Instance $instance
-     *           Required. The Instance.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -432,23 +435,18 @@ class ProvisioningGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createInstance(array $optionalArgs = [])
-    {
+    public function createInstance(
+        $parent,
+        $instanceId,
+        $instance,
+        array $optionalArgs = []
+    ) {
         $request = new CreateInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['instanceId'])) {
-            $request->setInstanceId($optionalArgs['instanceId']);
-        }
-
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-        }
-
+        $request->setParent($parent);
+        $request->setInstanceId($instanceId);
+        $request->setInstance($instance);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -470,7 +468,8 @@ class ProvisioningGapicClient
      * ```
      * $provisioningClient = new ProvisioningClient();
      * try {
-     *     $operationResponse = $provisioningClient->deleteInstance();
+     *     $formattedName = $provisioningClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $operationResponse = $provisioningClient->deleteInstance($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -480,7 +479,7 @@ class ProvisioningGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $provisioningClient->deleteInstance();
+     *     $operationResponse = $provisioningClient->deleteInstance($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $provisioningClient->resumeOperation($operationName, 'deleteInstance');
@@ -499,12 +498,11 @@ class ProvisioningGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Instance to delete.
+     *                             Format: `projects/&#42;/locations/&#42;/instances/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Instance to delete.
-     *           Format: `projects/&#42;/locations/&#42;/instances/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -515,15 +513,12 @@ class ProvisioningGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteInstance(array $optionalArgs = [])
+    public function deleteInstance($name, array $optionalArgs = [])
     {
         $request = new DeleteInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -545,18 +540,18 @@ class ProvisioningGapicClient
      * ```
      * $provisioningClient = new ProvisioningClient();
      * try {
-     *     $response = $provisioningClient->getInstance();
+     *     $formattedName = $provisioningClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $response = $provisioningClient->getInstance($formattedName);
      * } finally {
      *     $provisioningClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Instance to retrieve.
+     *                             Format: `projects/&#42;/locations/&#42;/instances/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Instance to retrieve.
-     *           Format: `projects/&#42;/locations/&#42;/instances/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -567,15 +562,12 @@ class ProvisioningGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getInstance(array $optionalArgs = [])
+    public function getInstance($name, array $optionalArgs = [])
     {
         $request = new GetInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -738,18 +730,18 @@ class ProvisioningGapicClient
      * ```
      * $provisioningClient = new ProvisioningClient();
      * try {
-     *     $response = $provisioningClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $provisioningClient->getIamPolicy($resource);
      * } finally {
      *     $provisioningClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -763,15 +755,12 @@ class ProvisioningGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -803,23 +792,23 @@ class ProvisioningGapicClient
      * ```
      * $provisioningClient = new ProvisioningClient();
      * try {
-     *     $response = $provisioningClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $provisioningClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $provisioningClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -836,19 +825,13 @@ class ProvisioningGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -882,23 +865,23 @@ class ProvisioningGapicClient
      * ```
      * $provisioningClient = new ProvisioningClient();
      * try {
-     *     $response = $provisioningClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $provisioningClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $provisioningClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -909,19 +892,16 @@ class ProvisioningGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

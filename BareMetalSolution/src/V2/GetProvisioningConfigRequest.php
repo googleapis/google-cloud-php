@@ -23,7 +23,8 @@ class GetProvisioningConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. Name of the ProvisioningConfig.
+     * @param string $name Required. Name of the ProvisioningConfig. Please see
+     *                     {@see BareMetalSolutionClient::provisioningConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\GetProvisioningConfigRequest
      *

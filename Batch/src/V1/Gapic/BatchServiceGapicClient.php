@@ -63,7 +63,9 @@ use Google\LongRunning\Operation;
  * ```
  * $batchServiceClient = new BatchServiceClient();
  * try {
- *     $response = $batchServiceClient->createJob();
+ *     $formattedParent = $batchServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $job = new Job();
+ *     $response = $batchServiceClient->createJob($formattedParent, $job);
  * } finally {
  *     $batchServiceClient->close();
  * }
@@ -435,18 +437,20 @@ class BatchServiceGapicClient
      * ```
      * $batchServiceClient = new BatchServiceClient();
      * try {
-     *     $response = $batchServiceClient->createJob();
+     *     $formattedParent = $batchServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $job = new Job();
+     *     $response = $batchServiceClient->createJob($formattedParent, $job);
      * } finally {
      *     $batchServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The parent resource name where the Job will be created.
+     *                             Pattern: "projects/{project}/locations/{location}"
+     * @param Job    $job          Required. The Job to create.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent resource name where the Job will be created.
-     *           Pattern: "projects/{project}/locations/{location}"
      *     @type string $jobId
      *           ID used to uniquely identify the Job within its parent scope.
      *           This field should contain at most 63 characters and must start with
@@ -457,8 +461,6 @@ class BatchServiceGapicClient
      *
      *           The job.name field in the request will be ignored and the created resource
      *           name of the Job will be "{parent}/jobs/{job_id}".
-     *     @type Job $job
-     *           Required. The Job to create.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -483,21 +485,15 @@ class BatchServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createJob(array $optionalArgs = [])
+    public function createJob($parent, $job, array $optionalArgs = [])
     {
         $request = new CreateJobRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $request->setJob($job);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['jobId'])) {
             $request->setJobId($optionalArgs['jobId']);
-        }
-
-        if (isset($optionalArgs['job'])) {
-            $request->setJob($optionalArgs['job']);
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -623,17 +619,17 @@ class BatchServiceGapicClient
      * ```
      * $batchServiceClient = new BatchServiceClient();
      * try {
-     *     $response = $batchServiceClient->getJob();
+     *     $formattedName = $batchServiceClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+     *     $response = $batchServiceClient->getJob($formattedName);
      * } finally {
      *     $batchServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Job name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Job name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -644,15 +640,12 @@ class BatchServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getJob(array $optionalArgs = [])
+    public function getJob($name, array $optionalArgs = [])
     {
         $request = new GetJobRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -674,17 +667,17 @@ class BatchServiceGapicClient
      * ```
      * $batchServiceClient = new BatchServiceClient();
      * try {
-     *     $response = $batchServiceClient->getTask();
+     *     $formattedName = $batchServiceClient->taskName('[PROJECT]', '[LOCATION]', '[JOB]', '[TASK_GROUP]', '[TASK]');
+     *     $response = $batchServiceClient->getTask($formattedName);
      * } finally {
      *     $batchServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Task name.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Task name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -695,15 +688,12 @@ class BatchServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTask(array $optionalArgs = [])
+    public function getTask($name, array $optionalArgs = [])
     {
         $request = new GetTaskRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -818,8 +808,9 @@ class BatchServiceGapicClient
      * ```
      * $batchServiceClient = new BatchServiceClient();
      * try {
+     *     $formattedParent = $batchServiceClient->taskGroupName('[PROJECT]', '[LOCATION]', '[JOB]', '[TASK_GROUP]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $batchServiceClient->listTasks();
+     *     $pagedResponse = $batchServiceClient->listTasks($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -827,7 +818,7 @@ class BatchServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $batchServiceClient->listTasks();
+     *     $pagedResponse = $batchServiceClient->listTasks($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -836,13 +827,12 @@ class BatchServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Name of a TaskGroup from which Tasks are being requested.
+     *                             Pattern:
+     *                             "projects/{project}/locations/{location}/jobs/{job}/taskGroups/{task_group}"
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Name of a TaskGroup from which Tasks are being requested.
-     *           Pattern:
-     *           "projects/{project}/locations/{location}/jobs/{job}/taskGroups/{task_group}"
      *     @type string $filter
      *           Task filter, null filter matches all Tasks.
      *           Filter string should be of the format State=TaskStatus.State e.g.
@@ -866,15 +856,12 @@ class BatchServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTasks(array $optionalArgs = [])
+    public function listTasks($parent, array $optionalArgs = [])
     {
         $request = new ListTasksRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }

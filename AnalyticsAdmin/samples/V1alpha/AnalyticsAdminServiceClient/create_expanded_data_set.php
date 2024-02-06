@@ -31,19 +31,24 @@ use Google\ApiCore\ApiException;
 /**
  * Creates a ExpandedDataSet.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent            Example format: properties/1234
+ *                                           Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+ * @param string $expandedDataSetDisplayName The display name of the ExpandedDataSet.
+ *                                           Max 200 chars.
  */
-function create_expanded_data_set_sample(): void
-{
+function create_expanded_data_set_sample(
+    string $formattedParent,
+    string $expandedDataSetDisplayName
+): void {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new CreateExpandedDataSetRequest();
+    $expandedDataSet = (new ExpandedDataSet())
+        ->setDisplayName($expandedDataSetDisplayName);
+    $request = (new CreateExpandedDataSetRequest())
+        ->setParent($formattedParent)
+        ->setExpandedDataSet($expandedDataSet);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +58,22 @@ function create_expanded_data_set_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AnalyticsAdminServiceClient::propertyName('[PROPERTY]');
+    $expandedDataSetDisplayName = '[DISPLAY_NAME]';
+
+    create_expanded_data_set_sample($formattedParent, $expandedDataSetDisplayName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateExpandedDataSet_sync]

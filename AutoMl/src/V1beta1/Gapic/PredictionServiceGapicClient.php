@@ -58,7 +58,11 @@ use Google\LongRunning\Operation;
  * ```
  * $predictionServiceClient = new Google\Cloud\AutoMl\V1beta1\PredictionServiceClient();
  * try {
- *     $operationResponse = $predictionServiceClient->batchPredict();
+ *     $formattedName = $predictionServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+ *     $inputConfig = new Google\Cloud\AutoMl\V1beta1\BatchPredictInputConfig();
+ *     $outputConfig = new Google\Cloud\AutoMl\V1beta1\BatchPredictOutputConfig();
+ *     $params = [];
+ *     $operationResponse = $predictionServiceClient->batchPredict($formattedName, $inputConfig, $outputConfig, $params);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -69,7 +73,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $predictionServiceClient->batchPredict();
+ *     $operationResponse = $predictionServiceClient->batchPredict($formattedName, $inputConfig, $outputConfig, $params);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $predictionServiceClient->resumeOperation($operationName, 'batchPredict');
@@ -368,7 +372,11 @@ class PredictionServiceGapicClient
      * ```
      * $predictionServiceClient = new Google\Cloud\AutoMl\V1beta1\PredictionServiceClient();
      * try {
-     *     $operationResponse = $predictionServiceClient->batchPredict();
+     *     $formattedName = $predictionServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $inputConfig = new Google\Cloud\AutoMl\V1beta1\BatchPredictInputConfig();
+     *     $outputConfig = new Google\Cloud\AutoMl\V1beta1\BatchPredictOutputConfig();
+     *     $params = [];
+     *     $operationResponse = $predictionServiceClient->batchPredict($formattedName, $inputConfig, $outputConfig, $params);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -379,7 +387,7 @@ class PredictionServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $predictionServiceClient->batchPredict();
+     *     $operationResponse = $predictionServiceClient->batchPredict($formattedName, $inputConfig, $outputConfig, $params);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $predictionServiceClient->resumeOperation($operationName, 'batchPredict');
@@ -399,87 +407,83 @@ class PredictionServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                   $name         Required. Name of the model requested to serve the batch prediction.
+     * @param BatchPredictInputConfig  $inputConfig  Required. The input configuration for batch prediction.
+     * @param BatchPredictOutputConfig $outputConfig Required. The Configuration specifying where output predictions should
+     *                                               be written.
+     * @param array                    $params       Required. Additional domain-specific parameters for the predictions, any string must
+     *                                               be up to 25000 characters long.
+     *
+     *                                               *  For Text Classification:
+     *
+     *                                               `score_threshold` - (float) A value from 0.0 to 1.0. When the model
+     *                                               makes predictions for a text snippet, it will only produce results
+     *                                               that have at least this confidence score. The default is 0.5.
+     *
+     *                                               *  For Image Classification:
+     *
+     *                                               `score_threshold` - (float) A value from 0.0 to 1.0. When the model
+     *                                               makes predictions for an image, it will only produce results that
+     *                                               have at least this confidence score. The default is 0.5.
+     *
+     *                                               *  For Image Object Detection:
+     *
+     *                                               `score_threshold` - (float) When Model detects objects on the image,
+     *                                               it will only produce bounding boxes which have at least this
+     *                                               confidence score. Value in 0 to 1 range, default is 0.5.
+     *                                               `max_bounding_box_count` - (int64) No more than this number of bounding
+     *                                               boxes will be produced per image. Default is 100, the
+     *                                               requested value may be limited by server.
+     *
+     *                                               *  For Video Classification :
+     *
+     *                                               `score_threshold` - (float) A value from 0.0 to 1.0. When the model
+     *                                               makes predictions for a video, it will only produce results that
+     *                                               have at least this confidence score. The default is 0.5.
+     *                                               `segment_classification` - (boolean) Set to true to request
+     *                                               segment-level classification. AutoML Video Intelligence returns
+     *                                               labels and their confidence scores for the entire segment of the
+     *                                               video that user specified in the request configuration.
+     *                                               The default is "true".
+     *                                               `shot_classification` - (boolean) Set to true to request shot-level
+     *                                               classification. AutoML Video Intelligence determines the boundaries
+     *                                               for each camera shot in the entire segment of the video that user
+     *                                               specified in the request configuration. AutoML Video Intelligence
+     *                                               then returns labels and their confidence scores for each detected
+     *                                               shot, along with the start and end time of the shot.
+     *                                               WARNING: Model evaluation is not done for this classification type,
+     *                                               the quality of it depends on training data, but there are no metrics
+     *                                               provided to describe that quality. The default is "false".
+     *                                               `1s_interval_classification` - (boolean) Set to true to request
+     *                                               classification for a video at one-second intervals. AutoML Video
+     *                                               Intelligence returns labels and their confidence scores for each
+     *                                               second of the entire segment of the video that user specified in the
+     *                                               request configuration.
+     *                                               WARNING: Model evaluation is not done for this classification
+     *                                               type, the quality of it depends on training data, but there are no
+     *                                               metrics provided to describe that quality. The default is
+     *                                               "false".
+     *
+     *                                               *  For Tables:
+     *
+     *                                               feature_imp<span>ortan</span>ce - (boolean) Whether feature importance
+     *                                               should be populated in the returned TablesAnnotations. The
+     *                                               default is false.
+     *
+     *                                               *  For Video Object Tracking:
+     *
+     *                                               `score_threshold` - (float) When Model detects objects on video frames,
+     *                                               it will only produce bounding boxes which have at least this
+     *                                               confidence score. Value in 0 to 1 range, default is 0.5.
+     *                                               `max_bounding_box_count` - (int64) No more than this number of bounding
+     *                                               boxes will be returned per frame. Default is 100, the requested
+     *                                               value may be limited by server.
+     *                                               `min_bounding_box_size` - (float) Only bounding boxes with shortest edge
+     *                                               at least that long as a relative value of video frame size will be
+     *                                               returned. Value in 0 to 1 range. Default is 0.
+     * @param array                    $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the model requested to serve the batch prediction.
-     *     @type BatchPredictInputConfig $inputConfig
-     *           Required. The input configuration for batch prediction.
-     *     @type BatchPredictOutputConfig $outputConfig
-     *           Required. The Configuration specifying where output predictions should
-     *           be written.
-     *     @type array $params
-     *           Required. Additional domain-specific parameters for the predictions, any string must
-     *           be up to 25000 characters long.
-     *
-     *           *  For Text Classification:
-     *
-     *           `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *           makes predictions for a text snippet, it will only produce results
-     *           that have at least this confidence score. The default is 0.5.
-     *
-     *           *  For Image Classification:
-     *
-     *           `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *           makes predictions for an image, it will only produce results that
-     *           have at least this confidence score. The default is 0.5.
-     *
-     *           *  For Image Object Detection:
-     *
-     *           `score_threshold` - (float) When Model detects objects on the image,
-     *           it will only produce bounding boxes which have at least this
-     *           confidence score. Value in 0 to 1 range, default is 0.5.
-     *           `max_bounding_box_count` - (int64) No more than this number of bounding
-     *           boxes will be produced per image. Default is 100, the
-     *           requested value may be limited by server.
-     *
-     *           *  For Video Classification :
-     *
-     *           `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *           makes predictions for a video, it will only produce results that
-     *           have at least this confidence score. The default is 0.5.
-     *           `segment_classification` - (boolean) Set to true to request
-     *           segment-level classification. AutoML Video Intelligence returns
-     *           labels and their confidence scores for the entire segment of the
-     *           video that user specified in the request configuration.
-     *           The default is "true".
-     *           `shot_classification` - (boolean) Set to true to request shot-level
-     *           classification. AutoML Video Intelligence determines the boundaries
-     *           for each camera shot in the entire segment of the video that user
-     *           specified in the request configuration. AutoML Video Intelligence
-     *           then returns labels and their confidence scores for each detected
-     *           shot, along with the start and end time of the shot.
-     *           WARNING: Model evaluation is not done for this classification type,
-     *           the quality of it depends on training data, but there are no metrics
-     *           provided to describe that quality. The default is "false".
-     *           `1s_interval_classification` - (boolean) Set to true to request
-     *           classification for a video at one-second intervals. AutoML Video
-     *           Intelligence returns labels and their confidence scores for each
-     *           second of the entire segment of the video that user specified in the
-     *           request configuration.
-     *           WARNING: Model evaluation is not done for this classification
-     *           type, the quality of it depends on training data, but there are no
-     *           metrics provided to describe that quality. The default is
-     *           "false".
-     *
-     *           *  For Tables:
-     *
-     *           feature_imp<span>ortan</span>ce - (boolean) Whether feature importance
-     *           should be populated in the returned TablesAnnotations. The
-     *           default is false.
-     *
-     *           *  For Video Object Tracking:
-     *
-     *           `score_threshold` - (float) When Model detects objects on video frames,
-     *           it will only produce bounding boxes which have at least this
-     *           confidence score. Value in 0 to 1 range, default is 0.5.
-     *           `max_bounding_box_count` - (int64) No more than this number of bounding
-     *           boxes will be returned per frame. Default is 100, the requested
-     *           value may be limited by server.
-     *           `min_bounding_box_size` - (float) Only bounding boxes with shortest edge
-     *           at least that long as a relative value of video frame size will be
-     *           returned. Value in 0 to 1 range. Default is 0.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -492,27 +496,20 @@ class PredictionServiceGapicClient
      *
      * @experimental
      */
-    public function batchPredict(array $optionalArgs = [])
-    {
+    public function batchPredict(
+        $name,
+        $inputConfig,
+        $outputConfig,
+        $params,
+        array $optionalArgs = []
+    ) {
         $request = new BatchPredictRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['inputConfig'])) {
-            $request->setInputConfig($optionalArgs['inputConfig']);
-        }
-
-        if (isset($optionalArgs['outputConfig'])) {
-            $request->setOutputConfig($optionalArgs['outputConfig']);
-        }
-
-        if (isset($optionalArgs['params'])) {
-            $request->setParams($optionalArgs['params']);
-        }
-
+        $request->setName($name);
+        $request->setInputConfig($inputConfig);
+        $request->setOutputConfig($outputConfig);
+        $request->setParams($params);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -552,20 +549,20 @@ class PredictionServiceGapicClient
      * ```
      * $predictionServiceClient = new Google\Cloud\AutoMl\V1beta1\PredictionServiceClient();
      * try {
-     *     $response = $predictionServiceClient->predict();
+     *     $formattedName = $predictionServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $payload = new ExamplePayload();
+     *     $response = $predictionServiceClient->predict($formattedName, $payload);
      * } finally {
      *     $predictionServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string         $name         Required. Name of the model requested to serve the prediction.
+     * @param ExamplePayload $payload      Required. Payload to perform a prediction on. The payload must match the
+     *                                     problem type that the model was trained to solve.
+     * @param array          $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the model requested to serve the prediction.
-     *     @type ExamplePayload $payload
-     *           Required. Payload to perform a prediction on. The payload must match the
-     *           problem type that the model was trained to solve.
      *     @type array $params
      *           Additional domain-specific parameters, any string must be up to 25000
      *           characters long.
@@ -599,19 +596,13 @@ class PredictionServiceGapicClient
      *
      * @experimental
      */
-    public function predict(array $optionalArgs = [])
+    public function predict($name, $payload, array $optionalArgs = [])
     {
         $request = new PredictRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['payload'])) {
-            $request->setPayload($optionalArgs['payload']);
-        }
-
+        $request->setName($name);
+        $request->setPayload($payload);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['params'])) {
             $request->setParams($optionalArgs['params']);
         }

@@ -24,6 +24,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START automl_v1beta1_generated_PredictionService_Predict_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AutoMl\V1beta1\ExamplePayload;
 use Google\Cloud\AutoMl\V1beta1\PredictResponse;
 use Google\Cloud\AutoMl\V1beta1\PredictionServiceClient;
 
@@ -48,24 +49,40 @@ use Google\Cloud\AutoMl\V1beta1\PredictionServiceClient;
  * * Text Sentiment - TextSnippet, content up 500 characters, UTF-8
  * encoded.
  *
+ * @param string $formattedName Name of the model requested to serve the prediction. Please see
+ *                              {@see PredictionServiceClient::modelName()} for help formatting this field.
+ */
+function predict_sample(string $formattedName): void
+{
+    // Create a client.
+    $predictionServiceClient = new PredictionServiceClient();
+
+    // Prepare any non-scalar elements to be passed along with the request.
+    $payload = new ExamplePayload();
+
+    // Call the API and handle any network failures.
+    try {
+        /** @var PredictResponse $response */
+        $response = $predictionServiceClient->predict($formattedName, $payload);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
+}
+
+/**
+ * Helper to execute the sample.
+ *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function predict_sample(): void
+function callSample(): void
 {
-    // Create a client.
-    $predictionServiceClient = new PredictionServiceClient();
+    $formattedName = PredictionServiceClient::modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
 
-    // Call the API and handle any network failures.
-    try {
-        /** @var PredictResponse $response */
-        $response = $predictionServiceClient->predict();
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
+    predict_sample($formattedName);
 }
 // [END automl_v1beta1_generated_PredictionService_Predict_sync]

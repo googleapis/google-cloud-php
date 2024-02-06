@@ -49,6 +49,7 @@ class DeleteAppConnectorRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. BeyondCorp AppConnector name using the form:
      *                     `projects/{project_id}/locations/{location_id}/appConnectors/{app_connector_id}`
+     *                     Please see {@see AppConnectorsServiceClient::appConnectorName()} for help formatting this field.
      *
      * @return \Google\Cloud\BeyondCorp\AppConnectors\V1\DeleteAppConnectorRequest
      *

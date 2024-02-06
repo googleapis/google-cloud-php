@@ -79,7 +79,10 @@ class ConnectionServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConnections($connections);
         $transport->addResponse($expectedResponse);
-        $request = new ListConnectionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->endpointName('[PROJECT]', '[ENDPOINT]');
+        $request = (new ListConnectionsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listConnections($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -90,6 +93,8 @@ class ConnectionServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeconnect.v1.ConnectionService/ListConnections', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -111,7 +116,10 @@ class ConnectionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListConnectionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->endpointName('[PROJECT]', '[ENDPOINT]');
+        $request = (new ListConnectionsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listConnections($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -143,7 +151,10 @@ class ConnectionServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConnections($connections);
         $transport->addResponse($expectedResponse);
-        $request = new ListConnectionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->endpointName('[PROJECT]', '[ENDPOINT]');
+        $request = (new ListConnectionsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listConnectionsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -154,6 +165,8 @@ class ConnectionServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.apigeeconnect.v1.ConnectionService/ListConnections', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

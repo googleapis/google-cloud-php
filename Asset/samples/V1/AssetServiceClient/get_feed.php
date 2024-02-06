@@ -31,19 +31,20 @@ use Google\Cloud\Asset\V1\GetFeedRequest;
 /**
  * Gets details about an asset feed.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the Feed and it must be in the format of:
+ *                              projects/project_number/feeds/feed_id
+ *                              folders/folder_number/feeds/feed_id
+ *                              organizations/organization_number/feeds/feed_id
+ *                              Please see {@see AssetServiceClient::feedName()} for help formatting this field.
  */
-function get_feed_sample(): void
+function get_feed_sample(string $formattedName): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $request = new GetFeedRequest();
+    $request = (new GetFeedRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +54,21 @@ function get_feed_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AssetServiceClient::feedName('[PROJECT]', '[FEED]');
+
+    get_feed_sample($formattedName);
 }
 // [END cloudasset_v1_generated_AssetService_GetFeed_sync]

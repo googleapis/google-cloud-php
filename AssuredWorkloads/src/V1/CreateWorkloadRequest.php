@@ -40,7 +40,8 @@ class CreateWorkloadRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                     $parent   Required. The resource name of the new Workload's parent.
-     *                                                             Must be of the form `organizations/{org_id}/locations/{location_id}`.
+     *                                                             Must be of the form `organizations/{org_id}/locations/{location_id}`. Please see
+     *                                                             {@see AssuredWorkloadsServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AssuredWorkloads\V1\Workload $workload Required. Assured Workload to create
      *
      * @return \Google\Cloud\AssuredWorkloads\V1\CreateWorkloadRequest

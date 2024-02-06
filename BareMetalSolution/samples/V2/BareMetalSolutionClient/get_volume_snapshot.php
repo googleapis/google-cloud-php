@@ -32,19 +32,17 @@ use Google\Cloud\BareMetalSolution\V2\VolumeSnapshot;
  * Returns the specified snapshot resource.
  * Returns INVALID_ARGUMENT if called for a non-boot volume.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the snapshot. Please see
+ *                              {@see BareMetalSolutionClient::volumeSnapshotName()} for help formatting this field.
  */
-function get_volume_snapshot_sample(): void
+function get_volume_snapshot_sample(string $formattedName): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = new GetVolumeSnapshotRequest();
+    $request = (new GetVolumeSnapshotRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +52,26 @@ function get_volume_snapshot_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = BareMetalSolutionClient::volumeSnapshotName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[VOLUME]',
+        '[SNAPSHOT]'
+    );
+
+    get_volume_snapshot_sample($formattedName);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_GetVolumeSnapshot_sync]

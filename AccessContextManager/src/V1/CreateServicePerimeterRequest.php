@@ -39,6 +39,7 @@ class CreateServicePerimeterRequest extends \Google\Protobuf\Internal\Message
      *                                                                                    Perimeter] [google.identity.accesscontextmanager.v1.ServicePerimeter].
      *
      *                                                                                    Format: `accessPolicies/{policy_id}`
+     *                                                                                    Please see {@see AccessContextManagerClient::accessPolicyName()} for help formatting this field.
      * @param \Google\Identity\AccessContextManager\V1\ServicePerimeter $servicePerimeter Required. The [Service Perimeter]
      *                                                                                    [google.identity.accesscontextmanager.v1.ServicePerimeter] to create.
      *                                                                                    Syntactic correctness of the [Service Perimeter]

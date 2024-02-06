@@ -26,6 +26,7 @@ class DeleteApiConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Resource name of the form:
      *                     `projects/&#42;/locations/global/apis/&#42;/configs/*`
+     *                     Please see {@see ApiGatewayServiceClient::apiConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\ApiGateway\V1\DeleteApiConfigRequest
      *

@@ -51,7 +51,8 @@ class ListViolationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The Workload name.
-     *                       Format `organizations/{org_id}/locations/{location}/workloads/{workload}`.
+     *                       Format `organizations/{org_id}/locations/{location}/workloads/{workload}`. Please see
+     *                       {@see AssuredWorkloadsServiceClient::workloadName()} for help formatting this field.
      *
      * @return \Google\Cloud\AssuredWorkloads\V1\ListViolationsRequest
      *

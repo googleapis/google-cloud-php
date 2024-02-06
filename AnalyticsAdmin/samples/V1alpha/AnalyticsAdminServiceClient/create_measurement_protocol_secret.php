@@ -31,19 +31,24 @@ use Google\ApiCore\ApiException;
 /**
  * Creates a measurement protocol secret.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent                      The parent resource where this secret will be created.
+ *                                                     Format: properties/{property}/dataStreams/{dataStream}
+ *                                                     Please see {@see AnalyticsAdminServiceClient::dataStreamName()} for help formatting this field.
+ * @param string $measurementProtocolSecretDisplayName Human-readable display name for this secret.
  */
-function create_measurement_protocol_secret_sample(): void
-{
+function create_measurement_protocol_secret_sample(
+    string $formattedParent,
+    string $measurementProtocolSecretDisplayName
+): void {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new CreateMeasurementProtocolSecretRequest();
+    $measurementProtocolSecret = (new MeasurementProtocolSecret())
+        ->setDisplayName($measurementProtocolSecretDisplayName);
+    $request = (new CreateMeasurementProtocolSecretRequest())
+        ->setParent($formattedParent)
+        ->setMeasurementProtocolSecret($measurementProtocolSecret);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +58,22 @@ function create_measurement_protocol_secret_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AnalyticsAdminServiceClient::dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+    $measurementProtocolSecretDisplayName = '[DISPLAY_NAME]';
+
+    create_measurement_protocol_secret_sample($formattedParent, $measurementProtocolSecretDisplayName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateMeasurementProtocolSecret_sync]

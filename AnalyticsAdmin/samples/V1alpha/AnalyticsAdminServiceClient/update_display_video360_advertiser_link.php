@@ -27,6 +27,7 @@ use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink;
 use Google\Analytics\Admin\V1alpha\UpdateDisplayVideo360AdvertiserLinkRequest;
 use Google\ApiCore\ApiException;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a DisplayVideo360AdvertiserLink on a property.
@@ -43,7 +44,9 @@ function update_display_video360_advertiser_link_sample(): void
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateDisplayVideo360AdvertiserLinkRequest();
+    $updateMask = new FieldMask();
+    $request = (new UpdateDisplayVideo360AdvertiserLinkRequest())
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {

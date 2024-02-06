@@ -31,19 +31,17 @@ use Google\Cloud\ArtifactRegistry\V1\MavenArtifact;
 /**
  * Gets a maven artifact.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the maven artifact. Please see
+ *                              {@see ArtifactRegistryClient::mavenArtifactName()} for help formatting this field.
  */
-function get_maven_artifact_sample(): void
+function get_maven_artifact_sample(string $formattedName): void
 {
     // Create a client.
     $artifactRegistryClient = new ArtifactRegistryClient();
 
     // Prepare the request message.
-    $request = new GetMavenArtifactRequest();
+    $request = (new GetMavenArtifactRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +51,26 @@ function get_maven_artifact_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ArtifactRegistryClient::mavenArtifactName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[REPOSITORY]',
+        '[MAVEN_ARTIFACT]'
+    );
+
+    get_maven_artifact_sample($formattedName);
 }
 // [END artifactregistry_v1_generated_ArtifactRegistry_GetMavenArtifact_sync]

@@ -103,7 +103,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
  * try {
- *     $response = $autoMlClient->createDataset();
+ *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $dataset = new Google\Cloud\AutoMl\V1beta1\Dataset();
+ *     $response = $autoMlClient->createDataset($formattedParent, $dataset);
  * } finally {
  *     $autoMlClient->close();
  * }
@@ -617,19 +619,19 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $response = $autoMlClient->createDataset();
+     *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $dataset = new Google\Cloud\AutoMl\V1beta1\Dataset();
+     *     $response = $autoMlClient->createDataset($formattedParent, $dataset);
      * } finally {
      *     $autoMlClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string  $parent       Required. The resource name of the project to create the dataset for.
+     * @param Dataset $dataset      Required. The dataset to create.
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the project to create the dataset for.
-     *     @type Dataset $dataset
-     *           Required. The dataset to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -642,19 +644,13 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function createDataset(array $optionalArgs = [])
+    public function createDataset($parent, $dataset, array $optionalArgs = [])
     {
         $request = new CreateDatasetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['dataset'])) {
-            $request->setDataset($optionalArgs['dataset']);
-        }
-
+        $request->setParent($parent);
+        $request->setDataset($dataset);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -680,7 +676,9 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $operationResponse = $autoMlClient->createModel();
+     *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $model = new Model();
+     *     $operationResponse = $autoMlClient->createModel($formattedParent, $model);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -691,7 +689,7 @@ class AutoMlGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoMlClient->createModel();
+     *     $operationResponse = $autoMlClient->createModel($formattedParent, $model);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'createModel');
@@ -711,13 +709,11 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Resource name of the parent project where the model is being created.
+     * @param Model  $model        Required. The model to create.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Resource name of the parent project where the model is being created.
-     *     @type Model $model
-     *           Required. The model to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -730,19 +726,13 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function createModel(array $optionalArgs = [])
+    public function createModel($parent, $model, array $optionalArgs = [])
     {
         $request = new CreateModelRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['model'])) {
-            $request->setModel($optionalArgs['model']);
-        }
-
+        $request->setParent($parent);
+        $request->setModel($model);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -768,7 +758,8 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $operationResponse = $autoMlClient->deleteDataset();
+     *     $formattedName = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     $operationResponse = $autoMlClient->deleteDataset($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -778,7 +769,7 @@ class AutoMlGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoMlClient->deleteDataset();
+     *     $operationResponse = $autoMlClient->deleteDataset($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'deleteDataset');
@@ -797,11 +788,10 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the dataset to delete.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the dataset to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -814,15 +804,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function deleteDataset(array $optionalArgs = [])
+    public function deleteDataset($name, array $optionalArgs = [])
     {
         $request = new DeleteDatasetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -848,7 +835,8 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $operationResponse = $autoMlClient->deleteModel();
+     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $autoMlClient->deleteModel($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -858,7 +846,7 @@ class AutoMlGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoMlClient->deleteModel();
+     *     $operationResponse = $autoMlClient->deleteModel($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'deleteModel');
@@ -877,11 +865,10 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Resource name of the model being deleted.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Resource name of the model being deleted.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -894,15 +881,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function deleteModel(array $optionalArgs = [])
+    public function deleteModel($name, array $optionalArgs = [])
     {
         $request = new DeleteModelRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -935,7 +919,8 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $operationResponse = $autoMlClient->deployModel();
+     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $autoMlClient->deployModel($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -945,7 +930,7 @@ class AutoMlGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoMlClient->deployModel();
+     *     $operationResponse = $autoMlClient->deployModel($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'deployModel');
@@ -964,15 +949,14 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Resource name of the model to deploy.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type ImageObjectDetectionModelDeploymentMetadata $imageObjectDetectionModelDeploymentMetadata
      *           Model deployment metadata specific to Image Object Detection.
      *     @type ImageClassificationModelDeploymentMetadata $imageClassificationModelDeploymentMetadata
      *           Model deployment metadata specific to Image Classification.
-     *     @type string $name
-     *           Required. Resource name of the model to deploy.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -985,10 +969,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function deployModel(array $optionalArgs = [])
+    public function deployModel($name, array $optionalArgs = [])
     {
         $request = new DeployModelRequest();
         $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (
             isset($optionalArgs['imageObjectDetectionModelDeploymentMetadata'])
         ) {
@@ -1003,11 +989,6 @@ class AutoMlGapicClient
             $request->setImageClassificationModelDeploymentMetadata(
                 $optionalArgs['imageClassificationModelDeploymentMetadata']
             );
-        }
-
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1033,7 +1014,9 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $operationResponse = $autoMlClient->exportData();
+     *     $formattedName = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     $outputConfig = new OutputConfig();
+     *     $operationResponse = $autoMlClient->exportData($formattedName, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1043,7 +1026,7 @@ class AutoMlGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoMlClient->exportData();
+     *     $operationResponse = $autoMlClient->exportData($formattedName, $outputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'exportData');
@@ -1062,13 +1045,11 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string       $name         Required. The resource name of the dataset.
+     * @param OutputConfig $outputConfig Required. The desired output location.
+     * @param array        $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the dataset.
-     *     @type OutputConfig $outputConfig
-     *           Required. The desired output location.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1081,19 +1062,13 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function exportData(array $optionalArgs = [])
+    public function exportData($name, $outputConfig, array $optionalArgs = [])
     {
         $request = new ExportDataRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['outputConfig'])) {
-            $request->setOutputConfig($optionalArgs['outputConfig']);
-        }
-
+        $request->setName($name);
+        $request->setOutputConfig($outputConfig);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1128,7 +1103,9 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $operationResponse = $autoMlClient->exportEvaluatedExamples();
+     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $outputConfig = new Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOutputConfig();
+     *     $operationResponse = $autoMlClient->exportEvaluatedExamples($formattedName, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1138,7 +1115,7 @@ class AutoMlGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoMlClient->exportEvaluatedExamples();
+     *     $operationResponse = $autoMlClient->exportEvaluatedExamples($formattedName, $outputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'exportEvaluatedExamples');
@@ -1157,14 +1134,12 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                              $name         Required. The resource name of the model whose evaluated examples are to
+     *                                                          be exported.
+     * @param ExportEvaluatedExamplesOutputConfig $outputConfig Required. The desired output location and configuration.
+     * @param array                               $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the model whose evaluated examples are to
-     *           be exported.
-     *     @type ExportEvaluatedExamplesOutputConfig $outputConfig
-     *           Required. The desired output location and configuration.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1177,19 +1152,16 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function exportEvaluatedExamples(array $optionalArgs = [])
-    {
+    public function exportEvaluatedExamples(
+        $name,
+        $outputConfig,
+        array $optionalArgs = []
+    ) {
         $request = new ExportEvaluatedExamplesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['outputConfig'])) {
-            $request->setOutputConfig($optionalArgs['outputConfig']);
-        }
-
+        $request->setName($name);
+        $request->setOutputConfig($outputConfig);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1218,7 +1190,9 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $operationResponse = $autoMlClient->exportModel();
+     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $outputConfig = new Google\Cloud\AutoMl\V1beta1\ModelExportOutputConfig();
+     *     $operationResponse = $autoMlClient->exportModel($formattedName, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1228,7 +1202,7 @@ class AutoMlGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoMlClient->exportModel();
+     *     $operationResponse = $autoMlClient->exportModel($formattedName, $outputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'exportModel');
@@ -1247,13 +1221,11 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                  $name         Required. The resource name of the model to export.
+     * @param ModelExportOutputConfig $outputConfig Required. The desired output location and configuration.
+     * @param array                   $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the model to export.
-     *     @type ModelExportOutputConfig $outputConfig
-     *           Required. The desired output location and configuration.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1266,19 +1238,13 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function exportModel(array $optionalArgs = [])
+    public function exportModel($name, $outputConfig, array $optionalArgs = [])
     {
         $request = new ExportModelRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['outputConfig'])) {
-            $request->setOutputConfig($optionalArgs['outputConfig']);
-        }
-
+        $request->setName($name);
+        $request->setOutputConfig($outputConfig);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1300,17 +1266,17 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $response = $autoMlClient->getAnnotationSpec();
+     *     $formattedName = $autoMlClient->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
+     *     $response = $autoMlClient->getAnnotationSpec($formattedName);
      * } finally {
      *     $autoMlClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the annotation spec to retrieve.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the annotation spec to retrieve.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1323,15 +1289,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function getAnnotationSpec(array $optionalArgs = [])
+    public function getAnnotationSpec($name, array $optionalArgs = [])
     {
         $request = new GetAnnotationSpecRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1353,17 +1316,17 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $response = $autoMlClient->getColumnSpec();
+     *     $formattedName = $autoMlClient->columnSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]', '[COLUMN_SPEC]');
+     *     $response = $autoMlClient->getColumnSpec($formattedName);
      * } finally {
      *     $autoMlClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the column spec to retrieve.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the column spec to retrieve.
      *     @type FieldMask $fieldMask
      *           Mask specifying which fields to read.
      *     @type RetrySettings|array $retrySettings
@@ -1378,15 +1341,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function getColumnSpec(array $optionalArgs = [])
+    public function getColumnSpec($name, array $optionalArgs = [])
     {
         $request = new GetColumnSpecRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['fieldMask'])) {
             $request->setFieldMask($optionalArgs['fieldMask']);
         }
@@ -1412,17 +1372,17 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $response = $autoMlClient->getDataset();
+     *     $formattedName = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     $response = $autoMlClient->getDataset($formattedName);
      * } finally {
      *     $autoMlClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the dataset to retrieve.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the dataset to retrieve.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1435,15 +1395,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function getDataset(array $optionalArgs = [])
+    public function getDataset($name, array $optionalArgs = [])
     {
         $request = new GetDatasetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1465,17 +1422,17 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $response = $autoMlClient->getModel();
+     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $response = $autoMlClient->getModel($formattedName);
      * } finally {
      *     $autoMlClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Resource name of the model.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Resource name of the model.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1488,15 +1445,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function getModel(array $optionalArgs = [])
+    public function getModel($name, array $optionalArgs = [])
     {
         $request = new GetModelRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1518,17 +1472,17 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $response = $autoMlClient->getModelEvaluation();
+     *     $formattedName = $autoMlClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[MODEL_EVALUATION]');
+     *     $response = $autoMlClient->getModelEvaluation($formattedName);
      * } finally {
      *     $autoMlClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Resource name for the model evaluation.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Resource name for the model evaluation.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1541,15 +1495,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function getModelEvaluation(array $optionalArgs = [])
+    public function getModelEvaluation($name, array $optionalArgs = [])
     {
         $request = new GetModelEvaluationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1571,17 +1522,17 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $response = $autoMlClient->getTableSpec();
+     *     $formattedName = $autoMlClient->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
+     *     $response = $autoMlClient->getTableSpec($formattedName);
      * } finally {
      *     $autoMlClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the table spec to retrieve.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the table spec to retrieve.
      *     @type FieldMask $fieldMask
      *           Mask specifying which fields to read.
      *     @type RetrySettings|array $retrySettings
@@ -1596,15 +1547,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function getTableSpec(array $optionalArgs = [])
+    public function getTableSpec($name, array $optionalArgs = [])
     {
         $request = new GetTableSpecRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['fieldMask'])) {
             $request->setFieldMask($optionalArgs['fieldMask']);
         }
@@ -1638,7 +1586,9 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $operationResponse = $autoMlClient->importData();
+     *     $formattedName = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     $inputConfig = new InputConfig();
+     *     $operationResponse = $autoMlClient->importData($formattedName, $inputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1648,7 +1598,7 @@ class AutoMlGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoMlClient->importData();
+     *     $operationResponse = $autoMlClient->importData($formattedName, $inputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'importData');
@@ -1667,15 +1617,13 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string      $name         Required. Dataset name. Dataset must already exist. All imported
+     *                                  annotations and examples will be added.
+     * @param InputConfig $inputConfig  Required. The desired input location and its domain specific semantics,
+     *                                  if any.
+     * @param array       $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Dataset name. Dataset must already exist. All imported
-     *           annotations and examples will be added.
-     *     @type InputConfig $inputConfig
-     *           Required. The desired input location and its domain specific semantics,
-     *           if any.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1688,19 +1636,13 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function importData(array $optionalArgs = [])
+    public function importData($name, $inputConfig, array $optionalArgs = [])
     {
         $request = new ImportDataRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['inputConfig'])) {
-            $request->setInputConfig($optionalArgs['inputConfig']);
-        }
-
+        $request->setName($name);
+        $request->setInputConfig($inputConfig);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1722,8 +1664,9 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
+     *     $formattedParent = $autoMlClient->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $autoMlClient->listColumnSpecs();
+     *     $pagedResponse = $autoMlClient->listColumnSpecs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1731,7 +1674,7 @@ class AutoMlGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $autoMlClient->listColumnSpecs();
+     *     $pagedResponse = $autoMlClient->listColumnSpecs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1740,11 +1683,10 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the table spec to list column specs from.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the table spec to list column specs from.
      *     @type FieldMask $fieldMask
      *           Mask specifying which fields to read.
      *     @type string $filter
@@ -1770,15 +1712,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function listColumnSpecs(array $optionalArgs = [])
+    public function listColumnSpecs($parent, array $optionalArgs = [])
     {
         $request = new ListColumnSpecsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['fieldMask'])) {
             $request->setFieldMask($optionalArgs['fieldMask']);
         }
@@ -1816,8 +1755,9 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
+     *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $autoMlClient->listDatasets();
+     *     $pagedResponse = $autoMlClient->listDatasets($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1825,7 +1765,7 @@ class AutoMlGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $autoMlClient->listDatasets();
+     *     $pagedResponse = $autoMlClient->listDatasets($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1834,11 +1774,10 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the project from which to list datasets.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the project from which to list datasets.
      *     @type string $filter
      *           An expression for filtering the results of the request.
      *
@@ -1869,15 +1808,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function listDatasets(array $optionalArgs = [])
+    public function listDatasets($parent, array $optionalArgs = [])
     {
         $request = new ListDatasetsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1911,8 +1847,9 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
+     *     $formattedParent = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $autoMlClient->listModelEvaluations();
+     *     $pagedResponse = $autoMlClient->listModelEvaluations($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1920,7 +1857,7 @@ class AutoMlGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $autoMlClient->listModelEvaluations();
+     *     $pagedResponse = $autoMlClient->listModelEvaluations($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1929,13 +1866,12 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Resource name of the model to list the model evaluations for.
+     *                             If modelId is set as "-", this will list model evaluations from across all
+     *                             models of the parent location.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Resource name of the model to list the model evaluations for.
-     *           If modelId is set as "-", this will list model evaluations from across all
-     *           models of the parent location.
      *     @type string $filter
      *           An expression for filtering the results of the request.
      *
@@ -1969,15 +1905,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function listModelEvaluations(array $optionalArgs = [])
+    public function listModelEvaluations($parent, array $optionalArgs = [])
     {
         $request = new ListModelEvaluationsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2011,8 +1944,9 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
+     *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $autoMlClient->listModels();
+     *     $pagedResponse = $autoMlClient->listModels($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2020,7 +1954,7 @@ class AutoMlGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $autoMlClient->listModels();
+     *     $pagedResponse = $autoMlClient->listModels($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2029,11 +1963,10 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Resource name of the project, from which to list the models.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Resource name of the project, from which to list the models.
      *     @type string $filter
      *           An expression for filtering the results of the request.
      *
@@ -2065,15 +1998,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function listModels(array $optionalArgs = [])
+    public function listModels($parent, array $optionalArgs = [])
     {
         $request = new ListModelsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2107,8 +2037,9 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
+     *     $formattedParent = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $autoMlClient->listTableSpecs();
+     *     $pagedResponse = $autoMlClient->listTableSpecs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2116,7 +2047,7 @@ class AutoMlGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $autoMlClient->listTableSpecs();
+     *     $pagedResponse = $autoMlClient->listTableSpecs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2125,11 +2056,10 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the dataset to list table specs from.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the dataset to list table specs from.
      *     @type FieldMask $fieldMask
      *           Mask specifying which fields to read.
      *     @type string $filter
@@ -2155,15 +2085,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function listTableSpecs(array $optionalArgs = [])
+    public function listTableSpecs($parent, array $optionalArgs = [])
     {
         $request = new ListTableSpecsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['fieldMask'])) {
             $request->setFieldMask($optionalArgs['fieldMask']);
         }
@@ -2207,7 +2134,8 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $operationResponse = $autoMlClient->undeployModel();
+     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $autoMlClient->undeployModel($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -2217,7 +2145,7 @@ class AutoMlGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoMlClient->undeployModel();
+     *     $operationResponse = $autoMlClient->undeployModel($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'undeployModel');
@@ -2236,11 +2164,10 @@ class AutoMlGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Resource name of the model to undeploy.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Resource name of the model to undeploy.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2253,15 +2180,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function undeployModel(array $optionalArgs = [])
+    public function undeployModel($name, array $optionalArgs = [])
     {
         $request = new UndeployModelRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2283,17 +2207,17 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $response = $autoMlClient->updateColumnSpec();
+     *     $columnSpec = new Google\Cloud\AutoMl\V1beta1\ColumnSpec();
+     *     $response = $autoMlClient->updateColumnSpec($columnSpec);
      * } finally {
      *     $autoMlClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param ColumnSpec $columnSpec   Required. The column spec which replaces the resource on the server.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type ColumnSpec $columnSpec
-     *           Required. The column spec which replaces the resource on the server.
      *     @type FieldMask $updateMask
      *           The update mask applies to the resource.
      *     @type RetrySettings|array $retrySettings
@@ -2308,14 +2232,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function updateColumnSpec(array $optionalArgs = [])
+    public function updateColumnSpec($columnSpec, array $optionalArgs = [])
     {
         $request = new UpdateColumnSpecRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['columnSpec'])) {
-            $request->setColumnSpec($optionalArgs['columnSpec']);
-        }
-
+        $request->setColumnSpec($columnSpec);
+        $requestParamHeaders['column_spec.name'] = $columnSpec->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2341,17 +2263,17 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $response = $autoMlClient->updateDataset();
+     *     $dataset = new Google\Cloud\AutoMl\V1beta1\Dataset();
+     *     $response = $autoMlClient->updateDataset($dataset);
      * } finally {
      *     $autoMlClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Dataset $dataset      Required. The dataset which replaces the resource on the server.
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type Dataset $dataset
-     *           Required. The dataset which replaces the resource on the server.
      *     @type FieldMask $updateMask
      *           The update mask applies to the resource.
      *     @type RetrySettings|array $retrySettings
@@ -2366,14 +2288,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function updateDataset(array $optionalArgs = [])
+    public function updateDataset($dataset, array $optionalArgs = [])
     {
         $request = new UpdateDatasetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['dataset'])) {
-            $request->setDataset($optionalArgs['dataset']);
-        }
-
+        $request->setDataset($dataset);
+        $requestParamHeaders['dataset.name'] = $dataset->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2399,17 +2319,17 @@ class AutoMlGapicClient
      * ```
      * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $response = $autoMlClient->updateTableSpec();
+     *     $tableSpec = new Google\Cloud\AutoMl\V1beta1\TableSpec();
+     *     $response = $autoMlClient->updateTableSpec($tableSpec);
      * } finally {
      *     $autoMlClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param TableSpec $tableSpec    Required. The table spec which replaces the resource on the server.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type TableSpec $tableSpec
-     *           Required. The table spec which replaces the resource on the server.
      *     @type FieldMask $updateMask
      *           The update mask applies to the resource.
      *     @type RetrySettings|array $retrySettings
@@ -2424,14 +2344,12 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function updateTableSpec(array $optionalArgs = [])
+    public function updateTableSpec($tableSpec, array $optionalArgs = [])
     {
         $request = new UpdateTableSpecRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['tableSpec'])) {
-            $request->setTableSpec($optionalArgs['tableSpec']);
-        }
-
+        $request->setTableSpec($tableSpec);
+        $requestParamHeaders['table_spec.name'] = $tableSpec->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

@@ -32,19 +32,22 @@ use Google\Cloud\ApigeeRegistry\V1\RollbackApiDeploymentRequest;
  * Sets the current revision to a specified prior
  * revision. Note that this creates a new revision with a new revision ID.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The deployment being rolled back. Please see
+ *                              {@see RegistryClient::apiDeploymentName()} for help formatting this field.
+ * @param string $revisionId    The revision ID to roll back to.
+ *                              It must be a revision of the same deployment.
+ *
+ *                              Example: `c7cfa2a8`
  */
-function rollback_api_deployment_sample(): void
+function rollback_api_deployment_sample(string $formattedName, string $revisionId): void
 {
     // Create a client.
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $request = new RollbackApiDeploymentRequest();
+    $request = (new RollbackApiDeploymentRequest())
+        ->setName($formattedName)
+        ->setRevisionId($revisionId);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +57,27 @@ function rollback_api_deployment_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = RegistryClient::apiDeploymentName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[API]',
+        '[DEPLOYMENT]'
+    );
+    $revisionId = '[REVISION_ID]';
+
+    rollback_api_deployment_sample($formattedName, $revisionId);
 }
 // [END apigeeregistry_v1_generated_Registry_RollbackApiDeployment_sync]

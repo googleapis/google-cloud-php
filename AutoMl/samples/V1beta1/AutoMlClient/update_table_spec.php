@@ -41,10 +41,13 @@ function update_table_spec_sample(): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $tableSpec = new TableSpec();
+
     // Call the API and handle any network failures.
     try {
         /** @var TableSpec $response */
-        $response = $autoMlClient->updateTableSpec();
+        $response = $autoMlClient->updateTableSpec($tableSpec);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

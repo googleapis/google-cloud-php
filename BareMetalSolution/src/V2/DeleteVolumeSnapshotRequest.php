@@ -23,7 +23,8 @@ class DeleteVolumeSnapshotRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the snapshot to delete.
+     * @param string $name Required. The name of the snapshot to delete. Please see
+     *                     {@see BareMetalSolutionClient::volumeSnapshotName()} for help formatting this field.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\DeleteVolumeSnapshotRequest
      *

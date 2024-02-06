@@ -59,7 +59,8 @@ class CreateSecondaryClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                           $parent    Required. The location of the new cluster. For the required
-     *                                                    format, see the comment on the Cluster.name field.
+     *                                                    format, see the comment on the Cluster.name field. Please see
+     *                                                    {@see AlloyDBAdminClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AlloyDb\V1\Cluster $cluster   Required. Configuration of the requesting object (the secondary cluster).
      * @param string                           $clusterId Required. ID of the requesting object (the secondary cluster).
      *

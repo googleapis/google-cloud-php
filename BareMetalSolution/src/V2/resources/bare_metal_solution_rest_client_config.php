@@ -38,6 +38,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'ssh_key_id',
+                ],
             ],
             'CreateVolumeSnapshot' => [
                 'method' => 'post',
@@ -501,6 +504,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateVolume' => [

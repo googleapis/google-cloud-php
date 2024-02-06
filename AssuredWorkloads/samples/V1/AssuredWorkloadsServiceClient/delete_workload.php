@@ -32,19 +32,19 @@ use Google\Cloud\AssuredWorkloads\V1\DeleteWorkloadRequest;
  * in a deleted state, otherwise the request will fail with a
  * FAILED_PRECONDITION error.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The `name` field is used to identify the workload.
+ *                              Format:
+ *                              organizations/{org_id}/locations/{location_id}/workloads/{workload_id}
+ *                              Please see {@see AssuredWorkloadsServiceClient::workloadName()} for help formatting this field.
  */
-function delete_workload_sample(): void
+function delete_workload_sample(string $formattedName): void
 {
     // Create a client.
     $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteWorkloadRequest();
+    $request = (new DeleteWorkloadRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +53,25 @@ function delete_workload_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AssuredWorkloadsServiceClient::workloadName(
+        '[ORGANIZATION]',
+        '[LOCATION]',
+        '[WORKLOAD]'
+    );
+
+    delete_workload_sample($formattedName);
 }
 // [END assuredworkloads_v1_generated_AssuredWorkloadsService_DeleteWorkload_sync]

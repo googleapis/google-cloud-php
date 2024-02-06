@@ -37,7 +37,8 @@ class ListNpmPackagesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The name of the parent resource whose npm packages will be
-     *                       listed.
+     *                       listed. Please see
+     *                       {@see ArtifactRegistryClient::repositoryName()} for help formatting this field.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\ListNpmPackagesRequest
      *

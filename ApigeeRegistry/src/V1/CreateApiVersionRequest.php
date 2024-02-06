@@ -42,6 +42,7 @@ class CreateApiVersionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                     $parent       Required. The parent, which owns this collection of versions.
      *                                                                 Format: `projects/&#42;/locations/&#42;/apis/*`
+     *                                                                 Please see {@see RegistryClient::apiName()} for help formatting this field.
      * @param \Google\Cloud\ApigeeRegistry\V1\ApiVersion $apiVersion   Required. The version to create.
      * @param string                                     $apiVersionId Required. The ID to use for the version, which will become the final component of
      *                                                                 the version's resource name.

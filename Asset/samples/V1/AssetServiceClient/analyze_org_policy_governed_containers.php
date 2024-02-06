@@ -33,19 +33,25 @@ use Google\Cloud\Asset\V1\Client\AssetServiceClient;
  * Analyzes organization policies governed containers (projects, folders or
  * organization) under a scope.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $scope      The organization to scope the request. Only organization
+ *                           policies within the scope will be analyzed. The output containers will
+ *                           also be limited to the ones governed by those in-scope organization
+ *                           policies.
+ *
+ *                           * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+ * @param string $constraint The name of the constraint to analyze governed containers for.
+ *                           The analysis only contains organization policies for the provided
+ *                           constraint.
  */
-function analyze_org_policy_governed_containers_sample(): void
+function analyze_org_policy_governed_containers_sample(string $scope, string $constraint): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $request = new AnalyzeOrgPolicyGovernedContainersRequest();
+    $request = (new AnalyzeOrgPolicyGovernedContainersRequest())
+        ->setScope($scope)
+        ->setConstraint($constraint);
 
     // Call the API and handle any network failures.
     try {
@@ -59,5 +65,22 @@ function analyze_org_policy_governed_containers_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $scope = '[SCOPE]';
+    $constraint = '[CONSTRAINT]';
+
+    analyze_org_policy_governed_containers_sample($scope, $constraint);
 }
 // [END cloudasset_v1_generated_AssetService_AnalyzeOrgPolicyGovernedContainers_sync]

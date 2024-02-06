@@ -37,7 +37,8 @@ class ListPythonPackagesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The name of the parent resource whose python packages will be
-     *                       listed.
+     *                       listed. Please see
+     *                       {@see ArtifactRegistryClient::repositoryName()} for help formatting this field.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\ListPythonPackagesRequest
      *

@@ -43,7 +43,9 @@ function update_access_binding_sample(): void
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateAccessBindingRequest();
+    $accessBinding = new AccessBinding();
+    $request = (new UpdateAccessBindingRequest())
+        ->setAccessBinding($accessBinding);
 
     // Call the API and handle any network failures.
     try {

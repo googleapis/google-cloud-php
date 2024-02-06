@@ -31,19 +31,20 @@ use Google\Cloud\BareMetalSolution\V2\ProvisioningConfig;
 /**
  * Create new ProvisioningConfig.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent project and location containing the
+ *                                ProvisioningConfig. Please see
+ *                                {@see BareMetalSolutionClient::locationName()} for help formatting this field.
  */
-function create_provisioning_config_sample(): void
+function create_provisioning_config_sample(string $formattedParent): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = new CreateProvisioningConfigRequest();
+    $provisioningConfig = new ProvisioningConfig();
+    $request = (new CreateProvisioningConfigRequest())
+        ->setParent($formattedParent)
+        ->setProvisioningConfig($provisioningConfig);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +54,21 @@ function create_provisioning_config_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = BareMetalSolutionClient::locationName('[PROJECT]', '[LOCATION]');
+
+    create_provisioning_config_sample($formattedParent);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_CreateProvisioningConfig_sync]

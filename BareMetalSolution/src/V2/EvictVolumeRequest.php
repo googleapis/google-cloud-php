@@ -23,7 +23,8 @@ class EvictVolumeRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the Volume.
+     * @param string $name Required. The name of the Volume. Please see
+     *                     {@see BareMetalSolutionClient::volumeName()} for help formatting this field.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\EvictVolumeRequest
      *

@@ -30,19 +30,18 @@ use Google\Cloud\BareMetalSolution\V2\DeleteSSHKeyRequest;
 /**
  * Deletes a public SSH key registered in the specified project.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the SSH key to delete.
+ *                              Currently, the only valid value for the location is "global". Please see
+ *                              {@see BareMetalSolutionClient::sshKeyName()} for help formatting this field.
  */
-function delete_ssh_key_sample(): void
+function delete_ssh_key_sample(string $formattedName): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = new DeleteSSHKeyRequest();
+    $request = (new DeleteSSHKeyRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -51,5 +50,21 @@ function delete_ssh_key_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = BareMetalSolutionClient::sshKeyName('[PROJECT]', '[LOCATION]', '[SSH_KEY]');
+
+    delete_ssh_key_sample($formattedName);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_DeleteSSHKey_sync]

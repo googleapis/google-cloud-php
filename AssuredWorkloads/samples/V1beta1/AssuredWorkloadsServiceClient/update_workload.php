@@ -26,6 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload;
+use Google\Cloud\AssuredWorkloads\V1beta1\Workload\ComplianceRegime;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates an existing workload.
@@ -33,24 +35,49 @@ use Google\Cloud\AssuredWorkloads\V1beta1\Workload;
  * For force updates don't set etag field in the Workload.
  * Only one update operation per workload can be in progress.
  *
+ * @param string $workloadDisplayName      The user-assigned display name of the Workload.
+ *                                         When present it must be between 4 to 30 characters.
+ *                                         Allowed characters are: lowercase and uppercase letters, numbers,
+ *                                         hyphen, and spaces.
+ *
+ *                                         Example: My Workload
+ * @param int    $workloadComplianceRegime Immutable. Compliance Regime associated with this workload.
+ */
+function update_workload_sample(string $workloadDisplayName, int $workloadComplianceRegime): void
+{
+    // Create a client.
+    $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
+
+    // Prepare any non-scalar elements to be passed along with the request.
+    $workload = (new Workload())
+        ->setDisplayName($workloadDisplayName)
+        ->setComplianceRegime($workloadComplianceRegime);
+    $updateMask = new FieldMask();
+
+    // Call the API and handle any network failures.
+    try {
+        /** @var Workload $response */
+        $response = $assuredWorkloadsServiceClient->updateWorkload($workload, $updateMask);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
+}
+
+/**
+ * Helper to execute the sample.
+ *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function update_workload_sample(): void
+function callSample(): void
 {
-    // Create a client.
-    $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
+    $workloadDisplayName = '[DISPLAY_NAME]';
+    $workloadComplianceRegime = ComplianceRegime::COMPLIANCE_REGIME_UNSPECIFIED;
 
-    // Call the API and handle any network failures.
-    try {
-        /** @var Workload $response */
-        $response = $assuredWorkloadsServiceClient->updateWorkload();
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
+    update_workload_sample($workloadDisplayName, $workloadComplianceRegime);
 }
 // [END assuredworkloads_v1beta1_generated_AssuredWorkloadsService_UpdateWorkload_sync]

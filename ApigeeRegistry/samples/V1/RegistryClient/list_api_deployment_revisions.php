@@ -33,19 +33,17 @@ use Google\Cloud\ApigeeRegistry\V1\ListApiDeploymentRevisionsRequest;
  * Lists all revisions of a deployment.
  * Revisions are returned in descending order of revision creation time.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the deployment to list revisions for. Please see
+ *                              {@see RegistryClient::apiDeploymentName()} for help formatting this field.
  */
-function list_api_deployment_revisions_sample(): void
+function list_api_deployment_revisions_sample(string $formattedName): void
 {
     // Create a client.
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $request = new ListApiDeploymentRevisionsRequest();
+    $request = (new ListApiDeploymentRevisionsRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -59,5 +57,26 @@ function list_api_deployment_revisions_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = RegistryClient::apiDeploymentName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[API]',
+        '[DEPLOYMENT]'
+    );
+
+    list_api_deployment_revisions_sample($formattedName);
 }
 // [END apigeeregistry_v1_generated_Registry_ListApiDeploymentRevisions_sync]

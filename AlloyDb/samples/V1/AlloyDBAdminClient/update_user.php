@@ -43,7 +43,9 @@ function update_user_sample(): void
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
     // Prepare the request message.
-    $request = new UpdateUserRequest();
+    $user = new User();
+    $request = (new UpdateUserRequest())
+        ->setUser($user);
 
     // Call the API and handle any network failures.
     try {

@@ -27,6 +27,7 @@ class GetAudienceExportRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The audience export resource name.
      *                     Format: `properties/{property}/audienceExports/{audience_export}`
+     *                     Please see {@see BetaAnalyticsDataClient::audienceExportName()} for help formatting this field.
      *
      * @return \Google\Analytics\Data\V1beta\GetAudienceExportRequest
      *

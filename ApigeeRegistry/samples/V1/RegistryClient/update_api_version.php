@@ -43,7 +43,9 @@ function update_api_version_sample(): void
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $request = new UpdateApiVersionRequest();
+    $apiVersion = new ApiVersion();
+    $request = (new UpdateApiVersionRequest())
+        ->setApiVersion($apiVersion);
 
     // Call the API and handle any network failures.
     try {

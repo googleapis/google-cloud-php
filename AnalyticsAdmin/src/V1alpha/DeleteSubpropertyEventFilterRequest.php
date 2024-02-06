@@ -30,6 +30,7 @@ class DeleteSubpropertyEventFilterRequest extends \Google\Protobuf\Internal\Mess
      *                     Format:
      *                     properties/property_id/subpropertyEventFilters/subproperty_event_filter
      *                     Example: properties/123/subpropertyEventFilters/456
+     *                     Please see {@see AnalyticsAdminServiceClient::subpropertyEventFilterName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\DeleteSubpropertyEventFilterRequest
      *

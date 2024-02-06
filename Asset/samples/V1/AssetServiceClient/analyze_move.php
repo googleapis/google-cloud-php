@@ -35,19 +35,26 @@ use Google\Cloud\Asset\V1\Client\AssetServiceClient;
  * The policies and configuration are subject to change before the actual
  * resource migration takes place.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedResource Name of the resource to perform the analysis against.
+ *                                  Only Google Cloud projects are supported as of today. Hence, this can only
+ *                                  be a project ID (such as "projects/my-project-id") or a project number
+ *                                  (such as "projects/12345"). Please see
+ *                                  {@see AssetServiceClient::projectName()} for help formatting this field.
+ * @param string $destinationParent Name of the Google Cloud folder or organization to reparent the
+ *                                  target resource. The analysis will be performed against hypothetically
+ *                                  moving the resource to this specified desitination parent. This can only be
+ *                                  a folder number (such as "folders/123") or an organization number (such as
+ *                                  "organizations/123").
  */
-function analyze_move_sample(): void
+function analyze_move_sample(string $formattedResource, string $destinationParent): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $request = new AnalyzeMoveRequest();
+    $request = (new AnalyzeMoveRequest())
+        ->setResource($formattedResource)
+        ->setDestinationParent($destinationParent);
 
     // Call the API and handle any network failures.
     try {
@@ -57,5 +64,22 @@ function analyze_move_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedResource = AssetServiceClient::projectName('[PROJECT]');
+    $destinationParent = '[DESTINATION_PARENT]';
+
+    analyze_move_sample($formattedResource, $destinationParent);
 }
 // [END cloudasset_v1_generated_AssetService_AnalyzeMove_sync]

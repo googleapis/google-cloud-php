@@ -31,16 +31,16 @@ class Baremetalsolution
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¯U
-9google/cloud/baremetalsolution/v2/baremetalsolution.proto!google.cloud.baremetalsolution.v2google/api/client.protogoogle/api/field_behavior.proto0google/cloud/baremetalsolution/v2/instance.proto+google/cloud/baremetalsolution/v2/lun.proto/google/cloud/baremetalsolution/v2/network.proto1google/cloud/baremetalsolution/v2/nfs_share.proto/google/cloud/baremetalsolution/v2/osimage.proto4google/cloud/baremetalsolution/v2/provisioning.proto/google/cloud/baremetalsolution/v2/ssh_key.proto.google/cloud/baremetalsolution/v2/volume.proto7google/cloud/baremetalsolution/v2/volume_snapshot.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"‡
-OperationMetadata5
-create_time (2.google.protobuf.TimestampBâA2
-end_time (2.google.protobuf.TimestampBâA
-target (	BâA
-verb (	BâA
-status_message (	BâA$
-requested_cancellation (BâA
-api_version (	BâA"
+¨U
+9google/cloud/baremetalsolution/v2/baremetalsolution.proto!google.cloud.baremetalsolution.v2google/api/client.protogoogle/api/field_behavior.proto0google/cloud/baremetalsolution/v2/instance.proto+google/cloud/baremetalsolution/v2/lun.proto/google/cloud/baremetalsolution/v2/network.proto1google/cloud/baremetalsolution/v2/nfs_share.proto/google/cloud/baremetalsolution/v2/osimage.proto4google/cloud/baremetalsolution/v2/provisioning.proto/google/cloud/baremetalsolution/v2/ssh_key.proto.google/cloud/baremetalsolution/v2/volume.proto7google/cloud/baremetalsolution/v2/volume_snapshot.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"€
+OperationMetadata4
+create_time (2.google.protobuf.TimestampBàA1
+end_time (2.google.protobuf.TimestampBàA
+target (	BàA
+verb (	BàA
+status_message (	BàA#
+requested_cancellation (BàA
+api_version (	BàA"
 ResetInstanceResponse2ºK
 BareMetalSolutionÂ
 ListInstances7.google.cloud.baremetalsolution.v2.ListInstancesRequest8.google.cloud.baremetalsolution.v2.ListInstancesResponse">ÚAparent‚Óä“/-/v2/{parent=projects/*/locations/*}/instances¯

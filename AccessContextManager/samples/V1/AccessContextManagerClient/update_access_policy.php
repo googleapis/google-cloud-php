@@ -28,6 +28,7 @@ use Google\ApiCore\OperationResponse;
 use Google\Identity\AccessContextManager\V1\AccessPolicy;
 use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
 use Google\Identity\AccessContextManager\V1\UpdateAccessPolicyRequest;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -50,7 +51,11 @@ function update_access_policy_sample(): void
     $accessContextManagerClient = new AccessContextManagerClient();
 
     // Prepare the request message.
-    $request = new UpdateAccessPolicyRequest();
+    $policy = new AccessPolicy();
+    $updateMask = new FieldMask();
+    $request = (new UpdateAccessPolicyRequest())
+        ->setPolicy($policy)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {

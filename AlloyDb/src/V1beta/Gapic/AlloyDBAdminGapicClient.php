@@ -64,6 +64,7 @@ use Google\Cloud\AlloyDb\V1beta\GetConnectionInfoRequest;
 use Google\Cloud\AlloyDb\V1beta\GetInstanceRequest;
 use Google\Cloud\AlloyDb\V1beta\GetUserRequest;
 use Google\Cloud\AlloyDb\V1beta\InjectFaultRequest;
+use Google\Cloud\AlloyDb\V1beta\InjectFaultRequest\FaultType;
 use Google\Cloud\AlloyDb\V1beta\Instance;
 use Google\Cloud\AlloyDb\V1beta\ListBackupsRequest;
 use Google\Cloud\AlloyDb\V1beta\ListBackupsResponse;
@@ -101,7 +102,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $alloyDBAdminClient = new AlloyDBAdminClient();
  * try {
- *     $operationResponse = $alloyDBAdminClient->batchCreateInstances();
+ *     $formattedParent = $alloyDBAdminClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+ *     $requests = new CreateInstanceRequests();
+ *     $operationResponse = $alloyDBAdminClient->batchCreateInstances($formattedParent, $requests);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -112,7 +115,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $alloyDBAdminClient->batchCreateInstances();
+ *     $operationResponse = $alloyDBAdminClient->batchCreateInstances($formattedParent, $requests);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'batchCreateInstances');
@@ -637,7 +640,9 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->batchCreateInstances();
+     *     $formattedParent = $alloyDBAdminClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+     *     $requests = new CreateInstanceRequests();
+     *     $operationResponse = $alloyDBAdminClient->batchCreateInstances($formattedParent, $requests);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -648,7 +653,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->batchCreateInstances();
+     *     $operationResponse = $alloyDBAdminClient->batchCreateInstances($formattedParent, $requests);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'batchCreateInstances');
@@ -668,13 +673,11 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                 $parent       Required. The name of the parent resource.
+     * @param CreateInstanceRequests $requests     Required. Resources being created.
+     * @param array                  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the parent resource.
-     *     @type CreateInstanceRequests $requests
-     *           Required. Resources being created.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -701,19 +704,16 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function batchCreateInstances(array $optionalArgs = [])
-    {
+    public function batchCreateInstances(
+        $parent,
+        $requests,
+        array $optionalArgs = []
+    ) {
         $request = new BatchCreateInstancesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['requests'])) {
-            $request->setRequests($optionalArgs['requests']);
-        }
-
+        $request->setParent($parent);
+        $request->setRequests($requests);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -739,7 +739,10 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->createBackup();
+     *     $formattedParent = $alloyDBAdminClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $backupId = 'backup_id';
+     *     $backup = new Backup();
+     *     $operationResponse = $alloyDBAdminClient->createBackup($formattedParent, $backupId, $backup);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -750,7 +753,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->createBackup();
+     *     $operationResponse = $alloyDBAdminClient->createBackup($formattedParent, $backupId, $backup);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'createBackup');
@@ -770,15 +773,12 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Value for parent.
+     * @param string $backupId     Required. ID of the requesting object.
+     * @param Backup $backup       Required. The resource being created
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Value for parent.
-     *     @type string $backupId
-     *           Required. ID of the requesting object.
-     *     @type Backup $backup
-     *           Required. The resource being created
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -808,23 +808,18 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function createBackup(array $optionalArgs = [])
-    {
+    public function createBackup(
+        $parent,
+        $backupId,
+        $backup,
+        array $optionalArgs = []
+    ) {
         $request = new CreateBackupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['backupId'])) {
-            $request->setBackupId($optionalArgs['backupId']);
-        }
-
-        if (isset($optionalArgs['backup'])) {
-            $request->setBackup($optionalArgs['backup']);
-        }
-
+        $request->setParent($parent);
+        $request->setBackupId($backupId);
+        $request->setBackup($backup);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -854,7 +849,10 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->createCluster();
+     *     $formattedParent = $alloyDBAdminClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $clusterId = 'cluster_id';
+     *     $cluster = new Cluster();
+     *     $operationResponse = $alloyDBAdminClient->createCluster($formattedParent, $clusterId, $cluster);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -865,7 +863,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->createCluster();
+     *     $operationResponse = $alloyDBAdminClient->createCluster($formattedParent, $clusterId, $cluster);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'createCluster');
@@ -885,16 +883,13 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string  $parent       Required. The location of the new cluster. For the required format, see the
+     *                              comment on the Cluster.name field.
+     * @param string  $clusterId    Required. ID of the requesting object.
+     * @param Cluster $cluster      Required. The resource being created
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The location of the new cluster. For the required format, see the
-     *           comment on the Cluster.name field.
-     *     @type string $clusterId
-     *           Required. ID of the requesting object.
-     *     @type Cluster $cluster
-     *           Required. The resource being created
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -925,23 +920,18 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function createCluster(array $optionalArgs = [])
-    {
+    public function createCluster(
+        $parent,
+        $clusterId,
+        $cluster,
+        array $optionalArgs = []
+    ) {
         $request = new CreateClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['clusterId'])) {
-            $request->setClusterId($optionalArgs['clusterId']);
-        }
-
-        if (isset($optionalArgs['cluster'])) {
-            $request->setCluster($optionalArgs['cluster']);
-        }
-
+        $request->setParent($parent);
+        $request->setClusterId($clusterId);
+        $request->setCluster($cluster);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -971,7 +961,10 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->createInstance();
+     *     $formattedParent = $alloyDBAdminClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+     *     $instanceId = 'instance_id';
+     *     $instance = new Instance();
+     *     $operationResponse = $alloyDBAdminClient->createInstance($formattedParent, $instanceId, $instance);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -982,7 +975,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->createInstance();
+     *     $operationResponse = $alloyDBAdminClient->createInstance($formattedParent, $instanceId, $instance);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'createInstance');
@@ -1002,16 +995,13 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $parent       Required. The name of the parent resource. For the required format, see the
+     *                               comment on the Instance.name field.
+     * @param string   $instanceId   Required. ID of the requesting object.
+     * @param Instance $instance     Required. The resource being created
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the parent resource. For the required format, see the
-     *           comment on the Instance.name field.
-     *     @type string $instanceId
-     *           Required. ID of the requesting object.
-     *     @type Instance $instance
-     *           Required. The resource being created
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -1042,23 +1032,18 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function createInstance(array $optionalArgs = [])
-    {
+    public function createInstance(
+        $parent,
+        $instanceId,
+        $instance,
+        array $optionalArgs = []
+    ) {
         $request = new CreateInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['instanceId'])) {
-            $request->setInstanceId($optionalArgs['instanceId']);
-        }
-
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-        }
-
+        $request->setParent($parent);
+        $request->setInstanceId($instanceId);
+        $request->setInstance($instance);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1089,7 +1074,10 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->createSecondaryCluster();
+     *     $formattedParent = $alloyDBAdminClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $clusterId = 'cluster_id';
+     *     $cluster = new Cluster();
+     *     $operationResponse = $alloyDBAdminClient->createSecondaryCluster($formattedParent, $clusterId, $cluster);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1100,7 +1088,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->createSecondaryCluster();
+     *     $operationResponse = $alloyDBAdminClient->createSecondaryCluster($formattedParent, $clusterId, $cluster);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'createSecondaryCluster');
@@ -1120,16 +1108,13 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string  $parent       Required. The location of the new cluster. For the required
+     *                              format, see the comment on the Cluster.name field.
+     * @param string  $clusterId    Required. ID of the requesting object (the secondary cluster).
+     * @param Cluster $cluster      Required. Configuration of the requesting object (the secondary cluster).
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The location of the new cluster. For the required
-     *           format, see the comment on the Cluster.name field.
-     *     @type string $clusterId
-     *           Required. ID of the requesting object (the secondary cluster).
-     *     @type Cluster $cluster
-     *           Required. Configuration of the requesting object (the secondary cluster).
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -1160,23 +1145,18 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function createSecondaryCluster(array $optionalArgs = [])
-    {
+    public function createSecondaryCluster(
+        $parent,
+        $clusterId,
+        $cluster,
+        array $optionalArgs = []
+    ) {
         $request = new CreateSecondaryClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['clusterId'])) {
-            $request->setClusterId($optionalArgs['clusterId']);
-        }
-
-        if (isset($optionalArgs['cluster'])) {
-            $request->setCluster($optionalArgs['cluster']);
-        }
-
+        $request->setParent($parent);
+        $request->setClusterId($clusterId);
+        $request->setCluster($cluster);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1206,7 +1186,10 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->createSecondaryInstance();
+     *     $formattedParent = $alloyDBAdminClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+     *     $instanceId = 'instance_id';
+     *     $instance = new Instance();
+     *     $operationResponse = $alloyDBAdminClient->createSecondaryInstance($formattedParent, $instanceId, $instance);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1217,7 +1200,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->createSecondaryInstance();
+     *     $operationResponse = $alloyDBAdminClient->createSecondaryInstance($formattedParent, $instanceId, $instance);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'createSecondaryInstance');
@@ -1237,16 +1220,13 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $parent       Required. The name of the parent resource. For the required format, see the
+     *                               comment on the Instance.name field.
+     * @param string   $instanceId   Required. ID of the requesting object.
+     * @param Instance $instance     Required. The resource being created
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the parent resource. For the required format, see the
-     *           comment on the Instance.name field.
-     *     @type string $instanceId
-     *           Required. ID of the requesting object.
-     *     @type Instance $instance
-     *           Required. The resource being created
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -1277,23 +1257,18 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function createSecondaryInstance(array $optionalArgs = [])
-    {
+    public function createSecondaryInstance(
+        $parent,
+        $instanceId,
+        $instance,
+        array $optionalArgs = []
+    ) {
         $request = new CreateSecondaryInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['instanceId'])) {
-            $request->setInstanceId($optionalArgs['instanceId']);
-        }
-
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-        }
-
+        $request->setParent($parent);
+        $request->setInstanceId($instanceId);
+        $request->setInstance($instance);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1323,21 +1298,21 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $response = $alloyDBAdminClient->createUser();
+     *     $formattedParent = $alloyDBAdminClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+     *     $userId = 'user_id';
+     *     $user = new User();
+     *     $response = $alloyDBAdminClient->createUser($formattedParent, $userId, $user);
      * } finally {
      *     $alloyDBAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Value for parent.
+     * @param string $userId       Required. ID of the requesting object.
+     * @param User   $user         Required. The resource being created
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Value for parent.
-     *     @type string $userId
-     *           Required. ID of the requesting object.
-     *     @type User $user
-     *           Required. The resource being created
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -1367,23 +1342,18 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function createUser(array $optionalArgs = [])
-    {
+    public function createUser(
+        $parent,
+        $userId,
+        $user,
+        array $optionalArgs = []
+    ) {
         $request = new CreateUserRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['userId'])) {
-            $request->setUserId($optionalArgs['userId']);
-        }
-
-        if (isset($optionalArgs['user'])) {
-            $request->setUser($optionalArgs['user']);
-        }
-
+        $request->setParent($parent);
+        $request->setUserId($userId);
+        $request->setUser($user);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1413,7 +1383,8 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->deleteBackup();
+     *     $formattedName = $alloyDBAdminClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
+     *     $operationResponse = $alloyDBAdminClient->deleteBackup($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1423,7 +1394,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->deleteBackup();
+     *     $operationResponse = $alloyDBAdminClient->deleteBackup($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'deleteBackup');
@@ -1442,12 +1413,11 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the resource. For the required format, see the comment on
+     *                             the Backup.name field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the resource. For the required format, see the comment on
-     *           the Backup.name field.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -1481,15 +1451,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function deleteBackup(array $optionalArgs = [])
+    public function deleteBackup($name, array $optionalArgs = [])
     {
         $request = new DeleteBackupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1523,7 +1490,8 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->deleteCluster();
+     *     $formattedName = $alloyDBAdminClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+     *     $operationResponse = $alloyDBAdminClient->deleteCluster($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1533,7 +1501,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->deleteCluster();
+     *     $operationResponse = $alloyDBAdminClient->deleteCluster($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'deleteCluster');
@@ -1552,12 +1520,11 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the resource. For the required format, see the
+     *                             comment on the Cluster.name field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the resource. For the required format, see the
-     *           comment on the Cluster.name field.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -1593,15 +1560,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function deleteCluster(array $optionalArgs = [])
+    public function deleteCluster($name, array $optionalArgs = [])
     {
         $request = new DeleteClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1639,7 +1603,8 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->deleteInstance();
+     *     $formattedName = $alloyDBAdminClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
+     *     $operationResponse = $alloyDBAdminClient->deleteInstance($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1649,7 +1614,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->deleteInstance();
+     *     $operationResponse = $alloyDBAdminClient->deleteInstance($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'deleteInstance');
@@ -1668,12 +1633,11 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the resource. For the required format, see the
+     *                             comment on the Instance.name field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the resource. For the required format, see the
-     *           comment on the Instance.name field.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -1707,15 +1671,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function deleteInstance(array $optionalArgs = [])
+    public function deleteInstance($name, array $optionalArgs = [])
     {
         $request = new DeleteInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1749,18 +1710,18 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $alloyDBAdminClient->deleteUser();
+     *     $formattedName = $alloyDBAdminClient->userName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[USER]');
+     *     $alloyDBAdminClient->deleteUser($formattedName);
      * } finally {
      *     $alloyDBAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the resource. For the required format, see the
+     *                             comment on the User.name field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the resource. For the required format, see the
-     *           comment on the User.name field.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -1788,15 +1749,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function deleteUser(array $optionalArgs = [])
+    public function deleteUser($name, array $optionalArgs = [])
     {
         $request = new DeleteUserRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1828,7 +1786,8 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->failoverInstance();
+     *     $formattedName = $alloyDBAdminClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
+     *     $operationResponse = $alloyDBAdminClient->failoverInstance($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1839,7 +1798,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->failoverInstance();
+     *     $operationResponse = $alloyDBAdminClient->failoverInstance($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'failoverInstance');
@@ -1859,12 +1818,11 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the resource. For the required format, see the
+     *                             comment on the Instance.name field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the resource. For the required format, see the
-     *           comment on the Instance.name field.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -1894,15 +1852,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function failoverInstance(array $optionalArgs = [])
+    public function failoverInstance($name, array $optionalArgs = [])
     {
         $request = new FailoverInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1936,18 +1891,18 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $response = $alloyDBAdminClient->generateClientCertificate();
+     *     $formattedParent = $alloyDBAdminClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+     *     $response = $alloyDBAdminClient->generateClientCertificate($formattedParent);
      * } finally {
      *     $alloyDBAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the parent resource. The required format is:
+     *                             * projects/{project}/locations/{location}/clusters/{cluster}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the parent resource. The required format is:
-     *           * projects/{project}/locations/{location}/clusters/{cluster}
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -1988,15 +1943,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function generateClientCertificate(array $optionalArgs = [])
+    public function generateClientCertificate($parent, array $optionalArgs = [])
     {
         $request = new GenerateClientCertificateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -2040,17 +1992,17 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $response = $alloyDBAdminClient->getBackup();
+     *     $formattedName = $alloyDBAdminClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
+     *     $response = $alloyDBAdminClient->getBackup($formattedName);
      * } finally {
      *     $alloyDBAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the resource
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the resource
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2063,15 +2015,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function getBackup(array $optionalArgs = [])
+    public function getBackup($name, array $optionalArgs = [])
     {
         $request = new GetBackupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2093,18 +2042,18 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $response = $alloyDBAdminClient->getCluster();
+     *     $formattedName = $alloyDBAdminClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+     *     $response = $alloyDBAdminClient->getCluster($formattedName);
      * } finally {
      *     $alloyDBAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the resource. For the required format, see the
+     *                             comment on the Cluster.name field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the resource. For the required format, see the
-     *           comment on the Cluster.name field.
      *     @type int $view
      *           Optional. The view of the cluster to return. Returns all default fields if
      *           not set.
@@ -2121,15 +2070,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function getCluster(array $optionalArgs = [])
+    public function getCluster($name, array $optionalArgs = [])
     {
         $request = new GetClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -2155,18 +2101,18 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $response = $alloyDBAdminClient->getConnectionInfo();
+     *     $formattedParent = $alloyDBAdminClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
+     *     $response = $alloyDBAdminClient->getConnectionInfo($formattedParent);
      * } finally {
      *     $alloyDBAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the parent resource. The required format is:
+     *                             projects/{project}/locations/{location}/clusters/{cluster}/instances/{instance}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the parent resource. The required format is:
-     *           projects/{project}/locations/{location}/clusters/{cluster}/instances/{instance}
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -2193,15 +2139,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function getConnectionInfo(array $optionalArgs = [])
+    public function getConnectionInfo($parent, array $optionalArgs = [])
     {
         $request = new GetConnectionInfoRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -2227,18 +2170,18 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $response = $alloyDBAdminClient->getInstance();
+     *     $formattedName = $alloyDBAdminClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
+     *     $response = $alloyDBAdminClient->getInstance($formattedName);
      * } finally {
      *     $alloyDBAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the resource. For the required format, see the
+     *                             comment on the Instance.name field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the resource. For the required format, see the
-     *           comment on the Instance.name field.
      *     @type int $view
      *           The view of the instance to return.
      *           For allowed values, use constants defined on {@see \Google\Cloud\AlloyDb\V1beta\InstanceView}
@@ -2254,15 +2197,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function getInstance(array $optionalArgs = [])
+    public function getInstance($name, array $optionalArgs = [])
     {
         $request = new GetInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -2288,18 +2228,18 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $response = $alloyDBAdminClient->getUser();
+     *     $formattedName = $alloyDBAdminClient->userName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[USER]');
+     *     $response = $alloyDBAdminClient->getUser($formattedName);
      * } finally {
      *     $alloyDBAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the resource. For the required format, see the
+     *                             comment on the User.name field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the resource. For the required format, see the
-     *           comment on the User.name field.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2312,15 +2252,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function getUser(array $optionalArgs = [])
+    public function getUser($name, array $optionalArgs = [])
     {
         $request = new GetUserRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2343,7 +2280,9 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->injectFault();
+     *     $faultType = FaultType::FAULT_TYPE_UNSPECIFIED;
+     *     $formattedName = $alloyDBAdminClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
+     *     $operationResponse = $alloyDBAdminClient->injectFault($faultType, $formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2354,7 +2293,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->injectFault();
+     *     $operationResponse = $alloyDBAdminClient->injectFault($faultType, $formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'injectFault');
@@ -2374,15 +2313,13 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param int    $faultType    Required. The type of fault to be injected in an instance.
+     *                             For allowed values, use constants defined on {@see \Google\Cloud\AlloyDb\V1beta\InjectFaultRequest\FaultType}
+     * @param string $name         Required. The name of the resource. For the required format, see the
+     *                             comment on the Instance.name field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type int $faultType
-     *           Required. The type of fault to be injected in an instance.
-     *           For allowed values, use constants defined on {@see \Google\Cloud\AlloyDb\V1beta\InjectFaultRequest\FaultType}
-     *     @type string $name
-     *           Required. The name of the resource. For the required format, see the
-     *           comment on the Instance.name field.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -2413,19 +2350,13 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function injectFault(array $optionalArgs = [])
+    public function injectFault($faultType, $name, array $optionalArgs = [])
     {
         $request = new InjectFaultRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['faultType'])) {
-            $request->setFaultType($optionalArgs['faultType']);
-        }
-
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setFaultType($faultType);
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -2455,8 +2386,9 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
+     *     $formattedParent = $alloyDBAdminClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $alloyDBAdminClient->listBackups();
+     *     $pagedResponse = $alloyDBAdminClient->listBackups($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2464,7 +2396,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $alloyDBAdminClient->listBackups();
+     *     $pagedResponse = $alloyDBAdminClient->listBackups($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2473,11 +2405,10 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Parent value for ListBackupsRequest
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent value for ListBackupsRequest
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2503,15 +2434,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function listBackups(array $optionalArgs = [])
+    public function listBackups($parent, array $optionalArgs = [])
     {
         $request = new ListBackupsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2549,8 +2477,9 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
+     *     $formattedParent = $alloyDBAdminClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $alloyDBAdminClient->listClusters();
+     *     $pagedResponse = $alloyDBAdminClient->listClusters($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2558,7 +2487,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $alloyDBAdminClient->listClusters();
+     *     $pagedResponse = $alloyDBAdminClient->listClusters($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2567,14 +2496,13 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the parent resource. For the required format, see the
+     *                             comment on the Cluster.name field. Additionally, you can perform an
+     *                             aggregated list operation by specifying a value with the following format:
+     *                             * projects/{project}/locations/-
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the parent resource. For the required format, see the
-     *           comment on the Cluster.name field. Additionally, you can perform an
-     *           aggregated list operation by specifying a value with the following format:
-     *           * projects/{project}/locations/-
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2600,15 +2528,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function listClusters(array $optionalArgs = [])
+    public function listClusters($parent, array $optionalArgs = [])
     {
         $request = new ListClustersRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2646,8 +2571,9 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
+     *     $formattedParent = $alloyDBAdminClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $alloyDBAdminClient->listInstances();
+     *     $pagedResponse = $alloyDBAdminClient->listInstances($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2655,7 +2581,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $alloyDBAdminClient->listInstances();
+     *     $pagedResponse = $alloyDBAdminClient->listInstances($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2664,16 +2590,15 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the parent resource. For the required format, see the
+     *                             comment on the Instance.name field. Additionally, you can perform an
+     *                             aggregated list operation by specifying a value with one of the following
+     *                             formats:
+     *                             * projects/{project}/locations/-/clusters/-
+     *                             * projects/{project}/locations/{region}/clusters/-
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the parent resource. For the required format, see the
-     *           comment on the Instance.name field. Additionally, you can perform an
-     *           aggregated list operation by specifying a value with one of the following
-     *           formats:
-     *           * projects/{project}/locations/-/clusters/-
-     *           * projects/{project}/locations/{region}/clusters/-
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2699,15 +2624,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function listInstances(array $optionalArgs = [])
+    public function listInstances($parent, array $optionalArgs = [])
     {
         $request = new ListInstancesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2745,8 +2667,9 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
+     *     $formattedParent = $alloyDBAdminClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $alloyDBAdminClient->listSupportedDatabaseFlags();
+     *     $pagedResponse = $alloyDBAdminClient->listSupportedDatabaseFlags($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2754,7 +2677,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $alloyDBAdminClient->listSupportedDatabaseFlags();
+     *     $pagedResponse = $alloyDBAdminClient->listSupportedDatabaseFlags($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2763,17 +2686,16 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the parent resource. The required format is:
+     *                             * projects/{project}/locations/{location}
+     *
+     *                             Regardless of the parent specified here, as long it is contains a valid
+     *                             project and location, the service will return a static list of supported
+     *                             flags resources. Note that we do not yet support region-specific
+     *                             flags.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the parent resource. The required format is:
-     *           * projects/{project}/locations/{location}
-     *
-     *           Regardless of the parent specified here, as long it is contains a valid
-     *           project and location, the service will return a static list of supported
-     *           flags resources. Note that we do not yet support region-specific
-     *           flags.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2795,15 +2717,14 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function listSupportedDatabaseFlags(array $optionalArgs = [])
-    {
+    public function listSupportedDatabaseFlags(
+        $parent,
+        array $optionalArgs = []
+    ) {
         $request = new ListSupportedDatabaseFlagsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2833,8 +2754,9 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
+     *     $formattedParent = $alloyDBAdminClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $alloyDBAdminClient->listUsers();
+     *     $pagedResponse = $alloyDBAdminClient->listUsers($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2842,7 +2764,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $alloyDBAdminClient->listUsers();
+     *     $pagedResponse = $alloyDBAdminClient->listUsers($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2851,11 +2773,10 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Parent value for ListUsersRequest
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent value for ListUsersRequest
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2881,15 +2802,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function listUsers(array $optionalArgs = [])
+    public function listUsers($parent, array $optionalArgs = [])
     {
         $request = new ListUsersRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2930,7 +2848,8 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->promoteCluster();
+     *     $formattedName = $alloyDBAdminClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+     *     $operationResponse = $alloyDBAdminClient->promoteCluster($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2941,7 +2860,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->promoteCluster();
+     *     $operationResponse = $alloyDBAdminClient->promoteCluster($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'promoteCluster');
@@ -2961,12 +2880,11 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the resource. For the required format, see the
+     *                             comment on the Cluster.name field
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the resource. For the required format, see the
-     *           comment on the Cluster.name field
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -3000,15 +2918,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function promoteCluster(array $optionalArgs = [])
+    public function promoteCluster($name, array $optionalArgs = [])
     {
         $request = new PromoteClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -3043,7 +2958,8 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->restartInstance();
+     *     $formattedName = $alloyDBAdminClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
+     *     $operationResponse = $alloyDBAdminClient->restartInstance($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3054,7 +2970,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->restartInstance();
+     *     $operationResponse = $alloyDBAdminClient->restartInstance($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'restartInstance');
@@ -3074,12 +2990,11 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the resource. For the required format, see the
+     *                             comment on the Instance.name field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the resource. For the required format, see the
-     *           comment on the Instance.name field.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -3109,15 +3024,12 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function restartInstance(array $optionalArgs = [])
+    public function restartInstance($name, array $optionalArgs = [])
     {
         $request = new RestartInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -3149,7 +3061,10 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->restoreCluster();
+     *     $formattedParent = $alloyDBAdminClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $clusterId = 'cluster_id';
+     *     $cluster = new Cluster();
+     *     $operationResponse = $alloyDBAdminClient->restoreCluster($formattedParent, $clusterId, $cluster);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3160,7 +3075,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->restoreCluster();
+     *     $operationResponse = $alloyDBAdminClient->restoreCluster($formattedParent, $clusterId, $cluster);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'restoreCluster');
@@ -3180,7 +3095,11 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string  $parent       Required. The name of the parent resource. For the required format, see the
+     *                              comment on the Cluster.name field.
+     * @param string  $clusterId    Required. ID of the requesting object.
+     * @param Cluster $cluster      Required. The resource being created
+     * @param array   $optionalArgs {
      *     Optional.
      *
      *     @type BackupSource $backupSource
@@ -3188,13 +3107,6 @@ class AlloyDBAdminGapicClient
      *     @type ContinuousBackupSource $continuousBackupSource
      *           ContinuousBackup source. Continuous backup needs to be enabled in the
      *           source cluster for this operation to succeed.
-     *     @type string $parent
-     *           Required. The name of the parent resource. For the required format, see the
-     *           comment on the Cluster.name field.
-     *     @type string $clusterId
-     *           Required. ID of the requesting object.
-     *     @type Cluster $cluster
-     *           Required. The resource being created
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -3225,10 +3137,18 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function restoreCluster(array $optionalArgs = [])
-    {
+    public function restoreCluster(
+        $parent,
+        $clusterId,
+        $cluster,
+        array $optionalArgs = []
+    ) {
         $request = new RestoreClusterRequest();
         $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setClusterId($clusterId);
+        $request->setCluster($cluster);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['backupSource'])) {
             $request->setBackupSource($optionalArgs['backupSource']);
         }
@@ -3237,19 +3157,6 @@ class AlloyDBAdminGapicClient
             $request->setContinuousBackupSource(
                 $optionalArgs['continuousBackupSource']
             );
-        }
-
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['clusterId'])) {
-            $request->setClusterId($optionalArgs['clusterId']);
-        }
-
-        if (isset($optionalArgs['cluster'])) {
-            $request->setCluster($optionalArgs['cluster']);
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -3281,7 +3188,8 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->updateBackup();
+     *     $backup = new Backup();
+     *     $operationResponse = $alloyDBAdminClient->updateBackup($backup);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3292,7 +3200,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->updateBackup();
+     *     $operationResponse = $alloyDBAdminClient->updateBackup($backup);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'updateBackup');
@@ -3312,7 +3220,8 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Backup $backup       Required. The resource being updated
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
@@ -3321,8 +3230,6 @@ class AlloyDBAdminGapicClient
      *           The fields specified in the update_mask are relative to the resource, not
      *           the full request. A field will be overwritten if it is in the mask. If the
      *           user does not provide a mask then all fields will be overwritten.
-     *     @type Backup $backup
-     *           Required. The resource being updated
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -3355,16 +3262,14 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function updateBackup(array $optionalArgs = [])
+    public function updateBackup($backup, array $optionalArgs = [])
     {
         $request = new UpdateBackupRequest();
         $requestParamHeaders = [];
+        $request->setBackup($backup);
+        $requestParamHeaders['backup.name'] = $backup->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        if (isset($optionalArgs['backup'])) {
-            $request->setBackup($optionalArgs['backup']);
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -3400,7 +3305,8 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->updateCluster();
+     *     $cluster = new Cluster();
+     *     $operationResponse = $alloyDBAdminClient->updateCluster($cluster);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3411,7 +3317,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->updateCluster();
+     *     $operationResponse = $alloyDBAdminClient->updateCluster($cluster);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'updateCluster');
@@ -3431,7 +3337,8 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Cluster $cluster      Required. The resource being updated
+     * @param array   $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
@@ -3440,8 +3347,6 @@ class AlloyDBAdminGapicClient
      *           The fields specified in the update_mask are relative to the resource, not
      *           the full request. A field will be overwritten if it is in the mask. If the
      *           user does not provide a mask then all fields will be overwritten.
-     *     @type Cluster $cluster
-     *           Required. The resource being updated
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -3475,16 +3380,14 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function updateCluster(array $optionalArgs = [])
+    public function updateCluster($cluster, array $optionalArgs = [])
     {
         $request = new UpdateClusterRequest();
         $requestParamHeaders = [];
+        $request->setCluster($cluster);
+        $requestParamHeaders['cluster.name'] = $cluster->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        if (isset($optionalArgs['cluster'])) {
-            $request->setCluster($optionalArgs['cluster']);
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -3520,7 +3423,8 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $operationResponse = $alloyDBAdminClient->updateInstance();
+     *     $instance = new Instance();
+     *     $operationResponse = $alloyDBAdminClient->updateInstance($instance);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3531,7 +3435,7 @@ class AlloyDBAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $alloyDBAdminClient->updateInstance();
+     *     $operationResponse = $alloyDBAdminClient->updateInstance($instance);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $alloyDBAdminClient->resumeOperation($operationName, 'updateInstance');
@@ -3551,7 +3455,8 @@ class AlloyDBAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Instance $instance     Required. The resource being updated
+     * @param array    $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
@@ -3560,8 +3465,6 @@ class AlloyDBAdminGapicClient
      *           The fields specified in the update_mask are relative to the resource, not
      *           the full request. A field will be overwritten if it is in the mask. If the
      *           user does not provide a mask then all fields will be overwritten.
-     *     @type Instance $instance
-     *           Required. The resource being updated
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -3595,16 +3498,14 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function updateInstance(array $optionalArgs = [])
+    public function updateInstance($instance, array $optionalArgs = [])
     {
         $request = new UpdateInstanceRequest();
         $requestParamHeaders = [];
+        $request->setInstance($instance);
+        $requestParamHeaders['instance.name'] = $instance->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -3640,12 +3541,14 @@ class AlloyDBAdminGapicClient
      * ```
      * $alloyDBAdminClient = new AlloyDBAdminClient();
      * try {
-     *     $response = $alloyDBAdminClient->updateUser();
+     *     $user = new User();
+     *     $response = $alloyDBAdminClient->updateUser($user);
      * } finally {
      *     $alloyDBAdminClient->close();
      * }
      * ```
      *
+     * @param User  $user         Required. The resource being updated
      * @param array $optionalArgs {
      *     Optional.
      *
@@ -3655,8 +3558,6 @@ class AlloyDBAdminGapicClient
      *           The fields specified in the update_mask are relative to the resource, not
      *           the full request. A field will be overwritten if it is in the mask. If the
      *           user does not provide a mask then all fields will be overwritten.
-     *     @type User $user
-     *           Required. The resource being updated
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -3688,16 +3589,14 @@ class AlloyDBAdminGapicClient
      *
      * @experimental
      */
-    public function updateUser(array $optionalArgs = [])
+    public function updateUser($user, array $optionalArgs = [])
     {
         $request = new UpdateUserRequest();
         $requestParamHeaders = [];
+        $request->setUser($user);
+        $requestParamHeaders['user.name'] = $user->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        if (isset($optionalArgs['user'])) {
-            $request->setUser($optionalArgs['user']);
         }
 
         if (isset($optionalArgs['requestId'])) {

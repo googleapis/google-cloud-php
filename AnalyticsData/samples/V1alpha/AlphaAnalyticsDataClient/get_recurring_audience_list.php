@@ -41,19 +41,19 @@ use Google\ApiCore\ApiException;
  * [Google Analytics Audience Export API
  * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The recurring audience list resource name.
+ *                              Format:
+ *                              `properties/{property}/recurringAudienceLists/{recurring_audience_list}`
+ *                              Please see {@see AlphaAnalyticsDataClient::recurringAudienceListName()} for help formatting this field.
  */
-function get_recurring_audience_list_sample(): void
+function get_recurring_audience_list_sample(string $formattedName): void
 {
     // Create a client.
     $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
 
     // Prepare the request message.
-    $request = new GetRecurringAudienceListRequest();
+    $request = (new GetRecurringAudienceListRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -63,5 +63,24 @@ function get_recurring_audience_list_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AlphaAnalyticsDataClient::recurringAudienceListName(
+        '[PROPERTY]',
+        '[RECURRING_AUDIENCE_LIST]'
+    );
+
+    get_recurring_audience_list_sample($formattedName);
 }
 // [END analyticsdata_v1alpha_generated_AlphaAnalyticsData_GetRecurringAudienceList_sync]

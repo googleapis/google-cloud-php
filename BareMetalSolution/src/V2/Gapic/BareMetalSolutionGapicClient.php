@@ -123,7 +123,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $bareMetalSolutionClient = new BareMetalSolutionClient();
  * try {
- *     $operationResponse = $bareMetalSolutionClient->createNfsShare();
+ *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $nfsShare = new NfsShare();
+ *     $operationResponse = $bareMetalSolutionClient->createNfsShare($formattedParent, $nfsShare);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -134,7 +136,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $bareMetalSolutionClient->createNfsShare();
+ *     $operationResponse = $bareMetalSolutionClient->createNfsShare($formattedParent, $nfsShare);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'createNfsShare');
@@ -874,7 +876,9 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->createNfsShare();
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $nfsShare = new NfsShare();
+     *     $operationResponse = $bareMetalSolutionClient->createNfsShare($formattedParent, $nfsShare);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -885,7 +889,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->createNfsShare();
+     *     $operationResponse = $bareMetalSolutionClient->createNfsShare($formattedParent, $nfsShare);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'createNfsShare');
@@ -905,13 +909,11 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $parent       Required. The parent project and location.
+     * @param NfsShare $nfsShare     Required. The NfsShare to create.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent project and location.
-     *     @type NfsShare $nfsShare
-     *           Required. The NfsShare to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -922,19 +924,13 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createNfsShare(array $optionalArgs = [])
+    public function createNfsShare($parent, $nfsShare, array $optionalArgs = [])
     {
         $request = new CreateNfsShareRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['nfsShare'])) {
-            $request->setNfsShare($optionalArgs['nfsShare']);
-        }
-
+        $request->setParent($parent);
+        $request->setNfsShare($nfsShare);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -956,20 +952,20 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->createProvisioningConfig();
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $provisioningConfig = new ProvisioningConfig();
+     *     $response = $bareMetalSolutionClient->createProvisioningConfig($formattedParent, $provisioningConfig);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string             $parent             Required. The parent project and location containing the
+     *                                               ProvisioningConfig.
+     * @param ProvisioningConfig $provisioningConfig Required. The ProvisioningConfig to create.
+     * @param array              $optionalArgs       {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent project and location containing the
-     *           ProvisioningConfig.
-     *     @type ProvisioningConfig $provisioningConfig
-     *           Required. The ProvisioningConfig to create.
      *     @type string $email
      *           Optional. Email provided to send a confirmation with provisioning config
      *           to.
@@ -983,21 +979,16 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createProvisioningConfig(array $optionalArgs = [])
-    {
+    public function createProvisioningConfig(
+        $parent,
+        $provisioningConfig,
+        array $optionalArgs = []
+    ) {
         $request = new CreateProvisioningConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['provisioningConfig'])) {
-            $request->setProvisioningConfig(
-                $optionalArgs['provisioningConfig']
-            );
-        }
-
+        $request->setParent($parent);
+        $request->setProvisioningConfig($provisioningConfig);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['email'])) {
             $request->setEmail($optionalArgs['email']);
         }
@@ -1024,25 +1015,25 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->createSSHKey();
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $sshKey = new SSHKey();
+     *     $sshKeyId = 'ssh_key_id';
+     *     $response = $bareMetalSolutionClient->createSSHKey($formattedParent, $sshKey, $sshKeyId);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The parent containing the SSH keys.
+     * @param SSHKey $sshKey       Required. The SSH key to register.
+     * @param string $sshKeyId     Required. The ID to use for the key, which will become the final component
+     *                             of the key's resource name.
+     *
+     *                             This value must match the regex:
+     *                             [a-zA-Z0-9&#64;.\-_]{1,64}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent containing the SSH keys.
-     *     @type SSHKey $sshKey
-     *           Required. The SSH key to register.
-     *     @type string $sshKeyId
-     *           Required. The ID to use for the key, which will become the final component
-     *           of the key's resource name.
-     *
-     *           This value must match the regex:
-     *           [a-zA-Z0-9&#64;.\-_]{1,64}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1053,23 +1044,18 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSSHKey(array $optionalArgs = [])
-    {
+    public function createSSHKey(
+        $parent,
+        $sshKey,
+        $sshKeyId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateSSHKeyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['sshKey'])) {
-            $request->setSshKey($optionalArgs['sshKey']);
-        }
-
-        if (isset($optionalArgs['sshKeyId'])) {
-            $request->setSshKeyId($optionalArgs['sshKeyId']);
-        }
-
+        $request->setParent($parent);
+        $request->setSshKey($sshKey);
+        $request->setSshKeyId($sshKeyId);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1092,19 +1078,19 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->createVolumeSnapshot();
+     *     $formattedParent = $bareMetalSolutionClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+     *     $volumeSnapshot = new VolumeSnapshot();
+     *     $response = $bareMetalSolutionClient->createVolumeSnapshot($formattedParent, $volumeSnapshot);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string         $parent         Required. The volume to snapshot.
+     * @param VolumeSnapshot $volumeSnapshot Required. The snapshot to create.
+     * @param array          $optionalArgs   {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The volume to snapshot.
-     *     @type VolumeSnapshot $volumeSnapshot
-     *           Required. The snapshot to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1115,19 +1101,16 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createVolumeSnapshot(array $optionalArgs = [])
-    {
+    public function createVolumeSnapshot(
+        $parent,
+        $volumeSnapshot,
+        array $optionalArgs = []
+    ) {
         $request = new CreateVolumeSnapshotRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['volumeSnapshot'])) {
-            $request->setVolumeSnapshot($optionalArgs['volumeSnapshot']);
-        }
-
+        $request->setParent($parent);
+        $request->setVolumeSnapshot($volumeSnapshot);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1149,7 +1132,8 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->deleteNfsShare();
+     *     $formattedName = $bareMetalSolutionClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
+     *     $operationResponse = $bareMetalSolutionClient->deleteNfsShare($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1159,7 +1143,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->deleteNfsShare();
+     *     $operationResponse = $bareMetalSolutionClient->deleteNfsShare($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'deleteNfsShare');
@@ -1178,11 +1162,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the NFS share to delete.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the NFS share to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1193,15 +1176,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteNfsShare(array $optionalArgs = [])
+    public function deleteNfsShare($name, array $optionalArgs = [])
     {
         $request = new DeleteNfsShareRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1223,18 +1203,18 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $bareMetalSolutionClient->deleteSSHKey();
+     *     $formattedName = $bareMetalSolutionClient->sshKeyName('[PROJECT]', '[LOCATION]', '[SSH_KEY]');
+     *     $bareMetalSolutionClient->deleteSSHKey($formattedName);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the SSH key to delete.
+     *                             Currently, the only valid value for the location is "global".
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the SSH key to delete.
-     *           Currently, the only valid value for the location is "global".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1243,15 +1223,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSSHKey(array $optionalArgs = [])
+    public function deleteSSHKey($name, array $optionalArgs = [])
     {
         $request = new DeleteSSHKeyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1274,17 +1251,17 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $bareMetalSolutionClient->deleteVolumeSnapshot();
+     *     $formattedName = $bareMetalSolutionClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+     *     $bareMetalSolutionClient->deleteVolumeSnapshot($formattedName);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the snapshot to delete.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the snapshot to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1293,15 +1270,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteVolumeSnapshot(array $optionalArgs = [])
+    public function deleteVolumeSnapshot($name, array $optionalArgs = [])
     {
         $request = new DeleteVolumeSnapshotRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1323,7 +1297,9 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->detachLun();
+     *     $formattedInstance = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $formattedLun = $bareMetalSolutionClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+     *     $operationResponse = $bareMetalSolutionClient->detachLun($formattedInstance, $formattedLun);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1334,7 +1310,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->detachLun();
+     *     $operationResponse = $bareMetalSolutionClient->detachLun($formattedInstance, $formattedLun);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'detachLun');
@@ -1354,13 +1330,11 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instance     Required. Name of the instance.
+     * @param string $lun          Required. Name of the Lun to detach.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $instance
-     *           Required. Name of the instance.
-     *     @type string $lun
-     *           Required. Name of the Lun to detach.
      *     @type bool $skipReboot
      *           If true, performs lun unmapping without instance reboot.
      *     @type RetrySettings|array $retrySettings
@@ -1373,19 +1347,13 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function detachLun(array $optionalArgs = [])
+    public function detachLun($instance, $lun, array $optionalArgs = [])
     {
         $request = new DetachLunRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-            $requestParamHeaders['instance'] = $optionalArgs['instance'];
-        }
-
-        if (isset($optionalArgs['lun'])) {
-            $request->setLun($optionalArgs['lun']);
-        }
-
+        $request->setInstance($instance);
+        $request->setLun($lun);
+        $requestParamHeaders['instance'] = $instance;
         if (isset($optionalArgs['skipReboot'])) {
             $request->setSkipReboot($optionalArgs['skipReboot']);
         }
@@ -1411,7 +1379,8 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->disableInteractiveSerialConsole();
+     *     $formattedName = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $operationResponse = $bareMetalSolutionClient->disableInteractiveSerialConsole($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1422,7 +1391,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->disableInteractiveSerialConsole();
+     *     $operationResponse = $bareMetalSolutionClient->disableInteractiveSerialConsole($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'disableInteractiveSerialConsole');
@@ -1442,11 +1411,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1457,15 +1425,14 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function disableInteractiveSerialConsole(array $optionalArgs = [])
-    {
+    public function disableInteractiveSerialConsole(
+        $name,
+        array $optionalArgs = []
+    ) {
         $request = new DisableInteractiveSerialConsoleRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1487,7 +1454,8 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->enableInteractiveSerialConsole();
+     *     $formattedName = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $operationResponse = $bareMetalSolutionClient->enableInteractiveSerialConsole($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1498,7 +1466,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->enableInteractiveSerialConsole();
+     *     $operationResponse = $bareMetalSolutionClient->enableInteractiveSerialConsole($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'enableInteractiveSerialConsole');
@@ -1518,11 +1486,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1533,15 +1500,14 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function enableInteractiveSerialConsole(array $optionalArgs = [])
-    {
+    public function enableInteractiveSerialConsole(
+        $name,
+        array $optionalArgs = []
+    ) {
         $request = new EnableInteractiveSerialConsoleRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1564,7 +1530,8 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->evictLun();
+     *     $formattedName = $bareMetalSolutionClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+     *     $operationResponse = $bareMetalSolutionClient->evictLun($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1574,7 +1541,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->evictLun();
+     *     $operationResponse = $bareMetalSolutionClient->evictLun($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'evictLun');
@@ -1593,11 +1560,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the lun.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the lun.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1608,15 +1574,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function evictLun(array $optionalArgs = [])
+    public function evictLun($name, array $optionalArgs = [])
     {
         $request = new EvictLunRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1639,7 +1602,8 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->evictVolume();
+     *     $formattedName = $bareMetalSolutionClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+     *     $operationResponse = $bareMetalSolutionClient->evictVolume($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1649,7 +1613,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->evictVolume();
+     *     $operationResponse = $bareMetalSolutionClient->evictVolume($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'evictVolume');
@@ -1668,11 +1632,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Volume.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Volume.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1683,15 +1646,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function evictVolume(array $optionalArgs = [])
+    public function evictVolume($name, array $optionalArgs = [])
     {
         $request = new EvictVolumeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1713,17 +1673,17 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->getInstance();
+     *     $formattedName = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $response = $bareMetalSolutionClient->getInstance($formattedName);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1734,15 +1694,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getInstance(array $optionalArgs = [])
+    public function getInstance($name, array $optionalArgs = [])
     {
         $request = new GetInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1764,17 +1721,17 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->getLun();
+     *     $formattedName = $bareMetalSolutionClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+     *     $response = $bareMetalSolutionClient->getLun($formattedName);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1785,15 +1742,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getLun(array $optionalArgs = [])
+    public function getLun($name, array $optionalArgs = [])
     {
         $request = new GetLunRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1815,17 +1769,17 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->getNetwork();
+     *     $formattedName = $bareMetalSolutionClient->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
+     *     $response = $bareMetalSolutionClient->getNetwork($formattedName);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1836,15 +1790,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getNetwork(array $optionalArgs = [])
+    public function getNetwork($name, array $optionalArgs = [])
     {
         $request = new GetNetworkRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1866,17 +1817,17 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->getNfsShare();
+     *     $formattedName = $bareMetalSolutionClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
+     *     $response = $bareMetalSolutionClient->getNfsShare($formattedName);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1887,15 +1838,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getNfsShare(array $optionalArgs = [])
+    public function getNfsShare($name, array $optionalArgs = [])
     {
         $request = new GetNfsShareRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1917,17 +1865,17 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->getProvisioningConfig();
+     *     $formattedName = $bareMetalSolutionClient->provisioningConfigName('[PROJECT]', '[LOCATION]', '[PROVISIONING_CONFIG]');
+     *     $response = $bareMetalSolutionClient->getProvisioningConfig($formattedName);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the ProvisioningConfig.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the ProvisioningConfig.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1938,15 +1886,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getProvisioningConfig(array $optionalArgs = [])
+    public function getProvisioningConfig($name, array $optionalArgs = [])
     {
         $request = new GetProvisioningConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1968,17 +1913,17 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->getVolume();
+     *     $formattedName = $bareMetalSolutionClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+     *     $response = $bareMetalSolutionClient->getVolume($formattedName);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1989,15 +1934,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getVolume(array $optionalArgs = [])
+    public function getVolume($name, array $optionalArgs = [])
     {
         $request = new GetVolumeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2020,17 +1962,17 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->getVolumeSnapshot();
+     *     $formattedName = $bareMetalSolutionClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+     *     $response = $bareMetalSolutionClient->getVolumeSnapshot($formattedName);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the snapshot.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the snapshot.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2041,15 +1983,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getVolumeSnapshot(array $optionalArgs = [])
+    public function getVolumeSnapshot($name, array $optionalArgs = [])
     {
         $request = new GetVolumeSnapshotRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2071,8 +2010,9 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $bareMetalSolutionClient->listInstances();
+     *     $pagedResponse = $bareMetalSolutionClient->listInstances($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2080,7 +2020,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $bareMetalSolutionClient->listInstances();
+     *     $pagedResponse = $bareMetalSolutionClient->listInstances($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2089,11 +2029,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Parent value for ListInstancesRequest.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent value for ListInstancesRequest.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2115,15 +2054,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listInstances(array $optionalArgs = [])
+    public function listInstances($parent, array $optionalArgs = [])
     {
         $request = new ListInstancesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2157,8 +2093,9 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
+     *     $formattedParent = $bareMetalSolutionClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $bareMetalSolutionClient->listLuns();
+     *     $pagedResponse = $bareMetalSolutionClient->listLuns($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2166,7 +2103,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $bareMetalSolutionClient->listLuns();
+     *     $pagedResponse = $bareMetalSolutionClient->listLuns($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2175,11 +2112,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Parent value for ListLunsRequest.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent value for ListLunsRequest.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2199,15 +2135,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listLuns(array $optionalArgs = [])
+    public function listLuns($parent, array $optionalArgs = [])
     {
         $request = new ListLunsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2238,17 +2171,17 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->listNetworkUsage();
+     *     $formattedLocation = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $response = $bareMetalSolutionClient->listNetworkUsage($formattedLocation);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $location     Required. Parent value (project and location).
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $location
-     *           Required. Parent value (project and location).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2259,15 +2192,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listNetworkUsage(array $optionalArgs = [])
+    public function listNetworkUsage($location, array $optionalArgs = [])
     {
         $request = new ListNetworkUsageRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['location'])) {
-            $request->setLocation($optionalArgs['location']);
-            $requestParamHeaders['location'] = $optionalArgs['location'];
-        }
-
+        $request->setLocation($location);
+        $requestParamHeaders['location'] = $location;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2289,8 +2219,9 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $bareMetalSolutionClient->listNetworks();
+     *     $pagedResponse = $bareMetalSolutionClient->listNetworks($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2298,7 +2229,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $bareMetalSolutionClient->listNetworks();
+     *     $pagedResponse = $bareMetalSolutionClient->listNetworks($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2307,11 +2238,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Parent value for ListNetworksRequest.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent value for ListNetworksRequest.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2333,15 +2263,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listNetworks(array $optionalArgs = [])
+    public function listNetworks($parent, array $optionalArgs = [])
     {
         $request = new ListNetworksRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2375,8 +2302,9 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $bareMetalSolutionClient->listNfsShares();
+     *     $pagedResponse = $bareMetalSolutionClient->listNfsShares($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2384,7 +2312,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $bareMetalSolutionClient->listNfsShares();
+     *     $pagedResponse = $bareMetalSolutionClient->listNfsShares($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2393,11 +2321,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Parent value for ListNfsSharesRequest.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent value for ListNfsSharesRequest.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2419,15 +2346,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listNfsShares(array $optionalArgs = [])
+    public function listNfsShares($parent, array $optionalArgs = [])
     {
         $request = new ListNfsSharesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2461,8 +2385,9 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $bareMetalSolutionClient->listOSImages();
+     *     $pagedResponse = $bareMetalSolutionClient->listOSImages($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2470,7 +2395,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $bareMetalSolutionClient->listOSImages();
+     *     $pagedResponse = $bareMetalSolutionClient->listOSImages($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2479,11 +2404,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Parent value for ListProvisioningQuotasRequest.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent value for ListProvisioningQuotasRequest.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2503,15 +2427,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listOSImages(array $optionalArgs = [])
+    public function listOSImages($parent, array $optionalArgs = [])
     {
         $request = new ListOSImagesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2541,8 +2462,9 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $bareMetalSolutionClient->listProvisioningQuotas();
+     *     $pagedResponse = $bareMetalSolutionClient->listProvisioningQuotas($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2550,7 +2472,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $bareMetalSolutionClient->listProvisioningQuotas();
+     *     $pagedResponse = $bareMetalSolutionClient->listProvisioningQuotas($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2559,11 +2481,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Parent value for ListProvisioningQuotasRequest.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent value for ListProvisioningQuotasRequest.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2583,15 +2504,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listProvisioningQuotas(array $optionalArgs = [])
+    public function listProvisioningQuotas($parent, array $optionalArgs = [])
     {
         $request = new ListProvisioningQuotasRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2622,8 +2540,9 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $bareMetalSolutionClient->listSSHKeys();
+     *     $pagedResponse = $bareMetalSolutionClient->listSSHKeys($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2631,7 +2550,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $bareMetalSolutionClient->listSSHKeys();
+     *     $pagedResponse = $bareMetalSolutionClient->listSSHKeys($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2640,12 +2559,11 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The parent containing the SSH keys.
+     *                             Currently, the only valid value for the location is "global".
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent containing the SSH keys.
-     *           Currently, the only valid value for the location is "global".
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2665,15 +2583,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSSHKeys(array $optionalArgs = [])
+    public function listSSHKeys($parent, array $optionalArgs = [])
     {
         $request = new ListSSHKeysRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2705,8 +2620,9 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
+     *     $formattedParent = $bareMetalSolutionClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $bareMetalSolutionClient->listVolumeSnapshots();
+     *     $pagedResponse = $bareMetalSolutionClient->listVolumeSnapshots($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2714,7 +2630,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $bareMetalSolutionClient->listVolumeSnapshots();
+     *     $pagedResponse = $bareMetalSolutionClient->listVolumeSnapshots($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2723,11 +2639,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Parent value for ListVolumesRequest.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent value for ListVolumesRequest.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2747,15 +2662,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listVolumeSnapshots(array $optionalArgs = [])
+    public function listVolumeSnapshots($parent, array $optionalArgs = [])
     {
         $request = new ListVolumeSnapshotsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2785,8 +2697,9 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $bareMetalSolutionClient->listVolumes();
+     *     $pagedResponse = $bareMetalSolutionClient->listVolumes($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2794,7 +2707,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $bareMetalSolutionClient->listVolumes();
+     *     $pagedResponse = $bareMetalSolutionClient->listVolumes($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2803,11 +2716,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Parent value for ListVolumesRequest.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent value for ListVolumesRequest.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2829,15 +2741,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listVolumes(array $optionalArgs = [])
+    public function listVolumes($parent, array $optionalArgs = [])
     {
         $request = new ListVolumesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2872,20 +2781,20 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->renameInstance();
+     *     $formattedName = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $newInstanceId = 'new_instance_id';
+     *     $response = $bareMetalSolutionClient->renameInstance($formattedName, $newInstanceId);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name          Required. The `name` field is used to identify the instance.
+     *                              Format: projects/{project}/locations/{location}/instances/{instance}
+     * @param string $newInstanceId Required. The new `id` of the instance.
+     * @param array  $optionalArgs  {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The `name` field is used to identify the instance.
-     *           Format: projects/{project}/locations/{location}/instances/{instance}
-     *     @type string $newInstanceId
-     *           Required. The new `id` of the instance.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2896,19 +2805,16 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function renameInstance(array $optionalArgs = [])
-    {
+    public function renameInstance(
+        $name,
+        $newInstanceId,
+        array $optionalArgs = []
+    ) {
         $request = new RenameInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['newInstanceId'])) {
-            $request->setNewInstanceId($optionalArgs['newInstanceId']);
-        }
-
+        $request->setName($name);
+        $request->setNewInstanceId($newInstanceId);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2931,20 +2837,20 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->renameNetwork();
+     *     $formattedName = $bareMetalSolutionClient->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
+     *     $newNetworkId = 'new_network_id';
+     *     $response = $bareMetalSolutionClient->renameNetwork($formattedName, $newNetworkId);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The `name` field is used to identify the network.
+     *                             Format: projects/{project}/locations/{location}/networks/{network}
+     * @param string $newNetworkId Required. The new `id` of the network.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The `name` field is used to identify the network.
-     *           Format: projects/{project}/locations/{location}/networks/{network}
-     *     @type string $newNetworkId
-     *           Required. The new `id` of the network.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2955,19 +2861,16 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function renameNetwork(array $optionalArgs = [])
-    {
+    public function renameNetwork(
+        $name,
+        $newNetworkId,
+        array $optionalArgs = []
+    ) {
         $request = new RenameNetworkRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['newNetworkId'])) {
-            $request->setNewNetworkId($optionalArgs['newNetworkId']);
-        }
-
+        $request->setName($name);
+        $request->setNewNetworkId($newNetworkId);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2990,20 +2893,20 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->renameNfsShare();
+     *     $formattedName = $bareMetalSolutionClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
+     *     $newNfsshareId = 'new_nfsshare_id';
+     *     $response = $bareMetalSolutionClient->renameNfsShare($formattedName, $newNfsshareId);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name          Required. The `name` field is used to identify the nfsshare.
+     *                              Format: projects/{project}/locations/{location}/nfsshares/{nfsshare}
+     * @param string $newNfsshareId Required. The new `id` of the nfsshare.
+     * @param array  $optionalArgs  {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The `name` field is used to identify the nfsshare.
-     *           Format: projects/{project}/locations/{location}/nfsshares/{nfsshare}
-     *     @type string $newNfsshareId
-     *           Required. The new `id` of the nfsshare.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3014,19 +2917,16 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function renameNfsShare(array $optionalArgs = [])
-    {
+    public function renameNfsShare(
+        $name,
+        $newNfsshareId,
+        array $optionalArgs = []
+    ) {
         $request = new RenameNfsShareRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['newNfsshareId'])) {
-            $request->setNewNfsshareId($optionalArgs['newNfsshareId']);
-        }
-
+        $request->setName($name);
+        $request->setNewNfsshareId($newNfsshareId);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3049,20 +2949,20 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->renameVolume();
+     *     $formattedName = $bareMetalSolutionClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+     *     $newVolumeId = 'new_volume_id';
+     *     $response = $bareMetalSolutionClient->renameVolume($formattedName, $newVolumeId);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The `name` field is used to identify the volume.
+     *                             Format: projects/{project}/locations/{location}/volumes/{volume}
+     * @param string $newVolumeId  Required. The new `id` of the volume.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The `name` field is used to identify the volume.
-     *           Format: projects/{project}/locations/{location}/volumes/{volume}
-     *     @type string $newVolumeId
-     *           Required. The new `id` of the volume.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3073,19 +2973,13 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function renameVolume(array $optionalArgs = [])
+    public function renameVolume($name, $newVolumeId, array $optionalArgs = [])
     {
         $request = new RenameVolumeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['newVolumeId'])) {
-            $request->setNewVolumeId($optionalArgs['newVolumeId']);
-        }
-
+        $request->setName($name);
+        $request->setNewVolumeId($newVolumeId);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3108,7 +3002,8 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->resetInstance();
+     *     $formattedName = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $operationResponse = $bareMetalSolutionClient->resetInstance($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3119,7 +3014,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->resetInstance();
+     *     $operationResponse = $bareMetalSolutionClient->resetInstance($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'resetInstance');
@@ -3139,11 +3034,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3154,15 +3048,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function resetInstance(array $optionalArgs = [])
+    public function resetInstance($name, array $optionalArgs = [])
     {
         $request = new ResetInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3184,7 +3075,8 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->resizeVolume();
+     *     $formattedVolume = $bareMetalSolutionClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+     *     $operationResponse = $bareMetalSolutionClient->resizeVolume($formattedVolume);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3195,7 +3087,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->resizeVolume();
+     *     $operationResponse = $bareMetalSolutionClient->resizeVolume($formattedVolume);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'resizeVolume');
@@ -3215,11 +3107,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $volume       Required. Volume to resize.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $volume
-     *           Required. Volume to resize.
      *     @type int $sizeGib
      *           New Volume size, in GiB.
      *     @type RetrySettings|array $retrySettings
@@ -3232,15 +3123,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function resizeVolume(array $optionalArgs = [])
+    public function resizeVolume($volume, array $optionalArgs = [])
     {
         $request = new ResizeVolumeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['volume'])) {
-            $request->setVolume($optionalArgs['volume']);
-            $requestParamHeaders['volume'] = $optionalArgs['volume'];
-        }
-
+        $request->setVolume($volume);
+        $requestParamHeaders['volume'] = $volume;
         if (isset($optionalArgs['sizeGib'])) {
             $request->setSizeGib($optionalArgs['sizeGib']);
         }
@@ -3267,7 +3155,8 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->restoreVolumeSnapshot();
+     *     $formattedVolumeSnapshot = $bareMetalSolutionClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+     *     $operationResponse = $bareMetalSolutionClient->restoreVolumeSnapshot($formattedVolumeSnapshot);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3278,7 +3167,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->restoreVolumeSnapshot();
+     *     $operationResponse = $bareMetalSolutionClient->restoreVolumeSnapshot($formattedVolumeSnapshot);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'restoreVolumeSnapshot');
@@ -3298,12 +3187,11 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $volumeSnapshot Required. Name of the snapshot which will be used to restore its parent
+     *                               volume.
+     * @param array  $optionalArgs   {
      *     Optional.
      *
-     *     @type string $volumeSnapshot
-     *           Required. Name of the snapshot which will be used to restore its parent
-     *           volume.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3314,16 +3202,14 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function restoreVolumeSnapshot(array $optionalArgs = [])
-    {
+    public function restoreVolumeSnapshot(
+        $volumeSnapshot,
+        array $optionalArgs = []
+    ) {
         $request = new RestoreVolumeSnapshotRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['volumeSnapshot'])) {
-            $request->setVolumeSnapshot($optionalArgs['volumeSnapshot']);
-            $requestParamHeaders['volume_snapshot'] =
-                $optionalArgs['volumeSnapshot'];
-        }
-
+        $request->setVolumeSnapshot($volumeSnapshot);
+        $requestParamHeaders['volume_snapshot'] = $volumeSnapshot;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3345,7 +3231,8 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->startInstance();
+     *     $formattedName = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $operationResponse = $bareMetalSolutionClient->startInstance($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3356,7 +3243,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->startInstance();
+     *     $operationResponse = $bareMetalSolutionClient->startInstance($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'startInstance');
@@ -3376,11 +3263,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3391,15 +3277,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function startInstance(array $optionalArgs = [])
+    public function startInstance($name, array $optionalArgs = [])
     {
         $request = new StartInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3421,7 +3304,8 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->stopInstance();
+     *     $formattedName = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $operationResponse = $bareMetalSolutionClient->stopInstance($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3432,7 +3316,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->stopInstance();
+     *     $operationResponse = $bareMetalSolutionClient->stopInstance($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'stopInstance');
@@ -3452,11 +3336,10 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3467,15 +3350,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function stopInstance(array $optionalArgs = [])
+    public function stopInstance($name, array $optionalArgs = [])
     {
         $request = new StopInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3497,20 +3377,20 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->submitProvisioningConfig();
+     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $provisioningConfig = new ProvisioningConfig();
+     *     $response = $bareMetalSolutionClient->submitProvisioningConfig($formattedParent, $provisioningConfig);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string             $parent             Required. The parent project and location containing the
+     *                                               ProvisioningConfig.
+     * @param ProvisioningConfig $provisioningConfig Required. The ProvisioningConfig to create.
+     * @param array              $optionalArgs       {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent project and location containing the
-     *           ProvisioningConfig.
-     *     @type ProvisioningConfig $provisioningConfig
-     *           Required. The ProvisioningConfig to create.
      *     @type string $email
      *           Optional. Email provided to send a confirmation with provisioning config
      *           to.
@@ -3524,21 +3404,16 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function submitProvisioningConfig(array $optionalArgs = [])
-    {
+    public function submitProvisioningConfig(
+        $parent,
+        $provisioningConfig,
+        array $optionalArgs = []
+    ) {
         $request = new SubmitProvisioningConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['provisioningConfig'])) {
-            $request->setProvisioningConfig(
-                $optionalArgs['provisioningConfig']
-            );
-        }
-
+        $request->setParent($parent);
+        $request->setProvisioningConfig($provisioningConfig);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['email'])) {
             $request->setEmail($optionalArgs['email']);
         }
@@ -3564,7 +3439,8 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->updateInstance();
+     *     $instance = new Instance();
+     *     $operationResponse = $bareMetalSolutionClient->updateInstance($instance);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3575,7 +3451,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->updateInstance();
+     *     $operationResponse = $bareMetalSolutionClient->updateInstance($instance);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'updateInstance');
@@ -3595,14 +3471,13 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Instance $instance     Required. The server to update.
+     *
+     *                               The `name` field is used to identify the instance to update.
+     *                               Format: projects/{project}/locations/{location}/instances/{instance}
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type Instance $instance
-     *           Required. The server to update.
-     *
-     *           The `name` field is used to identify the instance to update.
-     *           Format: projects/{project}/locations/{location}/instances/{instance}
      *     @type FieldMask $updateMask
      *           The list of fields to update.
      *           The currently supported fields are:
@@ -3619,14 +3494,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateInstance(array $optionalArgs = [])
+    public function updateInstance($instance, array $optionalArgs = [])
     {
         $request = new UpdateInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-        }
-
+        $request->setInstance($instance);
+        $requestParamHeaders['instance.name'] = $instance->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -3652,7 +3525,8 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->updateNetwork();
+     *     $network = new Network();
+     *     $operationResponse = $bareMetalSolutionClient->updateNetwork($network);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3663,7 +3537,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->updateNetwork();
+     *     $operationResponse = $bareMetalSolutionClient->updateNetwork($network);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'updateNetwork');
@@ -3683,14 +3557,13 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Network $network      Required. The network to update.
+     *
+     *                              The `name` field is used to identify the instance to update.
+     *                              Format: projects/{project}/locations/{location}/networks/{network}
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type Network $network
-     *           Required. The network to update.
-     *
-     *           The `name` field is used to identify the instance to update.
-     *           Format: projects/{project}/locations/{location}/networks/{network}
      *     @type FieldMask $updateMask
      *           The list of fields to update.
      *           The only currently supported fields are:
@@ -3705,14 +3578,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateNetwork(array $optionalArgs = [])
+    public function updateNetwork($network, array $optionalArgs = [])
     {
         $request = new UpdateNetworkRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['network'])) {
-            $request->setNetwork($optionalArgs['network']);
-        }
-
+        $request->setNetwork($network);
+        $requestParamHeaders['network.name'] = $network->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -3738,7 +3609,8 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->updateNfsShare();
+     *     $nfsShare = new NfsShare();
+     *     $operationResponse = $bareMetalSolutionClient->updateNfsShare($nfsShare);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3749,7 +3621,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->updateNfsShare();
+     *     $operationResponse = $bareMetalSolutionClient->updateNfsShare($nfsShare);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'updateNfsShare');
@@ -3769,14 +3641,13 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param NfsShare $nfsShare     Required. The NFS share to update.
+     *
+     *                               The `name` field is used to identify the NFS share to update.
+     *                               Format: projects/{project}/locations/{location}/nfsShares/{nfs_share}
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type NfsShare $nfsShare
-     *           Required. The NFS share to update.
-     *
-     *           The `name` field is used to identify the NFS share to update.
-     *           Format: projects/{project}/locations/{location}/nfsShares/{nfs_share}
      *     @type FieldMask $updateMask
      *           The list of fields to update.
      *           The only currently supported fields are:
@@ -3792,14 +3663,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateNfsShare(array $optionalArgs = [])
+    public function updateNfsShare($nfsShare, array $optionalArgs = [])
     {
         $request = new UpdateNfsShareRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['nfsShare'])) {
-            $request->setNfsShare($optionalArgs['nfsShare']);
-        }
-
+        $request->setNfsShare($nfsShare);
+        $requestParamHeaders['nfs_share.name'] = $nfsShare->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -3825,19 +3694,19 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $response = $bareMetalSolutionClient->updateProvisioningConfig();
+     *     $provisioningConfig = new ProvisioningConfig();
+     *     $updateMask = new FieldMask();
+     *     $response = $bareMetalSolutionClient->updateProvisioningConfig($provisioningConfig, $updateMask);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param ProvisioningConfig $provisioningConfig Required. The ProvisioningConfig to update.
+     * @param FieldMask          $updateMask         Required. The list of fields to update.
+     * @param array              $optionalArgs       {
      *     Optional.
      *
-     *     @type ProvisioningConfig $provisioningConfig
-     *           Required. The ProvisioningConfig to update.
-     *     @type FieldMask $updateMask
-     *           Required. The list of fields to update.
      *     @type string $email
      *           Optional. Email provided to send a confirmation with provisioning config
      *           to.
@@ -3851,20 +3720,18 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateProvisioningConfig(array $optionalArgs = [])
-    {
+    public function updateProvisioningConfig(
+        $provisioningConfig,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateProvisioningConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['provisioningConfig'])) {
-            $request->setProvisioningConfig(
-                $optionalArgs['provisioningConfig']
-            );
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setProvisioningConfig($provisioningConfig);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders[
+            'provisioning_config.name'
+        ] = $provisioningConfig->getName();
         if (isset($optionalArgs['email'])) {
             $request->setEmail($optionalArgs['email']);
         }
@@ -3890,7 +3757,8 @@ class BareMetalSolutionGapicClient
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $operationResponse = $bareMetalSolutionClient->updateVolume();
+     *     $volume = new Volume();
+     *     $operationResponse = $bareMetalSolutionClient->updateVolume($volume);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3901,7 +3769,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->updateVolume();
+     *     $operationResponse = $bareMetalSolutionClient->updateVolume($volume);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'updateVolume');
@@ -3921,14 +3789,13 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Volume $volume       Required. The volume to update.
+     *
+     *                             The `name` field is used to identify the volume to update.
+     *                             Format: projects/{project}/locations/{location}/volumes/{volume}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type Volume $volume
-     *           Required. The volume to update.
-     *
-     *           The `name` field is used to identify the volume to update.
-     *           Format: projects/{project}/locations/{location}/volumes/{volume}
      *     @type FieldMask $updateMask
      *           The list of fields to update.
      *           The only currently supported fields are:
@@ -3943,14 +3810,12 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateVolume(array $optionalArgs = [])
+    public function updateVolume($volume, array $optionalArgs = [])
     {
         $request = new UpdateVolumeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['volume'])) {
-            $request->setVolume($optionalArgs['volume']);
-        }
-
+        $request->setVolume($volume);
+        $requestParamHeaders['volume.name'] = $volume->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

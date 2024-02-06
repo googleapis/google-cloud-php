@@ -58,7 +58,8 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     private $params;
 
     /**
-     * @param string                                 $name    Required. Name of the model requested to serve the prediction.
+     * @param string                                 $name    Required. Name of the model requested to serve the prediction. Please see
+     *                                                        {@see PredictionServiceClient::modelName()} for help formatting this field.
      * @param \Google\Cloud\AutoMl\V1\ExamplePayload $payload Required. Payload to perform a prediction on. The payload must match the
      *                                                        problem type that the model was trained to solve.
      * @param array                                  $params  Additional domain-specific parameters, any string must be up to 25000

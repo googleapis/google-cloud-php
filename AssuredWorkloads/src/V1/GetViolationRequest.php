@@ -28,6 +28,7 @@ class GetViolationRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The resource name of the Violation to fetch (ie. Violation.name).
      *                     Format:
      *                     organizations/{organization}/locations/{location}/workloads/{workload}/violations/{violation}
+     *                     Please see {@see AssuredWorkloadsServiceClient::violationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AssuredWorkloads\V1\GetViolationRequest
      *

@@ -685,7 +685,9 @@ class BetaAnalyticsDataGapicClient
      * ```
      * $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
      * try {
-     *     $operationResponse = $betaAnalyticsDataClient->createAudienceExport();
+     *     $formattedParent = $betaAnalyticsDataClient->propertyName('[PROPERTY]');
+     *     $audienceExport = new AudienceExport();
+     *     $operationResponse = $betaAnalyticsDataClient->createAudienceExport($formattedParent, $audienceExport);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -696,7 +698,7 @@ class BetaAnalyticsDataGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $betaAnalyticsDataClient->createAudienceExport();
+     *     $operationResponse = $betaAnalyticsDataClient->createAudienceExport($formattedParent, $audienceExport);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $betaAnalyticsDataClient->resumeOperation($operationName, 'createAudienceExport');
@@ -716,14 +718,12 @@ class BetaAnalyticsDataGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string         $parent         Required. The parent resource where this audience export will be created.
+     *                                       Format: `properties/{property}`
+     * @param AudienceExport $audienceExport Required. The audience export to create.
+     * @param array          $optionalArgs   {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent resource where this audience export will be created.
-     *           Format: `properties/{property}`
-     *     @type AudienceExport $audienceExport
-     *           Required. The audience export to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -736,19 +736,16 @@ class BetaAnalyticsDataGapicClient
      *
      * @experimental
      */
-    public function createAudienceExport(array $optionalArgs = [])
-    {
+    public function createAudienceExport(
+        $parent,
+        $audienceExport,
+        array $optionalArgs = []
+    ) {
         $request = new CreateAudienceExportRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['audienceExport'])) {
-            $request->setAudienceExport($optionalArgs['audienceExport']);
-        }
-
+        $request->setParent($parent);
+        $request->setAudienceExport($audienceExport);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -781,18 +778,18 @@ class BetaAnalyticsDataGapicClient
      * ```
      * $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
      * try {
-     *     $response = $betaAnalyticsDataClient->getAudienceExport();
+     *     $formattedName = $betaAnalyticsDataClient->audienceExportName('[PROPERTY]', '[AUDIENCE_EXPORT]');
+     *     $response = $betaAnalyticsDataClient->getAudienceExport($formattedName);
      * } finally {
      *     $betaAnalyticsDataClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The audience export resource name.
+     *                             Format: `properties/{property}/audienceExports/{audience_export}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The audience export resource name.
-     *           Format: `properties/{property}/audienceExports/{audience_export}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -805,15 +802,12 @@ class BetaAnalyticsDataGapicClient
      *
      * @experimental
      */
-    public function getAudienceExport(array $optionalArgs = [])
+    public function getAudienceExport($name, array $optionalArgs = [])
     {
         $request = new GetAudienceExportRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -844,27 +838,27 @@ class BetaAnalyticsDataGapicClient
      * ```
      * $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
      * try {
-     *     $response = $betaAnalyticsDataClient->getMetadata();
+     *     $formattedName = $betaAnalyticsDataClient->metadataName('[PROPERTY]');
+     *     $response = $betaAnalyticsDataClient->getMetadata($formattedName);
      * } finally {
      *     $betaAnalyticsDataClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the metadata to retrieve. This name field is
+     *                             specified in the URL path and not URL parameters. Property is a numeric
+     *                             Google Analytics GA4 Property identifier. To learn more, see [where to find
+     *                             your Property
+     *                             ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
+     *
+     *                             Example: properties/1234/metadata
+     *
+     *                             Set the Property ID to 0 for dimensions and metrics common to all
+     *                             properties. In this special mode, this method will not return custom
+     *                             dimensions and metrics.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the metadata to retrieve. This name field is
-     *           specified in the URL path and not URL parameters. Property is a numeric
-     *           Google Analytics GA4 Property identifier. To learn more, see [where to find
-     *           your Property
-     *           ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
-     *
-     *           Example: properties/1234/metadata
-     *
-     *           Set the Property ID to 0 for dimensions and metrics common to all
-     *           properties. In this special mode, this method will not return custom
-     *           dimensions and metrics.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -877,15 +871,12 @@ class BetaAnalyticsDataGapicClient
      *
      * @experimental
      */
-    public function getMetadata(array $optionalArgs = [])
+    public function getMetadata($name, array $optionalArgs = [])
     {
         $request = new GetMetadataRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -921,8 +912,9 @@ class BetaAnalyticsDataGapicClient
      * ```
      * $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
      * try {
+     *     $formattedParent = $betaAnalyticsDataClient->propertyName('[PROPERTY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $betaAnalyticsDataClient->listAudienceExports();
+     *     $pagedResponse = $betaAnalyticsDataClient->listAudienceExports($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -930,7 +922,7 @@ class BetaAnalyticsDataGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $betaAnalyticsDataClient->listAudienceExports();
+     *     $pagedResponse = $betaAnalyticsDataClient->listAudienceExports($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -939,12 +931,11 @@ class BetaAnalyticsDataGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. All audience exports for this property will be listed in the
+     *                             response. Format: `properties/{property}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. All audience exports for this property will be listed in the
-     *           response. Format: `properties/{property}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -966,15 +957,12 @@ class BetaAnalyticsDataGapicClient
      *
      * @experimental
      */
-    public function listAudienceExports(array $optionalArgs = [])
+    public function listAudienceExports($parent, array $optionalArgs = [])
     {
         $request = new ListAudienceExportsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1022,18 +1010,18 @@ class BetaAnalyticsDataGapicClient
      * ```
      * $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
      * try {
-     *     $response = $betaAnalyticsDataClient->queryAudienceExport();
+     *     $name = 'name';
+     *     $response = $betaAnalyticsDataClient->queryAudienceExport($name);
      * } finally {
      *     $betaAnalyticsDataClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the audience export to retrieve users from.
+     *                             Format: `properties/{property}/audienceExports/{audience_export}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the audience export to retrieve users from.
-     *           Format: `properties/{property}/audienceExports/{audience_export}`
      *     @type int $offset
      *           Optional. The row count of the start row. The first row is counted as row
      *           0.
@@ -1067,15 +1055,12 @@ class BetaAnalyticsDataGapicClient
      *
      * @experimental
      */
-    public function queryAudienceExport(array $optionalArgs = [])
+    public function queryAudienceExport($name, array $optionalArgs = [])
     {
         $request = new QueryAudienceExportRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['offset'])) {
             $request->setOffset($optionalArgs['offset']);
         }

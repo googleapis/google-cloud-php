@@ -26,6 +26,7 @@ class DeleteFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
      *                     Example: properties/1234/firebaseLinks/5678
+     *                     Please see {@see AnalyticsAdminServiceClient::firebaseLinkName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1beta\DeleteFirebaseLinkRequest
      *

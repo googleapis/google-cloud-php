@@ -34,19 +34,18 @@ use Google\Cloud\ApigeeRegistry\V1\GetArtifactContentsRequest;
  * is to return the artifact uncompressed (the mime_type response field
  * indicates the exact format returned).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the artifact whose contents should be retrieved.
+ *                              Format: `{parent}/artifacts/*`
+ *                              Please see {@see RegistryClient::artifactName()} for help formatting this field.
  */
-function get_artifact_contents_sample(): void
+function get_artifact_contents_sample(string $formattedName): void
 {
     // Create a client.
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $request = new GetArtifactContentsRequest();
+    $request = (new GetArtifactContentsRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -56,5 +55,21 @@ function get_artifact_contents_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = RegistryClient::artifactName('[PROJECT]', '[LOCATION]', '[ARTIFACT]');
+
+    get_artifact_contents_sample($formattedName);
 }
 // [END apigeeregistry_v1_generated_Registry_GetArtifactContents_sync]

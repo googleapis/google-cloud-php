@@ -31,13 +31,10 @@ use Google\Cloud\ArtifactRegistry\V1beta2\Repository;
 /**
  * Lists repositories.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the parent resource whose repositories will be listed. Please see
+ *                                {@see ArtifactRegistryClient::locationName()} for help formatting this field.
  */
-function list_repositories_sample(): void
+function list_repositories_sample(string $formattedParent): void
 {
     // Create a client.
     $artifactRegistryClient = new ArtifactRegistryClient();
@@ -45,7 +42,7 @@ function list_repositories_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $artifactRegistryClient->listRepositories();
+        $response = $artifactRegistryClient->listRepositories($formattedParent);
 
         /** @var Repository $element */
         foreach ($response as $element) {
@@ -54,5 +51,21 @@ function list_repositories_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ArtifactRegistryClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_repositories_sample($formattedParent);
 }
 // [END artifactregistry_v1beta2_generated_ArtifactRegistry_ListRepositories_sync]

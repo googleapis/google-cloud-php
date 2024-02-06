@@ -43,7 +43,9 @@ function replace_artifact_sample(): void
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $request = new ReplaceArtifactRequest();
+    $artifact = new Artifact();
+    $request = (new ReplaceArtifactRequest())
+        ->setArtifact($artifact);
 
     // Call the API and handle any network failures.
     try {

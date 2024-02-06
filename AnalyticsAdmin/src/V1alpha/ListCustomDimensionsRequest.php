@@ -41,6 +41,7 @@ class ListCustomDimensionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Example format: properties/1234
+     *                       Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\ListCustomDimensionsRequest
      *

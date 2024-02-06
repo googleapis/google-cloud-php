@@ -105,6 +105,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -176,7 +177,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateNfsShareRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $nfsShare = new NfsShare();
+        $request = (new CreateNfsShareRequest())
+            ->setParent($formattedParent)
+            ->setNfsShare($nfsShare);
         $response = $gapicClient->createNfsShare($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -187,6 +193,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateNfsShare', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getNfsShare();
+        $this->assertProtobufEquals($nfsShare, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createNfsShareTest');
         $response->pollUntilComplete([
@@ -237,7 +247,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateNfsShareRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $nfsShare = new NfsShare();
+        $request = (new CreateNfsShareRequest())
+            ->setParent($formattedParent)
+            ->setNfsShare($nfsShare);
         $response = $gapicClient->createNfsShare($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -289,7 +304,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setCustomId($customId);
         $transport->addResponse($expectedResponse);
-        $request = new CreateProvisioningConfigRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $provisioningConfig = new ProvisioningConfig();
+        $request = (new CreateProvisioningConfigRequest())
+            ->setParent($formattedParent)
+            ->setProvisioningConfig($provisioningConfig);
         $response = $gapicClient->createProvisioningConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -297,6 +317,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateProvisioningConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getProvisioningConfig();
+        $this->assertProtobufEquals($provisioningConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -318,7 +342,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateProvisioningConfigRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $provisioningConfig = new ProvisioningConfig();
+        $request = (new CreateProvisioningConfigRequest())
+            ->setParent($formattedParent)
+            ->setProvisioningConfig($provisioningConfig);
         try {
             $gapicClient->createProvisioningConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -347,7 +376,14 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setPublicKey($publicKey);
         $transport->addResponse($expectedResponse);
-        $request = new CreateSSHKeyRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $sshKey = new SSHKey();
+        $sshKeyId = 'sshKeyId-385603310';
+        $request = (new CreateSSHKeyRequest())
+            ->setParent($formattedParent)
+            ->setSshKey($sshKey)
+            ->setSshKeyId($sshKeyId);
         $response = $gapicClient->createSSHKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -355,6 +391,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateSSHKey', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getSshKey();
+        $this->assertProtobufEquals($sshKey, $actualValue);
+        $actualValue = $actualRequestObject->getSshKeyId();
+        $this->assertProtobufEquals($sshKeyId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -376,7 +418,14 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateSSHKeyRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $sshKey = new SSHKey();
+        $sshKeyId = 'sshKeyId-385603310';
+        $request = (new CreateSSHKeyRequest())
+            ->setParent($formattedParent)
+            ->setSshKey($sshKey)
+            ->setSshKeyId($sshKeyId);
         try {
             $gapicClient->createSSHKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -409,7 +458,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setStorageVolume($storageVolume);
         $transport->addResponse($expectedResponse);
-        $request = new CreateVolumeSnapshotRequest();
+        // Mock request
+        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $volumeSnapshot = new VolumeSnapshot();
+        $request = (new CreateVolumeSnapshotRequest())
+            ->setParent($formattedParent)
+            ->setVolumeSnapshot($volumeSnapshot);
         $response = $gapicClient->createVolumeSnapshot($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -417,6 +471,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateVolumeSnapshot', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getVolumeSnapshot();
+        $this->assertProtobufEquals($volumeSnapshot, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -438,7 +496,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateVolumeSnapshotRequest();
+        // Mock request
+        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $volumeSnapshot = new VolumeSnapshot();
+        $request = (new CreateVolumeSnapshotRequest())
+            ->setParent($formattedParent)
+            ->setVolumeSnapshot($volumeSnapshot);
         try {
             $gapicClient->createVolumeSnapshot($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -481,7 +544,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteNfsShareRequest();
+        // Mock request
+        $formattedName = $gapicClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
+        $request = (new DeleteNfsShareRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteNfsShare($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -492,6 +558,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/DeleteNfsShare', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteNfsShareTest');
         $response->pollUntilComplete([
@@ -542,7 +610,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteNfsShareRequest();
+        // Mock request
+        $formattedName = $gapicClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
+        $request = (new DeleteNfsShareRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteNfsShare($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -576,13 +647,18 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteSSHKeyRequest();
+        // Mock request
+        $formattedName = $gapicClient->sshKeyName('[PROJECT]', '[LOCATION]', '[SSH_KEY]');
+        $request = (new DeleteSSHKeyRequest())
+            ->setName($formattedName);
         $gapicClient->deleteSSHKey($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/DeleteSSHKey', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -604,7 +680,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteSSHKeyRequest();
+        // Mock request
+        $formattedName = $gapicClient->sshKeyName('[PROJECT]', '[LOCATION]', '[SSH_KEY]');
+        $request = (new DeleteSSHKeyRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteSSHKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -629,13 +708,18 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteVolumeSnapshotRequest();
+        // Mock request
+        $formattedName = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+        $request = (new DeleteVolumeSnapshotRequest())
+            ->setName($formattedName);
         $gapicClient->deleteVolumeSnapshot($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/DeleteVolumeSnapshot', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -657,7 +741,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteVolumeSnapshotRequest();
+        // Mock request
+        $formattedName = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+        $request = (new DeleteVolumeSnapshotRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteVolumeSnapshot($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -720,7 +807,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DetachLunRequest();
+        // Mock request
+        $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $formattedLun = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+        $request = (new DetachLunRequest())
+            ->setInstance($formattedInstance)
+            ->setLun($formattedLun);
         $response = $gapicClient->detachLun($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -731,6 +823,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/DetachLun', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstance();
+        $this->assertProtobufEquals($formattedInstance, $actualValue);
+        $actualValue = $actualApiRequestObject->getLun();
+        $this->assertProtobufEquals($formattedLun, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/detachLunTest');
         $response->pollUntilComplete([
@@ -781,7 +877,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DetachLunRequest();
+        // Mock request
+        $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $formattedLun = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+        $request = (new DetachLunRequest())
+            ->setInstance($formattedInstance)
+            ->setLun($formattedLun);
         $response = $gapicClient->detachLun($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -833,7 +934,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DisableInteractiveSerialConsoleRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new DisableInteractiveSerialConsoleRequest())
+            ->setName($formattedName);
         $response = $gapicClient->disableInteractiveSerialConsole($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -844,6 +948,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/DisableInteractiveSerialConsole', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/disableInteractiveSerialConsoleTest');
         $response->pollUntilComplete([
@@ -894,7 +1000,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DisableInteractiveSerialConsoleRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new DisableInteractiveSerialConsoleRequest())
+            ->setName($formattedName);
         $response = $gapicClient->disableInteractiveSerialConsole($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -946,7 +1055,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new EnableInteractiveSerialConsoleRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new EnableInteractiveSerialConsoleRequest())
+            ->setName($formattedName);
         $response = $gapicClient->enableInteractiveSerialConsole($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -957,6 +1069,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/EnableInteractiveSerialConsole', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/enableInteractiveSerialConsoleTest');
         $response->pollUntilComplete([
@@ -1007,7 +1121,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new EnableInteractiveSerialConsoleRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new EnableInteractiveSerialConsoleRequest())
+            ->setName($formattedName);
         $response = $gapicClient->enableInteractiveSerialConsole($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1059,7 +1176,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new EvictLunRequest();
+        // Mock request
+        $formattedName = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+        $request = (new EvictLunRequest())
+            ->setName($formattedName);
         $response = $gapicClient->evictLun($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1070,6 +1190,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/EvictLun', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/evictLunTest');
         $response->pollUntilComplete([
@@ -1120,7 +1242,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new EvictLunRequest();
+        // Mock request
+        $formattedName = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+        $request = (new EvictLunRequest())
+            ->setName($formattedName);
         $response = $gapicClient->evictLun($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1172,7 +1297,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new EvictVolumeRequest();
+        // Mock request
+        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $request = (new EvictVolumeRequest())
+            ->setName($formattedName);
         $response = $gapicClient->evictVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1183,6 +1311,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/EvictVolume', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/evictVolumeTest');
         $response->pollUntilComplete([
@@ -1233,7 +1363,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new EvictVolumeRequest();
+        // Mock request
+        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $request = (new EvictVolumeRequest())
+            ->setName($formattedName);
         $response = $gapicClient->evictVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1287,7 +1420,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setLoginInfo($loginInfo);
         $expectedResponse->setFirmwareVersion($firmwareVersion);
         $transport->addResponse($expectedResponse);
-        $request = new GetInstanceRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new GetInstanceRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getInstance($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1295,6 +1431,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/GetInstance', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1316,7 +1454,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetInstanceRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new GetInstanceRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getInstance($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1355,7 +1496,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setBootLun($bootLun);
         $expectedResponse->setWwid($wwid);
         $transport->addResponse($expectedResponse);
-        $request = new GetLunRequest();
+        // Mock request
+        $formattedName = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+        $request = (new GetLunRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getLun($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1363,6 +1507,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/GetLun', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1384,7 +1530,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetLunRequest();
+        // Mock request
+        $formattedName = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+        $request = (new GetLunRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getLun($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1427,7 +1576,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setJumboFramesEnabled($jumboFramesEnabled);
         $expectedResponse->setGatewayIp($gatewayIp);
         $transport->addResponse($expectedResponse);
-        $request = new GetNetworkRequest();
+        // Mock request
+        $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
+        $request = (new GetNetworkRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getNetwork($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1435,6 +1587,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/GetNetwork', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1456,7 +1610,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetNetworkRequest();
+        // Mock request
+        $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
+        $request = (new GetNetworkRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getNetwork($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1491,7 +1648,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setVolume($volume);
         $expectedResponse->setRequestedSizeGib($requestedSizeGib);
         $transport->addResponse($expectedResponse);
-        $request = new GetNfsShareRequest();
+        // Mock request
+        $formattedName = $gapicClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
+        $request = (new GetNfsShareRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getNfsShare($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1499,6 +1659,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/GetNfsShare', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1520,7 +1682,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetNfsShareRequest();
+        // Mock request
+        $formattedName = $gapicClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
+        $request = (new GetNfsShareRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getNfsShare($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1563,7 +1728,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setCustomId($customId);
         $transport->addResponse($expectedResponse);
-        $request = new GetProvisioningConfigRequest();
+        // Mock request
+        $formattedName = $gapicClient->provisioningConfigName('[PROJECT]', '[LOCATION]', '[PROVISIONING_CONFIG]');
+        $request = (new GetProvisioningConfigRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getProvisioningConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1571,6 +1739,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/GetProvisioningConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1592,7 +1762,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetProvisioningConfigRequest();
+        // Mock request
+        $formattedName = $gapicClient->provisioningConfigName('[PROJECT]', '[LOCATION]', '[PROVISIONING_CONFIG]');
+        $request = (new GetProvisioningConfigRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getProvisioningConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1645,7 +1818,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setNotes($notes);
         $expectedResponse->setAttached($attached);
         $transport->addResponse($expectedResponse);
-        $request = new GetVolumeRequest();
+        // Mock request
+        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $request = (new GetVolumeRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getVolume($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1653,6 +1829,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/GetVolume', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1674,7 +1852,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetVolumeRequest();
+        // Mock request
+        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $request = (new GetVolumeRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getVolume($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1707,7 +1888,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setStorageVolume($storageVolume);
         $transport->addResponse($expectedResponse);
-        $request = new GetVolumeSnapshotRequest();
+        // Mock request
+        $formattedName = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+        $request = (new GetVolumeSnapshotRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getVolumeSnapshot($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1715,6 +1899,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/GetVolumeSnapshot', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1736,7 +1922,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetVolumeSnapshotRequest();
+        // Mock request
+        $formattedName = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+        $request = (new GetVolumeSnapshotRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getVolumeSnapshot($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1768,7 +1957,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInstances($instances);
         $transport->addResponse($expectedResponse);
-        $request = new ListInstancesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListInstancesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listInstances($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1779,6 +1971,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ListInstances', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1800,7 +1994,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListInstancesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListInstancesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listInstances($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1832,7 +2029,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLuns($luns);
         $transport->addResponse($expectedResponse);
-        $request = new ListLunsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $request = (new ListLunsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listLuns($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1843,6 +2043,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ListLuns', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1864,7 +2066,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListLunsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $request = (new ListLunsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listLuns($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1889,7 +2094,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ListNetworkUsageResponse();
         $transport->addResponse($expectedResponse);
-        $request = new ListNetworkUsageRequest();
+        // Mock request
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListNetworkUsageRequest())
+            ->setLocation($formattedLocation);
         $response = $gapicClient->listNetworkUsage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1897,6 +2105,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ListNetworkUsage', $actualFuncCall);
+        $actualValue = $actualRequestObject->getLocation();
+        $this->assertProtobufEquals($formattedLocation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1918,7 +2128,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListNetworkUsageRequest();
+        // Mock request
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListNetworkUsageRequest())
+            ->setLocation($formattedLocation);
         try {
             $gapicClient->listNetworkUsage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1950,7 +2163,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNetworks($networks);
         $transport->addResponse($expectedResponse);
-        $request = new ListNetworksRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListNetworksRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listNetworks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1961,6 +2177,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ListNetworks', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1982,7 +2200,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListNetworksRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListNetworksRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listNetworks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2014,7 +2235,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNfsShares($nfsShares);
         $transport->addResponse($expectedResponse);
-        $request = new ListNfsSharesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListNfsSharesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listNfsShares($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2025,6 +2249,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ListNfsShares', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2046,7 +2272,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListNfsSharesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListNfsSharesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listNfsShares($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2078,7 +2307,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOsImages($osImages);
         $transport->addResponse($expectedResponse);
-        $request = new ListOSImagesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListOSImagesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listOSImages($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2089,6 +2321,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ListOSImages', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2110,7 +2344,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListOSImagesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListOSImagesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listOSImages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2142,7 +2379,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProvisioningQuotas($provisioningQuotas);
         $transport->addResponse($expectedResponse);
-        $request = new ListProvisioningQuotasRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListProvisioningQuotasRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listProvisioningQuotas($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2153,6 +2393,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ListProvisioningQuotas', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2174,7 +2416,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListProvisioningQuotasRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListProvisioningQuotasRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listProvisioningQuotas($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2206,7 +2451,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSshKeys($sshKeys);
         $transport->addResponse($expectedResponse);
-        $request = new ListSSHKeysRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListSSHKeysRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listSSHKeys($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2217,6 +2465,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ListSSHKeys', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2238,7 +2488,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListSSHKeysRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListSSHKeysRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listSSHKeys($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2270,7 +2523,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVolumeSnapshots($volumeSnapshots);
         $transport->addResponse($expectedResponse);
-        $request = new ListVolumeSnapshotsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $request = (new ListVolumeSnapshotsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listVolumeSnapshots($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2281,6 +2537,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ListVolumeSnapshots', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2302,7 +2560,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListVolumeSnapshotsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $request = (new ListVolumeSnapshotsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listVolumeSnapshots($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2334,7 +2595,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVolumes($volumes);
         $transport->addResponse($expectedResponse);
-        $request = new ListVolumesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListVolumesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listVolumes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2345,6 +2609,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ListVolumes', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2366,7 +2632,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListVolumesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListVolumesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listVolumes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2411,7 +2680,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setLoginInfo($loginInfo);
         $expectedResponse->setFirmwareVersion($firmwareVersion);
         $transport->addResponse($expectedResponse);
-        $request = new RenameInstanceRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $newInstanceId = 'newInstanceId-179130138';
+        $request = (new RenameInstanceRequest())
+            ->setName($formattedName)
+            ->setNewInstanceId($newInstanceId);
         $response = $gapicClient->renameInstance($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2419,6 +2693,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/RenameInstance', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getNewInstanceId();
+        $this->assertProtobufEquals($newInstanceId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2440,7 +2718,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new RenameInstanceRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $newInstanceId = 'newInstanceId-179130138';
+        $request = (new RenameInstanceRequest())
+            ->setName($formattedName)
+            ->setNewInstanceId($newInstanceId);
         try {
             $gapicClient->renameInstance($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2483,7 +2766,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setJumboFramesEnabled($jumboFramesEnabled);
         $expectedResponse->setGatewayIp($gatewayIp);
         $transport->addResponse($expectedResponse);
-        $request = new RenameNetworkRequest();
+        // Mock request
+        $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
+        $newNetworkId = 'newNetworkId-554751797';
+        $request = (new RenameNetworkRequest())
+            ->setName($formattedName)
+            ->setNewNetworkId($newNetworkId);
         $response = $gapicClient->renameNetwork($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2491,6 +2779,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/RenameNetwork', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getNewNetworkId();
+        $this->assertProtobufEquals($newNetworkId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2512,7 +2804,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new RenameNetworkRequest();
+        // Mock request
+        $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
+        $newNetworkId = 'newNetworkId-554751797';
+        $request = (new RenameNetworkRequest())
+            ->setName($formattedName)
+            ->setNewNetworkId($newNetworkId);
         try {
             $gapicClient->renameNetwork($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2547,7 +2844,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setVolume($volume);
         $expectedResponse->setRequestedSizeGib($requestedSizeGib);
         $transport->addResponse($expectedResponse);
-        $request = new RenameNfsShareRequest();
+        // Mock request
+        $formattedName = $gapicClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
+        $newNfsshareId = 'newNfsshareId814577687';
+        $request = (new RenameNfsShareRequest())
+            ->setName($formattedName)
+            ->setNewNfsshareId($newNfsshareId);
         $response = $gapicClient->renameNfsShare($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2555,6 +2857,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/RenameNfsShare', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getNewNfsshareId();
+        $this->assertProtobufEquals($newNfsshareId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2576,7 +2882,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new RenameNfsShareRequest();
+        // Mock request
+        $formattedName = $gapicClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
+        $newNfsshareId = 'newNfsshareId814577687';
+        $request = (new RenameNfsShareRequest())
+            ->setName($formattedName)
+            ->setNewNfsshareId($newNfsshareId);
         try {
             $gapicClient->renameNfsShare($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2629,7 +2940,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setNotes($notes);
         $expectedResponse->setAttached($attached);
         $transport->addResponse($expectedResponse);
-        $request = new RenameVolumeRequest();
+        // Mock request
+        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $newVolumeId = 'newVolumeId-468182911';
+        $request = (new RenameVolumeRequest())
+            ->setName($formattedName)
+            ->setNewVolumeId($newVolumeId);
         $response = $gapicClient->renameVolume($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2637,6 +2953,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/RenameVolume', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getNewVolumeId();
+        $this->assertProtobufEquals($newVolumeId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2658,7 +2978,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new RenameVolumeRequest();
+        // Mock request
+        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $newVolumeId = 'newVolumeId-468182911';
+        $request = (new RenameVolumeRequest())
+            ->setName($formattedName)
+            ->setNewVolumeId($newVolumeId);
         try {
             $gapicClient->renameVolume($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2701,7 +3026,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new ResetInstanceRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new ResetInstanceRequest())
+            ->setName($formattedName);
         $response = $gapicClient->resetInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2712,6 +3040,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ResetInstance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/resetInstanceTest');
         $response->pollUntilComplete([
@@ -2762,7 +3092,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new ResetInstanceRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new ResetInstanceRequest())
+            ->setName($formattedName);
         $response = $gapicClient->resetInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2842,7 +3175,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new ResizeVolumeRequest();
+        // Mock request
+        $formattedVolume = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $request = (new ResizeVolumeRequest())
+            ->setVolume($formattedVolume);
         $response = $gapicClient->resizeVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2853,6 +3189,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ResizeVolume', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getVolume();
+        $this->assertProtobufEquals($formattedVolume, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/resizeVolumeTest');
         $response->pollUntilComplete([
@@ -2903,7 +3241,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new ResizeVolumeRequest();
+        // Mock request
+        $formattedVolume = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $request = (new ResizeVolumeRequest())
+            ->setVolume($formattedVolume);
         $response = $gapicClient->resizeVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2963,7 +3304,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new RestoreVolumeSnapshotRequest();
+        // Mock request
+        $formattedVolumeSnapshot = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+        $request = (new RestoreVolumeSnapshotRequest())
+            ->setVolumeSnapshot($formattedVolumeSnapshot);
         $response = $gapicClient->restoreVolumeSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2974,6 +3318,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/RestoreVolumeSnapshot', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getVolumeSnapshot();
+        $this->assertProtobufEquals($formattedVolumeSnapshot, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/restoreVolumeSnapshotTest');
         $response->pollUntilComplete([
@@ -3024,7 +3370,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new RestoreVolumeSnapshotRequest();
+        // Mock request
+        $formattedVolumeSnapshot = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+        $request = (new RestoreVolumeSnapshotRequest())
+            ->setVolumeSnapshot($formattedVolumeSnapshot);
         $response = $gapicClient->restoreVolumeSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3076,7 +3425,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new StartInstanceRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new StartInstanceRequest())
+            ->setName($formattedName);
         $response = $gapicClient->startInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3087,6 +3439,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/StartInstance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/startInstanceTest');
         $response->pollUntilComplete([
@@ -3137,7 +3491,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new StartInstanceRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new StartInstanceRequest())
+            ->setName($formattedName);
         $response = $gapicClient->startInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3189,7 +3546,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new StopInstanceRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new StopInstanceRequest())
+            ->setName($formattedName);
         $response = $gapicClient->stopInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3200,6 +3560,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/StopInstance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/stopInstanceTest');
         $response->pollUntilComplete([
@@ -3250,7 +3612,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new StopInstanceRequest();
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new StopInstanceRequest())
+            ->setName($formattedName);
         $response = $gapicClient->stopInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3284,7 +3649,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SubmitProvisioningConfigResponse();
         $transport->addResponse($expectedResponse);
-        $request = new SubmitProvisioningConfigRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $provisioningConfig = new ProvisioningConfig();
+        $request = (new SubmitProvisioningConfigRequest())
+            ->setParent($formattedParent)
+            ->setProvisioningConfig($provisioningConfig);
         $response = $gapicClient->submitProvisioningConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3292,6 +3662,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/SubmitProvisioningConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getProvisioningConfig();
+        $this->assertProtobufEquals($provisioningConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3313,7 +3687,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SubmitProvisioningConfigRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $provisioningConfig = new ProvisioningConfig();
+        $request = (new SubmitProvisioningConfigRequest())
+            ->setParent($formattedParent)
+            ->setProvisioningConfig($provisioningConfig);
         try {
             $gapicClient->submitProvisioningConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3376,7 +3755,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateInstanceRequest();
+        // Mock request
+        $instance = new Instance();
+        $request = (new UpdateInstanceRequest())
+            ->setInstance($instance);
         $response = $gapicClient->updateInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3387,6 +3769,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateInstance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateInstanceTest');
         $response->pollUntilComplete([
@@ -3437,7 +3821,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateInstanceRequest();
+        // Mock request
+        $instance = new Instance();
+        $request = (new UpdateInstanceRequest())
+            ->setInstance($instance);
         $response = $gapicClient->updateInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3507,7 +3894,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateNetworkRequest();
+        // Mock request
+        $network = new Network();
+        $request = (new UpdateNetworkRequest())
+            ->setNetwork($network);
         $response = $gapicClient->updateNetwork($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3518,6 +3908,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateNetwork', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNetwork();
+        $this->assertProtobufEquals($network, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateNetworkTest');
         $response->pollUntilComplete([
@@ -3568,7 +3960,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateNetworkRequest();
+        // Mock request
+        $network = new Network();
+        $request = (new UpdateNetworkRequest())
+            ->setNetwork($network);
         $response = $gapicClient->updateNetwork($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3630,7 +4025,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateNfsShareRequest();
+        // Mock request
+        $nfsShare = new NfsShare();
+        $request = (new UpdateNfsShareRequest())
+            ->setNfsShare($nfsShare);
         $response = $gapicClient->updateNfsShare($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3641,6 +4039,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateNfsShare', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNfsShare();
+        $this->assertProtobufEquals($nfsShare, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateNfsShareTest');
         $response->pollUntilComplete([
@@ -3691,7 +4091,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateNfsShareRequest();
+        // Mock request
+        $nfsShare = new NfsShare();
+        $request = (new UpdateNfsShareRequest())
+            ->setNfsShare($nfsShare);
         $response = $gapicClient->updateNfsShare($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3743,7 +4146,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setCustomId($customId);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateProvisioningConfigRequest();
+        // Mock request
+        $provisioningConfig = new ProvisioningConfig();
+        $updateMask = new FieldMask();
+        $request = (new UpdateProvisioningConfigRequest())
+            ->setProvisioningConfig($provisioningConfig)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateProvisioningConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3751,6 +4159,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateProvisioningConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProvisioningConfig();
+        $this->assertProtobufEquals($provisioningConfig, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3772,7 +4184,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateProvisioningConfigRequest();
+        // Mock request
+        $provisioningConfig = new ProvisioningConfig();
+        $updateMask = new FieldMask();
+        $request = (new UpdateProvisioningConfigRequest())
+            ->setProvisioningConfig($provisioningConfig)
+            ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateProvisioningConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3843,7 +4260,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateVolumeRequest();
+        // Mock request
+        $volume = new Volume();
+        $request = (new UpdateVolumeRequest())
+            ->setVolume($volume);
         $response = $gapicClient->updateVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3854,6 +4274,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateVolume', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getVolume();
+        $this->assertProtobufEquals($volume, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateVolumeTest');
         $response->pollUntilComplete([
@@ -3904,7 +4326,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateVolumeRequest();
+        // Mock request
+        $volume = new Volume();
+        $request = (new UpdateVolumeRequest())
+            ->setVolume($volume);
         $response = $gapicClient->updateVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4090,7 +4515,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateNfsShareRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $nfsShare = new NfsShare();
+        $request = (new CreateNfsShareRequest())
+            ->setParent($formattedParent)
+            ->setNfsShare($nfsShare);
         $response = $gapicClient->createNfsShareAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4101,6 +4531,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateNfsShare', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getNfsShare();
+        $this->assertProtobufEquals($nfsShare, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createNfsShareTest');
         $response->pollUntilComplete([

@@ -26,6 +26,7 @@ class GetApiSpecContentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the spec whose contents should be retrieved.
      *                     Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
+     *                     Please see {@see RegistryClient::apiSpecName()} for help formatting this field.
      *
      * @return \Google\Cloud\ApigeeRegistry\V1\GetApiSpecContentsRequest
      *

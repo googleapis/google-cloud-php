@@ -37,6 +37,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                   $parent     Required. Parent resource of the Instance, of the form: `projects/&#42;/locations/*`
+     *                                                             Please see {@see ProvisioningClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\ApigeeRegistry\V1\Instance $instance   Required. The Instance.
      * @param string                                   $instanceId Required. Identifier to assign to the Instance. Must be unique within scope of the
      *                                                             parent resource.

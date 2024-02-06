@@ -36,21 +36,21 @@ use Google\Rpc\Status;
  * When you create a model, several model evaluations are created for it:
  * a global evaluation, and one evaluation for each annotation spec.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Resource name of the parent project where the model is being created. Please see
+ *                                {@see AutoMlClient::locationName()} for help formatting this field.
  */
-function create_model_sample(): void
+function create_model_sample(string $formattedParent): void
 {
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $model = new Model();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $autoMlClient->createModel();
+        $response = $autoMlClient->createModel($formattedParent, $model);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -65,5 +65,21 @@ function create_model_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AutoMlClient::locationName('[PROJECT]', '[LOCATION]');
+
+    create_model_sample($formattedParent);
 }
 // [END automl_v1beta1_generated_AutoMl_CreateModel_sync]

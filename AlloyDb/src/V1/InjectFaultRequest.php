@@ -57,7 +57,8 @@ class InjectFaultRequest extends \Google\Protobuf\Internal\Message
      * @param int    $faultType Required. The type of fault to be injected in an instance.
      *                          For allowed values, use constants defined on {@see \Google\Cloud\AlloyDb\V1\InjectFaultRequest\FaultType}
      * @param string $name      Required. The name of the resource. For the required format, see the
-     *                          comment on the Instance.name field.
+     *                          comment on the Instance.name field. Please see
+     *                          {@see AlloyDBAdminClient::instanceName()} for help formatting this field.
      *
      * @return \Google\Cloud\AlloyDb\V1\InjectFaultRequest
      *

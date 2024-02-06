@@ -34,19 +34,17 @@ use Google\Rpc\Status;
  * Perform an ungraceful, hard reset on a server. Equivalent to shutting the
  * power off and then turning it back on.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Name of the resource. Please see
+ *                              {@see BareMetalSolutionClient::instanceName()} for help formatting this field.
  */
-function reset_instance_sample(): void
+function reset_instance_sample(string $formattedName): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = new ResetInstanceRequest();
+    $request = (new ResetInstanceRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -66,5 +64,21 @@ function reset_instance_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = BareMetalSolutionClient::instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+
+    reset_instance_sample($formattedName);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_ResetInstance_sync]

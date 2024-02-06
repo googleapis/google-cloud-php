@@ -23,7 +23,8 @@ class DisableInteractiveSerialConsoleRequest extends \Google\Protobuf\Internal\M
     private $name = '';
 
     /**
-     * @param string $name Required. Name of the resource.
+     * @param string $name Required. Name of the resource. Please see
+     *                     {@see BareMetalSolutionClient::instanceName()} for help formatting this field.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\DisableInteractiveSerialConsoleRequest
      *

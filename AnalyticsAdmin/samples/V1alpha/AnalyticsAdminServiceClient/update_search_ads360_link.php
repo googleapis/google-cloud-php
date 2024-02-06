@@ -27,6 +27,7 @@ use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\SearchAds360Link;
 use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
 use Google\ApiCore\ApiException;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a SearchAds360Link on a property.
@@ -43,7 +44,9 @@ function update_search_ads360_link_sample(): void
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateSearchAds360LinkRequest();
+    $updateMask = new FieldMask();
+    $request = (new UpdateSearchAds360LinkRequest())
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {

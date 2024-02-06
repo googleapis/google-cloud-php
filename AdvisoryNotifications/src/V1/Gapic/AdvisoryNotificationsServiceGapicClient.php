@@ -50,7 +50,8 @@ use Google\Cloud\AdvisoryNotifications\V1\UpdateSettingsRequest;
  * ```
  * $advisoryNotificationsServiceClient = new AdvisoryNotificationsServiceClient();
  * try {
- *     $response = $advisoryNotificationsServiceClient->getNotification();
+ *     $formattedName = $advisoryNotificationsServiceClient->notificationName('[ORGANIZATION]', '[LOCATION]', '[NOTIFICATION]');
+ *     $response = $advisoryNotificationsServiceClient->getNotification($formattedName);
  * } finally {
  *     $advisoryNotificationsServiceClient->close();
  * }
@@ -481,20 +482,20 @@ class AdvisoryNotificationsServiceGapicClient
      * ```
      * $advisoryNotificationsServiceClient = new AdvisoryNotificationsServiceClient();
      * try {
-     *     $response = $advisoryNotificationsServiceClient->getNotification();
+     *     $formattedName = $advisoryNotificationsServiceClient->notificationName('[ORGANIZATION]', '[LOCATION]', '[NOTIFICATION]');
+     *     $response = $advisoryNotificationsServiceClient->getNotification($formattedName);
      * } finally {
      *     $advisoryNotificationsServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. A name of the notification to retrieve.
+     *                             Format:
+     *                             organizations/{organization}/locations/{location}/notifications/{notification}
+     *                             or projects/{projects}/locations/{location}/notifications/{notification}.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. A name of the notification to retrieve.
-     *           Format:
-     *           organizations/{organization}/locations/{location}/notifications/{notification}
-     *           or projects/{projects}/locations/{location}/notifications/{notification}.
      *     @type string $languageCode
      *           ISO code for requested localization language. If unset, will be
      *           interpereted as "en". If the requested language is valid, but not supported
@@ -511,15 +512,12 @@ class AdvisoryNotificationsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getNotification(array $optionalArgs = [])
+    public function getNotification($name, array $optionalArgs = [])
     {
         $request = new GetNotificationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
         }
@@ -545,19 +543,19 @@ class AdvisoryNotificationsServiceGapicClient
      * ```
      * $advisoryNotificationsServiceClient = new AdvisoryNotificationsServiceClient();
      * try {
-     *     $response = $advisoryNotificationsServiceClient->getSettings();
+     *     $formattedName = $advisoryNotificationsServiceClient->settingsName('[ORGANIZATION]', '[LOCATION]');
+     *     $response = $advisoryNotificationsServiceClient->getSettings($formattedName);
      * } finally {
      *     $advisoryNotificationsServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the settings to retrieve.
+     *                             Format:
+     *                             organizations/{organization}/locations/{location}/settings.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the settings to retrieve.
-     *           Format:
-     *           organizations/{organization}/locations/{location}/settings.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -568,15 +566,12 @@ class AdvisoryNotificationsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSettings(array $optionalArgs = [])
+    public function getSettings($name, array $optionalArgs = [])
     {
         $request = new GetSettingsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -598,8 +593,9 @@ class AdvisoryNotificationsServiceGapicClient
      * ```
      * $advisoryNotificationsServiceClient = new AdvisoryNotificationsServiceClient();
      * try {
+     *     $formattedParent = $advisoryNotificationsServiceClient->locationName('[ORGANIZATION]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $advisoryNotificationsServiceClient->listNotifications();
+     *     $pagedResponse = $advisoryNotificationsServiceClient->listNotifications($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -607,7 +603,7 @@ class AdvisoryNotificationsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $advisoryNotificationsServiceClient->listNotifications();
+     *     $pagedResponse = $advisoryNotificationsServiceClient->listNotifications($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -616,13 +612,12 @@ class AdvisoryNotificationsServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The parent, which owns this collection of notifications.
+     *                             Must be of the form "organizations/{organization}/locations/{location}"
+     *                             or "projects/{project}/locations/{location}"
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent, which owns this collection of notifications.
-     *           Must be of the form "organizations/{organization}/locations/{location}"
-     *           or "projects/{project}/locations/{location}"
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -652,15 +647,12 @@ class AdvisoryNotificationsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listNotifications(array $optionalArgs = [])
+    public function listNotifications($parent, array $optionalArgs = [])
     {
         $request = new ListNotificationsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -698,17 +690,17 @@ class AdvisoryNotificationsServiceGapicClient
      * ```
      * $advisoryNotificationsServiceClient = new AdvisoryNotificationsServiceClient();
      * try {
-     *     $response = $advisoryNotificationsServiceClient->updateSettings();
+     *     $settings = new Settings();
+     *     $response = $advisoryNotificationsServiceClient->updateSettings($settings);
      * } finally {
      *     $advisoryNotificationsServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Settings $settings     Required. New settings.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type Settings $settings
-     *           Required. New settings.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -719,14 +711,12 @@ class AdvisoryNotificationsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSettings(array $optionalArgs = [])
+    public function updateSettings($settings, array $optionalArgs = [])
     {
         $request = new UpdateSettingsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['settings'])) {
-            $request->setSettings($optionalArgs['settings']);
-        }
-
+        $request->setSettings($settings);
+        $requestParamHeaders['settings.name'] = $settings->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

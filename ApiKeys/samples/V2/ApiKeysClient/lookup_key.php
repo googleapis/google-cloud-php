@@ -35,19 +35,16 @@ use Google\Cloud\ApiKeys\V2\LookupKeyResponse;
  * The service account must have the `apikeys.keys.lookup` permission
  * on the parent project.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $keyString Finds the project that owns the key string value.
  */
-function lookup_key_sample(): void
+function lookup_key_sample(string $keyString): void
 {
     // Create a client.
     $apiKeysClient = new ApiKeysClient();
 
     // Prepare the request message.
-    $request = new LookupKeyRequest();
+    $request = (new LookupKeyRequest())
+        ->setKeyString($keyString);
 
     // Call the API and handle any network failures.
     try {
@@ -57,5 +54,21 @@ function lookup_key_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $keyString = '[KEY_STRING]';
+
+    lookup_key_sample($keyString);
 }
 // [END apikeys_v2_generated_ApiKeys_LookupKey_sync]

@@ -31,19 +31,18 @@ use Google\ApiCore\ApiException;
  * Deletes a DisplayVideo360AdvertiserLinkProposal on a property.
  * This can only be used on cancelled proposals.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the DisplayVideo360AdvertiserLinkProposal to delete.
+ *                              Example format: properties/1234/displayVideo360AdvertiserLinkProposals/5678
+ *                              Please see {@see AnalyticsAdminServiceClient::displayVideo360AdvertiserLinkProposalName()} for help formatting this field.
  */
-function delete_display_video360_advertiser_link_proposal_sample(): void
+function delete_display_video360_advertiser_link_proposal_sample(string $formattedName): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteDisplayVideo360AdvertiserLinkProposalRequest();
+    $request = (new DeleteDisplayVideo360AdvertiserLinkProposalRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -52,5 +51,24 @@ function delete_display_video360_advertiser_link_proposal_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AnalyticsAdminServiceClient::displayVideo360AdvertiserLinkProposalName(
+        '[PROPERTY]',
+        '[DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL]'
+    );
+
+    delete_display_video360_advertiser_link_proposal_sample($formattedName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_DeleteDisplayVideo360AdvertiserLinkProposal_sync]

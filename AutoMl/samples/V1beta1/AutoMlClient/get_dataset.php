@@ -30,13 +30,10 @@ use Google\Cloud\AutoMl\V1beta1\Dataset;
 /**
  * Gets a dataset.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the dataset to retrieve. Please see
+ *                              {@see AutoMlClient::datasetName()} for help formatting this field.
  */
-function get_dataset_sample(): void
+function get_dataset_sample(string $formattedName): void
 {
     // Create a client.
     $autoMlClient = new AutoMlClient();
@@ -44,10 +41,26 @@ function get_dataset_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var Dataset $response */
-        $response = $autoMlClient->getDataset();
+        $response = $autoMlClient->getDataset($formattedName);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AutoMlClient::datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+
+    get_dataset_sample($formattedName);
 }
 // [END automl_v1beta1_generated_AutoMl_GetDataset_sync]
