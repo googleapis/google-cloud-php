@@ -115,8 +115,8 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     private $query = '';
     /**
      * Optional. A list of asset types that this request searches for. If empty,
-     * it will search all the [searchable asset
-     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
+     * it will search all the asset types [supported by search
+     * APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      * Regular expressions are also supported. For example:
      * * "compute.googleapis.com.*" snapshots resources whose asset type starts
      * with "compute.googleapis.com".
@@ -298,8 +298,8 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *                             fields and are also located in the `us-west1` region or the `global`
      *                             location.
      * @param string[] $assetTypes Optional. A list of asset types that this request searches for. If empty,
-     *                             it will search all the [searchable asset
-     *                             types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
+     *                             it will search all the asset types [supported by search
+     *                             APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      *
      *                             Regular expressions are also supported. For example:
      *
@@ -422,8 +422,8 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *             location.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           Optional. A list of asset types that this request searches for. If empty,
-     *           it will search all the [searchable asset
-     *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
+     *           it will search all the asset types [supported by search
+     *           APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      *           Regular expressions are also supported. For example:
      *           * "compute.googleapis.com.*" snapshots resources whose asset type starts
      *           with "compute.googleapis.com".
@@ -723,8 +723,8 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A list of asset types that this request searches for. If empty,
-     * it will search all the [searchable asset
-     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
+     * it will search all the asset types [supported by search
+     * APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      * Regular expressions are also supported. For example:
      * * "compute.googleapis.com.*" snapshots resources whose asset type starts
      * with "compute.googleapis.com".
@@ -744,8 +744,8 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A list of asset types that this request searches for. If empty,
-     * it will search all the [searchable asset
-     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
+     * it will search all the asset types [supported by search
+     * APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      * Regular expressions are also supported. For example:
      * * "compute.googleapis.com.*" snapshots resources whose asset type starts
      * with "compute.googleapis.com".
