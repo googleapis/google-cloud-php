@@ -142,7 +142,10 @@ class ContainerAnalysisClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new VulnerabilityOccurrencesSummary();
         $transport->addResponse($expectedResponse);
-        $request = new GetVulnerabilityOccurrencesSummaryRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new GetVulnerabilityOccurrencesSummaryRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->getVulnerabilityOccurrencesSummary($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -150,6 +153,8 @@ class ContainerAnalysisClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.containeranalysis.v1.ContainerAnalysis/GetVulnerabilityOccurrencesSummary', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -171,7 +176,10 @@ class ContainerAnalysisClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetVulnerabilityOccurrencesSummaryRequest();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new GetVulnerabilityOccurrencesSummaryRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->getVulnerabilityOccurrencesSummary($request);
             // If the $gapicClient method call did not throw, fail the test

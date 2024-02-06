@@ -5,7 +5,10 @@ return [
         'google.cloud.compute.v1.NetworkEndpointGroups' => [
             'AttachNetworkEndpoints' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getZone',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -40,7 +43,10 @@ return [
             ],
             'Delete' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getZone',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -75,7 +81,10 @@ return [
             ],
             'DetachNetworkEndpoints' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getZone',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -110,7 +119,10 @@ return [
             ],
             'Insert' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getZone',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',

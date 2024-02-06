@@ -31,19 +31,34 @@ use Google\Cloud\Dialogflow\V2\UpdateContextRequest;
 /**
  * Updates the specified context.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $contextName The unique identifier of the context. Format:
+ *                            `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`,
+ *                            or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+ *                            ID>/sessions/<Session ID>/contexts/<Context ID>`.
+ *
+ *                            The `Context ID` is always converted to lowercase, may only contain
+ *                            characters in `a-zA-Z0-9_-%` and may be at most 250 bytes long.
+ *
+ *                            If `Environment ID` is not specified, we assume default 'draft'
+ *                            environment. If `User ID` is not specified, we assume default '-' user.
+ *
+ *                            The following context names are reserved for internal use by Dialogflow.
+ *                            You should not use these contexts or create contexts with these names:
+ *
+ *                            * `__system_counters__`
+ *                            * `*_id_dialog_context`
+ *                            * `*_dialog_params_size`
  */
-function update_context_sample(): void
+function update_context_sample(string $contextName): void
 {
     // Create a client.
     $contextsClient = new ContextsClient();
 
     // Prepare the request message.
-    $request = new UpdateContextRequest();
+    $context = (new Context())
+        ->setName($contextName);
+    $request = (new UpdateContextRequest())
+        ->setContext($context);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +68,21 @@ function update_context_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $contextName = '[NAME]';
+
+    update_context_sample($contextName);
 }
 // [END dialogflow_v2_generated_Contexts_UpdateContext_sync]

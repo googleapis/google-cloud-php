@@ -40,6 +40,11 @@ use Google\Cloud\Compute\V1\SetCertificateMapTargetSslProxyRequest;
 use Google\Cloud\Compute\V1\SetProxyHeaderTargetSslProxyRequest;
 use Google\Cloud\Compute\V1\SetSslCertificatesTargetSslProxyRequest;
 use Google\Cloud\Compute\V1\SetSslPolicyTargetSslProxyRequest;
+use Google\Cloud\Compute\V1\SslPolicyReference;
+use Google\Cloud\Compute\V1\TargetSslProxiesSetBackendServiceRequest;
+use Google\Cloud\Compute\V1\TargetSslProxiesSetCertificateMapRequest;
+use Google\Cloud\Compute\V1\TargetSslProxiesSetProxyHeaderRequest;
+use Google\Cloud\Compute\V1\TargetSslProxiesSetSslCertificatesRequest;
 use Google\Cloud\Compute\V1\TargetSslProxy;
 use Google\Cloud\Compute\V1\TargetSslProxyList;
 use Google\Rpc\Code;
@@ -98,7 +103,12 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetSslProxy = 'targetSslProxy875666765';
+        $request = (new DeleteTargetSslProxyRequest())
+            ->setProject($project)
+            ->setTargetSslProxy($targetSslProxy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -108,8 +118,13 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetSslProxy();
+        $this->assertProtobufEquals($targetSslProxy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -157,7 +172,12 @@ class TargetSslProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetSslProxy = 'targetSslProxy875666765';
+        $request = (new DeleteTargetSslProxyRequest())
+            ->setProject($project)
+            ->setTargetSslProxy($targetSslProxy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -209,7 +229,12 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $expectedResponse->setService($service);
         $expectedResponse->setSslPolicy($sslPolicy);
         $transport->addResponse($expectedResponse);
-        $request = new GetTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetSslProxy = 'targetSslProxy875666765';
+        $request = (new GetTargetSslProxyRequest())
+            ->setProject($project)
+            ->setTargetSslProxy($targetSslProxy);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -217,6 +242,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getTargetSslProxy();
+        $this->assertProtobufEquals($targetSslProxy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -238,7 +267,12 @@ class TargetSslProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetSslProxy = 'targetSslProxy875666765';
+        $request = (new GetTargetSslProxyRequest())
+            ->setProject($project)
+            ->setTargetSslProxy($targetSslProxy);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -277,7 +311,12 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetSslProxyResource = new TargetSslProxy();
+        $request = (new InsertTargetSslProxyRequest())
+            ->setProject($project)
+            ->setTargetSslProxyResource($targetSslProxyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -287,8 +326,13 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetSslProxyResource();
+        $this->assertProtobufEquals($targetSslProxyResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -336,7 +380,12 @@ class TargetSslProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetSslProxyResource = new TargetSslProxy();
+        $request = (new InsertTargetSslProxyRequest())
+            ->setProject($project)
+            ->setTargetSslProxyResource($targetSslProxyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -381,7 +430,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListTargetSslProxiesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListTargetSslProxiesRequest())
+            ->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -392,6 +444,8 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -413,7 +467,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListTargetSslProxiesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListTargetSslProxiesRequest())
+            ->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -452,7 +509,14 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setBackendServiceTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SetBackendServiceTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetSslProxiesSetBackendServiceRequestResource = new TargetSslProxiesSetBackendServiceRequest();
+        $targetSslProxy = 'targetSslProxy875666765';
+        $request = (new SetBackendServiceTargetSslProxyRequest())
+            ->setProject($project)
+            ->setTargetSslProxiesSetBackendServiceRequestResource($targetSslProxiesSetBackendServiceRequestResource)
+            ->setTargetSslProxy($targetSslProxy);
         $response = $gapicClient->setBackendService($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -462,8 +526,15 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/SetBackendService', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetSslProxiesSetBackendServiceRequestResource();
+        $this->assertProtobufEquals($targetSslProxiesSetBackendServiceRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetSslProxy();
+        $this->assertProtobufEquals($targetSslProxy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -511,7 +582,14 @@ class TargetSslProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SetBackendServiceTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetSslProxiesSetBackendServiceRequestResource = new TargetSslProxiesSetBackendServiceRequest();
+        $targetSslProxy = 'targetSslProxy875666765';
+        $request = (new SetBackendServiceTargetSslProxyRequest())
+            ->setProject($project)
+            ->setTargetSslProxiesSetBackendServiceRequestResource($targetSslProxiesSetBackendServiceRequestResource)
+            ->setTargetSslProxy($targetSslProxy);
         $response = $gapicClient->setBackendService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -557,7 +635,14 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setCertificateMapTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SetCertificateMapTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetSslProxiesSetCertificateMapRequestResource = new TargetSslProxiesSetCertificateMapRequest();
+        $targetSslProxy = 'targetSslProxy875666765';
+        $request = (new SetCertificateMapTargetSslProxyRequest())
+            ->setProject($project)
+            ->setTargetSslProxiesSetCertificateMapRequestResource($targetSslProxiesSetCertificateMapRequestResource)
+            ->setTargetSslProxy($targetSslProxy);
         $response = $gapicClient->setCertificateMap($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -567,8 +652,15 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/SetCertificateMap', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetSslProxiesSetCertificateMapRequestResource();
+        $this->assertProtobufEquals($targetSslProxiesSetCertificateMapRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetSslProxy();
+        $this->assertProtobufEquals($targetSslProxy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -616,7 +708,14 @@ class TargetSslProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SetCertificateMapTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetSslProxiesSetCertificateMapRequestResource = new TargetSslProxiesSetCertificateMapRequest();
+        $targetSslProxy = 'targetSslProxy875666765';
+        $request = (new SetCertificateMapTargetSslProxyRequest())
+            ->setProject($project)
+            ->setTargetSslProxiesSetCertificateMapRequestResource($targetSslProxiesSetCertificateMapRequestResource)
+            ->setTargetSslProxy($targetSslProxy);
         $response = $gapicClient->setCertificateMap($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -662,7 +761,14 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setProxyHeaderTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SetProxyHeaderTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetSslProxiesSetProxyHeaderRequestResource = new TargetSslProxiesSetProxyHeaderRequest();
+        $targetSslProxy = 'targetSslProxy875666765';
+        $request = (new SetProxyHeaderTargetSslProxyRequest())
+            ->setProject($project)
+            ->setTargetSslProxiesSetProxyHeaderRequestResource($targetSslProxiesSetProxyHeaderRequestResource)
+            ->setTargetSslProxy($targetSslProxy);
         $response = $gapicClient->setProxyHeader($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -672,8 +778,15 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/SetProxyHeader', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetSslProxiesSetProxyHeaderRequestResource();
+        $this->assertProtobufEquals($targetSslProxiesSetProxyHeaderRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetSslProxy();
+        $this->assertProtobufEquals($targetSslProxy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -721,7 +834,14 @@ class TargetSslProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SetProxyHeaderTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetSslProxiesSetProxyHeaderRequestResource = new TargetSslProxiesSetProxyHeaderRequest();
+        $targetSslProxy = 'targetSslProxy875666765';
+        $request = (new SetProxyHeaderTargetSslProxyRequest())
+            ->setProject($project)
+            ->setTargetSslProxiesSetProxyHeaderRequestResource($targetSslProxiesSetProxyHeaderRequestResource)
+            ->setTargetSslProxy($targetSslProxy);
         $response = $gapicClient->setProxyHeader($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -767,7 +887,14 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setSslCertificatesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SetSslCertificatesTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetSslProxiesSetSslCertificatesRequestResource = new TargetSslProxiesSetSslCertificatesRequest();
+        $targetSslProxy = 'targetSslProxy875666765';
+        $request = (new SetSslCertificatesTargetSslProxyRequest())
+            ->setProject($project)
+            ->setTargetSslProxiesSetSslCertificatesRequestResource($targetSslProxiesSetSslCertificatesRequestResource)
+            ->setTargetSslProxy($targetSslProxy);
         $response = $gapicClient->setSslCertificates($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -777,8 +904,15 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/SetSslCertificates', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetSslProxiesSetSslCertificatesRequestResource();
+        $this->assertProtobufEquals($targetSslProxiesSetSslCertificatesRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetSslProxy();
+        $this->assertProtobufEquals($targetSslProxy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -826,7 +960,14 @@ class TargetSslProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SetSslCertificatesTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetSslProxiesSetSslCertificatesRequestResource = new TargetSslProxiesSetSslCertificatesRequest();
+        $targetSslProxy = 'targetSslProxy875666765';
+        $request = (new SetSslCertificatesTargetSslProxyRequest())
+            ->setProject($project)
+            ->setTargetSslProxiesSetSslCertificatesRequestResource($targetSslProxiesSetSslCertificatesRequestResource)
+            ->setTargetSslProxy($targetSslProxy);
         $response = $gapicClient->setSslCertificates($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -872,7 +1013,14 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setSslPolicyTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SetSslPolicyTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $sslPolicyReferenceResource = new SslPolicyReference();
+        $targetSslProxy = 'targetSslProxy875666765';
+        $request = (new SetSslPolicyTargetSslProxyRequest())
+            ->setProject($project)
+            ->setSslPolicyReferenceResource($sslPolicyReferenceResource)
+            ->setTargetSslProxy($targetSslProxy);
         $response = $gapicClient->setSslPolicy($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -882,8 +1030,15 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/SetSslPolicy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getSslPolicyReferenceResource();
+        $this->assertProtobufEquals($sslPolicyReferenceResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetSslProxy();
+        $this->assertProtobufEquals($targetSslProxy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -931,7 +1086,14 @@ class TargetSslProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SetSslPolicyTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $sslPolicyReferenceResource = new SslPolicyReference();
+        $targetSslProxy = 'targetSslProxy875666765';
+        $request = (new SetSslPolicyTargetSslProxyRequest())
+            ->setProject($project)
+            ->setSslPolicyReferenceResource($sslPolicyReferenceResource)
+            ->setTargetSslProxy($targetSslProxy);
         $response = $gapicClient->setSslPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -977,7 +1139,12 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteTargetSslProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $targetSslProxy = 'targetSslProxy875666765';
+        $request = (new DeleteTargetSslProxyRequest())
+            ->setProject($project)
+            ->setTargetSslProxy($targetSslProxy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -987,8 +1154,13 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetSslProxy();
+        $this->assertProtobufEquals($targetSslProxy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

@@ -36,7 +36,8 @@ class DeleteSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *                     ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
      *                     Name>`.
      *                     If `Environment ID` is not specified, we assume default 'draft'
-     *                     environment. If `User ID` is not specified, we assume default '-' user.
+     *                     environment. If `User ID` is not specified, we assume default '-' user. Please see
+     *                     {@see SessionEntityTypesClient::sessionEntityTypeName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\DeleteSessionEntityTypeRequest
      *

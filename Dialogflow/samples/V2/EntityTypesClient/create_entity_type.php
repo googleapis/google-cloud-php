@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\V2\Client\EntityTypesClient;
 use Google\Cloud\Dialogflow\V2\CreateEntityTypeRequest;
 use Google\Cloud\Dialogflow\V2\EntityType;
+use Google\Cloud\Dialogflow\V2\EntityType\Kind;
 
 /**
  * Creates an entity type in the specified agent.
@@ -35,19 +36,27 @@ use Google\Cloud\Dialogflow\V2\EntityType;
  * [training
  * documentation](https://cloud.google.com/dialogflow/es/docs/training).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent       The agent to create a entity type for.
+ *                                      Format: `projects/<Project ID>/agent`. Please see
+ *                                      {@see EntityTypesClient::agentName()} for help formatting this field.
+ * @param string $entityTypeDisplayName The name of the entity type.
+ * @param int    $entityTypeKind        Indicates the kind of entity type.
  */
-function create_entity_type_sample(): void
-{
+function create_entity_type_sample(
+    string $formattedParent,
+    string $entityTypeDisplayName,
+    int $entityTypeKind
+): void {
     // Create a client.
     $entityTypesClient = new EntityTypesClient();
 
     // Prepare the request message.
-    $request = new CreateEntityTypeRequest();
+    $entityType = (new EntityType())
+        ->setDisplayName($entityTypeDisplayName)
+        ->setKind($entityTypeKind);
+    $request = (new CreateEntityTypeRequest())
+        ->setParent($formattedParent)
+        ->setEntityType($entityType);
 
     // Call the API and handle any network failures.
     try {
@@ -57,5 +66,23 @@ function create_entity_type_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = EntityTypesClient::agentName('[PROJECT]');
+    $entityTypeDisplayName = '[DISPLAY_NAME]';
+    $entityTypeKind = Kind::KIND_UNSPECIFIED;
+
+    create_entity_type_sample($formattedParent, $entityTypeDisplayName, $entityTypeKind);
 }
 // [END dialogflow_v2_generated_EntityTypes_CreateEntityType_sync]

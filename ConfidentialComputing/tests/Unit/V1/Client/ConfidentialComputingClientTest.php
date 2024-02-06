@@ -29,6 +29,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ConfidentialComputing\V1\Challenge;
 use Google\Cloud\ConfidentialComputing\V1\Client\ConfidentialComputingClient;
 use Google\Cloud\ConfidentialComputing\V1\CreateChallengeRequest;
+use Google\Cloud\ConfidentialComputing\V1\TpmAttestation;
 use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationRequest;
 use Google\Cloud\ConfidentialComputing\V1\VerifyAttestationResponse;
 use Google\Cloud\Location\GetLocationRequest;
@@ -83,7 +84,12 @@ class ConfidentialComputingClientTest extends GeneratedTest
         $expectedResponse->setUsed($used);
         $expectedResponse->setTpmNonce($tpmNonce);
         $transport->addResponse($expectedResponse);
-        $request = new CreateChallengeRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $challenge = new Challenge();
+        $request = (new CreateChallengeRequest())
+            ->setParent($formattedParent)
+            ->setChallenge($challenge);
         $response = $gapicClient->createChallenge($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -91,6 +97,10 @@ class ConfidentialComputingClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.confidentialcomputing.v1.ConfidentialComputing/CreateChallenge', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getChallenge();
+        $this->assertProtobufEquals($challenge, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -112,7 +122,12 @@ class ConfidentialComputingClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateChallengeRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $challenge = new Challenge();
+        $request = (new CreateChallengeRequest())
+            ->setParent($formattedParent)
+            ->setChallenge($challenge);
         try {
             $gapicClient->createChallenge($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -139,7 +154,12 @@ class ConfidentialComputingClientTest extends GeneratedTest
         $expectedResponse = new VerifyAttestationResponse();
         $expectedResponse->setOidcClaimsToken($oidcClaimsToken);
         $transport->addResponse($expectedResponse);
-        $request = new VerifyAttestationRequest();
+        // Mock request
+        $formattedChallenge = $gapicClient->challengeName('[PROJECT]', '[LOCATION]', '[UUID]');
+        $tpmAttestation = new TpmAttestation();
+        $request = (new VerifyAttestationRequest())
+            ->setChallenge($formattedChallenge)
+            ->setTpmAttestation($tpmAttestation);
         $response = $gapicClient->verifyAttestation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -147,6 +167,10 @@ class ConfidentialComputingClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.confidentialcomputing.v1.ConfidentialComputing/VerifyAttestation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getChallenge();
+        $this->assertProtobufEquals($formattedChallenge, $actualValue);
+        $actualValue = $actualRequestObject->getTpmAttestation();
+        $this->assertProtobufEquals($tpmAttestation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -168,7 +192,12 @@ class ConfidentialComputingClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new VerifyAttestationRequest();
+        // Mock request
+        $formattedChallenge = $gapicClient->challengeName('[PROJECT]', '[LOCATION]', '[UUID]');
+        $tpmAttestation = new TpmAttestation();
+        $request = (new VerifyAttestationRequest())
+            ->setChallenge($formattedChallenge)
+            ->setTpmAttestation($tpmAttestation);
         try {
             $gapicClient->verifyAttestation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -323,7 +352,12 @@ class ConfidentialComputingClientTest extends GeneratedTest
         $expectedResponse->setUsed($used);
         $expectedResponse->setTpmNonce($tpmNonce);
         $transport->addResponse($expectedResponse);
-        $request = new CreateChallengeRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $challenge = new Challenge();
+        $request = (new CreateChallengeRequest())
+            ->setParent($formattedParent)
+            ->setChallenge($challenge);
         $response = $gapicClient->createChallengeAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -331,6 +365,10 @@ class ConfidentialComputingClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.confidentialcomputing.v1.ConfidentialComputing/CreateChallenge', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getChallenge();
+        $this->assertProtobufEquals($challenge, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

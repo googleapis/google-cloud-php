@@ -34,19 +34,18 @@ use Google\Cloud\Datastream\V1\DiscoverConnectionProfileResponse;
  * the profile. Typically, a request returns children data objects of a
  * parent data object that's optionally supplied in the request.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent resource of the connection profile type. Must be in
+ *                                the format `projects/&#42;/locations/*`. Please see
+ *                                {@see DatastreamClient::locationName()} for help formatting this field.
  */
-function discover_connection_profile_sample(): void
+function discover_connection_profile_sample(string $formattedParent): void
 {
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
     // Prepare the request message.
-    $request = new DiscoverConnectionProfileRequest();
+    $request = (new DiscoverConnectionProfileRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -56,5 +55,21 @@ function discover_connection_profile_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DatastreamClient::locationName('[PROJECT]', '[LOCATION]');
+
+    discover_connection_profile_sample($formattedParent);
 }
 // [END datastream_v1_generated_Datastream_DiscoverConnectionProfile_sync]

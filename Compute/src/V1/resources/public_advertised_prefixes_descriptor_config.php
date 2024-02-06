@@ -5,7 +5,9 @@ return [
         'google.cloud.compute.v1.PublicAdvertisedPrefixes' => [
             'Announce' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -34,7 +36,9 @@ return [
             ],
             'Delete' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -63,7 +67,9 @@ return [
             ],
             'Insert' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -86,7 +92,9 @@ return [
             ],
             'Patch' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -115,7 +123,9 @@ return [
             ],
             'Withdraw' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',

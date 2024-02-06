@@ -31,19 +31,25 @@ use Google\Cloud\Container\V1\UpdateMasterRequest;
 /**
  * Updates the master for a specific cluster.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $masterVersion The Kubernetes version to change the master to.
+ *
+ *                              Users may specify either explicit versions offered by Kubernetes Engine or
+ *                              version aliases, which have the following behavior:
+ *
+ *                              - "latest": picks the highest valid Kubernetes version
+ *                              - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+ *                              - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+ *                              - "1.X.Y-gke.N": picks an explicit Kubernetes version
+ *                              - "-": picks the default Kubernetes version
  */
-function update_master_sample(): void
+function update_master_sample(string $masterVersion): void
 {
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
     // Prepare the request message.
-    $request = new UpdateMasterRequest();
+    $request = (new UpdateMasterRequest())
+        ->setMasterVersion($masterVersion);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +59,21 @@ function update_master_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $masterVersion = '[MASTER_VERSION]';
+
+    update_master_sample($masterVersion);
 }
 // [END container_v1_generated_ClusterManager_UpdateMaster_sync]

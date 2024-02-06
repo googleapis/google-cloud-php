@@ -31,19 +31,16 @@ use Google\Cloud\Datastore\V1\Client\DatastoreClient;
 /**
  * Begins a new transaction.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $projectId The ID of the project against which to make the request.
  */
-function begin_transaction_sample(): void
+function begin_transaction_sample(string $projectId): void
 {
     // Create a client.
     $datastoreClient = new DatastoreClient();
 
     // Prepare the request message.
-    $request = new BeginTransactionRequest();
+    $request = (new BeginTransactionRequest())
+        ->setProjectId($projectId);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +50,21 @@ function begin_transaction_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $projectId = '[PROJECT_ID]';
+
+    begin_transaction_sample($projectId);
 }
 // [END datastore_v1_generated_Datastore_BeginTransaction_sync]

@@ -23,7 +23,8 @@ class DeleteWorkflowConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The workflow config's name.
+     * @param string $name Required. The workflow config's name. Please see
+     *                     {@see DataformClient::workflowConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataform\V1beta1\DeleteWorkflowConfigRequest
      *

@@ -24,7 +24,8 @@ class StarEntryRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the entry to mark as starred.
+     * @param string $name Required. The name of the entry to mark as starred. Please see
+     *                     {@see DataCatalogClient::entryName()} for help formatting this field.
      *
      * @return \Google\Cloud\DataCatalog\V1\StarEntryRequest
      *

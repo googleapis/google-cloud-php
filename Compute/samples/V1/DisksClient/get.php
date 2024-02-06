@@ -30,13 +30,11 @@ use Google\Cloud\Compute\V1\DisksClient;
 /**
  * Returns the specified persistent disk.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $disk    Name of the persistent disk to return.
+ * @param string $project Project ID for this request.
+ * @param string $zone    The name of the zone for this request.
  */
-function get_sample(): void
+function get_sample(string $disk, string $project, string $zone): void
 {
     // Create a client.
     $disksClient = new DisksClient();
@@ -44,10 +42,28 @@ function get_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var Disk $response */
-        $response = $disksClient->get();
+        $response = $disksClient->get($disk, $project, $zone);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $disk = '[DISK]';
+    $project = '[PROJECT]';
+    $zone = '[ZONE]';
+
+    get_sample($disk, $project, $zone);
 }
 // [END compute_v1_generated_Disks_Get_sync]

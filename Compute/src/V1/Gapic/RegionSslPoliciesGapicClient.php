@@ -54,7 +54,10 @@ use Google\Cloud\Compute\V1\SslPolicy;
  * ```
  * $regionSslPoliciesClient = new RegionSslPoliciesClient();
  * try {
- *     $operationResponse = $regionSslPoliciesClient->delete();
+ *     $project = 'project';
+ *     $region = 'region';
+ *     $sslPolicy = 'ssl_policy';
+ *     $operationResponse = $regionSslPoliciesClient->delete($project, $region, $sslPolicy);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -64,7 +67,7 @@ use Google\Cloud\Compute\V1\SslPolicy;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $regionSslPoliciesClient->delete();
+ *     $operationResponse = $regionSslPoliciesClient->delete($project, $region, $sslPolicy);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $regionSslPoliciesClient->resumeOperation($operationName, 'delete');
@@ -164,7 +167,10 @@ class RegionSslPoliciesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+                'getRegion',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -260,7 +266,10 @@ class RegionSslPoliciesGapicClient
      * ```
      * $regionSslPoliciesClient = new RegionSslPoliciesClient();
      * try {
-     *     $operationResponse = $regionSslPoliciesClient->delete();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $sslPolicy = 'ssl_policy';
+     *     $operationResponse = $regionSslPoliciesClient->delete($project, $region, $sslPolicy);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -270,7 +279,7 @@ class RegionSslPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionSslPoliciesClient->delete();
+     *     $operationResponse = $regionSslPoliciesClient->delete($project, $region, $sslPolicy);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionSslPoliciesClient->resumeOperation($operationName, 'delete');
@@ -289,17 +298,14 @@ class RegionSslPoliciesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $region       Name of the region scoping this request.
+     * @param string $sslPolicy    Name of the SSL policy to delete. The name must be 1-63 characters long, and comply with RFC1035.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $sslPolicy
-     *           Name of the SSL policy to delete. The name must be 1-63 characters long, and comply with RFC1035.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -310,27 +316,18 @@ class RegionSslPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete(array $optionalArgs = [])
+    public function delete($project, $region, $sslPolicy, array $optionalArgs = [])
     {
         $request = new DeleteRegionSslPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSslPolicy($sslPolicy);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['ssl_policy'] = $sslPolicy;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['sslPolicy'])) {
-            $request->setSslPolicy($optionalArgs['sslPolicy']);
-            $requestParamHeaders['ssl_policy'] = $optionalArgs['sslPolicy'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -345,21 +342,21 @@ class RegionSslPoliciesGapicClient
      * ```
      * $regionSslPoliciesClient = new RegionSslPoliciesClient();
      * try {
-     *     $response = $regionSslPoliciesClient->get();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $sslPolicy = 'ssl_policy';
+     *     $response = $regionSslPoliciesClient->get($project, $region, $sslPolicy);
      * } finally {
      *     $regionSslPoliciesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $region       Name of the region scoping this request.
+     * @param string $sslPolicy    Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
-     *     @type string $sslPolicy
-     *           Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -370,25 +367,16 @@ class RegionSslPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($project, $region, $sslPolicy, array $optionalArgs = [])
     {
         $request = new GetRegionSslPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['sslPolicy'])) {
-            $request->setSslPolicy($optionalArgs['sslPolicy']);
-            $requestParamHeaders['ssl_policy'] = $optionalArgs['sslPolicy'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSslPolicy($sslPolicy);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['ssl_policy'] = $sslPolicy;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', SslPolicy::class, $optionalArgs, $request)->wait();
@@ -401,7 +389,10 @@ class RegionSslPoliciesGapicClient
      * ```
      * $regionSslPoliciesClient = new RegionSslPoliciesClient();
      * try {
-     *     $operationResponse = $regionSslPoliciesClient->insert();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $sslPolicyResource = new SslPolicy();
+     *     $operationResponse = $regionSslPoliciesClient->insert($project, $region, $sslPolicyResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -411,7 +402,7 @@ class RegionSslPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionSslPoliciesClient->insert();
+     *     $operationResponse = $regionSslPoliciesClient->insert($project, $region, $sslPolicyResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionSslPoliciesClient->resumeOperation($operationName, 'insert');
@@ -430,17 +421,14 @@ class RegionSslPoliciesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string    $project           Project ID for this request.
+     * @param string    $region            Name of the region scoping this request.
+     * @param SslPolicy $sslPolicyResource The body resource for this request
+     * @param array     $optionalArgs      {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type SslPolicy $sslPolicyResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -451,26 +439,17 @@ class RegionSslPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert(array $optionalArgs = [])
+    public function insert($project, $region, $sslPolicyResource, array $optionalArgs = [])
     {
         $request = new InsertRegionSslPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSslPolicyResource($sslPolicyResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['sslPolicyResource'])) {
-            $request->setSslPolicyResource($optionalArgs['sslPolicyResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -485,8 +464,10 @@ class RegionSslPoliciesGapicClient
      * ```
      * $regionSslPoliciesClient = new RegionSslPoliciesClient();
      * try {
+     *     $project = 'project';
+     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionSslPoliciesClient->list();
+     *     $pagedResponse = $regionSslPoliciesClient->list($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -494,7 +475,7 @@ class RegionSslPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionSslPoliciesClient->list();
+     *     $pagedResponse = $regionSslPoliciesClient->list($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -503,7 +484,9 @@ class RegionSslPoliciesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $region       Name of the region scoping this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -517,10 +500,6 @@ class RegionSslPoliciesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -533,10 +512,14 @@ class RegionSslPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list(array $optionalArgs = [])
+    public function list($project, $region, array $optionalArgs = [])
     {
         $request = new ListRegionSslPoliciesRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -551,16 +534,6 @@ class RegionSslPoliciesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -579,13 +552,17 @@ class RegionSslPoliciesGapicClient
      * ```
      * $regionSslPoliciesClient = new RegionSslPoliciesClient();
      * try {
-     *     $response = $regionSslPoliciesClient->listAvailableFeatures();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $response = $regionSslPoliciesClient->listAvailableFeatures($project, $region);
      * } finally {
      *     $regionSslPoliciesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $region       Name of the region scoping this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -596,10 +573,6 @@ class RegionSslPoliciesGapicClient
      *           Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *     @type string $pageToken
      *           Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -612,10 +585,14 @@ class RegionSslPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAvailableFeatures(array $optionalArgs = [])
+    public function listAvailableFeatures($project, $region, array $optionalArgs = [])
     {
         $request = new ListAvailableFeaturesRegionSslPoliciesRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -630,16 +607,6 @@ class RegionSslPoliciesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -658,7 +625,11 @@ class RegionSslPoliciesGapicClient
      * ```
      * $regionSslPoliciesClient = new RegionSslPoliciesClient();
      * try {
-     *     $operationResponse = $regionSslPoliciesClient->patch();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $sslPolicy = 'ssl_policy';
+     *     $sslPolicyResource = new SslPolicy();
+     *     $operationResponse = $regionSslPoliciesClient->patch($project, $region, $sslPolicy, $sslPolicyResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -668,7 +639,7 @@ class RegionSslPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionSslPoliciesClient->patch();
+     *     $operationResponse = $regionSslPoliciesClient->patch($project, $region, $sslPolicy, $sslPolicyResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionSslPoliciesClient->resumeOperation($operationName, 'patch');
@@ -687,19 +658,15 @@ class RegionSslPoliciesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string    $project           Project ID for this request.
+     * @param string    $region            Name of the region scoping this request.
+     * @param string    $sslPolicy         Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
+     * @param SslPolicy $sslPolicyResource The body resource for this request
+     * @param array     $optionalArgs      {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $sslPolicy
-     *           Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
-     *     @type SslPolicy $sslPolicyResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -710,31 +677,19 @@ class RegionSslPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch(array $optionalArgs = [])
+    public function patch($project, $region, $sslPolicy, $sslPolicyResource, array $optionalArgs = [])
     {
         $request = new PatchRegionSslPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSslPolicy($sslPolicy);
+        $request->setSslPolicyResource($sslPolicyResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['ssl_policy'] = $sslPolicy;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['sslPolicy'])) {
-            $request->setSslPolicy($optionalArgs['sslPolicy']);
-            $requestParamHeaders['ssl_policy'] = $optionalArgs['sslPolicy'];
-        }
-
-        if (isset($optionalArgs['sslPolicyResource'])) {
-            $request->setSslPolicyResource($optionalArgs['sslPolicyResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

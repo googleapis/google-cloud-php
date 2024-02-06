@@ -153,7 +153,10 @@ final class NodeGroupsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+                'getZone',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',

@@ -43,7 +43,9 @@ function update_process_sample(): void
     $lineageClient = new LineageClient();
 
     // Prepare the request message.
-    $request = new UpdateProcessRequest();
+    $process = new Process();
+    $request = (new UpdateProcessRequest())
+        ->setProcess($process);
 
     // Call the API and handle any network failures.
     try {

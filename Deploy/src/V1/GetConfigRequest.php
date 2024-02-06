@@ -23,7 +23,8 @@ class GetConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. Name of requested configuration.
+     * @param string $name Required. Name of requested configuration. Please see
+     *                     {@see CloudDeployClient::configName()} for help formatting this field.
      *
      * @return \Google\Cloud\Deploy\V1\GetConfigRequest
      *

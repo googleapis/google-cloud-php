@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dialogflow\V2\BatchDeleteIntentsRequest;
 use Google\Cloud\Dialogflow\V2\Client\IntentsClient;
+use Google\Cloud\Dialogflow\V2\Intent;
 use Google\Rpc\Status;
 
 /**
@@ -45,19 +46,23 @@ use Google\Rpc\Status;
  * [training
  * documentation](https://cloud.google.com/dialogflow/es/docs/training).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent    The name of the agent to delete all entities types for. Format:
+ *                                   `projects/<Project ID>/agent`. Please see
+ *                                   {@see IntentsClient::agentName()} for help formatting this field.
+ * @param string $intentsDisplayName The name of this intent.
  */
-function batch_delete_intents_sample(): void
+function batch_delete_intents_sample(string $formattedParent, string $intentsDisplayName): void
 {
     // Create a client.
     $intentsClient = new IntentsClient();
 
     // Prepare the request message.
-    $request = new BatchDeleteIntentsRequest();
+    $intent = (new Intent())
+        ->setDisplayName($intentsDisplayName);
+    $intents = [$intent,];
+    $request = (new BatchDeleteIntentsRequest())
+        ->setParent($formattedParent)
+        ->setIntents($intents);
 
     // Call the API and handle any network failures.
     try {
@@ -75,5 +80,22 @@ function batch_delete_intents_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = IntentsClient::agentName('[PROJECT]');
+    $intentsDisplayName = '[DISPLAY_NAME]';
+
+    batch_delete_intents_sample($formattedParent, $intentsDisplayName);
 }
 // [END dialogflow_v2_generated_Intents_BatchDeleteIntents_sync]

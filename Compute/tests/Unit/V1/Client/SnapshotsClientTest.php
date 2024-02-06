@@ -32,6 +32,8 @@ use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GetIamPolicySnapshotRequest;
 use Google\Cloud\Compute\V1\GetSnapshotRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
+use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
+use Google\Cloud\Compute\V1\GlobalSetPolicyRequest;
 use Google\Cloud\Compute\V1\InsertSnapshotRequest;
 use Google\Cloud\Compute\V1\ListSnapshotsRequest;
 use Google\Cloud\Compute\V1\Operation;
@@ -42,6 +44,7 @@ use Google\Cloud\Compute\V1\SetLabelsSnapshotRequest;
 use Google\Cloud\Compute\V1\Snapshot;
 use Google\Cloud\Compute\V1\SnapshotList;
 use Google\Cloud\Compute\V1\TestIamPermissionsSnapshotRequest;
+use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Rpc\Code;
 use stdClass;
@@ -99,7 +102,12 @@ class SnapshotsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteSnapshotRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $snapshot = 'snapshot284874180';
+        $request = (new DeleteSnapshotRequest())
+            ->setProject($project)
+            ->setSnapshot($snapshot);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -109,8 +117,13 @@ class SnapshotsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Snapshots/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getSnapshot();
+        $this->assertProtobufEquals($snapshot, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -158,7 +171,12 @@ class SnapshotsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteSnapshotRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $snapshot = 'snapshot284874180';
+        $request = (new DeleteSnapshotRequest())
+            ->setProject($project)
+            ->setSnapshot($snapshot);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -238,7 +256,12 @@ class SnapshotsClientTest extends GeneratedTest
         $expectedResponse->setStorageBytes($storageBytes);
         $expectedResponse->setStorageBytesStatus($storageBytesStatus);
         $transport->addResponse($expectedResponse);
-        $request = new GetSnapshotRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $snapshot = 'snapshot284874180';
+        $request = (new GetSnapshotRequest())
+            ->setProject($project)
+            ->setSnapshot($snapshot);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -246,6 +269,10 @@ class SnapshotsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Snapshots/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getSnapshot();
+        $this->assertProtobufEquals($snapshot, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -267,7 +294,12 @@ class SnapshotsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetSnapshotRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $snapshot = 'snapshot284874180';
+        $request = (new GetSnapshotRequest())
+            ->setProject($project)
+            ->setSnapshot($snapshot);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -298,7 +330,12 @@ class SnapshotsClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicySnapshotRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicySnapshotRequest())
+            ->setProject($project)
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -306,6 +343,10 @@ class SnapshotsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Snapshots/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -327,7 +368,12 @@ class SnapshotsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicySnapshotRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicySnapshotRequest())
+            ->setProject($project)
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -366,7 +412,12 @@ class SnapshotsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertSnapshotRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $snapshotResource = new Snapshot();
+        $request = (new InsertSnapshotRequest())
+            ->setProject($project)
+            ->setSnapshotResource($snapshotResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -376,8 +427,13 @@ class SnapshotsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Snapshots/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getSnapshotResource();
+        $this->assertProtobufEquals($snapshotResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -425,7 +481,12 @@ class SnapshotsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertSnapshotRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $snapshotResource = new Snapshot();
+        $request = (new InsertSnapshotRequest())
+            ->setProject($project)
+            ->setSnapshotResource($snapshotResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -470,7 +531,10 @@ class SnapshotsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListSnapshotsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListSnapshotsRequest())
+            ->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -481,6 +545,8 @@ class SnapshotsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Snapshots/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -502,7 +568,10 @@ class SnapshotsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListSnapshotsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListSnapshotsRequest())
+            ->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -533,7 +602,14 @@ class SnapshotsClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicySnapshotRequest();
+        // Mock request
+        $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new SetIamPolicySnapshotRequest())
+            ->setGlobalSetPolicyRequestResource($globalSetPolicyRequestResource)
+            ->setProject($project)
+            ->setResource($resource);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -541,6 +617,12 @@ class SnapshotsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Snapshots/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getGlobalSetPolicyRequestResource();
+        $this->assertProtobufEquals($globalSetPolicyRequestResource, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -562,7 +644,14 @@ class SnapshotsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicySnapshotRequest();
+        // Mock request
+        $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new SetIamPolicySnapshotRequest())
+            ->setGlobalSetPolicyRequestResource($globalSetPolicyRequestResource)
+            ->setProject($project)
+            ->setResource($resource);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -601,7 +690,14 @@ class SnapshotsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setLabelsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SetLabelsSnapshotRequest();
+        // Mock request
+        $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new SetLabelsSnapshotRequest())
+            ->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource)
+            ->setProject($project)
+            ->setResource($resource);
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -611,8 +707,15 @@ class SnapshotsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Snapshots/SetLabels', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getGlobalSetLabelsRequestResource();
+        $this->assertProtobufEquals($globalSetLabelsRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -660,7 +763,14 @@ class SnapshotsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SetLabelsSnapshotRequest();
+        // Mock request
+        $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new SetLabelsSnapshotRequest())
+            ->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource)
+            ->setProject($project)
+            ->setResource($resource);
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -692,7 +802,14 @@ class SnapshotsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsSnapshotRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsSnapshotRequest())
+            ->setProject($project)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -700,6 +817,12 @@ class SnapshotsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Snapshots/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
+        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -721,7 +844,14 @@ class SnapshotsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsSnapshotRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsSnapshotRequest())
+            ->setProject($project)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -760,7 +890,12 @@ class SnapshotsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteSnapshotRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $snapshot = 'snapshot284874180';
+        $request = (new DeleteSnapshotRequest())
+            ->setProject($project)
+            ->setSnapshot($snapshot);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -770,8 +905,13 @@ class SnapshotsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Snapshots/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getSnapshot();
+        $this->assertProtobufEquals($snapshot, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

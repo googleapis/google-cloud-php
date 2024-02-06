@@ -26,26 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\FirewallPoliciesClient;
+use Google\Cloud\Compute\V1\FirewallPolicy;
 use Google\Rpc\Status;
 
 /**
  * Creates a new policy in the specified project using the data included in the request.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $parentId Parent ID for this request. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
  */
-function insert_sample(): void
+function insert_sample(string $parentId): void
 {
     // Create a client.
     $firewallPoliciesClient = new FirewallPoliciesClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $firewallPolicyResource = new FirewallPolicy();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $firewallPoliciesClient->insert();
+        $response = $firewallPoliciesClient->insert($firewallPolicyResource, $parentId);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +58,21 @@ function insert_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $parentId = '[PARENT_ID]';
+
+    insert_sample($parentId);
 }
 // [END compute_v1_generated_FirewallPolicies_Insert_sync]

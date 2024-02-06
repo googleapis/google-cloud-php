@@ -34,19 +34,21 @@ use Google\Cloud\DataCatalog\V1\DeleteTagTemplateRequest;
  * the `name` parameter. For more information, see [Data Catalog resource
  * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the tag template to delete. Please see
+ *                              {@see DataCatalogClient::tagTemplateName()} for help formatting this field.
+ * @param bool   $force         If true, deletes all tags that use this template.
+ *
+ *                              Currently, `true` is the only supported value.
  */
-function delete_tag_template_sample(): void
+function delete_tag_template_sample(string $formattedName, bool $force): void
 {
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
     // Prepare the request message.
-    $request = new DeleteTagTemplateRequest();
+    $request = (new DeleteTagTemplateRequest())
+        ->setName($formattedName)
+        ->setForce($force);
 
     // Call the API and handle any network failures.
     try {
@@ -55,5 +57,22 @@ function delete_tag_template_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DataCatalogClient::tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
+    $force = false;
+
+    delete_tag_template_sample($formattedName, $force);
 }
 // [END datacatalog_v1_generated_DataCatalog_DeleteTagTemplate_sync]

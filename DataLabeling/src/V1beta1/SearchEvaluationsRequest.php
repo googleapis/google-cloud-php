@@ -77,6 +77,7 @@ class SearchEvaluationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. Evaluation search parent (project ID). Format:
      *                       "projects/<var>{project_id}</var>"
+     *                       Please see {@see DataLabelingServiceClient::evaluationName()} for help formatting this field.
      * @param string $filter Optional. To search evaluations, you can filter by the following:
      *
      *                       * evaluation<span>_</span>job.evaluation_job_id (the last part of

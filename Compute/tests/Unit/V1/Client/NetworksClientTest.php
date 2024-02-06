@@ -40,7 +40,10 @@ use Google\Cloud\Compute\V1\ListNetworksRequest;
 use Google\Cloud\Compute\V1\ListPeeringRoutesNetworksRequest;
 use Google\Cloud\Compute\V1\Network;
 use Google\Cloud\Compute\V1\NetworkList;
+use Google\Cloud\Compute\V1\NetworksAddPeeringRequest;
 use Google\Cloud\Compute\V1\NetworksGetEffectiveFirewallsResponse;
+use Google\Cloud\Compute\V1\NetworksRemovePeeringRequest;
+use Google\Cloud\Compute\V1\NetworksUpdatePeeringRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchNetworkRequest;
@@ -103,7 +106,14 @@ class NetworksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addPeeringTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new AddPeeringNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $networksAddPeeringRequestResource = new NetworksAddPeeringRequest();
+        $project = 'project-309310695';
+        $request = (new AddPeeringNetworkRequest())
+            ->setNetwork($network)
+            ->setNetworksAddPeeringRequestResource($networksAddPeeringRequestResource)
+            ->setProject($project);
         $response = $gapicClient->addPeering($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -113,8 +123,15 @@ class NetworksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Networks/AddPeering', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNetwork();
+        $this->assertProtobufEquals($network, $actualValue);
+        $actualValue = $actualApiRequestObject->getNetworksAddPeeringRequestResource();
+        $this->assertProtobufEquals($networksAddPeeringRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -162,7 +179,14 @@ class NetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new AddPeeringNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $networksAddPeeringRequestResource = new NetworksAddPeeringRequest();
+        $project = 'project-309310695';
+        $request = (new AddPeeringNetworkRequest())
+            ->setNetwork($network)
+            ->setNetworksAddPeeringRequestResource($networksAddPeeringRequestResource)
+            ->setProject($project);
         $response = $gapicClient->addPeering($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -208,7 +232,12 @@ class NetworksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $project = 'project-309310695';
+        $request = (new DeleteNetworkRequest())
+            ->setNetwork($network)
+            ->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -218,8 +247,13 @@ class NetworksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Networks/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNetwork();
+        $this->assertProtobufEquals($network, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -267,7 +301,12 @@ class NetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $project = 'project-309310695';
+        $request = (new DeleteNetworkRequest())
+            ->setNetwork($network)
+            ->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -329,7 +368,12 @@ class NetworksClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSelfLinkWithId($selfLinkWithId);
         $transport->addResponse($expectedResponse);
-        $request = new GetNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $project = 'project-309310695';
+        $request = (new GetNetworkRequest())
+            ->setNetwork($network)
+            ->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -337,6 +381,10 @@ class NetworksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Networks/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getNetwork();
+        $this->assertProtobufEquals($network, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -358,7 +406,12 @@ class NetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $project = 'project-309310695';
+        $request = (new GetNetworkRequest())
+            ->setNetwork($network)
+            ->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -383,7 +436,12 @@ class NetworksClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new NetworksGetEffectiveFirewallsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new GetEffectiveFirewallsNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $project = 'project-309310695';
+        $request = (new GetEffectiveFirewallsNetworkRequest())
+            ->setNetwork($network)
+            ->setProject($project);
         $response = $gapicClient->getEffectiveFirewalls($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -391,6 +449,10 @@ class NetworksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Networks/GetEffectiveFirewalls', $actualFuncCall);
+        $actualValue = $actualRequestObject->getNetwork();
+        $this->assertProtobufEquals($network, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -412,7 +474,12 @@ class NetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetEffectiveFirewallsNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $project = 'project-309310695';
+        $request = (new GetEffectiveFirewallsNetworkRequest())
+            ->setNetwork($network)
+            ->setProject($project);
         try {
             $gapicClient->getEffectiveFirewalls($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -451,7 +518,12 @@ class NetworksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertNetworkRequest();
+        // Mock request
+        $networkResource = new Network();
+        $project = 'project-309310695';
+        $request = (new InsertNetworkRequest())
+            ->setNetworkResource($networkResource)
+            ->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -461,8 +533,13 @@ class NetworksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Networks/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNetworkResource();
+        $this->assertProtobufEquals($networkResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -510,7 +587,12 @@ class NetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertNetworkRequest();
+        // Mock request
+        $networkResource = new Network();
+        $project = 'project-309310695';
+        $request = (new InsertNetworkRequest())
+            ->setNetworkResource($networkResource)
+            ->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -555,7 +637,10 @@ class NetworksClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListNetworksRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListNetworksRequest())
+            ->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -566,6 +651,8 @@ class NetworksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Networks/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -587,7 +674,10 @@ class NetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListNetworksRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListNetworksRequest())
+            ->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -625,7 +715,12 @@ class NetworksClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListPeeringRoutesNetworksRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $project = 'project-309310695';
+        $request = (new ListPeeringRoutesNetworksRequest())
+            ->setNetwork($network)
+            ->setProject($project);
         $response = $gapicClient->listPeeringRoutes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -636,6 +731,10 @@ class NetworksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Networks/ListPeeringRoutes', $actualFuncCall);
+        $actualValue = $actualRequestObject->getNetwork();
+        $this->assertProtobufEquals($network, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -657,7 +756,12 @@ class NetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListPeeringRoutesNetworksRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $project = 'project-309310695';
+        $request = (new ListPeeringRoutesNetworksRequest())
+            ->setNetwork($network)
+            ->setProject($project);
         try {
             $gapicClient->listPeeringRoutes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -696,7 +800,14 @@ class NetworksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PatchNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $networkResource = new Network();
+        $project = 'project-309310695';
+        $request = (new PatchNetworkRequest())
+            ->setNetwork($network)
+            ->setNetworkResource($networkResource)
+            ->setProject($project);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -706,8 +817,15 @@ class NetworksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Networks/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNetwork();
+        $this->assertProtobufEquals($network, $actualValue);
+        $actualValue = $actualApiRequestObject->getNetworkResource();
+        $this->assertProtobufEquals($networkResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -755,7 +873,14 @@ class NetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PatchNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $networkResource = new Network();
+        $project = 'project-309310695';
+        $request = (new PatchNetworkRequest())
+            ->setNetwork($network)
+            ->setNetworkResource($networkResource)
+            ->setProject($project);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -801,7 +926,14 @@ class NetworksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/removePeeringTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new RemovePeeringNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $networksRemovePeeringRequestResource = new NetworksRemovePeeringRequest();
+        $project = 'project-309310695';
+        $request = (new RemovePeeringNetworkRequest())
+            ->setNetwork($network)
+            ->setNetworksRemovePeeringRequestResource($networksRemovePeeringRequestResource)
+            ->setProject($project);
         $response = $gapicClient->removePeering($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -811,8 +943,15 @@ class NetworksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Networks/RemovePeering', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNetwork();
+        $this->assertProtobufEquals($network, $actualValue);
+        $actualValue = $actualApiRequestObject->getNetworksRemovePeeringRequestResource();
+        $this->assertProtobufEquals($networksRemovePeeringRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -860,7 +999,14 @@ class NetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new RemovePeeringNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $networksRemovePeeringRequestResource = new NetworksRemovePeeringRequest();
+        $project = 'project-309310695';
+        $request = (new RemovePeeringNetworkRequest())
+            ->setNetwork($network)
+            ->setNetworksRemovePeeringRequestResource($networksRemovePeeringRequestResource)
+            ->setProject($project);
         $response = $gapicClient->removePeering($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -906,7 +1052,12 @@ class NetworksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/switchToCustomModeTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SwitchToCustomModeNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $project = 'project-309310695';
+        $request = (new SwitchToCustomModeNetworkRequest())
+            ->setNetwork($network)
+            ->setProject($project);
         $response = $gapicClient->switchToCustomMode($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -916,8 +1067,13 @@ class NetworksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Networks/SwitchToCustomMode', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNetwork();
+        $this->assertProtobufEquals($network, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -965,7 +1121,12 @@ class NetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SwitchToCustomModeNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $project = 'project-309310695';
+        $request = (new SwitchToCustomModeNetworkRequest())
+            ->setNetwork($network)
+            ->setProject($project);
         $response = $gapicClient->switchToCustomMode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1011,7 +1172,14 @@ class NetworksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/updatePeeringTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdatePeeringNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $networksUpdatePeeringRequestResource = new NetworksUpdatePeeringRequest();
+        $project = 'project-309310695';
+        $request = (new UpdatePeeringNetworkRequest())
+            ->setNetwork($network)
+            ->setNetworksUpdatePeeringRequestResource($networksUpdatePeeringRequestResource)
+            ->setProject($project);
         $response = $gapicClient->updatePeering($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1021,8 +1189,15 @@ class NetworksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Networks/UpdatePeering', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNetwork();
+        $this->assertProtobufEquals($network, $actualValue);
+        $actualValue = $actualApiRequestObject->getNetworksUpdatePeeringRequestResource();
+        $this->assertProtobufEquals($networksUpdatePeeringRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1070,7 +1245,14 @@ class NetworksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdatePeeringNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $networksUpdatePeeringRequestResource = new NetworksUpdatePeeringRequest();
+        $project = 'project-309310695';
+        $request = (new UpdatePeeringNetworkRequest())
+            ->setNetwork($network)
+            ->setNetworksUpdatePeeringRequestResource($networksUpdatePeeringRequestResource)
+            ->setProject($project);
         $response = $gapicClient->updatePeering($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1116,7 +1298,14 @@ class NetworksClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addPeeringAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new AddPeeringNetworkRequest();
+        // Mock request
+        $network = 'network1843485230';
+        $networksAddPeeringRequestResource = new NetworksAddPeeringRequest();
+        $project = 'project-309310695';
+        $request = (new AddPeeringNetworkRequest())
+            ->setNetwork($network)
+            ->setNetworksAddPeeringRequestResource($networksAddPeeringRequestResource)
+            ->setProject($project);
         $response = $gapicClient->addPeering($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1126,8 +1315,15 @@ class NetworksClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Networks/AddPeering', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNetwork();
+        $this->assertProtobufEquals($network, $actualValue);
+        $actualValue = $actualApiRequestObject->getNetworksAddPeeringRequestResource();
+        $this->assertProtobufEquals($networksAddPeeringRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

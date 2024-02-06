@@ -31,19 +31,19 @@ use Google\Cloud\Dialogflow\V2\GetConversationDatasetRequest;
 /**
  * Retrieves the specified conversation dataset.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The conversation dataset to retrieve. Format:
+ *                              `projects/<Project ID>/locations/<Location
+ *                              ID>/conversationDatasets/<Conversation Dataset ID>`
+ *                              Please see {@see ConversationDatasetsClient::conversationDatasetName()} for help formatting this field.
  */
-function get_conversation_dataset_sample(): void
+function get_conversation_dataset_sample(string $formattedName): void
 {
     // Create a client.
     $conversationDatasetsClient = new ConversationDatasetsClient();
 
     // Prepare the request message.
-    $request = new GetConversationDatasetRequest();
+    $request = (new GetConversationDatasetRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +53,25 @@ function get_conversation_dataset_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ConversationDatasetsClient::conversationDatasetName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[CONVERSATION_DATASET]'
+    );
+
+    get_conversation_dataset_sample($formattedName);
 }
 // [END dialogflow_v2_generated_ConversationDatasets_GetConversationDataset_sync]

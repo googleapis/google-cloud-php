@@ -97,7 +97,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setParentPolicyTag($parentPolicyTag);
         $transport->addResponse($expectedResponse);
-        $request = new CreatePolicyTagRequest();
+        // Mock request
+        $formattedParent = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $request = (new CreatePolicyTagRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->createPolicyTag($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -105,6 +108,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.PolicyTagManager/CreatePolicyTag', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -126,7 +131,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreatePolicyTagRequest();
+        // Mock request
+        $formattedParent = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $request = (new CreatePolicyTagRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->createPolicyTag($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -159,7 +167,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setPolicyTagCount($policyTagCount);
         $transport->addResponse($expectedResponse);
-        $request = new CreateTaxonomyRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new CreateTaxonomyRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->createTaxonomy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -167,6 +178,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.PolicyTagManager/CreateTaxonomy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -188,7 +201,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateTaxonomyRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new CreateTaxonomyRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->createTaxonomy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -213,13 +229,18 @@ class PolicyTagManagerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeletePolicyTagRequest();
+        // Mock request
+        $formattedName = $gapicClient->policyTagName('[PROJECT]', '[LOCATION]', '[TAXONOMY]', '[POLICY_TAG]');
+        $request = (new DeletePolicyTagRequest())
+            ->setName($formattedName);
         $gapicClient->deletePolicyTag($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.PolicyTagManager/DeletePolicyTag', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -241,7 +262,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeletePolicyTagRequest();
+        // Mock request
+        $formattedName = $gapicClient->policyTagName('[PROJECT]', '[LOCATION]', '[TAXONOMY]', '[POLICY_TAG]');
+        $request = (new DeletePolicyTagRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deletePolicyTag($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -266,13 +290,18 @@ class PolicyTagManagerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteTaxonomyRequest();
+        // Mock request
+        $formattedName = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $request = (new DeleteTaxonomyRequest())
+            ->setName($formattedName);
         $gapicClient->deleteTaxonomy($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.PolicyTagManager/DeleteTaxonomy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -294,7 +323,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteTaxonomyRequest();
+        // Mock request
+        $formattedName = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $request = (new DeleteTaxonomyRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteTaxonomy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -323,7 +355,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -331,6 +366,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.PolicyTagManager/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -352,7 +389,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -385,7 +425,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setParentPolicyTag($parentPolicyTag);
         $transport->addResponse($expectedResponse);
-        $request = new GetPolicyTagRequest();
+        // Mock request
+        $formattedName = $gapicClient->policyTagName('[PROJECT]', '[LOCATION]', '[TAXONOMY]', '[POLICY_TAG]');
+        $request = (new GetPolicyTagRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getPolicyTag($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -393,6 +436,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.PolicyTagManager/GetPolicyTag', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -414,7 +459,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetPolicyTagRequest();
+        // Mock request
+        $formattedName = $gapicClient->policyTagName('[PROJECT]', '[LOCATION]', '[TAXONOMY]', '[POLICY_TAG]');
+        $request = (new GetPolicyTagRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getPolicyTag($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -447,7 +495,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setPolicyTagCount($policyTagCount);
         $transport->addResponse($expectedResponse);
-        $request = new GetTaxonomyRequest();
+        // Mock request
+        $formattedName = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $request = (new GetTaxonomyRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getTaxonomy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -455,6 +506,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.PolicyTagManager/GetTaxonomy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -476,7 +529,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetTaxonomyRequest();
+        // Mock request
+        $formattedName = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $request = (new GetTaxonomyRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getTaxonomy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -508,7 +564,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPolicyTags($policyTags);
         $transport->addResponse($expectedResponse);
-        $request = new ListPolicyTagsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $request = (new ListPolicyTagsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listPolicyTags($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -519,6 +578,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.PolicyTagManager/ListPolicyTags', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -540,7 +601,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListPolicyTagsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $request = (new ListPolicyTagsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listPolicyTags($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -572,7 +636,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTaxonomies($taxonomies);
         $transport->addResponse($expectedResponse);
-        $request = new ListTaxonomiesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListTaxonomiesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listTaxonomies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -583,6 +650,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.PolicyTagManager/ListTaxonomies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -604,7 +673,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListTaxonomiesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListTaxonomiesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listTaxonomies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -633,7 +705,12 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -641,6 +718,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.PolicyTagManager/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -662,7 +743,12 @@ class PolicyTagManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -687,7 +773,12 @@ class PolicyTagManagerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -695,6 +786,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.PolicyTagManager/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -716,7 +811,12 @@ class PolicyTagManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -873,7 +973,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setParentPolicyTag($parentPolicyTag);
         $transport->addResponse($expectedResponse);
-        $request = new CreatePolicyTagRequest();
+        // Mock request
+        $formattedParent = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $request = (new CreatePolicyTagRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->createPolicyTagAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -881,6 +984,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.v1.PolicyTagManager/CreatePolicyTag', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

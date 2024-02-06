@@ -115,7 +115,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $dataLabelingServiceClient = new DataLabelingServiceClient();
  * try {
- *     $response = $dataLabelingServiceClient->createAnnotationSpecSet();
+ *     $formattedParent = $dataLabelingServiceClient->projectName('[PROJECT]');
+ *     $annotationSpecSet = new AnnotationSpecSet();
+ *     $response = $dataLabelingServiceClient->createAnnotationSpecSet($formattedParent, $annotationSpecSet);
  * } finally {
  *     $dataLabelingServiceClient->close();
  * }
@@ -632,22 +634,22 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $response = $dataLabelingServiceClient->createAnnotationSpecSet();
+     *     $formattedParent = $dataLabelingServiceClient->projectName('[PROJECT]');
+     *     $annotationSpecSet = new AnnotationSpecSet();
+     *     $response = $dataLabelingServiceClient->createAnnotationSpecSet($formattedParent, $annotationSpecSet);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string            $parent            Required. AnnotationSpecSet resource parent, format:
+     *                                             projects/{project_id}
+     * @param AnnotationSpecSet $annotationSpecSet Required. Annotation spec set to create. Annotation specs must be included.
+     *                                             Only one annotation spec will be accepted for annotation specs with same
+     *                                             display_name.
+     * @param array             $optionalArgs      {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. AnnotationSpecSet resource parent, format:
-     *           projects/{project_id}
-     *     @type AnnotationSpecSet $annotationSpecSet
-     *           Required. Annotation spec set to create. Annotation specs must be included.
-     *           Only one annotation spec will be accepted for annotation specs with same
-     *           display_name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -660,19 +662,13 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function createAnnotationSpecSet(array $optionalArgs = [])
+    public function createAnnotationSpecSet($parent, $annotationSpecSet, array $optionalArgs = [])
     {
         $request = new CreateAnnotationSpecSetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['annotationSpecSet'])) {
-            $request->setAnnotationSpecSet($optionalArgs['annotationSpecSet']);
-        }
-
+        $request->setParent($parent);
+        $request->setAnnotationSpecSet($annotationSpecSet);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateAnnotationSpecSet', AnnotationSpecSet::class, $optionalArgs, $request)->wait();
@@ -685,20 +681,20 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $response = $dataLabelingServiceClient->createDataset();
+     *     $formattedParent = $dataLabelingServiceClient->projectName('[PROJECT]');
+     *     $dataset = new Dataset();
+     *     $response = $dataLabelingServiceClient->createDataset($formattedParent, $dataset);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string  $parent       Required. Dataset resource parent, format:
+     *                              projects/{project_id}
+     * @param Dataset $dataset      Required. The dataset to be created.
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Dataset resource parent, format:
-     *           projects/{project_id}
-     *     @type Dataset $dataset
-     *           Required. The dataset to be created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -711,19 +707,13 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function createDataset(array $optionalArgs = [])
+    public function createDataset($parent, $dataset, array $optionalArgs = [])
     {
         $request = new CreateDatasetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['dataset'])) {
-            $request->setDataset($optionalArgs['dataset']);
-        }
-
+        $request->setParent($parent);
+        $request->setDataset($dataset);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateDataset', Dataset::class, $optionalArgs, $request)->wait();
@@ -736,20 +726,20 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $response = $dataLabelingServiceClient->createEvaluationJob();
+     *     $formattedParent = $dataLabelingServiceClient->projectName('[PROJECT]');
+     *     $job = new EvaluationJob();
+     *     $response = $dataLabelingServiceClient->createEvaluationJob($formattedParent, $job);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string        $parent       Required. Evaluation job resource parent. Format:
+     *                                    "projects/<var>{project_id}</var>"
+     * @param EvaluationJob $job          Required. The evaluation job to create.
+     * @param array         $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Evaluation job resource parent. Format:
-     *           "projects/<var>{project_id}</var>"
-     *     @type EvaluationJob $job
-     *           Required. The evaluation job to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -762,19 +752,13 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function createEvaluationJob(array $optionalArgs = [])
+    public function createEvaluationJob($parent, $job, array $optionalArgs = [])
     {
         $request = new CreateEvaluationJobRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['job'])) {
-            $request->setJob($optionalArgs['job']);
-        }
-
+        $request->setParent($parent);
+        $request->setJob($job);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateEvaluationJob', EvaluationJob::class, $optionalArgs, $request)->wait();
@@ -787,7 +771,9 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $operationResponse = $dataLabelingServiceClient->createInstruction();
+     *     $formattedParent = $dataLabelingServiceClient->projectName('[PROJECT]');
+     *     $instruction = new Instruction();
+     *     $operationResponse = $dataLabelingServiceClient->createInstruction($formattedParent, $instruction);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -798,7 +784,7 @@ class DataLabelingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataLabelingServiceClient->createInstruction();
+     *     $operationResponse = $dataLabelingServiceClient->createInstruction($formattedParent, $instruction);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataLabelingServiceClient->resumeOperation($operationName, 'createInstruction');
@@ -818,14 +804,12 @@ class DataLabelingServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string      $parent       Required. Instruction resource parent, format:
+     *                                  projects/{project_id}
+     * @param Instruction $instruction  Required. Instruction of how to perform the labeling task.
+     * @param array       $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Instruction resource parent, format:
-     *           projects/{project_id}
-     *     @type Instruction $instruction
-     *           Required. Instruction of how to perform the labeling task.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -838,19 +822,13 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function createInstruction(array $optionalArgs = [])
+    public function createInstruction($parent, $instruction, array $optionalArgs = [])
     {
         $request = new CreateInstructionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['instruction'])) {
-            $request->setInstruction($optionalArgs['instruction']);
-        }
-
+        $request->setParent($parent);
+        $request->setInstruction($instruction);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateInstruction', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -863,19 +841,19 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $dataLabelingServiceClient->deleteAnnotatedDataset();
+     *     $formattedName = $dataLabelingServiceClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
+     *     $dataLabelingServiceClient->deleteAnnotatedDataset($formattedName);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the annotated dataset to delete, format:
+     *                             projects/{project_id}/datasets/{dataset_id}/annotatedDatasets/
+     *                             {annotated_dataset_id}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the annotated dataset to delete, format:
-     *           projects/{project_id}/datasets/{dataset_id}/annotatedDatasets/
-     *           {annotated_dataset_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -886,15 +864,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function deleteAnnotatedDataset(array $optionalArgs = [])
+    public function deleteAnnotatedDataset($name, array $optionalArgs = [])
     {
         $request = new DeleteAnnotatedDatasetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteAnnotatedDataset', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -907,18 +882,18 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $dataLabelingServiceClient->deleteAnnotationSpecSet();
+     *     $formattedName = $dataLabelingServiceClient->annotationSpecSetName('[PROJECT]', '[ANNOTATION_SPEC_SET]');
+     *     $dataLabelingServiceClient->deleteAnnotationSpecSet($formattedName);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. AnnotationSpec resource name, format:
+     *                             `projects/{project_id}/annotationSpecSets/{annotation_spec_set_id}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. AnnotationSpec resource name, format:
-     *           `projects/{project_id}/annotationSpecSets/{annotation_spec_set_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -929,15 +904,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function deleteAnnotationSpecSet(array $optionalArgs = [])
+    public function deleteAnnotationSpecSet($name, array $optionalArgs = [])
     {
         $request = new DeleteAnnotationSpecSetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteAnnotationSpecSet', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -950,18 +922,18 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $dataLabelingServiceClient->deleteDataset();
+     *     $formattedName = $dataLabelingServiceClient->datasetName('[PROJECT]', '[DATASET]');
+     *     $dataLabelingServiceClient->deleteDataset($formattedName);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Dataset resource name, format:
+     *                             projects/{project_id}/datasets/{dataset_id}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Dataset resource name, format:
-     *           projects/{project_id}/datasets/{dataset_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -972,15 +944,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function deleteDataset(array $optionalArgs = [])
+    public function deleteDataset($name, array $optionalArgs = [])
     {
         $request = new DeleteDatasetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteDataset', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -993,19 +962,19 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $dataLabelingServiceClient->deleteEvaluationJob();
+     *     $formattedName = $dataLabelingServiceClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
+     *     $dataLabelingServiceClient->deleteEvaluationJob($formattedName);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the evaluation job that is going to be deleted. Format:
+     *
+     *                             "projects/<var>{project_id}</var>/evaluationJobs/<var>{evaluation_job_id}</var>"
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the evaluation job that is going to be deleted. Format:
-     *
-     *           "projects/<var>{project_id}</var>/evaluationJobs/<var>{evaluation_job_id}</var>"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1016,15 +985,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function deleteEvaluationJob(array $optionalArgs = [])
+    public function deleteEvaluationJob($name, array $optionalArgs = [])
     {
         $request = new DeleteEvaluationJobRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteEvaluationJob', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1037,18 +1003,18 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $dataLabelingServiceClient->deleteInstruction();
+     *     $formattedName = $dataLabelingServiceClient->instructionName('[PROJECT]', '[INSTRUCTION]');
+     *     $dataLabelingServiceClient->deleteInstruction($formattedName);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Instruction resource name, format:
+     *                             projects/{project_id}/instructions/{instruction_id}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Instruction resource name, format:
-     *           projects/{project_id}/instructions/{instruction_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1059,15 +1025,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function deleteInstruction(array $optionalArgs = [])
+    public function deleteInstruction($name, array $optionalArgs = [])
     {
         $request = new DeleteInstructionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteInstruction', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1080,7 +1043,10 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $operationResponse = $dataLabelingServiceClient->exportData();
+     *     $formattedName = $dataLabelingServiceClient->datasetName('[PROJECT]', '[DATASET]');
+     *     $formattedAnnotatedDataset = $dataLabelingServiceClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
+     *     $outputConfig = new OutputConfig();
+     *     $operationResponse = $dataLabelingServiceClient->exportData($formattedName, $formattedAnnotatedDataset, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1091,7 +1057,7 @@ class DataLabelingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataLabelingServiceClient->exportData();
+     *     $operationResponse = $dataLabelingServiceClient->exportData($formattedName, $formattedAnnotatedDataset, $outputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataLabelingServiceClient->resumeOperation($operationName, 'exportData');
@@ -1111,22 +1077,19 @@ class DataLabelingServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string       $name             Required. Dataset resource name, format:
+     *                                       projects/{project_id}/datasets/{dataset_id}
+     * @param string       $annotatedDataset Required. Annotated dataset resource name. DataItem in
+     *                                       Dataset and their annotations in specified annotated dataset will be
+     *                                       exported. It's in format of
+     *                                       projects/{project_id}/datasets/{dataset_id}/annotatedDatasets/
+     *                                       {annotated_dataset_id}
+     * @param OutputConfig $outputConfig     Required. Specify the output destination.
+     * @param array        $optionalArgs     {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Dataset resource name, format:
-     *           projects/{project_id}/datasets/{dataset_id}
-     *     @type string $annotatedDataset
-     *           Required. Annotated dataset resource name. DataItem in
-     *           Dataset and their annotations in specified annotated dataset will be
-     *           exported. It's in format of
-     *           projects/{project_id}/datasets/{dataset_id}/annotatedDatasets/
-     *           {annotated_dataset_id}
      *     @type string $filter
      *           Optional. Filter is not supported at this moment.
-     *     @type OutputConfig $outputConfig
-     *           Required. Specify the output destination.
      *     @type string $userEmailAddress
      *           Email of the user who started the export task and should be notified by
      *           email. If empty no notification will be sent.
@@ -1142,25 +1105,16 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function exportData(array $optionalArgs = [])
+    public function exportData($name, $annotatedDataset, $outputConfig, array $optionalArgs = [])
     {
         $request = new ExportDataRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['annotatedDataset'])) {
-            $request->setAnnotatedDataset($optionalArgs['annotatedDataset']);
-        }
-
+        $request->setName($name);
+        $request->setAnnotatedDataset($annotatedDataset);
+        $request->setOutputConfig($outputConfig);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
-        }
-
-        if (isset($optionalArgs['outputConfig'])) {
-            $request->setOutputConfig($optionalArgs['outputConfig']);
         }
 
         if (isset($optionalArgs['userEmailAddress'])) {
@@ -1179,19 +1133,19 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $response = $dataLabelingServiceClient->getAnnotatedDataset();
+     *     $formattedName = $dataLabelingServiceClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
+     *     $response = $dataLabelingServiceClient->getAnnotatedDataset($formattedName);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the annotated dataset to get, format:
+     *                             projects/{project_id}/datasets/{dataset_id}/annotatedDatasets/
+     *                             {annotated_dataset_id}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the annotated dataset to get, format:
-     *           projects/{project_id}/datasets/{dataset_id}/annotatedDatasets/
-     *           {annotated_dataset_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1204,15 +1158,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function getAnnotatedDataset(array $optionalArgs = [])
+    public function getAnnotatedDataset($name, array $optionalArgs = [])
     {
         $request = new GetAnnotatedDatasetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetAnnotatedDataset', AnnotatedDataset::class, $optionalArgs, $request)->wait();
@@ -1225,18 +1176,18 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $response = $dataLabelingServiceClient->getAnnotationSpecSet();
+     *     $formattedName = $dataLabelingServiceClient->annotationSpecSetName('[PROJECT]', '[ANNOTATION_SPEC_SET]');
+     *     $response = $dataLabelingServiceClient->getAnnotationSpecSet($formattedName);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. AnnotationSpecSet resource name, format:
+     *                             projects/{project_id}/annotationSpecSets/{annotation_spec_set_id}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. AnnotationSpecSet resource name, format:
-     *           projects/{project_id}/annotationSpecSets/{annotation_spec_set_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1249,15 +1200,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function getAnnotationSpecSet(array $optionalArgs = [])
+    public function getAnnotationSpecSet($name, array $optionalArgs = [])
     {
         $request = new GetAnnotationSpecSetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetAnnotationSpecSet', AnnotationSpecSet::class, $optionalArgs, $request)->wait();
@@ -1271,18 +1219,18 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $response = $dataLabelingServiceClient->getDataItem();
+     *     $formattedName = $dataLabelingServiceClient->dataItemName('[PROJECT]', '[DATASET]', '[DATA_ITEM]');
+     *     $response = $dataLabelingServiceClient->getDataItem($formattedName);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the data item to get, format:
+     *                             projects/{project_id}/datasets/{dataset_id}/dataItems/{data_item_id}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the data item to get, format:
-     *           projects/{project_id}/datasets/{dataset_id}/dataItems/{data_item_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1295,15 +1243,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function getDataItem(array $optionalArgs = [])
+    public function getDataItem($name, array $optionalArgs = [])
     {
         $request = new GetDataItemRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetDataItem', DataItem::class, $optionalArgs, $request)->wait();
@@ -1316,18 +1261,18 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $response = $dataLabelingServiceClient->getDataset();
+     *     $formattedName = $dataLabelingServiceClient->datasetName('[PROJECT]', '[DATASET]');
+     *     $response = $dataLabelingServiceClient->getDataset($formattedName);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Dataset resource name, format:
+     *                             projects/{project_id}/datasets/{dataset_id}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Dataset resource name, format:
-     *           projects/{project_id}/datasets/{dataset_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1340,15 +1285,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function getDataset(array $optionalArgs = [])
+    public function getDataset($name, array $optionalArgs = [])
     {
         $request = new GetDatasetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetDataset', Dataset::class, $optionalArgs, $request)->wait();
@@ -1362,19 +1304,19 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $response = $dataLabelingServiceClient->getEvaluation();
+     *     $formattedName = $dataLabelingServiceClient->evaluationName('[PROJECT]', '[DATASET]', '[EVALUATION]');
+     *     $response = $dataLabelingServiceClient->getEvaluation($formattedName);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the evaluation. Format:
+     *
+     *                             "projects/<var>{project_id}</var>/datasets/<var>{dataset_id}</var>/evaluations/<var>{evaluation_id}</var>'
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the evaluation. Format:
-     *
-     *           "projects/<var>{project_id}</var>/datasets/<var>{dataset_id}</var>/evaluations/<var>{evaluation_id}</var>'
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1387,15 +1329,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function getEvaluation(array $optionalArgs = [])
+    public function getEvaluation($name, array $optionalArgs = [])
     {
         $request = new GetEvaluationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetEvaluation', Evaluation::class, $optionalArgs, $request)->wait();
@@ -1408,19 +1347,19 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $response = $dataLabelingServiceClient->getEvaluationJob();
+     *     $formattedName = $dataLabelingServiceClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
+     *     $response = $dataLabelingServiceClient->getEvaluationJob($formattedName);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the evaluation job. Format:
+     *
+     *                             "projects/<var>{project_id}</var>/evaluationJobs/<var>{evaluation_job_id}</var>"
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the evaluation job. Format:
-     *
-     *           "projects/<var>{project_id}</var>/evaluationJobs/<var>{evaluation_job_id}</var>"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1433,15 +1372,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function getEvaluationJob(array $optionalArgs = [])
+    public function getEvaluationJob($name, array $optionalArgs = [])
     {
         $request = new GetEvaluationJobRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetEvaluationJob', EvaluationJob::class, $optionalArgs, $request)->wait();
@@ -1454,19 +1390,19 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $response = $dataLabelingServiceClient->getExample();
+     *     $formattedName = $dataLabelingServiceClient->exampleName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]', '[EXAMPLE]');
+     *     $response = $dataLabelingServiceClient->getExample($formattedName);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of example, format:
+     *                             projects/{project_id}/datasets/{dataset_id}/annotatedDatasets/
+     *                             {annotated_dataset_id}/examples/{example_id}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of example, format:
-     *           projects/{project_id}/datasets/{dataset_id}/annotatedDatasets/
-     *           {annotated_dataset_id}/examples/{example_id}
      *     @type string $filter
      *           Optional. An expression for filtering Examples. Filter by
      *           annotation_spec.display_name is supported. Format
@@ -1483,15 +1419,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function getExample(array $optionalArgs = [])
+    public function getExample($name, array $optionalArgs = [])
     {
         $request = new GetExampleRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1508,18 +1441,18 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $response = $dataLabelingServiceClient->getInstruction();
+     *     $formattedName = $dataLabelingServiceClient->instructionName('[PROJECT]', '[INSTRUCTION]');
+     *     $response = $dataLabelingServiceClient->getInstruction($formattedName);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Instruction resource name, format:
+     *                             projects/{project_id}/instructions/{instruction_id}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Instruction resource name, format:
-     *           projects/{project_id}/instructions/{instruction_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1532,15 +1465,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function getInstruction(array $optionalArgs = [])
+    public function getInstruction($name, array $optionalArgs = [])
     {
         $request = new GetInstructionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetInstruction', Instruction::class, $optionalArgs, $request)->wait();
@@ -1557,7 +1487,9 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $operationResponse = $dataLabelingServiceClient->importData();
+     *     $formattedName = $dataLabelingServiceClient->datasetName('[PROJECT]', '[DATASET]');
+     *     $inputConfig = new InputConfig();
+     *     $operationResponse = $dataLabelingServiceClient->importData($formattedName, $inputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1568,7 +1500,7 @@ class DataLabelingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataLabelingServiceClient->importData();
+     *     $operationResponse = $dataLabelingServiceClient->importData($formattedName, $inputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataLabelingServiceClient->resumeOperation($operationName, 'importData');
@@ -1588,14 +1520,12 @@ class DataLabelingServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string      $name         Required. Dataset resource name, format:
+     *                                  projects/{project_id}/datasets/{dataset_id}
+     * @param InputConfig $inputConfig  Required. Specify the input source of the data.
+     * @param array       $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Dataset resource name, format:
-     *           projects/{project_id}/datasets/{dataset_id}
-     *     @type InputConfig $inputConfig
-     *           Required. Specify the input source of the data.
      *     @type string $userEmailAddress
      *           Email of the user who started the import task and should be notified by
      *           email. If empty no notification will be sent.
@@ -1611,19 +1541,13 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function importData(array $optionalArgs = [])
+    public function importData($name, $inputConfig, array $optionalArgs = [])
     {
         $request = new ImportDataRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['inputConfig'])) {
-            $request->setInputConfig($optionalArgs['inputConfig']);
-        }
-
+        $request->setName($name);
+        $request->setInputConfig($inputConfig);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['userEmailAddress'])) {
             $request->setUserEmailAddress($optionalArgs['userEmailAddress']);
         }
@@ -1641,7 +1565,10 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $operationResponse = $dataLabelingServiceClient->labelImage();
+     *     $formattedParent = $dataLabelingServiceClient->datasetName('[PROJECT]', '[DATASET]');
+     *     $basicConfig = new HumanAnnotationConfig();
+     *     $feature = Feature::FEATURE_UNSPECIFIED;
+     *     $operationResponse = $dataLabelingServiceClient->labelImage($formattedParent, $basicConfig, $feature);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1652,7 +1579,7 @@ class DataLabelingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataLabelingServiceClient->labelImage();
+     *     $operationResponse = $dataLabelingServiceClient->labelImage($formattedParent, $basicConfig, $feature);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataLabelingServiceClient->resumeOperation($operationName, 'labelImage');
@@ -1672,7 +1599,12 @@ class DataLabelingServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                $parent       Required. Name of the dataset to request labeling task, format:
+     *                                            projects/{project_id}/datasets/{dataset_id}
+     * @param HumanAnnotationConfig $basicConfig  Required. Basic human annotation config.
+     * @param int                   $feature      Required. The type of image labeling task.
+     *                                            For allowed values, use constants defined on {@see \Google\Cloud\DataLabeling\V1beta1\LabelImageRequest\Feature}
+     * @param array                 $optionalArgs {
      *     Optional.
      *
      *     @type ImageClassificationConfig $imageClassificationConfig
@@ -1691,14 +1623,6 @@ class DataLabelingServiceGapicClient
      *           Configuration for segmentation task.
      *           One of image_classification_config, bounding_poly_config,
      *           polyline_config and segmentation_config are required.
-     *     @type string $parent
-     *           Required. Name of the dataset to request labeling task, format:
-     *           projects/{project_id}/datasets/{dataset_id}
-     *     @type HumanAnnotationConfig $basicConfig
-     *           Required. Basic human annotation config.
-     *     @type int $feature
-     *           Required. The type of image labeling task.
-     *           For allowed values, use constants defined on {@see \Google\Cloud\DataLabeling\V1beta1\LabelImageRequest\Feature}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1711,10 +1635,14 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function labelImage(array $optionalArgs = [])
+    public function labelImage($parent, $basicConfig, $feature, array $optionalArgs = [])
     {
         $request = new LabelImageRequest();
         $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setBasicConfig($basicConfig);
+        $request->setFeature($feature);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['imageClassificationConfig'])) {
             $request->setImageClassificationConfig($optionalArgs['imageClassificationConfig']);
         }
@@ -1731,19 +1659,6 @@ class DataLabelingServiceGapicClient
             $request->setSegmentationConfig($optionalArgs['segmentationConfig']);
         }
 
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['basicConfig'])) {
-            $request->setBasicConfig($optionalArgs['basicConfig']);
-        }
-
-        if (isset($optionalArgs['feature'])) {
-            $request->setFeature($optionalArgs['feature']);
-        }
-
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('LabelImage', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1757,7 +1672,10 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $operationResponse = $dataLabelingServiceClient->labelText();
+     *     $formattedParent = $dataLabelingServiceClient->datasetName('[PROJECT]', '[DATASET]');
+     *     $basicConfig = new HumanAnnotationConfig();
+     *     $feature = Feature::FEATURE_UNSPECIFIED;
+     *     $operationResponse = $dataLabelingServiceClient->labelText($formattedParent, $basicConfig, $feature);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1768,7 +1686,7 @@ class DataLabelingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataLabelingServiceClient->labelText();
+     *     $operationResponse = $dataLabelingServiceClient->labelText($formattedParent, $basicConfig, $feature);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataLabelingServiceClient->resumeOperation($operationName, 'labelText');
@@ -1788,7 +1706,12 @@ class DataLabelingServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                $parent       Required. Name of the data set to request labeling task, format:
+     *                                            projects/{project_id}/datasets/{dataset_id}
+     * @param HumanAnnotationConfig $basicConfig  Required. Basic human annotation config.
+     * @param int                   $feature      Required. The type of text labeling task.
+     *                                            For allowed values, use constants defined on {@see \Google\Cloud\DataLabeling\V1beta1\LabelTextRequest\Feature}
+     * @param array                 $optionalArgs {
      *     Optional.
      *
      *     @type TextClassificationConfig $textClassificationConfig
@@ -1799,14 +1722,6 @@ class DataLabelingServiceGapicClient
      *           Configuration for entity extraction task.
      *           One of text_classification_config and text_entity_extraction_config
      *           is required.
-     *     @type string $parent
-     *           Required. Name of the data set to request labeling task, format:
-     *           projects/{project_id}/datasets/{dataset_id}
-     *     @type HumanAnnotationConfig $basicConfig
-     *           Required. Basic human annotation config.
-     *     @type int $feature
-     *           Required. The type of text labeling task.
-     *           For allowed values, use constants defined on {@see \Google\Cloud\DataLabeling\V1beta1\LabelTextRequest\Feature}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1819,29 +1734,20 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function labelText(array $optionalArgs = [])
+    public function labelText($parent, $basicConfig, $feature, array $optionalArgs = [])
     {
         $request = new LabelTextRequest();
         $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setBasicConfig($basicConfig);
+        $request->setFeature($feature);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['textClassificationConfig'])) {
             $request->setTextClassificationConfig($optionalArgs['textClassificationConfig']);
         }
 
         if (isset($optionalArgs['textEntityExtractionConfig'])) {
             $request->setTextEntityExtractionConfig($optionalArgs['textEntityExtractionConfig']);
-        }
-
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['basicConfig'])) {
-            $request->setBasicConfig($optionalArgs['basicConfig']);
-        }
-
-        if (isset($optionalArgs['feature'])) {
-            $request->setFeature($optionalArgs['feature']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1857,7 +1763,10 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $operationResponse = $dataLabelingServiceClient->labelVideo();
+     *     $formattedParent = $dataLabelingServiceClient->datasetName('[PROJECT]', '[DATASET]');
+     *     $basicConfig = new HumanAnnotationConfig();
+     *     $feature = Feature::FEATURE_UNSPECIFIED;
+     *     $operationResponse = $dataLabelingServiceClient->labelVideo($formattedParent, $basicConfig, $feature);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1868,7 +1777,7 @@ class DataLabelingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataLabelingServiceClient->labelVideo();
+     *     $operationResponse = $dataLabelingServiceClient->labelVideo($formattedParent, $basicConfig, $feature);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataLabelingServiceClient->resumeOperation($operationName, 'labelVideo');
@@ -1888,7 +1797,12 @@ class DataLabelingServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                $parent       Required. Name of the dataset to request labeling task, format:
+     *                                            projects/{project_id}/datasets/{dataset_id}
+     * @param HumanAnnotationConfig $basicConfig  Required. Basic human annotation config.
+     * @param int                   $feature      Required. The type of video labeling task.
+     *                                            For allowed values, use constants defined on {@see \Google\Cloud\DataLabeling\V1beta1\LabelVideoRequest\Feature}
+     * @param array                 $optionalArgs {
      *     Optional.
      *
      *     @type VideoClassificationConfig $videoClassificationConfig
@@ -1907,14 +1821,6 @@ class DataLabelingServiceGapicClient
      *           Configuration for video event task.
      *           One of video_classification_config, object_detection_config,
      *           object_tracking_config and event_config is required.
-     *     @type string $parent
-     *           Required. Name of the dataset to request labeling task, format:
-     *           projects/{project_id}/datasets/{dataset_id}
-     *     @type HumanAnnotationConfig $basicConfig
-     *           Required. Basic human annotation config.
-     *     @type int $feature
-     *           Required. The type of video labeling task.
-     *           For allowed values, use constants defined on {@see \Google\Cloud\DataLabeling\V1beta1\LabelVideoRequest\Feature}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1927,10 +1833,14 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function labelVideo(array $optionalArgs = [])
+    public function labelVideo($parent, $basicConfig, $feature, array $optionalArgs = [])
     {
         $request = new LabelVideoRequest();
         $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setBasicConfig($basicConfig);
+        $request->setFeature($feature);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['videoClassificationConfig'])) {
             $request->setVideoClassificationConfig($optionalArgs['videoClassificationConfig']);
         }
@@ -1947,19 +1857,6 @@ class DataLabelingServiceGapicClient
             $request->setEventConfig($optionalArgs['eventConfig']);
         }
 
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['basicConfig'])) {
-            $request->setBasicConfig($optionalArgs['basicConfig']);
-        }
-
-        if (isset($optionalArgs['feature'])) {
-            $request->setFeature($optionalArgs['feature']);
-        }
-
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('LabelVideo', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1972,8 +1869,9 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
+     *     $formattedParent = $dataLabelingServiceClient->datasetName('[PROJECT]', '[DATASET]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataLabelingServiceClient->listAnnotatedDatasets();
+     *     $pagedResponse = $dataLabelingServiceClient->listAnnotatedDatasets($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1981,7 +1879,7 @@ class DataLabelingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataLabelingServiceClient->listAnnotatedDatasets();
+     *     $pagedResponse = $dataLabelingServiceClient->listAnnotatedDatasets($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1990,12 +1888,11 @@ class DataLabelingServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Name of the dataset to list annotated datasets, format:
+     *                             projects/{project_id}/datasets/{dataset_id}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Name of the dataset to list annotated datasets, format:
-     *           projects/{project_id}/datasets/{dataset_id}
      *     @type string $filter
      *           Optional. Filter is not supported at this moment.
      *     @type int $pageSize
@@ -2019,15 +1916,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function listAnnotatedDatasets(array $optionalArgs = [])
+    public function listAnnotatedDatasets($parent, array $optionalArgs = [])
     {
         $request = new ListAnnotatedDatasetsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2052,8 +1946,9 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
+     *     $formattedParent = $dataLabelingServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataLabelingServiceClient->listAnnotationSpecSets();
+     *     $pagedResponse = $dataLabelingServiceClient->listAnnotationSpecSets($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2061,7 +1956,7 @@ class DataLabelingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataLabelingServiceClient->listAnnotationSpecSets();
+     *     $pagedResponse = $dataLabelingServiceClient->listAnnotationSpecSets($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2070,12 +1965,11 @@ class DataLabelingServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Parent of AnnotationSpecSet resource, format:
+     *                             projects/{project_id}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent of AnnotationSpecSet resource, format:
-     *           projects/{project_id}
      *     @type string $filter
      *           Optional. Filter is not supported at this moment.
      *     @type int $pageSize
@@ -2099,15 +1993,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function listAnnotationSpecSets(array $optionalArgs = [])
+    public function listAnnotationSpecSets($parent, array $optionalArgs = [])
     {
         $request = new ListAnnotationSpecSetsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2133,8 +2024,9 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
+     *     $formattedParent = $dataLabelingServiceClient->datasetName('[PROJECT]', '[DATASET]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataLabelingServiceClient->listDataItems();
+     *     $pagedResponse = $dataLabelingServiceClient->listDataItems($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2142,7 +2034,7 @@ class DataLabelingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataLabelingServiceClient->listDataItems();
+     *     $pagedResponse = $dataLabelingServiceClient->listDataItems($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2151,12 +2043,11 @@ class DataLabelingServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Name of the dataset to list data items, format:
+     *                             projects/{project_id}/datasets/{dataset_id}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Name of the dataset to list data items, format:
-     *           projects/{project_id}/datasets/{dataset_id}
      *     @type string $filter
      *           Optional. Filter is not supported at this moment.
      *     @type int $pageSize
@@ -2180,15 +2071,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function listDataItems(array $optionalArgs = [])
+    public function listDataItems($parent, array $optionalArgs = [])
     {
         $request = new ListDataItemsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2213,8 +2101,9 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
+     *     $formattedParent = $dataLabelingServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataLabelingServiceClient->listDatasets();
+     *     $pagedResponse = $dataLabelingServiceClient->listDatasets($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2222,7 +2111,7 @@ class DataLabelingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataLabelingServiceClient->listDatasets();
+     *     $pagedResponse = $dataLabelingServiceClient->listDatasets($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2231,12 +2120,11 @@ class DataLabelingServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Dataset resource parent, format:
+     *                             projects/{project_id}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Dataset resource parent, format:
-     *           projects/{project_id}
      *     @type string $filter
      *           Optional. Filter on dataset is not supported at this moment.
      *     @type int $pageSize
@@ -2260,15 +2148,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function listDatasets(array $optionalArgs = [])
+    public function listDatasets($parent, array $optionalArgs = [])
     {
         $request = new ListDatasetsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2294,8 +2179,9 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
+     *     $formattedParent = $dataLabelingServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataLabelingServiceClient->listEvaluationJobs();
+     *     $pagedResponse = $dataLabelingServiceClient->listEvaluationJobs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2303,7 +2189,7 @@ class DataLabelingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataLabelingServiceClient->listEvaluationJobs();
+     *     $pagedResponse = $dataLabelingServiceClient->listEvaluationJobs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2312,12 +2198,11 @@ class DataLabelingServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Evaluation job resource parent. Format:
+     *                             "projects/<var>{project_id}</var>"
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Evaluation job resource parent. Format:
-     *           "projects/<var>{project_id}</var>"
      *     @type string $filter
      *           Optional. You can filter the jobs to list by model_id (also known as
      *           model_name, as described in
@@ -2348,15 +2233,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function listEvaluationJobs(array $optionalArgs = [])
+    public function listEvaluationJobs($parent, array $optionalArgs = [])
     {
         $request = new ListEvaluationJobsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2381,8 +2263,9 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
+     *     $formattedParent = $dataLabelingServiceClient->annotatedDatasetName('[PROJECT]', '[DATASET]', '[ANNOTATED_DATASET]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataLabelingServiceClient->listExamples();
+     *     $pagedResponse = $dataLabelingServiceClient->listExamples($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2390,7 +2273,7 @@ class DataLabelingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataLabelingServiceClient->listExamples();
+     *     $pagedResponse = $dataLabelingServiceClient->listExamples($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2399,11 +2282,10 @@ class DataLabelingServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Example resource parent.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Example resource parent.
      *     @type string $filter
      *           Optional. An expression for filtering Examples. For annotated datasets that
      *           have annotation spec set, filter by
@@ -2430,15 +2312,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function listExamples(array $optionalArgs = [])
+    public function listExamples($parent, array $optionalArgs = [])
     {
         $request = new ListExamplesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2463,8 +2342,9 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
+     *     $formattedParent = $dataLabelingServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataLabelingServiceClient->listInstructions();
+     *     $pagedResponse = $dataLabelingServiceClient->listInstructions($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2472,7 +2352,7 @@ class DataLabelingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataLabelingServiceClient->listInstructions();
+     *     $pagedResponse = $dataLabelingServiceClient->listInstructions($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2481,12 +2361,11 @@ class DataLabelingServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Instruction resource parent, format:
+     *                             projects/{project_id}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Instruction resource parent, format:
-     *           projects/{project_id}
      *     @type string $filter
      *           Optional. Filter is not supported at this moment.
      *     @type int $pageSize
@@ -2510,15 +2389,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function listInstructions(array $optionalArgs = [])
+    public function listInstructions($parent, array $optionalArgs = [])
     {
         $request = new ListInstructionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2544,19 +2420,19 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $dataLabelingServiceClient->pauseEvaluationJob();
+     *     $formattedName = $dataLabelingServiceClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
+     *     $dataLabelingServiceClient->pauseEvaluationJob($formattedName);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the evaluation job that is going to be paused. Format:
+     *
+     *                             "projects/<var>{project_id}</var>/evaluationJobs/<var>{evaluation_job_id}</var>"
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the evaluation job that is going to be paused. Format:
-     *
-     *           "projects/<var>{project_id}</var>/evaluationJobs/<var>{evaluation_job_id}</var>"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2567,15 +2443,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function pauseEvaluationJob(array $optionalArgs = [])
+    public function pauseEvaluationJob($name, array $optionalArgs = [])
     {
         $request = new PauseEvaluationJobRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('PauseEvaluationJob', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -2589,19 +2462,19 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $dataLabelingServiceClient->resumeEvaluationJob();
+     *     $formattedName = $dataLabelingServiceClient->evaluationJobName('[PROJECT]', '[EVALUATION_JOB]');
+     *     $dataLabelingServiceClient->resumeEvaluationJob($formattedName);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the evaluation job that is going to be resumed. Format:
+     *
+     *                             "projects/<var>{project_id}</var>/evaluationJobs/<var>{evaluation_job_id}</var>"
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the evaluation job that is going to be resumed. Format:
-     *
-     *           "projects/<var>{project_id}</var>/evaluationJobs/<var>{evaluation_job_id}</var>"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2612,15 +2485,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function resumeEvaluationJob(array $optionalArgs = [])
+    public function resumeEvaluationJob($name, array $optionalArgs = [])
     {
         $request = new ResumeEvaluationJobRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ResumeEvaluationJob', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -2633,8 +2503,9 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
+     *     $formattedParent = $dataLabelingServiceClient->evaluationName('[PROJECT]', '[DATASET]', '[EVALUATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataLabelingServiceClient->searchEvaluations();
+     *     $pagedResponse = $dataLabelingServiceClient->searchEvaluations($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2642,7 +2513,7 @@ class DataLabelingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataLabelingServiceClient->searchEvaluations();
+     *     $pagedResponse = $dataLabelingServiceClient->searchEvaluations($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2651,12 +2522,11 @@ class DataLabelingServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Evaluation search parent (project ID). Format:
+     *                             "projects/<var>{project_id}</var>"
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Evaluation search parent (project ID). Format:
-     *           "projects/<var>{project_id}</var>"
      *     @type string $filter
      *           Optional. To search evaluations, you can filter by the following:
      *
@@ -2710,15 +2580,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function searchEvaluations(array $optionalArgs = [])
+    public function searchEvaluations($parent, array $optionalArgs = [])
     {
         $request = new SearchEvaluationsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2745,8 +2612,9 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
+     *     $formattedParent = $dataLabelingServiceClient->evaluationName('[PROJECT]', '[DATASET]', '[EVALUATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataLabelingServiceClient->searchExampleComparisons();
+     *     $pagedResponse = $dataLabelingServiceClient->searchExampleComparisons($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2754,7 +2622,7 @@ class DataLabelingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataLabelingServiceClient->searchExampleComparisons();
+     *     $pagedResponse = $dataLabelingServiceClient->searchExampleComparisons($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2763,14 +2631,13 @@ class DataLabelingServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Name of the [Evaluation][google.cloud.datalabeling.v1beta1.Evaluation] resource to search for example
+     *                             comparisons from. Format:
+     *
+     *                             "projects/<var>{project_id}</var>/datasets/<var>{dataset_id}</var>/evaluations/<var>{evaluation_id}</var>"
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Name of the [Evaluation][google.cloud.datalabeling.v1beta1.Evaluation] resource to search for example
-     *           comparisons from. Format:
-     *
-     *           "projects/<var>{project_id}</var>/datasets/<var>{dataset_id}</var>/evaluations/<var>{evaluation_id}</var>"
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2792,15 +2659,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function searchExampleComparisons(array $optionalArgs = [])
+    public function searchExampleComparisons($parent, array $optionalArgs = [])
     {
         $request = new SearchExampleComparisonsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2826,17 +2690,17 @@ class DataLabelingServiceGapicClient
      * ```
      * $dataLabelingServiceClient = new DataLabelingServiceClient();
      * try {
-     *     $response = $dataLabelingServiceClient->updateEvaluationJob();
+     *     $evaluationJob = new EvaluationJob();
+     *     $response = $dataLabelingServiceClient->updateEvaluationJob($evaluationJob);
      * } finally {
      *     $dataLabelingServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param EvaluationJob $evaluationJob Required. Evaluation job that is going to be updated.
+     * @param array         $optionalArgs  {
      *     Optional.
      *
-     *     @type EvaluationJob $evaluationJob
-     *           Required. Evaluation job that is going to be updated.
      *     @type FieldMask $updateMask
      *           Optional. Mask for which fields to update. You can only provide the
      *           following fields:
@@ -2859,14 +2723,12 @@ class DataLabelingServiceGapicClient
      *
      * @experimental
      */
-    public function updateEvaluationJob(array $optionalArgs = [])
+    public function updateEvaluationJob($evaluationJob, array $optionalArgs = [])
     {
         $request = new UpdateEvaluationJobRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['evaluationJob'])) {
-            $request->setEvaluationJob($optionalArgs['evaluationJob']);
-        }
-
+        $request->setEvaluationJob($evaluationJob);
+        $requestParamHeaders['evaluation_job.name'] = $evaluationJob->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

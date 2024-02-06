@@ -58,7 +58,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $sessionEntityTypesClient = new SessionEntityTypesClient();
  * try {
- *     $response = $sessionEntityTypesClient->createSessionEntityType();
+ *     $formattedParent = $sessionEntityTypesClient->sessionName('[PROJECT]', '[SESSION]');
+ *     $sessionEntityType = new SessionEntityType();
+ *     $response = $sessionEntityTypesClient->createSessionEntityType($formattedParent, $sessionEntityType);
  * } finally {
  *     $sessionEntityTypesClient->close();
  * }
@@ -579,24 +581,24 @@ class SessionEntityTypesGapicClient
      * ```
      * $sessionEntityTypesClient = new SessionEntityTypesClient();
      * try {
-     *     $response = $sessionEntityTypesClient->createSessionEntityType();
+     *     $formattedParent = $sessionEntityTypesClient->sessionName('[PROJECT]', '[SESSION]');
+     *     $sessionEntityType = new SessionEntityType();
+     *     $response = $sessionEntityTypesClient->createSessionEntityType($formattedParent, $sessionEntityType);
      * } finally {
      *     $sessionEntityTypesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string            $parent            Required. The session to create a session entity type for.
+     *                                             Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *                                             `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     *                                             sessions/<Session ID>`.
+     *                                             If `Environment ID` is not specified, we assume default 'draft'
+     *                                             environment. If `User ID` is not specified, we assume default '-' user.
+     * @param SessionEntityType $sessionEntityType Required. The session entity type to create.
+     * @param array             $optionalArgs      {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The session to create a session entity type for.
-     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
-     *           `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
-     *           sessions/<Session ID>`.
-     *           If `Environment ID` is not specified, we assume default 'draft'
-     *           environment. If `User ID` is not specified, we assume default '-' user.
-     *     @type SessionEntityType $sessionEntityType
-     *           Required. The session entity type to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -607,19 +609,13 @@ class SessionEntityTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSessionEntityType(array $optionalArgs = [])
+    public function createSessionEntityType($parent, $sessionEntityType, array $optionalArgs = [])
     {
         $request = new CreateSessionEntityTypeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['sessionEntityType'])) {
-            $request->setSessionEntityType($optionalArgs['sessionEntityType']);
-        }
-
+        $request->setParent($parent);
+        $request->setSessionEntityType($sessionEntityType);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateSessionEntityType', SessionEntityType::class, $optionalArgs, $request)->wait();
@@ -636,23 +632,23 @@ class SessionEntityTypesGapicClient
      * ```
      * $sessionEntityTypesClient = new SessionEntityTypesClient();
      * try {
-     *     $sessionEntityTypesClient->deleteSessionEntityType();
+     *     $formattedName = $sessionEntityTypesClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
+     *     $sessionEntityTypesClient->deleteSessionEntityType($formattedName);
      * } finally {
      *     $sessionEntityTypesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the entity type to delete. Format:
+     *                             `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *                             Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *                             ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *                             Name>`.
+     *                             If `Environment ID` is not specified, we assume default 'draft'
+     *                             environment. If `User ID` is not specified, we assume default '-' user.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the entity type to delete. Format:
-     *           `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     *           Display Name>` or `projects/<Project ID>/agent/environments/<Environment
-     *           ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
-     *           Name>`.
-     *           If `Environment ID` is not specified, we assume default 'draft'
-     *           environment. If `User ID` is not specified, we assume default '-' user.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -661,15 +657,12 @@ class SessionEntityTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSessionEntityType(array $optionalArgs = [])
+    public function deleteSessionEntityType($name, array $optionalArgs = [])
     {
         $request = new DeleteSessionEntityTypeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteSessionEntityType', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -686,23 +679,23 @@ class SessionEntityTypesGapicClient
      * ```
      * $sessionEntityTypesClient = new SessionEntityTypesClient();
      * try {
-     *     $response = $sessionEntityTypesClient->getSessionEntityType();
+     *     $formattedName = $sessionEntityTypesClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
+     *     $response = $sessionEntityTypesClient->getSessionEntityType($formattedName);
      * } finally {
      *     $sessionEntityTypesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the session entity type. Format:
+     *                             `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *                             Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+     *                             ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+     *                             Name>`.
+     *                             If `Environment ID` is not specified, we assume default 'draft'
+     *                             environment. If `User ID` is not specified, we assume default '-' user.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the session entity type. Format:
-     *           `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
-     *           Display Name>` or `projects/<Project ID>/agent/environments/<Environment
-     *           ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
-     *           Name>`.
-     *           If `Environment ID` is not specified, we assume default 'draft'
-     *           environment. If `User ID` is not specified, we assume default '-' user.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -713,15 +706,12 @@ class SessionEntityTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSessionEntityType(array $optionalArgs = [])
+    public function getSessionEntityType($name, array $optionalArgs = [])
     {
         $request = new GetSessionEntityTypeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSessionEntityType', SessionEntityType::class, $optionalArgs, $request)->wait();
@@ -738,8 +728,9 @@ class SessionEntityTypesGapicClient
      * ```
      * $sessionEntityTypesClient = new SessionEntityTypesClient();
      * try {
+     *     $formattedParent = $sessionEntityTypesClient->sessionName('[PROJECT]', '[SESSION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $sessionEntityTypesClient->listSessionEntityTypes();
+     *     $pagedResponse = $sessionEntityTypesClient->listSessionEntityTypes($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -747,7 +738,7 @@ class SessionEntityTypesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $sessionEntityTypesClient->listSessionEntityTypes();
+     *     $pagedResponse = $sessionEntityTypesClient->listSessionEntityTypes($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -756,16 +747,15 @@ class SessionEntityTypesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The session to list all session entity types from.
+     *                             Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+     *                             `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
+     *                             sessions/<Session ID>`.
+     *                             If `Environment ID` is not specified, we assume default 'draft'
+     *                             environment. If `User ID` is not specified, we assume default '-' user.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The session to list all session entity types from.
-     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
-     *           `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/
-     *           sessions/<Session ID>`.
-     *           If `Environment ID` is not specified, we assume default 'draft'
-     *           environment. If `User ID` is not specified, we assume default '-' user.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -785,15 +775,12 @@ class SessionEntityTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSessionEntityTypes(array $optionalArgs = [])
+    public function listSessionEntityTypes($parent, array $optionalArgs = [])
     {
         $request = new ListSessionEntityTypesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -818,17 +805,17 @@ class SessionEntityTypesGapicClient
      * ```
      * $sessionEntityTypesClient = new SessionEntityTypesClient();
      * try {
-     *     $response = $sessionEntityTypesClient->updateSessionEntityType();
+     *     $sessionEntityType = new SessionEntityType();
+     *     $response = $sessionEntityTypesClient->updateSessionEntityType($sessionEntityType);
      * } finally {
      *     $sessionEntityTypesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param SessionEntityType $sessionEntityType Required. The session entity type to update.
+     * @param array             $optionalArgs      {
      *     Optional.
      *
-     *     @type SessionEntityType $sessionEntityType
-     *           Required. The session entity type to update.
      *     @type FieldMask $updateMask
      *           Optional. The mask to control which fields get updated.
      *     @type RetrySettings|array $retrySettings
@@ -841,14 +828,12 @@ class SessionEntityTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSessionEntityType(array $optionalArgs = [])
+    public function updateSessionEntityType($sessionEntityType, array $optionalArgs = [])
     {
         $request = new UpdateSessionEntityTypeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['sessionEntityType'])) {
-            $request->setSessionEntityType($optionalArgs['sessionEntityType']);
-        }
-
+        $request->setSessionEntityType($sessionEntityType);
+        $requestParamHeaders['session_entity_type.name'] = $sessionEntityType->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

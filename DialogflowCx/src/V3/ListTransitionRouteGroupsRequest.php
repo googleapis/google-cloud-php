@@ -58,7 +58,8 @@ class ListTransitionRouteGroupsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The flow to list all transition route groups for.
      *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
      *                       ID>/flows/<Flow ID>`
-     *                       or `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>.
+     *                       or `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>. Please see
+     *                       {@see TransitionRouteGroupsClient::flowName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\ListTransitionRouteGroupsRequest
      *

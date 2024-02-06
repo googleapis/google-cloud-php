@@ -5,7 +5,10 @@ return [
         'google.cloud.compute.v1.VpnTunnels' => [
             'Delete' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getRegion',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -40,7 +43,10 @@ return [
             ],
             'Insert' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getRegion',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -69,7 +75,10 @@ return [
             ],
             'SetLabels' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getRegion',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',

@@ -89,7 +89,9 @@ class SslCertificatesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->aggregatedList();
+        // Mock request
+        $project = 'project-309310695';
+        $response = $gapicClient->aggregatedList($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -101,6 +103,8 @@ class SslCertificatesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SslCertificates/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -122,8 +126,10 @@ class SslCertificatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
         try {
-            $gapicClient->aggregatedList();
+            $gapicClient->aggregatedList($project);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -160,7 +166,10 @@ class SslCertificatesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->delete();
+        // Mock request
+        $project = 'project-309310695';
+        $sslCertificate = 'sslCertificate-1027298332';
+        $response = $gapicClient->delete($project, $sslCertificate);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -169,8 +178,13 @@ class SslCertificatesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SslCertificates/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getSslCertificate();
+        $this->assertProtobufEquals($sslCertificate, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -218,7 +232,10 @@ class SslCertificatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->delete();
+        // Mock request
+        $project = 'project-309310695';
+        $sslCertificate = 'sslCertificate-1027298332';
+        $response = $gapicClient->delete($project, $sslCertificate);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -271,13 +288,20 @@ class SslCertificatesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setType($type);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->get();
+        // Mock request
+        $project = 'project-309310695';
+        $sslCertificate = 'sslCertificate-1027298332';
+        $response = $gapicClient->get($project, $sslCertificate);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SslCertificates/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getSslCertificate();
+        $this->assertProtobufEquals($sslCertificate, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -299,8 +323,11 @@ class SslCertificatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $sslCertificate = 'sslCertificate-1027298332';
         try {
-            $gapicClient->get();
+            $gapicClient->get($project, $sslCertificate);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -337,7 +364,10 @@ class SslCertificatesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->insert();
+        // Mock request
+        $project = 'project-309310695';
+        $sslCertificateResource = new SslCertificate();
+        $response = $gapicClient->insert($project, $sslCertificateResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -346,8 +376,13 @@ class SslCertificatesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SslCertificates/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getSslCertificateResource();
+        $this->assertProtobufEquals($sslCertificateResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -395,7 +430,10 @@ class SslCertificatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->insert();
+        // Mock request
+        $project = 'project-309310695';
+        $sslCertificateResource = new SslCertificate();
+        $response = $gapicClient->insert($project, $sslCertificateResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -439,7 +477,9 @@ class SslCertificatesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->list();
+        // Mock request
+        $project = 'project-309310695';
+        $response = $gapicClient->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -449,6 +489,8 @@ class SslCertificatesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SslCertificates/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -470,8 +512,10 @@ class SslCertificatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
         try {
-            $gapicClient->list();
+            $gapicClient->list($project);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

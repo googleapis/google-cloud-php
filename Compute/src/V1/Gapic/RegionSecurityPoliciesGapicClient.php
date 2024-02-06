@@ -57,7 +57,11 @@ use Google\Cloud\Compute\V1\SecurityPolicyRule;
  * ```
  * $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
  * try {
- *     $operationResponse = $regionSecurityPoliciesClient->addRule();
+ *     $project = 'project';
+ *     $region = 'region';
+ *     $securityPolicy = 'security_policy';
+ *     $securityPolicyRuleResource = new SecurityPolicyRule();
+ *     $operationResponse = $regionSecurityPoliciesClient->addRule($project, $region, $securityPolicy, $securityPolicyRuleResource);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -67,7 +71,7 @@ use Google\Cloud\Compute\V1\SecurityPolicyRule;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $regionSecurityPoliciesClient->addRule();
+ *     $operationResponse = $regionSecurityPoliciesClient->addRule($project, $region, $securityPolicy, $securityPolicyRuleResource);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $regionSecurityPoliciesClient->resumeOperation($operationName, 'addRule');
@@ -167,7 +171,10 @@ class RegionSecurityPoliciesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+                'getRegion',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -263,7 +270,11 @@ class RegionSecurityPoliciesGapicClient
      * ```
      * $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
      * try {
-     *     $operationResponse = $regionSecurityPoliciesClient->addRule();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $securityPolicy = 'security_policy';
+     *     $securityPolicyRuleResource = new SecurityPolicyRule();
+     *     $operationResponse = $regionSecurityPoliciesClient->addRule($project, $region, $securityPolicy, $securityPolicyRuleResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -273,7 +284,7 @@ class RegionSecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionSecurityPoliciesClient->addRule();
+     *     $operationResponse = $regionSecurityPoliciesClient->addRule($project, $region, $securityPolicy, $securityPolicyRuleResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionSecurityPoliciesClient->resumeOperation($operationName, 'addRule');
@@ -292,17 +303,13 @@ class RegionSecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string             $project                    Project ID for this request.
+     * @param string             $region                     Name of the region scoping this request.
+     * @param string             $securityPolicy             Name of the security policy to update.
+     * @param SecurityPolicyRule $securityPolicyRuleResource The body resource for this request
+     * @param array              $optionalArgs               {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
-     *     @type string $securityPolicy
-     *           Name of the security policy to update.
-     *     @type SecurityPolicyRule $securityPolicyRuleResource
-     *           The body resource for this request
      *     @type bool $validateOnly
      *           If true, the request will not be committed.
      *     @type RetrySettings|array $retrySettings
@@ -315,29 +322,17 @@ class RegionSecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addRule(array $optionalArgs = [])
+    public function addRule($project, $region, $securityPolicy, $securityPolicyRuleResource, array $optionalArgs = [])
     {
         $request = new AddRuleRegionSecurityPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['securityPolicy'])) {
-            $request->setSecurityPolicy($optionalArgs['securityPolicy']);
-            $requestParamHeaders['security_policy'] = $optionalArgs['securityPolicy'];
-        }
-
-        if (isset($optionalArgs['securityPolicyRuleResource'])) {
-            $request->setSecurityPolicyRuleResource($optionalArgs['securityPolicyRuleResource']);
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSecurityPolicy($securityPolicy);
+        $request->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['security_policy'] = $securityPolicy;
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -354,7 +349,10 @@ class RegionSecurityPoliciesGapicClient
      * ```
      * $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
      * try {
-     *     $operationResponse = $regionSecurityPoliciesClient->delete();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $securityPolicy = 'security_policy';
+     *     $operationResponse = $regionSecurityPoliciesClient->delete($project, $region, $securityPolicy);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -364,7 +362,7 @@ class RegionSecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionSecurityPoliciesClient->delete();
+     *     $operationResponse = $regionSecurityPoliciesClient->delete($project, $region, $securityPolicy);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionSecurityPoliciesClient->resumeOperation($operationName, 'delete');
@@ -383,17 +381,14 @@ class RegionSecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region scoping this request.
+     * @param string $securityPolicy Name of the security policy to delete.
+     * @param array  $optionalArgs   {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $securityPolicy
-     *           Name of the security policy to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -404,27 +399,18 @@ class RegionSecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete(array $optionalArgs = [])
+    public function delete($project, $region, $securityPolicy, array $optionalArgs = [])
     {
         $request = new DeleteRegionSecurityPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSecurityPolicy($securityPolicy);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['security_policy'] = $securityPolicy;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['securityPolicy'])) {
-            $request->setSecurityPolicy($optionalArgs['securityPolicy']);
-            $requestParamHeaders['security_policy'] = $optionalArgs['securityPolicy'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -439,21 +425,21 @@ class RegionSecurityPoliciesGapicClient
      * ```
      * $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
      * try {
-     *     $response = $regionSecurityPoliciesClient->get();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $securityPolicy = 'security_policy';
+     *     $response = $regionSecurityPoliciesClient->get($project, $region, $securityPolicy);
      * } finally {
      *     $regionSecurityPoliciesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region scoping this request.
+     * @param string $securityPolicy Name of the security policy to get.
+     * @param array  $optionalArgs   {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
-     *     @type string $securityPolicy
-     *           Name of the security policy to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -464,25 +450,16 @@ class RegionSecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($project, $region, $securityPolicy, array $optionalArgs = [])
     {
         $request = new GetRegionSecurityPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['securityPolicy'])) {
-            $request->setSecurityPolicy($optionalArgs['securityPolicy']);
-            $requestParamHeaders['security_policy'] = $optionalArgs['securityPolicy'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSecurityPolicy($securityPolicy);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['security_policy'] = $securityPolicy;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', SecurityPolicy::class, $optionalArgs, $request)->wait();
@@ -495,23 +472,23 @@ class RegionSecurityPoliciesGapicClient
      * ```
      * $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
      * try {
-     *     $response = $regionSecurityPoliciesClient->getRule();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $securityPolicy = 'security_policy';
+     *     $response = $regionSecurityPoliciesClient->getRule($project, $region, $securityPolicy);
      * } finally {
      *     $regionSecurityPoliciesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region scoping this request.
+     * @param string $securityPolicy Name of the security policy to which the queried rule belongs.
+     * @param array  $optionalArgs   {
      *     Optional.
      *
      *     @type int $priority
      *           The priority of the rule to get from the security policy.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
-     *     @type string $securityPolicy
-     *           Name of the security policy to which the queried rule belongs.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -522,27 +499,18 @@ class RegionSecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRule(array $optionalArgs = [])
+    public function getRule($project, $region, $securityPolicy, array $optionalArgs = [])
     {
         $request = new GetRuleRegionSecurityPolicyRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSecurityPolicy($securityPolicy);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['security_policy'] = $securityPolicy;
         if (isset($optionalArgs['priority'])) {
             $request->setPriority($optionalArgs['priority']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['securityPolicy'])) {
-            $request->setSecurityPolicy($optionalArgs['securityPolicy']);
-            $requestParamHeaders['security_policy'] = $optionalArgs['securityPolicy'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -557,7 +525,10 @@ class RegionSecurityPoliciesGapicClient
      * ```
      * $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
      * try {
-     *     $operationResponse = $regionSecurityPoliciesClient->insert();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $securityPolicyResource = new SecurityPolicy();
+     *     $operationResponse = $regionSecurityPoliciesClient->insert($project, $region, $securityPolicyResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -567,7 +538,7 @@ class RegionSecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionSecurityPoliciesClient->insert();
+     *     $operationResponse = $regionSecurityPoliciesClient->insert($project, $region, $securityPolicyResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionSecurityPoliciesClient->resumeOperation($operationName, 'insert');
@@ -586,17 +557,14 @@ class RegionSecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string         $project                Project ID for this request.
+     * @param string         $region                 Name of the region scoping this request.
+     * @param SecurityPolicy $securityPolicyResource The body resource for this request
+     * @param array          $optionalArgs           {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type SecurityPolicy $securityPolicyResource
-     *           The body resource for this request
      *     @type bool $validateOnly
      *           If true, the request will not be committed.
      *     @type RetrySettings|array $retrySettings
@@ -609,26 +577,17 @@ class RegionSecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert(array $optionalArgs = [])
+    public function insert($project, $region, $securityPolicyResource, array $optionalArgs = [])
     {
         $request = new InsertRegionSecurityPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSecurityPolicyResource($securityPolicyResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['securityPolicyResource'])) {
-            $request->setSecurityPolicyResource($optionalArgs['securityPolicyResource']);
         }
 
         if (isset($optionalArgs['validateOnly'])) {
@@ -647,8 +606,10 @@ class RegionSecurityPoliciesGapicClient
      * ```
      * $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
      * try {
+     *     $project = 'project';
+     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionSecurityPoliciesClient->list();
+     *     $pagedResponse = $regionSecurityPoliciesClient->list($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -656,7 +617,7 @@ class RegionSecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionSecurityPoliciesClient->list();
+     *     $pagedResponse = $regionSecurityPoliciesClient->list($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -665,7 +626,9 @@ class RegionSecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $region       Name of the region scoping this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -679,10 +642,6 @@ class RegionSecurityPoliciesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -695,10 +654,14 @@ class RegionSecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list(array $optionalArgs = [])
+    public function list($project, $region, array $optionalArgs = [])
     {
         $request = new ListRegionSecurityPoliciesRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -713,16 +676,6 @@ class RegionSecurityPoliciesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -741,7 +694,11 @@ class RegionSecurityPoliciesGapicClient
      * ```
      * $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
      * try {
-     *     $operationResponse = $regionSecurityPoliciesClient->patch();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $securityPolicy = 'security_policy';
+     *     $securityPolicyResource = new SecurityPolicy();
+     *     $operationResponse = $regionSecurityPoliciesClient->patch($project, $region, $securityPolicy, $securityPolicyResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -751,7 +708,7 @@ class RegionSecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionSecurityPoliciesClient->patch();
+     *     $operationResponse = $regionSecurityPoliciesClient->patch($project, $region, $securityPolicy, $securityPolicyResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionSecurityPoliciesClient->resumeOperation($operationName, 'patch');
@@ -770,19 +727,15 @@ class RegionSecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string         $project                Project ID for this request.
+     * @param string         $region                 Name of the region scoping this request.
+     * @param string         $securityPolicy         Name of the security policy to update.
+     * @param SecurityPolicy $securityPolicyResource The body resource for this request
+     * @param array          $optionalArgs           {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $securityPolicy
-     *           Name of the security policy to update.
-     *     @type SecurityPolicy $securityPolicyResource
-     *           The body resource for this request
      *     @type string $updateMask
      *           Indicates fields to be cleared as part of this request.
      *     @type RetrySettings|array $retrySettings
@@ -795,31 +748,19 @@ class RegionSecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch(array $optionalArgs = [])
+    public function patch($project, $region, $securityPolicy, $securityPolicyResource, array $optionalArgs = [])
     {
         $request = new PatchRegionSecurityPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSecurityPolicy($securityPolicy);
+        $request->setSecurityPolicyResource($securityPolicyResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['security_policy'] = $securityPolicy;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['securityPolicy'])) {
-            $request->setSecurityPolicy($optionalArgs['securityPolicy']);
-            $requestParamHeaders['security_policy'] = $optionalArgs['securityPolicy'];
-        }
-
-        if (isset($optionalArgs['securityPolicyResource'])) {
-            $request->setSecurityPolicyResource($optionalArgs['securityPolicyResource']);
         }
 
         if (isset($optionalArgs['updateMask'])) {
@@ -838,7 +779,11 @@ class RegionSecurityPoliciesGapicClient
      * ```
      * $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
      * try {
-     *     $operationResponse = $regionSecurityPoliciesClient->patchRule();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $securityPolicy = 'security_policy';
+     *     $securityPolicyRuleResource = new SecurityPolicyRule();
+     *     $operationResponse = $regionSecurityPoliciesClient->patchRule($project, $region, $securityPolicy, $securityPolicyRuleResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -848,7 +793,7 @@ class RegionSecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionSecurityPoliciesClient->patchRule();
+     *     $operationResponse = $regionSecurityPoliciesClient->patchRule($project, $region, $securityPolicy, $securityPolicyRuleResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionSecurityPoliciesClient->resumeOperation($operationName, 'patchRule');
@@ -867,19 +812,15 @@ class RegionSecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string             $project                    Project ID for this request.
+     * @param string             $region                     Name of the region scoping this request.
+     * @param string             $securityPolicy             Name of the security policy to update.
+     * @param SecurityPolicyRule $securityPolicyRuleResource The body resource for this request
+     * @param array              $optionalArgs               {
      *     Optional.
      *
      *     @type int $priority
      *           The priority of the rule to patch.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
-     *     @type string $securityPolicy
-     *           Name of the security policy to update.
-     *     @type SecurityPolicyRule $securityPolicyRuleResource
-     *           The body resource for this request
      *     @type string $updateMask
      *           Indicates fields to be cleared as part of this request.
      *     @type bool $validateOnly
@@ -894,31 +835,19 @@ class RegionSecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patchRule(array $optionalArgs = [])
+    public function patchRule($project, $region, $securityPolicy, $securityPolicyRuleResource, array $optionalArgs = [])
     {
         $request = new PatchRuleRegionSecurityPolicyRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSecurityPolicy($securityPolicy);
+        $request->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['security_policy'] = $securityPolicy;
         if (isset($optionalArgs['priority'])) {
             $request->setPriority($optionalArgs['priority']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['securityPolicy'])) {
-            $request->setSecurityPolicy($optionalArgs['securityPolicy']);
-            $requestParamHeaders['security_policy'] = $optionalArgs['securityPolicy'];
-        }
-
-        if (isset($optionalArgs['securityPolicyRuleResource'])) {
-            $request->setSecurityPolicyRuleResource($optionalArgs['securityPolicyRuleResource']);
         }
 
         if (isset($optionalArgs['updateMask'])) {
@@ -941,7 +870,10 @@ class RegionSecurityPoliciesGapicClient
      * ```
      * $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
      * try {
-     *     $operationResponse = $regionSecurityPoliciesClient->removeRule();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $securityPolicy = 'security_policy';
+     *     $operationResponse = $regionSecurityPoliciesClient->removeRule($project, $region, $securityPolicy);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -951,7 +883,7 @@ class RegionSecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionSecurityPoliciesClient->removeRule();
+     *     $operationResponse = $regionSecurityPoliciesClient->removeRule($project, $region, $securityPolicy);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionSecurityPoliciesClient->resumeOperation($operationName, 'removeRule');
@@ -970,17 +902,14 @@ class RegionSecurityPoliciesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project        Project ID for this request.
+     * @param string $region         Name of the region scoping this request.
+     * @param string $securityPolicy Name of the security policy to update.
+     * @param array  $optionalArgs   {
      *     Optional.
      *
      *     @type int $priority
      *           The priority of the rule to remove from the security policy.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
-     *     @type string $securityPolicy
-     *           Name of the security policy to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -991,27 +920,18 @@ class RegionSecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function removeRule(array $optionalArgs = [])
+    public function removeRule($project, $region, $securityPolicy, array $optionalArgs = [])
     {
         $request = new RemoveRuleRegionSecurityPolicyRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSecurityPolicy($securityPolicy);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['security_policy'] = $securityPolicy;
         if (isset($optionalArgs['priority'])) {
             $request->setPriority($optionalArgs['priority']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['securityPolicy'])) {
-            $request->setSecurityPolicy($optionalArgs['securityPolicy']);
-            $requestParamHeaders['security_policy'] = $optionalArgs['securityPolicy'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

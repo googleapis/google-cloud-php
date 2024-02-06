@@ -21,45 +21,45 @@ class Debugger
         \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˚
-/google/devtools/clouddebugger/v2/debugger.proto google.devtools.clouddebugger.v2google/api/field_behavior.proto+google/devtools/clouddebugger/v2/data.protogoogle/protobuf/empty.protogoogle/api/annotations.proto"ó
-SetBreakpointRequest
-debuggee_id (	B‚AF
+Ó
+/google/devtools/clouddebugger/v2/debugger.proto google.devtools.clouddebugger.v2google/api/field_behavior.proto+google/devtools/clouddebugger/v2/data.protogoogle/protobuf/empty.protogoogle/api/annotations.proto"î
+SetBreakpointRequest
+debuggee_id (	B‡AE
 
-breakpoint (2,.google.devtools.clouddebugger.v2.BreakpointB‚A
-client_version (	B‚A"Y
+breakpoint (2,.google.devtools.clouddebugger.v2.BreakpointB‡A
+client_version (	B‡A"Y
 SetBreakpointResponse@
 
-breakpoint (2,.google.devtools.clouddebugger.v2.Breakpoint"l
-GetBreakpointRequest
-debuggee_id (	B‚A
-breakpoint_id (	B‚A
-client_version (	B‚A"Y
+breakpoint (2,.google.devtools.clouddebugger.v2.Breakpoint"i
+GetBreakpointRequest
+debuggee_id (	B‡A
+breakpoint_id (	B‡A
+client_version (	B‡A"Y
 GetBreakpointResponse@
 
-breakpoint (2,.google.devtools.clouddebugger.v2.Breakpoint"o
-DeleteBreakpointRequest
-debuggee_id (	B‚A
-breakpoint_id (	B‚A
-client_version (	B‚A"Ú
-ListBreakpointsRequest
-debuggee_id (	B‚A
+breakpoint (2,.google.devtools.clouddebugger.v2.Breakpoint"l
+DeleteBreakpointRequest
+debuggee_id (	B‡A
+breakpoint_id (	B‡A
+client_version (	B‡A"
+ListBreakpointsRequest
+debuggee_id (	B‡A
 include_all_users (
 include_inactive (^
 action (2N.google.devtools.clouddebugger.v2.ListBreakpointsRequest.BreakpointActionValue
 strip_results (B
 
-wait_token (	
-client_version (	B‚A[
+wait_token (	
+client_version (	B‡A[
 BreakpointActionValueB
 value (23.google.devtools.clouddebugger.v2.Breakpoint.Action"u
 ListBreakpointsResponseA
 breakpoints (2,.google.devtools.clouddebugger.v2.Breakpoint
-next_wait_token (	"e
-ListDebuggeesRequest
-project (	B‚A
-include_inactive (
-client_version (	B‚A"V
+next_wait_token (	"c
+ListDebuggeesRequest
+project (	B‡A
+include_inactive (
+client_version (	B‡A"V
 ListDebuggeesResponse=
 	debuggees (2*.google.devtools.clouddebugger.v2.Debuggee2Ú	
 	Debugger2Ú

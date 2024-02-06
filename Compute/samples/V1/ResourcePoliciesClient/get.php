@@ -30,13 +30,11 @@ use Google\Cloud\Compute\V1\ResourcePolicy;
 /**
  * Retrieves all information of the specified resource policy.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project        Project ID for this request.
+ * @param string $region         Name of the region for this request.
+ * @param string $resourcePolicy Name of the resource policy to retrieve.
  */
-function get_sample(): void
+function get_sample(string $project, string $region, string $resourcePolicy): void
 {
     // Create a client.
     $resourcePoliciesClient = new ResourcePoliciesClient();
@@ -44,10 +42,28 @@ function get_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var ResourcePolicy $response */
-        $response = $resourcePoliciesClient->get();
+        $response = $resourcePoliciesClient->get($project, $region, $resourcePolicy);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+    $resourcePolicy = '[RESOURCE_POLICY]';
+
+    get_sample($project, $region, $resourcePolicy);
 }
 // [END compute_v1_generated_ResourcePolicies_Get_sync]

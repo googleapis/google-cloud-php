@@ -118,7 +118,16 @@ class AgentsClientTest extends GeneratedTest
         $expectedResponse->setEnableSpellCorrection($enableSpellCorrection);
         $expectedResponse->setLocked($locked);
         $transport->addResponse($expectedResponse);
-        $request = new CreateAgentRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $agent = new Agent();
+        $agentDisplayName = 'agentDisplayName2121176616';
+        $agent->setDisplayName($agentDisplayName);
+        $agentDefaultLanguageCode = 'agentDefaultLanguageCode-1905463551';
+        $agent->setDefaultLanguageCode($agentDefaultLanguageCode);
+        $agentTimeZone = 'agentTimeZone-453669314';
+        $agent->setTimeZone($agentTimeZone);
+        $request = (new CreateAgentRequest())->setParent($formattedParent)->setAgent($agent);
         $response = $gapicClient->createAgent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -126,6 +135,10 @@ class AgentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Agents/CreateAgent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAgent();
+        $this->assertProtobufEquals($agent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -150,7 +163,16 @@ class AgentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new CreateAgentRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $agent = new Agent();
+        $agentDisplayName = 'agentDisplayName2121176616';
+        $agent->setDisplayName($agentDisplayName);
+        $agentDefaultLanguageCode = 'agentDefaultLanguageCode-1905463551';
+        $agent->setDefaultLanguageCode($agentDefaultLanguageCode);
+        $agentTimeZone = 'agentTimeZone-453669314';
+        $agent->setTimeZone($agentTimeZone);
+        $request = (new CreateAgentRequest())->setParent($formattedParent)->setAgent($agent);
         try {
             $gapicClient->createAgent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -175,13 +197,17 @@ class AgentsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteAgentRequest();
+        // Mock request
+        $formattedName = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new DeleteAgentRequest())->setName($formattedName);
         $gapicClient->deleteAgent($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Agents/DeleteAgent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -206,7 +232,9 @@ class AgentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new DeleteAgentRequest();
+        // Mock request
+        $formattedName = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new DeleteAgentRequest())->setName($formattedName);
         try {
             $gapicClient->deleteAgent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -251,7 +279,9 @@ class AgentsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new ExportAgentRequest();
+        // Mock request
+        $formattedName = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ExportAgentRequest())->setName($formattedName);
         $response = $gapicClient->exportAgent($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -262,6 +292,8 @@ class AgentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Agents/ExportAgent', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportAgentTest');
         $response->pollUntilComplete([
@@ -315,7 +347,9 @@ class AgentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        $request = new ExportAgentRequest();
+        // Mock request
+        $formattedName = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ExportAgentRequest())->setName($formattedName);
         $response = $gapicClient->exportAgent($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -371,7 +405,9 @@ class AgentsClientTest extends GeneratedTest
         $expectedResponse->setEnableSpellCorrection($enableSpellCorrection);
         $expectedResponse->setLocked($locked);
         $transport->addResponse($expectedResponse);
-        $request = new GetAgentRequest();
+        // Mock request
+        $formattedName = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new GetAgentRequest())->setName($formattedName);
         $response = $gapicClient->getAgent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -379,6 +415,8 @@ class AgentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Agents/GetAgent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -403,7 +441,9 @@ class AgentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetAgentRequest();
+        // Mock request
+        $formattedName = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new GetAgentRequest())->setName($formattedName);
         try {
             $gapicClient->getAgent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -430,7 +470,9 @@ class AgentsClientTest extends GeneratedTest
         $expectedResponse = new AgentValidationResult();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $request = new GetAgentValidationResultRequest();
+        // Mock request
+        $formattedName = $gapicClient->agentValidationResultName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new GetAgentValidationResultRequest())->setName($formattedName);
         $response = $gapicClient->getAgentValidationResult($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -438,6 +480,8 @@ class AgentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Agents/GetAgentValidationResult', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -462,7 +506,9 @@ class AgentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetAgentValidationResultRequest();
+        // Mock request
+        $formattedName = $gapicClient->agentValidationResultName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new GetAgentValidationResultRequest())->setName($formattedName);
         try {
             $gapicClient->getAgentValidationResult($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -491,7 +537,10 @@ class AgentsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setLanguageCode($languageCode2);
         $transport->addResponse($expectedResponse);
-        $request = new GetGenerativeSettingsRequest();
+        // Mock request
+        $formattedName = $gapicClient->agentGenerativeSettingsName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $languageCode = 'languageCode-412800396';
+        $request = (new GetGenerativeSettingsRequest())->setName($formattedName)->setLanguageCode($languageCode);
         $response = $gapicClient->getGenerativeSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -499,6 +548,10 @@ class AgentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Agents/GetGenerativeSettings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getLanguageCode();
+        $this->assertProtobufEquals($languageCode, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -523,7 +576,10 @@ class AgentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetGenerativeSettingsRequest();
+        // Mock request
+        $formattedName = $gapicClient->agentGenerativeSettingsName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $languageCode = 'languageCode-412800396';
+        $request = (new GetGenerativeSettingsRequest())->setName($formattedName)->setLanguageCode($languageCode);
         try {
             $gapicClient->getGenerativeSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -553,7 +609,9 @@ class AgentsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAgents($agents);
         $transport->addResponse($expectedResponse);
-        $request = new ListAgentsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAgentsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAgents($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -564,6 +622,8 @@ class AgentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Agents/ListAgents', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -588,7 +648,9 @@ class AgentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListAgentsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAgentsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAgents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -631,7 +693,9 @@ class AgentsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new RestoreAgentRequest();
+        // Mock request
+        $formattedName = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new RestoreAgentRequest())->setName($formattedName);
         $response = $gapicClient->restoreAgent($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -642,6 +706,8 @@ class AgentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Agents/RestoreAgent', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/restoreAgentTest');
         $response->pollUntilComplete([
@@ -695,7 +761,9 @@ class AgentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        $request = new RestoreAgentRequest();
+        // Mock request
+        $formattedName = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new RestoreAgentRequest())->setName($formattedName);
         $response = $gapicClient->restoreAgent($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -751,7 +819,15 @@ class AgentsClientTest extends GeneratedTest
         $expectedResponse->setEnableSpellCorrection($enableSpellCorrection);
         $expectedResponse->setLocked($locked);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateAgentRequest();
+        // Mock request
+        $agent = new Agent();
+        $agentDisplayName = 'agentDisplayName2121176616';
+        $agent->setDisplayName($agentDisplayName);
+        $agentDefaultLanguageCode = 'agentDefaultLanguageCode-1905463551';
+        $agent->setDefaultLanguageCode($agentDefaultLanguageCode);
+        $agentTimeZone = 'agentTimeZone-453669314';
+        $agent->setTimeZone($agentTimeZone);
+        $request = (new UpdateAgentRequest())->setAgent($agent);
         $response = $gapicClient->updateAgent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -759,6 +835,8 @@ class AgentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Agents/UpdateAgent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAgent();
+        $this->assertProtobufEquals($agent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -783,7 +861,15 @@ class AgentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new UpdateAgentRequest();
+        // Mock request
+        $agent = new Agent();
+        $agentDisplayName = 'agentDisplayName2121176616';
+        $agent->setDisplayName($agentDisplayName);
+        $agentDefaultLanguageCode = 'agentDefaultLanguageCode-1905463551';
+        $agent->setDefaultLanguageCode($agentDefaultLanguageCode);
+        $agentTimeZone = 'agentTimeZone-453669314';
+        $agent->setTimeZone($agentTimeZone);
+        $request = (new UpdateAgentRequest())->setAgent($agent);
         try {
             $gapicClient->updateAgent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -812,7 +898,9 @@ class AgentsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateGenerativeSettingsRequest();
+        // Mock request
+        $generativeSettings = new GenerativeSettings();
+        $request = (new UpdateGenerativeSettingsRequest())->setGenerativeSettings($generativeSettings);
         $response = $gapicClient->updateGenerativeSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -820,6 +908,8 @@ class AgentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Agents/UpdateGenerativeSettings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getGenerativeSettings();
+        $this->assertProtobufEquals($generativeSettings, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -844,7 +934,9 @@ class AgentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new UpdateGenerativeSettingsRequest();
+        // Mock request
+        $generativeSettings = new GenerativeSettings();
+        $request = (new UpdateGenerativeSettingsRequest())->setGenerativeSettings($generativeSettings);
         try {
             $gapicClient->updateGenerativeSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -871,7 +963,9 @@ class AgentsClientTest extends GeneratedTest
         $expectedResponse = new AgentValidationResult();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $request = new ValidateAgentRequest();
+        // Mock request
+        $formattedName = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ValidateAgentRequest())->setName($formattedName);
         $response = $gapicClient->validateAgent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -879,6 +973,8 @@ class AgentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Agents/ValidateAgent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -903,7 +999,9 @@ class AgentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ValidateAgentRequest();
+        // Mock request
+        $formattedName = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ValidateAgentRequest())->setName($formattedName);
         try {
             $gapicClient->validateAgent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1078,7 +1176,16 @@ class AgentsClientTest extends GeneratedTest
         $expectedResponse->setEnableSpellCorrection($enableSpellCorrection);
         $expectedResponse->setLocked($locked);
         $transport->addResponse($expectedResponse);
-        $request = new CreateAgentRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $agent = new Agent();
+        $agentDisplayName = 'agentDisplayName2121176616';
+        $agent->setDisplayName($agentDisplayName);
+        $agentDefaultLanguageCode = 'agentDefaultLanguageCode-1905463551';
+        $agent->setDefaultLanguageCode($agentDefaultLanguageCode);
+        $agentTimeZone = 'agentTimeZone-453669314';
+        $agent->setTimeZone($agentTimeZone);
+        $request = (new CreateAgentRequest())->setParent($formattedParent)->setAgent($agent);
         $response = $gapicClient->createAgentAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1086,6 +1193,10 @@ class AgentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Agents/CreateAgent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAgent();
+        $this->assertProtobufEquals($agent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

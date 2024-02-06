@@ -96,7 +96,10 @@ class AutoscalersClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListAutoscalersRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListAutoscalersRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -109,6 +112,8 @@ class AutoscalersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Autoscalers/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -130,7 +135,10 @@ class AutoscalersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AggregatedListAutoscalersRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListAutoscalersRequest())
+            ->setProject($project);
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -169,7 +177,14 @@ class AutoscalersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteAutoscalerRequest();
+        // Mock request
+        $autoscaler = 'autoscaler517258967';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new DeleteAutoscalerRequest())
+            ->setAutoscaler($autoscaler)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -179,8 +194,16 @@ class AutoscalersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Autoscalers/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAutoscaler();
+        $this->assertProtobufEquals($autoscaler, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -228,7 +251,14 @@ class AutoscalersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteAutoscalerRequest();
+        // Mock request
+        $autoscaler = 'autoscaler517258967';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new DeleteAutoscalerRequest())
+            ->setAutoscaler($autoscaler)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -282,7 +312,14 @@ class AutoscalersClientTest extends GeneratedTest
         $expectedResponse->setTarget($target);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-        $request = new GetAutoscalerRequest();
+        // Mock request
+        $autoscaler = 'autoscaler517258967';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new GetAutoscalerRequest())
+            ->setAutoscaler($autoscaler)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -290,6 +327,12 @@ class AutoscalersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Autoscalers/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAutoscaler();
+        $this->assertProtobufEquals($autoscaler, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -311,7 +354,14 @@ class AutoscalersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetAutoscalerRequest();
+        // Mock request
+        $autoscaler = 'autoscaler517258967';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new GetAutoscalerRequest())
+            ->setAutoscaler($autoscaler)
+            ->setProject($project)
+            ->setZone($zone);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -350,7 +400,14 @@ class AutoscalersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertAutoscalerRequest();
+        // Mock request
+        $autoscalerResource = new Autoscaler();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new InsertAutoscalerRequest())
+            ->setAutoscalerResource($autoscalerResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -360,8 +417,16 @@ class AutoscalersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Autoscalers/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAutoscalerResource();
+        $this->assertProtobufEquals($autoscalerResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -409,7 +474,14 @@ class AutoscalersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertAutoscalerRequest();
+        // Mock request
+        $autoscalerResource = new Autoscaler();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new InsertAutoscalerRequest())
+            ->setAutoscalerResource($autoscalerResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -454,7 +526,12 @@ class AutoscalersClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListAutoscalersRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new ListAutoscalersRequest())
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -465,6 +542,10 @@ class AutoscalersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Autoscalers/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -486,7 +567,12 @@ class AutoscalersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListAutoscalersRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new ListAutoscalersRequest())
+            ->setProject($project)
+            ->setZone($zone);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -525,7 +611,14 @@ class AutoscalersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PatchAutoscalerRequest();
+        // Mock request
+        $autoscalerResource = new Autoscaler();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new PatchAutoscalerRequest())
+            ->setAutoscalerResource($autoscalerResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -535,8 +628,16 @@ class AutoscalersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Autoscalers/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAutoscalerResource();
+        $this->assertProtobufEquals($autoscalerResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -584,7 +685,14 @@ class AutoscalersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PatchAutoscalerRequest();
+        // Mock request
+        $autoscalerResource = new Autoscaler();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new PatchAutoscalerRequest())
+            ->setAutoscalerResource($autoscalerResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -630,7 +738,14 @@ class AutoscalersClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/updateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateAutoscalerRequest();
+        // Mock request
+        $autoscalerResource = new Autoscaler();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new UpdateAutoscalerRequest())
+            ->setAutoscalerResource($autoscalerResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -640,8 +755,16 @@ class AutoscalersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Autoscalers/Update', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAutoscalerResource();
+        $this->assertProtobufEquals($autoscalerResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -689,7 +812,14 @@ class AutoscalersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateAutoscalerRequest();
+        // Mock request
+        $autoscalerResource = new Autoscaler();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new UpdateAutoscalerRequest())
+            ->setAutoscalerResource($autoscalerResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -733,7 +863,10 @@ class AutoscalersClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListAutoscalersRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListAutoscalersRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -746,6 +879,8 @@ class AutoscalersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Autoscalers/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

@@ -30,21 +30,26 @@ use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
 /**
  * Lists the instances in the managed instance group and instances that are scheduled to be created. The list includes any current actions that the group has scheduled for its instances. The orderBy query parameter is not supported. The `pageToken` query parameter is supported only in the alpha and beta API and only if the group's `listManagedInstancesResults` field is set to `PAGINATED`.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $instanceGroupManager The name of the managed instance group.
+ * @param string $project              Project ID for this request.
+ * @param string $region               Name of the region scoping this request.
  */
-function list_managed_instances_sample(): void
-{
+function list_managed_instances_sample(
+    string $instanceGroupManager,
+    string $project,
+    string $region
+): void {
     // Create a client.
     $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionInstanceGroupManagersClient->listManagedInstances();
+        $response = $regionInstanceGroupManagersClient->listManagedInstances(
+            $instanceGroupManager,
+            $project,
+            $region
+        );
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -52,5 +57,23 @@ function list_managed_instances_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $instanceGroupManager = '[INSTANCE_GROUP_MANAGER]';
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    list_managed_instances_sample($instanceGroupManager, $project, $region);
 }
 // [END compute_v1_generated_RegionInstanceGroupManagers_ListManagedInstances_sync]

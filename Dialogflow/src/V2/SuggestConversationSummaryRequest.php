@@ -52,7 +52,8 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
     /**
      * @param string $conversation Required. The conversation to fetch suggestion for.
      *                             Format: `projects/<Project ID>/locations/<Location
-     *                             ID>/conversations/<Conversation ID>`.
+     *                             ID>/conversations/<Conversation ID>`. Please see
+     *                             {@see ConversationsClient::conversationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\SuggestConversationSummaryRequest
      *

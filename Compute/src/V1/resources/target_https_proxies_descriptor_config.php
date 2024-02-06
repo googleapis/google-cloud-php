@@ -5,7 +5,9 @@ return [
         'google.cloud.compute.v1.TargetHttpsProxies' => [
             'Delete' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -34,7 +36,9 @@ return [
             ],
             'Insert' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -57,7 +61,9 @@ return [
             ],
             'Patch' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -86,7 +92,9 @@ return [
             ],
             'SetCertificateMap' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -115,7 +123,9 @@ return [
             ],
             'SetQuicOverride' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -144,7 +154,9 @@ return [
             ],
             'SetSslCertificates' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -173,7 +185,9 @@ return [
             ],
             'SetSslPolicy' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -202,7 +216,9 @@ return [
             ],
             'SetUrlMap' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',

@@ -44,7 +44,7 @@ class ListLineageEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The name of the run that owns the collection of lineage events to
-     *                       get.
+     *                       get. Please see {@see LineageClient::runName()} for help formatting this field.
      *
      * @return \Google\Cloud\DataCatalog\Lineage\V1\ListLineageEventsRequest
      *

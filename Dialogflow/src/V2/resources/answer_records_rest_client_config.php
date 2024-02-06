@@ -29,6 +29,9 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v2/{answer_record.name=projects/*/locations/*/answerRecords/*}',
                         'body' => 'answer_record',
+                        'queryParams' => [
+                            'update_mask',
+                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -38,6 +41,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

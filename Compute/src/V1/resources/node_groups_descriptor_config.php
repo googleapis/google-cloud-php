@@ -5,7 +5,10 @@ return [
         'google.cloud.compute.v1.NodeGroups' => [
             'AddNodes' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getZone',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -40,7 +43,10 @@ return [
             ],
             'Delete' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getZone',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -75,7 +81,10 @@ return [
             ],
             'DeleteNodes' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getZone',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -110,7 +119,10 @@ return [
             ],
             'Insert' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getZone',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -139,7 +151,10 @@ return [
             ],
             'Patch' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getZone',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -174,7 +189,10 @@ return [
             ],
             'SetNodeTemplate' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getZone',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -209,7 +227,10 @@ return [
             ],
             'SimulateMaintenanceEvent' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [],
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getZone',
+                    ],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',

@@ -26,26 +26,35 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Deploy\V1\Automation;
+use Google\Cloud\Deploy\V1\AutomationResourceSelector;
+use Google\Cloud\Deploy\V1\AutomationRule;
 use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
 use Google\Cloud\Deploy\V1\UpdateAutomationRequest;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates the parameters of a single Automation resource.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $automationServiceAccount Email address of the user-managed IAM service account that
+ *                                         creates Cloud Deploy release and rollout resources.
  */
-function update_automation_sample(): void
+function update_automation_sample(string $automationServiceAccount): void
 {
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = new UpdateAutomationRequest();
+    $updateMask = new FieldMask();
+    $automationSelector = new AutomationResourceSelector();
+    $automationRules = [new AutomationRule()];
+    $automation = (new Automation())
+        ->setServiceAccount($automationServiceAccount)
+        ->setSelector($automationSelector)
+        ->setRules($automationRules);
+    $request = (new UpdateAutomationRequest())
+        ->setUpdateMask($updateMask)
+        ->setAutomation($automation);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +74,21 @@ function update_automation_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $automationServiceAccount = '[SERVICE_ACCOUNT]';
+
+    update_automation_sample($automationServiceAccount);
 }
 // [END clouddeploy_v1_generated_CloudDeploy_UpdateAutomation_sync]

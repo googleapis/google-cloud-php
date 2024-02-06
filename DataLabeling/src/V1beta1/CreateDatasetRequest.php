@@ -32,6 +32,7 @@ class CreateDatasetRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                     $parent  Required. Dataset resource parent, format:
      *                                                            projects/{project_id}
+     *                                                            Please see {@see DataLabelingServiceClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\DataLabeling\V1beta1\Dataset $dataset Required. The dataset to be created.
      *
      * @return \Google\Cloud\DataLabeling\V1beta1\CreateDatasetRequest

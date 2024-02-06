@@ -40,7 +40,9 @@ use Google\Cloud\Compute\V1\ListAddressesRequest;
 use Google\Cloud\Compute\V1\MoveAddressRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
+use Google\Cloud\Compute\V1\RegionAddressesMoveRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
+use Google\Cloud\Compute\V1\RegionSetLabelsRequest;
 use Google\Cloud\Compute\V1\SetLabelsAddressRequest;
 use Google\Rpc\Code;
 use stdClass;
@@ -96,7 +98,10 @@ class AddressesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListAddressesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListAddressesRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -109,6 +114,8 @@ class AddressesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Addresses/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -130,7 +137,10 @@ class AddressesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AggregatedListAddressesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListAddressesRequest())
+            ->setProject($project);
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -169,7 +179,14 @@ class AddressesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteAddressRequest();
+        // Mock request
+        $address = 'address-1147692044';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new DeleteAddressRequest())
+            ->setAddress($address)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -179,8 +196,16 @@ class AddressesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Addresses/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAddress();
+        $this->assertProtobufEquals($address, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -228,7 +253,14 @@ class AddressesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteAddressRequest();
+        // Mock request
+        $address = 'address-1147692044';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new DeleteAddressRequest())
+            ->setAddress($address)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -296,7 +328,14 @@ class AddressesClientTest extends GeneratedTest
         $expectedResponse->setStatus($status);
         $expectedResponse->setSubnetwork($subnetwork);
         $transport->addResponse($expectedResponse);
-        $request = new GetAddressRequest();
+        // Mock request
+        $address = 'address-1147692044';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new GetAddressRequest())
+            ->setAddress($address)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -304,6 +343,12 @@ class AddressesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Addresses/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAddress();
+        $this->assertProtobufEquals($address, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -325,7 +370,14 @@ class AddressesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetAddressRequest();
+        // Mock request
+        $address = 'address-1147692044';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new GetAddressRequest())
+            ->setAddress($address)
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -364,7 +416,14 @@ class AddressesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertAddressRequest();
+        // Mock request
+        $addressResource = new Address();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new InsertAddressRequest())
+            ->setAddressResource($addressResource)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -374,8 +433,16 @@ class AddressesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Addresses/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAddressResource();
+        $this->assertProtobufEquals($addressResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -423,7 +490,14 @@ class AddressesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertAddressRequest();
+        // Mock request
+        $addressResource = new Address();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new InsertAddressRequest())
+            ->setAddressResource($addressResource)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -468,7 +542,12 @@ class AddressesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListAddressesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListAddressesRequest())
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -479,6 +558,10 @@ class AddressesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Addresses/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -500,7 +583,12 @@ class AddressesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListAddressesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListAddressesRequest())
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -539,7 +627,16 @@ class AddressesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/moveTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new MoveAddressRequest();
+        // Mock request
+        $address = 'address-1147692044';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionAddressesMoveRequestResource = new RegionAddressesMoveRequest();
+        $request = (new MoveAddressRequest())
+            ->setAddress($address)
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionAddressesMoveRequestResource($regionAddressesMoveRequestResource);
         $response = $gapicClient->move($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -549,8 +646,18 @@ class AddressesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Addresses/Move', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAddress();
+        $this->assertProtobufEquals($address, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionAddressesMoveRequestResource();
+        $this->assertProtobufEquals($regionAddressesMoveRequestResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -598,7 +705,16 @@ class AddressesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new MoveAddressRequest();
+        // Mock request
+        $address = 'address-1147692044';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionAddressesMoveRequestResource = new RegionAddressesMoveRequest();
+        $request = (new MoveAddressRequest())
+            ->setAddress($address)
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionAddressesMoveRequestResource($regionAddressesMoveRequestResource);
         $response = $gapicClient->move($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -644,7 +760,16 @@ class AddressesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setLabelsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SetLabelsAddressRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
+        $resource = 'resource-341064690';
+        $request = (new SetLabelsAddressRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionSetLabelsRequestResource($regionSetLabelsRequestResource)
+            ->setResource($resource);
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -654,8 +779,18 @@ class AddressesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Addresses/SetLabels', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegionSetLabelsRequestResource();
+        $this->assertProtobufEquals($regionSetLabelsRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -703,7 +838,16 @@ class AddressesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SetLabelsAddressRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
+        $resource = 'resource-341064690';
+        $request = (new SetLabelsAddressRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRegionSetLabelsRequestResource($regionSetLabelsRequestResource)
+            ->setResource($resource);
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -747,7 +891,10 @@ class AddressesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListAddressesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListAddressesRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -760,6 +907,8 @@ class AddressesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Addresses/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

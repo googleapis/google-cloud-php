@@ -31,21 +31,32 @@ use Google\Rpc\Status;
 /**
  * Deletes an access config from an instance's network interface.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $accessConfig     The name of the access config to delete.
+ * @param string $instance         The instance name for this request.
+ * @param string $networkInterface The name of the network interface.
+ * @param string $project          Project ID for this request.
+ * @param string $zone             The name of the zone for this request.
  */
-function delete_access_config_sample(): void
-{
+function delete_access_config_sample(
+    string $accessConfig,
+    string $instance,
+    string $networkInterface,
+    string $project,
+    string $zone
+): void {
     // Create a client.
     $instancesClient = new InstancesClient();
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->deleteAccessConfig();
+        $response = $instancesClient->deleteAccessConfig(
+            $accessConfig,
+            $instance,
+            $networkInterface,
+            $project,
+            $zone
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +69,25 @@ function delete_access_config_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $accessConfig = '[ACCESS_CONFIG]';
+    $instance = '[INSTANCE]';
+    $networkInterface = '[NETWORK_INTERFACE]';
+    $project = '[PROJECT]';
+    $zone = '[ZONE]';
+
+    delete_access_config_sample($accessConfig, $instance, $networkInterface, $project, $zone);
 }
 // [END compute_v1_generated_Instances_DeleteAccessConfig_sync]

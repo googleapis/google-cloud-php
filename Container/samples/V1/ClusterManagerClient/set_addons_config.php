@@ -24,6 +24,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START container_v1_generated_ClusterManager_SetAddonsConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Container\V1\AddonsConfig;
 use Google\Cloud\Container\V1\Client\ClusterManagerClient;
 use Google\Cloud\Container\V1\Operation;
 use Google\Cloud\Container\V1\SetAddonsConfigRequest;
@@ -43,7 +44,9 @@ function set_addons_config_sample(): void
     $clusterManagerClient = new ClusterManagerClient();
 
     // Prepare the request message.
-    $request = new SetAddonsConfigRequest();
+    $addonsConfig = new AddonsConfig();
+    $request = (new SetAddonsConfigRequest())
+        ->setAddonsConfig($addonsConfig);
 
     // Call the API and handle any network failures.
     try {

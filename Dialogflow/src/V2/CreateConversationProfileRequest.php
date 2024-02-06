@@ -32,7 +32,8 @@ class CreateConversationProfileRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                          $parent              Required. The project to create a conversation profile for.
-     *                                                                             Format: `projects/<Project ID>/locations/<Location ID>`.
+     *                                                                             Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                                                                             {@see ConversationProfilesClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\V2\ConversationProfile $conversationProfile Required. The conversation profile to create.
      *
      * @return \Google\Cloud\Dialogflow\V2\CreateConversationProfileRequest

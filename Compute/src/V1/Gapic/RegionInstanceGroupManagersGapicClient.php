@@ -79,7 +79,11 @@ use Google\Cloud\Compute\V1\UpdatePerInstanceConfigsRegionInstanceGroupManagerRe
  * ```
  * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
  * try {
- *     $operationResponse = $regionInstanceGroupManagersClient->abandonInstances();
+ *     $instanceGroupManager = 'instance_group_manager';
+ *     $project = 'project';
+ *     $region = 'region';
+ *     $regionInstanceGroupManagersAbandonInstancesRequestResource = new RegionInstanceGroupManagersAbandonInstancesRequest();
+ *     $operationResponse = $regionInstanceGroupManagersClient->abandonInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersAbandonInstancesRequestResource);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -89,7 +93,7 @@ use Google\Cloud\Compute\V1\UpdatePerInstanceConfigsRegionInstanceGroupManagerRe
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $regionInstanceGroupManagersClient->abandonInstances();
+ *     $operationResponse = $regionInstanceGroupManagersClient->abandonInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersAbandonInstancesRequestResource);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'abandonInstances');
@@ -189,7 +193,10 @@ class RegionInstanceGroupManagersGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+                'getRegion',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -285,7 +292,11 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
-     *     $operationResponse = $regionInstanceGroupManagersClient->abandonInstances();
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionInstanceGroupManagersAbandonInstancesRequestResource = new RegionInstanceGroupManagersAbandonInstancesRequest();
+     *     $operationResponse = $regionInstanceGroupManagersClient->abandonInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersAbandonInstancesRequestResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -295,7 +306,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceGroupManagersClient->abandonInstances();
+     *     $operationResponse = $regionInstanceGroupManagersClient->abandonInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersAbandonInstancesRequestResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'abandonInstances');
@@ -314,17 +325,13 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                                             $instanceGroupManager                                       Name of the managed instance group.
+     * @param string                                             $project                                                    Project ID for this request.
+     * @param string                                             $region                                                     Name of the region scoping this request.
+     * @param RegionInstanceGroupManagersAbandonInstancesRequest $regionInstanceGroupManagersAbandonInstancesRequestResource The body resource for this request
+     * @param array                                              $optionalArgs                                               {
      *     Optional.
      *
-     *     @type string $instanceGroupManager
-     *           Name of the managed instance group.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
-     *     @type RegionInstanceGroupManagersAbandonInstancesRequest $regionInstanceGroupManagersAbandonInstancesRequestResource
-     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -337,29 +344,17 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function abandonInstances(array $optionalArgs = [])
+    public function abandonInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersAbandonInstancesRequestResource, array $optionalArgs = [])
     {
         $request = new AbandonInstancesRegionInstanceGroupManagerRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['regionInstanceGroupManagersAbandonInstancesRequestResource'])) {
-            $request->setRegionInstanceGroupManagersAbandonInstancesRequestResource($optionalArgs['regionInstanceGroupManagersAbandonInstancesRequestResource']);
-        }
-
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionInstanceGroupManagersAbandonInstancesRequestResource($regionInstanceGroupManagersAbandonInstancesRequestResource);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -376,7 +371,11 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
-     *     $operationResponse = $regionInstanceGroupManagersClient->applyUpdatesToInstances();
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionInstanceGroupManagersApplyUpdatesRequestResource = new RegionInstanceGroupManagersApplyUpdatesRequest();
+     *     $operationResponse = $regionInstanceGroupManagersClient->applyUpdatesToInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersApplyUpdatesRequestResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -386,7 +385,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceGroupManagersClient->applyUpdatesToInstances();
+     *     $operationResponse = $regionInstanceGroupManagersClient->applyUpdatesToInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersApplyUpdatesRequestResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'applyUpdatesToInstances');
@@ -405,17 +404,13 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                                         $instanceGroupManager                                   The name of the managed instance group, should conform to RFC1035.
+     * @param string                                         $project                                                Project ID for this request.
+     * @param string                                         $region                                                 Name of the region scoping this request, should conform to RFC1035.
+     * @param RegionInstanceGroupManagersApplyUpdatesRequest $regionInstanceGroupManagersApplyUpdatesRequestResource The body resource for this request
+     * @param array                                          $optionalArgs                                           {
      *     Optional.
      *
-     *     @type string $instanceGroupManager
-     *           The name of the managed instance group, should conform to RFC1035.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request, should conform to RFC1035.
-     *     @type RegionInstanceGroupManagersApplyUpdatesRequest $regionInstanceGroupManagersApplyUpdatesRequestResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -426,29 +421,17 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function applyUpdatesToInstances(array $optionalArgs = [])
+    public function applyUpdatesToInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersApplyUpdatesRequestResource, array $optionalArgs = [])
     {
         $request = new ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['regionInstanceGroupManagersApplyUpdatesRequestResource'])) {
-            $request->setRegionInstanceGroupManagersApplyUpdatesRequestResource($optionalArgs['regionInstanceGroupManagersApplyUpdatesRequestResource']);
-        }
-
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionInstanceGroupManagersApplyUpdatesRequestResource($regionInstanceGroupManagersApplyUpdatesRequestResource);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('ApplyUpdatesToInstances', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
@@ -461,7 +444,11 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
-     *     $operationResponse = $regionInstanceGroupManagersClient->createInstances();
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionInstanceGroupManagersCreateInstancesRequestResource = new RegionInstanceGroupManagersCreateInstancesRequest();
+     *     $operationResponse = $regionInstanceGroupManagersClient->createInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersCreateInstancesRequestResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -471,7 +458,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceGroupManagersClient->createInstances();
+     *     $operationResponse = $regionInstanceGroupManagersClient->createInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersCreateInstancesRequestResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'createInstances');
@@ -490,17 +477,13 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                                            $instanceGroupManager                                      The name of the managed instance group. It should conform to RFC1035.
+     * @param string                                            $project                                                   Project ID for this request.
+     * @param string                                            $region                                                    The name of the region where the managed instance group is located. It should conform to RFC1035.
+     * @param RegionInstanceGroupManagersCreateInstancesRequest $regionInstanceGroupManagersCreateInstancesRequestResource The body resource for this request
+     * @param array                                             $optionalArgs                                              {
      *     Optional.
      *
-     *     @type string $instanceGroupManager
-     *           The name of the managed instance group. It should conform to RFC1035.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           The name of the region where the managed instance group is located. It should conform to RFC1035.
-     *     @type RegionInstanceGroupManagersCreateInstancesRequest $regionInstanceGroupManagersCreateInstancesRequestResource
-     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -513,29 +496,17 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createInstances(array $optionalArgs = [])
+    public function createInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersCreateInstancesRequestResource, array $optionalArgs = [])
     {
         $request = new CreateInstancesRegionInstanceGroupManagerRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['regionInstanceGroupManagersCreateInstancesRequestResource'])) {
-            $request->setRegionInstanceGroupManagersCreateInstancesRequestResource($optionalArgs['regionInstanceGroupManagersCreateInstancesRequestResource']);
-        }
-
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionInstanceGroupManagersCreateInstancesRequestResource($regionInstanceGroupManagersCreateInstancesRequestResource);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -552,7 +523,10 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
-     *     $operationResponse = $regionInstanceGroupManagersClient->delete();
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $operationResponse = $regionInstanceGroupManagersClient->delete($instanceGroupManager, $project, $region);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -562,7 +536,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceGroupManagersClient->delete();
+     *     $operationResponse = $regionInstanceGroupManagersClient->delete($instanceGroupManager, $project, $region);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'delete');
@@ -581,15 +555,12 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instanceGroupManager Name of the managed instance group to delete.
+     * @param string $project              Project ID for this request.
+     * @param string $region               Name of the region scoping this request.
+     * @param array  $optionalArgs         {
      *     Optional.
      *
-     *     @type string $instanceGroupManager
-     *           Name of the managed instance group to delete.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -602,25 +573,16 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete(array $optionalArgs = [])
+    public function delete($instanceGroupManager, $project, $region, array $optionalArgs = [])
     {
         $request = new DeleteRegionInstanceGroupManagerRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -637,7 +599,11 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
-     *     $operationResponse = $regionInstanceGroupManagersClient->deleteInstances();
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionInstanceGroupManagersDeleteInstancesRequestResource = new RegionInstanceGroupManagersDeleteInstancesRequest();
+     *     $operationResponse = $regionInstanceGroupManagersClient->deleteInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersDeleteInstancesRequestResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -647,7 +613,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceGroupManagersClient->deleteInstances();
+     *     $operationResponse = $regionInstanceGroupManagersClient->deleteInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersDeleteInstancesRequestResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'deleteInstances');
@@ -666,17 +632,13 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                                            $instanceGroupManager                                      Name of the managed instance group.
+     * @param string                                            $project                                                   Project ID for this request.
+     * @param string                                            $region                                                    Name of the region scoping this request.
+     * @param RegionInstanceGroupManagersDeleteInstancesRequest $regionInstanceGroupManagersDeleteInstancesRequestResource The body resource for this request
+     * @param array                                             $optionalArgs                                              {
      *     Optional.
      *
-     *     @type string $instanceGroupManager
-     *           Name of the managed instance group.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
-     *     @type RegionInstanceGroupManagersDeleteInstancesRequest $regionInstanceGroupManagersDeleteInstancesRequestResource
-     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -689,29 +651,17 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteInstances(array $optionalArgs = [])
+    public function deleteInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersDeleteInstancesRequestResource, array $optionalArgs = [])
     {
         $request = new DeleteInstancesRegionInstanceGroupManagerRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['regionInstanceGroupManagersDeleteInstancesRequestResource'])) {
-            $request->setRegionInstanceGroupManagersDeleteInstancesRequestResource($optionalArgs['regionInstanceGroupManagersDeleteInstancesRequestResource']);
-        }
-
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionInstanceGroupManagersDeleteInstancesRequestResource($regionInstanceGroupManagersDeleteInstancesRequestResource);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -728,7 +678,11 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
-     *     $operationResponse = $regionInstanceGroupManagersClient->deletePerInstanceConfigs();
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionInstanceGroupManagerDeleteInstanceConfigReqResource = new RegionInstanceGroupManagerDeleteInstanceConfigReq();
+     *     $operationResponse = $regionInstanceGroupManagersClient->deletePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerDeleteInstanceConfigReqResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -738,7 +692,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceGroupManagersClient->deletePerInstanceConfigs();
+     *     $operationResponse = $regionInstanceGroupManagersClient->deletePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerDeleteInstanceConfigReqResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'deletePerInstanceConfigs');
@@ -757,17 +711,13 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                                            $instanceGroupManager                                      The name of the managed instance group. It should conform to RFC1035.
+     * @param string                                            $project                                                   Project ID for this request.
+     * @param string                                            $region                                                    Name of the region scoping this request, should conform to RFC1035.
+     * @param RegionInstanceGroupManagerDeleteInstanceConfigReq $regionInstanceGroupManagerDeleteInstanceConfigReqResource The body resource for this request
+     * @param array                                             $optionalArgs                                              {
      *     Optional.
      *
-     *     @type string $instanceGroupManager
-     *           The name of the managed instance group. It should conform to RFC1035.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request, should conform to RFC1035.
-     *     @type RegionInstanceGroupManagerDeleteInstanceConfigReq $regionInstanceGroupManagerDeleteInstanceConfigReqResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -778,29 +728,17 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deletePerInstanceConfigs(array $optionalArgs = [])
+    public function deletePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerDeleteInstanceConfigReqResource, array $optionalArgs = [])
     {
         $request = new DeletePerInstanceConfigsRegionInstanceGroupManagerRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['regionInstanceGroupManagerDeleteInstanceConfigReqResource'])) {
-            $request->setRegionInstanceGroupManagerDeleteInstanceConfigReqResource($optionalArgs['regionInstanceGroupManagerDeleteInstanceConfigReqResource']);
-        }
-
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionInstanceGroupManagerDeleteInstanceConfigReqResource($regionInstanceGroupManagerDeleteInstanceConfigReqResource);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeletePerInstanceConfigs', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
@@ -813,21 +751,21 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
-     *     $response = $regionInstanceGroupManagersClient->get();
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $response = $regionInstanceGroupManagersClient->get($instanceGroupManager, $project, $region);
      * } finally {
      *     $regionInstanceGroupManagersClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instanceGroupManager Name of the managed instance group to return.
+     * @param string $project              Project ID for this request.
+     * @param string $region               Name of the region scoping this request.
+     * @param array  $optionalArgs         {
      *     Optional.
      *
-     *     @type string $instanceGroupManager
-     *           Name of the managed instance group to return.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -838,25 +776,16 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($instanceGroupManager, $project, $region, array $optionalArgs = [])
     {
         $request = new GetRegionInstanceGroupManagerRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', InstanceGroupManager::class, $optionalArgs, $request)->wait();
@@ -869,7 +798,10 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
-     *     $operationResponse = $regionInstanceGroupManagersClient->insert();
+     *     $instanceGroupManagerResource = new InstanceGroupManager();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $operationResponse = $regionInstanceGroupManagersClient->insert($instanceGroupManagerResource, $project, $region);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -879,7 +811,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceGroupManagersClient->insert();
+     *     $operationResponse = $regionInstanceGroupManagersClient->insert($instanceGroupManagerResource, $project, $region);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'insert');
@@ -898,15 +830,12 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param InstanceGroupManager $instanceGroupManagerResource The body resource for this request
+     * @param string               $project                      Project ID for this request.
+     * @param string               $region                       Name of the region scoping this request.
+     * @param array                $optionalArgs                 {
      *     Optional.
      *
-     *     @type InstanceGroupManager $instanceGroupManagerResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -919,24 +848,15 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert(array $optionalArgs = [])
+    public function insert($instanceGroupManagerResource, $project, $region, array $optionalArgs = [])
     {
         $request = new InsertRegionInstanceGroupManagerRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceGroupManagerResource'])) {
-            $request->setInstanceGroupManagerResource($optionalArgs['instanceGroupManagerResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setInstanceGroupManagerResource($instanceGroupManagerResource);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -953,8 +873,10 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
+     *     $project = 'project';
+     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionInstanceGroupManagersClient->list();
+     *     $pagedResponse = $regionInstanceGroupManagersClient->list($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -962,7 +884,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionInstanceGroupManagersClient->list();
+     *     $pagedResponse = $regionInstanceGroupManagersClient->list($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -971,7 +893,9 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $region       Name of the region scoping this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -985,10 +909,6 @@ class RegionInstanceGroupManagersGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -1001,10 +921,14 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list(array $optionalArgs = [])
+    public function list($project, $region, array $optionalArgs = [])
     {
         $request = new ListRegionInstanceGroupManagersRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1019,16 +943,6 @@ class RegionInstanceGroupManagersGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -1047,8 +961,11 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionInstanceGroupManagersClient->listErrors();
+     *     $pagedResponse = $regionInstanceGroupManagersClient->listErrors($instanceGroupManager, $project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1056,7 +973,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionInstanceGroupManagersClient->listErrors();
+     *     $pagedResponse = $regionInstanceGroupManagersClient->listErrors($instanceGroupManager, $project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1065,13 +982,14 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instanceGroupManager The name of the managed instance group. It must be a string that meets the requirements in RFC1035, or an unsigned long integer: must match regexp pattern: (?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?)|1-9{0,19}.
+     * @param string $project              Project ID for this request.
+     * @param string $region               Name of the region scoping this request. This should conform to RFC1035.
+     * @param array  $optionalArgs         {
      *     Optional.
      *
      *     @type string $filter
      *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
-     *     @type string $instanceGroupManager
-     *           The name of the managed instance group. It must be a string that meets the requirements in RFC1035, or an unsigned long integer: must match regexp pattern: (?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?)|1-9{0,19}.
      *     @type int $maxResults
      *           The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     @type string $orderBy
@@ -1081,10 +999,6 @@ class RegionInstanceGroupManagersGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request. This should conform to RFC1035.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -1097,17 +1011,18 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listErrors(array $optionalArgs = [])
+    public function listErrors($instanceGroupManager, $project, $region, array $optionalArgs = [])
     {
         $request = new ListErrorsRegionInstanceGroupManagersRequest();
         $requestParamHeaders = [];
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
-        }
-
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
         }
 
         if (isset($optionalArgs['maxResults'])) {
@@ -1120,16 +1035,6 @@ class RegionInstanceGroupManagersGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -1148,8 +1053,11 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionInstanceGroupManagersClient->listManagedInstances();
+     *     $pagedResponse = $regionInstanceGroupManagersClient->listManagedInstances($instanceGroupManager, $project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1157,7 +1065,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionInstanceGroupManagersClient->listManagedInstances();
+     *     $pagedResponse = $regionInstanceGroupManagersClient->listManagedInstances($instanceGroupManager, $project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1166,13 +1074,14 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instanceGroupManager The name of the managed instance group.
+     * @param string $project              Project ID for this request.
+     * @param string $region               Name of the region scoping this request.
+     * @param array  $optionalArgs         {
      *     Optional.
      *
      *     @type string $filter
      *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
-     *     @type string $instanceGroupManager
-     *           The name of the managed instance group.
      *     @type int $maxResults
      *           The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     @type string $orderBy
@@ -1182,10 +1091,6 @@ class RegionInstanceGroupManagersGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -1198,17 +1103,18 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listManagedInstances(array $optionalArgs = [])
+    public function listManagedInstances($instanceGroupManager, $project, $region, array $optionalArgs = [])
     {
         $request = new ListManagedInstancesRegionInstanceGroupManagersRequest();
         $requestParamHeaders = [];
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
-        }
-
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
         }
 
         if (isset($optionalArgs['maxResults'])) {
@@ -1221,16 +1127,6 @@ class RegionInstanceGroupManagersGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -1249,8 +1145,11 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionInstanceGroupManagersClient->listPerInstanceConfigs();
+     *     $pagedResponse = $regionInstanceGroupManagersClient->listPerInstanceConfigs($instanceGroupManager, $project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1258,7 +1157,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionInstanceGroupManagersClient->listPerInstanceConfigs();
+     *     $pagedResponse = $regionInstanceGroupManagersClient->listPerInstanceConfigs($instanceGroupManager, $project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1267,13 +1166,14 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instanceGroupManager The name of the managed instance group. It should conform to RFC1035.
+     * @param string $project              Project ID for this request.
+     * @param string $region               Name of the region scoping this request, should conform to RFC1035.
+     * @param array  $optionalArgs         {
      *     Optional.
      *
      *     @type string $filter
      *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
-     *     @type string $instanceGroupManager
-     *           The name of the managed instance group. It should conform to RFC1035.
      *     @type int $maxResults
      *           The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     @type string $orderBy
@@ -1283,10 +1183,6 @@ class RegionInstanceGroupManagersGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request, should conform to RFC1035.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -1299,17 +1195,18 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPerInstanceConfigs(array $optionalArgs = [])
+    public function listPerInstanceConfigs($instanceGroupManager, $project, $region, array $optionalArgs = [])
     {
         $request = new ListPerInstanceConfigsRegionInstanceGroupManagersRequest();
         $requestParamHeaders = [];
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
-        }
-
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
         }
 
         if (isset($optionalArgs['maxResults'])) {
@@ -1322,16 +1219,6 @@ class RegionInstanceGroupManagersGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -1350,7 +1237,11 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
-     *     $operationResponse = $regionInstanceGroupManagersClient->patch();
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $instanceGroupManagerResource = new InstanceGroupManager();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $operationResponse = $regionInstanceGroupManagersClient->patch($instanceGroupManager, $instanceGroupManagerResource, $project, $region);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1360,7 +1251,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceGroupManagersClient->patch();
+     *     $operationResponse = $regionInstanceGroupManagersClient->patch($instanceGroupManager, $instanceGroupManagerResource, $project, $region);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'patch');
@@ -1379,17 +1270,13 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string               $instanceGroupManager         The name of the instance group manager.
+     * @param InstanceGroupManager $instanceGroupManagerResource The body resource for this request
+     * @param string               $project                      Project ID for this request.
+     * @param string               $region                       Name of the region scoping this request.
+     * @param array                $optionalArgs                 {
      *     Optional.
      *
-     *     @type string $instanceGroupManager
-     *           The name of the instance group manager.
-     *     @type InstanceGroupManager $instanceGroupManagerResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -1402,29 +1289,17 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch(array $optionalArgs = [])
+    public function patch($instanceGroupManager, $instanceGroupManagerResource, $project, $region, array $optionalArgs = [])
     {
         $request = new PatchRegionInstanceGroupManagerRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
-        }
-
-        if (isset($optionalArgs['instanceGroupManagerResource'])) {
-            $request->setInstanceGroupManagerResource($optionalArgs['instanceGroupManagerResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setInstanceGroupManagerResource($instanceGroupManagerResource);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1441,7 +1316,11 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
-     *     $operationResponse = $regionInstanceGroupManagersClient->patchPerInstanceConfigs();
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionInstanceGroupManagerPatchInstanceConfigReqResource = new RegionInstanceGroupManagerPatchInstanceConfigReq();
+     *     $operationResponse = $regionInstanceGroupManagersClient->patchPerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerPatchInstanceConfigReqResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1451,7 +1330,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceGroupManagersClient->patchPerInstanceConfigs();
+     *     $operationResponse = $regionInstanceGroupManagersClient->patchPerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerPatchInstanceConfigReqResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'patchPerInstanceConfigs');
@@ -1470,17 +1349,13 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                                           $instanceGroupManager                                     The name of the managed instance group. It should conform to RFC1035.
+     * @param string                                           $project                                                  Project ID for this request.
+     * @param string                                           $region                                                   Name of the region scoping this request, should conform to RFC1035.
+     * @param RegionInstanceGroupManagerPatchInstanceConfigReq $regionInstanceGroupManagerPatchInstanceConfigReqResource The body resource for this request
+     * @param array                                            $optionalArgs                                             {
      *     Optional.
      *
-     *     @type string $instanceGroupManager
-     *           The name of the managed instance group. It should conform to RFC1035.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request, should conform to RFC1035.
-     *     @type RegionInstanceGroupManagerPatchInstanceConfigReq $regionInstanceGroupManagerPatchInstanceConfigReqResource
-     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -1493,29 +1368,17 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patchPerInstanceConfigs(array $optionalArgs = [])
+    public function patchPerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerPatchInstanceConfigReqResource, array $optionalArgs = [])
     {
         $request = new PatchPerInstanceConfigsRegionInstanceGroupManagerRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['regionInstanceGroupManagerPatchInstanceConfigReqResource'])) {
-            $request->setRegionInstanceGroupManagerPatchInstanceConfigReqResource($optionalArgs['regionInstanceGroupManagerPatchInstanceConfigReqResource']);
-        }
-
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionInstanceGroupManagerPatchInstanceConfigReqResource($regionInstanceGroupManagerPatchInstanceConfigReqResource);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1532,7 +1395,11 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
-     *     $operationResponse = $regionInstanceGroupManagersClient->recreateInstances();
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionInstanceGroupManagersRecreateRequestResource = new RegionInstanceGroupManagersRecreateRequest();
+     *     $operationResponse = $regionInstanceGroupManagersClient->recreateInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersRecreateRequestResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1542,7 +1409,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceGroupManagersClient->recreateInstances();
+     *     $operationResponse = $regionInstanceGroupManagersClient->recreateInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersRecreateRequestResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'recreateInstances');
@@ -1561,17 +1428,13 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                                     $instanceGroupManager                               Name of the managed instance group.
+     * @param string                                     $project                                            Project ID for this request.
+     * @param string                                     $region                                             Name of the region scoping this request.
+     * @param RegionInstanceGroupManagersRecreateRequest $regionInstanceGroupManagersRecreateRequestResource The body resource for this request
+     * @param array                                      $optionalArgs                                       {
      *     Optional.
      *
-     *     @type string $instanceGroupManager
-     *           Name of the managed instance group.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
-     *     @type RegionInstanceGroupManagersRecreateRequest $regionInstanceGroupManagersRecreateRequestResource
-     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -1584,29 +1447,17 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function recreateInstances(array $optionalArgs = [])
+    public function recreateInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersRecreateRequestResource, array $optionalArgs = [])
     {
         $request = new RecreateInstancesRegionInstanceGroupManagerRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['regionInstanceGroupManagersRecreateRequestResource'])) {
-            $request->setRegionInstanceGroupManagersRecreateRequestResource($optionalArgs['regionInstanceGroupManagersRecreateRequestResource']);
-        }
-
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionInstanceGroupManagersRecreateRequestResource($regionInstanceGroupManagersRecreateRequestResource);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1623,7 +1474,11 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
-     *     $operationResponse = $regionInstanceGroupManagersClient->resize();
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $size = 0;
+     *     $operationResponse = $regionInstanceGroupManagersClient->resize($instanceGroupManager, $project, $region, $size);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1633,7 +1488,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceGroupManagersClient->resize();
+     *     $operationResponse = $regionInstanceGroupManagersClient->resize($instanceGroupManager, $project, $region, $size);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'resize');
@@ -1652,19 +1507,15 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $instanceGroupManager Name of the managed instance group.
+     * @param string $project              Project ID for this request.
+     * @param string $region               Name of the region scoping this request.
+     * @param int    $size                 Number of instances that should exist in this instance group manager.
+     * @param array  $optionalArgs         {
      *     Optional.
      *
-     *     @type string $instanceGroupManager
-     *           Name of the managed instance group.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type int $size
-     *           Number of instances that should exist in this instance group manager.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1675,31 +1526,19 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function resize(array $optionalArgs = [])
+    public function resize($instanceGroupManager, $project, $region, $size, array $optionalArgs = [])
     {
         $request = new ResizeRegionInstanceGroupManagerRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSize($size);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['size'])) {
-            $request->setSize($optionalArgs['size']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1714,7 +1553,11 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
-     *     $operationResponse = $regionInstanceGroupManagersClient->setInstanceTemplate();
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionInstanceGroupManagersSetTemplateRequestResource = new RegionInstanceGroupManagersSetTemplateRequest();
+     *     $operationResponse = $regionInstanceGroupManagersClient->setInstanceTemplate($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTemplateRequestResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1724,7 +1567,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceGroupManagersClient->setInstanceTemplate();
+     *     $operationResponse = $regionInstanceGroupManagersClient->setInstanceTemplate($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTemplateRequestResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'setInstanceTemplate');
@@ -1743,17 +1586,13 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                                        $instanceGroupManager                                  The name of the managed instance group.
+     * @param string                                        $project                                               Project ID for this request.
+     * @param string                                        $region                                                Name of the region scoping this request.
+     * @param RegionInstanceGroupManagersSetTemplateRequest $regionInstanceGroupManagersSetTemplateRequestResource The body resource for this request
+     * @param array                                         $optionalArgs                                          {
      *     Optional.
      *
-     *     @type string $instanceGroupManager
-     *           The name of the managed instance group.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
-     *     @type RegionInstanceGroupManagersSetTemplateRequest $regionInstanceGroupManagersSetTemplateRequestResource
-     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -1766,29 +1605,17 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setInstanceTemplate(array $optionalArgs = [])
+    public function setInstanceTemplate($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTemplateRequestResource, array $optionalArgs = [])
     {
         $request = new SetInstanceTemplateRegionInstanceGroupManagerRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['regionInstanceGroupManagersSetTemplateRequestResource'])) {
-            $request->setRegionInstanceGroupManagersSetTemplateRequestResource($optionalArgs['regionInstanceGroupManagersSetTemplateRequestResource']);
-        }
-
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionInstanceGroupManagersSetTemplateRequestResource($regionInstanceGroupManagersSetTemplateRequestResource);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1805,7 +1632,11 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
-     *     $operationResponse = $regionInstanceGroupManagersClient->setTargetPools();
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionInstanceGroupManagersSetTargetPoolsRequestResource = new RegionInstanceGroupManagersSetTargetPoolsRequest();
+     *     $operationResponse = $regionInstanceGroupManagersClient->setTargetPools($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTargetPoolsRequestResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1815,7 +1646,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceGroupManagersClient->setTargetPools();
+     *     $operationResponse = $regionInstanceGroupManagersClient->setTargetPools($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTargetPoolsRequestResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'setTargetPools');
@@ -1834,17 +1665,13 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                                           $instanceGroupManager                                     Name of the managed instance group.
+     * @param string                                           $project                                                  Project ID for this request.
+     * @param string                                           $region                                                   Name of the region scoping this request.
+     * @param RegionInstanceGroupManagersSetTargetPoolsRequest $regionInstanceGroupManagersSetTargetPoolsRequestResource The body resource for this request
+     * @param array                                            $optionalArgs                                             {
      *     Optional.
      *
-     *     @type string $instanceGroupManager
-     *           Name of the managed instance group.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
-     *     @type RegionInstanceGroupManagersSetTargetPoolsRequest $regionInstanceGroupManagersSetTargetPoolsRequestResource
-     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -1857,29 +1684,17 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setTargetPools(array $optionalArgs = [])
+    public function setTargetPools($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSetTargetPoolsRequestResource, array $optionalArgs = [])
     {
         $request = new SetTargetPoolsRegionInstanceGroupManagerRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['regionInstanceGroupManagersSetTargetPoolsRequestResource'])) {
-            $request->setRegionInstanceGroupManagersSetTargetPoolsRequestResource($optionalArgs['regionInstanceGroupManagersSetTargetPoolsRequestResource']);
-        }
-
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionInstanceGroupManagersSetTargetPoolsRequestResource($regionInstanceGroupManagersSetTargetPoolsRequestResource);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1896,7 +1711,11 @@ class RegionInstanceGroupManagersGapicClient
      * ```
      * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
      * try {
-     *     $operationResponse = $regionInstanceGroupManagersClient->updatePerInstanceConfigs();
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionInstanceGroupManagerUpdateInstanceConfigReqResource = new RegionInstanceGroupManagerUpdateInstanceConfigReq();
+     *     $operationResponse = $regionInstanceGroupManagersClient->updatePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerUpdateInstanceConfigReqResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1906,7 +1725,7 @@ class RegionInstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstanceGroupManagersClient->updatePerInstanceConfigs();
+     *     $operationResponse = $regionInstanceGroupManagersClient->updatePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerUpdateInstanceConfigReqResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'updatePerInstanceConfigs');
@@ -1925,17 +1744,13 @@ class RegionInstanceGroupManagersGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                                            $instanceGroupManager                                      The name of the managed instance group. It should conform to RFC1035.
+     * @param string                                            $project                                                   Project ID for this request.
+     * @param string                                            $region                                                    Name of the region scoping this request, should conform to RFC1035.
+     * @param RegionInstanceGroupManagerUpdateInstanceConfigReq $regionInstanceGroupManagerUpdateInstanceConfigReqResource The body resource for this request
+     * @param array                                             $optionalArgs                                              {
      *     Optional.
      *
-     *     @type string $instanceGroupManager
-     *           The name of the managed instance group. It should conform to RFC1035.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request, should conform to RFC1035.
-     *     @type RegionInstanceGroupManagerUpdateInstanceConfigReq $regionInstanceGroupManagerUpdateInstanceConfigReqResource
-     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -1948,29 +1763,17 @@ class RegionInstanceGroupManagersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updatePerInstanceConfigs(array $optionalArgs = [])
+    public function updatePerInstanceConfigs($instanceGroupManager, $project, $region, $regionInstanceGroupManagerUpdateInstanceConfigReqResource, array $optionalArgs = [])
     {
         $request = new UpdatePerInstanceConfigsRegionInstanceGroupManagerRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceGroupManager'])) {
-            $request->setInstanceGroupManager($optionalArgs['instanceGroupManager']);
-            $requestParamHeaders['instance_group_manager'] = $optionalArgs['instanceGroupManager'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['regionInstanceGroupManagerUpdateInstanceConfigReqResource'])) {
-            $request->setRegionInstanceGroupManagerUpdateInstanceConfigReqResource($optionalArgs['regionInstanceGroupManagerUpdateInstanceConfigReqResource']);
-        }
-
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionInstanceGroupManagerUpdateInstanceConfigReqResource($regionInstanceGroupManagerUpdateInstanceConfigReqResource);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }

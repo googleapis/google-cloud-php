@@ -88,7 +88,10 @@ class DiskTypesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListDiskTypesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListDiskTypesRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -101,6 +104,8 @@ class DiskTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.DiskTypes/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -122,7 +127,10 @@ class DiskTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AggregatedListDiskTypesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListDiskTypesRequest())
+            ->setProject($project);
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -167,7 +175,14 @@ class DiskTypesClientTest extends GeneratedTest
         $expectedResponse->setValidDiskSize($validDiskSize);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-        $request = new GetDiskTypeRequest();
+        // Mock request
+        $diskType = 'diskType93009052';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new GetDiskTypeRequest())
+            ->setDiskType($diskType)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -175,6 +190,12 @@ class DiskTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.DiskTypes/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDiskType();
+        $this->assertProtobufEquals($diskType, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -196,7 +217,14 @@ class DiskTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetDiskTypeRequest();
+        // Mock request
+        $diskType = 'diskType93009052';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new GetDiskTypeRequest())
+            ->setDiskType($diskType)
+            ->setProject($project)
+            ->setZone($zone);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -234,7 +262,12 @@ class DiskTypesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListDiskTypesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new ListDiskTypesRequest())
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -245,6 +278,10 @@ class DiskTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.DiskTypes/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -266,7 +303,12 @@ class DiskTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListDiskTypesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new ListDiskTypesRequest())
+            ->setProject($project)
+            ->setZone($zone);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -303,7 +345,10 @@ class DiskTypesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListDiskTypesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListDiskTypesRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -316,6 +361,8 @@ class DiskTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.DiskTypes/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

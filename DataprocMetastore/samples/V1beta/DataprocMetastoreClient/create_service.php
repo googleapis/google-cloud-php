@@ -32,21 +32,30 @@ use Google\Rpc\Status;
 /**
  * Creates a metastore service in a project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The relative resource name of the location in which to create a
+ *                                metastore service, in the following form:
+ *
+ *                                `projects/{project_number}/locations/{location_id}`. Please see
+ *                                {@see DataprocMetastoreClient::locationName()} for help formatting this field.
+ * @param string $serviceId       The ID of the metastore service, which is used as the final
+ *                                component of the metastore service's name.
+ *
+ *                                This value must be between 2 and 63 characters long inclusive, begin with a
+ *                                letter, end with a letter or number, and consist of alpha-numeric
+ *                                ASCII characters or hyphens.
  */
-function create_service_sample(): void
+function create_service_sample(string $formattedParent, string $serviceId): void
 {
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $service = new Service();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreClient->createService();
+        $response = $dataprocMetastoreClient->createService($formattedParent, $serviceId, $service);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -61,5 +70,22 @@ function create_service_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataprocMetastoreClient::locationName('[PROJECT]', '[LOCATION]');
+    $serviceId = '[SERVICE_ID]';
+
+    create_service_sample($formattedParent, $serviceId);
 }
 // [END metastore_v1beta_generated_DataprocMetastore_CreateService_sync]

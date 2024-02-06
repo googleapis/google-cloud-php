@@ -23,7 +23,8 @@ class ListIssuesRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
 
     /**
-     * @param string $parent Required. The parent resource of the issue.
+     * @param string $parent Required. The parent resource of the issue. Please see
+     *                       {@see ContactCenterInsightsClient::issueModelName()} for help formatting this field.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\ListIssuesRequest
      *

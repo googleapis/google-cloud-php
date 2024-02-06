@@ -23,7 +23,8 @@ class DeleteWorkflowInvocationRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The workflow invocation resource's name.
+     * @param string $name Required. The workflow invocation resource's name. Please see
+     *                     {@see DataformClient::workflowInvocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataform\V1beta1\DeleteWorkflowInvocationRequest
      *

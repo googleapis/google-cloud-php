@@ -30,13 +30,10 @@ use Google\Cloud\Compute\V1\ImagesClient;
 /**
  * Returns the latest image that is part of an image family and is not deprecated. For more information on image families, see Public image families documentation.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $family  Name of the image family to search for.
+ * @param string $project The image project that the image belongs to. For example, to get a CentOS image, specify centos-cloud as the image project.
  */
-function get_from_family_sample(): void
+function get_from_family_sample(string $family, string $project): void
 {
     // Create a client.
     $imagesClient = new ImagesClient();
@@ -44,10 +41,27 @@ function get_from_family_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var Image $response */
-        $response = $imagesClient->getFromFamily();
+        $response = $imagesClient->getFromFamily($family, $project);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $family = '[FAMILY]';
+    $project = '[PROJECT]';
+
+    get_from_family_sample($family, $project);
 }
 // [END compute_v1_generated_Images_GetFromFamily_sync]

@@ -40,7 +40,8 @@ class CreateTagRequest extends \Google\Protobuf\Internal\Message
      *                                                 1000 attached tags.
      *
      *                                                 Note: The tag and its child resources might not be stored in
-     *                                                 the location specified in its name.
+     *                                                 the location specified in its name. Please see
+     *                                                 {@see DataCatalogClient::entryName()} for help formatting this field.
      * @param \Google\Cloud\DataCatalog\V1\Tag $tag    Required. The tag to create.
      *
      * @return \Google\Cloud\DataCatalog\V1\CreateTagRequest

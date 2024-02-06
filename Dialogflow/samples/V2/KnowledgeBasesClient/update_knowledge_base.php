@@ -31,19 +31,19 @@ use Google\Cloud\Dialogflow\V2\UpdateKnowledgeBaseRequest;
 /**
  * Updates the specified knowledge base.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $knowledgeBaseDisplayName The display name of the knowledge base. The name must be 1024
+ *                                         bytes or less; otherwise, the creation request fails.
  */
-function update_knowledge_base_sample(): void
+function update_knowledge_base_sample(string $knowledgeBaseDisplayName): void
 {
     // Create a client.
     $knowledgeBasesClient = new KnowledgeBasesClient();
 
     // Prepare the request message.
-    $request = new UpdateKnowledgeBaseRequest();
+    $knowledgeBase = (new KnowledgeBase())
+        ->setDisplayName($knowledgeBaseDisplayName);
+    $request = (new UpdateKnowledgeBaseRequest())
+        ->setKnowledgeBase($knowledgeBase);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +53,21 @@ function update_knowledge_base_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $knowledgeBaseDisplayName = '[DISPLAY_NAME]';
+
+    update_knowledge_base_sample($knowledgeBaseDisplayName);
 }
 // [END dialogflow_v2_generated_KnowledgeBases_UpdateKnowledgeBase_sync]

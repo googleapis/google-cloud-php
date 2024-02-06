@@ -26,26 +26,28 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Metadata;
 use Google\Rpc\Status;
 
 /**
  * Sets metadata for the specified instance to the data included in the request.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $instance Name of the instance scoping this request.
+ * @param string $project  Project ID for this request.
+ * @param string $zone     The name of the zone for this request.
  */
-function set_metadata_sample(): void
+function set_metadata_sample(string $instance, string $project, string $zone): void
 {
     // Create a client.
     $instancesClient = new InstancesClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $metadataResource = new Metadata();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->setMetadata();
+        $response = $instancesClient->setMetadata($instance, $metadataResource, $project, $zone);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +60,23 @@ function set_metadata_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $instance = '[INSTANCE]';
+    $project = '[PROJECT]';
+    $zone = '[ZONE]';
+
+    set_metadata_sample($instance, $project, $zone);
 }
 // [END compute_v1_generated_Instances_SetMetadata_sync]

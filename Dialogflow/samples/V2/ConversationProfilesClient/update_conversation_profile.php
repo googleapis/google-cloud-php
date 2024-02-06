@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\V2\Client\ConversationProfilesClient;
 use Google\Cloud\Dialogflow\V2\ConversationProfile;
 use Google\Cloud\Dialogflow\V2\UpdateConversationProfileRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates the specified conversation profile.
@@ -36,19 +37,20 @@ use Google\Cloud\Dialogflow\V2\UpdateConversationProfileRequest;
  * [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]
  * API.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $conversationProfileDisplayName Human readable name for this profile. Max length 1024 bytes.
  */
-function update_conversation_profile_sample(): void
+function update_conversation_profile_sample(string $conversationProfileDisplayName): void
 {
     // Create a client.
     $conversationProfilesClient = new ConversationProfilesClient();
 
     // Prepare the request message.
-    $request = new UpdateConversationProfileRequest();
+    $conversationProfile = (new ConversationProfile())
+        ->setDisplayName($conversationProfileDisplayName);
+    $updateMask = new FieldMask();
+    $request = (new UpdateConversationProfileRequest())
+        ->setConversationProfile($conversationProfile)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +60,21 @@ function update_conversation_profile_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $conversationProfileDisplayName = '[DISPLAY_NAME]';
+
+    update_conversation_profile_sample($conversationProfileDisplayName);
 }
 // [END dialogflow_v2_generated_ConversationProfiles_UpdateConversationProfile_sync]

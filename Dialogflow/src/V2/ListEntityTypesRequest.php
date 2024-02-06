@@ -49,7 +49,8 @@ class ListEntityTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The agent to list all entity types from.
-     *                       Format: `projects/<Project ID>/agent`.
+     *                       Format: `projects/<Project ID>/agent`. Please see
+     *                       {@see EntityTypesClient::agentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\ListEntityTypesRequest
      *
@@ -63,7 +64,8 @@ class ListEntityTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent       Required. The agent to list all entity types from.
-     *                             Format: `projects/<Project ID>/agent`.
+     *                             Format: `projects/<Project ID>/agent`. Please see
+     *                             {@see EntityTypesClient::agentName()} for help formatting this field.
      * @param string $languageCode Optional. The language used to access language-specific data.
      *                             If not specified, the agent's default language is used.
      *                             For more information, see

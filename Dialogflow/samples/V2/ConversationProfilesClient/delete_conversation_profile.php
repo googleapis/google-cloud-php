@@ -30,19 +30,19 @@ use Google\Cloud\Dialogflow\V2\DeleteConversationProfileRequest;
 /**
  * Deletes the specified conversation profile.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the conversation profile to delete.
+ *                              Format: `projects/<Project ID>/locations/<Location
+ *                              ID>/conversationProfiles/<Conversation Profile ID>`. Please see
+ *                              {@see ConversationProfilesClient::conversationProfileName()} for help formatting this field.
  */
-function delete_conversation_profile_sample(): void
+function delete_conversation_profile_sample(string $formattedName): void
 {
     // Create a client.
     $conversationProfilesClient = new ConversationProfilesClient();
 
     // Prepare the request message.
-    $request = new DeleteConversationProfileRequest();
+    $request = (new DeleteConversationProfileRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -51,5 +51,24 @@ function delete_conversation_profile_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ConversationProfilesClient::conversationProfileName(
+        '[PROJECT]',
+        '[CONVERSATION_PROFILE]'
+    );
+
+    delete_conversation_profile_sample($formattedName);
 }
 // [END dialogflow_v2_generated_ConversationProfiles_DeleteConversationProfile_sync]

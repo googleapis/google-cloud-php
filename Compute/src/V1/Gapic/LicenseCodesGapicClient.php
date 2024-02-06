@@ -47,7 +47,9 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  * ```
  * $licenseCodesClient = new LicenseCodesClient();
  * try {
- *     $response = $licenseCodesClient->get();
+ *     $licenseCode = 'license_code';
+ *     $project = 'project';
+ *     $response = $licenseCodesClient->get($licenseCode, $project);
  * } finally {
  *     $licenseCodesClient->close();
  * }
@@ -182,19 +184,19 @@ class LicenseCodesGapicClient
      * ```
      * $licenseCodesClient = new LicenseCodesClient();
      * try {
-     *     $response = $licenseCodesClient->get();
+     *     $licenseCode = 'license_code';
+     *     $project = 'project';
+     *     $response = $licenseCodesClient->get($licenseCode, $project);
      * } finally {
      *     $licenseCodesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $licenseCode  Number corresponding to the License code resource to return.
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $licenseCode
-     *           Number corresponding to the License code resource to return.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -205,20 +207,14 @@ class LicenseCodesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($licenseCode, $project, array $optionalArgs = [])
     {
         $request = new GetLicenseCodeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['licenseCode'])) {
-            $request->setLicenseCode($optionalArgs['licenseCode']);
-            $requestParamHeaders['license_code'] = $optionalArgs['licenseCode'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setLicenseCode($licenseCode);
+        $request->setProject($project);
+        $requestParamHeaders['license_code'] = $licenseCode;
+        $requestParamHeaders['project'] = $project;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', LicenseCode::class, $optionalArgs, $request)->wait();
@@ -231,21 +227,21 @@ class LicenseCodesGapicClient
      * ```
      * $licenseCodesClient = new LicenseCodesClient();
      * try {
-     *     $response = $licenseCodesClient->testIamPermissions();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $testPermissionsRequestResource = new TestPermissionsRequest();
+     *     $response = $licenseCodesClient->testIamPermissions($project, $resource, $testPermissionsRequestResource);
      * } finally {
      *     $licenseCodesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param TestPermissionsRequest $testPermissionsRequestResource The body resource for this request
+     * @param array                  $optionalArgs                   {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $resource
-     *           Name or id of the resource for this request.
-     *     @type TestPermissionsRequest $testPermissionsRequestResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -256,24 +252,15 @@ class LicenseCodesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
+    public function testIamPermissions($project, $resource, $testPermissionsRequestResource, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsLicenseCodeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['testPermissionsRequestResource'])) {
-            $request->setTestPermissionsRequestResource($optionalArgs['testPermissionsRequestResource']);
-        }
-
+        $request->setProject($project);
+        $request->setResource($resource);
+        $request->setTestPermissionsRequestResource($testPermissionsRequestResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestPermissionsResponse::class, $optionalArgs, $request)->wait();

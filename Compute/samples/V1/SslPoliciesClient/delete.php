@@ -31,13 +31,10 @@ use Google\Rpc\Status;
 /**
  * Deletes the specified SSL policy. The SSL policy resource can be deleted only if it is not in use by any TargetHttpsProxy or TargetSslProxy resources.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project   Project ID for this request.
+ * @param string $sslPolicy Name of the SSL policy to delete. The name must be 1-63 characters long, and comply with RFC1035.
  */
-function delete_sample(): void
+function delete_sample(string $project, string $sslPolicy): void
 {
     // Create a client.
     $sslPoliciesClient = new SslPoliciesClient();
@@ -45,7 +42,7 @@ function delete_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $sslPoliciesClient->delete();
+        $response = $sslPoliciesClient->delete($project, $sslPolicy);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +55,22 @@ function delete_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $sslPolicy = '[SSL_POLICY]';
+
+    delete_sample($project, $sslPolicy);
 }
 // [END compute_v1_generated_SslPolicies_Delete_sync]

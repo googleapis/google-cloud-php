@@ -32,19 +32,19 @@ use Google\Cloud\DataCatalog\V1\ListEntryGroupsRequest;
 /**
  * Lists entry groups.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the location that contains the entry groups to list.
+ *
+ *                                Can be provided as a URL. Please see
+ *                                {@see DataCatalogClient::locationName()} for help formatting this field.
  */
-function list_entry_groups_sample(): void
+function list_entry_groups_sample(string $formattedParent): void
 {
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
     // Prepare the request message.
-    $request = new ListEntryGroupsRequest();
+    $request = (new ListEntryGroupsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +58,21 @@ function list_entry_groups_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataCatalogClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_entry_groups_sample($formattedParent);
 }
 // [END datacatalog_v1_generated_DataCatalog_ListEntryGroups_sync]

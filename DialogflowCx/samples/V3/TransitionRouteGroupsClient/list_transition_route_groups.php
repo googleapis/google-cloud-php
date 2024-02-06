@@ -32,19 +32,20 @@ use Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup;
 /**
  * Returns the list of all transition route groups in the specified flow.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The flow to list all transition route groups for.
+ *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+ *                                ID>/flows/<Flow ID>`
+ *                                or `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>. Please see
+ *                                {@see TransitionRouteGroupsClient::flowName()} for help formatting this field.
  */
-function list_transition_route_groups_sample(): void
+function list_transition_route_groups_sample(string $formattedParent): void
 {
     // Create a client.
     $transitionRouteGroupsClient = new TransitionRouteGroupsClient();
 
     // Prepare the request message.
-    $request = new ListTransitionRouteGroupsRequest();
+    $request = (new ListTransitionRouteGroupsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +59,26 @@ function list_transition_route_groups_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = TransitionRouteGroupsClient::flowName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[AGENT]',
+        '[FLOW]'
+    );
+
+    list_transition_route_groups_sample($formattedParent);
 }
 // [END dialogflow_v3_generated_TransitionRouteGroups_ListTransitionRouteGroups_sync]

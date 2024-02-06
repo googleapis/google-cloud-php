@@ -42,6 +42,7 @@ use Google\Cloud\Compute\V1\GetGlobalOrganizationOperationRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetRuleFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GlobalOrganizationOperationsClient;
+use Google\Cloud\Compute\V1\GlobalOrganizationSetPolicyRequest;
 use Google\Cloud\Compute\V1\InsertFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\ListAssociationsFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\ListFirewallPoliciesRequest;
@@ -55,6 +56,7 @@ use Google\Cloud\Compute\V1\RemoveAssociationFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\RemoveRuleFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\SetIamPolicyFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Rpc\Code;
 use stdClass;
@@ -112,7 +114,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addAssociationTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new AddAssociationFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
+        $request = (new AddAssociationFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyAssociationResource($firewallPolicyAssociationResource);
         $response = $gapicClient->addAssociation($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -122,6 +129,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/AddAssociation', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getFirewallPolicyAssociationResource();
+        $this->assertProtobufEquals($firewallPolicyAssociationResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $response->pollUntilComplete([
@@ -171,7 +182,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new AddAssociationFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
+        $request = (new AddAssociationFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyAssociationResource($firewallPolicyAssociationResource);
         $response = $gapicClient->addAssociation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -217,7 +233,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addRuleTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new AddRuleFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $firewallPolicyRuleResource = new FirewallPolicyRule();
+        $request = (new AddRuleFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyRuleResource($firewallPolicyRuleResource);
         $response = $gapicClient->addRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -227,6 +248,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/AddRule', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getFirewallPolicyRuleResource();
+        $this->assertProtobufEquals($firewallPolicyRuleResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $response->pollUntilComplete([
@@ -276,7 +301,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new AddRuleFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $firewallPolicyRuleResource = new FirewallPolicyRule();
+        $request = (new AddRuleFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyRuleResource($firewallPolicyRuleResource);
         $response = $gapicClient->addRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -322,7 +352,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/cloneRulesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CloneRulesFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $request = (new CloneRulesFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->cloneRules($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -332,6 +365,8 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/CloneRules', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $response->pollUntilComplete([
@@ -381,7 +416,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CloneRulesFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $request = (new CloneRulesFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->cloneRules($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -427,7 +465,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $request = (new DeleteFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -437,6 +478,8 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $response->pollUntilComplete([
@@ -486,7 +529,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $request = (new DeleteFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -544,7 +590,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setSelfLinkWithId($selfLinkWithId);
         $expectedResponse->setShortName($shortName);
         $transport->addResponse($expectedResponse);
-        $request = new GetFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $request = (new GetFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -552,6 +601,8 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -573,7 +624,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $request = (new GetFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -608,7 +662,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setShortName($shortName);
         $transport->addResponse($expectedResponse);
-        $request = new GetAssociationFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $request = (new GetAssociationFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->getAssociation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -616,6 +673,8 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/GetAssociation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -637,7 +696,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetAssociationFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $request = (new GetAssociationFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy);
         try {
             $gapicClient->getAssociation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -668,7 +730,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyFirewallPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyFirewallPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -676,6 +741,8 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -697,7 +764,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyFirewallPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyFirewallPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -740,7 +810,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setRuleName($ruleName);
         $expectedResponse->setRuleTupleCount($ruleTupleCount);
         $transport->addResponse($expectedResponse);
-        $request = new GetRuleFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $request = (new GetRuleFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->getRule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -748,6 +821,8 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/GetRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -769,7 +844,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetRuleFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $request = (new GetRuleFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy);
         try {
             $gapicClient->getRule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -808,7 +886,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicyResource = new FirewallPolicy();
+        $parentId = 'parentId2070327504';
+        $request = (new InsertFirewallPolicyRequest())
+            ->setFirewallPolicyResource($firewallPolicyResource)
+            ->setParentId($parentId);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -818,6 +901,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getFirewallPolicyResource();
+        $this->assertProtobufEquals($firewallPolicyResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getParentId();
+        $this->assertProtobufEquals($parentId, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $response->pollUntilComplete([
@@ -867,7 +954,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicyResource = new FirewallPolicy();
+        $parentId = 'parentId2070327504';
+        $request = (new InsertFirewallPolicyRequest())
+            ->setFirewallPolicyResource($firewallPolicyResource)
+            ->setParentId($parentId);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1037,7 +1129,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/moveTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new MoveFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $parentId = 'parentId2070327504';
+        $request = (new MoveFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setParentId($parentId);
         $response = $gapicClient->move($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1047,6 +1144,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/Move', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getParentId();
+        $this->assertProtobufEquals($parentId, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $response->pollUntilComplete([
@@ -1096,7 +1197,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new MoveFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $parentId = 'parentId2070327504';
+        $request = (new MoveFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setParentId($parentId);
         $response = $gapicClient->move($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1142,7 +1248,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PatchFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $firewallPolicyResource = new FirewallPolicy();
+        $request = (new PatchFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyResource($firewallPolicyResource);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1152,6 +1263,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getFirewallPolicyResource();
+        $this->assertProtobufEquals($firewallPolicyResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $response->pollUntilComplete([
@@ -1201,7 +1316,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PatchFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $firewallPolicyResource = new FirewallPolicy();
+        $request = (new PatchFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyResource($firewallPolicyResource);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1247,7 +1367,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchRuleTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PatchRuleFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $firewallPolicyRuleResource = new FirewallPolicyRule();
+        $request = (new PatchRuleFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyRuleResource($firewallPolicyRuleResource);
         $response = $gapicClient->patchRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1257,6 +1382,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/PatchRule', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getFirewallPolicyRuleResource();
+        $this->assertProtobufEquals($firewallPolicyRuleResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $response->pollUntilComplete([
@@ -1306,7 +1435,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PatchRuleFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $firewallPolicyRuleResource = new FirewallPolicyRule();
+        $request = (new PatchRuleFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyRuleResource($firewallPolicyRuleResource);
         $response = $gapicClient->patchRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1352,7 +1486,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/removeAssociationTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new RemoveAssociationFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $request = (new RemoveAssociationFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->removeAssociation($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1362,6 +1499,8 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/RemoveAssociation', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $response->pollUntilComplete([
@@ -1411,7 +1550,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new RemoveAssociationFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $request = (new RemoveAssociationFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->removeAssociation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1457,7 +1599,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/removeRuleTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new RemoveRuleFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $request = (new RemoveRuleFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->removeRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1467,6 +1612,8 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/RemoveRule', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $response->pollUntilComplete([
@@ -1516,7 +1663,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new RemoveRuleFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $request = (new RemoveRuleFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy);
         $response = $gapicClient->removeRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1554,7 +1704,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyFirewallPolicyRequest();
+        // Mock request
+        $globalOrganizationSetPolicyRequestResource = new GlobalOrganizationSetPolicyRequest();
+        $resource = 'resource-341064690';
+        $request = (new SetIamPolicyFirewallPolicyRequest())
+            ->setGlobalOrganizationSetPolicyRequestResource($globalOrganizationSetPolicyRequestResource)
+            ->setResource($resource);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1562,6 +1717,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getGlobalOrganizationSetPolicyRequestResource();
+        $this->assertProtobufEquals($globalOrganizationSetPolicyRequestResource, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1583,7 +1742,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyFirewallPolicyRequest();
+        // Mock request
+        $globalOrganizationSetPolicyRequestResource = new GlobalOrganizationSetPolicyRequest();
+        $resource = 'resource-341064690';
+        $request = (new SetIamPolicyFirewallPolicyRequest())
+            ->setGlobalOrganizationSetPolicyRequestResource($globalOrganizationSetPolicyRequestResource)
+            ->setResource($resource);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1608,7 +1772,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsFirewallPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsFirewallPolicyRequest())
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1616,6 +1785,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
+        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1637,7 +1810,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsFirewallPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsFirewallPolicyRequest())
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1676,7 +1854,12 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addAssociationAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new AddAssociationFirewallPolicyRequest();
+        // Mock request
+        $firewallPolicy = 'firewallPolicy1035044177';
+        $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
+        $request = (new AddAssociationFirewallPolicyRequest())
+            ->setFirewallPolicy($firewallPolicy)
+            ->setFirewallPolicyAssociationResource($firewallPolicyAssociationResource);
         $response = $gapicClient->addAssociation($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1686,6 +1869,10 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/AddAssociation', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getFirewallPolicy();
+        $this->assertProtobufEquals($firewallPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getFirewallPolicyAssociationResource();
+        $this->assertProtobufEquals($firewallPolicyAssociationResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $response->pollUntilComplete([

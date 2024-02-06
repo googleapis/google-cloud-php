@@ -31,6 +31,7 @@ use Google\Cloud\Dialogflow\V2\Version;
 use Google\Cloud\Dialogflow\V2\VersionsClient;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -80,13 +81,20 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setVersionNumber($versionNumber);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createVersion();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
+        $version = new Version();
+        $response = $gapicClient->createVersion($formattedParent, $version);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Versions/CreateVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getVersion();
+        $this->assertProtobufEquals($version, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -108,8 +116,11 @@ class VersionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
+        $version = new Version();
         try {
-            $gapicClient->createVersion();
+            $gapicClient->createVersion($formattedParent, $version);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -132,12 +143,16 @@ class VersionsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteVersion();
+        // Mock request
+        $formattedName = $gapicClient->versionName('[PROJECT]', '[VERSION]');
+        $gapicClient->deleteVersion($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Versions/DeleteVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -159,8 +174,10 @@ class VersionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->versionName('[PROJECT]', '[VERSION]');
         try {
-            $gapicClient->deleteVersion();
+            $gapicClient->deleteVersion($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -189,13 +206,17 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setVersionNumber($versionNumber);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getVersion();
+        // Mock request
+        $formattedName = $gapicClient->versionName('[PROJECT]', '[VERSION]');
+        $response = $gapicClient->getVersion($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Versions/GetVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -217,8 +238,10 @@ class VersionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->versionName('[PROJECT]', '[VERSION]');
         try {
-            $gapicClient->getVersion();
+            $gapicClient->getVersion($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -248,7 +271,9 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVersions($versions);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listVersions();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
+        $response = $gapicClient->listVersions($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -258,6 +283,8 @@ class VersionsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Versions/ListVersions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -279,8 +306,10 @@ class VersionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
         try {
-            $gapicClient->listVersions();
+            $gapicClient->listVersions($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -309,13 +338,20 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setVersionNumber($versionNumber);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->updateVersion();
+        // Mock request
+        $version = new Version();
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateVersion($version, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Versions/UpdateVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getVersion();
+        $this->assertProtobufEquals($version, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -337,8 +373,11 @@ class VersionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $version = new Version();
+        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateVersion();
+            $gapicClient->updateVersion($version, $updateMask);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

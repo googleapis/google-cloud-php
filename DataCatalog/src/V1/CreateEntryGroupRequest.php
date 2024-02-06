@@ -46,7 +46,8 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
      *                                                              belongs to.
      *
      *                                                              Note: The entry group itself and its child resources might not be
-     *                                                              stored in the location specified in its name.
+     *                                                              stored in the location specified in its name. Please see
+     *                                                              {@see DataCatalogClient::locationName()} for help formatting this field.
      * @param string                                  $entryGroupId Required. The ID of the entry group to create.
      *
      *                                                              The ID must contain only letters (a-z, A-Z), numbers (0-9),

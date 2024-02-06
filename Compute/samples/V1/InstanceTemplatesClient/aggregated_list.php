@@ -30,13 +30,9 @@ use Google\Cloud\Compute\V1\InstanceTemplatesClient;
 /**
  * Retrieves the list of all InstanceTemplates resources, regional and global, available to the specified project.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project Name of the project scoping this request.
  */
-function aggregated_list_sample(): void
+function aggregated_list_sample(string $project): void
 {
     // Create a client.
     $instanceTemplatesClient = new InstanceTemplatesClient();
@@ -44,7 +40,7 @@ function aggregated_list_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $instanceTemplatesClient->aggregatedList();
+        $response = $instanceTemplatesClient->aggregatedList($project);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -52,5 +48,21 @@ function aggregated_list_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+
+    aggregated_list_sample($project);
 }
 // [END compute_v1_generated_InstanceTemplates_AggregatedList_sync]

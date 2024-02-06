@@ -42,6 +42,7 @@ use Google\Cloud\Compute\V1\PacketMirroringsScopedList;
 use Google\Cloud\Compute\V1\PatchPacketMirroringRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\TestIamPermissionsPacketMirroringRequest;
+use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Rpc\Code;
 use stdClass;
@@ -97,7 +98,10 @@ class PacketMirroringsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListPacketMirroringsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListPacketMirroringsRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -110,6 +114,8 @@ class PacketMirroringsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PacketMirrorings/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -131,7 +137,10 @@ class PacketMirroringsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AggregatedListPacketMirroringsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListPacketMirroringsRequest())
+            ->setProject($project);
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -170,7 +179,14 @@ class PacketMirroringsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeletePacketMirroringRequest();
+        // Mock request
+        $packetMirroring = 'packetMirroring22305996';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new DeletePacketMirroringRequest())
+            ->setPacketMirroring($packetMirroring)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -180,8 +196,16 @@ class PacketMirroringsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PacketMirrorings/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getPacketMirroring();
+        $this->assertProtobufEquals($packetMirroring, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -229,7 +253,14 @@ class PacketMirroringsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeletePacketMirroringRequest();
+        // Mock request
+        $packetMirroring = 'packetMirroring22305996';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new DeletePacketMirroringRequest())
+            ->setPacketMirroring($packetMirroring)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -279,7 +310,14 @@ class PacketMirroringsClientTest extends GeneratedTest
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);
         $transport->addResponse($expectedResponse);
-        $request = new GetPacketMirroringRequest();
+        // Mock request
+        $packetMirroring = 'packetMirroring22305996';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new GetPacketMirroringRequest())
+            ->setPacketMirroring($packetMirroring)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -287,6 +325,12 @@ class PacketMirroringsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PacketMirrorings/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getPacketMirroring();
+        $this->assertProtobufEquals($packetMirroring, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -308,7 +352,14 @@ class PacketMirroringsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetPacketMirroringRequest();
+        // Mock request
+        $packetMirroring = 'packetMirroring22305996';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new GetPacketMirroringRequest())
+            ->setPacketMirroring($packetMirroring)
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -347,7 +398,14 @@ class PacketMirroringsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertPacketMirroringRequest();
+        // Mock request
+        $packetMirroringResource = new PacketMirroring();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new InsertPacketMirroringRequest())
+            ->setPacketMirroringResource($packetMirroringResource)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -357,8 +415,16 @@ class PacketMirroringsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PacketMirrorings/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getPacketMirroringResource();
+        $this->assertProtobufEquals($packetMirroringResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -406,7 +472,14 @@ class PacketMirroringsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertPacketMirroringRequest();
+        // Mock request
+        $packetMirroringResource = new PacketMirroring();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new InsertPacketMirroringRequest())
+            ->setPacketMirroringResource($packetMirroringResource)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -451,7 +524,12 @@ class PacketMirroringsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListPacketMirroringsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListPacketMirroringsRequest())
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -462,6 +540,10 @@ class PacketMirroringsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PacketMirrorings/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -483,7 +565,12 @@ class PacketMirroringsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListPacketMirroringsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListPacketMirroringsRequest())
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -522,7 +609,16 @@ class PacketMirroringsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PatchPacketMirroringRequest();
+        // Mock request
+        $packetMirroring = 'packetMirroring22305996';
+        $packetMirroringResource = new PacketMirroring();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new PatchPacketMirroringRequest())
+            ->setPacketMirroring($packetMirroring)
+            ->setPacketMirroringResource($packetMirroringResource)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -532,8 +628,18 @@ class PacketMirroringsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PacketMirrorings/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getPacketMirroring();
+        $this->assertProtobufEquals($packetMirroring, $actualValue);
+        $actualValue = $actualApiRequestObject->getPacketMirroringResource();
+        $this->assertProtobufEquals($packetMirroringResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -581,7 +687,16 @@ class PacketMirroringsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PatchPacketMirroringRequest();
+        // Mock request
+        $packetMirroring = 'packetMirroring22305996';
+        $packetMirroringResource = new PacketMirroring();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new PatchPacketMirroringRequest())
+            ->setPacketMirroring($packetMirroring)
+            ->setPacketMirroringResource($packetMirroringResource)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -613,7 +728,16 @@ class PacketMirroringsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsPacketMirroringRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsPacketMirroringRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -621,6 +745,14 @@ class PacketMirroringsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PacketMirrorings/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
+        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -642,7 +774,16 @@ class PacketMirroringsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsPacketMirroringRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsPacketMirroringRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -679,7 +820,10 @@ class PacketMirroringsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListPacketMirroringsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListPacketMirroringsRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -692,6 +836,8 @@ class PacketMirroringsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PacketMirrorings/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

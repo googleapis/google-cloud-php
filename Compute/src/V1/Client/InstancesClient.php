@@ -225,7 +225,10 @@ final class InstancesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+                'getZone',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',

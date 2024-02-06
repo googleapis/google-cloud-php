@@ -59,7 +59,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $sessionsClient = new SessionsClient();
  * try {
- *     $response = $sessionsClient->detectIntent();
+ *     $formattedSession = $sessionsClient->sessionName('[PROJECT]', '[SESSION]');
+ *     $queryInput = new QueryInput();
+ *     $response = $sessionsClient->detectIntent($formattedSession, $queryInput);
  * } finally {
  *     $sessionsClient->close();
  * }
@@ -759,44 +761,44 @@ class SessionsGapicClient
      * ```
      * $sessionsClient = new SessionsClient();
      * try {
-     *     $response = $sessionsClient->detectIntent();
+     *     $formattedSession = $sessionsClient->sessionName('[PROJECT]', '[SESSION]');
+     *     $queryInput = new QueryInput();
+     *     $response = $sessionsClient->detectIntent($formattedSession, $queryInput);
      * } finally {
      *     $sessionsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string     $session      Required. The name of the session this query is sent to. Format:
+     *                                 `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     *                                 `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *                                 ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
+     *                                 default 'draft' environment (`Environment ID` might be referred to as
+     *                                 environment name at some places). If `User ID` is not specified, we are
+     *                                 using "-". It's up to the API caller to choose an appropriate `Session ID`
+     *                                 and `User Id`. They can be a random number or some type of user and session
+     *                                 identifiers (preferably hashed). The length of the `Session ID` and
+     *                                 `User ID` must not exceed 36 characters.
+     *
+     *                                 For more information, see the [API interactions
+     *                                 guide](https://cloud.google.com/dialogflow/docs/api-overview).
+     *
+     *                                 Note: Always use agent versions for production traffic.
+     *                                 See [Versions and
+     *                                 environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
+     * @param QueryInput $queryInput   Required. The input specification. It can be set to:
+     *
+     *                                 1. an audio config which instructs the speech recognizer how to process
+     *                                 the speech audio,
+     *
+     *                                 2. a conversational query in the form of text, or
+     *
+     *                                 3. an event that specifies which intent to trigger.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type string $session
-     *           Required. The name of the session this query is sent to. Format:
-     *           `projects/<Project ID>/agent/sessions/<Session ID>`, or
-     *           `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
-     *           ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume
-     *           default 'draft' environment (`Environment ID` might be referred to as
-     *           environment name at some places). If `User ID` is not specified, we are
-     *           using "-". It's up to the API caller to choose an appropriate `Session ID`
-     *           and `User Id`. They can be a random number or some type of user and session
-     *           identifiers (preferably hashed). The length of the `Session ID` and
-     *           `User ID` must not exceed 36 characters.
-     *
-     *           For more information, see the [API interactions
-     *           guide](https://cloud.google.com/dialogflow/docs/api-overview).
-     *
-     *           Note: Always use agent versions for production traffic.
-     *           See [Versions and
-     *           environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      *     @type QueryParameters $queryParams
      *           The parameters of this query.
-     *     @type QueryInput $queryInput
-     *           Required. The input specification. It can be set to:
-     *
-     *           1. an audio config which instructs the speech recognizer how to process
-     *           the speech audio,
-     *
-     *           2. a conversational query in the form of text, or
-     *
-     *           3. an event that specifies which intent to trigger.
      *     @type OutputAudioConfig $outputAudioConfig
      *           Instructs the speech synthesizer how to generate the output
      *           audio. If this field is not set and agent-level speech synthesizer is not
@@ -824,21 +826,15 @@ class SessionsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function detectIntent(array $optionalArgs = [])
+    public function detectIntent($session, $queryInput, array $optionalArgs = [])
     {
         $request = new DetectIntentRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['session'])) {
-            $request->setSession($optionalArgs['session']);
-            $requestParamHeaders['session'] = $optionalArgs['session'];
-        }
-
+        $request->setSession($session);
+        $request->setQueryInput($queryInput);
+        $requestParamHeaders['session'] = $session;
         if (isset($optionalArgs['queryParams'])) {
             $request->setQueryParams($optionalArgs['queryParams']);
-        }
-
-        if (isset($optionalArgs['queryInput'])) {
-            $request->setQueryInput($optionalArgs['queryInput']);
         }
 
         if (isset($optionalArgs['outputAudioConfig'])) {
@@ -878,7 +874,11 @@ class SessionsGapicClient
      * ```
      * $sessionsClient = new SessionsClient();
      * try {
+     *     $session = 'session';
+     *     $queryInput = new QueryInput();
      *     $request = new StreamingDetectIntentRequest();
+     *     $request->setSession($session);
+     *     $request->setQueryInput($queryInput);
      *     // Write all requests to the server, then read all responses until the
      *     // stream is complete
      *     $requests = [

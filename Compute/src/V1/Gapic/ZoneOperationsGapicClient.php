@@ -49,7 +49,10 @@ use Google\Cloud\Compute\V1\WaitZoneOperationRequest;
  * ```
  * $zoneOperationsClient = new ZoneOperationsClient();
  * try {
- *     $response = $zoneOperationsClient->delete();
+ *     $operation = 'operation';
+ *     $project = 'project';
+ *     $zone = 'zone';
+ *     $response = $zoneOperationsClient->delete($operation, $project, $zone);
  * } finally {
  *     $zoneOperationsClient->close();
  * }
@@ -183,21 +186,21 @@ class ZoneOperationsGapicClient
      * ```
      * $zoneOperationsClient = new ZoneOperationsClient();
      * try {
-     *     $response = $zoneOperationsClient->delete();
+     *     $operation = 'operation';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $response = $zoneOperationsClient->delete($operation, $project, $zone);
      * } finally {
      *     $zoneOperationsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $operation    Name of the Operations resource to delete.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         Name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $operation
-     *           Name of the Operations resource to delete.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $zone
-     *           Name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -208,25 +211,16 @@ class ZoneOperationsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete(array $optionalArgs = [])
+    public function delete($operation, $project, $zone, array $optionalArgs = [])
     {
         $request = new DeleteZoneOperationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['operation'])) {
-            $request->setOperation($optionalArgs['operation']);
-            $requestParamHeaders['operation'] = $optionalArgs['operation'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
-        }
-
+        $request->setOperation($operation);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['operation'] = $operation;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Delete', DeleteZoneOperationResponse::class, $optionalArgs, $request)->wait();
@@ -239,21 +233,21 @@ class ZoneOperationsGapicClient
      * ```
      * $zoneOperationsClient = new ZoneOperationsClient();
      * try {
-     *     $response = $zoneOperationsClient->get();
+     *     $operation = 'operation';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $response = $zoneOperationsClient->get($operation, $project, $zone);
      * } finally {
      *     $zoneOperationsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $operation    Name of the Operations resource to return.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         Name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $operation
-     *           Name of the Operations resource to return.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $zone
-     *           Name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -264,25 +258,16 @@ class ZoneOperationsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($operation, $project, $zone, array $optionalArgs = [])
     {
         $request = new GetZoneOperationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['operation'])) {
-            $request->setOperation($optionalArgs['operation']);
-            $requestParamHeaders['operation'] = $optionalArgs['operation'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
-        }
-
+        $request->setOperation($operation);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['operation'] = $operation;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', Operation::class, $optionalArgs, $request)->wait();
@@ -295,8 +280,10 @@ class ZoneOperationsGapicClient
      * ```
      * $zoneOperationsClient = new ZoneOperationsClient();
      * try {
+     *     $project = 'project';
+     *     $zone = 'zone';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $zoneOperationsClient->list();
+     *     $pagedResponse = $zoneOperationsClient->list($project, $zone);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -304,7 +291,7 @@ class ZoneOperationsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $zoneOperationsClient->list();
+     *     $pagedResponse = $zoneOperationsClient->list($project, $zone);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -313,7 +300,9 @@ class ZoneOperationsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $zone         Name of the zone for request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -327,12 +316,8 @@ class ZoneOperationsGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
-     *     @type string $zone
-     *           Name of the zone for request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -343,10 +328,14 @@ class ZoneOperationsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list(array $optionalArgs = [])
+    public function list($project, $zone, array $optionalArgs = [])
     {
         $request = new ListZoneOperationsRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -363,18 +352,8 @@ class ZoneOperationsGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
         if (isset($optionalArgs['returnPartialSuccess'])) {
             $request->setReturnPartialSuccess($optionalArgs['returnPartialSuccess']);
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -389,21 +368,21 @@ class ZoneOperationsGapicClient
      * ```
      * $zoneOperationsClient = new ZoneOperationsClient();
      * try {
-     *     $response = $zoneOperationsClient->wait();
+     *     $operation = 'operation';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $response = $zoneOperationsClient->wait($operation, $project, $zone);
      * } finally {
      *     $zoneOperationsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $operation    Name of the Operations resource to return.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         Name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $operation
-     *           Name of the Operations resource to return.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $zone
-     *           Name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -414,25 +393,16 @@ class ZoneOperationsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function wait(array $optionalArgs = [])
+    public function wait($operation, $project, $zone, array $optionalArgs = [])
     {
         $request = new WaitZoneOperationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['operation'])) {
-            $request->setOperation($optionalArgs['operation']);
-            $requestParamHeaders['operation'] = $optionalArgs['operation'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
-        }
-
+        $request->setOperation($operation);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['operation'] = $operation;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Wait', Operation::class, $optionalArgs, $request)->wait();

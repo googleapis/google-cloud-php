@@ -33,19 +33,29 @@ use Google\Rpc\Status;
 /**
  * Creates a new backup in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The relative resource name of the service in which to create a
+ *                                backup of the following form:
+ *
+ *                                `projects/{project_number}/locations/{location_id}/services/{service_id}`. Please see
+ *                                {@see DataprocMetastoreClient::serviceName()} for help formatting this field.
+ * @param string $backupId        The ID of the backup, which is used as the final component of the
+ *                                backup's name.
+ *
+ *                                This value must be between 1 and 64 characters long, begin with a letter,
+ *                                end with a letter or number, and consist of alpha-numeric ASCII characters
+ *                                or hyphens.
  */
-function create_backup_sample(): void
+function create_backup_sample(string $formattedParent, string $backupId): void
 {
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
     // Prepare the request message.
-    $request = new CreateBackupRequest();
+    $backup = new Backup();
+    $request = (new CreateBackupRequest())
+        ->setParent($formattedParent)
+        ->setBackupId($backupId)
+        ->setBackup($backup);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +75,22 @@ function create_backup_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataprocMetastoreClient::serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+    $backupId = '[BACKUP_ID]';
+
+    create_backup_sample($formattedParent, $backupId);
 }
 // [END metastore_v1_generated_DataprocMetastore_CreateBackup_sync]

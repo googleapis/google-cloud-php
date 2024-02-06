@@ -52,7 +52,8 @@ use Google\Protobuf\FieldMask;
  * ```
  * $fulfillmentsClient = new FulfillmentsClient();
  * try {
- *     $response = $fulfillmentsClient->getFulfillment();
+ *     $formattedName = $fulfillmentsClient->fulfillmentName('[PROJECT]');
+ *     $response = $fulfillmentsClient->getFulfillment($formattedName);
  * } finally {
  *     $fulfillmentsClient->close();
  * }
@@ -318,18 +319,18 @@ class FulfillmentsGapicClient
      * ```
      * $fulfillmentsClient = new FulfillmentsClient();
      * try {
-     *     $response = $fulfillmentsClient->getFulfillment();
+     *     $formattedName = $fulfillmentsClient->fulfillmentName('[PROJECT]');
+     *     $response = $fulfillmentsClient->getFulfillment($formattedName);
      * } finally {
      *     $fulfillmentsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the fulfillment.
+     *                             Format: `projects/<Project ID>/agent/fulfillment`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the fulfillment.
-     *           Format: `projects/<Project ID>/agent/fulfillment`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -340,15 +341,12 @@ class FulfillmentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getFulfillment(array $optionalArgs = [])
+    public function getFulfillment($name, array $optionalArgs = [])
     {
         $request = new GetFulfillmentRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetFulfillment', Fulfillment::class, $optionalArgs, $request)->wait();
@@ -361,20 +359,20 @@ class FulfillmentsGapicClient
      * ```
      * $fulfillmentsClient = new FulfillmentsClient();
      * try {
-     *     $response = $fulfillmentsClient->updateFulfillment();
+     *     $fulfillment = new Fulfillment();
+     *     $updateMask = new FieldMask();
+     *     $response = $fulfillmentsClient->updateFulfillment($fulfillment, $updateMask);
      * } finally {
      *     $fulfillmentsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Fulfillment $fulfillment  Required. The fulfillment to update.
+     * @param FieldMask   $updateMask   Required. The mask to control which fields get updated. If the mask is not
+     *                                  present, all fields will be updated.
+     * @param array       $optionalArgs {
      *     Optional.
      *
-     *     @type Fulfillment $fulfillment
-     *           Required. The fulfillment to update.
-     *     @type FieldMask $updateMask
-     *           Required. The mask to control which fields get updated. If the mask is not
-     *           present, all fields will be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -385,18 +383,13 @@ class FulfillmentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateFulfillment(array $optionalArgs = [])
+    public function updateFulfillment($fulfillment, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateFulfillmentRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['fulfillment'])) {
-            $request->setFulfillment($optionalArgs['fulfillment']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setFulfillment($fulfillment);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['fulfillment.name'] = $fulfillment->getName();
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateFulfillment', Fulfillment::class, $optionalArgs, $request)->wait();

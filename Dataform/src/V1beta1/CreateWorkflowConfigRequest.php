@@ -38,7 +38,8 @@ class CreateWorkflowConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                        $parent           Required. The repository in which to create the workflow config. Must be in
-     *                                                                        the format `projects/&#42;/locations/&#42;/repositories/*`.
+     *                                                                        the format `projects/&#42;/locations/&#42;/repositories/*`. Please see
+     *                                                                        {@see DataformClient::repositoryName()} for help formatting this field.
      * @param \Google\Cloud\Dataform\V1beta1\WorkflowConfig $workflowConfig   Required. The workflow config to create.
      * @param string                                        $workflowConfigId Required. The ID to use for the workflow config, which will become the
      *                                                                        final component of the workflow config's resource name.

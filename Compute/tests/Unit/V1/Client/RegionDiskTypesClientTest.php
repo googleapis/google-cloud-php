@@ -93,7 +93,14 @@ class RegionDiskTypesClientTest extends GeneratedTest
         $expectedResponse->setValidDiskSize($validDiskSize);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-        $request = new GetRegionDiskTypeRequest();
+        // Mock request
+        $diskType = 'diskType93009052';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new GetRegionDiskTypeRequest())
+            ->setDiskType($diskType)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -101,6 +108,12 @@ class RegionDiskTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionDiskTypes/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDiskType();
+        $this->assertProtobufEquals($diskType, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -122,7 +135,14 @@ class RegionDiskTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetRegionDiskTypeRequest();
+        // Mock request
+        $diskType = 'diskType93009052';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new GetRegionDiskTypeRequest())
+            ->setDiskType($diskType)
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -160,7 +180,12 @@ class RegionDiskTypesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListRegionDiskTypesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListRegionDiskTypesRequest())
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -171,6 +196,10 @@ class RegionDiskTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionDiskTypes/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -192,7 +221,12 @@ class RegionDiskTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListRegionDiskTypesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListRegionDiskTypesRequest())
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -237,7 +271,14 @@ class RegionDiskTypesClientTest extends GeneratedTest
         $expectedResponse->setValidDiskSize($validDiskSize);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-        $request = new GetRegionDiskTypeRequest();
+        // Mock request
+        $diskType = 'diskType93009052';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new GetRegionDiskTypeRequest())
+            ->setDiskType($diskType)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->getAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -245,6 +286,12 @@ class RegionDiskTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionDiskTypes/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDiskType();
+        $this->assertProtobufEquals($diskType, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

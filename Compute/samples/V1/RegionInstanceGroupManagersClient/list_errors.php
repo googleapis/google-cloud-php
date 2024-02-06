@@ -30,13 +30,11 @@ use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
 /**
  * Lists all errors thrown by actions on instances for a given regional managed instance group. The filter and orderBy query parameters are not supported.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $instanceGroupManager The name of the managed instance group. It must be a string that meets the requirements in RFC1035, or an unsigned long integer: must match regexp pattern: (?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?)|1-9{0,19}.
+ * @param string $project              Project ID for this request.
+ * @param string $region               Name of the region scoping this request. This should conform to RFC1035.
  */
-function list_errors_sample(): void
+function list_errors_sample(string $instanceGroupManager, string $project, string $region): void
 {
     // Create a client.
     $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
@@ -44,7 +42,11 @@ function list_errors_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionInstanceGroupManagersClient->listErrors();
+        $response = $regionInstanceGroupManagersClient->listErrors(
+            $instanceGroupManager,
+            $project,
+            $region
+        );
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -52,5 +54,23 @@ function list_errors_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $instanceGroupManager = '[INSTANCE_GROUP_MANAGER]';
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    list_errors_sample($instanceGroupManager, $project, $region);
 }
 // [END compute_v1_generated_RegionInstanceGroupManagers_ListErrors_sync]

@@ -31,13 +31,10 @@ use Google\Rpc\Status;
 /**
  * Deletes the specified machine image. Deleting a machine image is permanent and cannot be undone.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $machineImage The name of the machine image to delete.
+ * @param string $project      Project ID for this request.
  */
-function delete_sample(): void
+function delete_sample(string $machineImage, string $project): void
 {
     // Create a client.
     $machineImagesClient = new MachineImagesClient();
@@ -45,7 +42,7 @@ function delete_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $machineImagesClient->delete();
+        $response = $machineImagesClient->delete($machineImage, $project);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +55,22 @@ function delete_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $machineImage = '[MACHINE_IMAGE]';
+    $project = '[PROJECT]';
+
+    delete_sample($machineImage, $project);
 }
 // [END compute_v1_generated_MachineImages_Delete_sync]

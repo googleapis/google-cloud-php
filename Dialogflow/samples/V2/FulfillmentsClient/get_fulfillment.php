@@ -31,19 +31,18 @@ use Google\Cloud\Dialogflow\V2\GetFulfillmentRequest;
 /**
  * Retrieves the fulfillment.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the fulfillment.
+ *                              Format: `projects/<Project ID>/agent/fulfillment`. Please see
+ *                              {@see FulfillmentsClient::fulfillmentName()} for help formatting this field.
  */
-function get_fulfillment_sample(): void
+function get_fulfillment_sample(string $formattedName): void
 {
     // Create a client.
     $fulfillmentsClient = new FulfillmentsClient();
 
     // Prepare the request message.
-    $request = new GetFulfillmentRequest();
+    $request = (new GetFulfillmentRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,21 @@ function get_fulfillment_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = FulfillmentsClient::fulfillmentName('[PROJECT]');
+
+    get_fulfillment_sample($formattedName);
 }
 // [END dialogflow_v2_generated_Fulfillments_GetFulfillment_sync]

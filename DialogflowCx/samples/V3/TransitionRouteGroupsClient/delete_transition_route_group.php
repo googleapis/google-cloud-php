@@ -35,19 +35,22 @@ use Google\Cloud\Dialogflow\Cx\V3\DeleteTransitionRouteGroupRequest;
  * [training
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the
+ *                              [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
+ *                              to delete. Format: `projects/<Project ID>/locations/<Location
+ *                              ID>/agents/<Agent ID>/flows/<Flow ID>/transitionRouteGroups/<Transition
+ *                              Route Group ID>` or `projects/<Project ID>/locations/<Location
+ *                              ID>/agents/<Agent ID>/transitionRouteGroups/<Transition Route Group ID>`. Please see
+ *                              {@see TransitionRouteGroupsClient::transitionRouteGroupName()} for help formatting this field.
  */
-function delete_transition_route_group_sample(): void
+function delete_transition_route_group_sample(string $formattedName): void
 {
     // Create a client.
     $transitionRouteGroupsClient = new TransitionRouteGroupsClient();
 
     // Prepare the request message.
-    $request = new DeleteTransitionRouteGroupRequest();
+    $request = (new DeleteTransitionRouteGroupRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -56,5 +59,27 @@ function delete_transition_route_group_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = TransitionRouteGroupsClient::transitionRouteGroupName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[AGENT]',
+        '[FLOW]',
+        '[TRANSITION_ROUTE_GROUP]'
+    );
+
+    delete_transition_route_group_sample($formattedName);
 }
 // [END dialogflow_v3_generated_TransitionRouteGroups_DeleteTransitionRouteGroup_sync]

@@ -34,7 +34,8 @@ class DeleteAllContextsRequest extends \Google\Protobuf\Internal\Message
      *                       ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session
      *                       ID>`.
      *                       If `Environment ID` is not specified we assume default 'draft' environment.
-     *                       If `User ID` is not specified, we assume default '-' user.
+     *                       If `User ID` is not specified, we assume default '-' user. Please see
+     *                       {@see ContextsClient::sessionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\DeleteAllContextsRequest
      *

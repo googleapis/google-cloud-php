@@ -59,7 +59,8 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The project from which to list all conversation.
-     *                       Format: `projects/<Project ID>/locations/<Location ID>`.
+     *                       Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                       {@see ConversationsClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\ListConversationsRequest
      *

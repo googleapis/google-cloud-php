@@ -56,7 +56,9 @@ use Google\Cloud\Compute\V1\TargetReference;
  * ```
  * $globalForwardingRulesClient = new GlobalForwardingRulesClient();
  * try {
- *     $operationResponse = $globalForwardingRulesClient->delete();
+ *     $forwardingRule = 'forwarding_rule';
+ *     $project = 'project';
+ *     $operationResponse = $globalForwardingRulesClient->delete($forwardingRule, $project);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -66,7 +68,7 @@ use Google\Cloud\Compute\V1\TargetReference;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $globalForwardingRulesClient->delete();
+ *     $operationResponse = $globalForwardingRulesClient->delete($forwardingRule, $project);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $globalForwardingRulesClient->resumeOperation($operationName, 'delete');
@@ -166,7 +168,9 @@ class GlobalForwardingRulesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -262,7 +266,9 @@ class GlobalForwardingRulesGapicClient
      * ```
      * $globalForwardingRulesClient = new GlobalForwardingRulesClient();
      * try {
-     *     $operationResponse = $globalForwardingRulesClient->delete();
+     *     $forwardingRule = 'forwarding_rule';
+     *     $project = 'project';
+     *     $operationResponse = $globalForwardingRulesClient->delete($forwardingRule, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -272,7 +278,7 @@ class GlobalForwardingRulesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalForwardingRulesClient->delete();
+     *     $operationResponse = $globalForwardingRulesClient->delete($forwardingRule, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalForwardingRulesClient->resumeOperation($operationName, 'delete');
@@ -291,13 +297,11 @@ class GlobalForwardingRulesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $forwardingRule Name of the ForwardingRule resource to delete.
+     * @param string $project        Project ID for this request.
+     * @param array  $optionalArgs   {
      *     Optional.
      *
-     *     @type string $forwardingRule
-     *           Name of the ForwardingRule resource to delete.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -310,20 +314,14 @@ class GlobalForwardingRulesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete(array $optionalArgs = [])
+    public function delete($forwardingRule, $project, array $optionalArgs = [])
     {
         $request = new DeleteGlobalForwardingRuleRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['forwardingRule'])) {
-            $request->setForwardingRule($optionalArgs['forwardingRule']);
-            $requestParamHeaders['forwarding_rule'] = $optionalArgs['forwardingRule'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setForwardingRule($forwardingRule);
+        $request->setProject($project);
+        $requestParamHeaders['forwarding_rule'] = $forwardingRule;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -340,19 +338,19 @@ class GlobalForwardingRulesGapicClient
      * ```
      * $globalForwardingRulesClient = new GlobalForwardingRulesClient();
      * try {
-     *     $response = $globalForwardingRulesClient->get();
+     *     $forwardingRule = 'forwarding_rule';
+     *     $project = 'project';
+     *     $response = $globalForwardingRulesClient->get($forwardingRule, $project);
      * } finally {
      *     $globalForwardingRulesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $forwardingRule Name of the ForwardingRule resource to return.
+     * @param string $project        Project ID for this request.
+     * @param array  $optionalArgs   {
      *     Optional.
      *
-     *     @type string $forwardingRule
-     *           Name of the ForwardingRule resource to return.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -363,20 +361,14 @@ class GlobalForwardingRulesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($forwardingRule, $project, array $optionalArgs = [])
     {
         $request = new GetGlobalForwardingRuleRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['forwardingRule'])) {
-            $request->setForwardingRule($optionalArgs['forwardingRule']);
-            $requestParamHeaders['forwarding_rule'] = $optionalArgs['forwardingRule'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setForwardingRule($forwardingRule);
+        $request->setProject($project);
+        $requestParamHeaders['forwarding_rule'] = $forwardingRule;
+        $requestParamHeaders['project'] = $project;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', ForwardingRule::class, $optionalArgs, $request)->wait();
@@ -389,7 +381,9 @@ class GlobalForwardingRulesGapicClient
      * ```
      * $globalForwardingRulesClient = new GlobalForwardingRulesClient();
      * try {
-     *     $operationResponse = $globalForwardingRulesClient->insert();
+     *     $forwardingRuleResource = new ForwardingRule();
+     *     $project = 'project';
+     *     $operationResponse = $globalForwardingRulesClient->insert($forwardingRuleResource, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -399,7 +393,7 @@ class GlobalForwardingRulesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalForwardingRulesClient->insert();
+     *     $operationResponse = $globalForwardingRulesClient->insert($forwardingRuleResource, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalForwardingRulesClient->resumeOperation($operationName, 'insert');
@@ -418,13 +412,11 @@ class GlobalForwardingRulesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param ForwardingRule $forwardingRuleResource The body resource for this request
+     * @param string         $project                Project ID for this request.
+     * @param array          $optionalArgs           {
      *     Optional.
      *
-     *     @type ForwardingRule $forwardingRuleResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -437,19 +429,13 @@ class GlobalForwardingRulesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert(array $optionalArgs = [])
+    public function insert($forwardingRuleResource, $project, array $optionalArgs = [])
     {
         $request = new InsertGlobalForwardingRuleRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['forwardingRuleResource'])) {
-            $request->setForwardingRuleResource($optionalArgs['forwardingRuleResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setForwardingRuleResource($forwardingRuleResource);
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -466,8 +452,9 @@ class GlobalForwardingRulesGapicClient
      * ```
      * $globalForwardingRulesClient = new GlobalForwardingRulesClient();
      * try {
+     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $globalForwardingRulesClient->list();
+     *     $pagedResponse = $globalForwardingRulesClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -475,7 +462,7 @@ class GlobalForwardingRulesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $globalForwardingRulesClient->list();
+     *     $pagedResponse = $globalForwardingRulesClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -484,7 +471,8 @@ class GlobalForwardingRulesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -498,8 +486,6 @@ class GlobalForwardingRulesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -512,10 +498,12 @@ class GlobalForwardingRulesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list(array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListGlobalForwardingRulesRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -530,11 +518,6 @@ class GlobalForwardingRulesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -553,7 +536,10 @@ class GlobalForwardingRulesGapicClient
      * ```
      * $globalForwardingRulesClient = new GlobalForwardingRulesClient();
      * try {
-     *     $operationResponse = $globalForwardingRulesClient->patch();
+     *     $forwardingRule = 'forwarding_rule';
+     *     $forwardingRuleResource = new ForwardingRule();
+     *     $project = 'project';
+     *     $operationResponse = $globalForwardingRulesClient->patch($forwardingRule, $forwardingRuleResource, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -563,7 +549,7 @@ class GlobalForwardingRulesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalForwardingRulesClient->patch();
+     *     $operationResponse = $globalForwardingRulesClient->patch($forwardingRule, $forwardingRuleResource, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalForwardingRulesClient->resumeOperation($operationName, 'patch');
@@ -582,15 +568,12 @@ class GlobalForwardingRulesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string         $forwardingRule         Name of the ForwardingRule resource to patch.
+     * @param ForwardingRule $forwardingRuleResource The body resource for this request
+     * @param string         $project                Project ID for this request.
+     * @param array          $optionalArgs           {
      *     Optional.
      *
-     *     @type string $forwardingRule
-     *           Name of the ForwardingRule resource to patch.
-     *     @type ForwardingRule $forwardingRuleResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -603,24 +586,15 @@ class GlobalForwardingRulesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch(array $optionalArgs = [])
+    public function patch($forwardingRule, $forwardingRuleResource, $project, array $optionalArgs = [])
     {
         $request = new PatchGlobalForwardingRuleRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['forwardingRule'])) {
-            $request->setForwardingRule($optionalArgs['forwardingRule']);
-            $requestParamHeaders['forwarding_rule'] = $optionalArgs['forwardingRule'];
-        }
-
-        if (isset($optionalArgs['forwardingRuleResource'])) {
-            $request->setForwardingRuleResource($optionalArgs['forwardingRuleResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setForwardingRule($forwardingRule);
+        $request->setForwardingRuleResource($forwardingRuleResource);
+        $request->setProject($project);
+        $requestParamHeaders['forwarding_rule'] = $forwardingRule;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -637,7 +611,10 @@ class GlobalForwardingRulesGapicClient
      * ```
      * $globalForwardingRulesClient = new GlobalForwardingRulesClient();
      * try {
-     *     $operationResponse = $globalForwardingRulesClient->setLabels();
+     *     $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $operationResponse = $globalForwardingRulesClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -647,7 +624,7 @@ class GlobalForwardingRulesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalForwardingRulesClient->setLabels();
+     *     $operationResponse = $globalForwardingRulesClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalForwardingRulesClient->resumeOperation($operationName, 'setLabels');
@@ -666,15 +643,12 @@ class GlobalForwardingRulesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param GlobalSetLabelsRequest $globalSetLabelsRequestResource The body resource for this request
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param array                  $optionalArgs                   {
      *     Optional.
      *
-     *     @type GlobalSetLabelsRequest $globalSetLabelsRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $resource
-     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -685,24 +659,15 @@ class GlobalForwardingRulesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setLabels(array $optionalArgs = [])
+    public function setLabels($globalSetLabelsRequestResource, $project, $resource, array $optionalArgs = [])
     {
         $request = new SetLabelsGlobalForwardingRuleRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['globalSetLabelsRequestResource'])) {
-            $request->setGlobalSetLabelsRequestResource($optionalArgs['globalSetLabelsRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource);
+        $request->setProject($project);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('SetLabels', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
@@ -715,7 +680,10 @@ class GlobalForwardingRulesGapicClient
      * ```
      * $globalForwardingRulesClient = new GlobalForwardingRulesClient();
      * try {
-     *     $operationResponse = $globalForwardingRulesClient->setTarget();
+     *     $forwardingRule = 'forwarding_rule';
+     *     $project = 'project';
+     *     $targetReferenceResource = new TargetReference();
+     *     $operationResponse = $globalForwardingRulesClient->setTarget($forwardingRule, $project, $targetReferenceResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -725,7 +693,7 @@ class GlobalForwardingRulesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalForwardingRulesClient->setTarget();
+     *     $operationResponse = $globalForwardingRulesClient->setTarget($forwardingRule, $project, $targetReferenceResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalForwardingRulesClient->resumeOperation($operationName, 'setTarget');
@@ -744,17 +712,14 @@ class GlobalForwardingRulesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string          $forwardingRule          Name of the ForwardingRule resource in which target is to be set.
+     * @param string          $project                 Project ID for this request.
+     * @param TargetReference $targetReferenceResource The body resource for this request
+     * @param array           $optionalArgs            {
      *     Optional.
      *
-     *     @type string $forwardingRule
-     *           Name of the ForwardingRule resource in which target is to be set.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type TargetReference $targetReferenceResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -765,26 +730,17 @@ class GlobalForwardingRulesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setTarget(array $optionalArgs = [])
+    public function setTarget($forwardingRule, $project, $targetReferenceResource, array $optionalArgs = [])
     {
         $request = new SetTargetGlobalForwardingRuleRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['forwardingRule'])) {
-            $request->setForwardingRule($optionalArgs['forwardingRule']);
-            $requestParamHeaders['forwarding_rule'] = $optionalArgs['forwardingRule'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setForwardingRule($forwardingRule);
+        $request->setProject($project);
+        $request->setTargetReferenceResource($targetReferenceResource);
+        $requestParamHeaders['forwarding_rule'] = $forwardingRule;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['targetReferenceResource'])) {
-            $request->setTargetReferenceResource($optionalArgs['targetReferenceResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

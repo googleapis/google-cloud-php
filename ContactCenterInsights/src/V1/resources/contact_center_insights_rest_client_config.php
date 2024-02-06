@@ -430,6 +430,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateView' => [
                 'method' => 'patch',

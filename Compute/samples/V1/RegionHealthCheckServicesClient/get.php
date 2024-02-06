@@ -30,13 +30,11 @@ use Google\Cloud\Compute\V1\RegionHealthCheckServicesClient;
 /**
  * Returns the specified regional HealthCheckService resource.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $healthCheckService Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
+ * @param string $project            Project ID for this request.
+ * @param string $region             Name of the region scoping this request.
  */
-function get_sample(): void
+function get_sample(string $healthCheckService, string $project, string $region): void
 {
     // Create a client.
     $regionHealthCheckServicesClient = new RegionHealthCheckServicesClient();
@@ -44,10 +42,28 @@ function get_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var HealthCheckService $response */
-        $response = $regionHealthCheckServicesClient->get();
+        $response = $regionHealthCheckServicesClient->get($healthCheckService, $project, $region);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $healthCheckService = '[HEALTH_CHECK_SERVICE]';
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    get_sample($healthCheckService, $project, $region);
 }
 // [END compute_v1_generated_RegionHealthCheckServices_Get_sync]

@@ -39,7 +39,8 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
     private $conversation_id = '';
 
     /**
-     * @param string                                              $parent         Required. The parent resource of the conversation.
+     * @param string                                              $parent         Required. The parent resource of the conversation. Please see
+     *                                                                            {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\ContactCenterInsights\V1\Conversation $conversation   Required. The conversation resource to create.
      * @param string                                              $conversationId A unique ID for the new conversation. This ID will become the final
      *                                                                            component of the conversation's resource name. If no ID is specified, a

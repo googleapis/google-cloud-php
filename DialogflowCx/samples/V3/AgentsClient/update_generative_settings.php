@@ -43,7 +43,9 @@ function update_generative_settings_sample(): void
     $agentsClient = new AgentsClient();
 
     // Prepare the request message.
-    $request = new UpdateGenerativeSettingsRequest();
+    $generativeSettings = new GenerativeSettings();
+    $request = (new UpdateGenerativeSettingsRequest())
+        ->setGenerativeSettings($generativeSettings);
 
     // Call the API and handle any network failures.
     try {

@@ -34,24 +34,40 @@ any existing policy.
 Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
 errors.
  *
+ * @param string $resource REQUIRED: The resource for which the policy is being specified.
+ *                         See the operation documentation for the appropriate value for this field.
+ */
+function set_iam_policy_sample(string $resource): void
+{
+    // Create a client.
+    $dataprocMetastoreClient = new DataprocMetastoreClient();
+
+    // Prepare any non-scalar elements to be passed along with the request.
+    $policy = new Policy();
+
+    // Call the API and handle any network failures.
+    try {
+        /** @var Policy $response */
+        $response = $dataprocMetastoreClient->setIamPolicy($resource, $policy);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
+}
+
+/**
+ * Helper to execute the sample.
+ *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function set_iam_policy_sample(): void
+function callSample(): void
 {
-    // Create a client.
-    $dataprocMetastoreClient = new DataprocMetastoreClient();
+    $resource = '[RESOURCE]';
 
-    // Call the API and handle any network failures.
-    try {
-        /** @var Policy $response */
-        $response = $dataprocMetastoreClient->setIamPolicy();
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
+    set_iam_policy_sample($resource);
 }
 // [END metastore_v1alpha_generated_DataprocMetastore_SetIamPolicy_sync]

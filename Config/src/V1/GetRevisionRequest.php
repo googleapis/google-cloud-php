@@ -25,7 +25,8 @@ class GetRevisionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the Revision in the format:
-     *                     'projects/{project_id}/locations/{location}/deployments/{deployment}/revisions/{revision}'.
+     *                     'projects/{project_id}/locations/{location}/deployments/{deployment}/revisions/{revision}'. Please see
+     *                     {@see ConfigClient::revisionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Config\V1\GetRevisionRequest
      *

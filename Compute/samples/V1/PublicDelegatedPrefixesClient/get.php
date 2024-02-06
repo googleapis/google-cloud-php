@@ -30,13 +30,11 @@ use Google\Cloud\Compute\V1\PublicDelegatedPrefixesClient;
 /**
  * Returns the specified PublicDelegatedPrefix resource in the given region.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project               Project ID for this request.
+ * @param string $publicDelegatedPrefix Name of the PublicDelegatedPrefix resource to return.
+ * @param string $region                Name of the region of this request.
  */
-function get_sample(): void
+function get_sample(string $project, string $publicDelegatedPrefix, string $region): void
 {
     // Create a client.
     $publicDelegatedPrefixesClient = new PublicDelegatedPrefixesClient();
@@ -44,10 +42,28 @@ function get_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var PublicDelegatedPrefix $response */
-        $response = $publicDelegatedPrefixesClient->get();
+        $response = $publicDelegatedPrefixesClient->get($project, $publicDelegatedPrefix, $region);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $publicDelegatedPrefix = '[PUBLIC_DELEGATED_PREFIX]';
+    $region = '[REGION]';
+
+    get_sample($project, $publicDelegatedPrefix, $region);
 }
 // [END compute_v1_generated_PublicDelegatedPrefixes_Get_sync]

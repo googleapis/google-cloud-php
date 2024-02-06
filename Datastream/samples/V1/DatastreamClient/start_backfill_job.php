@@ -31,19 +31,18 @@ use Google\Cloud\Datastream\V1\StartBackfillJobResponse;
 /**
  * Use this method to start a backfill job for the specified stream object.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedObject The name of the stream object resource to start a backfill job
+ *                                for. Please see
+ *                                {@see DatastreamClient::streamObjectName()} for help formatting this field.
  */
-function start_backfill_job_sample(): void
+function start_backfill_job_sample(string $formattedObject): void
 {
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
     // Prepare the request message.
-    $request = new StartBackfillJobRequest();
+    $request = (new StartBackfillJobRequest())
+        ->setObject($formattedObject);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,26 @@ function start_backfill_job_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedObject = DatastreamClient::streamObjectName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[STREAM]',
+        '[OBJECT]'
+    );
+
+    start_backfill_job_sample($formattedObject);
 }
 // [END datastream_v1_generated_Datastream_StartBackfillJob_sync]

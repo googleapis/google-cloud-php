@@ -23,36 +23,36 @@ class Context
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ù"
-(google/cloud/dialogflow/v2/context.protogoogle.cloud.dialogflow.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/struct.proto"í
-Context
-name (	B‚A
-lifespan_count (B‚A1
+ê"
+(google/cloud/dialogflow/v2/context.protogoogle.cloud.dialogflow.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/struct.proto"è
+Context
+name (	B‡A
+lifespan_count (B‡A0
 
-parameters (2.google.protobuf.StructB‚A:°ÍAù
-!dialogflow.googleapis.com/Context>projects/{project}/agent/sessions/{session}/contexts/{context}fprojects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}Sprojects/{project}/locations/{location}/agent/sessions/{session}/contexts/{context}{projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}"Ñ
-ListContextsRequest:
-parent (	B*‚A˙A#!dialogflow.googleapis.com/Context
-	page_size (B‚A
+parameters (2.google.protobuf.StructB‡A:°ÍAù
+!dialogflow.googleapis.com/Context>projects/{project}/agent/sessions/{session}/contexts/{context}fprojects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}Sprojects/{project}/locations/{location}/agent/sessions/{session}/contexts/{context}{projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}"Å
+ListContextsRequest9
+parent (	B)‡A˙A#!dialogflow.googleapis.com/Context
+	page_size (B‡A
 
-page_token (	B‚A"f
+page_token (	B‡A"f
 ListContextsResponse5
 contexts (2#.google.cloud.dialogflow.v2.Context
-next_page_token (	"M
-GetContextRequest8
-name (	B*‚A˙A#
-!dialogflow.googleapis.com/Context"é
-CreateContextRequest:
-parent (	B*‚A˙A#!dialogflow.googleapis.com/Context:
-context (2#.google.cloud.dialogflow.v2.ContextB‚A"â
-UpdateContextRequest:
-context (2#.google.cloud.dialogflow.v2.ContextB‚A5
-update_mask (2.google.protobuf.FieldMaskB‚A"P
-DeleteContextRequest8
-name (	B*‚A˙A#
-!dialogflow.googleapis.com/Context"V
-DeleteAllContextsRequest:
-parent (	B*‚A˙A#!dialogflow.googleapis.com/Context2Ë
+next_page_token (	"L
+GetContextRequest7
+name (	B)‡A˙A#
+!dialogflow.googleapis.com/Context"å
+CreateContextRequest9
+parent (	B)‡A˙A#!dialogflow.googleapis.com/Context9
+context (2#.google.cloud.dialogflow.v2.ContextB‡A"á
+UpdateContextRequest9
+context (2#.google.cloud.dialogflow.v2.ContextB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"O
+DeleteContextRequest7
+name (	B)‡A˙A#
+!dialogflow.googleapis.com/Context"U
+DeleteAllContextsRequest9
+parent (	B)‡A˙A#!dialogflow.googleapis.com/Context2Ë
 Contextsú
 ListContexts/.google.cloud.dialogflow.v2.ListContextsRequest0.google.cloud.dialogflow.v2.ListContextsResponse"®⁄AparentÇ”‰ìò1/v2/{parent=projects/*/agent/sessions/*}/contextsZJH/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contextsZ?=/v2/{parent=projects/*/locations/*/agent/sessions/*}/contextsZVT/v2/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/contextsâ
 

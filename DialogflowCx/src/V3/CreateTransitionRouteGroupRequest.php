@@ -54,7 +54,8 @@ class CreateTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Messag
      *                                                                                  for. Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
      *                                                                                  ID>/flows/<Flow ID>`
      *                                                                                  or `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`
-     *                                                                                  for agent-level groups.
+     *                                                                                  for agent-level groups. Please see
+     *                                                                                  {@see TransitionRouteGroupsClient::flowName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup $transitionRouteGroup Required. The transition route group to create.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\CreateTransitionRouteGroupRequest

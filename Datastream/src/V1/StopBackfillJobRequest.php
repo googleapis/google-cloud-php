@@ -26,7 +26,8 @@ class StopBackfillJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $object Required. The name of the stream object resource to stop the backfill job
-     *                       for.
+     *                       for. Please see
+     *                       {@see DatastreamClient::streamObjectName()} for help formatting this field.
      *
      * @return \Google\Cloud\Datastream\V1\StopBackfillJobRequest
      *

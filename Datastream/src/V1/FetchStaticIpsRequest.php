@@ -38,7 +38,8 @@ class FetchStaticIpsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name for the location for which static IPs should be
-     *                     returned. Must be in the format `projects/&#42;/locations/*`.
+     *                     returned. Must be in the format `projects/&#42;/locations/*`. Please see
+     *                     {@see DatastreamClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Datastream\V1\FetchStaticIpsRequest
      *

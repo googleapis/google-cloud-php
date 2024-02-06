@@ -36,6 +36,7 @@ class CreatePhraseMatcherRequest extends \Google\Protobuf\Internal\Message
      *                                                                            to create a phrase matcher for. Format: `projects/<Project
      *                                                                            ID>/locations/<Location ID>` or `projects/<Project
      *                                                                            Number>/locations/<Location ID>`
+     *                                                                            Please see {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\ContactCenterInsights\V1\PhraseMatcher $phraseMatcher Required. The phrase matcher resource to create.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\CreatePhraseMatcherRequest

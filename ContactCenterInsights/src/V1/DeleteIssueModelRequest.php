@@ -23,7 +23,8 @@ class DeleteIssueModelRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the issue model to delete.
+     * @param string $name Required. The name of the issue model to delete. Please see
+     *                     {@see ContactCenterInsightsClient::issueModelName()} for help formatting this field.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\DeleteIssueModelRequest
      *

@@ -55,7 +55,8 @@ class ListAnswerRecordsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The project to list all answer records for in reverse
      *                       chronological order. Format: `projects/<Project ID>/locations/<Location
-     *                       ID>`.
+     *                       ID>`. Please see
+     *                       {@see AnswerRecordsClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\ListAnswerRecordsRequest
      *

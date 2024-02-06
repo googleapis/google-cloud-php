@@ -46,7 +46,8 @@ class DeletePrivateConnectionRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
-     * @param string $name Required. The name of the private connectivity configuration to delete.
+     * @param string $name Required. The name of the private connectivity configuration to delete. Please see
+     *                     {@see DatastreamClient::privateConnectionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Datastream\V1\DeletePrivateConnectionRequest
      *

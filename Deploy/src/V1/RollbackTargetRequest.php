@@ -67,7 +67,8 @@ class RollbackTargetRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name      Required. The `DeliveryPipeline` for which the rollback `Rollout` should be
      *                          created. Format should be
-     *                          `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
+     *                          `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
+     *                          {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
      * @param string $targetId  Required. ID of the `Target` that is being rolled back.
      * @param string $rolloutId Required. ID of the rollback `Rollout` to create.
      *

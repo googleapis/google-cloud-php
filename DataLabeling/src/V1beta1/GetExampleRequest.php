@@ -36,6 +36,7 @@ class GetExampleRequest extends \Google\Protobuf\Internal\Message
      * @param string $name   Required. Name of example, format:
      *                       projects/{project_id}/datasets/{dataset_id}/annotatedDatasets/
      *                       {annotated_dataset_id}/examples/{example_id}
+     *                       Please see {@see DataLabelingServiceClient::exampleName()} for help formatting this field.
      * @param string $filter Optional. An expression for filtering Examples. Filter by
      *                       annotation_spec.display_name is supported. Format
      *                       "annotation_spec.display_name = {display_name}"

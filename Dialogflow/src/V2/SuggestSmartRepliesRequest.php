@@ -53,7 +53,8 @@ class SuggestSmartRepliesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The name of the participant to fetch suggestion for.
      *                       Format: `projects/<Project ID>/locations/<Location
-     *                       ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
+     *                       ID>/conversations/<Conversation ID>/participants/<Participant ID>`. Please see
+     *                       {@see ParticipantsClient::participantName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\SuggestSmartRepliesRequest
      *

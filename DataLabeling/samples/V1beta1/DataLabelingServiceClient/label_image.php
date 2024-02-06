@@ -27,26 +27,41 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\DataLabeling\V1beta1\AnnotatedDataset;
 use Google\Cloud\DataLabeling\V1beta1\Client\DataLabelingServiceClient;
+use Google\Cloud\DataLabeling\V1beta1\HumanAnnotationConfig;
 use Google\Cloud\DataLabeling\V1beta1\LabelImageRequest;
+use Google\Cloud\DataLabeling\V1beta1\LabelImageRequest\Feature;
 use Google\Rpc\Status;
 
 /**
  * Starts a labeling task for image. The type of image labeling task is
  * configured by feature in the request.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent                        Name of the dataset to request labeling task, format:
+ *                                                       projects/{project_id}/datasets/{dataset_id}
+ *                                                       Please see {@see DataLabelingServiceClient::datasetName()} for help formatting this field.
+ * @param string $basicConfigInstruction                 Instruction resource name.
+ * @param string $basicConfigAnnotatedDatasetDisplayName A human-readable name for AnnotatedDataset defined by
+ *                                                       users. Maximum of 64 characters
+ *                                                       .
+ * @param int    $feature                                The type of image labeling task.
  */
-function label_image_sample(): void
-{
+function label_image_sample(
+    string $formattedParent,
+    string $basicConfigInstruction,
+    string $basicConfigAnnotatedDatasetDisplayName,
+    int $feature
+): void {
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
     // Prepare the request message.
-    $request = new LabelImageRequest();
+    $basicConfig = (new HumanAnnotationConfig())
+        ->setInstruction($basicConfigInstruction)
+        ->setAnnotatedDatasetDisplayName($basicConfigAnnotatedDatasetDisplayName);
+    $request = (new LabelImageRequest())
+        ->setParent($formattedParent)
+        ->setBasicConfig($basicConfig)
+        ->setFeature($feature);
 
     // Call the API and handle any network failures.
     try {
@@ -66,5 +81,29 @@ function label_image_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataLabelingServiceClient::datasetName('[PROJECT]', '[DATASET]');
+    $basicConfigInstruction = '[INSTRUCTION]';
+    $basicConfigAnnotatedDatasetDisplayName = '[ANNOTATED_DATASET_DISPLAY_NAME]';
+    $feature = Feature::FEATURE_UNSPECIFIED;
+
+    label_image_sample(
+        $formattedParent,
+        $basicConfigInstruction,
+        $basicConfigAnnotatedDatasetDisplayName,
+        $feature
+    );
 }
 // [END datalabeling_v1beta1_generated_DataLabelingService_LabelImage_sync]

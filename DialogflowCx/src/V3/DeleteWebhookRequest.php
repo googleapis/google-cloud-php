@@ -42,7 +42,8 @@ class DeleteWebhookRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the webhook to delete.
      *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/webhooks/<Webhook ID>`.
+     *                     ID>/webhooks/<Webhook ID>`. Please see
+     *                     {@see WebhooksClient::webhookName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\DeleteWebhookRequest
      *

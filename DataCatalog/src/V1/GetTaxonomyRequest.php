@@ -24,7 +24,8 @@ class GetTaxonomyRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. Resource name of the taxonomy to get.
+     * @param string $name Required. Resource name of the taxonomy to get. Please see
+     *                     {@see PolicyTagManagerClient::taxonomyName()} for help formatting this field.
      *
      * @return \Google\Cloud\DataCatalog\V1\GetTaxonomyRequest
      *

@@ -41,7 +41,8 @@ class LookupEnvironmentHistoryRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Resource name of the environment to look up the history for.
      *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/environments/<Environment ID>`.
+     *                     ID>/environments/<Environment ID>`. Please see
+     *                     {@see EnvironmentsClient::environmentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\LookupEnvironmentHistoryRequest
      *

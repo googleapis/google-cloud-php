@@ -28,6 +28,7 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Metastore\V1\Client\DataprocMetastoreFederationClient;
 use Google\Cloud\Metastore\V1\Federation;
 use Google\Cloud\Metastore\V1\UpdateFederationRequest;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -45,7 +46,11 @@ function update_federation_sample(): void
     $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
 
     // Prepare the request message.
-    $request = new UpdateFederationRequest();
+    $updateMask = new FieldMask();
+    $federation = new Federation();
+    $request = (new UpdateFederationRequest())
+        ->setUpdateMask($updateMask)
+        ->setFederation($federation);
 
     // Call the API and handle any network failures.
     try {

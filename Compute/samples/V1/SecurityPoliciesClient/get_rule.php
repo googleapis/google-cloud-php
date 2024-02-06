@@ -30,13 +30,10 @@ use Google\Cloud\Compute\V1\SecurityPolicyRule;
 /**
  * Gets a rule at the specified priority.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project        Project ID for this request.
+ * @param string $securityPolicy Name of the security policy to which the queried rule belongs.
  */
-function get_rule_sample(): void
+function get_rule_sample(string $project, string $securityPolicy): void
 {
     // Create a client.
     $securityPoliciesClient = new SecurityPoliciesClient();
@@ -44,10 +41,27 @@ function get_rule_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var SecurityPolicyRule $response */
-        $response = $securityPoliciesClient->getRule();
+        $response = $securityPoliciesClient->getRule($project, $securityPolicy);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $securityPolicy = '[SECURITY_POLICY]';
+
+    get_rule_sample($project, $securityPolicy);
 }
 // [END compute_v1_generated_SecurityPolicies_GetRule_sync]

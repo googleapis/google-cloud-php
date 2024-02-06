@@ -36,7 +36,8 @@ class GetSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *                     `projects/<Project ID>/locations/<Location ID>/agents/<Agent
      *                     ID>/environments/<Environment ID>/sessions/<Session ID>/entityTypes/<Entity
      *                     Type ID>`. If `Environment ID` is not specified, we assume default 'draft'
-     *                     environment.
+     *                     environment. Please see
+     *                     {@see SessionEntityTypesClient::sessionEntityTypeName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetSessionEntityTypeRequest
      *

@@ -33,19 +33,20 @@ use Google\Rpc\Status;
 /**
  * Unlocks a locked deployment.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the deployment in the format:
+ *                              'projects/{project_id}/locations/{location}/deployments/{deployment}'. Please see
+ *                              {@see ConfigClient::deploymentName()} for help formatting this field.
+ * @param int    $lockId        Lock ID of the lock file to be unlocked.
  */
-function unlock_deployment_sample(): void
+function unlock_deployment_sample(string $formattedName, int $lockId): void
 {
     // Create a client.
     $configClient = new ConfigClient();
 
     // Prepare the request message.
-    $request = new UnlockDeploymentRequest();
+    $request = (new UnlockDeploymentRequest())
+        ->setName($formattedName)
+        ->setLockId($lockId);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +66,22 @@ function unlock_deployment_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ConfigClient::deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
+    $lockId = 0;
+
+    unlock_deployment_sample($formattedName, $lockId);
 }
 // [END config_v1_generated_Config_UnlockDeployment_sync]

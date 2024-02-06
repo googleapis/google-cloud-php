@@ -45,19 +45,20 @@ use Google\Rpc\Status;
  * a [ReconcileTagsResponse]
  * [google.cloud.datacatalog.v1.ReconcileTagsResponse] message.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent      Name of [Entry][google.cloud.datacatalog.v1.Entry] to be tagged. Please see
+ *                                     {@see DataCatalogClient::entryName()} for help formatting this field.
+ * @param string $formattedTagTemplate The name of the tag template, which is used for reconciliation. Please see
+ *                                     {@see DataCatalogClient::tagTemplateName()} for help formatting this field.
  */
-function reconcile_tags_sample(): void
+function reconcile_tags_sample(string $formattedParent, string $formattedTagTemplate): void
 {
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
     // Prepare the request message.
-    $request = new ReconcileTagsRequest();
+    $request = (new ReconcileTagsRequest())
+        ->setParent($formattedParent)
+        ->setTagTemplate($formattedTagTemplate);
 
     // Call the API and handle any network failures.
     try {
@@ -77,5 +78,31 @@ function reconcile_tags_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataCatalogClient::entryName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[ENTRY_GROUP]',
+        '[ENTRY]'
+    );
+    $formattedTagTemplate = DataCatalogClient::tagTemplateName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[TAG_TEMPLATE]'
+    );
+
+    reconcile_tags_sample($formattedParent, $formattedTagTemplate);
 }
 // [END datacatalog_v1_generated_DataCatalog_ReconcileTags_sync]

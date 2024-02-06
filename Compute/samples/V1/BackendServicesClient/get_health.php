@@ -26,9 +26,38 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Compute\V1\BackendServiceGroupHealth;
 use Google\Cloud\Compute\V1\BackendServicesClient;
+use Google\Cloud\Compute\V1\ResourceGroupReference;
 
 /**
  * Gets the most recent health check results for this BackendService. Example request body: { "group": "/zones/us-east1-b/instanceGroups/lb-backend-example" }
+ *
+ * @param string $backendService Name of the BackendService resource to which the queried instance belongs.
+ * @param string $project
+ */
+function get_health_sample(string $backendService, string $project): void
+{
+    // Create a client.
+    $backendServicesClient = new BackendServicesClient();
+
+    // Prepare any non-scalar elements to be passed along with the request.
+    $resourceGroupReferenceResource = new ResourceGroupReference();
+
+    // Call the API and handle any network failures.
+    try {
+        /** @var BackendServiceGroupHealth $response */
+        $response = $backendServicesClient->getHealth(
+            $backendService,
+            $project,
+            $resourceGroupReferenceResource
+        );
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
+}
+
+/**
+ * Helper to execute the sample.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -36,18 +65,11 @@ use Google\Cloud\Compute\V1\BackendServicesClient;
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function get_health_sample(): void
+function callSample(): void
 {
-    // Create a client.
-    $backendServicesClient = new BackendServicesClient();
+    $backendService = '[BACKEND_SERVICE]';
+    $project = '[PROJECT]';
 
-    // Call the API and handle any network failures.
-    try {
-        /** @var BackendServiceGroupHealth $response */
-        $response = $backendServicesClient->getHealth();
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
+    get_health_sample($backendService, $project);
 }
 // [END compute_v1_generated_BackendServices_GetHealth_sync]

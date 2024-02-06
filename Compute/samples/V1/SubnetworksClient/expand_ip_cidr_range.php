@@ -26,26 +26,33 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\SubnetworksClient;
+use Google\Cloud\Compute\V1\SubnetworksExpandIpCidrRangeRequest;
 use Google\Rpc\Status;
 
 /**
  * Expands the IP CIDR range of the subnetwork to a specified value.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project    Project ID for this request.
+ * @param string $region     Name of the region scoping this request.
+ * @param string $subnetwork Name of the Subnetwork resource to update.
  */
-function expand_ip_cidr_range_sample(): void
+function expand_ip_cidr_range_sample(string $project, string $region, string $subnetwork): void
 {
     // Create a client.
     $subnetworksClient = new SubnetworksClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $subnetworksExpandIpCidrRangeRequestResource = new SubnetworksExpandIpCidrRangeRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $subnetworksClient->expandIpCidrRange();
+        $response = $subnetworksClient->expandIpCidrRange(
+            $project,
+            $region,
+            $subnetwork,
+            $subnetworksExpandIpCidrRangeRequestResource
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +65,23 @@ function expand_ip_cidr_range_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+    $subnetwork = '[SUBNETWORK]';
+
+    expand_ip_cidr_range_sample($project, $region, $subnetwork);
 }
 // [END compute_v1_generated_Subnetworks_ExpandIpCidrRange_sync]

@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Metastore\V1alpha\DataprocMetastoreClient;
 use Google\Cloud\Metastore\V1alpha\Service;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -43,10 +44,14 @@ function update_service_sample(): void
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $updateMask = new FieldMask();
+    $service = new Service();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreClient->updateService();
+        $response = $dataprocMetastoreClient->updateService($updateMask, $service);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

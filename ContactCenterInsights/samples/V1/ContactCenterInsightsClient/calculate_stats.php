@@ -31,19 +31,17 @@ use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
 /**
  * Gets conversation statistics.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedLocation The location of the conversations. Please see
+ *                                  {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
  */
-function calculate_stats_sample(): void
+function calculate_stats_sample(string $formattedLocation): void
 {
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $request = new CalculateStatsRequest();
+    $request = (new CalculateStatsRequest())
+        ->setLocation($formattedLocation);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +51,21 @@ function calculate_stats_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedLocation = ContactCenterInsightsClient::locationName('[PROJECT]', '[LOCATION]');
+
+    calculate_stats_sample($formattedLocation);
 }
 // [END contactcenterinsights_v1_generated_ContactCenterInsights_CalculateStats_sync]

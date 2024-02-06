@@ -24,11 +24,42 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_TargetPools_GetHealth_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\InstanceReference;
 use Google\Cloud\Compute\V1\TargetPoolInstanceHealth;
 use Google\Cloud\Compute\V1\TargetPoolsClient;
 
 /**
  * Gets the most recent health check results for each IP for the instance that is referenced by the given target pool.
+ *
+ * @param string $project    Project ID for this request.
+ * @param string $region     Name of the region scoping this request.
+ * @param string $targetPool Name of the TargetPool resource to which the queried instance belongs.
+ */
+function get_health_sample(string $project, string $region, string $targetPool): void
+{
+    // Create a client.
+    $targetPoolsClient = new TargetPoolsClient();
+
+    // Prepare any non-scalar elements to be passed along with the request.
+    $instanceReferenceResource = new InstanceReference();
+
+    // Call the API and handle any network failures.
+    try {
+        /** @var TargetPoolInstanceHealth $response */
+        $response = $targetPoolsClient->getHealth(
+            $instanceReferenceResource,
+            $project,
+            $region,
+            $targetPool
+        );
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
+}
+
+/**
+ * Helper to execute the sample.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -36,18 +67,12 @@ use Google\Cloud\Compute\V1\TargetPoolsClient;
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function get_health_sample(): void
+function callSample(): void
 {
-    // Create a client.
-    $targetPoolsClient = new TargetPoolsClient();
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+    $targetPool = '[TARGET_POOL]';
 
-    // Call the API and handle any network failures.
-    try {
-        /** @var TargetPoolInstanceHealth $response */
-        $response = $targetPoolsClient->getHealth();
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
+    get_health_sample($project, $region, $targetPool);
 }
 // [END compute_v1_generated_TargetPools_GetHealth_sync]

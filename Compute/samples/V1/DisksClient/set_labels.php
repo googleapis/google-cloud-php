@@ -26,26 +26,28 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\DisksClient;
+use Google\Cloud\Compute\V1\ZoneSetLabelsRequest;
 use Google\Rpc\Status;
 
 /**
  * Sets the labels on a disk. To learn more about labels, read the Labeling Resources documentation.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project  Project ID for this request.
+ * @param string $resource Name or id of the resource for this request.
+ * @param string $zone     The name of the zone for this request.
  */
-function set_labels_sample(): void
+function set_labels_sample(string $project, string $resource, string $zone): void
 {
     // Create a client.
     $disksClient = new DisksClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $zoneSetLabelsRequestResource = new ZoneSetLabelsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $disksClient->setLabels();
+        $response = $disksClient->setLabels($project, $resource, $zone, $zoneSetLabelsRequestResource);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +60,23 @@ function set_labels_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $resource = '[RESOURCE]';
+    $zone = '[ZONE]';
+
+    set_labels_sample($project, $resource, $zone);
 }
 // [END compute_v1_generated_Disks_SetLabels_sync]

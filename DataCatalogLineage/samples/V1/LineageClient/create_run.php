@@ -27,23 +27,29 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\CreateRunRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\Run;
+use Google\Cloud\DataCatalog\Lineage\V1\Run\State;
+use Google\Protobuf\Timestamp;
 
 /**
  * Creates a new run.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the process that should own the run. Please see
+ *                                {@see LineageClient::processName()} for help formatting this field.
+ * @param int    $runState        The state of the run.
  */
-function create_run_sample(): void
+function create_run_sample(string $formattedParent, int $runState): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
     // Prepare the request message.
-    $request = new CreateRunRequest();
+    $runStartTime = new Timestamp();
+    $run = (new Run())
+        ->setStartTime($runStartTime)
+        ->setState($runState);
+    $request = (new CreateRunRequest())
+        ->setParent($formattedParent)
+        ->setRun($run);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +59,22 @@ function create_run_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = LineageClient::processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
+    $runState = State::UNKNOWN;
+
+    create_run_sample($formattedParent, $runState);
 }
 // [END datalineage_v1_generated_Lineage_CreateRun_sync]

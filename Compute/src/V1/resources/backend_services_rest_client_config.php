@@ -62,6 +62,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'key_name',
+                ],
             ],
             'Get' => [
                 'method' => 'get',

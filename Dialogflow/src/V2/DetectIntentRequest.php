@@ -97,7 +97,8 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *
      *                                                           Note: Always use agent versions for production traffic.
      *                                                           See [Versions and
-     *                                                           environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
+     *                                                           environments](https://cloud.google.com/dialogflow/es/docs/agents-versions). Please see
+     *                                                           {@see SessionsClient::sessionName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\V2\QueryInput $queryInput Required. The input specification. It can be set to:
      *
      *                                                           1. an audio config which instructs the speech recognizer how to process

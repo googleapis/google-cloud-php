@@ -30,13 +30,10 @@ use Google\Cloud\Compute\V1\TargetSslProxy;
 /**
  * Returns the specified TargetSslProxy resource.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project        Project ID for this request.
+ * @param string $targetSslProxy Name of the TargetSslProxy resource to return.
  */
-function get_sample(): void
+function get_sample(string $project, string $targetSslProxy): void
 {
     // Create a client.
     $targetSslProxiesClient = new TargetSslProxiesClient();
@@ -44,10 +41,27 @@ function get_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var TargetSslProxy $response */
-        $response = $targetSslProxiesClient->get();
+        $response = $targetSslProxiesClient->get($project, $targetSslProxy);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $targetSslProxy = '[TARGET_SSL_PROXY]';
+
+    get_sample($project, $targetSslProxy);
 }
 // [END compute_v1_generated_TargetSslProxies_Get_sync]

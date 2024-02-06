@@ -31,19 +31,19 @@ use Google\Cloud\Config\V1\ExportPreviewResultResponse;
 /**
  * Export [Preview][google.cloud.config.v1.Preview] results.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The preview whose results should be exported. The preview value
+ *                                is in the format:
+ *                                'projects/{project_id}/locations/{location}/previews/{preview}'. Please see
+ *                                {@see ConfigClient::previewName()} for help formatting this field.
  */
-function export_preview_result_sample(): void
+function export_preview_result_sample(string $formattedParent): void
 {
     // Create a client.
     $configClient = new ConfigClient();
 
     // Prepare the request message.
-    $request = new ExportPreviewResultRequest();
+    $request = (new ExportPreviewResultRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +53,21 @@ function export_preview_result_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ConfigClient::previewName('[PROJECT]', '[LOCATION]', '[PREVIEW]');
+
+    export_preview_result_sample($formattedParent);
 }
 // [END config_v1_generated_Config_ExportPreviewResult_sync]

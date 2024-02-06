@@ -28,6 +28,7 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
 use Google\Cloud\Deploy\V1\CustomTargetType;
 use Google\Cloud\Deploy\V1\UpdateCustomTargetTypeRequest;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -45,7 +46,11 @@ function update_custom_target_type_sample(): void
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = new UpdateCustomTargetTypeRequest();
+    $updateMask = new FieldMask();
+    $customTargetType = new CustomTargetType();
+    $request = (new UpdateCustomTargetTypeRequest())
+        ->setUpdateMask($updateMask)
+        ->setCustomTargetType($customTargetType);
 
     // Call the API and handle any network failures.
     try {

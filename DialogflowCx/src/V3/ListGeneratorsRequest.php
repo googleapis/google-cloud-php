@@ -45,7 +45,8 @@ class ListGeneratorsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The agent to list all generators for.
-     *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+     *                       {@see GeneratorsClient::agentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\ListGeneratorsRequest
      *

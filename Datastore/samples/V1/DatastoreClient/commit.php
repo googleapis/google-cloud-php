@@ -34,9 +34,10 @@ use Google\Cloud\Datastore\V1\Mutation;
  * Commits a transaction, optionally creating, deleting or modifying some
  * entities.
  *
- * @param int $mode The type of commit to perform. Defaults to `TRANSACTIONAL`.
+ * @param string $projectId The ID of the project against which to make the request.
+ * @param int    $mode      The type of commit to perform. Defaults to `TRANSACTIONAL`.
  */
-function commit_sample(int $mode): void
+function commit_sample(string $projectId, int $mode): void
 {
     // Create a client.
     $datastoreClient = new DatastoreClient();
@@ -44,6 +45,7 @@ function commit_sample(int $mode): void
     // Prepare the request message.
     $mutations = [new Mutation()];
     $request = (new CommitRequest())
+        ->setProjectId($projectId)
         ->setMode($mode)
         ->setMutations($mutations);
 
@@ -68,8 +70,9 @@ function commit_sample(int $mode): void
  */
 function callSample(): void
 {
+    $projectId = '[PROJECT_ID]';
     $mode = Mode::MODE_UNSPECIFIED;
 
-    commit_sample($mode);
+    commit_sample($projectId, $mode);
 }
 // [END datastore_v1_generated_Datastore_Commit_sync]

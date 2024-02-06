@@ -45,7 +45,9 @@ function update_deployment_sample(): void
     $configClient = new ConfigClient();
 
     // Prepare the request message.
-    $request = new UpdateDeploymentRequest();
+    $deployment = new Deployment();
+    $request = (new UpdateDeploymentRequest())
+        ->setDeployment($deployment);
 
     // Call the API and handle any network failures.
     try {

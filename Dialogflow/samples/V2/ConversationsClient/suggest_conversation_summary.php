@@ -33,19 +33,19 @@ use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse;
  * The range of the messages to be used for summary can be specified in the
  * request.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedConversation The conversation to fetch suggestion for.
+ *                                      Format: `projects/<Project ID>/locations/<Location
+ *                                      ID>/conversations/<Conversation ID>`. Please see
+ *                                      {@see ConversationsClient::conversationName()} for help formatting this field.
  */
-function suggest_conversation_summary_sample(): void
+function suggest_conversation_summary_sample(string $formattedConversation): void
 {
     // Create a client.
     $conversationsClient = new ConversationsClient();
 
     // Prepare the request message.
-    $request = new SuggestConversationSummaryRequest();
+    $request = (new SuggestConversationSummaryRequest())
+        ->setConversation($formattedConversation);
 
     // Call the API and handle any network failures.
     try {
@@ -55,5 +55,21 @@ function suggest_conversation_summary_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedConversation = ConversationsClient::conversationName('[PROJECT]', '[CONVERSATION]');
+
+    suggest_conversation_summary_sample($formattedConversation);
 }
 // [END dialogflow_v2_generated_Conversations_SuggestConversationSummary_sync]

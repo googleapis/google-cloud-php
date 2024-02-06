@@ -64,7 +64,8 @@ class DeleteAutomationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the `Automation` to delete. Format should be
-     *                     `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`.
+     *                     `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`. Please see
+     *                     {@see CloudDeployClient::automationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Deploy\V1\DeleteAutomationRequest
      *

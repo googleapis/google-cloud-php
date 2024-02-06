@@ -76,7 +76,14 @@ class RegionOperationsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DeleteRegionOperationResponse();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteRegionOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new DeleteRegionOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->delete($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -84,6 +91,12 @@ class RegionOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionOperations/Delete', $actualFuncCall);
+        $actualValue = $actualRequestObject->getOperation();
+        $this->assertProtobufEquals($operation, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -105,7 +118,14 @@ class RegionOperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteRegionOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new DeleteRegionOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->delete($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -172,7 +192,14 @@ class RegionOperationsClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-        $request = new GetRegionOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new GetRegionOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -180,6 +207,12 @@ class RegionOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getOperation();
+        $this->assertProtobufEquals($operation, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -201,7 +234,14 @@ class RegionOperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetRegionOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new GetRegionOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -239,7 +279,12 @@ class RegionOperationsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListRegionOperationsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListRegionOperationsRequest())
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -250,6 +295,10 @@ class RegionOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionOperations/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -271,7 +320,12 @@ class RegionOperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListRegionOperationsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListRegionOperationsRequest())
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -338,7 +392,14 @@ class RegionOperationsClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-        $request = new WaitRegionOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new WaitRegionOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->wait($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -346,6 +407,12 @@ class RegionOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionOperations/Wait', $actualFuncCall);
+        $actualValue = $actualRequestObject->getOperation();
+        $this->assertProtobufEquals($operation, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -367,7 +434,14 @@ class RegionOperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new WaitRegionOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new WaitRegionOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->wait($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -392,7 +466,14 @@ class RegionOperationsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DeleteRegionOperationResponse();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteRegionOperationRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new DeleteRegionOperationRequest())
+            ->setOperation($operation)
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->deleteAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -400,6 +481,12 @@ class RegionOperationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionOperations/Delete', $actualFuncCall);
+        $actualValue = $actualRequestObject->getOperation();
+        $this->assertProtobufEquals($operation, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

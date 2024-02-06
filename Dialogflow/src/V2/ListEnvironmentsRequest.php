@@ -45,6 +45,7 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
      *
      *                       - `projects/<Project ID>/agent`
      *                       - `projects/<Project ID>/locations/<Location ID>/agent`
+     *                       Please see {@see EnvironmentsClient::agentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\ListEnvironmentsRequest
      *

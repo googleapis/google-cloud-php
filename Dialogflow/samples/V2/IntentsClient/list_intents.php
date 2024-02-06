@@ -32,19 +32,26 @@ use Google\Cloud\Dialogflow\V2\ListIntentsRequest;
 /**
  * Returns the list of all intents in the specified agent.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The agent to list all intents from.
+ *                                Format: `projects/<Project ID>/agent` or `projects/<Project
+ *                                ID>/locations/<Location ID>/agent`.
+ *
+ *                                Alternatively, you can specify the environment to list intents for.
+ *                                Format: `projects/<Project ID>/agent/environments/<Environment ID>`
+ *                                or `projects/<Project ID>/locations/<Location
+ *                                ID>/agent/environments/<Environment ID>`.
+ *                                Note: training phrases of the intents will not be returned for non-draft
+ *                                environment. Please see
+ *                                {@see IntentsClient::agentName()} for help formatting this field.
  */
-function list_intents_sample(): void
+function list_intents_sample(string $formattedParent): void
 {
     // Create a client.
     $intentsClient = new IntentsClient();
 
     // Prepare the request message.
-    $request = new ListIntentsRequest();
+    $request = (new ListIntentsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +65,21 @@ function list_intents_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = IntentsClient::agentName('[PROJECT]');
+
+    list_intents_sample($formattedParent);
 }
 // [END dialogflow_v2_generated_Intents_ListIntents_sync]

@@ -23,7 +23,8 @@ class GetStreamObjectRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the stream object resource to get.
+     * @param string $name Required. The name of the stream object resource to get. Please see
+     *                     {@see DatastreamClient::streamObjectName()} for help formatting this field.
      *
      * @return \Google\Cloud\Datastream\V1\GetStreamObjectRequest
      *

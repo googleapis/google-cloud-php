@@ -73,6 +73,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'release_config_id',
+                ],
             ],
             'CreateRepository' => [
                 'method' => 'post',
@@ -85,6 +88,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'repository_id',
+                ],
             ],
             'CreateWorkflowConfig' => [
                 'method' => 'post',
@@ -96,6 +102,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'workflow_config_id',
                 ],
             ],
             'CreateWorkflowInvocation' => [
@@ -120,6 +129,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'workspace_id',
                 ],
             ],
             'DeleteReleaseConfig' => [

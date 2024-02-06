@@ -27,23 +27,31 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\V2\Client\FulfillmentsClient;
 use Google\Cloud\Dialogflow\V2\Fulfillment;
 use Google\Cloud\Dialogflow\V2\UpdateFulfillmentRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates the fulfillment.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $fulfillmentName The unique identifier of the fulfillment.
+ *                                Supported formats:
+ *
+ *                                - `projects/<Project ID>/agent/fulfillment`
+ *                                - `projects/<Project ID>/locations/<Location ID>/agent/fulfillment`
+ *
+ *                                This field is not used for Fulfillment in an Environment.
  */
-function update_fulfillment_sample(): void
+function update_fulfillment_sample(string $fulfillmentName): void
 {
     // Create a client.
     $fulfillmentsClient = new FulfillmentsClient();
 
     // Prepare the request message.
-    $request = new UpdateFulfillmentRequest();
+    $fulfillment = (new Fulfillment())
+        ->setName($fulfillmentName);
+    $updateMask = new FieldMask();
+    $request = (new UpdateFulfillmentRequest())
+        ->setFulfillment($fulfillment)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +61,21 @@ function update_fulfillment_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $fulfillmentName = '[NAME]';
+
+    update_fulfillment_sample($fulfillmentName);
 }
 // [END dialogflow_v2_generated_Fulfillments_UpdateFulfillment_sync]

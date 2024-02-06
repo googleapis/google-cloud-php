@@ -93,7 +93,12 @@ class RoutesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteRouteRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $route = 'route108704329';
+        $request = (new DeleteRouteRequest())
+            ->setProject($project)
+            ->setRoute($route);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -103,8 +108,13 @@ class RoutesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routes/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRoute();
+        $this->assertProtobufEquals($route, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -152,7 +162,12 @@ class RoutesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteRouteRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $route = 'route108704329';
+        $request = (new DeleteRouteRequest())
+            ->setProject($project)
+            ->setRoute($route);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -222,7 +237,12 @@ class RoutesClientTest extends GeneratedTest
         $expectedResponse->setRouteType($routeType);
         $expectedResponse->setSelfLink($selfLink);
         $transport->addResponse($expectedResponse);
-        $request = new GetRouteRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $route = 'route108704329';
+        $request = (new GetRouteRequest())
+            ->setProject($project)
+            ->setRoute($route);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -230,6 +250,10 @@ class RoutesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routes/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRoute();
+        $this->assertProtobufEquals($route, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -251,7 +275,12 @@ class RoutesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetRouteRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $route = 'route108704329';
+        $request = (new GetRouteRequest())
+            ->setProject($project)
+            ->setRoute($route);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -290,7 +319,12 @@ class RoutesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertRouteRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $routeResource = new Route();
+        $request = (new InsertRouteRequest())
+            ->setProject($project)
+            ->setRouteResource($routeResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -300,8 +334,13 @@ class RoutesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routes/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRouteResource();
+        $this->assertProtobufEquals($routeResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -349,7 +388,12 @@ class RoutesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertRouteRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $routeResource = new Route();
+        $request = (new InsertRouteRequest())
+            ->setProject($project)
+            ->setRouteResource($routeResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -394,7 +438,10 @@ class RoutesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListRoutesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListRoutesRequest())
+            ->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -405,6 +452,8 @@ class RoutesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routes/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -426,7 +475,10 @@ class RoutesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListRoutesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListRoutesRequest())
+            ->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -465,7 +517,12 @@ class RoutesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteRouteRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $route = 'route108704329';
+        $request = (new DeleteRouteRequest())
+            ->setProject($project)
+            ->setRoute($route);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -475,8 +532,13 @@ class RoutesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Routes/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRoute();
+        $this->assertProtobufEquals($route, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

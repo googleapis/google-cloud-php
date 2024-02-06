@@ -31,13 +31,11 @@ use Google\Rpc\Status;
 /**
  * Withdraws the specified PublicDelegatedPrefix in the given region.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project               Project ID for this request.
+ * @param string $publicDelegatedPrefix The name of the public delegated prefix. It should comply with RFC1035.
+ * @param string $region                The name of the region where the public delegated prefix is located. It should comply with RFC1035.
  */
-function withdraw_sample(): void
+function withdraw_sample(string $project, string $publicDelegatedPrefix, string $region): void
 {
     // Create a client.
     $publicDelegatedPrefixesClient = new PublicDelegatedPrefixesClient();
@@ -45,7 +43,7 @@ function withdraw_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $publicDelegatedPrefixesClient->withdraw();
+        $response = $publicDelegatedPrefixesClient->withdraw($project, $publicDelegatedPrefix, $region);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +56,23 @@ function withdraw_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $publicDelegatedPrefix = '[PUBLIC_DELEGATED_PREFIX]';
+    $region = '[REGION]';
+
+    withdraw_sample($project, $publicDelegatedPrefix, $region);
 }
 // [END compute_v1_generated_PublicDelegatedPrefixes_Withdraw_sync]

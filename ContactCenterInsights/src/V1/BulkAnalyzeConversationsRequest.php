@@ -43,7 +43,8 @@ class BulkAnalyzeConversationsRequest extends \Google\Protobuf\Internal\Message
     private $annotator_selector = null;
 
     /**
-     * @param string $parent             Required. The parent resource to create analyses in.
+     * @param string $parent             Required. The parent resource to create analyses in. Please see
+     *                                   {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
      * @param string $filter             Required. Filter used to select the subset of conversations to analyze.
      * @param float  $analysisPercentage Required. Percentage of selected conversation to analyze, between
      *                                   [0, 100].

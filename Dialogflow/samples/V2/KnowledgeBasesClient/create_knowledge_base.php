@@ -31,19 +31,25 @@ use Google\Cloud\Dialogflow\V2\KnowledgeBase;
 /**
  * Creates a knowledge base.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent          The project to create a knowledge base for.
+ *                                         Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+ *                                         {@see KnowledgeBasesClient::projectName()} for help formatting this field.
+ * @param string $knowledgeBaseDisplayName The display name of the knowledge base. The name must be 1024
+ *                                         bytes or less; otherwise, the creation request fails.
  */
-function create_knowledge_base_sample(): void
-{
+function create_knowledge_base_sample(
+    string $formattedParent,
+    string $knowledgeBaseDisplayName
+): void {
     // Create a client.
     $knowledgeBasesClient = new KnowledgeBasesClient();
 
     // Prepare the request message.
-    $request = new CreateKnowledgeBaseRequest();
+    $knowledgeBase = (new KnowledgeBase())
+        ->setDisplayName($knowledgeBaseDisplayName);
+    $request = (new CreateKnowledgeBaseRequest())
+        ->setParent($formattedParent)
+        ->setKnowledgeBase($knowledgeBase);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +59,22 @@ function create_knowledge_base_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = KnowledgeBasesClient::projectName('[PROJECT]');
+    $knowledgeBaseDisplayName = '[DISPLAY_NAME]';
+
+    create_knowledge_base_sample($formattedParent, $knowledgeBaseDisplayName);
 }
 // [END dialogflow_v2_generated_KnowledgeBases_CreateKnowledgeBase_sync]

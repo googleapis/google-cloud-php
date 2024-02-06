@@ -69,7 +69,8 @@ use Google\Cloud\Compute\V1\XpnHostList;
  * ```
  * $projectsClient = new ProjectsClient();
  * try {
- *     $operationResponse = $projectsClient->disableXpnHost();
+ *     $project = 'project';
+ *     $operationResponse = $projectsClient->disableXpnHost($project);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -79,7 +80,7 @@ use Google\Cloud\Compute\V1\XpnHostList;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $projectsClient->disableXpnHost();
+ *     $operationResponse = $projectsClient->disableXpnHost($project);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'disableXpnHost');
@@ -179,7 +180,9 @@ class ProjectsGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -275,7 +278,8 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $operationResponse = $projectsClient->disableXpnHost();
+     *     $project = 'project';
+     *     $operationResponse = $projectsClient->disableXpnHost($project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -285,7 +289,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $projectsClient->disableXpnHost();
+     *     $operationResponse = $projectsClient->disableXpnHost($project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'disableXpnHost');
@@ -304,11 +308,10 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -321,15 +324,12 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function disableXpnHost(array $optionalArgs = [])
+    public function disableXpnHost($project, array $optionalArgs = [])
     {
         $request = new DisableXpnHostProjectRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -346,7 +346,9 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $operationResponse = $projectsClient->disableXpnResource();
+     *     $project = 'project';
+     *     $projectsDisableXpnResourceRequestResource = new ProjectsDisableXpnResourceRequest();
+     *     $operationResponse = $projectsClient->disableXpnResource($project, $projectsDisableXpnResourceRequestResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -356,7 +358,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $projectsClient->disableXpnResource();
+     *     $operationResponse = $projectsClient->disableXpnResource($project, $projectsDisableXpnResourceRequestResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'disableXpnResource');
@@ -375,13 +377,11 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                            $project                                   Project ID for this request.
+     * @param ProjectsDisableXpnResourceRequest $projectsDisableXpnResourceRequestResource The body resource for this request
+     * @param array                             $optionalArgs                              {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type ProjectsDisableXpnResourceRequest $projectsDisableXpnResourceRequestResource
-     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -394,19 +394,13 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function disableXpnResource(array $optionalArgs = [])
+    public function disableXpnResource($project, $projectsDisableXpnResourceRequestResource, array $optionalArgs = [])
     {
         $request = new DisableXpnResourceProjectRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['projectsDisableXpnResourceRequestResource'])) {
-            $request->setProjectsDisableXpnResourceRequestResource($optionalArgs['projectsDisableXpnResourceRequestResource']);
-        }
-
+        $request->setProject($project);
+        $request->setProjectsDisableXpnResourceRequestResource($projectsDisableXpnResourceRequestResource);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -423,7 +417,8 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $operationResponse = $projectsClient->enableXpnHost();
+     *     $project = 'project';
+     *     $operationResponse = $projectsClient->enableXpnHost($project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -433,7 +428,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $projectsClient->enableXpnHost();
+     *     $operationResponse = $projectsClient->enableXpnHost($project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'enableXpnHost');
@@ -452,11 +447,10 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -469,15 +463,12 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function enableXpnHost(array $optionalArgs = [])
+    public function enableXpnHost($project, array $optionalArgs = [])
     {
         $request = new EnableXpnHostProjectRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -494,7 +485,9 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $operationResponse = $projectsClient->enableXpnResource();
+     *     $project = 'project';
+     *     $projectsEnableXpnResourceRequestResource = new ProjectsEnableXpnResourceRequest();
+     *     $operationResponse = $projectsClient->enableXpnResource($project, $projectsEnableXpnResourceRequestResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -504,7 +497,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $projectsClient->enableXpnResource();
+     *     $operationResponse = $projectsClient->enableXpnResource($project, $projectsEnableXpnResourceRequestResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'enableXpnResource');
@@ -523,13 +516,11 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                           $project                                  Project ID for this request.
+     * @param ProjectsEnableXpnResourceRequest $projectsEnableXpnResourceRequestResource The body resource for this request
+     * @param array                            $optionalArgs                             {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type ProjectsEnableXpnResourceRequest $projectsEnableXpnResourceRequestResource
-     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -542,19 +533,13 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function enableXpnResource(array $optionalArgs = [])
+    public function enableXpnResource($project, $projectsEnableXpnResourceRequestResource, array $optionalArgs = [])
     {
         $request = new EnableXpnResourceProjectRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['projectsEnableXpnResourceRequestResource'])) {
-            $request->setProjectsEnableXpnResourceRequestResource($optionalArgs['projectsEnableXpnResourceRequestResource']);
-        }
-
+        $request->setProject($project);
+        $request->setProjectsEnableXpnResourceRequestResource($projectsEnableXpnResourceRequestResource);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -571,17 +556,17 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $response = $projectsClient->get();
+     *     $project = 'project';
+     *     $response = $projectsClient->get($project);
      * } finally {
      *     $projectsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -592,15 +577,12 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($project, array $optionalArgs = [])
     {
         $request = new GetProjectRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', Project::class, $optionalArgs, $request)->wait();
@@ -613,17 +595,17 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $response = $projectsClient->getXpnHost();
+     *     $project = 'project';
+     *     $response = $projectsClient->getXpnHost($project);
      * } finally {
      *     $projectsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -634,15 +616,12 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getXpnHost(array $optionalArgs = [])
+    public function getXpnHost($project, array $optionalArgs = [])
     {
         $request = new GetXpnHostProjectRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetXpnHost', Project::class, $optionalArgs, $request)->wait();
@@ -655,8 +634,9 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
+     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $projectsClient->getXpnResources();
+     *     $pagedResponse = $projectsClient->getXpnResources($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -664,7 +644,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $projectsClient->getXpnResources();
+     *     $pagedResponse = $projectsClient->getXpnResources($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -673,7 +653,8 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -687,8 +668,6 @@ class ProjectsGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -701,10 +680,12 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getXpnResources(array $optionalArgs = [])
+    public function getXpnResources($project, array $optionalArgs = [])
     {
         $request = new GetXpnResourcesProjectsRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -719,11 +700,6 @@ class ProjectsGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -742,8 +718,10 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
+     *     $project = 'project';
+     *     $projectsListXpnHostsRequestResource = new ProjectsListXpnHostsRequest();
      *     // Iterate over pages of elements
-     *     $pagedResponse = $projectsClient->listXpnHosts();
+     *     $pagedResponse = $projectsClient->listXpnHosts($project, $projectsListXpnHostsRequestResource);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -751,7 +729,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $projectsClient->listXpnHosts();
+     *     $pagedResponse = $projectsClient->listXpnHosts($project, $projectsListXpnHostsRequestResource);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -760,7 +738,9 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                      $project                             Project ID for this request.
+     * @param ProjectsListXpnHostsRequest $projectsListXpnHostsRequestResource The body resource for this request
+     * @param array                       $optionalArgs                        {
      *     Optional.
      *
      *     @type string $filter
@@ -774,10 +754,6 @@ class ProjectsGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type ProjectsListXpnHostsRequest $projectsListXpnHostsRequestResource
-     *           The body resource for this request
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -790,10 +766,13 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listXpnHosts(array $optionalArgs = [])
+    public function listXpnHosts($project, $projectsListXpnHostsRequestResource, array $optionalArgs = [])
     {
         $request = new ListXpnHostsProjectsRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setProjectsListXpnHostsRequestResource($projectsListXpnHostsRequestResource);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -808,15 +787,6 @@ class ProjectsGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['projectsListXpnHostsRequestResource'])) {
-            $request->setProjectsListXpnHostsRequestResource($optionalArgs['projectsListXpnHostsRequestResource']);
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -835,7 +805,9 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $operationResponse = $projectsClient->moveDisk();
+     *     $diskMoveRequestResource = new DiskMoveRequest();
+     *     $project = 'project';
+     *     $operationResponse = $projectsClient->moveDisk($diskMoveRequestResource, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -845,7 +817,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $projectsClient->moveDisk();
+     *     $operationResponse = $projectsClient->moveDisk($diskMoveRequestResource, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'moveDisk');
@@ -864,13 +836,11 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param DiskMoveRequest $diskMoveRequestResource The body resource for this request
+     * @param string          $project                 Project ID for this request.
+     * @param array           $optionalArgs            {
      *     Optional.
      *
-     *     @type DiskMoveRequest $diskMoveRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -883,19 +853,13 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function moveDisk(array $optionalArgs = [])
+    public function moveDisk($diskMoveRequestResource, $project, array $optionalArgs = [])
     {
         $request = new MoveDiskProjectRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['diskMoveRequestResource'])) {
-            $request->setDiskMoveRequestResource($optionalArgs['diskMoveRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setDiskMoveRequestResource($diskMoveRequestResource);
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -912,7 +876,9 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $operationResponse = $projectsClient->moveInstance();
+     *     $instanceMoveRequestResource = new InstanceMoveRequest();
+     *     $project = 'project';
+     *     $operationResponse = $projectsClient->moveInstance($instanceMoveRequestResource, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -922,7 +888,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $projectsClient->moveInstance();
+     *     $operationResponse = $projectsClient->moveInstance($instanceMoveRequestResource, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'moveInstance');
@@ -941,13 +907,11 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param InstanceMoveRequest $instanceMoveRequestResource The body resource for this request
+     * @param string              $project                     Project ID for this request.
+     * @param array               $optionalArgs                {
      *     Optional.
      *
-     *     @type InstanceMoveRequest $instanceMoveRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -960,19 +924,13 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function moveInstance(array $optionalArgs = [])
+    public function moveInstance($instanceMoveRequestResource, $project, array $optionalArgs = [])
     {
         $request = new MoveInstanceProjectRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceMoveRequestResource'])) {
-            $request->setInstanceMoveRequestResource($optionalArgs['instanceMoveRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setInstanceMoveRequestResource($instanceMoveRequestResource);
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -989,7 +947,9 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $operationResponse = $projectsClient->setCommonInstanceMetadata();
+     *     $metadataResource = new Metadata();
+     *     $project = 'project';
+     *     $operationResponse = $projectsClient->setCommonInstanceMetadata($metadataResource, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -999,7 +959,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $projectsClient->setCommonInstanceMetadata();
+     *     $operationResponse = $projectsClient->setCommonInstanceMetadata($metadataResource, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'setCommonInstanceMetadata');
@@ -1018,13 +978,11 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Metadata $metadataResource The body resource for this request
+     * @param string   $project          Project ID for this request.
+     * @param array    $optionalArgs     {
      *     Optional.
      *
-     *     @type Metadata $metadataResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -1037,19 +995,13 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setCommonInstanceMetadata(array $optionalArgs = [])
+    public function setCommonInstanceMetadata($metadataResource, $project, array $optionalArgs = [])
     {
         $request = new SetCommonInstanceMetadataProjectRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['metadataResource'])) {
-            $request->setMetadataResource($optionalArgs['metadataResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setMetadataResource($metadataResource);
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1066,7 +1018,9 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $operationResponse = $projectsClient->setDefaultNetworkTier();
+     *     $project = 'project';
+     *     $projectsSetDefaultNetworkTierRequestResource = new ProjectsSetDefaultNetworkTierRequest();
+     *     $operationResponse = $projectsClient->setDefaultNetworkTier($project, $projectsSetDefaultNetworkTierRequestResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1076,7 +1030,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $projectsClient->setDefaultNetworkTier();
+     *     $operationResponse = $projectsClient->setDefaultNetworkTier($project, $projectsSetDefaultNetworkTierRequestResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'setDefaultNetworkTier');
@@ -1095,13 +1049,11 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                               $project                                      Project ID for this request.
+     * @param ProjectsSetDefaultNetworkTierRequest $projectsSetDefaultNetworkTierRequestResource The body resource for this request
+     * @param array                                $optionalArgs                                 {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type ProjectsSetDefaultNetworkTierRequest $projectsSetDefaultNetworkTierRequestResource
-     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -1114,19 +1066,13 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setDefaultNetworkTier(array $optionalArgs = [])
+    public function setDefaultNetworkTier($project, $projectsSetDefaultNetworkTierRequestResource, array $optionalArgs = [])
     {
         $request = new SetDefaultNetworkTierProjectRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['projectsSetDefaultNetworkTierRequestResource'])) {
-            $request->setProjectsSetDefaultNetworkTierRequestResource($optionalArgs['projectsSetDefaultNetworkTierRequestResource']);
-        }
-
+        $request->setProject($project);
+        $request->setProjectsSetDefaultNetworkTierRequestResource($projectsSetDefaultNetworkTierRequestResource);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1143,7 +1089,9 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $operationResponse = $projectsClient->setUsageExportBucket();
+     *     $project = 'project';
+     *     $usageExportLocationResource = new UsageExportLocation();
+     *     $operationResponse = $projectsClient->setUsageExportBucket($project, $usageExportLocationResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1153,7 +1101,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $projectsClient->setUsageExportBucket();
+     *     $operationResponse = $projectsClient->setUsageExportBucket($project, $usageExportLocationResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'setUsageExportBucket');
@@ -1172,15 +1120,13 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string              $project                     Project ID for this request.
+     * @param UsageExportLocation $usageExportLocationResource The body resource for this request
+     * @param array               $optionalArgs                {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type UsageExportLocation $usageExportLocationResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1191,21 +1137,15 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setUsageExportBucket(array $optionalArgs = [])
+    public function setUsageExportBucket($project, $usageExportLocationResource, array $optionalArgs = [])
     {
         $request = new SetUsageExportBucketProjectRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setProject($project);
+        $request->setUsageExportLocationResource($usageExportLocationResource);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['usageExportLocationResource'])) {
-            $request->setUsageExportLocationResource($optionalArgs['usageExportLocationResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

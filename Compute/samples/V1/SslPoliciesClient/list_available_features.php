@@ -30,13 +30,9 @@ use Google\Cloud\Compute\V1\SslPoliciesListAvailableFeaturesResponse;
 /**
  * Lists all features that can be specified in the SSL policy when using custom profile.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project Project ID for this request.
  */
-function list_available_features_sample(): void
+function list_available_features_sample(string $project): void
 {
     // Create a client.
     $sslPoliciesClient = new SslPoliciesClient();
@@ -44,10 +40,26 @@ function list_available_features_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var SslPoliciesListAvailableFeaturesResponse $response */
-        $response = $sslPoliciesClient->listAvailableFeatures();
+        $response = $sslPoliciesClient->listAvailableFeatures($project);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+
+    list_available_features_sample($project);
 }
 // [END compute_v1_generated_SslPolicies_ListAvailableFeatures_sync]

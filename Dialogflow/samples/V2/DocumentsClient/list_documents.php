@@ -32,19 +32,19 @@ use Google\Cloud\Dialogflow\V2\ListDocumentsRequest;
 /**
  * Returns the list of all documents of the knowledge base.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The knowledge base to list all documents for.
+ *                                Format: `projects/<Project ID>/locations/<Location
+ *                                ID>/knowledgeBases/<Knowledge Base ID>`. Please see
+ *                                {@see DocumentsClient::knowledgeBaseName()} for help formatting this field.
  */
-function list_documents_sample(): void
+function list_documents_sample(string $formattedParent): void
 {
     // Create a client.
     $documentsClient = new DocumentsClient();
 
     // Prepare the request message.
-    $request = new ListDocumentsRequest();
+    $request = (new ListDocumentsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +58,21 @@ function list_documents_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DocumentsClient::knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+
+    list_documents_sample($formattedParent);
 }
 // [END dialogflow_v2_generated_Documents_ListDocuments_sync]

@@ -41,7 +41,8 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to list all
      *                       environments for. Format: `projects/<Project ID>/locations/<Location
-     *                       ID>/agents/<Agent ID>`.
+     *                       ID>/agents/<Agent ID>`. Please see
+     *                       {@see EnvironmentsClient::agentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\ListEnvironmentsRequest
      *

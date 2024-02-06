@@ -47,7 +47,10 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
  * ```
  * $regionInstancesClient = new RegionInstancesClient();
  * try {
- *     $operationResponse = $regionInstancesClient->bulkInsert();
+ *     $bulkInsertInstanceResourceResource = new BulkInsertInstanceResource();
+ *     $project = 'project';
+ *     $region = 'region';
+ *     $operationResponse = $regionInstancesClient->bulkInsert($bulkInsertInstanceResourceResource, $project, $region);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -57,7 +60,7 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $regionInstancesClient->bulkInsert();
+ *     $operationResponse = $regionInstancesClient->bulkInsert($bulkInsertInstanceResourceResource, $project, $region);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $regionInstancesClient->resumeOperation($operationName, 'bulkInsert');
@@ -157,7 +160,10 @@ class RegionInstancesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+                'getRegion',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -253,7 +259,10 @@ class RegionInstancesGapicClient
      * ```
      * $regionInstancesClient = new RegionInstancesClient();
      * try {
-     *     $operationResponse = $regionInstancesClient->bulkInsert();
+     *     $bulkInsertInstanceResourceResource = new BulkInsertInstanceResource();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $operationResponse = $regionInstancesClient->bulkInsert($bulkInsertInstanceResourceResource, $project, $region);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -263,7 +272,7 @@ class RegionInstancesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionInstancesClient->bulkInsert();
+     *     $operationResponse = $regionInstancesClient->bulkInsert($bulkInsertInstanceResourceResource, $project, $region);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionInstancesClient->resumeOperation($operationName, 'bulkInsert');
@@ -282,15 +291,12 @@ class RegionInstancesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param BulkInsertInstanceResource $bulkInsertInstanceResourceResource The body resource for this request
+     * @param string                     $project                            Project ID for this request.
+     * @param string                     $region                             The name of the region for this request.
+     * @param array                      $optionalArgs                       {
      *     Optional.
      *
-     *     @type BulkInsertInstanceResource $bulkInsertInstanceResourceResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           The name of the region for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -303,24 +309,15 @@ class RegionInstancesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function bulkInsert(array $optionalArgs = [])
+    public function bulkInsert($bulkInsertInstanceResourceResource, $project, $region, array $optionalArgs = [])
     {
         $request = new BulkInsertRegionInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['bulkInsertInstanceResourceResource'])) {
-            $request->setBulkInsertInstanceResourceResource($optionalArgs['bulkInsertInstanceResourceResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setBulkInsertInstanceResourceResource($bulkInsertInstanceResourceResource);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }

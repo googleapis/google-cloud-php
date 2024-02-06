@@ -30,7 +30,8 @@ class DeleteEntryGroupRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
-     * @param string $name Required. The name of the entry group to delete.
+     * @param string $name Required. The name of the entry group to delete. Please see
+     *                     {@see DataCatalogClient::entryGroupName()} for help formatting this field.
      *
      * @return \Google\Cloud\DataCatalog\V1\DeleteEntryGroupRequest
      *

@@ -45,7 +45,8 @@ class DeleteTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Messag
      *                     to delete. Format: `projects/<Project ID>/locations/<Location
      *                     ID>/agents/<Agent ID>/flows/<Flow ID>/transitionRouteGroups/<Transition
      *                     Route Group ID>` or `projects/<Project ID>/locations/<Location
-     *                     ID>/agents/<Agent ID>/transitionRouteGroups/<Transition Route Group ID>`.
+     *                     ID>/agents/<Agent ID>/transitionRouteGroups/<Transition Route Group ID>`. Please see
+     *                     {@see TransitionRouteGroupsClient::transitionRouteGroupName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\DeleteTransitionRouteGroupRequest
      *

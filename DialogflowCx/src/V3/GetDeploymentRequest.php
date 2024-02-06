@@ -30,7 +30,8 @@ class GetDeploymentRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the
      *                     [Deployment][google.cloud.dialogflow.cx.v3.Deployment]. Format:
      *                     `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/environments/<Environment ID>/deployments/<Deployment ID>`.
+     *                     ID>/environments/<Environment ID>/deployments/<Deployment ID>`. Please see
+     *                     {@see DeploymentsClient::deploymentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetDeploymentRequest
      *

@@ -44,7 +44,10 @@ use Google\Cloud\Compute\V1\ImageFamilyView;
  * ```
  * $imageFamilyViewsClient = new ImageFamilyViewsClient();
  * try {
- *     $response = $imageFamilyViewsClient->get();
+ *     $family = 'family';
+ *     $project = 'project';
+ *     $zone = 'zone';
+ *     $response = $imageFamilyViewsClient->get($family, $project, $zone);
  * } finally {
  *     $imageFamilyViewsClient->close();
  * }
@@ -179,21 +182,21 @@ class ImageFamilyViewsGapicClient
      * ```
      * $imageFamilyViewsClient = new ImageFamilyViewsClient();
      * try {
-     *     $response = $imageFamilyViewsClient->get();
+     *     $family = 'family';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $response = $imageFamilyViewsClient->get($family, $project, $zone);
      * } finally {
      *     $imageFamilyViewsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $family       Name of the image family to search for.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $family
-     *           Name of the image family to search for.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $zone
-     *           The name of the zone for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -204,25 +207,16 @@ class ImageFamilyViewsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($family, $project, $zone, array $optionalArgs = [])
     {
         $request = new GetImageFamilyViewRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['family'])) {
-            $request->setFamily($optionalArgs['family']);
-            $requestParamHeaders['family'] = $optionalArgs['family'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['zone'])) {
-            $request->setZone($optionalArgs['zone']);
-            $requestParamHeaders['zone'] = $optionalArgs['zone'];
-        }
-
+        $request->setFamily($family);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['family'] = $family;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', ImageFamilyView::class, $optionalArgs, $request)->wait();

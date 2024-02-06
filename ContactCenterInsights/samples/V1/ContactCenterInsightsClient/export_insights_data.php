@@ -33,19 +33,17 @@ use Google\Rpc\Status;
 /**
  * Export insights data to a destination defined in the request body.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent resource to export data from. Please see
+ *                                {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
  */
-function export_insights_data_sample(): void
+function export_insights_data_sample(string $formattedParent): void
 {
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $request = new ExportInsightsDataRequest();
+    $request = (new ExportInsightsDataRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +63,21 @@ function export_insights_data_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ContactCenterInsightsClient::locationName('[PROJECT]', '[LOCATION]');
+
+    export_insights_data_sample($formattedParent);
 }
 // [END contactcenterinsights_v1_generated_ContactCenterInsights_ExportInsightsData_sync]

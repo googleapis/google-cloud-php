@@ -34,7 +34,8 @@ class GetAgentValidationResultRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The agent name.
      *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/validationResult`.
+     *                     ID>/validationResult`. Please see
+     *                     {@see AgentsClient::agentValidationResultName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetAgentValidationResultRequest
      *

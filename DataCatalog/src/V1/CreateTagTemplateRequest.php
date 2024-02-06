@@ -41,7 +41,8 @@ class CreateTagTemplateRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                   $parent        Required. The name of the project and the template location
-     *                                                                [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
+     *                                                                [region](https://cloud.google.com/data-catalog/docs/concepts/regions). Please see
+     *                                                                {@see DataCatalogClient::locationName()} for help formatting this field.
      * @param string                                   $tagTemplateId Required. The ID of the tag template to create.
      *
      *                                                                The ID must contain only lowercase letters (a-z), numbers (0-9),

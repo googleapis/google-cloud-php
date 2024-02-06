@@ -30,13 +30,10 @@ use Google\Cloud\Compute\V1\InterconnectsGetDiagnosticsResponse;
 /**
  * Returns the interconnectDiagnostics for the specified Interconnect. In the event of a global outage, do not use this API to make decisions about where to redirect your network traffic. Unlike a VLAN attachment, which is regional, a Cloud Interconnect connection is a global resource. A global outage can prevent this API from functioning properly.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $interconnect Name of the interconnect resource to query.
+ * @param string $project      Project ID for this request.
  */
-function get_diagnostics_sample(): void
+function get_diagnostics_sample(string $interconnect, string $project): void
 {
     // Create a client.
     $interconnectsClient = new InterconnectsClient();
@@ -44,10 +41,27 @@ function get_diagnostics_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var InterconnectsGetDiagnosticsResponse $response */
-        $response = $interconnectsClient->getDiagnostics();
+        $response = $interconnectsClient->getDiagnostics($interconnect, $project);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $interconnect = '[INTERCONNECT]';
+    $project = '[PROJECT]';
+
+    get_diagnostics_sample($interconnect, $project);
 }
 // [END compute_v1_generated_Interconnects_GetDiagnostics_sync]

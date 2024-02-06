@@ -49,7 +49,8 @@ class ListExamplesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent Required. Example resource parent.
+     * @param string $parent Required. Example resource parent. Please see
+     *                       {@see DataLabelingServiceClient::annotatedDatasetName()} for help formatting this field.
      * @param string $filter Optional. An expression for filtering Examples. For annotated datasets that
      *                       have annotation spec set, filter by
      *                       annotation_spec.display_name is supported. Format

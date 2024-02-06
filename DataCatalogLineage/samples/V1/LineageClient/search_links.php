@@ -40,19 +40,17 @@ use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksRequest;
  * `datalineage.events.get` permission. The project provided in the URL
  * is used for Billing and Quota.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The project and location you want search in. Please see
+ *                                {@see LineageClient::locationName()} for help formatting this field.
  */
-function search_links_sample(): void
+function search_links_sample(string $formattedParent): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
     // Prepare the request message.
-    $request = new SearchLinksRequest();
+    $request = (new SearchLinksRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -66,5 +64,21 @@ function search_links_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = LineageClient::locationName('[PROJECT]', '[LOCATION]');
+
+    search_links_sample($formattedParent);
 }
 // [END datalineage_v1_generated_Lineage_SearchLinks_sync]

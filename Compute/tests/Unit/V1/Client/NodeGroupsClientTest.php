@@ -41,8 +41,12 @@ use Google\Cloud\Compute\V1\NodeGroup;
 use Google\Cloud\Compute\V1\NodeGroupAggregatedList;
 use Google\Cloud\Compute\V1\NodeGroupList;
 use Google\Cloud\Compute\V1\NodeGroupNode;
+use Google\Cloud\Compute\V1\NodeGroupsAddNodesRequest;
+use Google\Cloud\Compute\V1\NodeGroupsDeleteNodesRequest;
 use Google\Cloud\Compute\V1\NodeGroupsListNodes;
 use Google\Cloud\Compute\V1\NodeGroupsScopedList;
+use Google\Cloud\Compute\V1\NodeGroupsSetNodeTemplateRequest;
+use Google\Cloud\Compute\V1\NodeGroupsSimulateMaintenanceEventRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchNodeGroupRequest;
@@ -51,8 +55,10 @@ use Google\Cloud\Compute\V1\SetIamPolicyNodeGroupRequest;
 use Google\Cloud\Compute\V1\SetNodeTemplateNodeGroupRequest;
 use Google\Cloud\Compute\V1\SimulateMaintenanceEventNodeGroupRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsNodeGroupRequest;
+use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
+use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -109,7 +115,16 @@ class NodeGroupsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addNodesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new AddNodesNodeGroupRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $nodeGroupsAddNodesRequestResource = new NodeGroupsAddNodesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new AddNodesNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupsAddNodesRequestResource($nodeGroupsAddNodesRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->addNodes($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -119,8 +134,18 @@ class NodeGroupsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeGroups/AddNodes', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNodeGroup();
+        $this->assertProtobufEquals($nodeGroup, $actualValue);
+        $actualValue = $actualApiRequestObject->getNodeGroupsAddNodesRequestResource();
+        $this->assertProtobufEquals($nodeGroupsAddNodesRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -168,7 +193,16 @@ class NodeGroupsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new AddNodesNodeGroupRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $nodeGroupsAddNodesRequestResource = new NodeGroupsAddNodesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new AddNodesNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupsAddNodesRequestResource($nodeGroupsAddNodesRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->addNodes($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -212,7 +246,10 @@ class NodeGroupsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new AggregatedListNodeGroupsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListNodeGroupsRequest())
+            ->setProject($project);
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -225,6 +262,8 @@ class NodeGroupsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeGroups/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -246,7 +285,10 @@ class NodeGroupsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new AggregatedListNodeGroupsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListNodeGroupsRequest())
+            ->setProject($project);
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -285,7 +327,14 @@ class NodeGroupsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteNodeGroupRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new DeleteNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -295,8 +344,16 @@ class NodeGroupsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeGroups/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNodeGroup();
+        $this->assertProtobufEquals($nodeGroup, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -344,7 +401,14 @@ class NodeGroupsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteNodeGroupRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new DeleteNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -390,7 +454,16 @@ class NodeGroupsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteNodesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteNodesNodeGroupRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $nodeGroupsDeleteNodesRequestResource = new NodeGroupsDeleteNodesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new DeleteNodesNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupsDeleteNodesRequestResource($nodeGroupsDeleteNodesRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->deleteNodes($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -400,8 +473,18 @@ class NodeGroupsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeGroups/DeleteNodes', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNodeGroup();
+        $this->assertProtobufEquals($nodeGroup, $actualValue);
+        $actualValue = $actualApiRequestObject->getNodeGroupsDeleteNodesRequestResource();
+        $this->assertProtobufEquals($nodeGroupsDeleteNodesRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -449,7 +532,16 @@ class NodeGroupsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteNodesNodeGroupRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $nodeGroupsDeleteNodesRequestResource = new NodeGroupsDeleteNodesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new DeleteNodesNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupsDeleteNodesRequestResource($nodeGroupsDeleteNodesRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->deleteNodes($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -507,7 +599,14 @@ class NodeGroupsClientTest extends GeneratedTest
         $expectedResponse->setStatus($status);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-        $request = new GetNodeGroupRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new GetNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -515,6 +614,12 @@ class NodeGroupsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeGroups/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getNodeGroup();
+        $this->assertProtobufEquals($nodeGroup, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -536,7 +641,14 @@ class NodeGroupsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetNodeGroupRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new GetNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setProject($project)
+            ->setZone($zone);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -567,7 +679,14 @@ class NodeGroupsClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyNodeGroupRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $zone = 'zone3744684';
+        $request = (new GetIamPolicyNodeGroupRequest())
+            ->setProject($project)
+            ->setResource($resource)
+            ->setZone($zone);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -575,6 +694,12 @@ class NodeGroupsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeGroups/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -596,7 +721,14 @@ class NodeGroupsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyNodeGroupRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $zone = 'zone3744684';
+        $request = (new GetIamPolicyNodeGroupRequest())
+            ->setProject($project)
+            ->setResource($resource)
+            ->setZone($zone);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -635,7 +767,16 @@ class NodeGroupsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertNodeGroupRequest();
+        // Mock request
+        $initialNodeCount = 1682564205;
+        $nodeGroupResource = new NodeGroup();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new InsertNodeGroupRequest())
+            ->setInitialNodeCount($initialNodeCount)
+            ->setNodeGroupResource($nodeGroupResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -645,8 +786,18 @@ class NodeGroupsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeGroups/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInitialNodeCount();
+        $this->assertProtobufEquals($initialNodeCount, $actualValue);
+        $actualValue = $actualApiRequestObject->getNodeGroupResource();
+        $this->assertProtobufEquals($nodeGroupResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -694,7 +845,16 @@ class NodeGroupsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertNodeGroupRequest();
+        // Mock request
+        $initialNodeCount = 1682564205;
+        $nodeGroupResource = new NodeGroup();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new InsertNodeGroupRequest())
+            ->setInitialNodeCount($initialNodeCount)
+            ->setNodeGroupResource($nodeGroupResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -739,7 +899,12 @@ class NodeGroupsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListNodeGroupsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new ListNodeGroupsRequest())
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -750,6 +915,10 @@ class NodeGroupsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeGroups/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -771,7 +940,12 @@ class NodeGroupsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListNodeGroupsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new ListNodeGroupsRequest())
+            ->setProject($project)
+            ->setZone($zone);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -809,7 +983,14 @@ class NodeGroupsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListNodesNodeGroupsRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new ListNodesNodeGroupsRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->listNodes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -820,6 +1001,12 @@ class NodeGroupsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeGroups/ListNodes', $actualFuncCall);
+        $actualValue = $actualRequestObject->getNodeGroup();
+        $this->assertProtobufEquals($nodeGroup, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -841,7 +1028,14 @@ class NodeGroupsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListNodesNodeGroupsRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new ListNodesNodeGroupsRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setProject($project)
+            ->setZone($zone);
         try {
             $gapicClient->listNodes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -880,7 +1074,16 @@ class NodeGroupsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PatchNodeGroupRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $nodeGroupResource = new NodeGroup();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new PatchNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupResource($nodeGroupResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -890,8 +1093,18 @@ class NodeGroupsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeGroups/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNodeGroup();
+        $this->assertProtobufEquals($nodeGroup, $actualValue);
+        $actualValue = $actualApiRequestObject->getNodeGroupResource();
+        $this->assertProtobufEquals($nodeGroupResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -939,7 +1152,16 @@ class NodeGroupsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PatchNodeGroupRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $nodeGroupResource = new NodeGroup();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new PatchNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupResource($nodeGroupResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -977,7 +1199,16 @@ class NodeGroupsClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyNodeGroupRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $zone = 'zone3744684';
+        $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
+        $request = (new SetIamPolicyNodeGroupRequest())
+            ->setProject($project)
+            ->setResource($resource)
+            ->setZone($zone)
+            ->setZoneSetPolicyRequestResource($zoneSetPolicyRequestResource);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -985,6 +1216,14 @@ class NodeGroupsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeGroups/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getZoneSetPolicyRequestResource();
+        $this->assertProtobufEquals($zoneSetPolicyRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1006,7 +1245,16 @@ class NodeGroupsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyNodeGroupRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $zone = 'zone3744684';
+        $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
+        $request = (new SetIamPolicyNodeGroupRequest())
+            ->setProject($project)
+            ->setResource($resource)
+            ->setZone($zone)
+            ->setZoneSetPolicyRequestResource($zoneSetPolicyRequestResource);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1045,7 +1293,16 @@ class NodeGroupsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setNodeTemplateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SetNodeTemplateNodeGroupRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $nodeGroupsSetNodeTemplateRequestResource = new NodeGroupsSetNodeTemplateRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new SetNodeTemplateNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupsSetNodeTemplateRequestResource($nodeGroupsSetNodeTemplateRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->setNodeTemplate($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1055,8 +1312,18 @@ class NodeGroupsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeGroups/SetNodeTemplate', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNodeGroup();
+        $this->assertProtobufEquals($nodeGroup, $actualValue);
+        $actualValue = $actualApiRequestObject->getNodeGroupsSetNodeTemplateRequestResource();
+        $this->assertProtobufEquals($nodeGroupsSetNodeTemplateRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1104,7 +1371,16 @@ class NodeGroupsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SetNodeTemplateNodeGroupRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $nodeGroupsSetNodeTemplateRequestResource = new NodeGroupsSetNodeTemplateRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new SetNodeTemplateNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupsSetNodeTemplateRequestResource($nodeGroupsSetNodeTemplateRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->setNodeTemplate($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1150,7 +1426,16 @@ class NodeGroupsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/simulateMaintenanceEventTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SimulateMaintenanceEventNodeGroupRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $nodeGroupsSimulateMaintenanceEventRequestResource = new NodeGroupsSimulateMaintenanceEventRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new SimulateMaintenanceEventNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupsSimulateMaintenanceEventRequestResource($nodeGroupsSimulateMaintenanceEventRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->simulateMaintenanceEvent($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1160,8 +1445,18 @@ class NodeGroupsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeGroups/SimulateMaintenanceEvent', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNodeGroup();
+        $this->assertProtobufEquals($nodeGroup, $actualValue);
+        $actualValue = $actualApiRequestObject->getNodeGroupsSimulateMaintenanceEventRequestResource();
+        $this->assertProtobufEquals($nodeGroupsSimulateMaintenanceEventRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1209,7 +1504,16 @@ class NodeGroupsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SimulateMaintenanceEventNodeGroupRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $nodeGroupsSimulateMaintenanceEventRequestResource = new NodeGroupsSimulateMaintenanceEventRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new SimulateMaintenanceEventNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupsSimulateMaintenanceEventRequestResource($nodeGroupsSimulateMaintenanceEventRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->simulateMaintenanceEvent($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1241,7 +1545,16 @@ class NodeGroupsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsNodeGroupRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $zone = 'zone3744684';
+        $request = (new TestIamPermissionsNodeGroupRequest())
+            ->setProject($project)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource)
+            ->setZone($zone);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1249,6 +1562,14 @@ class NodeGroupsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeGroups/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
+        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1270,7 +1591,16 @@ class NodeGroupsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsNodeGroupRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $zone = 'zone3744684';
+        $request = (new TestIamPermissionsNodeGroupRequest())
+            ->setProject($project)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource)
+            ->setZone($zone);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1309,7 +1639,16 @@ class NodeGroupsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addNodesAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new AddNodesNodeGroupRequest();
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $nodeGroupsAddNodesRequestResource = new NodeGroupsAddNodesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new AddNodesNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupsAddNodesRequestResource($nodeGroupsAddNodesRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
         $response = $gapicClient->addNodes($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1319,8 +1658,18 @@ class NodeGroupsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeGroups/AddNodes', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNodeGroup();
+        $this->assertProtobufEquals($nodeGroup, $actualValue);
+        $actualValue = $actualApiRequestObject->getNodeGroupsAddNodesRequestResource();
+        $this->assertProtobufEquals($nodeGroupsAddNodesRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

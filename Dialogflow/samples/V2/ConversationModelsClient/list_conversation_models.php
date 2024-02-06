@@ -32,19 +32,17 @@ use Google\Cloud\Dialogflow\V2\ListConversationModelsRequest;
 /**
  * Lists conversation models.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $parent The project to list all conversation models for.
+ *                       Format: `projects/<Project ID>`
  */
-function list_conversation_models_sample(): void
+function list_conversation_models_sample(string $parent): void
 {
     // Create a client.
     $conversationModelsClient = new ConversationModelsClient();
 
     // Prepare the request message.
-    $request = new ListConversationModelsRequest();
+    $request = (new ListConversationModelsRequest())
+        ->setParent($parent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +56,21 @@ function list_conversation_models_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $parent = '[PARENT]';
+
+    list_conversation_models_sample($parent);
 }
 // [END dialogflow_v2_generated_ConversationModels_ListConversationModels_sync]

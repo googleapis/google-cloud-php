@@ -50,6 +50,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'backup_id',
+                ],
             ],
             'CreateMetadataImport' => [
                 'method' => 'post',
@@ -62,6 +65,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'metadata_import_id',
+                ],
             ],
             'CreateService' => [
                 'method' => 'post',
@@ -73,6 +79,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'service_id',
                 ],
             ],
             'DeleteBackup' => [
@@ -235,6 +244,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateService' => [
                 'method' => 'patch',
@@ -247,6 +259,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

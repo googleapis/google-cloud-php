@@ -29,11 +29,14 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Client\ImagesClient;
 use Google\Cloud\Compute\V1\DeleteImageRequest;
 use Google\Cloud\Compute\V1\DeprecateImageRequest;
+use Google\Cloud\Compute\V1\DeprecationStatus;
 use Google\Cloud\Compute\V1\GetFromFamilyImageRequest;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyImageRequest;
 use Google\Cloud\Compute\V1\GetImageRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
+use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
+use Google\Cloud\Compute\V1\GlobalSetPolicyRequest;
 use Google\Cloud\Compute\V1\Image;
 use Google\Cloud\Compute\V1\ImageList;
 use Google\Cloud\Compute\V1\InsertImageRequest;
@@ -45,6 +48,7 @@ use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\SetIamPolicyImageRequest;
 use Google\Cloud\Compute\V1\SetLabelsImageRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsImageRequest;
+use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Rpc\Code;
 use stdClass;
@@ -102,7 +106,12 @@ class ImagesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteImageRequest();
+        // Mock request
+        $image = 'image100313435';
+        $project = 'project-309310695';
+        $request = (new DeleteImageRequest())
+            ->setImage($image)
+            ->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -112,8 +121,13 @@ class ImagesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Images/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getImage();
+        $this->assertProtobufEquals($image, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -161,7 +175,12 @@ class ImagesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteImageRequest();
+        // Mock request
+        $image = 'image100313435';
+        $project = 'project-309310695';
+        $request = (new DeleteImageRequest())
+            ->setImage($image)
+            ->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -207,7 +226,14 @@ class ImagesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deprecateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeprecateImageRequest();
+        // Mock request
+        $deprecationStatusResource = new DeprecationStatus();
+        $image = 'image100313435';
+        $project = 'project-309310695';
+        $request = (new DeprecateImageRequest())
+            ->setDeprecationStatusResource($deprecationStatusResource)
+            ->setImage($image)
+            ->setProject($project);
         $response = $gapicClient->deprecate($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -217,8 +243,15 @@ class ImagesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Images/Deprecate', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getDeprecationStatusResource();
+        $this->assertProtobufEquals($deprecationStatusResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getImage();
+        $this->assertProtobufEquals($image, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -266,7 +299,14 @@ class ImagesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeprecateImageRequest();
+        // Mock request
+        $deprecationStatusResource = new DeprecationStatus();
+        $image = 'image100313435';
+        $project = 'project-309310695';
+        $request = (new DeprecateImageRequest())
+            ->setDeprecationStatusResource($deprecationStatusResource)
+            ->setImage($image)
+            ->setProject($project);
         $response = $gapicClient->deprecate($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -338,7 +378,12 @@ class ImagesClientTest extends GeneratedTest
         $expectedResponse->setSourceType($sourceType);
         $expectedResponse->setStatus($status);
         $transport->addResponse($expectedResponse);
-        $request = new GetImageRequest();
+        // Mock request
+        $image = 'image100313435';
+        $project = 'project-309310695';
+        $request = (new GetImageRequest())
+            ->setImage($image)
+            ->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -346,6 +391,10 @@ class ImagesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Images/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getImage();
+        $this->assertProtobufEquals($image, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -367,7 +416,12 @@ class ImagesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetImageRequest();
+        // Mock request
+        $image = 'image100313435';
+        $project = 'project-309310695';
+        $request = (new GetImageRequest())
+            ->setImage($image)
+            ->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -432,7 +486,12 @@ class ImagesClientTest extends GeneratedTest
         $expectedResponse->setSourceType($sourceType);
         $expectedResponse->setStatus($status);
         $transport->addResponse($expectedResponse);
-        $request = new GetFromFamilyImageRequest();
+        // Mock request
+        $family = 'family-1281860764';
+        $project = 'project-309310695';
+        $request = (new GetFromFamilyImageRequest())
+            ->setFamily($family)
+            ->setProject($project);
         $response = $gapicClient->getFromFamily($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -440,6 +499,10 @@ class ImagesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Images/GetFromFamily', $actualFuncCall);
+        $actualValue = $actualRequestObject->getFamily();
+        $this->assertProtobufEquals($family, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -461,7 +524,12 @@ class ImagesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetFromFamilyImageRequest();
+        // Mock request
+        $family = 'family-1281860764';
+        $project = 'project-309310695';
+        $request = (new GetFromFamilyImageRequest())
+            ->setFamily($family)
+            ->setProject($project);
         try {
             $gapicClient->getFromFamily($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -492,7 +560,12 @@ class ImagesClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyImageRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyImageRequest())
+            ->setProject($project)
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -500,6 +573,10 @@ class ImagesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Images/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -521,7 +598,12 @@ class ImagesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyImageRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyImageRequest())
+            ->setProject($project)
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -560,7 +642,12 @@ class ImagesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertImageRequest();
+        // Mock request
+        $imageResource = new Image();
+        $project = 'project-309310695';
+        $request = (new InsertImageRequest())
+            ->setImageResource($imageResource)
+            ->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -570,8 +657,13 @@ class ImagesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Images/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getImageResource();
+        $this->assertProtobufEquals($imageResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -619,7 +711,12 @@ class ImagesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertImageRequest();
+        // Mock request
+        $imageResource = new Image();
+        $project = 'project-309310695';
+        $request = (new InsertImageRequest())
+            ->setImageResource($imageResource)
+            ->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -664,7 +761,10 @@ class ImagesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListImagesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListImagesRequest())
+            ->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -675,6 +775,8 @@ class ImagesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Images/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -696,7 +798,10 @@ class ImagesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListImagesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListImagesRequest())
+            ->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -735,7 +840,14 @@ class ImagesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PatchImageRequest();
+        // Mock request
+        $image = 'image100313435';
+        $imageResource = new Image();
+        $project = 'project-309310695';
+        $request = (new PatchImageRequest())
+            ->setImage($image)
+            ->setImageResource($imageResource)
+            ->setProject($project);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -745,8 +857,15 @@ class ImagesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Images/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getImage();
+        $this->assertProtobufEquals($image, $actualValue);
+        $actualValue = $actualApiRequestObject->getImageResource();
+        $this->assertProtobufEquals($imageResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -794,7 +913,14 @@ class ImagesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PatchImageRequest();
+        // Mock request
+        $image = 'image100313435';
+        $imageResource = new Image();
+        $project = 'project-309310695';
+        $request = (new PatchImageRequest())
+            ->setImage($image)
+            ->setImageResource($imageResource)
+            ->setProject($project);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -832,7 +958,14 @@ class ImagesClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyImageRequest();
+        // Mock request
+        $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new SetIamPolicyImageRequest())
+            ->setGlobalSetPolicyRequestResource($globalSetPolicyRequestResource)
+            ->setProject($project)
+            ->setResource($resource);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -840,6 +973,12 @@ class ImagesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Images/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getGlobalSetPolicyRequestResource();
+        $this->assertProtobufEquals($globalSetPolicyRequestResource, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -861,7 +1000,14 @@ class ImagesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyImageRequest();
+        // Mock request
+        $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new SetIamPolicyImageRequest())
+            ->setGlobalSetPolicyRequestResource($globalSetPolicyRequestResource)
+            ->setProject($project)
+            ->setResource($resource);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -900,7 +1046,14 @@ class ImagesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setLabelsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SetLabelsImageRequest();
+        // Mock request
+        $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new SetLabelsImageRequest())
+            ->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource)
+            ->setProject($project)
+            ->setResource($resource);
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -910,8 +1063,15 @@ class ImagesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Images/SetLabels', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getGlobalSetLabelsRequestResource();
+        $this->assertProtobufEquals($globalSetLabelsRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -959,7 +1119,14 @@ class ImagesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SetLabelsImageRequest();
+        // Mock request
+        $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new SetLabelsImageRequest())
+            ->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource)
+            ->setProject($project)
+            ->setResource($resource);
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -991,7 +1158,14 @@ class ImagesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsImageRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsImageRequest())
+            ->setProject($project)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -999,6 +1173,12 @@ class ImagesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Images/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
+        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1020,7 +1200,14 @@ class ImagesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsImageRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $request = (new TestIamPermissionsImageRequest())
+            ->setProject($project)
+            ->setResource($resource)
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1059,7 +1246,12 @@ class ImagesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteImageRequest();
+        // Mock request
+        $image = 'image100313435';
+        $project = 'project-309310695';
+        $request = (new DeleteImageRequest())
+            ->setImage($image)
+            ->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1069,8 +1261,13 @@ class ImagesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Images/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getImage();
+        $this->assertProtobufEquals($image, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

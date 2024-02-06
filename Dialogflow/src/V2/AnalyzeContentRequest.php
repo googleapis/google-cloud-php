@@ -69,7 +69,8 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                $participant Required. The name of the participant this text comes from.
      *                                                           Format: `projects/<Project ID>/locations/<Location
-     *                                                           ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
+     *                                                           ID>/conversations/<Conversation ID>/participants/<Participant ID>`. Please see
+     *                                                           {@see ParticipantsClient::participantName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\V2\TextInput $textInput   The natural language text to be processed.
      *
      * @return \Google\Cloud\Dialogflow\V2\AnalyzeContentRequest
@@ -86,7 +87,8 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                 $participant Required. The name of the participant this text comes from.
      *                                                            Format: `projects/<Project ID>/locations/<Location
-     *                                                            ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
+     *                                                            ID>/conversations/<Conversation ID>/participants/<Participant ID>`. Please see
+     *                                                            {@see ParticipantsClient::participantName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\V2\EventInput $eventInput  An input event to send to Dialogflow.
      *
      * @return \Google\Cloud\Dialogflow\V2\AnalyzeContentRequest

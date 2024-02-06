@@ -31,19 +31,17 @@ use Google\Cloud\Datastream\V1\Route;
 /**
  * Use this method to get details about a route.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the Route resource to get. Please see
+ *                              {@see DatastreamClient::routeName()} for help formatting this field.
  */
-function get_route_sample(): void
+function get_route_sample(string $formattedName): void
 {
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
     // Prepare the request message.
-    $request = new GetRouteRequest();
+    $request = (new GetRouteRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +51,26 @@ function get_route_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DatastreamClient::routeName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[PRIVATE_CONNECTION]',
+        '[ROUTE]'
+    );
+
+    get_route_sample($formattedName);
 }
 // [END datastream_v1_generated_Datastream_GetRoute_sync]

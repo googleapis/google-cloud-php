@@ -29,6 +29,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Datastream\V1\ConnectionProfile;
 use Google\Cloud\Datastream\V1\DatastreamClient;
+use Google\Cloud\Datastream\V1\DestinationConfig;
 use Google\Cloud\Datastream\V1\DiscoverConnectionProfileResponse;
 use Google\Cloud\Datastream\V1\FetchStaticIpsResponse;
 use Google\Cloud\Datastream\V1\ListConnectionProfilesResponse;
@@ -38,6 +39,8 @@ use Google\Cloud\Datastream\V1\ListStreamObjectsResponse;
 use Google\Cloud\Datastream\V1\ListStreamsResponse;
 use Google\Cloud\Datastream\V1\PrivateConnection;
 use Google\Cloud\Datastream\V1\Route;
+use Google\Cloud\Datastream\V1\SourceConfig;
+use Google\Cloud\Datastream\V1\SourceObjectIdentifier;
 use Google\Cloud\Datastream\V1\StartBackfillJobResponse;
 use Google\Cloud\Datastream\V1\StopBackfillJobResponse;
 use Google\Cloud\Datastream\V1\Stream;
@@ -112,7 +115,13 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->createConnectionProfile();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $connectionProfileId = 'connectionProfileId1179884402';
+        $connectionProfile = new ConnectionProfile();
+        $connectionProfileDisplayName = 'connectionProfileDisplayName-1452081022';
+        $connectionProfile->setDisplayName($connectionProfileDisplayName);
+        $response = $gapicClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -122,6 +131,12 @@ class DatastreamClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/CreateConnectionProfile', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getConnectionProfileId();
+        $this->assertProtobufEquals($connectionProfileId, $actualValue);
+        $actualValue = $actualApiRequestObject->getConnectionProfile();
+        $this->assertProtobufEquals($connectionProfile, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createConnectionProfileTest');
         $response->pollUntilComplete([
@@ -172,7 +187,13 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->createConnectionProfile();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $connectionProfileId = 'connectionProfileId1179884402';
+        $connectionProfile = new ConnectionProfile();
+        $connectionProfileDisplayName = 'connectionProfileDisplayName-1452081022';
+        $connectionProfile->setDisplayName($connectionProfileDisplayName);
+        $response = $gapicClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -227,7 +248,13 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->createPrivateConnection();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $privateConnectionId = 'privateConnectionId-1948601248';
+        $privateConnection = new PrivateConnection();
+        $privateConnectionDisplayName = 'privateConnectionDisplayName1030451948';
+        $privateConnection->setDisplayName($privateConnectionDisplayName);
+        $response = $gapicClient->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -237,6 +264,12 @@ class DatastreamClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/CreatePrivateConnection', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getPrivateConnectionId();
+        $this->assertProtobufEquals($privateConnectionId, $actualValue);
+        $actualValue = $actualApiRequestObject->getPrivateConnection();
+        $this->assertProtobufEquals($privateConnection, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createPrivateConnectionTest');
         $response->pollUntilComplete([
@@ -287,7 +320,13 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->createPrivateConnection();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $privateConnectionId = 'privateConnectionId-1948601248';
+        $privateConnection = new PrivateConnection();
+        $privateConnectionDisplayName = 'privateConnectionDisplayName1030451948';
+        $privateConnection->setDisplayName($privateConnectionDisplayName);
+        $response = $gapicClient->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -346,7 +385,15 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->createRoute();
+        // Mock request
+        $formattedParent = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $routeId = 'routeId5418705';
+        $route = new Route();
+        $routeDisplayName = 'routeDisplayName-1988119452';
+        $route->setDisplayName($routeDisplayName);
+        $routeDestinationAddress = 'routeDestinationAddress248623663';
+        $route->setDestinationAddress($routeDestinationAddress);
+        $response = $gapicClient->createRoute($formattedParent, $routeId, $route);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -356,6 +403,12 @@ class DatastreamClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/CreateRoute', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getRouteId();
+        $this->assertProtobufEquals($routeId, $actualValue);
+        $actualValue = $actualApiRequestObject->getRoute();
+        $this->assertProtobufEquals($route, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createRouteTest');
         $response->pollUntilComplete([
@@ -406,7 +459,15 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->createRoute();
+        // Mock request
+        $formattedParent = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $routeId = 'routeId5418705';
+        $route = new Route();
+        $routeDisplayName = 'routeDisplayName-1988119452';
+        $route->setDisplayName($routeDisplayName);
+        $routeDestinationAddress = 'routeDestinationAddress248623663';
+        $route->setDestinationAddress($routeDestinationAddress);
+        $response = $gapicClient->createRoute($formattedParent, $routeId, $route);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -463,7 +524,21 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->createStream();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $streamId = 'streamId-315624902';
+        $stream = new Stream();
+        $streamDisplayName = 'streamDisplayName41647821';
+        $stream->setDisplayName($streamDisplayName);
+        $streamSourceConfig = new SourceConfig();
+        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $streamSourceConfig->setSourceConnectionProfile($sourceConfigSourceConnectionProfile);
+        $stream->setSourceConfig($streamSourceConfig);
+        $streamDestinationConfig = new DestinationConfig();
+        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $streamDestinationConfig->setDestinationConnectionProfile($destinationConfigDestinationConnectionProfile);
+        $stream->setDestinationConfig($streamDestinationConfig);
+        $response = $gapicClient->createStream($formattedParent, $streamId, $stream);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -473,6 +548,12 @@ class DatastreamClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/CreateStream', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getStreamId();
+        $this->assertProtobufEquals($streamId, $actualValue);
+        $actualValue = $actualApiRequestObject->getStream();
+        $this->assertProtobufEquals($stream, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createStreamTest');
         $response->pollUntilComplete([
@@ -523,7 +604,21 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->createStream();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $streamId = 'streamId-315624902';
+        $stream = new Stream();
+        $streamDisplayName = 'streamDisplayName41647821';
+        $stream->setDisplayName($streamDisplayName);
+        $streamSourceConfig = new SourceConfig();
+        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $streamSourceConfig->setSourceConnectionProfile($sourceConfigSourceConnectionProfile);
+        $stream->setSourceConfig($streamSourceConfig);
+        $streamDestinationConfig = new DestinationConfig();
+        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $streamDestinationConfig->setDestinationConnectionProfile($destinationConfigDestinationConnectionProfile);
+        $stream->setDestinationConfig($streamDestinationConfig);
+        $response = $gapicClient->createStream($formattedParent, $streamId, $stream);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -574,7 +669,9 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deleteConnectionProfile();
+        // Mock request
+        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $response = $gapicClient->deleteConnectionProfile($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -584,6 +681,8 @@ class DatastreamClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/DeleteConnectionProfile', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteConnectionProfileTest');
         $response->pollUntilComplete([
@@ -634,7 +733,9 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deleteConnectionProfile();
+        // Mock request
+        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $response = $gapicClient->deleteConnectionProfile($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -685,7 +786,9 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deletePrivateConnection();
+        // Mock request
+        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $response = $gapicClient->deletePrivateConnection($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -695,6 +798,8 @@ class DatastreamClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/DeletePrivateConnection', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deletePrivateConnectionTest');
         $response->pollUntilComplete([
@@ -745,7 +850,9 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deletePrivateConnection();
+        // Mock request
+        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $response = $gapicClient->deletePrivateConnection($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -796,7 +903,9 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deleteRoute();
+        // Mock request
+        $formattedName = $gapicClient->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
+        $response = $gapicClient->deleteRoute($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -806,6 +915,8 @@ class DatastreamClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/DeleteRoute', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteRouteTest');
         $response->pollUntilComplete([
@@ -856,7 +967,9 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deleteRoute();
+        // Mock request
+        $formattedName = $gapicClient->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
+        $response = $gapicClient->deleteRoute($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -907,7 +1020,9 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deleteStream();
+        // Mock request
+        $formattedName = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
+        $response = $gapicClient->deleteStream($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -917,6 +1032,8 @@ class DatastreamClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/DeleteStream', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteStreamTest');
         $response->pollUntilComplete([
@@ -967,7 +1084,9 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deleteStream();
+        // Mock request
+        $formattedName = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
+        $response = $gapicClient->deleteStream($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1000,13 +1119,17 @@ class DatastreamClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DiscoverConnectionProfileResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->discoverConnectionProfile();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->discoverConnectionProfile($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/DiscoverConnectionProfile', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1028,8 +1151,10 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->discoverConnectionProfile();
+            $gapicClient->discoverConnectionProfile($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1059,7 +1184,9 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setStaticIps($staticIps);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->fetchStaticIps();
+        // Mock request
+        $formattedName = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->fetchStaticIps($formattedName);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1069,6 +1196,8 @@ class DatastreamClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/FetchStaticIps', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1090,8 +1219,10 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->fetchStaticIps();
+            $gapicClient->fetchStaticIps($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1118,13 +1249,17 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getConnectionProfile();
+        // Mock request
+        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $response = $gapicClient->getConnectionProfile($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/GetConnectionProfile', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1146,8 +1281,10 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
         try {
-            $gapicClient->getConnectionProfile();
+            $gapicClient->getConnectionProfile($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1174,13 +1311,17 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getPrivateConnection();
+        // Mock request
+        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $response = $gapicClient->getPrivateConnection($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/GetPrivateConnection', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1202,8 +1343,10 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
         try {
-            $gapicClient->getPrivateConnection();
+            $gapicClient->getPrivateConnection($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1234,13 +1377,17 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setDestinationAddress($destinationAddress);
         $expectedResponse->setDestinationPort($destinationPort);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getRoute();
+        // Mock request
+        $formattedName = $gapicClient->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
+        $response = $gapicClient->getRoute($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/GetRoute', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1262,8 +1409,10 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
         try {
-            $gapicClient->getRoute();
+            $gapicClient->getRoute($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1292,13 +1441,17 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setCustomerManagedEncryptionKey($customerManagedEncryptionKey);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getStream();
+        // Mock request
+        $formattedName = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
+        $response = $gapicClient->getStream($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/GetStream', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1320,8 +1473,10 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
         try {
-            $gapicClient->getStream();
+            $gapicClient->getStream($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1348,13 +1503,17 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getStreamObject();
+        // Mock request
+        $formattedName = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
+        $response = $gapicClient->getStreamObject($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/GetStreamObject', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1376,8 +1535,10 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
         try {
-            $gapicClient->getStreamObject();
+            $gapicClient->getStreamObject($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1407,7 +1568,9 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConnectionProfiles($connectionProfiles);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listConnectionProfiles();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listConnectionProfiles($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1417,6 +1580,8 @@ class DatastreamClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/ListConnectionProfiles', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1438,8 +1603,10 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listConnectionProfiles();
+            $gapicClient->listConnectionProfiles($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1469,7 +1636,9 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPrivateConnections($privateConnections);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listPrivateConnections();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listPrivateConnections($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1479,6 +1648,8 @@ class DatastreamClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/ListPrivateConnections', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1500,8 +1671,10 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listPrivateConnections();
+            $gapicClient->listPrivateConnections($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1531,7 +1704,9 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRoutes($routes);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listRoutes();
+        // Mock request
+        $formattedParent = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $response = $gapicClient->listRoutes($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1541,6 +1716,8 @@ class DatastreamClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/ListRoutes', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1562,8 +1739,10 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
         try {
-            $gapicClient->listRoutes();
+            $gapicClient->listRoutes($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1593,7 +1772,9 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setStreamObjects($streamObjects);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listStreamObjects();
+        // Mock request
+        $formattedParent = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
+        $response = $gapicClient->listStreamObjects($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1603,6 +1784,8 @@ class DatastreamClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/ListStreamObjects', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1624,8 +1807,10 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
         try {
-            $gapicClient->listStreamObjects();
+            $gapicClient->listStreamObjects($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1655,7 +1840,9 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setStreams($streams);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listStreams();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listStreams($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1665,6 +1852,8 @@ class DatastreamClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/ListStreams', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1686,8 +1875,10 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listStreams();
+            $gapicClient->listStreams($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1714,13 +1905,20 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->lookupStreamObject();
+        // Mock request
+        $formattedParent = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
+        $sourceObjectIdentifier = new SourceObjectIdentifier();
+        $response = $gapicClient->lookupStreamObject($formattedParent, $sourceObjectIdentifier);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/LookupStreamObject', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getSourceObjectIdentifier();
+        $this->assertProtobufEquals($sourceObjectIdentifier, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1742,8 +1940,11 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
+        $sourceObjectIdentifier = new SourceObjectIdentifier();
         try {
-            $gapicClient->lookupStreamObject();
+            $gapicClient->lookupStreamObject($formattedParent, $sourceObjectIdentifier);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1766,13 +1967,17 @@ class DatastreamClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new StartBackfillJobResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->startBackfillJob();
+        // Mock request
+        $formattedObject = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
+        $response = $gapicClient->startBackfillJob($formattedObject);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/StartBackfillJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getObject();
+        $this->assertProtobufEquals($formattedObject, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1794,8 +1999,10 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedObject = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
         try {
-            $gapicClient->startBackfillJob();
+            $gapicClient->startBackfillJob($formattedObject);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1818,13 +2025,17 @@ class DatastreamClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new StopBackfillJobResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->stopBackfillJob();
+        // Mock request
+        $formattedObject = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
+        $response = $gapicClient->stopBackfillJob($formattedObject);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/StopBackfillJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getObject();
+        $this->assertProtobufEquals($formattedObject, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1846,8 +2057,10 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedObject = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
         try {
-            $gapicClient->stopBackfillJob();
+            $gapicClient->stopBackfillJob($formattedObject);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1892,7 +2105,11 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->updateConnectionProfile();
+        // Mock request
+        $connectionProfile = new ConnectionProfile();
+        $connectionProfileDisplayName = 'connectionProfileDisplayName-1452081022';
+        $connectionProfile->setDisplayName($connectionProfileDisplayName);
+        $response = $gapicClient->updateConnectionProfile($connectionProfile);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1902,6 +2119,8 @@ class DatastreamClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/UpdateConnectionProfile', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getConnectionProfile();
+        $this->assertProtobufEquals($connectionProfile, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateConnectionProfileTest');
         $response->pollUntilComplete([
@@ -1952,7 +2171,11 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->updateConnectionProfile();
+        // Mock request
+        $connectionProfile = new ConnectionProfile();
+        $connectionProfileDisplayName = 'connectionProfileDisplayName-1452081022';
+        $connectionProfile->setDisplayName($connectionProfileDisplayName);
+        $response = $gapicClient->updateConnectionProfile($connectionProfile);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2009,7 +2232,19 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->updateStream();
+        // Mock request
+        $stream = new Stream();
+        $streamDisplayName = 'streamDisplayName41647821';
+        $stream->setDisplayName($streamDisplayName);
+        $streamSourceConfig = new SourceConfig();
+        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $streamSourceConfig->setSourceConnectionProfile($sourceConfigSourceConnectionProfile);
+        $stream->setSourceConfig($streamSourceConfig);
+        $streamDestinationConfig = new DestinationConfig();
+        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $streamDestinationConfig->setDestinationConnectionProfile($destinationConfigDestinationConnectionProfile);
+        $stream->setDestinationConfig($streamDestinationConfig);
+        $response = $gapicClient->updateStream($stream);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2019,6 +2254,8 @@ class DatastreamClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datastream.v1.Datastream/UpdateStream', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getStream();
+        $this->assertProtobufEquals($stream, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateStreamTest');
         $response->pollUntilComplete([
@@ -2069,7 +2306,19 @@ class DatastreamClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->updateStream();
+        // Mock request
+        $stream = new Stream();
+        $streamDisplayName = 'streamDisplayName41647821';
+        $stream->setDisplayName($streamDisplayName);
+        $streamSourceConfig = new SourceConfig();
+        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $streamSourceConfig->setSourceConnectionProfile($sourceConfigSourceConnectionProfile);
+        $stream->setSourceConfig($streamSourceConfig);
+        $streamDestinationConfig = new DestinationConfig();
+        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $streamDestinationConfig->setDestinationConnectionProfile($destinationConfigDestinationConnectionProfile);
+        $stream->setDestinationConfig($streamDestinationConfig);
+        $response = $gapicClient->updateStream($stream);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

@@ -31,19 +31,20 @@ use Google\Cloud\Dataform\V1beta1\FetchFileDiffResponse;
 /**
  * Fetches Git diff for an uncommitted file in a Workspace.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedWorkspace The workspace's name. Please see
+ *                                   {@see DataformClient::workspaceName()} for help formatting this field.
+ * @param string $path               The file's full path including filename, relative to the
+ *                                   workspace root.
  */
-function fetch_file_diff_sample(): void
+function fetch_file_diff_sample(string $formattedWorkspace, string $path): void
 {
     // Create a client.
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $request = new FetchFileDiffRequest();
+    $request = (new FetchFileDiffRequest())
+        ->setWorkspace($formattedWorkspace)
+        ->setPath($path);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +54,27 @@ function fetch_file_diff_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedWorkspace = DataformClient::workspaceName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[REPOSITORY]',
+        '[WORKSPACE]'
+    );
+    $path = '[PATH]';
+
+    fetch_file_diff_sample($formattedWorkspace, $path);
 }
 // [END dataform_v1beta1_generated_Dataform_FetchFileDiff_sync]

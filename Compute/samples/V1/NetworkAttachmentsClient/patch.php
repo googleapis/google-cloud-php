@@ -25,27 +25,34 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NetworkAttachments_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\NetworkAttachment;
 use Google\Cloud\Compute\V1\NetworkAttachmentsClient;
 use Google\Rpc\Status;
 
 /**
  * Patches the specified NetworkAttachment resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $networkAttachment Name of the NetworkAttachment resource to patch.
+ * @param string $project           Project ID for this request.
+ * @param string $region            Name of the region for this request.
  */
-function patch_sample(): void
+function patch_sample(string $networkAttachment, string $project, string $region): void
 {
     // Create a client.
     $networkAttachmentsClient = new NetworkAttachmentsClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $networkAttachmentResource = new NetworkAttachment();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkAttachmentsClient->patch();
+        $response = $networkAttachmentsClient->patch(
+            $networkAttachment,
+            $networkAttachmentResource,
+            $project,
+            $region
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +65,23 @@ function patch_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $networkAttachment = '[NETWORK_ATTACHMENT]';
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    patch_sample($networkAttachment, $project, $region);
 }
 // [END compute_v1_generated_NetworkAttachments_Patch_sync]

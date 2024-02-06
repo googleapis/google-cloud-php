@@ -12,6 +12,9 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/environments',
                         'body' => 'environment',
+                        'queryParams' => [
+                            'environment_id',
+                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -20,6 +23,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'environment_id',
                 ],
             ],
             'DeleteEnvironment' => [
@@ -99,6 +105,9 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v2/{environment.name=projects/*/locations/*/agent/environments/*}',
                         'body' => 'environment',
+                        'queryParams' => [
+                            'update_mask',
+                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -108,6 +117,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

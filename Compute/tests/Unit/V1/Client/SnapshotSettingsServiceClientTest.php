@@ -76,7 +76,10 @@ class SnapshotSettingsServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SnapshotSettings();
         $transport->addResponse($expectedResponse);
-        $request = new GetSnapshotSettingRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new GetSnapshotSettingRequest())
+            ->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -84,6 +87,8 @@ class SnapshotSettingsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SnapshotSettingsService/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -105,7 +110,10 @@ class SnapshotSettingsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetSnapshotSettingRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new GetSnapshotSettingRequest())
+            ->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -144,7 +152,12 @@ class SnapshotSettingsServiceClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new PatchSnapshotSettingRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $snapshotSettingsResource = new SnapshotSettings();
+        $request = (new PatchSnapshotSettingRequest())
+            ->setProject($project)
+            ->setSnapshotSettingsResource($snapshotSettingsResource);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -154,8 +167,13 @@ class SnapshotSettingsServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SnapshotSettingsService/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getSnapshotSettingsResource();
+        $this->assertProtobufEquals($snapshotSettingsResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -203,7 +221,12 @@ class SnapshotSettingsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new PatchSnapshotSettingRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $snapshotSettingsResource = new SnapshotSettings();
+        $request = (new PatchSnapshotSettingRequest())
+            ->setProject($project)
+            ->setSnapshotSettingsResource($snapshotSettingsResource);
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -235,7 +258,10 @@ class SnapshotSettingsServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SnapshotSettings();
         $transport->addResponse($expectedResponse);
-        $request = new GetSnapshotSettingRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new GetSnapshotSettingRequest())
+            ->setProject($project);
         $response = $gapicClient->getAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -243,6 +269,8 @@ class SnapshotSettingsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SnapshotSettingsService/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

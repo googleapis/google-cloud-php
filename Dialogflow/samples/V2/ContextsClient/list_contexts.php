@@ -32,19 +32,22 @@ use Google\Cloud\Dialogflow\V2\ListContextsRequest;
 /**
  * Returns the list of all contexts in the specified session.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The session to list all contexts from.
+ *                                Format: `projects/<Project ID>/agent/sessions/<Session ID>` or
+ *                                `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+ *                                ID>/sessions/<Session ID>`.
+ *                                If `Environment ID` is not specified, we assume default 'draft'
+ *                                environment. If `User ID` is not specified, we assume default '-' user. Please see
+ *                                {@see ContextsClient::sessionName()} for help formatting this field.
  */
-function list_contexts_sample(): void
+function list_contexts_sample(string $formattedParent): void
 {
     // Create a client.
     $contextsClient = new ContextsClient();
 
     // Prepare the request message.
-    $request = new ListContextsRequest();
+    $request = (new ListContextsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +61,21 @@ function list_contexts_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ContextsClient::sessionName('[PROJECT]', '[SESSION]');
+
+    list_contexts_sample($formattedParent);
 }
 // [END dialogflow_v2_generated_Contexts_ListContexts_sync]

@@ -25,26 +25,42 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_Conversations_GenerateStatelessSummary_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\V2\Client\ConversationsClient;
+use Google\Cloud\Dialogflow\V2\ConversationProfile;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest\MinimalConversation;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse;
+use Google\Cloud\Dialogflow\V2\Message;
 
 /**
  * Generates and returns a summary for a conversation that does not have a
  * resource created for it.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $statelessConversationMessagesContent The message content.
+ * @param string $formattedStatelessConversationParent The parent resource to charge for the Summary's generation.
+ *                                                     Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+ *                                                     {@see ConversationsClient::locationName()} for help formatting this field.
+ * @param string $conversationProfileDisplayName       Human readable name for this profile. Max length 1024 bytes.
  */
-function generate_stateless_summary_sample(): void
-{
+function generate_stateless_summary_sample(
+    string $statelessConversationMessagesContent,
+    string $formattedStatelessConversationParent,
+    string $conversationProfileDisplayName
+): void {
     // Create a client.
     $conversationsClient = new ConversationsClient();
 
     // Prepare the request message.
-    $request = new GenerateStatelessSummaryRequest();
+    $message = (new Message())
+        ->setContent($statelessConversationMessagesContent);
+    $statelessConversationMessages = [$message,];
+    $statelessConversation = (new MinimalConversation())
+        ->setMessages($statelessConversationMessages)
+        ->setParent($formattedStatelessConversationParent);
+    $conversationProfile = (new ConversationProfile())
+        ->setDisplayName($conversationProfileDisplayName);
+    $request = (new GenerateStatelessSummaryRequest())
+        ->setStatelessConversation($statelessConversation)
+        ->setConversationProfile($conversationProfile);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +70,30 @@ function generate_stateless_summary_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $statelessConversationMessagesContent = '[CONTENT]';
+    $formattedStatelessConversationParent = ConversationsClient::locationName(
+        '[PROJECT]',
+        '[LOCATION]'
+    );
+    $conversationProfileDisplayName = '[DISPLAY_NAME]';
+
+    generate_stateless_summary_sample(
+        $statelessConversationMessagesContent,
+        $formattedStatelessConversationParent,
+        $conversationProfileDisplayName
+    );
 }
 // [END dialogflow_v2_generated_Conversations_GenerateStatelessSummary_sync]

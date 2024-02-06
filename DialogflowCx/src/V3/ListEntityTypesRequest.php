@@ -54,7 +54,8 @@ class ListEntityTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The agent to list all entity types for.
-     *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+     *                       {@see EntityTypesClient::agentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\ListEntityTypesRequest
      *

@@ -27,23 +27,26 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\CreateLineageEventRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageEvent;
+use Google\Protobuf\Timestamp;
 
 /**
  * Creates a new lineage event.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the run that should own the lineage event. Please see
+ *                                {@see LineageClient::runName()} for help formatting this field.
  */
-function create_lineage_event_sample(): void
+function create_lineage_event_sample(string $formattedParent): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
     // Prepare the request message.
-    $request = new CreateLineageEventRequest();
+    $lineageEventStartTime = new Timestamp();
+    $lineageEvent = (new LineageEvent())
+        ->setStartTime($lineageEventStartTime);
+    $request = (new CreateLineageEventRequest())
+        ->setParent($formattedParent)
+        ->setLineageEvent($lineageEvent);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +56,21 @@ function create_lineage_event_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = LineageClient::runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
+
+    create_lineage_event_sample($formattedParent);
 }
 // [END datalineage_v1_generated_Lineage_CreateLineageEvent_sync]

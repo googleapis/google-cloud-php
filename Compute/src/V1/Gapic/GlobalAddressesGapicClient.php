@@ -55,7 +55,9 @@ use Google\Cloud\Compute\V1\SetLabelsGlobalAddressRequest;
  * ```
  * $globalAddressesClient = new GlobalAddressesClient();
  * try {
- *     $operationResponse = $globalAddressesClient->delete();
+ *     $address = 'address';
+ *     $project = 'project';
+ *     $operationResponse = $globalAddressesClient->delete($address, $project);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -65,7 +67,7 @@ use Google\Cloud\Compute\V1\SetLabelsGlobalAddressRequest;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $globalAddressesClient->delete();
+ *     $operationResponse = $globalAddressesClient->delete($address, $project);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $globalAddressesClient->resumeOperation($operationName, 'delete');
@@ -165,7 +167,9 @@ class GlobalAddressesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -261,7 +265,9 @@ class GlobalAddressesGapicClient
      * ```
      * $globalAddressesClient = new GlobalAddressesClient();
      * try {
-     *     $operationResponse = $globalAddressesClient->delete();
+     *     $address = 'address';
+     *     $project = 'project';
+     *     $operationResponse = $globalAddressesClient->delete($address, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -271,7 +277,7 @@ class GlobalAddressesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalAddressesClient->delete();
+     *     $operationResponse = $globalAddressesClient->delete($address, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalAddressesClient->resumeOperation($operationName, 'delete');
@@ -290,13 +296,11 @@ class GlobalAddressesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $address      Name of the address resource to delete.
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $address
-     *           Name of the address resource to delete.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -309,20 +313,14 @@ class GlobalAddressesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete(array $optionalArgs = [])
+    public function delete($address, $project, array $optionalArgs = [])
     {
         $request = new DeleteGlobalAddressRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['address'])) {
-            $request->setAddress($optionalArgs['address']);
-            $requestParamHeaders['address'] = $optionalArgs['address'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setAddress($address);
+        $request->setProject($project);
+        $requestParamHeaders['address'] = $address;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -339,19 +337,19 @@ class GlobalAddressesGapicClient
      * ```
      * $globalAddressesClient = new GlobalAddressesClient();
      * try {
-     *     $response = $globalAddressesClient->get();
+     *     $address = 'address';
+     *     $project = 'project';
+     *     $response = $globalAddressesClient->get($address, $project);
      * } finally {
      *     $globalAddressesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $address      Name of the address resource to return.
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $address
-     *           Name of the address resource to return.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -362,20 +360,14 @@ class GlobalAddressesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($address, $project, array $optionalArgs = [])
     {
         $request = new GetGlobalAddressRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['address'])) {
-            $request->setAddress($optionalArgs['address']);
-            $requestParamHeaders['address'] = $optionalArgs['address'];
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setAddress($address);
+        $request->setProject($project);
+        $requestParamHeaders['address'] = $address;
+        $requestParamHeaders['project'] = $project;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', Address::class, $optionalArgs, $request)->wait();
@@ -388,7 +380,9 @@ class GlobalAddressesGapicClient
      * ```
      * $globalAddressesClient = new GlobalAddressesClient();
      * try {
-     *     $operationResponse = $globalAddressesClient->insert();
+     *     $addressResource = new Address();
+     *     $project = 'project';
+     *     $operationResponse = $globalAddressesClient->insert($addressResource, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -398,7 +392,7 @@ class GlobalAddressesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalAddressesClient->insert();
+     *     $operationResponse = $globalAddressesClient->insert($addressResource, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalAddressesClient->resumeOperation($operationName, 'insert');
@@ -417,13 +411,11 @@ class GlobalAddressesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Address $addressResource The body resource for this request
+     * @param string  $project         Project ID for this request.
+     * @param array   $optionalArgs    {
      *     Optional.
      *
-     *     @type Address $addressResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -436,19 +428,13 @@ class GlobalAddressesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert(array $optionalArgs = [])
+    public function insert($addressResource, $project, array $optionalArgs = [])
     {
         $request = new InsertGlobalAddressRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['addressResource'])) {
-            $request->setAddressResource($optionalArgs['addressResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setAddressResource($addressResource);
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -465,8 +451,9 @@ class GlobalAddressesGapicClient
      * ```
      * $globalAddressesClient = new GlobalAddressesClient();
      * try {
+     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $globalAddressesClient->list();
+     *     $pagedResponse = $globalAddressesClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -474,7 +461,7 @@ class GlobalAddressesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $globalAddressesClient->list();
+     *     $pagedResponse = $globalAddressesClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -483,7 +470,8 @@ class GlobalAddressesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -497,8 +485,6 @@ class GlobalAddressesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -511,10 +497,12 @@ class GlobalAddressesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list(array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListGlobalAddressesRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -529,11 +517,6 @@ class GlobalAddressesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -552,7 +535,10 @@ class GlobalAddressesGapicClient
      * ```
      * $globalAddressesClient = new GlobalAddressesClient();
      * try {
-     *     $operationResponse = $globalAddressesClient->move();
+     *     $address = 'address';
+     *     $globalAddressesMoveRequestResource = new GlobalAddressesMoveRequest();
+     *     $project = 'project';
+     *     $operationResponse = $globalAddressesClient->move($address, $globalAddressesMoveRequestResource, $project);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -562,7 +548,7 @@ class GlobalAddressesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalAddressesClient->move();
+     *     $operationResponse = $globalAddressesClient->move($address, $globalAddressesMoveRequestResource, $project);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalAddressesClient->resumeOperation($operationName, 'move');
@@ -581,15 +567,12 @@ class GlobalAddressesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                     $address                            Name of the address resource to move.
+     * @param GlobalAddressesMoveRequest $globalAddressesMoveRequestResource The body resource for this request
+     * @param string                     $project                            Source project ID which the Address is moved from.
+     * @param array                      $optionalArgs                       {
      *     Optional.
      *
-     *     @type string $address
-     *           Name of the address resource to move.
-     *     @type GlobalAddressesMoveRequest $globalAddressesMoveRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Source project ID which the Address is moved from.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -602,24 +585,15 @@ class GlobalAddressesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function move(array $optionalArgs = [])
+    public function move($address, $globalAddressesMoveRequestResource, $project, array $optionalArgs = [])
     {
         $request = new MoveGlobalAddressRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['address'])) {
-            $request->setAddress($optionalArgs['address']);
-            $requestParamHeaders['address'] = $optionalArgs['address'];
-        }
-
-        if (isset($optionalArgs['globalAddressesMoveRequestResource'])) {
-            $request->setGlobalAddressesMoveRequestResource($optionalArgs['globalAddressesMoveRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
+        $request->setAddress($address);
+        $request->setGlobalAddressesMoveRequestResource($globalAddressesMoveRequestResource);
+        $request->setProject($project);
+        $requestParamHeaders['address'] = $address;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -636,7 +610,10 @@ class GlobalAddressesGapicClient
      * ```
      * $globalAddressesClient = new GlobalAddressesClient();
      * try {
-     *     $operationResponse = $globalAddressesClient->setLabels();
+     *     $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $operationResponse = $globalAddressesClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -646,7 +623,7 @@ class GlobalAddressesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalAddressesClient->setLabels();
+     *     $operationResponse = $globalAddressesClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalAddressesClient->resumeOperation($operationName, 'setLabels');
@@ -665,15 +642,12 @@ class GlobalAddressesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param GlobalSetLabelsRequest $globalSetLabelsRequestResource The body resource for this request
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param array                  $optionalArgs                   {
      *     Optional.
      *
-     *     @type GlobalSetLabelsRequest $globalSetLabelsRequestResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $resource
-     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -684,24 +658,15 @@ class GlobalAddressesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setLabels(array $optionalArgs = [])
+    public function setLabels($globalSetLabelsRequestResource, $project, $resource, array $optionalArgs = [])
     {
         $request = new SetLabelsGlobalAddressRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['globalSetLabelsRequestResource'])) {
-            $request->setGlobalSetLabelsRequestResource($optionalArgs['globalSetLabelsRequestResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource);
+        $request->setProject($project);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('SetLabels', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();

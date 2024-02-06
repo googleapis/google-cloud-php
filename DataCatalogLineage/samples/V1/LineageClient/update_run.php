@@ -26,24 +26,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\Run;
+use Google\Cloud\DataCatalog\Lineage\V1\Run\State;
 use Google\Cloud\DataCatalog\Lineage\V1\UpdateRunRequest;
+use Google\Protobuf\Timestamp;
 
 /**
  * Updates a run.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param int $runState The state of the run.
  */
-function update_run_sample(): void
+function update_run_sample(int $runState): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
     // Prepare the request message.
-    $request = new UpdateRunRequest();
+    $runStartTime = new Timestamp();
+    $run = (new Run())
+        ->setStartTime($runStartTime)
+        ->setState($runState);
+    $request = (new UpdateRunRequest())
+        ->setRun($run);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +56,21 @@ function update_run_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $runState = State::UNKNOWN;
+
+    update_run_sample($runState);
 }
 // [END datalineage_v1_generated_Lineage_UpdateRun_sync]

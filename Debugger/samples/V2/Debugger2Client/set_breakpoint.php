@@ -24,6 +24,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouddebugger_v2_generated_Debugger2_SetBreakpoint_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Debugger\V2\Breakpoint;
 use Google\Cloud\Debugger\V2\Client\Debugger2Client;
 use Google\Cloud\Debugger\V2\SetBreakpointRequest;
 use Google\Cloud\Debugger\V2\SetBreakpointResponse;
@@ -31,19 +32,21 @@ use Google\Cloud\Debugger\V2\SetBreakpointResponse;
 /**
  * Sets the breakpoint to the debuggee.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $debuggeeId    ID of the debuggee where the breakpoint is to be set.
+ * @param string $clientVersion The client version making the call.
+ *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
  */
-function set_breakpoint_sample(): void
+function set_breakpoint_sample(string $debuggeeId, string $clientVersion): void
 {
     // Create a client.
     $debugger2Client = new Debugger2Client();
 
     // Prepare the request message.
-    $request = new SetBreakpointRequest();
+    $breakpoint = new Breakpoint();
+    $request = (new SetBreakpointRequest())
+        ->setDebuggeeId($debuggeeId)
+        ->setBreakpoint($breakpoint)
+        ->setClientVersion($clientVersion);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +56,22 @@ function set_breakpoint_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $debuggeeId = '[DEBUGGEE_ID]';
+    $clientVersion = '[CLIENT_VERSION]';
+
+    set_breakpoint_sample($debuggeeId, $clientVersion);
 }
 // [END clouddebugger_v2_generated_Debugger2_SetBreakpoint_sync]

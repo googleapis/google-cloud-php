@@ -67,7 +67,8 @@ class ListTestCaseResultsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The test case to list results for.
      *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
      *                       testCases/<TestCase ID>`. Specify a `-` as a wildcard for TestCase ID to
-     *                       list results across multiple test cases.
+     *                       list results across multiple test cases. Please see
+     *                       {@see TestCasesClient::testCaseName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\ListTestCaseResultsRequest
      *

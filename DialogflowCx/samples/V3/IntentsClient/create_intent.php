@@ -35,19 +35,22 @@ use Google\Cloud\Dialogflow\Cx\V3\Intent;
  * [training
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent   The agent to create an intent for.
+ *                                  Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                  {@see IntentsClient::agentName()} for help formatting this field.
+ * @param string $intentDisplayName The human-readable name of the intent, unique within the agent.
  */
-function create_intent_sample(): void
+function create_intent_sample(string $formattedParent, string $intentDisplayName): void
 {
     // Create a client.
     $intentsClient = new IntentsClient();
 
     // Prepare the request message.
-    $request = new CreateIntentRequest();
+    $intent = (new Intent())
+        ->setDisplayName($intentDisplayName);
+    $request = (new CreateIntentRequest())
+        ->setParent($formattedParent)
+        ->setIntent($intent);
 
     // Call the API and handle any network failures.
     try {
@@ -57,5 +60,22 @@ function create_intent_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = IntentsClient::agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+    $intentDisplayName = '[DISPLAY_NAME]';
+
+    create_intent_sample($formattedParent, $intentDisplayName);
 }
 // [END dialogflow_v3_generated_Intents_CreateIntent_sync]

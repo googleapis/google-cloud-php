@@ -46,7 +46,8 @@ class ListAvailableVersionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The project and location for which to retrieve instance information
-     *                       in the format projects/{project}/locations/{location}.
+     *                       in the format projects/{project}/locations/{location}. Please see
+     *                       {@see DataFusionClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\DataFusion\V1\ListAvailableVersionsRequest
      *

@@ -32,19 +32,18 @@ use Google\Cloud\DataLabeling\V1beta1\ListAnnotatedDatasetsRequest;
 /**
  * Lists annotated datasets for a dataset. Pagination is supported.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Name of the dataset to list annotated datasets, format:
+ *                                projects/{project_id}/datasets/{dataset_id}
+ *                                Please see {@see DataLabelingServiceClient::datasetName()} for help formatting this field.
  */
-function list_annotated_datasets_sample(): void
+function list_annotated_datasets_sample(string $formattedParent): void
 {
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
     // Prepare the request message.
-    $request = new ListAnnotatedDatasetsRequest();
+    $request = (new ListAnnotatedDatasetsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function list_annotated_datasets_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataLabelingServiceClient::datasetName('[PROJECT]', '[DATASET]');
+
+    list_annotated_datasets_sample($formattedParent);
 }
 // [END datalabeling_v1beta1_generated_DataLabelingService_ListAnnotatedDatasets_sync]

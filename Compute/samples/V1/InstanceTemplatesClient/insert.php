@@ -25,27 +25,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceTemplates_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\InstanceTemplate;
 use Google\Cloud\Compute\V1\InstanceTemplatesClient;
 use Google\Rpc\Status;
 
 /**
  * Creates an instance template in the specified project using the data that is included in the request. If you are creating a new template to update an existing instance group, your new instance template must use the same network or, if applicable, the same subnetwork as the original template.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project Project ID for this request.
  */
-function insert_sample(): void
+function insert_sample(string $project): void
 {
     // Create a client.
     $instanceTemplatesClient = new InstanceTemplatesClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $instanceTemplateResource = new InstanceTemplate();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceTemplatesClient->insert();
+        $response = $instanceTemplatesClient->insert($instanceTemplateResource, $project);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +58,21 @@ function insert_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+
+    insert_sample($project);
 }
 // [END compute_v1_generated_InstanceTemplates_Insert_sync]

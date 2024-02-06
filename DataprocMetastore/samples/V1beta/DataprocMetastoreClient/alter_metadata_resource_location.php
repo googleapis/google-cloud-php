@@ -35,21 +35,36 @@ use Google\Rpc\Status;
  * for the respective metadata resource and does not transfer any existing
  * data to the new location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedService The relative resource name of the metastore service to mutate
+ *                                 metadata, in the following format:
+ *
+ *                                 `projects/{project_id}/locations/{location_id}/services/{service_id}`. Please see
+ *                                 {@see DataprocMetastoreClient::serviceName()} for help formatting this field.
+ * @param string $resourceName     The relative metadata resource name in the following format.
+ *
+ *                                 `databases/{database_id}`
+ *                                 or
+ *                                 `databases/{database_id}/tables/{table_id}`
+ *                                 or
+ *                                 `databases/{database_id}/tables/{table_id}/partitions/{partition_id}`
+ * @param string $locationUri      The new location URI for the metadata resource.
  */
-function alter_metadata_resource_location_sample(): void
-{
+function alter_metadata_resource_location_sample(
+    string $formattedService,
+    string $resourceName,
+    string $locationUri
+): void {
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreClient->alterMetadataResourceLocation();
+        $response = $dataprocMetastoreClient->alterMetadataResourceLocation(
+            $formattedService,
+            $resourceName,
+            $locationUri
+        );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -64,5 +79,23 @@ function alter_metadata_resource_location_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedService = DataprocMetastoreClient::serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+    $resourceName = '[RESOURCE_NAME]';
+    $locationUri = '[LOCATION_URI]';
+
+    alter_metadata_resource_location_sample($formattedService, $resourceName, $locationUri);
 }
 // [END metastore_v1beta_generated_DataprocMetastore_AlterMetadataResourceLocation_sync]

@@ -32,19 +32,18 @@ use Google\Cloud\DataLabeling\V1beta1\SearchEvaluationsRequest;
 /**
  * Searches [evaluations][google.cloud.datalabeling.v1beta1.Evaluation] within a project.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Evaluation search parent (project ID). Format:
+ *                                "projects/<var>{project_id}</var>"
+ *                                Please see {@see DataLabelingServiceClient::evaluationName()} for help formatting this field.
  */
-function search_evaluations_sample(): void
+function search_evaluations_sample(string $formattedParent): void
 {
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
     // Prepare the request message.
-    $request = new SearchEvaluationsRequest();
+    $request = (new SearchEvaluationsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,25 @@ function search_evaluations_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataLabelingServiceClient::evaluationName(
+        '[PROJECT]',
+        '[DATASET]',
+        '[EVALUATION]'
+    );
+
+    search_evaluations_sample($formattedParent);
 }
 // [END datalabeling_v1beta1_generated_DataLabelingService_SearchEvaluations_sync]

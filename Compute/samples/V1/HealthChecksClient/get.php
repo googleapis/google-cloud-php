@@ -30,13 +30,10 @@ use Google\Cloud\Compute\V1\HealthChecksClient;
 /**
  * Returns the specified HealthCheck resource.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $healthCheck Name of the HealthCheck resource to return.
+ * @param string $project     Project ID for this request.
  */
-function get_sample(): void
+function get_sample(string $healthCheck, string $project): void
 {
     // Create a client.
     $healthChecksClient = new HealthChecksClient();
@@ -44,10 +41,27 @@ function get_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var HealthCheck $response */
-        $response = $healthChecksClient->get();
+        $response = $healthChecksClient->get($healthCheck, $project);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $healthCheck = '[HEALTH_CHECK]';
+    $project = '[PROJECT]';
+
+    get_sample($healthCheck, $project);
 }
 // [END compute_v1_generated_HealthChecks_Get_sync]

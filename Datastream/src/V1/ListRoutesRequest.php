@@ -54,7 +54,8 @@ class ListRoutesRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
-     * @param string $parent Required. The parent that owns the collection of Routess.
+     * @param string $parent Required. The parent that owns the collection of Routess. Please see
+     *                       {@see DatastreamClient::privateConnectionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Datastream\V1\ListRoutesRequest
      *

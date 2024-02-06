@@ -37,19 +37,29 @@ use Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup;
  * [training
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent                 The flow to create an
+ *                                                [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
+ *                                                for. Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+ *                                                ID>/flows/<Flow ID>`
+ *                                                or `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`
+ *                                                for agent-level groups. Please see
+ *                                                {@see TransitionRouteGroupsClient::flowName()} for help formatting this field.
+ * @param string $transitionRouteGroupDisplayName The human-readable name of the transition route group, unique
+ *                                                within the flow. The display name can be no longer than 30 characters.
  */
-function create_transition_route_group_sample(): void
-{
+function create_transition_route_group_sample(
+    string $formattedParent,
+    string $transitionRouteGroupDisplayName
+): void {
     // Create a client.
     $transitionRouteGroupsClient = new TransitionRouteGroupsClient();
 
     // Prepare the request message.
-    $request = new CreateTransitionRouteGroupRequest();
+    $transitionRouteGroup = (new TransitionRouteGroup())
+        ->setDisplayName($transitionRouteGroupDisplayName);
+    $request = (new CreateTransitionRouteGroupRequest())
+        ->setParent($formattedParent)
+        ->setTransitionRouteGroup($transitionRouteGroup);
 
     // Call the API and handle any network failures.
     try {
@@ -59,5 +69,27 @@ function create_transition_route_group_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = TransitionRouteGroupsClient::flowName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[AGENT]',
+        '[FLOW]'
+    );
+    $transitionRouteGroupDisplayName = '[DISPLAY_NAME]';
+
+    create_transition_route_group_sample($formattedParent, $transitionRouteGroupDisplayName);
 }
 // [END dialogflow_v3_generated_TransitionRouteGroups_CreateTransitionRouteGroup_sync]

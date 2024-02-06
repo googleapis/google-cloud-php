@@ -31,7 +31,8 @@ class AdvanceRolloutRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name    Required. Name of the Rollout. Format is
-     *                        `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
+     *                        `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`. Please see
+     *                        {@see CloudDeployClient::rolloutName()} for help formatting this field.
      * @param string $phaseId Required. The phase ID to advance the `Rollout` to.
      *
      * @return \Google\Cloud\Deploy\V1\AdvanceRolloutRequest

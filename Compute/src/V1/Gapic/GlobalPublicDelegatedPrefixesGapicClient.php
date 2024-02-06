@@ -52,7 +52,9 @@ use Google\Cloud\Compute\V1\PublicDelegatedPrefixList;
  * ```
  * $globalPublicDelegatedPrefixesClient = new GlobalPublicDelegatedPrefixesClient();
  * try {
- *     $operationResponse = $globalPublicDelegatedPrefixesClient->delete();
+ *     $project = 'project';
+ *     $publicDelegatedPrefix = 'public_delegated_prefix';
+ *     $operationResponse = $globalPublicDelegatedPrefixesClient->delete($project, $publicDelegatedPrefix);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -62,7 +64,7 @@ use Google\Cloud\Compute\V1\PublicDelegatedPrefixList;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $globalPublicDelegatedPrefixesClient->delete();
+ *     $operationResponse = $globalPublicDelegatedPrefixesClient->delete($project, $publicDelegatedPrefix);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $globalPublicDelegatedPrefixesClient->resumeOperation($operationName, 'delete');
@@ -162,7 +164,9 @@ class GlobalPublicDelegatedPrefixesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -258,7 +262,9 @@ class GlobalPublicDelegatedPrefixesGapicClient
      * ```
      * $globalPublicDelegatedPrefixesClient = new GlobalPublicDelegatedPrefixesClient();
      * try {
-     *     $operationResponse = $globalPublicDelegatedPrefixesClient->delete();
+     *     $project = 'project';
+     *     $publicDelegatedPrefix = 'public_delegated_prefix';
+     *     $operationResponse = $globalPublicDelegatedPrefixesClient->delete($project, $publicDelegatedPrefix);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -268,7 +274,7 @@ class GlobalPublicDelegatedPrefixesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalPublicDelegatedPrefixesClient->delete();
+     *     $operationResponse = $globalPublicDelegatedPrefixesClient->delete($project, $publicDelegatedPrefix);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalPublicDelegatedPrefixesClient->resumeOperation($operationName, 'delete');
@@ -287,13 +293,11 @@ class GlobalPublicDelegatedPrefixesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project               Project ID for this request.
+     * @param string $publicDelegatedPrefix Name of the PublicDelegatedPrefix resource to delete.
+     * @param array  $optionalArgs          {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $publicDelegatedPrefix
-     *           Name of the PublicDelegatedPrefix resource to delete.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -306,20 +310,14 @@ class GlobalPublicDelegatedPrefixesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete(array $optionalArgs = [])
+    public function delete($project, $publicDelegatedPrefix, array $optionalArgs = [])
     {
         $request = new DeleteGlobalPublicDelegatedPrefixeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['publicDelegatedPrefix'])) {
-            $request->setPublicDelegatedPrefix($optionalArgs['publicDelegatedPrefix']);
-            $requestParamHeaders['public_delegated_prefix'] = $optionalArgs['publicDelegatedPrefix'];
-        }
-
+        $request->setProject($project);
+        $request->setPublicDelegatedPrefix($publicDelegatedPrefix);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['public_delegated_prefix'] = $publicDelegatedPrefix;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -336,19 +334,19 @@ class GlobalPublicDelegatedPrefixesGapicClient
      * ```
      * $globalPublicDelegatedPrefixesClient = new GlobalPublicDelegatedPrefixesClient();
      * try {
-     *     $response = $globalPublicDelegatedPrefixesClient->get();
+     *     $project = 'project';
+     *     $publicDelegatedPrefix = 'public_delegated_prefix';
+     *     $response = $globalPublicDelegatedPrefixesClient->get($project, $publicDelegatedPrefix);
      * } finally {
      *     $globalPublicDelegatedPrefixesClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project               Project ID for this request.
+     * @param string $publicDelegatedPrefix Name of the PublicDelegatedPrefix resource to return.
+     * @param array  $optionalArgs          {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $publicDelegatedPrefix
-     *           Name of the PublicDelegatedPrefix resource to return.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -359,20 +357,14 @@ class GlobalPublicDelegatedPrefixesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($project, $publicDelegatedPrefix, array $optionalArgs = [])
     {
         $request = new GetGlobalPublicDelegatedPrefixeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['publicDelegatedPrefix'])) {
-            $request->setPublicDelegatedPrefix($optionalArgs['publicDelegatedPrefix']);
-            $requestParamHeaders['public_delegated_prefix'] = $optionalArgs['publicDelegatedPrefix'];
-        }
-
+        $request->setProject($project);
+        $request->setPublicDelegatedPrefix($publicDelegatedPrefix);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['public_delegated_prefix'] = $publicDelegatedPrefix;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', PublicDelegatedPrefix::class, $optionalArgs, $request)->wait();
@@ -385,7 +377,9 @@ class GlobalPublicDelegatedPrefixesGapicClient
      * ```
      * $globalPublicDelegatedPrefixesClient = new GlobalPublicDelegatedPrefixesClient();
      * try {
-     *     $operationResponse = $globalPublicDelegatedPrefixesClient->insert();
+     *     $project = 'project';
+     *     $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
+     *     $operationResponse = $globalPublicDelegatedPrefixesClient->insert($project, $publicDelegatedPrefixResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -395,7 +389,7 @@ class GlobalPublicDelegatedPrefixesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalPublicDelegatedPrefixesClient->insert();
+     *     $operationResponse = $globalPublicDelegatedPrefixesClient->insert($project, $publicDelegatedPrefixResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalPublicDelegatedPrefixesClient->resumeOperation($operationName, 'insert');
@@ -414,13 +408,11 @@ class GlobalPublicDelegatedPrefixesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                $project                       Project ID for this request.
+     * @param PublicDelegatedPrefix $publicDelegatedPrefixResource The body resource for this request
+     * @param array                 $optionalArgs                  {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type PublicDelegatedPrefix $publicDelegatedPrefixResource
-     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -433,19 +425,13 @@ class GlobalPublicDelegatedPrefixesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert(array $optionalArgs = [])
+    public function insert($project, $publicDelegatedPrefixResource, array $optionalArgs = [])
     {
         $request = new InsertGlobalPublicDelegatedPrefixeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['publicDelegatedPrefixResource'])) {
-            $request->setPublicDelegatedPrefixResource($optionalArgs['publicDelegatedPrefixResource']);
-        }
-
+        $request->setProject($project);
+        $request->setPublicDelegatedPrefixResource($publicDelegatedPrefixResource);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -462,8 +448,9 @@ class GlobalPublicDelegatedPrefixesGapicClient
      * ```
      * $globalPublicDelegatedPrefixesClient = new GlobalPublicDelegatedPrefixesClient();
      * try {
+     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $globalPublicDelegatedPrefixesClient->list();
+     *     $pagedResponse = $globalPublicDelegatedPrefixesClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -471,7 +458,7 @@ class GlobalPublicDelegatedPrefixesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $globalPublicDelegatedPrefixesClient->list();
+     *     $pagedResponse = $globalPublicDelegatedPrefixesClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -480,7 +467,8 @@ class GlobalPublicDelegatedPrefixesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -494,8 +482,6 @@ class GlobalPublicDelegatedPrefixesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -508,10 +494,12 @@ class GlobalPublicDelegatedPrefixesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list(array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListGlobalPublicDelegatedPrefixesRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -526,11 +514,6 @@ class GlobalPublicDelegatedPrefixesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -549,7 +532,10 @@ class GlobalPublicDelegatedPrefixesGapicClient
      * ```
      * $globalPublicDelegatedPrefixesClient = new GlobalPublicDelegatedPrefixesClient();
      * try {
-     *     $operationResponse = $globalPublicDelegatedPrefixesClient->patch();
+     *     $project = 'project';
+     *     $publicDelegatedPrefix = 'public_delegated_prefix';
+     *     $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
+     *     $operationResponse = $globalPublicDelegatedPrefixesClient->patch($project, $publicDelegatedPrefix, $publicDelegatedPrefixResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -559,7 +545,7 @@ class GlobalPublicDelegatedPrefixesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $globalPublicDelegatedPrefixesClient->patch();
+     *     $operationResponse = $globalPublicDelegatedPrefixesClient->patch($project, $publicDelegatedPrefix, $publicDelegatedPrefixResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $globalPublicDelegatedPrefixesClient->resumeOperation($operationName, 'patch');
@@ -578,15 +564,12 @@ class GlobalPublicDelegatedPrefixesGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                $project                       Project ID for this request.
+     * @param string                $publicDelegatedPrefix         Name of the PublicDelegatedPrefix resource to patch.
+     * @param PublicDelegatedPrefix $publicDelegatedPrefixResource The body resource for this request
+     * @param array                 $optionalArgs                  {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $publicDelegatedPrefix
-     *           Name of the PublicDelegatedPrefix resource to patch.
-     *     @type PublicDelegatedPrefix $publicDelegatedPrefixResource
-     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -599,24 +582,15 @@ class GlobalPublicDelegatedPrefixesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch(array $optionalArgs = [])
+    public function patch($project, $publicDelegatedPrefix, $publicDelegatedPrefixResource, array $optionalArgs = [])
     {
         $request = new PatchGlobalPublicDelegatedPrefixeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['publicDelegatedPrefix'])) {
-            $request->setPublicDelegatedPrefix($optionalArgs['publicDelegatedPrefix']);
-            $requestParamHeaders['public_delegated_prefix'] = $optionalArgs['publicDelegatedPrefix'];
-        }
-
-        if (isset($optionalArgs['publicDelegatedPrefixResource'])) {
-            $request->setPublicDelegatedPrefixResource($optionalArgs['publicDelegatedPrefixResource']);
-        }
-
+        $request->setProject($project);
+        $request->setPublicDelegatedPrefix($publicDelegatedPrefix);
+        $request->setPublicDelegatedPrefixResource($publicDelegatedPrefixResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['public_delegated_prefix'] = $publicDelegatedPrefix;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }

@@ -56,7 +56,8 @@ class ListWorkspacesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The repository in which to list workspaces. Must be in the
-     *                       format `projects/&#42;/locations/&#42;/repositories/*`.
+     *                       format `projects/&#42;/locations/&#42;/repositories/*`. Please see
+     *                       {@see DataformClient::repositoryName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataform\V1beta1\ListWorkspacesRequest
      *

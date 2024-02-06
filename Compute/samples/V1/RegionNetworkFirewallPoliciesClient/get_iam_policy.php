@@ -30,13 +30,11 @@ use Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesClient;
 /**
  * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $project  Project ID for this request.
+ * @param string $region   The name of the region for this request.
+ * @param string $resource Name or id of the resource for this request.
  */
-function get_iam_policy_sample(): void
+function get_iam_policy_sample(string $project, string $region, string $resource): void
 {
     // Create a client.
     $regionNetworkFirewallPoliciesClient = new RegionNetworkFirewallPoliciesClient();
@@ -44,10 +42,28 @@ function get_iam_policy_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $regionNetworkFirewallPoliciesClient->getIamPolicy();
+        $response = $regionNetworkFirewallPoliciesClient->getIamPolicy($project, $region, $resource);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+    $resource = '[RESOURCE]';
+
+    get_iam_policy_sample($project, $region, $resource);
 }
 // [END compute_v1_generated_RegionNetworkFirewallPolicies_GetIamPolicy_sync]

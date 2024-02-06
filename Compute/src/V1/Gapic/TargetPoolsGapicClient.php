@@ -68,7 +68,11 @@ use Google\Cloud\Compute\V1\TargetReference;
  * ```
  * $targetPoolsClient = new TargetPoolsClient();
  * try {
- *     $operationResponse = $targetPoolsClient->addHealthCheck();
+ *     $project = 'project';
+ *     $region = 'region';
+ *     $targetPool = 'target_pool';
+ *     $targetPoolsAddHealthCheckRequestResource = new TargetPoolsAddHealthCheckRequest();
+ *     $operationResponse = $targetPoolsClient->addHealthCheck($project, $region, $targetPool, $targetPoolsAddHealthCheckRequestResource);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -78,7 +82,7 @@ use Google\Cloud\Compute\V1\TargetReference;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $targetPoolsClient->addHealthCheck();
+ *     $operationResponse = $targetPoolsClient->addHealthCheck($project, $region, $targetPool, $targetPoolsAddHealthCheckRequestResource);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $targetPoolsClient->resumeOperation($operationName, 'addHealthCheck');
@@ -178,7 +182,10 @@ class TargetPoolsGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [],
+            'additionalArgumentMethods' => [
+                'getProject',
+                'getRegion',
+            ],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -274,7 +281,11 @@ class TargetPoolsGapicClient
      * ```
      * $targetPoolsClient = new TargetPoolsClient();
      * try {
-     *     $operationResponse = $targetPoolsClient->addHealthCheck();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $targetPool = 'target_pool';
+     *     $targetPoolsAddHealthCheckRequestResource = new TargetPoolsAddHealthCheckRequest();
+     *     $operationResponse = $targetPoolsClient->addHealthCheck($project, $region, $targetPool, $targetPoolsAddHealthCheckRequestResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -284,7 +295,7 @@ class TargetPoolsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetPoolsClient->addHealthCheck();
+     *     $operationResponse = $targetPoolsClient->addHealthCheck($project, $region, $targetPool, $targetPoolsAddHealthCheckRequestResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetPoolsClient->resumeOperation($operationName, 'addHealthCheck');
@@ -303,19 +314,15 @@ class TargetPoolsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                           $project                                  Project ID for this request.
+     * @param string                           $region                                   Name of the region scoping this request.
+     * @param string                           $targetPool                               Name of the target pool to add a health check to.
+     * @param TargetPoolsAddHealthCheckRequest $targetPoolsAddHealthCheckRequestResource The body resource for this request
+     * @param array                            $optionalArgs                             {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $targetPool
-     *           Name of the target pool to add a health check to.
-     *     @type TargetPoolsAddHealthCheckRequest $targetPoolsAddHealthCheckRequestResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -326,31 +333,19 @@ class TargetPoolsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addHealthCheck(array $optionalArgs = [])
+    public function addHealthCheck($project, $region, $targetPool, $targetPoolsAddHealthCheckRequestResource, array $optionalArgs = [])
     {
         $request = new AddHealthCheckTargetPoolRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setTargetPool($targetPool);
+        $request->setTargetPoolsAddHealthCheckRequestResource($targetPoolsAddHealthCheckRequestResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['target_pool'] = $targetPool;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['targetPool'])) {
-            $request->setTargetPool($optionalArgs['targetPool']);
-            $requestParamHeaders['target_pool'] = $optionalArgs['targetPool'];
-        }
-
-        if (isset($optionalArgs['targetPoolsAddHealthCheckRequestResource'])) {
-            $request->setTargetPoolsAddHealthCheckRequestResource($optionalArgs['targetPoolsAddHealthCheckRequestResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -365,7 +360,11 @@ class TargetPoolsGapicClient
      * ```
      * $targetPoolsClient = new TargetPoolsClient();
      * try {
-     *     $operationResponse = $targetPoolsClient->addInstance();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $targetPool = 'target_pool';
+     *     $targetPoolsAddInstanceRequestResource = new TargetPoolsAddInstanceRequest();
+     *     $operationResponse = $targetPoolsClient->addInstance($project, $region, $targetPool, $targetPoolsAddInstanceRequestResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -375,7 +374,7 @@ class TargetPoolsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetPoolsClient->addInstance();
+     *     $operationResponse = $targetPoolsClient->addInstance($project, $region, $targetPool, $targetPoolsAddInstanceRequestResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetPoolsClient->resumeOperation($operationName, 'addInstance');
@@ -394,19 +393,15 @@ class TargetPoolsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                        $project                               Project ID for this request.
+     * @param string                        $region                                Name of the region scoping this request.
+     * @param string                        $targetPool                            Name of the TargetPool resource to add instances to.
+     * @param TargetPoolsAddInstanceRequest $targetPoolsAddInstanceRequestResource The body resource for this request
+     * @param array                         $optionalArgs                          {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $targetPool
-     *           Name of the TargetPool resource to add instances to.
-     *     @type TargetPoolsAddInstanceRequest $targetPoolsAddInstanceRequestResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -417,31 +412,19 @@ class TargetPoolsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addInstance(array $optionalArgs = [])
+    public function addInstance($project, $region, $targetPool, $targetPoolsAddInstanceRequestResource, array $optionalArgs = [])
     {
         $request = new AddInstanceTargetPoolRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setTargetPool($targetPool);
+        $request->setTargetPoolsAddInstanceRequestResource($targetPoolsAddInstanceRequestResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['target_pool'] = $targetPool;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['targetPool'])) {
-            $request->setTargetPool($optionalArgs['targetPool']);
-            $requestParamHeaders['target_pool'] = $optionalArgs['targetPool'];
-        }
-
-        if (isset($optionalArgs['targetPoolsAddInstanceRequestResource'])) {
-            $request->setTargetPoolsAddInstanceRequestResource($optionalArgs['targetPoolsAddInstanceRequestResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -456,8 +439,9 @@ class TargetPoolsGapicClient
      * ```
      * $targetPoolsClient = new TargetPoolsClient();
      * try {
+     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $targetPoolsClient->aggregatedList();
+     *     $pagedResponse = $targetPoolsClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
@@ -465,7 +449,7 @@ class TargetPoolsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $targetPoolsClient->aggregatedList();
+     *     $pagedResponse = $targetPoolsClient->aggregatedList($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -474,7 +458,8 @@ class TargetPoolsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -490,8 +475,6 @@ class TargetPoolsGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type int $serviceProjectNumber
@@ -505,10 +488,12 @@ class TargetPoolsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function aggregatedList(array $optionalArgs = [])
+    public function aggregatedList($project, array $optionalArgs = [])
     {
         $request = new AggregatedListTargetPoolsRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -527,11 +512,6 @@ class TargetPoolsGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -554,7 +534,10 @@ class TargetPoolsGapicClient
      * ```
      * $targetPoolsClient = new TargetPoolsClient();
      * try {
-     *     $operationResponse = $targetPoolsClient->delete();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $targetPool = 'target_pool';
+     *     $operationResponse = $targetPoolsClient->delete($project, $region, $targetPool);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -564,7 +547,7 @@ class TargetPoolsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetPoolsClient->delete();
+     *     $operationResponse = $targetPoolsClient->delete($project, $region, $targetPool);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetPoolsClient->resumeOperation($operationName, 'delete');
@@ -583,17 +566,14 @@ class TargetPoolsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $region       Name of the region scoping this request.
+     * @param string $targetPool   Name of the TargetPool resource to delete.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $targetPool
-     *           Name of the TargetPool resource to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -604,27 +584,18 @@ class TargetPoolsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete(array $optionalArgs = [])
+    public function delete($project, $region, $targetPool, array $optionalArgs = [])
     {
         $request = new DeleteTargetPoolRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setTargetPool($targetPool);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['target_pool'] = $targetPool;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['targetPool'])) {
-            $request->setTargetPool($optionalArgs['targetPool']);
-            $requestParamHeaders['target_pool'] = $optionalArgs['targetPool'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -639,21 +610,21 @@ class TargetPoolsGapicClient
      * ```
      * $targetPoolsClient = new TargetPoolsClient();
      * try {
-     *     $response = $targetPoolsClient->get();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $targetPool = 'target_pool';
+     *     $response = $targetPoolsClient->get($project, $region, $targetPool);
      * } finally {
      *     $targetPoolsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $region       Name of the region scoping this request.
+     * @param string $targetPool   Name of the TargetPool resource to return.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
-     *     @type string $targetPool
-     *           Name of the TargetPool resource to return.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -664,25 +635,16 @@ class TargetPoolsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get(array $optionalArgs = [])
+    public function get($project, $region, $targetPool, array $optionalArgs = [])
     {
         $request = new GetTargetPoolRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['targetPool'])) {
-            $request->setTargetPool($optionalArgs['targetPool']);
-            $requestParamHeaders['target_pool'] = $optionalArgs['targetPool'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setTargetPool($targetPool);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['target_pool'] = $targetPool;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', TargetPool::class, $optionalArgs, $request)->wait();
@@ -695,23 +657,23 @@ class TargetPoolsGapicClient
      * ```
      * $targetPoolsClient = new TargetPoolsClient();
      * try {
-     *     $response = $targetPoolsClient->getHealth();
+     *     $instanceReferenceResource = new InstanceReference();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $targetPool = 'target_pool';
+     *     $response = $targetPoolsClient->getHealth($instanceReferenceResource, $project, $region, $targetPool);
      * } finally {
      *     $targetPoolsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param InstanceReference $instanceReferenceResource The body resource for this request
+     * @param string            $project                   Project ID for this request.
+     * @param string            $region                    Name of the region scoping this request.
+     * @param string            $targetPool                Name of the TargetPool resource to which the queried instance belongs.
+     * @param array             $optionalArgs              {
      *     Optional.
      *
-     *     @type InstanceReference $instanceReferenceResource
-     *           The body resource for this request
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
-     *     @type string $targetPool
-     *           Name of the TargetPool resource to which the queried instance belongs.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -722,29 +684,17 @@ class TargetPoolsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getHealth(array $optionalArgs = [])
+    public function getHealth($instanceReferenceResource, $project, $region, $targetPool, array $optionalArgs = [])
     {
         $request = new GetHealthTargetPoolRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instanceReferenceResource'])) {
-            $request->setInstanceReferenceResource($optionalArgs['instanceReferenceResource']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
-        if (isset($optionalArgs['targetPool'])) {
-            $request->setTargetPool($optionalArgs['targetPool']);
-            $requestParamHeaders['target_pool'] = $optionalArgs['targetPool'];
-        }
-
+        $request->setInstanceReferenceResource($instanceReferenceResource);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setTargetPool($targetPool);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['target_pool'] = $targetPool;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetHealth', TargetPoolInstanceHealth::class, $optionalArgs, $request)->wait();
@@ -757,7 +707,10 @@ class TargetPoolsGapicClient
      * ```
      * $targetPoolsClient = new TargetPoolsClient();
      * try {
-     *     $operationResponse = $targetPoolsClient->insert();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $targetPoolResource = new TargetPool();
+     *     $operationResponse = $targetPoolsClient->insert($project, $region, $targetPoolResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -767,7 +720,7 @@ class TargetPoolsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetPoolsClient->insert();
+     *     $operationResponse = $targetPoolsClient->insert($project, $region, $targetPoolResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetPoolsClient->resumeOperation($operationName, 'insert');
@@ -786,17 +739,14 @@ class TargetPoolsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string     $project            Project ID for this request.
+     * @param string     $region             Name of the region scoping this request.
+     * @param TargetPool $targetPoolResource The body resource for this request
+     * @param array      $optionalArgs       {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type TargetPool $targetPoolResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -807,26 +757,17 @@ class TargetPoolsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert(array $optionalArgs = [])
+    public function insert($project, $region, $targetPoolResource, array $optionalArgs = [])
     {
         $request = new InsertTargetPoolRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setTargetPoolResource($targetPoolResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['targetPoolResource'])) {
-            $request->setTargetPoolResource($optionalArgs['targetPoolResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -841,8 +782,10 @@ class TargetPoolsGapicClient
      * ```
      * $targetPoolsClient = new TargetPoolsClient();
      * try {
+     *     $project = 'project';
+     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $targetPoolsClient->list();
+     *     $pagedResponse = $targetPoolsClient->list($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -850,7 +793,7 @@ class TargetPoolsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $targetPoolsClient->list();
+     *     $pagedResponse = $targetPoolsClient->list($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -859,7 +802,9 @@ class TargetPoolsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $project      Project ID for this request.
+     * @param string $region       Name of the region scoping this request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -873,10 +818,6 @@ class TargetPoolsGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -889,10 +830,14 @@ class TargetPoolsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list(array $optionalArgs = [])
+    public function list($project, $region, array $optionalArgs = [])
     {
         $request = new ListTargetPoolsRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -907,16 +852,6 @@ class TargetPoolsGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -935,7 +870,11 @@ class TargetPoolsGapicClient
      * ```
      * $targetPoolsClient = new TargetPoolsClient();
      * try {
-     *     $operationResponse = $targetPoolsClient->removeHealthCheck();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $targetPool = 'target_pool';
+     *     $targetPoolsRemoveHealthCheckRequestResource = new TargetPoolsRemoveHealthCheckRequest();
+     *     $operationResponse = $targetPoolsClient->removeHealthCheck($project, $region, $targetPool, $targetPoolsRemoveHealthCheckRequestResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -945,7 +884,7 @@ class TargetPoolsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetPoolsClient->removeHealthCheck();
+     *     $operationResponse = $targetPoolsClient->removeHealthCheck($project, $region, $targetPool, $targetPoolsRemoveHealthCheckRequestResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetPoolsClient->resumeOperation($operationName, 'removeHealthCheck');
@@ -964,19 +903,15 @@ class TargetPoolsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                              $project                                     Project ID for this request.
+     * @param string                              $region                                      Name of the region for this request.
+     * @param string                              $targetPool                                  Name of the target pool to remove health checks from.
+     * @param TargetPoolsRemoveHealthCheckRequest $targetPoolsRemoveHealthCheckRequestResource The body resource for this request
+     * @param array                               $optionalArgs                                {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $targetPool
-     *           Name of the target pool to remove health checks from.
-     *     @type TargetPoolsRemoveHealthCheckRequest $targetPoolsRemoveHealthCheckRequestResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -987,31 +922,19 @@ class TargetPoolsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function removeHealthCheck(array $optionalArgs = [])
+    public function removeHealthCheck($project, $region, $targetPool, $targetPoolsRemoveHealthCheckRequestResource, array $optionalArgs = [])
     {
         $request = new RemoveHealthCheckTargetPoolRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setTargetPool($targetPool);
+        $request->setTargetPoolsRemoveHealthCheckRequestResource($targetPoolsRemoveHealthCheckRequestResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['target_pool'] = $targetPool;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['targetPool'])) {
-            $request->setTargetPool($optionalArgs['targetPool']);
-            $requestParamHeaders['target_pool'] = $optionalArgs['targetPool'];
-        }
-
-        if (isset($optionalArgs['targetPoolsRemoveHealthCheckRequestResource'])) {
-            $request->setTargetPoolsRemoveHealthCheckRequestResource($optionalArgs['targetPoolsRemoveHealthCheckRequestResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1026,7 +949,11 @@ class TargetPoolsGapicClient
      * ```
      * $targetPoolsClient = new TargetPoolsClient();
      * try {
-     *     $operationResponse = $targetPoolsClient->removeInstance();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $targetPool = 'target_pool';
+     *     $targetPoolsRemoveInstanceRequestResource = new TargetPoolsRemoveInstanceRequest();
+     *     $operationResponse = $targetPoolsClient->removeInstance($project, $region, $targetPool, $targetPoolsRemoveInstanceRequestResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1036,7 +963,7 @@ class TargetPoolsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetPoolsClient->removeInstance();
+     *     $operationResponse = $targetPoolsClient->removeInstance($project, $region, $targetPool, $targetPoolsRemoveInstanceRequestResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetPoolsClient->resumeOperation($operationName, 'removeInstance');
@@ -1055,19 +982,15 @@ class TargetPoolsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                           $project                                  Project ID for this request.
+     * @param string                           $region                                   Name of the region scoping this request.
+     * @param string                           $targetPool                               Name of the TargetPool resource to remove instances from.
+     * @param TargetPoolsRemoveInstanceRequest $targetPoolsRemoveInstanceRequestResource The body resource for this request
+     * @param array                            $optionalArgs                             {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $targetPool
-     *           Name of the TargetPool resource to remove instances from.
-     *     @type TargetPoolsRemoveInstanceRequest $targetPoolsRemoveInstanceRequestResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1078,31 +1001,19 @@ class TargetPoolsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function removeInstance(array $optionalArgs = [])
+    public function removeInstance($project, $region, $targetPool, $targetPoolsRemoveInstanceRequestResource, array $optionalArgs = [])
     {
         $request = new RemoveInstanceTargetPoolRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setTargetPool($targetPool);
+        $request->setTargetPoolsRemoveInstanceRequestResource($targetPoolsRemoveInstanceRequestResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['target_pool'] = $targetPool;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['targetPool'])) {
-            $request->setTargetPool($optionalArgs['targetPool']);
-            $requestParamHeaders['target_pool'] = $optionalArgs['targetPool'];
-        }
-
-        if (isset($optionalArgs['targetPoolsRemoveInstanceRequestResource'])) {
-            $request->setTargetPoolsRemoveInstanceRequestResource($optionalArgs['targetPoolsRemoveInstanceRequestResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1117,7 +1028,11 @@ class TargetPoolsGapicClient
      * ```
      * $targetPoolsClient = new TargetPoolsClient();
      * try {
-     *     $operationResponse = $targetPoolsClient->setBackup();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $targetPool = 'target_pool';
+     *     $targetReferenceResource = new TargetReference();
+     *     $operationResponse = $targetPoolsClient->setBackup($project, $region, $targetPool, $targetReferenceResource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1127,7 +1042,7 @@ class TargetPoolsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetPoolsClient->setBackup();
+     *     $operationResponse = $targetPoolsClient->setBackup($project, $region, $targetPool, $targetReferenceResource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetPoolsClient->resumeOperation($operationName, 'setBackup');
@@ -1146,21 +1061,17 @@ class TargetPoolsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string          $project                 Project ID for this request.
+     * @param string          $region                  Name of the region scoping this request.
+     * @param string          $targetPool              Name of the TargetPool resource to set a backup pool for.
+     * @param TargetReference $targetReferenceResource The body resource for this request
+     * @param array           $optionalArgs            {
      *     Optional.
      *
      *     @type float $failoverRatio
      *           New failoverRatio value for the target pool.
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type string $targetPool
-     *           Name of the TargetPool resource to set a backup pool for.
-     *     @type TargetReference $targetReferenceResource
-     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1171,35 +1082,23 @@ class TargetPoolsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setBackup(array $optionalArgs = [])
+    public function setBackup($project, $region, $targetPool, $targetReferenceResource, array $optionalArgs = [])
     {
         $request = new SetBackupTargetPoolRequest();
         $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setTargetPool($targetPool);
+        $request->setTargetReferenceResource($targetReferenceResource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['target_pool'] = $targetPool;
         if (isset($optionalArgs['failoverRatio'])) {
             $request->setFailoverRatio($optionalArgs['failoverRatio']);
         }
 
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['targetPool'])) {
-            $request->setTargetPool($optionalArgs['targetPool']);
-            $requestParamHeaders['target_pool'] = $optionalArgs['targetPool'];
-        }
-
-        if (isset($optionalArgs['targetReferenceResource'])) {
-            $request->setTargetReferenceResource($optionalArgs['targetReferenceResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1214,7 +1113,11 @@ class TargetPoolsGapicClient
      * ```
      * $targetPoolsClient = new TargetPoolsClient();
      * try {
-     *     $operationResponse = $targetPoolsClient->setSecurityPolicy();
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $securityPolicyReferenceResource = new SecurityPolicyReference();
+     *     $targetPool = 'target_pool';
+     *     $operationResponse = $targetPoolsClient->setSecurityPolicy($project, $region, $securityPolicyReferenceResource, $targetPool);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1224,7 +1127,7 @@ class TargetPoolsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetPoolsClient->setSecurityPolicy();
+     *     $operationResponse = $targetPoolsClient->setSecurityPolicy($project, $region, $securityPolicyReferenceResource, $targetPool);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetPoolsClient->resumeOperation($operationName, 'setSecurityPolicy');
@@ -1243,19 +1146,15 @@ class TargetPoolsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                  $project                         Project ID for this request.
+     * @param string                  $region                          Name of the region scoping this request.
+     * @param SecurityPolicyReference $securityPolicyReferenceResource The body resource for this request
+     * @param string                  $targetPool                      Name of the TargetPool resource to which the security policy should be set. The name should conform to RFC1035.
+     * @param array                   $optionalArgs                    {
      *     Optional.
      *
-     *     @type string $project
-     *           Project ID for this request.
-     *     @type string $region
-     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
-     *     @type SecurityPolicyReference $securityPolicyReferenceResource
-     *           The body resource for this request
-     *     @type string $targetPool
-     *           Name of the TargetPool resource to which the security policy should be set. The name should conform to RFC1035.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1266,31 +1165,19 @@ class TargetPoolsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setSecurityPolicy(array $optionalArgs = [])
+    public function setSecurityPolicy($project, $region, $securityPolicyReferenceResource, $targetPool, array $optionalArgs = [])
     {
         $request = new SetSecurityPolicyTargetPoolRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['project'])) {
-            $request->setProject($optionalArgs['project']);
-            $requestParamHeaders['project'] = $optionalArgs['project'];
-        }
-
-        if (isset($optionalArgs['region'])) {
-            $request->setRegion($optionalArgs['region']);
-            $requestParamHeaders['region'] = $optionalArgs['region'];
-        }
-
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setSecurityPolicyReferenceResource($securityPolicyReferenceResource);
+        $request->setTargetPool($targetPool);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['target_pool'] = $targetPool;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
-        }
-
-        if (isset($optionalArgs['securityPolicyReferenceResource'])) {
-            $request->setSecurityPolicyReferenceResource($optionalArgs['securityPolicyReferenceResource']);
-        }
-
-        if (isset($optionalArgs['targetPool'])) {
-            $request->setTargetPool($optionalArgs['targetPool']);
-            $requestParamHeaders['target_pool'] = $optionalArgs['targetPool'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

@@ -31,19 +31,17 @@ use Google\Cloud\Deploy\V1\GetConfigRequest;
 /**
  * Gets the configuration for a location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Name of requested configuration. Please see
+ *                              {@see CloudDeployClient::configName()} for help formatting this field.
  */
-function get_config_sample(): void
+function get_config_sample(string $formattedName): void
 {
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = new GetConfigRequest();
+    $request = (new GetConfigRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +51,21 @@ function get_config_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = CloudDeployClient::configName('[PROJECT]', '[LOCATION]');
+
+    get_config_sample($formattedName);
 }
 // [END clouddeploy_v1_generated_CloudDeploy_GetConfig_sync]

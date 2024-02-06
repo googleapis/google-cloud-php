@@ -38,7 +38,8 @@ class CreateReleaseConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                       $parent          Required. The repository in which to create the release config. Must be in
-     *                                                                      the format `projects/&#42;/locations/&#42;/repositories/*`.
+     *                                                                      the format `projects/&#42;/locations/&#42;/repositories/*`. Please see
+     *                                                                      {@see DataformClient::repositoryName()} for help formatting this field.
      * @param \Google\Cloud\Dataform\V1beta1\ReleaseConfig $releaseConfig   Required. The release config to create.
      * @param string                                       $releaseConfigId Required. The ID to use for the release config, which will become the final
      *                                                                      component of the release config's resource name.

@@ -25,10 +25,35 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_UrlMaps_Validate_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Compute\V1\UrlMapsClient;
+use Google\Cloud\Compute\V1\UrlMapsValidateRequest;
 use Google\Cloud\Compute\V1\UrlMapsValidateResponse;
 
 /**
  * Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap.
+ *
+ * @param string $project Project ID for this request.
+ * @param string $urlMap  Name of the UrlMap resource to be validated as.
+ */
+function validate_sample(string $project, string $urlMap): void
+{
+    // Create a client.
+    $urlMapsClient = new UrlMapsClient();
+
+    // Prepare any non-scalar elements to be passed along with the request.
+    $urlMapsValidateRequestResource = new UrlMapsValidateRequest();
+
+    // Call the API and handle any network failures.
+    try {
+        /** @var UrlMapsValidateResponse $response */
+        $response = $urlMapsClient->validate($project, $urlMap, $urlMapsValidateRequestResource);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
+}
+
+/**
+ * Helper to execute the sample.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -36,18 +61,11 @@ use Google\Cloud\Compute\V1\UrlMapsValidateResponse;
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function validate_sample(): void
+function callSample(): void
 {
-    // Create a client.
-    $urlMapsClient = new UrlMapsClient();
+    $project = '[PROJECT]';
+    $urlMap = '[URL_MAP]';
 
-    // Call the API and handle any network failures.
-    try {
-        /** @var UrlMapsValidateResponse $response */
-        $response = $urlMapsClient->validate();
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
+    validate_sample($project, $urlMap);
 }
 // [END compute_v1_generated_UrlMaps_Validate_sync]

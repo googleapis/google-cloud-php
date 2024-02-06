@@ -14,6 +14,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'connection_profile_id',
+                ],
             ],
             'CreatePrivateConnection' => [
                 'method' => 'post',
@@ -25,6 +28,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'private_connection_id',
                 ],
             ],
             'CreateRoute' => [
@@ -38,6 +44,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'route_id',
+                ],
             ],
             'CreateStream' => [
                 'method' => 'post',
@@ -49,6 +58,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'stream_id',
                 ],
             ],
             'DeleteConnectionProfile' => [

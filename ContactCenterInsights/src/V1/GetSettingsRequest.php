@@ -23,7 +23,8 @@ class GetSettingsRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the settings resource to get.
+     * @param string $name Required. The name of the settings resource to get. Please see
+     *                     {@see ContactCenterInsightsClient::settingsName()} for help formatting this field.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\GetSettingsRequest
      *

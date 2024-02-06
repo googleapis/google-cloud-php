@@ -38,6 +38,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -93,7 +94,14 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
         $expectedResponse->setDeidentifyTemplate($deidentifyTemplate);
         $expectedResponse->setRetentionWindowDays($retentionWindowDays);
         $transport->addResponse($expectedResponse);
-        $request = new CreateSecuritySettingsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $securitySettings = new SecuritySettings();
+        $securitySettingsDisplayName = 'securitySettingsDisplayName1233938154';
+        $securitySettings->setDisplayName($securitySettingsDisplayName);
+        $request = (new CreateSecuritySettingsRequest())
+            ->setParent($formattedParent)
+            ->setSecuritySettings($securitySettings);
         $response = $gapicClient->createSecuritySettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -104,6 +112,10 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
             '/google.cloud.dialogflow.cx.v3.SecuritySettingsService/CreateSecuritySettings',
             $actualFuncCall
         );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getSecuritySettings();
+        $this->assertProtobufEquals($securitySettings, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -128,7 +140,14 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new CreateSecuritySettingsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $securitySettings = new SecuritySettings();
+        $securitySettingsDisplayName = 'securitySettingsDisplayName1233938154';
+        $securitySettings->setDisplayName($securitySettingsDisplayName);
+        $request = (new CreateSecuritySettingsRequest())
+            ->setParent($formattedParent)
+            ->setSecuritySettings($securitySettings);
         try {
             $gapicClient->createSecuritySettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -153,7 +172,9 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteSecuritySettingsRequest();
+        // Mock request
+        $formattedName = $gapicClient->securitySettingsName('[PROJECT]', '[LOCATION]', '[SECURITY_SETTINGS]');
+        $request = (new DeleteSecuritySettingsRequest())->setName($formattedName);
         $gapicClient->deleteSecuritySettings($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -163,6 +184,8 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
             '/google.cloud.dialogflow.cx.v3.SecuritySettingsService/DeleteSecuritySettings',
             $actualFuncCall
         );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -187,7 +210,9 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new DeleteSecuritySettingsRequest();
+        // Mock request
+        $formattedName = $gapicClient->securitySettingsName('[PROJECT]', '[LOCATION]', '[SECURITY_SETTINGS]');
+        $request = (new DeleteSecuritySettingsRequest())->setName($formattedName);
         try {
             $gapicClient->deleteSecuritySettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -222,7 +247,9 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
         $expectedResponse->setDeidentifyTemplate($deidentifyTemplate);
         $expectedResponse->setRetentionWindowDays($retentionWindowDays);
         $transport->addResponse($expectedResponse);
-        $request = new GetSecuritySettingsRequest();
+        // Mock request
+        $formattedName = $gapicClient->securitySettingsName('[PROJECT]', '[LOCATION]', '[SECURITY_SETTINGS]');
+        $request = (new GetSecuritySettingsRequest())->setName($formattedName);
         $response = $gapicClient->getSecuritySettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -233,6 +260,8 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
             '/google.cloud.dialogflow.cx.v3.SecuritySettingsService/GetSecuritySettings',
             $actualFuncCall
         );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -257,7 +286,9 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetSecuritySettingsRequest();
+        // Mock request
+        $formattedName = $gapicClient->securitySettingsName('[PROJECT]', '[LOCATION]', '[SECURITY_SETTINGS]');
+        $request = (new GetSecuritySettingsRequest())->setName($formattedName);
         try {
             $gapicClient->getSecuritySettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -287,7 +318,9 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSecuritySettings($securitySettings);
         $transport->addResponse($expectedResponse);
-        $request = new ListSecuritySettingsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListSecuritySettingsRequest())->setParent($formattedParent);
         $response = $gapicClient->listSecuritySettings($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -301,6 +334,8 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
             '/google.cloud.dialogflow.cx.v3.SecuritySettingsService/ListSecuritySettings',
             $actualFuncCall
         );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -325,7 +360,9 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListSecuritySettingsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListSecuritySettingsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSecuritySettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -360,7 +397,14 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
         $expectedResponse->setDeidentifyTemplate($deidentifyTemplate);
         $expectedResponse->setRetentionWindowDays($retentionWindowDays);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateSecuritySettingsRequest();
+        // Mock request
+        $securitySettings = new SecuritySettings();
+        $securitySettingsDisplayName = 'securitySettingsDisplayName1233938154';
+        $securitySettings->setDisplayName($securitySettingsDisplayName);
+        $updateMask = new FieldMask();
+        $request = (new UpdateSecuritySettingsRequest())
+            ->setSecuritySettings($securitySettings)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateSecuritySettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -371,6 +415,10 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
             '/google.cloud.dialogflow.cx.v3.SecuritySettingsService/UpdateSecuritySettings',
             $actualFuncCall
         );
+        $actualValue = $actualRequestObject->getSecuritySettings();
+        $this->assertProtobufEquals($securitySettings, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -395,7 +443,14 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new UpdateSecuritySettingsRequest();
+        // Mock request
+        $securitySettings = new SecuritySettings();
+        $securitySettingsDisplayName = 'securitySettingsDisplayName1233938154';
+        $securitySettings->setDisplayName($securitySettingsDisplayName);
+        $updateMask = new FieldMask();
+        $request = (new UpdateSecuritySettingsRequest())
+            ->setSecuritySettings($securitySettings)
+            ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateSecuritySettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -558,7 +613,14 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
         $expectedResponse->setDeidentifyTemplate($deidentifyTemplate);
         $expectedResponse->setRetentionWindowDays($retentionWindowDays);
         $transport->addResponse($expectedResponse);
-        $request = new CreateSecuritySettingsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $securitySettings = new SecuritySettings();
+        $securitySettingsDisplayName = 'securitySettingsDisplayName1233938154';
+        $securitySettings->setDisplayName($securitySettingsDisplayName);
+        $request = (new CreateSecuritySettingsRequest())
+            ->setParent($formattedParent)
+            ->setSecuritySettings($securitySettings);
         $response = $gapicClient->createSecuritySettingsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -569,6 +631,10 @@ class SecuritySettingsServiceClientTest extends GeneratedTest
             '/google.cloud.dialogflow.cx.v3.SecuritySettingsService/CreateSecuritySettings',
             $actualFuncCall
         );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getSecuritySettings();
+        $this->assertProtobufEquals($securitySettings, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

@@ -49,6 +49,7 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. Dataset resource parent, format:
      *                       projects/{project_id}
+     *                       Please see {@see DataLabelingServiceClient::projectName()} for help formatting this field.
      * @param string $filter Optional. Filter on dataset is not supported at this moment.
      *
      * @return \Google\Cloud\DataLabeling\V1beta1\ListDatasetsRequest

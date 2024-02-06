@@ -57,7 +57,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $versionsClient = new VersionsClient();
  * try {
- *     $response = $versionsClient->createVersion();
+ *     $formattedParent = $versionsClient->agentName('[PROJECT]');
+ *     $version = new Version();
+ *     $response = $versionsClient->createVersion($formattedParent, $version);
  * } finally {
  *     $versionsClient->close();
  * }
@@ -417,23 +419,23 @@ class VersionsGapicClient
      * ```
      * $versionsClient = new VersionsClient();
      * try {
-     *     $response = $versionsClient->createVersion();
+     *     $formattedParent = $versionsClient->agentName('[PROJECT]');
+     *     $version = new Version();
+     *     $response = $versionsClient->createVersion($formattedParent, $version);
      * } finally {
      *     $versionsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string  $parent       Required. The agent to create a version for.
+     *                              Supported formats:
+     *
+     *                              - `projects/<Project ID>/agent`
+     *                              - `projects/<Project ID>/locations/<Location ID>/agent`
+     * @param Version $version      Required. The version to create.
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The agent to create a version for.
-     *           Supported formats:
-     *
-     *           - `projects/<Project ID>/agent`
-     *           - `projects/<Project ID>/locations/<Location ID>/agent`
-     *     @type Version $version
-     *           Required. The version to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -444,19 +446,13 @@ class VersionsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createVersion(array $optionalArgs = [])
+    public function createVersion($parent, $version, array $optionalArgs = [])
     {
         $request = new CreateVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['version'])) {
-            $request->setVersion($optionalArgs['version']);
-        }
-
+        $request->setParent($parent);
+        $request->setVersion($version);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateVersion', Version::class, $optionalArgs, $request)->wait();
@@ -469,22 +465,22 @@ class VersionsGapicClient
      * ```
      * $versionsClient = new VersionsClient();
      * try {
-     *     $versionsClient->deleteVersion();
+     *     $formattedName = $versionsClient->versionName('[PROJECT]', '[VERSION]');
+     *     $versionsClient->deleteVersion($formattedName);
      * } finally {
      *     $versionsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the version to delete.
+     *                             Supported formats:
+     *
+     *                             - `projects/<Project ID>/agent/versions/<Version ID>`
+     *                             - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
+     *                             ID>`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the version to delete.
-     *           Supported formats:
-     *
-     *           - `projects/<Project ID>/agent/versions/<Version ID>`
-     *           - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
-     *           ID>`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -493,15 +489,12 @@ class VersionsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteVersion(array $optionalArgs = [])
+    public function deleteVersion($name, array $optionalArgs = [])
     {
         $request = new DeleteVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteVersion', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -514,22 +507,22 @@ class VersionsGapicClient
      * ```
      * $versionsClient = new VersionsClient();
      * try {
-     *     $response = $versionsClient->getVersion();
+     *     $formattedName = $versionsClient->versionName('[PROJECT]', '[VERSION]');
+     *     $response = $versionsClient->getVersion($formattedName);
      * } finally {
      *     $versionsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the version.
+     *                             Supported formats:
+     *
+     *                             - `projects/<Project ID>/agent/versions/<Version ID>`
+     *                             - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
+     *                             ID>`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the version.
-     *           Supported formats:
-     *
-     *           - `projects/<Project ID>/agent/versions/<Version ID>`
-     *           - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
-     *           ID>`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -540,15 +533,12 @@ class VersionsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getVersion(array $optionalArgs = [])
+    public function getVersion($name, array $optionalArgs = [])
     {
         $request = new GetVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetVersion', Version::class, $optionalArgs, $request)->wait();
@@ -561,8 +551,9 @@ class VersionsGapicClient
      * ```
      * $versionsClient = new VersionsClient();
      * try {
+     *     $formattedParent = $versionsClient->agentName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $versionsClient->listVersions();
+     *     $pagedResponse = $versionsClient->listVersions($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -570,7 +561,7 @@ class VersionsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $versionsClient->listVersions();
+     *     $pagedResponse = $versionsClient->listVersions($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -579,15 +570,14 @@ class VersionsGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The agent to list all versions from.
+     *                             Supported formats:
+     *
+     *                             - `projects/<Project ID>/agent`
+     *                             - `projects/<Project ID>/locations/<Location ID>/agent`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The agent to list all versions from.
-     *           Supported formats:
-     *
-     *           - `projects/<Project ID>/agent`
-     *           - `projects/<Project ID>/locations/<Location ID>/agent`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -607,15 +597,12 @@ class VersionsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listVersions(array $optionalArgs = [])
+    public function listVersions($parent, array $optionalArgs = [])
     {
         $request = new ListVersionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -640,24 +627,24 @@ class VersionsGapicClient
      * ```
      * $versionsClient = new VersionsClient();
      * try {
-     *     $response = $versionsClient->updateVersion();
+     *     $version = new Version();
+     *     $updateMask = new FieldMask();
+     *     $response = $versionsClient->updateVersion($version, $updateMask);
      * } finally {
      *     $versionsClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Version   $version      Required. The version to update.
+     *                                Supported formats:
+     *
+     *                                - `projects/<Project ID>/agent/versions/<Version ID>`
+     *                                - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
+     *                                ID>`
+     * @param FieldMask $updateMask   Required. The mask to control which fields get updated.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type Version $version
-     *           Required. The version to update.
-     *           Supported formats:
-     *
-     *           - `projects/<Project ID>/agent/versions/<Version ID>`
-     *           - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
-     *           ID>`
-     *     @type FieldMask $updateMask
-     *           Required. The mask to control which fields get updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -668,18 +655,13 @@ class VersionsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateVersion(array $optionalArgs = [])
+    public function updateVersion($version, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['version'])) {
-            $request->setVersion($optionalArgs['version']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setVersion($version);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['version.name'] = $version->getName();
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateVersion', Version::class, $optionalArgs, $request)->wait();

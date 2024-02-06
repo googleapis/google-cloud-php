@@ -34,6 +34,7 @@ class GetVersionRequest extends \Google\Protobuf\Internal\Message
      *                     - `projects/<Project ID>/agent/versions/<Version ID>`
      *                     - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
      *                     ID>`
+     *                     Please see {@see VersionsClient::versionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\GetVersionRequest
      *

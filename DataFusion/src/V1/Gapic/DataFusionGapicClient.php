@@ -59,7 +59,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $dataFusionClient = new DataFusionClient();
  * try {
- *     $operationResponse = $dataFusionClient->createInstance();
+ *     $formattedParent = $dataFusionClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $instanceId = 'instance_id';
+ *     $operationResponse = $dataFusionClient->createInstance($formattedParent, $instanceId);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -70,7 +72,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $dataFusionClient->createInstance();
+ *     $operationResponse = $dataFusionClient->createInstance($formattedParent, $instanceId);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $dataFusionClient->resumeOperation($operationName, 'createInstance');
@@ -417,7 +419,9 @@ class DataFusionGapicClient
      * ```
      * $dataFusionClient = new DataFusionClient();
      * try {
-     *     $operationResponse = $dataFusionClient->createInstance();
+     *     $formattedParent = $dataFusionClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $instanceId = 'instance_id';
+     *     $operationResponse = $dataFusionClient->createInstance($formattedParent, $instanceId);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -428,7 +432,7 @@ class DataFusionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataFusionClient->createInstance();
+     *     $operationResponse = $dataFusionClient->createInstance($formattedParent, $instanceId);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataFusionClient->resumeOperation($operationName, 'createInstance');
@@ -448,14 +452,12 @@ class DataFusionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The instance's project and location in the format
+     *                             projects/{project}/locations/{location}.
+     * @param string $instanceId   Required. The name of the instance to create.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The instance's project and location in the format
-     *           projects/{project}/locations/{location}.
-     *     @type string $instanceId
-     *           Required. The name of the instance to create.
      *     @type Instance $instance
      *           An instance resource.
      *     @type RetrySettings|array $retrySettings
@@ -468,19 +470,16 @@ class DataFusionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createInstance(array $optionalArgs = [])
-    {
+    public function createInstance(
+        $parent,
+        $instanceId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['instanceId'])) {
-            $request->setInstanceId($optionalArgs['instanceId']);
-        }
-
+        $request->setParent($parent);
+        $request->setInstanceId($instanceId);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['instance'])) {
             $request->setInstance($optionalArgs['instance']);
         }
@@ -506,7 +505,8 @@ class DataFusionGapicClient
      * ```
      * $dataFusionClient = new DataFusionClient();
      * try {
-     *     $operationResponse = $dataFusionClient->deleteInstance();
+     *     $formattedName = $dataFusionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $operationResponse = $dataFusionClient->deleteInstance($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -516,7 +516,7 @@ class DataFusionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataFusionClient->deleteInstance();
+     *     $operationResponse = $dataFusionClient->deleteInstance($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataFusionClient->resumeOperation($operationName, 'deleteInstance');
@@ -535,12 +535,11 @@ class DataFusionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The instance resource name in the format
+     *                             projects/{project}/locations/{location}/instances/{instance}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The instance resource name in the format
-     *           projects/{project}/locations/{location}/instances/{instance}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -551,15 +550,12 @@ class DataFusionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteInstance(array $optionalArgs = [])
+    public function deleteInstance($name, array $optionalArgs = [])
     {
         $request = new DeleteInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -581,18 +577,18 @@ class DataFusionGapicClient
      * ```
      * $dataFusionClient = new DataFusionClient();
      * try {
-     *     $response = $dataFusionClient->getInstance();
+     *     $formattedName = $dataFusionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $response = $dataFusionClient->getInstance($formattedName);
      * } finally {
      *     $dataFusionClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The instance resource name in the format
+     *                             projects/{project}/locations/{location}/instances/{instance}.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The instance resource name in the format
-     *           projects/{project}/locations/{location}/instances/{instance}.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -603,15 +599,12 @@ class DataFusionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getInstance(array $optionalArgs = [])
+    public function getInstance($name, array $optionalArgs = [])
     {
         $request = new GetInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -634,8 +627,9 @@ class DataFusionGapicClient
      * ```
      * $dataFusionClient = new DataFusionClient();
      * try {
+     *     $formattedParent = $dataFusionClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataFusionClient->listAvailableVersions();
+     *     $pagedResponse = $dataFusionClient->listAvailableVersions($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -643,7 +637,7 @@ class DataFusionGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataFusionClient->listAvailableVersions();
+     *     $pagedResponse = $dataFusionClient->listAvailableVersions($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -652,12 +646,11 @@ class DataFusionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The project and location for which to retrieve instance information
+     *                             in the format projects/{project}/locations/{location}.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The project and location for which to retrieve instance information
-     *           in the format projects/{project}/locations/{location}.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -681,15 +674,12 @@ class DataFusionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAvailableVersions(array $optionalArgs = [])
+    public function listAvailableVersions($parent, array $optionalArgs = [])
     {
         $request = new ListAvailableVersionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -723,8 +713,9 @@ class DataFusionGapicClient
      * ```
      * $dataFusionClient = new DataFusionClient();
      * try {
+     *     $formattedParent = $dataFusionClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataFusionClient->listInstances();
+     *     $pagedResponse = $dataFusionClient->listInstances($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -732,7 +723,7 @@ class DataFusionGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataFusionClient->listInstances();
+     *     $pagedResponse = $dataFusionClient->listInstances($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -741,14 +732,13 @@ class DataFusionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The project and location for which to retrieve instance information
+     *                             in the format projects/{project}/locations/{location}. If the location is
+     *                             specified as '-' (wildcard), then all regions available to the project
+     *                             are queried, and the results are aggregated.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The project and location for which to retrieve instance information
-     *           in the format projects/{project}/locations/{location}. If the location is
-     *           specified as '-' (wildcard), then all regions available to the project
-     *           are queried, and the results are aggregated.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -772,15 +762,12 @@ class DataFusionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listInstances(array $optionalArgs = [])
+    public function listInstances($parent, array $optionalArgs = [])
     {
         $request = new ListInstancesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -819,7 +806,8 @@ class DataFusionGapicClient
      * ```
      * $dataFusionClient = new DataFusionClient();
      * try {
-     *     $operationResponse = $dataFusionClient->restartInstance();
+     *     $formattedName = $dataFusionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $operationResponse = $dataFusionClient->restartInstance($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -830,7 +818,7 @@ class DataFusionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataFusionClient->restartInstance();
+     *     $operationResponse = $dataFusionClient->restartInstance($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataFusionClient->resumeOperation($operationName, 'restartInstance');
@@ -850,12 +838,11 @@ class DataFusionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the Data Fusion instance which need to be restarted in the form of
+     *                             projects/{project}/locations/{location}/instances/{instance}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the Data Fusion instance which need to be restarted in the form of
-     *           projects/{project}/locations/{location}/instances/{instance}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -866,15 +853,12 @@ class DataFusionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function restartInstance(array $optionalArgs = [])
+    public function restartInstance($name, array $optionalArgs = [])
     {
         $request = new RestartInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -896,7 +880,8 @@ class DataFusionGapicClient
      * ```
      * $dataFusionClient = new DataFusionClient();
      * try {
-     *     $operationResponse = $dataFusionClient->updateInstance();
+     *     $instance = new Instance();
+     *     $operationResponse = $dataFusionClient->updateInstance($instance);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -907,7 +892,7 @@ class DataFusionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataFusionClient->updateInstance();
+     *     $operationResponse = $dataFusionClient->updateInstance($instance);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataFusionClient->resumeOperation($operationName, 'updateInstance');
@@ -927,13 +912,12 @@ class DataFusionGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Instance $instance     Required. The instance resource that replaces the resource on the server. Currently,
+     *                               Data Fusion only allows replacing labels, options, and stack driver
+     *                               settings. All other fields will be ignored.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type Instance $instance
-     *           Required. The instance resource that replaces the resource on the server. Currently,
-     *           Data Fusion only allows replacing labels, options, and stack driver
-     *           settings. All other fields will be ignored.
      *     @type FieldMask $updateMask
      *           Field mask is used to specify the fields that the update will overwrite
      *           in an instance resource. The fields specified in the update_mask are
@@ -951,14 +935,12 @@ class DataFusionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateInstance(array $optionalArgs = [])
+    public function updateInstance($instance, array $optionalArgs = [])
     {
         $request = new UpdateInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-        }
-
+        $request->setInstance($instance);
+        $requestParamHeaders['instance.name'] = $instance->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

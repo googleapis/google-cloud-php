@@ -104,7 +104,10 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $dataCatalogClient = new DataCatalogClient();
  * try {
- *     $response = $dataCatalogClient->createEntry();
+ *     $formattedParent = $dataCatalogClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+ *     $entryId = 'entry_id';
+ *     $entry = new Entry();
+ *     $response = $dataCatalogClient->createEntry($formattedParent, $entryId, $entry);
  * } finally {
  *     $dataCatalogClient->close();
  * }
@@ -559,28 +562,28 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->createEntry();
+     *     $formattedParent = $dataCatalogClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+     *     $entryId = 'entry_id';
+     *     $entry = new Entry();
+     *     $response = $dataCatalogClient->createEntry($formattedParent, $entryId, $entry);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the entry group this entry belongs to.
+     *
+     *                             Note: The entry itself and its child resources might not be stored in
+     *                             the location specified in its name.
+     * @param string $entryId      Required. The ID of the entry to create.
+     *
+     *                             The ID must contain only letters (a-z, A-Z), numbers (0-9),
+     *                             and underscores (_).
+     *                             The maximum size is 64 bytes when encoded in UTF-8.
+     * @param Entry  $entry        Required. The entry to create.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the entry group this entry belongs to.
-     *
-     *           Note: The entry itself and its child resources might not be stored in
-     *           the location specified in its name.
-     *     @type string $entryId
-     *           Required. The ID of the entry to create.
-     *
-     *           The ID must contain only letters (a-z, A-Z), numbers (0-9),
-     *           and underscores (_).
-     *           The maximum size is 64 bytes when encoded in UTF-8.
-     *     @type Entry $entry
-     *           Required. The entry to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -591,23 +594,14 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createEntry(array $optionalArgs = [])
+    public function createEntry($parent, $entryId, $entry, array $optionalArgs = [])
     {
         $request = new CreateEntryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['entryId'])) {
-            $request->setEntryId($optionalArgs['entryId']);
-        }
-
-        if (isset($optionalArgs['entry'])) {
-            $request->setEntry($optionalArgs['entry']);
-        }
-
+        $request->setParent($parent);
+        $request->setEntryId($entryId);
+        $request->setEntry($entry);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateEntry', Entry::class, $optionalArgs, $request)->wait();
@@ -646,27 +640,27 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->createEntryGroup();
+     *     $formattedParent = $dataCatalogClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $entryGroupId = 'entry_group_id';
+     *     $response = $dataCatalogClient->createEntryGroup($formattedParent, $entryGroupId);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The names of the project and location that the new entry group
+     *                             belongs to.
+     *
+     *                             Note: The entry group itself and its child resources might not be
+     *                             stored in the location specified in its name.
+     * @param string $entryGroupId Required. The ID of the entry group to create.
+     *
+     *                             The ID must contain only letters (a-z, A-Z), numbers (0-9),
+     *                             underscores (_), and must start with a letter or underscore.
+     *                             The maximum size is 64 bytes when encoded in UTF-8.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The names of the project and location that the new entry group
-     *           belongs to.
-     *
-     *           Note: The entry group itself and its child resources might not be
-     *           stored in the location specified in its name.
-     *     @type string $entryGroupId
-     *           Required. The ID of the entry group to create.
-     *
-     *           The ID must contain only letters (a-z, A-Z), numbers (0-9),
-     *           underscores (_), and must start with a letter or underscore.
-     *           The maximum size is 64 bytes when encoded in UTF-8.
      *     @type EntryGroup $entryGroup
      *           The entry group to create. Defaults to empty.
      *     @type RetrySettings|array $retrySettings
@@ -679,19 +673,13 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createEntryGroup(array $optionalArgs = [])
+    public function createEntryGroup($parent, $entryGroupId, array $optionalArgs = [])
     {
         $request = new CreateEntryGroupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['entryGroupId'])) {
-            $request->setEntryGroupId($optionalArgs['entryGroupId']);
-        }
-
+        $request->setParent($parent);
+        $request->setEntryGroupId($entryGroupId);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['entryGroup'])) {
             $request->setEntryGroup($optionalArgs['entryGroup']);
         }
@@ -719,25 +707,25 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->createTag();
+     *     $formattedParent = $dataCatalogClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+     *     $tag = new Tag();
+     *     $response = $dataCatalogClient->createTag($formattedParent, $tag);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the resource to attach this tag to.
+     *
+     *                             Tags can be attached to entries or entry groups. An entry can have up to
+     *                             1000 attached tags.
+     *
+     *                             Note: The tag and its child resources might not be stored in
+     *                             the location specified in its name.
+     * @param Tag    $tag          Required. The tag to create.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the resource to attach this tag to.
-     *
-     *           Tags can be attached to entries or entry groups. An entry can have up to
-     *           1000 attached tags.
-     *
-     *           Note: The tag and its child resources might not be stored in
-     *           the location specified in its name.
-     *     @type Tag $tag
-     *           Required. The tag to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -748,19 +736,13 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTag(array $optionalArgs = [])
+    public function createTag($parent, $tag, array $optionalArgs = [])
     {
         $request = new CreateTagRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['tag'])) {
-            $request->setTag($optionalArgs['tag']);
-        }
-
+        $request->setParent($parent);
+        $request->setTag($tag);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateTag', Tag::class, $optionalArgs, $request)->wait();
@@ -778,26 +760,26 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->createTagTemplate();
+     *     $formattedParent = $dataCatalogClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $tagTemplateId = 'tag_template_id';
+     *     $tagTemplate = new TagTemplate();
+     *     $response = $dataCatalogClient->createTagTemplate($formattedParent, $tagTemplateId, $tagTemplate);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string      $parent        Required. The name of the project and the template location
+     *                                   [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
+     * @param string      $tagTemplateId Required. The ID of the tag template to create.
+     *
+     *                                   The ID must contain only lowercase letters (a-z), numbers (0-9),
+     *                                   or underscores (_), and must start with a letter or underscore.
+     *                                   The maximum size is 64 bytes when encoded in UTF-8.
+     * @param TagTemplate $tagTemplate   Required. The tag template to create.
+     * @param array       $optionalArgs  {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the project and the template location
-     *           [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
-     *     @type string $tagTemplateId
-     *           Required. The ID of the tag template to create.
-     *
-     *           The ID must contain only lowercase letters (a-z), numbers (0-9),
-     *           or underscores (_), and must start with a letter or underscore.
-     *           The maximum size is 64 bytes when encoded in UTF-8.
-     *     @type TagTemplate $tagTemplate
-     *           Required. The tag template to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -808,23 +790,14 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTagTemplate(array $optionalArgs = [])
+    public function createTagTemplate($parent, $tagTemplateId, $tagTemplate, array $optionalArgs = [])
     {
         $request = new CreateTagTemplateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['tagTemplateId'])) {
-            $request->setTagTemplateId($optionalArgs['tagTemplateId']);
-        }
-
-        if (isset($optionalArgs['tagTemplate'])) {
-            $request->setTagTemplate($optionalArgs['tagTemplate']);
-        }
-
+        $request->setParent($parent);
+        $request->setTagTemplateId($tagTemplateId);
+        $request->setTagTemplate($tagTemplate);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateTagTemplate', TagTemplate::class, $optionalArgs, $request)->wait();
@@ -841,29 +814,29 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->createTagTemplateField();
+     *     $formattedParent = $dataCatalogClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
+     *     $tagTemplateFieldId = 'tag_template_field_id';
+     *     $tagTemplateField = new TagTemplateField();
+     *     $response = $dataCatalogClient->createTagTemplateField($formattedParent, $tagTemplateFieldId, $tagTemplateField);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string           $parent             Required. The name of the project and the template location
+     *                                             [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
+     * @param string           $tagTemplateFieldId Required. The ID of the tag template field to create.
+     *
+     *                                             Note: Adding a required field to an existing template is *not* allowed.
+     *
+     *                                             Field IDs can contain letters (both uppercase and lowercase), numbers
+     *                                             (0-9), underscores (_) and dashes (-). Field IDs must be at least 1
+     *                                             character long and at most 128 characters long. Field IDs must also be
+     *                                             unique within their template.
+     * @param TagTemplateField $tagTemplateField   Required. The tag template field to create.
+     * @param array            $optionalArgs       {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the project and the template location
-     *           [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
-     *     @type string $tagTemplateFieldId
-     *           Required. The ID of the tag template field to create.
-     *
-     *           Note: Adding a required field to an existing template is *not* allowed.
-     *
-     *           Field IDs can contain letters (both uppercase and lowercase), numbers
-     *           (0-9), underscores (_) and dashes (-). Field IDs must be at least 1
-     *           character long and at most 128 characters long. Field IDs must also be
-     *           unique within their template.
-     *     @type TagTemplateField $tagTemplateField
-     *           Required. The tag template field to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -874,23 +847,14 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTagTemplateField(array $optionalArgs = [])
+    public function createTagTemplateField($parent, $tagTemplateFieldId, $tagTemplateField, array $optionalArgs = [])
     {
         $request = new CreateTagTemplateFieldRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['tagTemplateFieldId'])) {
-            $request->setTagTemplateFieldId($optionalArgs['tagTemplateFieldId']);
-        }
-
-        if (isset($optionalArgs['tagTemplateField'])) {
-            $request->setTagTemplateField($optionalArgs['tagTemplateField']);
-        }
-
+        $request->setParent($parent);
+        $request->setTagTemplateFieldId($tagTemplateFieldId);
+        $request->setTagTemplateField($tagTemplateField);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateTagTemplateField', TagTemplateField::class, $optionalArgs, $request)->wait();
@@ -912,17 +876,17 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $dataCatalogClient->deleteEntry();
+     *     $formattedName = $dataCatalogClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+     *     $dataCatalogClient->deleteEntry($formattedName);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the entry to delete.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the entry to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -931,15 +895,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteEntry(array $optionalArgs = [])
+    public function deleteEntry($name, array $optionalArgs = [])
     {
         $request = new DeleteEntryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteEntry', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -957,17 +918,17 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $dataCatalogClient->deleteEntryGroup();
+     *     $formattedName = $dataCatalogClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+     *     $dataCatalogClient->deleteEntryGroup($formattedName);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the entry group to delete.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the entry group to delete.
      *     @type bool $force
      *           Optional. If true, deletes all entries in the entry group.
      *     @type RetrySettings|array $retrySettings
@@ -978,15 +939,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteEntryGroup(array $optionalArgs = [])
+    public function deleteEntryGroup($name, array $optionalArgs = [])
     {
         $request = new DeleteEntryGroupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -1003,17 +961,17 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $dataCatalogClient->deleteTag();
+     *     $formattedName = $dataCatalogClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+     *     $dataCatalogClient->deleteTag($formattedName);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the tag to delete.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the tag to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1022,15 +980,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTag(array $optionalArgs = [])
+    public function deleteTag($name, array $optionalArgs = [])
     {
         $request = new DeleteTagRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteTag', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1047,21 +1002,21 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $dataCatalogClient->deleteTagTemplate();
+     *     $formattedName = $dataCatalogClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
+     *     $force = false;
+     *     $dataCatalogClient->deleteTagTemplate($formattedName, $force);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the tag template to delete.
+     * @param bool   $force        Required. If true, deletes all tags that use this template.
+     *
+     *                             Currently, `true` is the only supported value.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the tag template to delete.
-     *     @type bool $force
-     *           Required. If true, deletes all tags that use this template.
-     *
-     *           Currently, `true` is the only supported value.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1070,19 +1025,13 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTagTemplate(array $optionalArgs = [])
+    public function deleteTagTemplate($name, $force, array $optionalArgs = [])
     {
         $request = new DeleteTagTemplateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['force'])) {
-            $request->setForce($optionalArgs['force']);
-        }
-
+        $request->setName($name);
+        $request->setForce($force);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteTagTemplate', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1100,21 +1049,21 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $dataCatalogClient->deleteTagTemplateField();
+     *     $formattedName = $dataCatalogClient->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
+     *     $force = false;
+     *     $dataCatalogClient->deleteTagTemplateField($formattedName, $force);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the tag template field to delete.
+     * @param bool   $force        Required. If true, deletes this field from any tags that use it.
+     *
+     *                             Currently, `true` is the only supported value.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the tag template field to delete.
-     *     @type bool $force
-     *           Required. If true, deletes this field from any tags that use it.
-     *
-     *           Currently, `true` is the only supported value.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1123,19 +1072,13 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTagTemplateField(array $optionalArgs = [])
+    public function deleteTagTemplateField($name, $force, array $optionalArgs = [])
     {
         $request = new DeleteTagTemplateFieldRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['force'])) {
-            $request->setForce($optionalArgs['force']);
-        }
-
+        $request->setName($name);
+        $request->setForce($force);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteTagTemplateField', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1148,17 +1091,17 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->getEntry();
+     *     $formattedName = $dataCatalogClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+     *     $response = $dataCatalogClient->getEntry($formattedName);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the entry to get.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the entry to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1169,15 +1112,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEntry(array $optionalArgs = [])
+    public function getEntry($name, array $optionalArgs = [])
     {
         $request = new GetEntryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetEntry', Entry::class, $optionalArgs, $request)->wait();
@@ -1190,17 +1130,17 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->getEntryGroup();
+     *     $formattedName = $dataCatalogClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+     *     $response = $dataCatalogClient->getEntryGroup($formattedName);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the entry group to get.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the entry group to get.
      *     @type FieldMask $readMask
      *           The fields to return. If empty or omitted, all fields are returned.
      *     @type RetrySettings|array $retrySettings
@@ -1213,15 +1153,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEntryGroup(array $optionalArgs = [])
+    public function getEntryGroup($name, array $optionalArgs = [])
     {
         $request = new GetEntryGroupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['readMask'])) {
             $request->setReadMask($optionalArgs['readMask']);
         }
@@ -1258,18 +1195,18 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $dataCatalogClient->getIamPolicy($resource);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1283,15 +1220,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1308,17 +1242,17 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->getTagTemplate();
+     *     $formattedName = $dataCatalogClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
+     *     $response = $dataCatalogClient->getTagTemplate($formattedName);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the tag template to get.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the tag template to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1329,15 +1263,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTagTemplate(array $optionalArgs = [])
+    public function getTagTemplate($name, array $optionalArgs = [])
     {
         $request = new GetTagTemplateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetTagTemplate', TagTemplate::class, $optionalArgs, $request)->wait();
@@ -1367,7 +1298,8 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $operationResponse = $dataCatalogClient->importEntries();
+     *     $formattedParent = $dataCatalogClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+     *     $operationResponse = $dataCatalogClient->importEntries($formattedParent);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1378,7 +1310,7 @@ class DataCatalogGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataCatalogClient->importEntries();
+     *     $operationResponse = $dataCatalogClient->importEntries($formattedParent);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataCatalogClient->resumeOperation($operationName, 'importEntries');
@@ -1398,11 +1330,10 @@ class DataCatalogGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Target entry group for ingested entries.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Target entry group for ingested entries.
      *     @type string $gcsBucketPath
      *           Path to a Cloud Storage bucket that contains a dump ready for ingestion.
      *     @type string $jobId
@@ -1418,15 +1349,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importEntries(array $optionalArgs = [])
+    public function importEntries($parent, array $optionalArgs = [])
     {
         $request = new ImportEntriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['gcsBucketPath'])) {
             $request->setGcsBucketPath($optionalArgs['gcsBucketPath']);
         }
@@ -1451,8 +1379,9 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
+     *     $formattedParent = $dataCatalogClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataCatalogClient->listEntries();
+     *     $pagedResponse = $dataCatalogClient->listEntries($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1460,7 +1389,7 @@ class DataCatalogGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataCatalogClient->listEntries();
+     *     $pagedResponse = $dataCatalogClient->listEntries($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1469,13 +1398,12 @@ class DataCatalogGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the entry group that contains the entries to list.
+     *
+     *                             Can be provided in URL format.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the entry group that contains the entries to list.
-     *
-     *           Can be provided in URL format.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1501,15 +1429,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listEntries(array $optionalArgs = [])
+    public function listEntries($parent, array $optionalArgs = [])
     {
         $request = new ListEntriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1534,8 +1459,9 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
+     *     $formattedParent = $dataCatalogClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataCatalogClient->listEntryGroups();
+     *     $pagedResponse = $dataCatalogClient->listEntryGroups($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1543,7 +1469,7 @@ class DataCatalogGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataCatalogClient->listEntryGroups();
+     *     $pagedResponse = $dataCatalogClient->listEntryGroups($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1552,13 +1478,12 @@ class DataCatalogGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the location that contains the entry groups to list.
+     *
+     *                             Can be provided as a URL.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the location that contains the entry groups to list.
-     *
-     *           Can be provided as a URL.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1578,15 +1503,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listEntryGroups(array $optionalArgs = [])
+    public function listEntryGroups($parent, array $optionalArgs = [])
     {
         $request = new ListEntryGroupsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1609,8 +1531,9 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
+     *     $formattedParent = $dataCatalogClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataCatalogClient->listTags();
+     *     $pagedResponse = $dataCatalogClient->listTags($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1618,7 +1541,7 @@ class DataCatalogGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataCatalogClient->listTags();
+     *     $pagedResponse = $dataCatalogClient->listTags($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1627,15 +1550,14 @@ class DataCatalogGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the Data Catalog resource to list the tags of.
+     *
+     *                             The resource can be an [Entry][google.cloud.datacatalog.v1.Entry]
+     *                             or an [EntryGroup][google.cloud.datacatalog.v1.EntryGroup]
+     *                             (without `/entries/{entries}` at the end).
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the Data Catalog resource to list the tags of.
-     *
-     *           The resource can be an [Entry][google.cloud.datacatalog.v1.Entry]
-     *           or an [EntryGroup][google.cloud.datacatalog.v1.EntryGroup]
-     *           (without `/entries/{entries}` at the end).
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1655,15 +1577,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTags(array $optionalArgs = [])
+    public function listTags($parent, array $optionalArgs = [])
     {
         $request = new ListTagsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1791,19 +1710,19 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->modifyEntryContacts();
+     *     $formattedName = $dataCatalogClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+     *     $contacts = new Contacts();
+     *     $response = $dataCatalogClient->modifyEntryContacts($formattedName, $contacts);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $name         Required. The full resource name of the entry.
+     * @param Contacts $contacts     Required. The new value for the Contacts.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The full resource name of the entry.
-     *     @type Contacts $contacts
-     *           Required. The new value for the Contacts.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1814,19 +1733,13 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function modifyEntryContacts(array $optionalArgs = [])
+    public function modifyEntryContacts($name, $contacts, array $optionalArgs = [])
     {
         $request = new ModifyEntryContactsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['contacts'])) {
-            $request->setContacts($optionalArgs['contacts']);
-        }
-
+        $request->setName($name);
+        $request->setContacts($contacts);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ModifyEntryContacts', Contacts::class, $optionalArgs, $request)->wait();
@@ -1843,19 +1756,19 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->modifyEntryOverview();
+     *     $formattedName = $dataCatalogClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+     *     $entryOverview = new EntryOverview();
+     *     $response = $dataCatalogClient->modifyEntryOverview($formattedName, $entryOverview);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string        $name          Required. The full resource name of the entry.
+     * @param EntryOverview $entryOverview Required. The new value for the Entry Overview.
+     * @param array         $optionalArgs  {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The full resource name of the entry.
-     *     @type EntryOverview $entryOverview
-     *           Required. The new value for the Entry Overview.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1866,19 +1779,13 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function modifyEntryOverview(array $optionalArgs = [])
+    public function modifyEntryOverview($name, $entryOverview, array $optionalArgs = [])
     {
         $request = new ModifyEntryOverviewRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['entryOverview'])) {
-            $request->setEntryOverview($optionalArgs['entryOverview']);
-        }
-
+        $request->setName($name);
+        $request->setEntryOverview($entryOverview);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ModifyEntryOverview', EntryOverview::class, $optionalArgs, $request)->wait();
@@ -1903,7 +1810,9 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $operationResponse = $dataCatalogClient->reconcileTags();
+     *     $formattedParent = $dataCatalogClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+     *     $formattedTagTemplate = $dataCatalogClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
+     *     $operationResponse = $dataCatalogClient->reconcileTags($formattedParent, $formattedTagTemplate);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1914,7 +1823,7 @@ class DataCatalogGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataCatalogClient->reconcileTags();
+     *     $operationResponse = $dataCatalogClient->reconcileTags($formattedParent, $formattedTagTemplate);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataCatalogClient->resumeOperation($operationName, 'reconcileTags');
@@ -1934,13 +1843,11 @@ class DataCatalogGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Name of [Entry][google.cloud.datacatalog.v1.Entry] to be tagged.
+     * @param string $tagTemplate  Required. The name of the tag template, which is used for reconciliation.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Name of [Entry][google.cloud.datacatalog.v1.Entry] to be tagged.
-     *     @type string $tagTemplate
-     *           Required. The name of the tag template, which is used for reconciliation.
      *     @type bool $forceDeleteMissing
      *           If set to `true`, deletes entry tags related to a tag template
      *           not listed in the tags source from an entry. If set to `false`,
@@ -1960,19 +1867,13 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function reconcileTags(array $optionalArgs = [])
+    public function reconcileTags($parent, $tagTemplate, array $optionalArgs = [])
     {
         $request = new ReconcileTagsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['tagTemplate'])) {
-            $request->setTagTemplate($optionalArgs['tagTemplate']);
-        }
-
+        $request->setParent($parent);
+        $request->setTagTemplate($tagTemplate);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['forceDeleteMissing'])) {
             $request->setForceDeleteMissing($optionalArgs['forceDeleteMissing']);
         }
@@ -1997,20 +1898,20 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->renameTagTemplateField();
+     *     $formattedName = $dataCatalogClient->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
+     *     $newTagTemplateFieldId = 'new_tag_template_field_id';
+     *     $response = $dataCatalogClient->renameTagTemplateField($formattedName, $newTagTemplateFieldId);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name                  Required. The name of the tag template field.
+     * @param string $newTagTemplateFieldId Required. The new ID of this tag template field. For example,
+     *                                      `my_new_field`.
+     * @param array  $optionalArgs          {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the tag template field.
-     *     @type string $newTagTemplateFieldId
-     *           Required. The new ID of this tag template field. For example,
-     *           `my_new_field`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2021,19 +1922,13 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function renameTagTemplateField(array $optionalArgs = [])
+    public function renameTagTemplateField($name, $newTagTemplateFieldId, array $optionalArgs = [])
     {
         $request = new RenameTagTemplateFieldRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['newTagTemplateFieldId'])) {
-            $request->setNewTagTemplateFieldId($optionalArgs['newTagTemplateFieldId']);
-        }
-
+        $request->setName($name);
+        $request->setNewTagTemplateFieldId($newTagTemplateFieldId);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('RenameTagTemplateField', TagTemplateField::class, $optionalArgs, $request)->wait();
@@ -2048,20 +1943,20 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->renameTagTemplateFieldEnumValue();
+     *     $formattedName = $dataCatalogClient->tagTemplateFieldEnumValueName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[TAG_TEMPLATE_FIELD_ID]', '[ENUM_VALUE_DISPLAY_NAME]');
+     *     $newEnumValueDisplayName = 'new_enum_value_display_name';
+     *     $response = $dataCatalogClient->renameTagTemplateFieldEnumValue($formattedName, $newEnumValueDisplayName);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name                    Required. The name of the enum field value.
+     * @param string $newEnumValueDisplayName Required. The new display name of the enum value. For example,
+     *                                        `my_new_enum_value`.
+     * @param array  $optionalArgs            {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the enum field value.
-     *     @type string $newEnumValueDisplayName
-     *           Required. The new display name of the enum value. For example,
-     *           `my_new_enum_value`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2072,19 +1967,13 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function renameTagTemplateFieldEnumValue(array $optionalArgs = [])
+    public function renameTagTemplateFieldEnumValue($name, $newEnumValueDisplayName, array $optionalArgs = [])
     {
         $request = new RenameTagTemplateFieldEnumValueRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['newEnumValueDisplayName'])) {
-            $request->setNewEnumValueDisplayName($optionalArgs['newEnumValueDisplayName']);
-        }
-
+        $request->setName($name);
+        $request->setNewEnumValueDisplayName($newEnumValueDisplayName);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('RenameTagTemplateFieldEnumValue', TagTemplateField::class, $optionalArgs, $request)->wait();
@@ -2111,9 +2000,10 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
+     *     $scope = new Scope();
      *     $query = 'query';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataCatalogClient->searchCatalog($query);
+     *     $pagedResponse = $dataCatalogClient->searchCatalog($scope, $query);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2121,7 +2011,7 @@ class DataCatalogGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataCatalogClient->searchCatalog($query);
+     *     $pagedResponse = $dataCatalogClient->searchCatalog($scope, $query);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2130,6 +2020,11 @@ class DataCatalogGapicClient
      * }
      * ```
      *
+     * @param Scope  $scope        Required. The scope of this search request.
+     *
+     *                             The `scope` is invalid if `include_org_ids`, `include_project_ids` are
+     *                             empty AND `include_gcp_public_datasets` is set to `false`. In this case,
+     *                             the request returns an error.
      * @param string $query        Optional. The query string with a minimum of 3 characters and specific
      *                             syntax. For more information, see [Data Catalog search
      *                             syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference).
@@ -2145,12 +2040,6 @@ class DataCatalogGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type Scope $scope
-     *           Required. The scope of this search request.
-     *
-     *           The `scope` is invalid if `include_org_ids`, `include_project_ids` are
-     *           empty AND `include_gcp_public_datasets` is set to `false`. In this case,
-     *           the request returns an error.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2193,14 +2082,11 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function searchCatalog($query, array $optionalArgs = [])
+    public function searchCatalog($scope, $query, array $optionalArgs = [])
     {
         $request = new SearchCatalogRequest();
+        $request->setScope($scope);
         $request->setQuery($query);
-        if (isset($optionalArgs['scope'])) {
-            $request->setScope($optionalArgs['scope']);
-        }
-
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2243,23 +2129,23 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $dataCatalogClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -2276,19 +2162,13 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2306,17 +2186,17 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->starEntry();
+     *     $formattedName = $dataCatalogClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+     *     $response = $dataCatalogClient->starEntry($formattedName);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the entry to mark as starred.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the entry to mark as starred.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2327,15 +2207,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function starEntry(array $optionalArgs = [])
+    public function starEntry($name, array $optionalArgs = [])
     {
         $request = new StarEntryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('StarEntry', StarEntryResponse::class, $optionalArgs, $request)->wait();
@@ -2361,23 +2238,23 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $dataCatalogClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2388,19 +2265,13 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request)->wait();
@@ -2414,17 +2285,17 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->unstarEntry();
+     *     $formattedName = $dataCatalogClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+     *     $response = $dataCatalogClient->unstarEntry($formattedName);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the entry to mark as **not** starred.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the entry to mark as **not** starred.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2435,15 +2306,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function unstarEntry(array $optionalArgs = [])
+    public function unstarEntry($name, array $optionalArgs = [])
     {
         $request = new UnstarEntryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UnstarEntry', UnstarEntryResponse::class, $optionalArgs, $request)->wait();
@@ -2461,17 +2329,17 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->updateEntry();
+     *     $entry = new Entry();
+     *     $response = $dataCatalogClient->updateEntry($entry);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
+     * @param Entry $entry        Required. Updates for the entry. The `name` field must be set.
      * @param array $optionalArgs {
      *     Optional.
      *
-     *     @type Entry $entry
-     *           Required. Updates for the entry. The `name` field must be set.
      *     @type FieldMask $updateMask
      *           Names of fields whose values to overwrite on an entry.
      *
@@ -2512,14 +2380,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateEntry(array $optionalArgs = [])
+    public function updateEntry($entry, array $optionalArgs = [])
     {
         $request = new UpdateEntryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['entry'])) {
-            $request->setEntry($optionalArgs['entry']);
-        }
-
+        $request->setEntry($entry);
+        $requestParamHeaders['entry.name'] = $entry->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2541,17 +2407,17 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->updateEntryGroup();
+     *     $entryGroup = new EntryGroup();
+     *     $response = $dataCatalogClient->updateEntryGroup($entryGroup);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param EntryGroup $entryGroup   Required. Updates for the entry group. The `name` field must be set.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type EntryGroup $entryGroup
-     *           Required. Updates for the entry group. The `name` field must be set.
      *     @type FieldMask $updateMask
      *           Names of fields whose values to overwrite on an entry group.
      *
@@ -2568,14 +2434,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateEntryGroup(array $optionalArgs = [])
+    public function updateEntryGroup($entryGroup, array $optionalArgs = [])
     {
         $request = new UpdateEntryGroupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['entryGroup'])) {
-            $request->setEntryGroup($optionalArgs['entryGroup']);
-        }
-
+        $request->setEntryGroup($entryGroup);
+        $requestParamHeaders['entry_group.name'] = $entryGroup->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2592,17 +2456,17 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->updateTag();
+     *     $tag = new Tag();
+     *     $response = $dataCatalogClient->updateTag($tag);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
+     * @param Tag   $tag          Required. The updated tag. The "name" field must be set.
      * @param array $optionalArgs {
      *     Optional.
      *
-     *     @type Tag $tag
-     *           Required. The updated tag. The "name" field must be set.
      *     @type FieldMask $updateMask
      *           Names of fields whose values to overwrite on a tag. Currently, a tag has
      *           the only modifiable field with the name `fields`.
@@ -2620,14 +2484,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTag(array $optionalArgs = [])
+    public function updateTag($tag, array $optionalArgs = [])
     {
         $request = new UpdateTagRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['tag'])) {
-            $request->setTag($optionalArgs['tag']);
-        }
-
+        $request->setTag($tag);
+        $requestParamHeaders['tag.name'] = $tag->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2652,17 +2514,17 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->updateTagTemplate();
+     *     $tagTemplate = new TagTemplate();
+     *     $response = $dataCatalogClient->updateTagTemplate($tagTemplate);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param TagTemplate $tagTemplate  Required. The template to update. The `name` field must be set.
+     * @param array       $optionalArgs {
      *     Optional.
      *
-     *     @type TagTemplate $tagTemplate
-     *           Required. The template to update. The `name` field must be set.
      *     @type FieldMask $updateMask
      *           Names of fields whose values to overwrite on a tag template. Currently,
      *           only `display_name` and `is_publicly_readable` can be overwritten.
@@ -2683,14 +2545,12 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTagTemplate(array $optionalArgs = [])
+    public function updateTagTemplate($tagTemplate, array $optionalArgs = [])
     {
         $request = new UpdateTagTemplateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['tagTemplate'])) {
-            $request->setTagTemplate($optionalArgs['tagTemplate']);
-        }
-
+        $request->setTagTemplate($tagTemplate);
+        $requestParamHeaders['tag_template.name'] = $tagTemplate->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2714,19 +2574,19 @@ class DataCatalogGapicClient
      * ```
      * $dataCatalogClient = new DataCatalogClient();
      * try {
-     *     $response = $dataCatalogClient->updateTagTemplateField();
+     *     $formattedName = $dataCatalogClient->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
+     *     $tagTemplateField = new TagTemplateField();
+     *     $response = $dataCatalogClient->updateTagTemplateField($formattedName, $tagTemplateField);
      * } finally {
      *     $dataCatalogClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string           $name             Required. The name of the tag template field.
+     * @param TagTemplateField $tagTemplateField Required. The template to update.
+     * @param array            $optionalArgs     {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the tag template field.
-     *     @type TagTemplateField $tagTemplateField
-     *           Required. The template to update.
      *     @type FieldMask $updateMask
      *           Optional. Names of fields whose values to overwrite on an individual field
      *           of a tag template. The following fields are modifiable:
@@ -2754,19 +2614,13 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTagTemplateField(array $optionalArgs = [])
+    public function updateTagTemplateField($name, $tagTemplateField, array $optionalArgs = [])
     {
         $request = new UpdateTagTemplateFieldRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['tagTemplateField'])) {
-            $request->setTagTemplateField($optionalArgs['tagTemplateField']);
-        }
-
+        $request->setName($name);
+        $request->setTagTemplateField($tagTemplateField);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

@@ -28,7 +28,8 @@ class DeleteVersionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the [Version][google.cloud.dialogflow.cx.v3.Version]
      *                     to delete. Format: `projects/<Project ID>/locations/<Location
-     *                     ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     *                     ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`. Please see
+     *                     {@see VersionsClient::versionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\DeleteVersionRequest
      *

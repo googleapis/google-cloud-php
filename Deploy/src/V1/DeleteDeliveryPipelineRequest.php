@@ -71,7 +71,8 @@ class DeleteDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the `DeliveryPipeline` to delete. Format should be
-     *                     `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
+     *                     `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
+     *                     {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
      *
      * @return \Google\Cloud\Deploy\V1\DeleteDeliveryPipelineRequest
      *

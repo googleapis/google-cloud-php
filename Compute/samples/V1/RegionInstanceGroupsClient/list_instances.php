@@ -26,25 +26,32 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\RegionInstanceGroupsClient;
+use Google\Cloud\Compute\V1\RegionInstanceGroupsListInstancesRequest;
 
 /**
  * Lists the instances in the specified instance group and displays information about the named ports. Depending on the specified options, this method can list all instances or only the instances that are running. The orderBy query parameter is not supported.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $instanceGroup Name of the regional instance group for which we want to list the instances.
+ * @param string $project       Project ID for this request.
+ * @param string $region        Name of the region scoping this request.
  */
-function list_instances_sample(): void
+function list_instances_sample(string $instanceGroup, string $project, string $region): void
 {
     // Create a client.
     $regionInstanceGroupsClient = new RegionInstanceGroupsClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $regionInstanceGroupsListInstancesRequestResource = new RegionInstanceGroupsListInstancesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionInstanceGroupsClient->listInstances();
+        $response = $regionInstanceGroupsClient->listInstances(
+            $instanceGroup,
+            $project,
+            $region,
+            $regionInstanceGroupsListInstancesRequestResource
+        );
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -52,5 +59,23 @@ function list_instances_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $instanceGroup = '[INSTANCE_GROUP]';
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    list_instances_sample($instanceGroup, $project, $region);
 }
 // [END compute_v1_generated_RegionInstanceGroups_ListInstances_sync]

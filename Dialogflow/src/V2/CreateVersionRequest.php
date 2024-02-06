@@ -38,6 +38,7 @@ class CreateVersionRequest extends \Google\Protobuf\Internal\Message
      *
      *                                                     - `projects/<Project ID>/agent`
      *                                                     - `projects/<Project ID>/locations/<Location ID>/agent`
+     *                                                     Please see {@see VersionsClient::agentName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\V2\Version $version Required. The version to create.
      *
      * @return \Google\Cloud\Dialogflow\V2\CreateVersionRequest

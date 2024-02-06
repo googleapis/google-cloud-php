@@ -70,6 +70,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'language_code',
+                ],
             ],
             'ListAgents' => [
                 'method' => 'get',

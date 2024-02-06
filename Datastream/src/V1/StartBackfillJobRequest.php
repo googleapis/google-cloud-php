@@ -25,7 +25,8 @@ class StartBackfillJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $object Required. The name of the stream object resource to start a backfill job
-     *                       for.
+     *                       for. Please see
+     *                       {@see DatastreamClient::streamObjectName()} for help formatting this field.
      *
      * @return \Google\Cloud\Datastream\V1\StartBackfillJobRequest
      *

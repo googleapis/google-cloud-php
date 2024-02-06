@@ -74,6 +74,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'automation_id',
+                ],
             ],
             'CreateCustomTargetType' => [
                 'method' => 'post',
@@ -85,6 +88,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'custom_target_type_id',
                 ],
             ],
             'CreateDeliveryPipeline' => [
@@ -98,6 +104,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'delivery_pipeline_id',
+                ],
             ],
             'CreateRelease' => [
                 'method' => 'post',
@@ -109,6 +118,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'release_id',
                 ],
             ],
             'CreateRollout' => [
@@ -122,6 +134,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'rollout_id',
+                ],
             ],
             'CreateTarget' => [
                 'method' => 'post',
@@ -133,6 +148,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'target_id',
                 ],
             ],
             'DeleteAutomation' => [
@@ -426,6 +444,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateCustomTargetType' => [
                 'method' => 'patch',
@@ -438,6 +459,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateDeliveryPipeline' => [
@@ -452,6 +476,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateTarget' => [
                 'method' => 'patch',
@@ -464,6 +491,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

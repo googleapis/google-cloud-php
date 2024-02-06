@@ -26,6 +26,7 @@ class GetInstructionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Instruction resource name, format:
      *                     projects/{project_id}/instructions/{instruction_id}
+     *                     Please see {@see DataLabelingServiceClient::instructionName()} for help formatting this field.
      *
      * @return \Google\Cloud\DataLabeling\V1beta1\GetInstructionRequest
      *

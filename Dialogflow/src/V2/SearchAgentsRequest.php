@@ -39,7 +39,8 @@ class SearchAgentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The project to list agents from.
-     *                       Format: `projects/<Project ID or '-'>`.
+     *                       Format: `projects/<Project ID or '-'>`. Please see
+     *                       {@see AgentsClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\V2\SearchAgentsRequest
      *

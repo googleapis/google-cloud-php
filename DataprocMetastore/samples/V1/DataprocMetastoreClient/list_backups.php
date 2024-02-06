@@ -32,19 +32,20 @@ use Google\Cloud\Metastore\V1\ListBackupsRequest;
 /**
  * Lists backups in a service.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The relative resource name of the service whose backups to
+ *                                list, in the following form:
+ *
+ *                                `projects/{project_number}/locations/{location_id}/services/{service_id}/backups`. Please see
+ *                                {@see DataprocMetastoreClient::serviceName()} for help formatting this field.
  */
-function list_backups_sample(): void
+function list_backups_sample(string $formattedParent): void
 {
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
     // Prepare the request message.
-    $request = new ListBackupsRequest();
+    $request = (new ListBackupsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +59,21 @@ function list_backups_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataprocMetastoreClient::serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+
+    list_backups_sample($formattedParent);
 }
 // [END metastore_v1_generated_DataprocMetastore_ListBackups_sync]

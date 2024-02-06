@@ -23,7 +23,8 @@ class GetReleaseConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The release config's name.
+     * @param string $name Required. The release config's name. Please see
+     *                     {@see DataformClient::releaseConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataform\V1beta1\GetReleaseConfigRequest
      *

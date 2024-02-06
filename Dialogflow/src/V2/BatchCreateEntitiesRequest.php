@@ -42,7 +42,8 @@ class BatchCreateEntitiesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                          $parent   Required. The name of the entity type to create entities in. Format:
-     *                                                                  `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *                                                                  `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`. Please see
+     *                                                                  {@see EntityTypesClient::entityTypeName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\V2\EntityType\Entity[] $entities Required. The entities to create.
      *
      * @return \Google\Cloud\Dialogflow\V2\BatchCreateEntitiesRequest
@@ -58,7 +59,8 @@ class BatchCreateEntitiesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                          $parent       Required. The name of the entity type to create entities in. Format:
-     *                                                                      `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *                                                                      `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`. Please see
+     *                                                                      {@see EntityTypesClient::entityTypeName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\V2\EntityType\Entity[] $entities     Required. The entities to create.
      * @param string                                          $languageCode Optional. The language used to access language-specific data.
      *                                                                      If not specified, the agent's default language is used.

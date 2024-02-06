@@ -48,6 +48,7 @@ class BulkDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The parent resource to delete conversations from.
      *                       Format:
      *                       projects/{project}/locations/{location}
+     *                       Please see {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
      * @param string $filter Filter used to select the subset of conversations to delete.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\BulkDeleteConversationsRequest

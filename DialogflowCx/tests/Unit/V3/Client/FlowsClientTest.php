@@ -101,7 +101,12 @@ class FlowsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $request = new CreateFlowRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $flow = new Flow();
+        $flowDisplayName = 'flowDisplayName-554265505';
+        $flow->setDisplayName($flowDisplayName);
+        $request = (new CreateFlowRequest())->setParent($formattedParent)->setFlow($flow);
         $response = $gapicClient->createFlow($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -109,6 +114,10 @@ class FlowsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Flows/CreateFlow', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getFlow();
+        $this->assertProtobufEquals($flow, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -133,7 +142,12 @@ class FlowsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new CreateFlowRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $flow = new Flow();
+        $flowDisplayName = 'flowDisplayName-554265505';
+        $flow->setDisplayName($flowDisplayName);
+        $request = (new CreateFlowRequest())->setParent($formattedParent)->setFlow($flow);
         try {
             $gapicClient->createFlow($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -158,13 +172,17 @@ class FlowsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteFlowRequest();
+        // Mock request
+        $formattedName = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $request = (new DeleteFlowRequest())->setName($formattedName);
         $gapicClient->deleteFlow($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Flows/DeleteFlow', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -189,7 +207,9 @@ class FlowsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new DeleteFlowRequest();
+        // Mock request
+        $formattedName = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $request = (new DeleteFlowRequest())->setName($formattedName);
         try {
             $gapicClient->deleteFlow($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -234,7 +254,9 @@ class FlowsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new ExportFlowRequest();
+        // Mock request
+        $formattedName = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $request = (new ExportFlowRequest())->setName($formattedName);
         $response = $gapicClient->exportFlow($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -245,6 +267,8 @@ class FlowsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Flows/ExportFlow', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportFlowTest');
         $response->pollUntilComplete([
@@ -298,7 +322,9 @@ class FlowsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        $request = new ExportFlowRequest();
+        // Mock request
+        $formattedName = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $request = (new ExportFlowRequest())->setName($formattedName);
         $response = $gapicClient->exportFlow($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -338,7 +364,9 @@ class FlowsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $request = new GetFlowRequest();
+        // Mock request
+        $formattedName = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $request = (new GetFlowRequest())->setName($formattedName);
         $response = $gapicClient->getFlow($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -346,6 +374,8 @@ class FlowsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Flows/GetFlow', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -370,7 +400,9 @@ class FlowsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetFlowRequest();
+        // Mock request
+        $formattedName = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $request = (new GetFlowRequest())->setName($formattedName);
         try {
             $gapicClient->getFlow($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -397,7 +429,9 @@ class FlowsClientTest extends GeneratedTest
         $expectedResponse = new FlowValidationResult();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $request = new GetFlowValidationResultRequest();
+        // Mock request
+        $formattedName = $gapicClient->flowValidationResultName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $request = (new GetFlowValidationResultRequest())->setName($formattedName);
         $response = $gapicClient->getFlowValidationResult($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -405,6 +439,8 @@ class FlowsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Flows/GetFlowValidationResult', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -429,7 +465,9 @@ class FlowsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new GetFlowValidationResultRequest();
+        // Mock request
+        $formattedName = $gapicClient->flowValidationResultName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $request = (new GetFlowValidationResultRequest())->setName($formattedName);
         try {
             $gapicClient->getFlowValidationResult($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -474,7 +512,9 @@ class FlowsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new ImportFlowRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ImportFlowRequest())->setParent($formattedParent);
         $response = $gapicClient->importFlow($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -485,6 +525,8 @@ class FlowsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Flows/ImportFlow', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importFlowTest');
         $response->pollUntilComplete([
@@ -538,7 +580,9 @@ class FlowsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        $request = new ImportFlowRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ImportFlowRequest())->setParent($formattedParent);
         $response = $gapicClient->importFlow($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -577,7 +621,9 @@ class FlowsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFlows($flows);
         $transport->addResponse($expectedResponse);
-        $request = new ListFlowsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ListFlowsRequest())->setParent($formattedParent);
         $response = $gapicClient->listFlows($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -588,6 +634,8 @@ class FlowsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Flows/ListFlows', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -612,7 +660,9 @@ class FlowsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListFlowsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $request = (new ListFlowsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listFlows($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -655,7 +705,9 @@ class FlowsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new TrainFlowRequest();
+        // Mock request
+        $formattedName = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $request = (new TrainFlowRequest())->setName($formattedName);
         $response = $gapicClient->trainFlow($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -666,6 +718,8 @@ class FlowsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Flows/TrainFlow', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/trainFlowTest');
         $response->pollUntilComplete([
@@ -719,7 +773,9 @@ class FlowsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        $request = new TrainFlowRequest();
+        // Mock request
+        $formattedName = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $request = (new TrainFlowRequest())->setName($formattedName);
         $response = $gapicClient->trainFlow($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -759,7 +815,11 @@ class FlowsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateFlowRequest();
+        // Mock request
+        $flow = new Flow();
+        $flowDisplayName = 'flowDisplayName-554265505';
+        $flow->setDisplayName($flowDisplayName);
+        $request = (new UpdateFlowRequest())->setFlow($flow);
         $response = $gapicClient->updateFlow($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -767,6 +827,8 @@ class FlowsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Flows/UpdateFlow', $actualFuncCall);
+        $actualValue = $actualRequestObject->getFlow();
+        $this->assertProtobufEquals($flow, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -791,7 +853,11 @@ class FlowsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new UpdateFlowRequest();
+        // Mock request
+        $flow = new Flow();
+        $flowDisplayName = 'flowDisplayName-554265505';
+        $flow->setDisplayName($flowDisplayName);
+        $request = (new UpdateFlowRequest())->setFlow($flow);
         try {
             $gapicClient->updateFlow($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -818,7 +884,9 @@ class FlowsClientTest extends GeneratedTest
         $expectedResponse = new FlowValidationResult();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $request = new ValidateFlowRequest();
+        // Mock request
+        $formattedName = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $request = (new ValidateFlowRequest())->setName($formattedName);
         $response = $gapicClient->validateFlow($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -826,6 +894,8 @@ class FlowsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Flows/ValidateFlow', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -850,7 +920,9 @@ class FlowsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ValidateFlowRequest();
+        // Mock request
+        $formattedName = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
+        $request = (new ValidateFlowRequest())->setName($formattedName);
         try {
             $gapicClient->validateFlow($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1009,7 +1081,12 @@ class FlowsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $request = new CreateFlowRequest();
+        // Mock request
+        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+        $flow = new Flow();
+        $flowDisplayName = 'flowDisplayName-554265505';
+        $flow->setDisplayName($flowDisplayName);
+        $request = (new CreateFlowRequest())->setParent($formattedParent)->setFlow($flow);
         $response = $gapicClient->createFlowAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1017,6 +1094,10 @@ class FlowsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Flows/CreateFlow', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getFlow();
+        $this->assertProtobufEquals($flow, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

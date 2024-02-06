@@ -93,7 +93,14 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteRegionTargetTcpProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetTcpProxy = 'targetTcpProxy503065442';
+        $request = (new DeleteRegionTargetTcpProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetTcpProxy($targetTcpProxy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -103,8 +110,16 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionTargetTcpProxies/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetTcpProxy();
+        $this->assertProtobufEquals($targetTcpProxy, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -152,7 +167,14 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteRegionTargetTcpProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetTcpProxy = 'targetTcpProxy503065442';
+        $request = (new DeleteRegionTargetTcpProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetTcpProxy($targetTcpProxy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -204,7 +226,14 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setService($service);
         $transport->addResponse($expectedResponse);
-        $request = new GetRegionTargetTcpProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetTcpProxy = 'targetTcpProxy503065442';
+        $request = (new GetRegionTargetTcpProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetTcpProxy($targetTcpProxy);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -212,6 +241,12 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionTargetTcpProxies/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getTargetTcpProxy();
+        $this->assertProtobufEquals($targetTcpProxy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -233,7 +268,14 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetRegionTargetTcpProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetTcpProxy = 'targetTcpProxy503065442';
+        $request = (new GetRegionTargetTcpProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetTcpProxy($targetTcpProxy);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -272,7 +314,14 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new InsertRegionTargetTcpProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetTcpProxyResource = new TargetTcpProxy();
+        $request = (new InsertRegionTargetTcpProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetTcpProxyResource($targetTcpProxyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -282,8 +331,16 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionTargetTcpProxies/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetTcpProxyResource();
+        $this->assertProtobufEquals($targetTcpProxyResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -331,7 +388,14 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new InsertRegionTargetTcpProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetTcpProxyResource = new TargetTcpProxy();
+        $request = (new InsertRegionTargetTcpProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetTcpProxyResource($targetTcpProxyResource);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -376,7 +440,12 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListRegionTargetTcpProxiesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListRegionTargetTcpProxiesRequest())
+            ->setProject($project)
+            ->setRegion($region);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -387,6 +456,10 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionTargetTcpProxies/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -408,7 +481,12 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListRegionTargetTcpProxiesRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListRegionTargetTcpProxiesRequest())
+            ->setProject($project)
+            ->setRegion($region);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -447,7 +525,14 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteRegionTargetTcpProxyRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $targetTcpProxy = 'targetTcpProxy503065442';
+        $request = (new DeleteRegionTargetTcpProxyRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setTargetTcpProxy($targetTcpProxy);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -457,8 +542,16 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionTargetTcpProxies/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetTcpProxy();
+        $this->assertProtobufEquals($targetTcpProxy, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

@@ -27,6 +27,8 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dialogflow\V2\Client\ConversationProfilesClient;
 use Google\Cloud\Dialogflow\V2\ConversationProfile;
+use Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionFeatureConfig;
+use Google\Cloud\Dialogflow\V2\Participant\Role;
 use Google\Cloud\Dialogflow\V2\SetSuggestionFeatureConfigRequest;
 use Google\Rpc\Status;
 
@@ -50,19 +52,25 @@ use Google\Rpc\Status;
  * feature type exists, please cancel the existing long running operation
  * before sending such request, otherwise the request will be rejected.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $conversationProfile The Conversation Profile to add or update the suggestion feature
+ *                                    config. Format: `projects/<Project ID>/locations/<Location
+ *                                    ID>/conversationProfiles/<Conversation Profile ID>`.
+ * @param int    $participantRole     The participant role to add or update the suggestion feature
+ *                                    config. Only HUMAN_AGENT or END_USER can be used.
  */
-function set_suggestion_feature_config_sample(): void
-{
+function set_suggestion_feature_config_sample(
+    string $conversationProfile,
+    int $participantRole
+): void {
     // Create a client.
     $conversationProfilesClient = new ConversationProfilesClient();
 
     // Prepare the request message.
-    $request = new SetSuggestionFeatureConfigRequest();
+    $suggestionFeatureConfig = new SuggestionFeatureConfig();
+    $request = (new SetSuggestionFeatureConfigRequest())
+        ->setConversationProfile($conversationProfile)
+        ->setParticipantRole($participantRole)
+        ->setSuggestionFeatureConfig($suggestionFeatureConfig);
 
     // Call the API and handle any network failures.
     try {
@@ -82,5 +90,22 @@ function set_suggestion_feature_config_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $conversationProfile = '[CONVERSATION_PROFILE]';
+    $participantRole = Role::ROLE_UNSPECIFIED;
+
+    set_suggestion_feature_config_sample($conversationProfile, $participantRole);
 }
 // [END dialogflow_v2_generated_ConversationProfiles_SetSuggestionFeatureConfig_sync]

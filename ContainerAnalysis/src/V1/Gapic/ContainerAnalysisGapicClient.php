@@ -346,18 +346,18 @@ class ContainerAnalysisGapicClient
      * ```
      * $containerAnalysisClient = new ContainerAnalysisClient();
      * try {
-     *     $response = $containerAnalysisClient->getVulnerabilityOccurrencesSummary();
+     *     $formattedParent = $containerAnalysisClient->projectName('[PROJECT]');
+     *     $response = $containerAnalysisClient->getVulnerabilityOccurrencesSummary($formattedParent);
      * } finally {
      *     $containerAnalysisClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the project to get a vulnerability summary for in the form of
+     *                             `projects/[PROJECT_ID]`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the project to get a vulnerability summary for in the form of
-     *           `projects/[PROJECT_ID]`.
      *     @type string $filter
      *           The filter expression.
      *     @type RetrySettings|array $retrySettings
@@ -370,15 +370,14 @@ class ContainerAnalysisGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getVulnerabilityOccurrencesSummary(array $optionalArgs = [])
-    {
+    public function getVulnerabilityOccurrencesSummary(
+        $parent,
+        array $optionalArgs = []
+    ) {
         $request = new GetVulnerabilityOccurrencesSummaryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }

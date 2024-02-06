@@ -34,19 +34,23 @@ use Google\Cloud\Dialogflow\V2\DeleteSessionEntityTypeRequest;
  * Contact Dialogflow support if you need to use session entities
  * with Google Assistant integration.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the entity type to delete. Format:
+ *                              `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+ *                              Display Name>` or `projects/<Project ID>/agent/environments/<Environment
+ *                              ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display
+ *                              Name>`.
+ *                              If `Environment ID` is not specified, we assume default 'draft'
+ *                              environment. If `User ID` is not specified, we assume default '-' user. Please see
+ *                              {@see SessionEntityTypesClient::sessionEntityTypeName()} for help formatting this field.
  */
-function delete_session_entity_type_sample(): void
+function delete_session_entity_type_sample(string $formattedName): void
 {
     // Create a client.
     $sessionEntityTypesClient = new SessionEntityTypesClient();
 
     // Prepare the request message.
-    $request = new DeleteSessionEntityTypeRequest();
+    $request = (new DeleteSessionEntityTypeRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -55,5 +59,25 @@ function delete_session_entity_type_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = SessionEntityTypesClient::sessionEntityTypeName(
+        '[PROJECT]',
+        '[SESSION]',
+        '[ENTITY_TYPE]'
+    );
+
+    delete_session_entity_type_sample($formattedName);
 }
 // [END dialogflow_v2_generated_SessionEntityTypes_DeleteSessionEntityType_sync]

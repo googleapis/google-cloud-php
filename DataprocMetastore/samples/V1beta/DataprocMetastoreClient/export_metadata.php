@@ -32,13 +32,13 @@ use Google\Rpc\Status;
 /**
  * Exports metadata from a service.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedService The relative resource name of the metastore service to run
+ *                                 export, in the following form:
+ *
+ *                                 `projects/{project_id}/locations/{location_id}/services/{service_id}`. Please see
+ *                                 {@see DataprocMetastoreClient::serviceName()} for help formatting this field.
  */
-function export_metadata_sample(): void
+function export_metadata_sample(string $formattedService): void
 {
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
@@ -46,7 +46,7 @@ function export_metadata_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreClient->exportMetadata();
+        $response = $dataprocMetastoreClient->exportMetadata($formattedService);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -61,5 +61,21 @@ function export_metadata_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedService = DataprocMetastoreClient::serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+
+    export_metadata_sample($formattedService);
 }
 // [END metastore_v1beta_generated_DataprocMetastore_ExportMetadata_sync]

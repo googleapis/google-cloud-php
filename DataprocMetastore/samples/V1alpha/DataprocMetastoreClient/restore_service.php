@@ -32,13 +32,18 @@ use Google\Rpc\Status;
 /**
  * Restores a service from a backup.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedService The relative resource name of the metastore service to run
+ *                                 restore, in the following form:
+ *
+ *                                 `projects/{project_id}/locations/{location_id}/services/{service_id}`. Please see
+ *                                 {@see DataprocMetastoreClient::serviceName()} for help formatting this field.
+ * @param string $formattedBackup  The relative resource name of the metastore service backup to
+ *                                 restore from, in the following form:
+ *
+ *                                 `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`. Please see
+ *                                 {@see DataprocMetastoreClient::backupName()} for help formatting this field.
  */
-function restore_service_sample(): void
+function restore_service_sample(string $formattedService, string $formattedBackup): void
 {
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
@@ -46,7 +51,7 @@ function restore_service_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreClient->restoreService();
+        $response = $dataprocMetastoreClient->restoreService($formattedService, $formattedBackup);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -61,5 +66,27 @@ function restore_service_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedService = DataprocMetastoreClient::serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+    $formattedBackup = DataprocMetastoreClient::backupName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[SERVICE]',
+        '[BACKUP]'
+    );
+
+    restore_service_sample($formattedService, $formattedBackup);
 }
 // [END metastore_v1alpha_generated_DataprocMetastore_RestoreService_sync]

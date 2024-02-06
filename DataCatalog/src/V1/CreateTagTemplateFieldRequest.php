@@ -43,7 +43,8 @@ class CreateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                        $parent             Required. The name of the project and the template location
-     *                                                                          [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
+     *                                                                          [region](https://cloud.google.com/data-catalog/docs/concepts/regions). Please see
+     *                                                                          {@see DataCatalogClient::tagTemplateName()} for help formatting this field.
      * @param string                                        $tagTemplateFieldId Required. The ID of the tag template field to create.
      *
      *                                                                          Note: Adding a required field to an existing template is *not* allowed.

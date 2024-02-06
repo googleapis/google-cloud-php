@@ -107,7 +107,12 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setStatus($status);
         $transport->addResponse($expectedResponse);
-        $request = new GetInterconnectRemoteLocationRequest();
+        // Mock request
+        $interconnectRemoteLocation = 'interconnectRemoteLocation1363895773';
+        $project = 'project-309310695';
+        $request = (new GetInterconnectRemoteLocationRequest())
+            ->setInterconnectRemoteLocation($interconnectRemoteLocation)
+            ->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -115,6 +120,10 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InterconnectRemoteLocations/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInterconnectRemoteLocation();
+        $this->assertProtobufEquals($interconnectRemoteLocation, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -136,7 +145,12 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetInterconnectRemoteLocationRequest();
+        // Mock request
+        $interconnectRemoteLocation = 'interconnectRemoteLocation1363895773';
+        $project = 'project-309310695';
+        $request = (new GetInterconnectRemoteLocationRequest())
+            ->setInterconnectRemoteLocation($interconnectRemoteLocation)
+            ->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -174,7 +188,10 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        $request = new ListInterconnectRemoteLocationsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListInterconnectRemoteLocationsRequest())
+            ->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -185,6 +202,8 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InterconnectRemoteLocations/List', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -206,7 +225,10 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListInterconnectRemoteLocationsRequest();
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new ListInterconnectRemoteLocationsRequest())
+            ->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -265,7 +287,12 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setStatus($status);
         $transport->addResponse($expectedResponse);
-        $request = new GetInterconnectRemoteLocationRequest();
+        // Mock request
+        $interconnectRemoteLocation = 'interconnectRemoteLocation1363895773';
+        $project = 'project-309310695';
+        $request = (new GetInterconnectRemoteLocationRequest())
+            ->setInterconnectRemoteLocation($interconnectRemoteLocation)
+            ->setProject($project);
         $response = $gapicClient->getAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -273,6 +300,10 @@ class InterconnectRemoteLocationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.InterconnectRemoteLocations/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInterconnectRemoteLocation();
+        $this->assertProtobufEquals($interconnectRemoteLocation, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

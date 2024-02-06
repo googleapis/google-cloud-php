@@ -32,19 +32,18 @@ use Google\Cloud\Dialogflow\Cx\V3\ListChangelogsRequest;
 /**
  * Returns the list of Changelogs.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The agent containing the changelogs.
+ *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                {@see ChangelogsClient::agentName()} for help formatting this field.
  */
-function list_changelogs_sample(): void
+function list_changelogs_sample(string $formattedParent): void
 {
     // Create a client.
     $changelogsClient = new ChangelogsClient();
 
     // Prepare the request message.
-    $request = new ListChangelogsRequest();
+    $request = (new ListChangelogsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function list_changelogs_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ChangelogsClient::agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
+
+    list_changelogs_sample($formattedParent);
 }
 // [END dialogflow_v3_generated_Changelogs_ListChangelogs_sync]

@@ -26,24 +26,33 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\Cx\V3\Client\GeneratorsClient;
 use Google\Cloud\Dialogflow\Cx\V3\Generator;
+use Google\Cloud\Dialogflow\Cx\V3\Phrase;
 use Google\Cloud\Dialogflow\Cx\V3\UpdateGeneratorRequest;
 
 /**
  * Update the specified generator.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $generatorDisplayName    The human-readable name of the generator, unique within the
+ *                                        agent. The prompt contains pre-defined parameters such as $conversation,
+ *                                        $last-user-utterance, etc. populated by Dialogflow. It can also contain
+ *                                        custom placeholders which will be resolved during fulfillment.
+ * @param string $generatorPromptTextText Text input which can be used for prompt or banned phrases.
  */
-function update_generator_sample(): void
-{
+function update_generator_sample(
+    string $generatorDisplayName,
+    string $generatorPromptTextText
+): void {
     // Create a client.
     $generatorsClient = new GeneratorsClient();
 
     // Prepare the request message.
-    $request = new UpdateGeneratorRequest();
+    $generatorPromptText = (new Phrase())
+        ->setText($generatorPromptTextText);
+    $generator = (new Generator())
+        ->setDisplayName($generatorDisplayName)
+        ->setPromptText($generatorPromptText);
+    $request = (new UpdateGeneratorRequest())
+        ->setGenerator($generator);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +62,22 @@ function update_generator_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $generatorDisplayName = '[DISPLAY_NAME]';
+    $generatorPromptTextText = '[TEXT]';
+
+    update_generator_sample($generatorDisplayName, $generatorPromptTextText);
 }
 // [END dialogflow_v3_generated_Generators_UpdateGenerator_sync]

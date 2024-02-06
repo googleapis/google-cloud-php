@@ -35,19 +35,19 @@ use Google\Cloud\DataCatalog\V1\ModifyEntryOverviewRequest;
  * To call this method, you must have the `datacatalog.entries.updateOverview`
  * IAM permission on the corresponding project.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The full resource name of the entry. Please see
+ *                              {@see DataCatalogClient::entryName()} for help formatting this field.
  */
-function modify_entry_overview_sample(): void
+function modify_entry_overview_sample(string $formattedName): void
 {
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
     // Prepare the request message.
-    $request = new ModifyEntryOverviewRequest();
+    $entryOverview = new EntryOverview();
+    $request = (new ModifyEntryOverviewRequest())
+        ->setName($formattedName)
+        ->setEntryOverview($entryOverview);
 
     // Call the API and handle any network failures.
     try {
@@ -57,5 +57,26 @@ function modify_entry_overview_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DataCatalogClient::entryName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[ENTRY_GROUP]',
+        '[ENTRY]'
+    );
+
+    modify_entry_overview_sample($formattedName);
 }
 // [END datacatalog_v1_generated_DataCatalog_ModifyEntryOverview_sync]

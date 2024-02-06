@@ -31,13 +31,11 @@ use Google\Rpc\Status;
 /**
  * Deletes the specified regional persistent disk. Deleting a regional disk removes all the replicas of its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $disk    Name of the regional persistent disk to delete.
+ * @param string $project Project ID for this request.
+ * @param string $region  Name of the region for this request.
  */
-function delete_sample(): void
+function delete_sample(string $disk, string $project, string $region): void
 {
     // Create a client.
     $regionDisksClient = new RegionDisksClient();
@@ -45,7 +43,7 @@ function delete_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionDisksClient->delete();
+        $response = $regionDisksClient->delete($disk, $project, $region);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,5 +56,23 @@ function delete_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $disk = '[DISK]';
+    $project = '[PROJECT]';
+    $region = '[REGION]';
+
+    delete_sample($disk, $project, $region);
 }
 // [END compute_v1_generated_RegionDisks_Delete_sync]
