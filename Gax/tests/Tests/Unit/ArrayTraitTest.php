@@ -153,6 +153,34 @@ class ArrayTraitTest extends TestCase
             ]
         ];
     }
+
+    public function testArrayMergeRecursive()
+    {
+        $array1 = [
+            'a' => [
+                'b' => 'c'
+            ],
+            'e' => 'f'
+        ];
+
+        $array2 = [
+            'a' => [
+                'b' => 'd'
+            ],
+            'g' => 'h'
+        ];
+
+        $expected = [
+            'a' => [
+                'b' => 'd'
+            ],
+            'e' => 'f',
+            'g' => 'h'
+        ];
+
+        $res = $this->implementation->arrayMergeRecursive($array1, $array2);
+        $this->assertEquals($expected, $res);
+    }
 }
 
 class ArrayTraitStub
@@ -163,5 +191,6 @@ class ArrayTraitStub
         pluck as public;
         pluckArray as public;
         subsetArray as public;
+        arrayMergeRecursive as public;
     }
 }
