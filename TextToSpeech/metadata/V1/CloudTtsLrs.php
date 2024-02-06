@@ -38,8 +38,8 @@ start_time (2.google.protobuf.Timestamp8
 last_update_time (2.google.protobuf.TimestampB
 progress_percentage (2Ÿ
 TextToSpeechLongAudioSynthesizeª
-SynthesizeLongAudio8.google.cloud.texttospeech.v1.SynthesizeLongAudioRequest.google.longrunning.Operation"¹‚Óä“<"7/v1/{parent=projects/*/locations/*}:synthesizeLongAudio:*ÊAt
-8google.cloud.texttospeech.v1.SynthesizeLongAudioResponse8google.cloud.texttospeech.v1.SynthesizeLongAudioMetadataOÊAtexttospeech.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBò
+SynthesizeLongAudio8.google.cloud.texttospeech.v1.SynthesizeLongAudioRequest.google.longrunning.Operation"¹ÊAt
+8google.cloud.texttospeech.v1.SynthesizeLongAudioResponse8google.cloud.texttospeech.v1.SynthesizeLongAudioMetadata‚Óä“<"7/v1/{parent=projects/*/locations/*}:synthesizeLongAudio:*OÊAtexttospeech.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBò
  com.google.cloud.texttospeech.v1B#TextToSpeechLongAudioSynthesisProtoPZDcloud.google.com/go/texttospeech/apiv1/texttospeechpb;texttospeechpbøªGoogle.Cloud.TextToSpeech.V1ÊGoogle\\Cloud\\TextToSpeech\\V1êGoogle::Cloud::TextToSpeech::V1bproto3'
         , true);
 

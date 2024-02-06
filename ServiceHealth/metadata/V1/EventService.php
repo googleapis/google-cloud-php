@@ -24,12 +24,12 @@ class EventService
 
 ServiceHealth®
 
-ListEvents0.google.cloud.servicehealth.v1.ListEventsRequest1.google.cloud.servicehealth.v1.ListEventsResponse";‚Óä“,*/v1/{parent=projects/*/locations/*}/eventsÚAparent›
-GetEvent..google.cloud.servicehealth.v1.GetEventRequest$.google.cloud.servicehealth.v1.Event"9‚Óä“,*/v1/{name=projects/*/locations/*/events/*}ÚAnameã
-ListOrganizationEvents<.google.cloud.servicehealth.v1.ListOrganizationEventsRequest=.google.cloud.servicehealth.v1.ListOrganizationEventsResponse"L‚Óä“=;/v1/{parent=organizations/*/locations/*}/organizationEventsÚAparentÐ
-GetOrganizationEvent:.google.cloud.servicehealth.v1.GetOrganizationEventRequest0.google.cloud.servicehealth.v1.OrganizationEvent"J‚Óä“=;/v1/{name=organizations/*/locations/*/organizationEvents/*}ÚAnameç
-ListOrganizationImpacts=.google.cloud.servicehealth.v1.ListOrganizationImpactsRequest>.google.cloud.servicehealth.v1.ListOrganizationImpactsResponse"M‚Óä“></v1/{parent=organizations/*/locations/*}/organizationImpactsÚAparentÔ
-GetOrganizationImpact;.google.cloud.servicehealth.v1.GetOrganizationImpactRequest1.google.cloud.servicehealth.v1.OrganizationImpact"K‚Óä“></v1/{name=organizations/*/locations/*/organizationImpacts/*}ÚAnamePÊAservicehealth.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBä
+ListEvents0.google.cloud.servicehealth.v1.ListEventsRequest1.google.cloud.servicehealth.v1.ListEventsResponse";ÚAparent‚Óä“,*/v1/{parent=projects/*/locations/*}/events›
+GetEvent..google.cloud.servicehealth.v1.GetEventRequest$.google.cloud.servicehealth.v1.Event"9ÚAname‚Óä“,*/v1/{name=projects/*/locations/*/events/*}ã
+ListOrganizationEvents<.google.cloud.servicehealth.v1.ListOrganizationEventsRequest=.google.cloud.servicehealth.v1.ListOrganizationEventsResponse"LÚAparent‚Óä“=;/v1/{parent=organizations/*/locations/*}/organizationEventsÐ
+GetOrganizationEvent:.google.cloud.servicehealth.v1.GetOrganizationEventRequest0.google.cloud.servicehealth.v1.OrganizationEvent"JÚAname‚Óä“=;/v1/{name=organizations/*/locations/*/organizationEvents/*}ç
+ListOrganizationImpacts=.google.cloud.servicehealth.v1.ListOrganizationImpactsRequest>.google.cloud.servicehealth.v1.ListOrganizationImpactsResponse"MÚAparent‚Óä“></v1/{parent=organizations/*/locations/*}/organizationImpactsÔ
+GetOrganizationImpact;.google.cloud.servicehealth.v1.GetOrganizationImpactRequest1.google.cloud.servicehealth.v1.OrganizationImpact"KÚAname‚Óä“></v1/{name=organizations/*/locations/*/organizationImpacts/*}PÊAservicehealth.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBä
 !com.google.cloud.servicehealth.v1BEventServiceProtoPZGcloud.google.com/go/servicehealth/apiv1/servicehealthpb;servicehealthpbªGoogle.Cloud.ServiceHealth.V1ÊGoogle\\Cloud\\ServiceHealth\\V1ê Google::Cloud::ServiceHealth::V1bproto3'
         , true);
 

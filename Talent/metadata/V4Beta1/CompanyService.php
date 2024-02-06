@@ -49,12 +49,12 @@ page_token (	
 next_page_token (	?
 metadata (2-.google.cloud.talent.v4beta1.ResponseMetadata2Ò	
 CompanyServiceã
-CreateCompany1.google.cloud.talent.v4beta1.CreateCompanyRequest$.google.cloud.talent.v4beta1.Company"y‚Óä“b"0/v4beta1/{parent=projects/*/tenants/*}/companies:*Z+"&/v4beta1/{parent=projects/*}/companies:*ÚAparent,companyÍ
+CreateCompany1.google.cloud.talent.v4beta1.CreateCompanyRequest$.google.cloud.talent.v4beta1.Company"yÚAparent,company‚Óä“b"0/v4beta1/{parent=projects/*/tenants/*}/companies:*Z+"&/v4beta1/{parent=projects/*}/companies:*Í
 
-GetCompany..google.cloud.talent.v4beta1.GetCompanyRequest$.google.cloud.talent.v4beta1.Company"i‚Óä“\\0/v4beta1/{name=projects/*/tenants/*/companies/*}Z(&/v4beta1/{name=projects/*/companies/*}ÚAnameí
-UpdateCompany1.google.cloud.talent.v4beta1.UpdateCompanyRequest$.google.cloud.talent.v4beta1.Company"‚‚Óä“r28/v4beta1/{company.name=projects/*/tenants/*/companies/*}:*Z32./v4beta1/{company.name=projects/*/companies/*}:*ÚAcompanyÅ
-DeleteCompany1.google.cloud.talent.v4beta1.DeleteCompanyRequest.google.protobuf.Empty"i‚Óä“\\*0/v4beta1/{name=projects/*/tenants/*/companies/*}Z(*&/v4beta1/{name=projects/*/companies/*}ÚAnameã
-ListCompanies1.google.cloud.talent.v4beta1.ListCompaniesRequest2.google.cloud.talent.v4beta1.ListCompaniesResponse"k‚Óä“\\0/v4beta1/{parent=projects/*/tenants/*}/companiesZ(&/v4beta1/{parent=projects/*}/companiesÚAparentlÊAjobs.googleapis.comÒAShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBw
+GetCompany..google.cloud.talent.v4beta1.GetCompanyRequest$.google.cloud.talent.v4beta1.Company"iÚAname‚Óä“\\0/v4beta1/{name=projects/*/tenants/*/companies/*}Z(&/v4beta1/{name=projects/*/companies/*}í
+UpdateCompany1.google.cloud.talent.v4beta1.UpdateCompanyRequest$.google.cloud.talent.v4beta1.Company"‚ÚAcompany‚Óä“r28/v4beta1/{company.name=projects/*/tenants/*/companies/*}:*Z32./v4beta1/{company.name=projects/*/companies/*}:*Å
+DeleteCompany1.google.cloud.talent.v4beta1.DeleteCompanyRequest.google.protobuf.Empty"iÚAname‚Óä“\\*0/v4beta1/{name=projects/*/tenants/*/companies/*}Z(*&/v4beta1/{name=projects/*/companies/*}ã
+ListCompanies1.google.cloud.talent.v4beta1.ListCompaniesRequest2.google.cloud.talent.v4beta1.ListCompaniesResponse"kÚAparent‚Óä“\\0/v4beta1/{parent=projects/*/tenants/*}/companiesZ(&/v4beta1/{parent=projects/*}/companieslÊAjobs.googleapis.comÒAShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBw
 com.google.cloud.talent.v4beta1BCompanyServiceProtoPZ7cloud.google.com/go/talent/apiv4beta1/talentpb;talentpb¢CTSbproto3'
         , true);
 

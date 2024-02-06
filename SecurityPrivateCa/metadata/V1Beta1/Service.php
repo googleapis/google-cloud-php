@@ -162,34 +162,34 @@ page_token (	B‡A
 requested_cancellation (B‡A
 api_version (	B‡A2—,
 CertificateAuthorityServiceñ
-CreateCertificateA.google.cloud.security.privateca.v1beta1.CreateCertificateRequest4.google.cloud.security.privateca.v1beta1.Certificate"áÇ”‰ì]"N/v1beta1/{parent=projects/*/locations/*/certificateAuthorities/*}/certificates:certificate⁄A!parent,certificate,certificate_idÂ
-GetCertificate>.google.cloud.security.privateca.v1beta1.GetCertificateRequest4.google.cloud.security.privateca.v1beta1.Certificate"]Ç”‰ìPN/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*/certificates/*}⁄Aname¯
-ListCertificates@.google.cloud.security.privateca.v1beta1.ListCertificatesRequestA.google.cloud.security.privateca.v1beta1.ListCertificatesResponse"_Ç”‰ìPN/v1beta1/{parent=projects/*/locations/*/certificateAuthorities/*}/certificates⁄Aparentı
-RevokeCertificateA.google.cloud.security.privateca.v1beta1.RevokeCertificateRequest4.google.cloud.security.privateca.v1beta1.Certificate"gÇ”‰ìZ"U/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*/certificates/*}:revoke:*⁄Anameò
-UpdateCertificateA.google.cloud.security.privateca.v1beta1.UpdateCertificateRequest4.google.cloud.security.privateca.v1beta1.Certificate"âÇ”‰ìi2Z/v1beta1/{certificate.name=projects/*/locations/*/certificateAuthorities/*/certificates/*}:certificate⁄Acertificate,update_maskî
-ActivateCertificateAuthorityL.google.cloud.security.privateca.v1beta1.ActivateCertificateAuthorityRequest.google.longrunning.Operation"ÜÇ”‰ìM"H/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}:activate:*⁄Aname A)
-CertificateAuthorityOperationMetadataÃ
-CreateCertificateAuthorityJ.google.cloud.security.privateca.v1beta1.CreateCertificateAuthorityRequest.google.longrunning.Operation"¬Ç”‰ìX"?/v1beta1/{parent=projects/*/locations/*}/certificateAuthorities:certificate_authority⁄A5parent,certificate_authority,certificate_authority_id A)
-CertificateAuthorityOperationMetadataë
-DisableCertificateAuthorityK.google.cloud.security.privateca.v1beta1.DisableCertificateAuthorityRequest.google.longrunning.Operation"ÖÇ”‰ìL"G/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}:disable:*⁄Aname A)
-CertificateAuthorityOperationMetadataé
-EnableCertificateAuthorityJ.google.cloud.security.privateca.v1beta1.EnableCertificateAuthorityRequest.google.longrunning.Operation"ÑÇ”‰ìK"F/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}:enable:*⁄Aname A)
-CertificateAuthorityOperationMetadataë
-FetchCertificateAuthorityCsrL.google.cloud.security.privateca.v1beta1.FetchCertificateAuthorityCsrRequestM.google.cloud.security.privateca.v1beta1.FetchCertificateAuthorityCsrResponse"TÇ”‰ìGE/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}:fetch⁄AnameÒ
-GetCertificateAuthorityG.google.cloud.security.privateca.v1beta1.GetCertificateAuthorityRequest=.google.cloud.security.privateca.v1beta1.CertificateAuthority"NÇ”‰ìA?/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}⁄Anameá
-ListCertificateAuthoritiesJ.google.cloud.security.privateca.v1beta1.ListCertificateAuthoritiesRequestK.google.cloud.security.privateca.v1beta1.ListCertificateAuthoritiesResponse"PÇ”‰ìA?/v1beta1/{parent=projects/*/locations/*}/certificateAuthorities⁄Aparentë
-RestoreCertificateAuthorityK.google.cloud.security.privateca.v1beta1.RestoreCertificateAuthorityRequest.google.longrunning.Operation"ÖÇ”‰ìL"G/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}:restore:*⁄Aname A)
-CertificateAuthorityOperationMetadata¶
-"ScheduleDeleteCertificateAuthorityR.google.cloud.security.privateca.v1beta1.ScheduleDeleteCertificateAuthorityRequest.google.longrunning.Operation"åÇ”‰ìS"N/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}:scheduleDelete:*⁄Aname A)
-CertificateAuthorityOperationMetadataŒ
-UpdateCertificateAuthorityJ.google.cloud.security.privateca.v1beta1.UpdateCertificateAuthorityRequest.google.longrunning.Operation"ƒÇ”‰ìn2U/v1beta1/{certificate_authority.name=projects/*/locations/*/certificateAuthorities/*}:certificate_authority⁄A!certificate_authority,update_mask A)
-CertificateAuthorityOperationMetadataù
-GetCertificateRevocationListL.google.cloud.security.privateca.v1beta1.GetCertificateRevocationListRequestB.google.cloud.security.privateca.v1beta1.CertificateRevocationList"kÇ”‰ì^\\/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*/certificateRevocationLists/*}⁄Aname∞
-ListCertificateRevocationListsN.google.cloud.security.privateca.v1beta1.ListCertificateRevocationListsRequestO.google.cloud.security.privateca.v1beta1.ListCertificateRevocationListsResponse"mÇ”‰ì^\\/v1beta1/{parent=projects/*/locations/*/certificateAuthorities/*}/certificateRevocationLists⁄Aparentç
-UpdateCertificateRevocationListO.google.cloud.security.privateca.v1beta1.UpdateCertificateRevocationListRequest.google.longrunning.Operation"˘Ç”‰ìó2x/v1beta1/{certificate_revocation_list.name=projects/*/locations/*/certificateAuthorities/*/certificateRevocationLists/*}:certificate_revocation_list⁄A\'certificate_revocation_list,update_mask A.
-CertificateRevocationListOperationMetadataÿ
-GetReusableConfigA.google.cloud.security.privateca.v1beta1.GetReusableConfigRequest7.google.cloud.security.privateca.v1beta1.ReusableConfig"GÇ”‰ì:8/v1beta1/{name=projects/*/locations/*/reusableConfigs/*}⁄AnameÎ
-ListReusableConfigsC.google.cloud.security.privateca.v1beta1.ListReusableConfigsRequestD.google.cloud.security.privateca.v1beta1.ListReusableConfigsResponse"IÇ”‰ì:8/v1beta1/{parent=projects/*/locations/*}/reusableConfigs⁄AparentL Aprivateca.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBè
+CreateCertificateA.google.cloud.security.privateca.v1beta1.CreateCertificateRequest4.google.cloud.security.privateca.v1beta1.Certificate"á⁄A!parent,certificate,certificate_idÇ”‰ì]"N/v1beta1/{parent=projects/*/locations/*/certificateAuthorities/*}/certificates:certificateÂ
+GetCertificate>.google.cloud.security.privateca.v1beta1.GetCertificateRequest4.google.cloud.security.privateca.v1beta1.Certificate"]⁄AnameÇ”‰ìPN/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*/certificates/*}¯
+ListCertificates@.google.cloud.security.privateca.v1beta1.ListCertificatesRequestA.google.cloud.security.privateca.v1beta1.ListCertificatesResponse"_⁄AparentÇ”‰ìPN/v1beta1/{parent=projects/*/locations/*/certificateAuthorities/*}/certificatesı
+RevokeCertificateA.google.cloud.security.privateca.v1beta1.RevokeCertificateRequest4.google.cloud.security.privateca.v1beta1.Certificate"g⁄AnameÇ”‰ìZ"U/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*/certificates/*}:revoke:*ò
+UpdateCertificateA.google.cloud.security.privateca.v1beta1.UpdateCertificateRequest4.google.cloud.security.privateca.v1beta1.Certificate"â⁄Acertificate,update_maskÇ”‰ìi2Z/v1beta1/{certificate.name=projects/*/locations/*/certificateAuthorities/*/certificates/*}:certificateî
+ActivateCertificateAuthorityL.google.cloud.security.privateca.v1beta1.ActivateCertificateAuthorityRequest.google.longrunning.Operation"Ü A)
+CertificateAuthorityOperationMetadata⁄AnameÇ”‰ìM"H/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}:activate:*Ã
+CreateCertificateAuthorityJ.google.cloud.security.privateca.v1beta1.CreateCertificateAuthorityRequest.google.longrunning.Operation"¬ A)
+CertificateAuthorityOperationMetadata⁄A5parent,certificate_authority,certificate_authority_idÇ”‰ìX"?/v1beta1/{parent=projects/*/locations/*}/certificateAuthorities:certificate_authorityë
+DisableCertificateAuthorityK.google.cloud.security.privateca.v1beta1.DisableCertificateAuthorityRequest.google.longrunning.Operation"Ö A)
+CertificateAuthorityOperationMetadata⁄AnameÇ”‰ìL"G/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}:disable:*é
+EnableCertificateAuthorityJ.google.cloud.security.privateca.v1beta1.EnableCertificateAuthorityRequest.google.longrunning.Operation"Ñ A)
+CertificateAuthorityOperationMetadata⁄AnameÇ”‰ìK"F/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}:enable:*ë
+FetchCertificateAuthorityCsrL.google.cloud.security.privateca.v1beta1.FetchCertificateAuthorityCsrRequestM.google.cloud.security.privateca.v1beta1.FetchCertificateAuthorityCsrResponse"T⁄AnameÇ”‰ìGE/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}:fetchÒ
+GetCertificateAuthorityG.google.cloud.security.privateca.v1beta1.GetCertificateAuthorityRequest=.google.cloud.security.privateca.v1beta1.CertificateAuthority"N⁄AnameÇ”‰ìA?/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}á
+ListCertificateAuthoritiesJ.google.cloud.security.privateca.v1beta1.ListCertificateAuthoritiesRequestK.google.cloud.security.privateca.v1beta1.ListCertificateAuthoritiesResponse"P⁄AparentÇ”‰ìA?/v1beta1/{parent=projects/*/locations/*}/certificateAuthoritiesë
+RestoreCertificateAuthorityK.google.cloud.security.privateca.v1beta1.RestoreCertificateAuthorityRequest.google.longrunning.Operation"Ö A)
+CertificateAuthorityOperationMetadata⁄AnameÇ”‰ìL"G/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}:restore:*¶
+"ScheduleDeleteCertificateAuthorityR.google.cloud.security.privateca.v1beta1.ScheduleDeleteCertificateAuthorityRequest.google.longrunning.Operation"å A)
+CertificateAuthorityOperationMetadata⁄AnameÇ”‰ìS"N/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}:scheduleDelete:*Œ
+UpdateCertificateAuthorityJ.google.cloud.security.privateca.v1beta1.UpdateCertificateAuthorityRequest.google.longrunning.Operation"ƒ A)
+CertificateAuthorityOperationMetadata⁄A!certificate_authority,update_maskÇ”‰ìn2U/v1beta1/{certificate_authority.name=projects/*/locations/*/certificateAuthorities/*}:certificate_authorityù
+GetCertificateRevocationListL.google.cloud.security.privateca.v1beta1.GetCertificateRevocationListRequestB.google.cloud.security.privateca.v1beta1.CertificateRevocationList"k⁄AnameÇ”‰ì^\\/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*/certificateRevocationLists/*}∞
+ListCertificateRevocationListsN.google.cloud.security.privateca.v1beta1.ListCertificateRevocationListsRequestO.google.cloud.security.privateca.v1beta1.ListCertificateRevocationListsResponse"m⁄AparentÇ”‰ì^\\/v1beta1/{parent=projects/*/locations/*/certificateAuthorities/*}/certificateRevocationListsç
+UpdateCertificateRevocationListO.google.cloud.security.privateca.v1beta1.UpdateCertificateRevocationListRequest.google.longrunning.Operation"˘ A.
+CertificateRevocationListOperationMetadata⁄A\'certificate_revocation_list,update_maskÇ”‰ìó2x/v1beta1/{certificate_revocation_list.name=projects/*/locations/*/certificateAuthorities/*/certificateRevocationLists/*}:certificate_revocation_listÿ
+GetReusableConfigA.google.cloud.security.privateca.v1beta1.GetReusableConfigRequest7.google.cloud.security.privateca.v1beta1.ReusableConfig"G⁄AnameÇ”‰ì:8/v1beta1/{name=projects/*/locations/*/reusableConfigs/*}Î
+ListReusableConfigsC.google.cloud.security.privateca.v1beta1.ListReusableConfigsRequestD.google.cloud.security.privateca.v1beta1.ListReusableConfigsResponse"I⁄AparentÇ”‰ì:8/v1beta1/{parent=projects/*/locations/*}/reusableConfigsL Aprivateca.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBè
 +com.google.cloud.security.privateca.v1beta1BPrivateCaProtoPZIcloud.google.com/go/security/privateca/apiv1beta1/privatecapb;privatecapb¯™\'Google.Cloud.Security.PrivateCA.V1Beta1 \'Google\\Cloud\\Security\\PrivateCA\\V1beta1Í+Google::Cloud::Security::PrivateCA::V1beta1bproto3'
         , true);
 

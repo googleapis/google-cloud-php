@@ -38,8 +38,8 @@ page_token (	"c
  cloudsupport.googleapis.com/Case6
 comment (2 .google.cloud.support.v2.CommentBàA2¥
 CommentService×
-ListComments,.google.cloud.support.v2.ListCommentsRequest-.google.cloud.support.v2.ListCommentsResponse"j‚Óä“[(/v2/{parent=projects/*/cases/*}/commentsZ/-/v2/{parent=organizations/*/cases/*}/commentsÚAparentç
-CreateComment-.google.cloud.support.v2.CreateCommentRequest .google.cloud.support.v2.Comment"„‚Óä“m"(/v2/{parent=projects/*/cases/*}/comments:commentZ8"-/v2/{parent=organizations/*/cases/*}/comments:commentÚAparent,commentOÊAcloudsupport.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¼
+ListComments,.google.cloud.support.v2.ListCommentsRequest-.google.cloud.support.v2.ListCommentsResponse"jÚAparent‚Óä“[(/v2/{parent=projects/*/cases/*}/commentsZ/-/v2/{parent=organizations/*/cases/*}/commentsç
+CreateComment-.google.cloud.support.v2.CreateCommentRequest .google.cloud.support.v2.Comment"„ÚAparent,comment‚Óä“m"(/v2/{parent=projects/*/cases/*}/comments:commentZ8"-/v2/{parent=organizations/*/cases/*}/comments:commentOÊAcloudsupport.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¼
 com.google.cloud.support.v2BCommentServiceProtoPZ5cloud.google.com/go/support/apiv2/supportpb;supportpbªGoogle.Cloud.Support.V2ÊGoogle\\Cloud\\Support\\V2êGoogle::Cloud::Support::V2bproto3'
         , true);
 
