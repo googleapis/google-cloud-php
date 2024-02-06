@@ -53,7 +53,8 @@ class CreateLakeRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                         $parent Required. The resource name of the lake location, of the form:
      *                                               projects/{project_number}/locations/{location_id}
-     *                                               where `location_id` refers to a GCP region.
+     *                                               where `location_id` refers to a GCP region. Please see
+     *                                               {@see DataplexServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Dataplex\V1\Lake $lake   Required. Lake resource
      * @param string                         $lakeId Required. Lake identifier.
      *                                               This ID will be used to generate names such as database and dataset names

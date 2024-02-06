@@ -31,19 +31,29 @@ use Google\Cloud\Dataplex\V1\CreateContentRequest;
 /**
  * Create a content.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the parent lake:
+ *                                projects/{project_id}/locations/{location_id}/lakes/{lake_id}
+ *                                Please see {@see ContentServiceClient::lakeName()} for help formatting this field.
+ * @param string $contentPath     The path for the Content file, represented as directory
+ *                                structure. Unique within a lake. Limited to alphanumerics, hyphens,
+ *                                underscores, dots and slashes.
+ * @param string $contentDataText Content data in string format.
  */
-function create_content_sample(): void
-{
+function create_content_sample(
+    string $formattedParent,
+    string $contentPath,
+    string $contentDataText
+): void {
     // Create a client.
     $contentServiceClient = new ContentServiceClient();
 
     // Prepare the request message.
-    $request = new CreateContentRequest();
+    $content = (new Content())
+        ->setPath($contentPath)
+        ->setDataText($contentDataText);
+    $request = (new CreateContentRequest())
+        ->setParent($formattedParent)
+        ->setContent($content);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +63,23 @@ function create_content_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ContentServiceClient::lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+    $contentPath = '[PATH]';
+    $contentDataText = '[DATA_TEXT]';
+
+    create_content_sample($formattedParent, $contentPath, $contentDataText);
 }
 // [END dataplex_v1_generated_ContentService_CreateContent_sync]

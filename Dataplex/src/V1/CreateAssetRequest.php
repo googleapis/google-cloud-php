@@ -51,7 +51,8 @@ class CreateAssetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                          $parent  Required. The resource name of the parent zone:
-     *                                                 `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
+     *                                                 `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`. Please see
+     *                                                 {@see DataplexServiceClient::zoneName()} for help formatting this field.
      * @param \Google\Cloud\Dataplex\V1\Asset $asset   Required. Asset resource.
      * @param string                          $assetId Required. Asset identifier.
      *                                                 This ID will be used to generate names such as table names when publishing

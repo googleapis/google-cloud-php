@@ -27,25 +27,33 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
 use Google\Cloud\Dataplex\V1\Environment;
+use Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec;
+use Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec\OsImageRuntime;
 use Google\Cloud\Dataplex\V1\UpdateEnvironmentRequest;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Update the environment resource.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $environmentInfrastructureSpecOsImageImageVersion Dataplex Image version.
  */
-function update_environment_sample(): void
+function update_environment_sample(string $environmentInfrastructureSpecOsImageImageVersion): void
 {
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateEnvironmentRequest();
+    $updateMask = new FieldMask();
+    $environmentInfrastructureSpecOsImage = (new OsImageRuntime())
+        ->setImageVersion($environmentInfrastructureSpecOsImageImageVersion);
+    $environmentInfrastructureSpec = (new InfrastructureSpec())
+        ->setOsImage($environmentInfrastructureSpecOsImage);
+    $environment = (new Environment())
+        ->setInfrastructureSpec($environmentInfrastructureSpec);
+    $request = (new UpdateEnvironmentRequest())
+        ->setUpdateMask($updateMask)
+        ->setEnvironment($environment);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +73,21 @@ function update_environment_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $environmentInfrastructureSpecOsImageImageVersion = '[IMAGE_VERSION]';
+
+    update_environment_sample($environmentInfrastructureSpecOsImageImageVersion);
 }
 // [END dataplex_v1_generated_DataplexService_UpdateEnvironment_sync]

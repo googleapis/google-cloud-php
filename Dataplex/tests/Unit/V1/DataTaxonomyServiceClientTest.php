@@ -41,6 +41,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -116,7 +117,11 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->createDataAttribute();
+        // Mock request
+        $formattedParent = $gapicClient->dataTaxonomyName('[PROJECT]', '[LOCATION]', '[DATA_TAXONOMY_ID]');
+        $dataAttributeId = 'dataAttributeId-1927466989';
+        $dataAttribute = new DataAttribute();
+        $response = $gapicClient->createDataAttribute($formattedParent, $dataAttributeId, $dataAttribute);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -126,6 +131,12 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataTaxonomyService/CreateDataAttribute', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getDataAttributeId();
+        $this->assertProtobufEquals($dataAttributeId, $actualValue);
+        $actualValue = $actualApiRequestObject->getDataAttribute();
+        $this->assertProtobufEquals($dataAttribute, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createDataAttributeTest');
         $response->pollUntilComplete([
@@ -176,7 +187,11 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->createDataAttribute();
+        // Mock request
+        $formattedParent = $gapicClient->dataTaxonomyName('[PROJECT]', '[LOCATION]', '[DATA_TAXONOMY_ID]');
+        $dataAttributeId = 'dataAttributeId-1927466989';
+        $dataAttribute = new DataAttribute();
+        $response = $gapicClient->createDataAttribute($formattedParent, $dataAttributeId, $dataAttribute);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -239,7 +254,11 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->createDataAttributeBinding();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataAttributeBindingId = 'dataAttributeBindingId863052813';
+        $dataAttributeBinding = new DataAttributeBinding();
+        $response = $gapicClient->createDataAttributeBinding($formattedParent, $dataAttributeBindingId, $dataAttributeBinding);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -249,6 +268,12 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataTaxonomyService/CreateDataAttributeBinding', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getDataAttributeBindingId();
+        $this->assertProtobufEquals($dataAttributeBindingId, $actualValue);
+        $actualValue = $actualApiRequestObject->getDataAttributeBinding();
+        $this->assertProtobufEquals($dataAttributeBinding, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createDataAttributeBindingTest');
         $response->pollUntilComplete([
@@ -299,7 +324,11 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->createDataAttributeBinding();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataAttributeBindingId = 'dataAttributeBindingId863052813';
+        $dataAttributeBinding = new DataAttributeBinding();
+        $response = $gapicClient->createDataAttributeBinding($formattedParent, $dataAttributeBindingId, $dataAttributeBinding);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -364,7 +393,11 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->createDataTaxonomy();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataTaxonomyId = 'dataTaxonomyId-857059404';
+        $dataTaxonomy = new DataTaxonomy();
+        $response = $gapicClient->createDataTaxonomy($formattedParent, $dataTaxonomyId, $dataTaxonomy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -374,6 +407,12 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataTaxonomyService/CreateDataTaxonomy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getDataTaxonomyId();
+        $this->assertProtobufEquals($dataTaxonomyId, $actualValue);
+        $actualValue = $actualApiRequestObject->getDataTaxonomy();
+        $this->assertProtobufEquals($dataTaxonomy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createDataTaxonomyTest');
         $response->pollUntilComplete([
@@ -424,7 +463,11 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->createDataTaxonomy();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataTaxonomyId = 'dataTaxonomyId-857059404';
+        $dataTaxonomy = new DataTaxonomy();
+        $response = $gapicClient->createDataTaxonomy($formattedParent, $dataTaxonomyId, $dataTaxonomy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -475,7 +518,9 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deleteDataAttribute();
+        // Mock request
+        $formattedName = $gapicClient->dataAttributeName('[PROJECT]', '[LOCATION]', '[DATATAXONOMY]', '[DATA_ATTRIBUTE_ID]');
+        $response = $gapicClient->deleteDataAttribute($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -485,6 +530,8 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataTaxonomyService/DeleteDataAttribute', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteDataAttributeTest');
         $response->pollUntilComplete([
@@ -535,7 +582,9 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deleteDataAttribute();
+        // Mock request
+        $formattedName = $gapicClient->dataAttributeName('[PROJECT]', '[LOCATION]', '[DATATAXONOMY]', '[DATA_ATTRIBUTE_ID]');
+        $response = $gapicClient->deleteDataAttribute($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -586,7 +635,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deleteDataAttributeBinding();
+        // Mock request
+        $formattedName = $gapicClient->dataAttributeBindingName('[PROJECT]', '[LOCATION]', '[DATA_ATTRIBUTE_BINDING_ID]');
+        $etag = 'etag3123477';
+        $response = $gapicClient->deleteDataAttributeBinding($formattedName, $etag);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -596,6 +648,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataTaxonomyService/DeleteDataAttributeBinding', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getEtag();
+        $this->assertProtobufEquals($etag, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteDataAttributeBindingTest');
         $response->pollUntilComplete([
@@ -646,7 +702,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deleteDataAttributeBinding();
+        // Mock request
+        $formattedName = $gapicClient->dataAttributeBindingName('[PROJECT]', '[LOCATION]', '[DATA_ATTRIBUTE_BINDING_ID]');
+        $etag = 'etag3123477';
+        $response = $gapicClient->deleteDataAttributeBinding($formattedName, $etag);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -697,7 +756,9 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deleteDataTaxonomy();
+        // Mock request
+        $formattedName = $gapicClient->dataTaxonomyName('[PROJECT]', '[LOCATION]', '[DATA_TAXONOMY_ID]');
+        $response = $gapicClient->deleteDataTaxonomy($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -707,6 +768,8 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataTaxonomyService/DeleteDataTaxonomy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteDataTaxonomyTest');
         $response->pollUntilComplete([
@@ -757,7 +820,9 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deleteDataTaxonomy();
+        // Mock request
+        $formattedName = $gapicClient->dataTaxonomyName('[PROJECT]', '[LOCATION]', '[DATA_TAXONOMY_ID]');
+        $response = $gapicClient->deleteDataTaxonomy($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -804,13 +869,17 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $expectedResponse->setAttributeCount($attributeCount);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getDataAttribute();
+        // Mock request
+        $formattedName = $gapicClient->dataAttributeName('[PROJECT]', '[LOCATION]', '[DATATAXONOMY]', '[DATA_ATTRIBUTE_ID]');
+        $response = $gapicClient->getDataAttribute($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataTaxonomyService/GetDataAttribute', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -832,8 +901,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->dataAttributeName('[PROJECT]', '[LOCATION]', '[DATATAXONOMY]', '[DATA_ATTRIBUTE_ID]');
         try {
-            $gapicClient->getDataAttribute();
+            $gapicClient->getDataAttribute($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -868,13 +939,17 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setResource($resource);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getDataAttributeBinding();
+        // Mock request
+        $formattedName = $gapicClient->dataAttributeBindingName('[PROJECT]', '[LOCATION]', '[DATA_ATTRIBUTE_BINDING_ID]');
+        $response = $gapicClient->getDataAttributeBinding($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataTaxonomyService/GetDataAttributeBinding', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -896,8 +971,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->dataAttributeBindingName('[PROJECT]', '[LOCATION]', '[DATA_ATTRIBUTE_BINDING_ID]');
         try {
-            $gapicClient->getDataAttributeBinding();
+            $gapicClient->getDataAttributeBinding($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -934,13 +1011,17 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setClassCount($classCount);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getDataTaxonomy();
+        // Mock request
+        $formattedName = $gapicClient->dataTaxonomyName('[PROJECT]', '[LOCATION]', '[DATA_TAXONOMY_ID]');
+        $response = $gapicClient->getDataTaxonomy($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataTaxonomyService/GetDataTaxonomy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -962,8 +1043,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->dataTaxonomyName('[PROJECT]', '[LOCATION]', '[DATA_TAXONOMY_ID]');
         try {
-            $gapicClient->getDataTaxonomy();
+            $gapicClient->getDataTaxonomy($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -993,7 +1076,9 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataAttributeBindings($dataAttributeBindings);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listDataAttributeBindings();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listDataAttributeBindings($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1003,6 +1088,8 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataTaxonomyService/ListDataAttributeBindings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1024,8 +1111,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listDataAttributeBindings();
+            $gapicClient->listDataAttributeBindings($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1055,7 +1144,9 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataAttributes($dataAttributes);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listDataAttributes();
+        // Mock request
+        $formattedParent = $gapicClient->dataTaxonomyName('[PROJECT]', '[LOCATION]', '[DATA_TAXONOMY_ID]');
+        $response = $gapicClient->listDataAttributes($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1065,6 +1156,8 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataTaxonomyService/ListDataAttributes', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1086,8 +1179,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->dataTaxonomyName('[PROJECT]', '[LOCATION]', '[DATA_TAXONOMY_ID]');
         try {
-            $gapicClient->listDataAttributes();
+            $gapicClient->listDataAttributes($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1117,7 +1212,9 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataTaxonomies($dataTaxonomies);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listDataTaxonomies();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listDataTaxonomies($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1127,6 +1224,8 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataTaxonomyService/ListDataTaxonomies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1148,8 +1247,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listDataTaxonomies();
+            $gapicClient->listDataTaxonomies($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1204,7 +1305,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->updateDataAttribute();
+        // Mock request
+        $updateMask = new FieldMask();
+        $dataAttribute = new DataAttribute();
+        $response = $gapicClient->updateDataAttribute($updateMask, $dataAttribute);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1214,6 +1318,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataTaxonomyService/UpdateDataAttribute', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualApiRequestObject->getDataAttribute();
+        $this->assertProtobufEquals($dataAttribute, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateDataAttributeTest');
         $response->pollUntilComplete([
@@ -1264,7 +1372,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->updateDataAttribute();
+        // Mock request
+        $updateMask = new FieldMask();
+        $dataAttribute = new DataAttribute();
+        $response = $gapicClient->updateDataAttribute($updateMask, $dataAttribute);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1327,7 +1438,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->updateDataAttributeBinding();
+        // Mock request
+        $updateMask = new FieldMask();
+        $dataAttributeBinding = new DataAttributeBinding();
+        $response = $gapicClient->updateDataAttributeBinding($updateMask, $dataAttributeBinding);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1337,6 +1451,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataTaxonomyService/UpdateDataAttributeBinding', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualApiRequestObject->getDataAttributeBinding();
+        $this->assertProtobufEquals($dataAttributeBinding, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateDataAttributeBindingTest');
         $response->pollUntilComplete([
@@ -1387,7 +1505,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->updateDataAttributeBinding();
+        // Mock request
+        $updateMask = new FieldMask();
+        $dataAttributeBinding = new DataAttributeBinding();
+        $response = $gapicClient->updateDataAttributeBinding($updateMask, $dataAttributeBinding);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1452,7 +1573,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->updateDataTaxonomy();
+        // Mock request
+        $updateMask = new FieldMask();
+        $dataTaxonomy = new DataTaxonomy();
+        $response = $gapicClient->updateDataTaxonomy($updateMask, $dataTaxonomy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1462,6 +1586,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataTaxonomyService/UpdateDataTaxonomy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualApiRequestObject->getDataTaxonomy();
+        $this->assertProtobufEquals($dataTaxonomy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateDataTaxonomyTest');
         $response->pollUntilComplete([
@@ -1512,7 +1640,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->updateDataTaxonomy();
+        // Mock request
+        $updateMask = new FieldMask();
+        $dataTaxonomy = new DataTaxonomy();
+        $response = $gapicClient->updateDataTaxonomy($updateMask, $dataTaxonomy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1549,13 +1680,17 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getIamPolicy();
+        // Mock request
+        $resource = 'resource-341064690';
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1577,8 +1712,10 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy();
+            $gapicClient->getIamPolicy($resource);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1605,13 +1742,20 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->setIamPolicy();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1633,8 +1777,11 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy();
+            $gapicClient->setIamPolicy($resource, $policy);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1657,13 +1804,20 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->testIamPermissions();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1685,8 +1839,11 @@ class DataTaxonomyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
         try {
-            $gapicClient->testIamPermissions();
+            $gapicClient->testIamPermissions($resource, $permissions);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

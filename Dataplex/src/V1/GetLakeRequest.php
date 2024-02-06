@@ -25,7 +25,8 @@ class GetLakeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the lake:
-     *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
+     *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`. Please see
+     *                     {@see DataplexServiceClient::lakeName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\GetLakeRequest
      *

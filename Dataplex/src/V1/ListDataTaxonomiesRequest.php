@@ -57,7 +57,8 @@ class ListDataTaxonomiesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name of the DataTaxonomy location, of the form:
      *                       projects/{project_number}/locations/{location_id}
-     *                       where `location_id` refers to a GCP region.
+     *                       where `location_id` refers to a GCP region. Please see
+     *                       {@see DataTaxonomyServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\ListDataTaxonomiesRequest
      *

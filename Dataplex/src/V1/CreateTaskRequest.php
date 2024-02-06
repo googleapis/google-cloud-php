@@ -44,7 +44,8 @@ class CreateTaskRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                         $parent Required. The resource name of the parent lake:
-     *                                               `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
+     *                                               `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`. Please see
+     *                                               {@see DataplexServiceClient::lakeName()} for help formatting this field.
      * @param \Google\Cloud\Dataplex\V1\Task $task   Required. Task resource.
      * @param string                         $taskId Required. Task identifier.
      *

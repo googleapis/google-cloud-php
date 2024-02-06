@@ -31,19 +31,18 @@ use Google\Cloud\Dataplex\V1\GetDataTaxonomyRequest;
 /**
  * Retrieves a DataTaxonomy resource.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the DataTaxonomy:
+ *                              projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
+ *                              Please see {@see DataTaxonomyServiceClient::dataTaxonomyName()} for help formatting this field.
  */
-function get_data_taxonomy_sample(): void
+function get_data_taxonomy_sample(string $formattedName): void
 {
     // Create a client.
     $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
 
     // Prepare the request message.
-    $request = new GetDataTaxonomyRequest();
+    $request = (new GetDataTaxonomyRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,25 @@ function get_data_taxonomy_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DataTaxonomyServiceClient::dataTaxonomyName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[DATA_TAXONOMY_ID]'
+    );
+
+    get_data_taxonomy_sample($formattedName);
 }
 // [END dataplex_v1_generated_DataTaxonomyService_GetDataTaxonomy_sync]

@@ -28,24 +28,43 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
 use Google\Cloud\Dataplex\V1\CreateEnvironmentRequest;
 use Google\Cloud\Dataplex\V1\Environment;
+use Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec;
+use Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec\OsImageRuntime;
 use Google\Rpc\Status;
 
 /**
  * Create an environment resource.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent                                  The resource name of the parent lake:
+ *                                                                 `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`. Please see
+ *                                                                 {@see DataplexServiceClient::lakeName()} for help formatting this field.
+ * @param string $environmentId                                    Environment identifier.
+ *                                                                 * Must contain only lowercase letters, numbers and hyphens.
+ *                                                                 * Must start with a letter.
+ *                                                                 * Must be between 1-63 characters.
+ *                                                                 * Must end with a number or a letter.
+ *                                                                 * Must be unique within the lake.
+ * @param string $environmentInfrastructureSpecOsImageImageVersion Dataplex Image version.
  */
-function create_environment_sample(): void
-{
+function create_environment_sample(
+    string $formattedParent,
+    string $environmentId,
+    string $environmentInfrastructureSpecOsImageImageVersion
+): void {
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
     // Prepare the request message.
-    $request = new CreateEnvironmentRequest();
+    $environmentInfrastructureSpecOsImage = (new OsImageRuntime())
+        ->setImageVersion($environmentInfrastructureSpecOsImageImageVersion);
+    $environmentInfrastructureSpec = (new InfrastructureSpec())
+        ->setOsImage($environmentInfrastructureSpecOsImage);
+    $environment = (new Environment())
+        ->setInfrastructureSpec($environmentInfrastructureSpec);
+    $request = (new CreateEnvironmentRequest())
+        ->setParent($formattedParent)
+        ->setEnvironmentId($environmentId)
+        ->setEnvironment($environment);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +84,27 @@ function create_environment_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataplexServiceClient::lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+    $environmentId = '[ENVIRONMENT_ID]';
+    $environmentInfrastructureSpecOsImageImageVersion = '[IMAGE_VERSION]';
+
+    create_environment_sample(
+        $formattedParent,
+        $environmentId,
+        $environmentInfrastructureSpecOsImageImageVersion
+    );
 }
 // [END dataplex_v1_generated_DataplexService_CreateEnvironment_sync]

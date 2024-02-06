@@ -40,6 +40,7 @@ use Google\Cloud\Dataplex\V1\DeleteEntityRequest;
 use Google\Cloud\Dataplex\V1\DeletePartitionRequest;
 use Google\Cloud\Dataplex\V1\Entity;
 use Google\Cloud\Dataplex\V1\GetEntityRequest;
+use Google\Cloud\Dataplex\V1\GetEntityRequest\EntityView;
 use Google\Cloud\Dataplex\V1\GetPartitionRequest;
 use Google\Cloud\Dataplex\V1\ListEntitiesRequest;
 use Google\Cloud\Dataplex\V1\ListEntitiesResponse;
@@ -70,7 +71,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $metadataServiceClient = new MetadataServiceClient();
  * try {
- *     $response = $metadataServiceClient->createEntity();
+ *     $formattedParent = $metadataServiceClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+ *     $entity = new Entity();
+ *     $response = $metadataServiceClient->createEntity($formattedParent, $entity);
  * } finally {
  *     $metadataServiceClient->close();
  * }
@@ -385,20 +388,20 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->createEntity();
+     *     $formattedParent = $metadataServiceClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+     *     $entity = new Entity();
+     *     $response = $metadataServiceClient->createEntity($formattedParent, $entity);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the parent zone:
+     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
+     * @param Entity $entity       Required. Entity resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the parent zone:
-     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
-     *     @type Entity $entity
-     *           Required. Entity resource.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -412,19 +415,13 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createEntity(array $optionalArgs = [])
+    public function createEntity($parent, $entity, array $optionalArgs = [])
     {
         $request = new CreateEntityRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['entity'])) {
-            $request->setEntity($optionalArgs['entity']);
-        }
-
+        $request->setParent($parent);
+        $request->setEntity($entity);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -450,20 +447,20 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->createPartition();
+     *     $formattedParent = $metadataServiceClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
+     *     $partition = new Partition();
+     *     $response = $metadataServiceClient->createPartition($formattedParent, $partition);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string    $parent       Required. The resource name of the parent zone:
+     *                                `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`.
+     * @param Partition $partition    Required. Partition resource.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the parent zone:
-     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`.
-     *     @type Partition $partition
-     *           Required. Partition resource.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -477,19 +474,16 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createPartition(array $optionalArgs = [])
-    {
+    public function createPartition(
+        $parent,
+        $partition,
+        array $optionalArgs = []
+    ) {
         $request = new CreatePartitionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['partition'])) {
-            $request->setPartition($optionalArgs['partition']);
-        }
-
+        $request->setParent($parent);
+        $request->setPartition($partition);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -515,21 +509,21 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $metadataServiceClient->deleteEntity();
+     *     $formattedName = $metadataServiceClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
+     *     $etag = 'etag';
+     *     $metadataServiceClient->deleteEntity($formattedName, $etag);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the entity:
+     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`.
+     * @param string $etag         Required. The etag associated with the entity, which can be retrieved with
+     *                             a [GetEntity][] request.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the entity:
-     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`.
-     *     @type string $etag
-     *           Required. The etag associated with the entity, which can be retrieved with
-     *           a [GetEntity][] request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -538,19 +532,13 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteEntity(array $optionalArgs = [])
+    public function deleteEntity($name, $etag, array $optionalArgs = [])
     {
         $request = new DeleteEntityRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['etag'])) {
-            $request->setEtag($optionalArgs['etag']);
-        }
-
+        $request->setName($name);
+        $request->setEtag($etag);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -572,21 +560,21 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $metadataServiceClient->deletePartition();
+     *     $formattedName = $metadataServiceClient->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
+     *     $metadataServiceClient->deletePartition($formattedName);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the partition.
+     *                             format:
+     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}/partitions/{partition_value_path}`.
+     *                             The {partition_value_path} segment consists of an ordered sequence of
+     *                             partition values separated by "/". All values must be provided.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the partition.
-     *           format:
-     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}/partitions/{partition_value_path}`.
-     *           The {partition_value_path} segment consists of an ordered sequence of
-     *           partition values separated by "/". All values must be provided.
      *     @type string $etag
      *           Optional. The etag associated with the partition.
      *     @type RetrySettings|array $retrySettings
@@ -597,15 +585,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deletePartition(array $optionalArgs = [])
+    public function deletePartition($name, array $optionalArgs = [])
     {
         $request = new DeletePartitionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -631,18 +616,18 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->getEntity();
+     *     $formattedName = $metadataServiceClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
+     *     $response = $metadataServiceClient->getEntity($formattedName);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the entity:
+     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}.`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the entity:
-     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}.`
      *     @type int $view
      *           Optional. Used to select the subset of entity information to return.
      *           Defaults to `BASIC`.
@@ -657,15 +642,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEntity(array $optionalArgs = [])
+    public function getEntity($name, array $optionalArgs = [])
     {
         $request = new GetEntityRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -691,20 +673,20 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->getPartition();
+     *     $formattedName = $metadataServiceClient->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
+     *     $response = $metadataServiceClient->getPartition($formattedName);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the partition:
+     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}/partitions/{partition_value_path}`.
+     *                             The {partition_value_path} segment consists of an ordered sequence of
+     *                             partition values separated by "/". All values must be provided.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the partition:
-     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}/partitions/{partition_value_path}`.
-     *           The {partition_value_path} segment consists of an ordered sequence of
-     *           partition values separated by "/". All values must be provided.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -715,15 +697,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getPartition(array $optionalArgs = [])
+    public function getPartition($name, array $optionalArgs = [])
     {
         $request = new GetPartitionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -745,8 +724,10 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
+     *     $formattedParent = $metadataServiceClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+     *     $view = EntityView::ENTITY_VIEW_UNSPECIFIED;
      *     // Iterate over pages of elements
-     *     $pagedResponse = $metadataServiceClient->listEntities();
+     *     $pagedResponse = $metadataServiceClient->listEntities($formattedParent, $view);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -754,7 +735,7 @@ class MetadataServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $metadataServiceClient->listEntities();
+     *     $pagedResponse = $metadataServiceClient->listEntities($formattedParent, $view);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -763,15 +744,13 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the parent zone:
+     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
+     * @param int    $view         Required. Specify the entity view to make a partial list request.
+     *                             For allowed values, use constants defined on {@see \Google\Cloud\Dataplex\V1\ListEntitiesRequest\EntityView}
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the parent zone:
-     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
-     *     @type int $view
-     *           Required. Specify the entity view to make a partial list request.
-     *           For allowed values, use constants defined on {@see \Google\Cloud\Dataplex\V1\ListEntitiesRequest\EntityView}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -800,19 +779,13 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listEntities(array $optionalArgs = [])
+    public function listEntities($parent, $view, array $optionalArgs = [])
     {
         $request = new ListEntitiesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['view'])) {
-            $request->setView($optionalArgs['view']);
-        }
-
+        $request->setParent($parent);
+        $request->setView($view);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -846,8 +819,9 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
+     *     $formattedParent = $metadataServiceClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $metadataServiceClient->listPartitions();
+     *     $pagedResponse = $metadataServiceClient->listPartitions($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -855,7 +829,7 @@ class MetadataServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $metadataServiceClient->listPartitions();
+     *     $pagedResponse = $metadataServiceClient->listPartitions($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -864,12 +838,11 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the parent entity:
+     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the parent entity:
-     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -909,15 +882,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPartitions(array $optionalArgs = [])
+    public function listPartitions($parent, array $optionalArgs = [])
     {
         $request = new ListPartitionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -951,17 +921,17 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->updateEntity();
+     *     $entity = new Entity();
+     *     $response = $metadataServiceClient->updateEntity($entity);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Entity $entity       Required. Update description.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type Entity $entity
-     *           Required. Update description.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -975,14 +945,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateEntity(array $optionalArgs = [])
+    public function updateEntity($entity, array $optionalArgs = [])
     {
         $request = new UpdateEntityRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['entity'])) {
-            $request->setEntity($optionalArgs['entity']);
-        }
-
+        $request->setEntity($entity);
+        $requestParamHeaders['entity.name'] = $entity->getName();
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1009,18 +977,18 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $metadataServiceClient->getIamPolicy($resource);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1034,15 +1002,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1074,23 +1039,23 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $metadataServiceClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1107,19 +1072,13 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1153,23 +1112,23 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $metadataServiceClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1180,19 +1139,16 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

@@ -32,19 +32,20 @@ use Google\Cloud\Dataplex\V1\ListDataScanJobsRequest;
 /**
  * Lists DataScanJobs under the given DataScan.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the parent environment:
+ *                                `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+ *                                where `project` refers to a *project_id* or *project_number* and
+ *                                `location_id` refers to a GCP region. Please see
+ *                                {@see DataScanServiceClient::dataScanName()} for help formatting this field.
  */
-function list_data_scan_jobs_sample(): void
+function list_data_scan_jobs_sample(string $formattedParent): void
 {
     // Create a client.
     $dataScanServiceClient = new DataScanServiceClient();
 
     // Prepare the request message.
-    $request = new ListDataScanJobsRequest();
+    $request = (new ListDataScanJobsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +59,21 @@ function list_data_scan_jobs_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataScanServiceClient::dataScanName('[PROJECT]', '[LOCATION]', '[DATASCAN]');
+
+    list_data_scan_jobs_sample($formattedParent);
 }
 // [END dataplex_v1_generated_DataScanService_ListDataScanJobs_sync]

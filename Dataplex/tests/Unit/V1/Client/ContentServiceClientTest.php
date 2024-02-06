@@ -43,6 +43,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -96,7 +97,16 @@ class ContentServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setDataText($dataText);
         $transport->addResponse($expectedResponse);
-        $request = new CreateContentRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $content = new Content();
+        $contentPath = 'contentPath-389273538';
+        $content->setPath($contentPath);
+        $contentDataText = 'contentDataText-82259056';
+        $content->setDataText($contentDataText);
+        $request = (new CreateContentRequest())
+            ->setParent($formattedParent)
+            ->setContent($content);
         $response = $gapicClient->createContent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -104,6 +114,10 @@ class ContentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.ContentService/CreateContent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getContent();
+        $this->assertProtobufEquals($content, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -125,7 +139,16 @@ class ContentServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateContentRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $content = new Content();
+        $contentPath = 'contentPath-389273538';
+        $content->setPath($contentPath);
+        $contentDataText = 'contentDataText-82259056';
+        $content->setDataText($contentDataText);
+        $request = (new CreateContentRequest())
+            ->setParent($formattedParent)
+            ->setContent($content);
         try {
             $gapicClient->createContent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -150,13 +173,18 @@ class ContentServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteContentRequest();
+        // Mock request
+        $formattedName = $gapicClient->contentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[CONTENT]');
+        $request = (new DeleteContentRequest())
+            ->setName($formattedName);
         $gapicClient->deleteContent($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.ContentService/DeleteContent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -178,7 +206,10 @@ class ContentServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteContentRequest();
+        // Mock request
+        $formattedName = $gapicClient->contentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[CONTENT]');
+        $request = (new DeleteContentRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteContent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -213,7 +244,10 @@ class ContentServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setDataText($dataText);
         $transport->addResponse($expectedResponse);
-        $request = new GetContentRequest();
+        // Mock request
+        $formattedName = $gapicClient->contentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[CONTENT]');
+        $request = (new GetContentRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getContent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -221,6 +255,8 @@ class ContentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.ContentService/GetContent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -242,7 +278,10 @@ class ContentServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetContentRequest();
+        // Mock request
+        $formattedName = $gapicClient->contentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[CONTENT]');
+        $request = (new GetContentRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getContent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -271,7 +310,10 @@ class ContentServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -279,6 +321,8 @@ class ContentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.ContentService/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -300,7 +344,10 @@ class ContentServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -332,7 +379,10 @@ class ContentServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setContent($content);
         $transport->addResponse($expectedResponse);
-        $request = new ListContentRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $request = (new ListContentRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listContent($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -343,6 +393,8 @@ class ContentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.ContentService/ListContent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -364,7 +416,10 @@ class ContentServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListContentRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $request = (new ListContentRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listContent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -393,7 +448,12 @@ class ContentServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -401,6 +461,10 @@ class ContentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.ContentService/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -422,7 +486,12 @@ class ContentServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -447,7 +516,12 @@ class ContentServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -455,6 +529,10 @@ class ContentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.ContentService/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -476,7 +554,12 @@ class ContentServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -511,7 +594,16 @@ class ContentServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setDataText($dataText);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateContentRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $content = new Content();
+        $contentPath = 'contentPath-389273538';
+        $content->setPath($contentPath);
+        $contentDataText = 'contentDataText-82259056';
+        $content->setDataText($contentDataText);
+        $request = (new UpdateContentRequest())
+            ->setUpdateMask($updateMask)
+            ->setContent($content);
         $response = $gapicClient->updateContent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -519,6 +611,10 @@ class ContentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.ContentService/UpdateContent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualRequestObject->getContent();
+        $this->assertProtobufEquals($content, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -540,7 +636,16 @@ class ContentServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateContentRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $content = new Content();
+        $contentPath = 'contentPath-389273538';
+        $content->setPath($contentPath);
+        $contentDataText = 'contentDataText-82259056';
+        $content->setDataText($contentDataText);
+        $request = (new UpdateContentRequest())
+            ->setUpdateMask($updateMask)
+            ->setContent($content);
         try {
             $gapicClient->updateContent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -699,7 +804,16 @@ class ContentServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setDataText($dataText);
         $transport->addResponse($expectedResponse);
-        $request = new CreateContentRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $content = new Content();
+        $contentPath = 'contentPath-389273538';
+        $content->setPath($contentPath);
+        $contentDataText = 'contentDataText-82259056';
+        $content->setDataText($contentDataText);
+        $request = (new CreateContentRequest())
+            ->setParent($formattedParent)
+            ->setContent($content);
         $response = $gapicClient->createContentAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -707,6 +821,10 @@ class ContentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.ContentService/CreateContent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getContent();
+        $this->assertProtobufEquals($content, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

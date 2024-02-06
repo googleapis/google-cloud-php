@@ -37,6 +37,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'etag',
+                ],
             ],
             'DeletePartition' => [
                 'method' => 'delete',
@@ -80,6 +83,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'view',
                 ],
             ],
             'ListPartitions' => [

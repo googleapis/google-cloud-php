@@ -33,19 +33,18 @@ use Google\Rpc\Status;
  * Delete the environment resource. All the child resources must have been
  * deleted before environment deletion can be initiated.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the environment:
+ *                              `projects/{project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environment_id}`. Please see
+ *                              {@see DataplexServiceClient::environmentName()} for help formatting this field.
  */
-function delete_environment_sample(): void
+function delete_environment_sample(string $formattedName): void
 {
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteEnvironmentRequest();
+    $request = (new DeleteEnvironmentRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -63,5 +62,26 @@ function delete_environment_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DataplexServiceClient::environmentName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[LAKE]',
+        '[ENVIRONMENT]'
+    );
+
+    delete_environment_sample($formattedName);
 }
 // [END dataplex_v1_generated_DataplexService_DeleteEnvironment_sync]

@@ -42,7 +42,8 @@ class ListZoneActionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The resource name of the parent zone:
-     *                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
+     *                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`. Please see
+     *                       {@see DataplexServiceClient::zoneName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\ListZoneActionsRequest
      *

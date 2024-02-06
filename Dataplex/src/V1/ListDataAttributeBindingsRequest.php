@@ -60,6 +60,7 @@ class ListDataAttributeBindingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name of the Location:
      *                       projects/{project_number}/locations/{location_id}
+     *                       Please see {@see DataTaxonomyServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\ListDataAttributeBindingsRequest
      *

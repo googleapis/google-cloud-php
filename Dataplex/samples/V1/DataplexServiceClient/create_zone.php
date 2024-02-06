@@ -28,24 +28,49 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
 use Google\Cloud\Dataplex\V1\CreateZoneRequest;
 use Google\Cloud\Dataplex\V1\Zone;
+use Google\Cloud\Dataplex\V1\Zone\ResourceSpec;
+use Google\Cloud\Dataplex\V1\Zone\ResourceSpec\LocationType;
+use Google\Cloud\Dataplex\V1\Zone\Type;
 use Google\Rpc\Status;
 
 /**
  * Creates a zone resource within a lake.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent              The resource name of the parent lake:
+ *                                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`. Please see
+ *                                             {@see DataplexServiceClient::lakeName()} for help formatting this field.
+ * @param string $zoneId                       Zone identifier.
+ *                                             This ID will be used to generate names such as database and dataset names
+ *                                             when publishing metadata to Hive Metastore and BigQuery.
+ *                                             * Must contain only lowercase letters, numbers and hyphens.
+ *                                             * Must start with a letter.
+ *                                             * Must end with a number or a letter.
+ *                                             * Must be between 1-63 characters.
+ *                                             * Must be unique across all lakes from all locations in a project.
+ *                                             * Must not be one of the reserved IDs (i.e. "default", "global-temp")
+ * @param int    $zoneType                     Immutable. The type of the zone.
+ * @param int    $zoneResourceSpecLocationType Immutable. The location type of the resources that are allowed
+ *                                             to be attached to the assets within this zone.
  */
-function create_zone_sample(): void
-{
+function create_zone_sample(
+    string $formattedParent,
+    string $zoneId,
+    int $zoneType,
+    int $zoneResourceSpecLocationType
+): void {
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
     // Prepare the request message.
-    $request = new CreateZoneRequest();
+    $zoneResourceSpec = (new ResourceSpec())
+        ->setLocationType($zoneResourceSpecLocationType);
+    $zone = (new Zone())
+        ->setType($zoneType)
+        ->setResourceSpec($zoneResourceSpec);
+    $request = (new CreateZoneRequest())
+        ->setParent($formattedParent)
+        ->setZoneId($zoneId)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +90,24 @@ function create_zone_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataplexServiceClient::lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+    $zoneId = '[ZONE_ID]';
+    $zoneType = Type::TYPE_UNSPECIFIED;
+    $zoneResourceSpecLocationType = LocationType::LOCATION_TYPE_UNSPECIFIED;
+
+    create_zone_sample($formattedParent, $zoneId, $zoneType, $zoneResourceSpecLocationType);
 }
 // [END dataplex_v1_generated_DataplexService_CreateZone_sync]

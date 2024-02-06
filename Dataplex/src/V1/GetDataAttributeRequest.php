@@ -26,6 +26,7 @@ class GetDataAttributeRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The resource name of the dataAttribute:
      *                     projects/{project_number}/locations/{location_id}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}
+     *                     Please see {@see DataTaxonomyServiceClient::dataAttributeName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\GetDataAttributeRequest
      *

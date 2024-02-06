@@ -29,7 +29,8 @@ class GetPartitionRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The resource name of the partition:
      *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}/partitions/{partition_value_path}`.
      *                     The {partition_value_path} segment consists of an ordered sequence of
-     *                     partition values separated by "/". All values must be provided.
+     *                     partition values separated by "/". All values must be provided. Please see
+     *                     {@see MetadataServiceClient::partitionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\GetPartitionRequest
      *

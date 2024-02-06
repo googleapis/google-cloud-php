@@ -31,19 +31,31 @@ use Google\Cloud\Dataplex\V1\Partition;
 /**
  * Create a metadata partition.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent        The resource name of the parent zone:
+ *                                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`. Please see
+ *                                       {@see MetadataServiceClient::entityName()} for help formatting this field.
+ * @param string $partitionValuesElement Immutable. The set of values representing the partition, which
+ *                                       correspond to the partition schema defined in the parent entity.
+ * @param string $partitionLocation      Immutable. The location of the entity data within the partition,
+ *                                       for example, `gs://bucket/path/to/entity/key1=value1/key2=value2`. Or
+ *                                       `projects/<project_id>/datasets/<dataset_id>/tables/<table_id>`
  */
-function create_partition_sample(): void
-{
+function create_partition_sample(
+    string $formattedParent,
+    string $partitionValuesElement,
+    string $partitionLocation
+): void {
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $request = new CreatePartitionRequest();
+    $partitionValues = [$partitionValuesElement,];
+    $partition = (new Partition())
+        ->setValues($partitionValues)
+        ->setLocation($partitionLocation);
+    $request = (new CreatePartitionRequest())
+        ->setParent($formattedParent)
+        ->setPartition($partition);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +65,29 @@ function create_partition_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = MetadataServiceClient::entityName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[LAKE]',
+        '[ZONE]',
+        '[ENTITY]'
+    );
+    $partitionValuesElement = '[VALUES]';
+    $partitionLocation = '[LOCATION]';
+
+    create_partition_sample($formattedParent, $partitionValuesElement, $partitionLocation);
 }
 // [END dataplex_v1_generated_MetadataService_CreatePartition_sync]

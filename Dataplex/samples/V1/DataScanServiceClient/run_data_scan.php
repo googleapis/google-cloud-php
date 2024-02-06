@@ -31,19 +31,22 @@ use Google\Cloud\Dataplex\V1\RunDataScanResponse;
 /**
  * Runs an on-demand execution of a DataScan
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the DataScan:
+ *                              `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`.
+ *                              where `project` refers to a *project_id* or *project_number* and
+ *                              `location_id` refers to a GCP region.
+ *
+ *                              Only **OnDemand** data scans are allowed. Please see
+ *                              {@see DataScanServiceClient::dataScanName()} for help formatting this field.
  */
-function run_data_scan_sample(): void
+function run_data_scan_sample(string $formattedName): void
 {
     // Create a client.
     $dataScanServiceClient = new DataScanServiceClient();
 
     // Prepare the request message.
-    $request = new RunDataScanRequest();
+    $request = (new RunDataScanRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +56,21 @@ function run_data_scan_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DataScanServiceClient::dataScanName('[PROJECT]', '[LOCATION]', '[DATASCAN]');
+
+    run_data_scan_sample($formattedName);
 }
 // [END dataplex_v1_generated_DataScanService_RunDataScan_sync]

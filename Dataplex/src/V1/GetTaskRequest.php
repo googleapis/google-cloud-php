@@ -25,7 +25,8 @@ class GetTaskRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the task:
-     *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{tasks_id}`.
+     *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{tasks_id}`. Please see
+     *                     {@see DataplexServiceClient::taskName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\GetTaskRequest
      *

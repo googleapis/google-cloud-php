@@ -38,7 +38,8 @@ class CreatePartitionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                              $parent    Required. The resource name of the parent zone:
-     *                                                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`.
+     *                                                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`. Please see
+     *                                                       {@see MetadataServiceClient::entityName()} for help formatting this field.
      * @param \Google\Cloud\Dataplex\V1\Partition $partition Required. Partition resource.
      *
      * @return \Google\Cloud\Dataplex\V1\CreatePartitionRequest

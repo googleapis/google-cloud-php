@@ -27,155 +27,155 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˘b
-&google/cloud/dataplex/v1/service.protogoogle.cloud.dataplex.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/dataplex/v1/analyze.proto(google/cloud/dataplex/v1/resources.proto$google/cloud/dataplex/v1/tasks.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"∑
-CreateLakeRequest:
-parent (	B*‚A˙A#
-!locations.googleapis.com/Location
-lake_id (	B‚A2
-lake (2.google.cloud.dataplex.v1.LakeB‚A
-validate_only (B‚A"õ
-UpdateLakeRequest5
-update_mask (2.google.protobuf.FieldMaskB‚A2
-lake (2.google.cloud.dataplex.v1.LakeB‚A
-validate_only (B‚A"H
-DeleteLakeRequest3
-name (	B%‚A˙A
-dataplex.googleapis.com/Lake"Ø
-ListLakesRequest:
-parent (	B*‚A˙A#
-!locations.googleapis.com/Location
-	page_size (B‚A
+ïb
+&google/cloud/dataplex/v1/service.protogoogle.cloud.dataplex.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/dataplex/v1/analyze.proto(google/cloud/dataplex/v1/resources.proto$google/cloud/dataplex/v1/tasks.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"≥
+CreateLakeRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/Location
+lake_id (	B‡A1
+lake (2.google.cloud.dataplex.v1.LakeB‡A
+validate_only (B‡A"ò
+UpdateLakeRequest4
+update_mask (2.google.protobuf.FieldMaskB‡A1
+lake (2.google.cloud.dataplex.v1.LakeB‡A
+validate_only (B‡A"G
+DeleteLakeRequest2
+name (	B$‡A˙A
+dataplex.googleapis.com/Lake"™
+ListLakesRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/Location
+	page_size (B‡A
 
-page_token (	B‚A
-filter (	B‚A
-order_by (	B‚A"z
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"z
 ListLakesResponse-
 lakes (2.google.cloud.dataplex.v1.Lake
 next_page_token (	
-unreachable_locations (	"Ç
-ListLakeActionsRequest5
-parent (	B%‚A˙A
-dataplex.googleapis.com/Lake
-	page_size (B‚A
+unreachable_locations (	"
+ListLakeActionsRequest4
+parent (	B$‡A˙A
+dataplex.googleapis.com/Lake
+	page_size (B‡A
 
-page_token (	B‚A"a
+page_token (	B‡A"a
 ListActionsResponse1
 actions (2 .google.cloud.dataplex.v1.Action
-next_page_token (	"E
-GetLakeRequest3
-name (	B%‚A˙A
-dataplex.googleapis.com/Lake"≤
-CreateZoneRequest5
-parent (	B%‚A˙A
-dataplex.googleapis.com/Lake
-zone_id (	B‚A2
-zone (2.google.cloud.dataplex.v1.ZoneB‚A
-validate_only (B‚A"õ
-UpdateZoneRequest5
-update_mask (2.google.protobuf.FieldMaskB‚A2
-zone (2.google.cloud.dataplex.v1.ZoneB‚A
-validate_only (B‚A"H
-DeleteZoneRequest3
-name (	B%‚A˙A
-dataplex.googleapis.com/Zone"™
-ListZonesRequest5
-parent (	B%‚A˙A
-dataplex.googleapis.com/Lake
-	page_size (B‚A
+next_page_token (	"D
+GetLakeRequest2
+name (	B$‡A˙A
+dataplex.googleapis.com/Lake"Æ
+CreateZoneRequest4
+parent (	B$‡A˙A
+dataplex.googleapis.com/Lake
+zone_id (	B‡A1
+zone (2.google.cloud.dataplex.v1.ZoneB‡A
+validate_only (B‡A"ò
+UpdateZoneRequest4
+update_mask (2.google.protobuf.FieldMaskB‡A1
+zone (2.google.cloud.dataplex.v1.ZoneB‡A
+validate_only (B‡A"G
+DeleteZoneRequest2
+name (	B$‡A˙A
+dataplex.googleapis.com/Zone"•
+ListZonesRequest4
+parent (	B$‡A˙A
+dataplex.googleapis.com/Lake
+	page_size (B‡A
 
-page_token (	B‚A
-filter (	B‚A
-order_by (	B‚A"[
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"[
 ListZonesResponse-
 zones (2.google.cloud.dataplex.v1.Zone
-next_page_token (	"Ç
-ListZoneActionsRequest5
-parent (	B%‚A˙A
-dataplex.googleapis.com/Zone
-	page_size (B‚A
-
-page_token (	B‚A"E
-GetZoneRequest3
-name (	B%‚A˙A
-dataplex.googleapis.com/Zone"∂
-CreateAssetRequest5
-parent (	B%‚A˙A
+next_page_token (	"
+ListZoneActionsRequest4
+parent (	B$‡A˙A
 dataplex.googleapis.com/Zone
-asset_id (	B‚A4
-asset (2.google.cloud.dataplex.v1.AssetB‚A
-validate_only (B‚A"û
-UpdateAssetRequest5
-update_mask (2.google.protobuf.FieldMaskB‚A4
-asset (2.google.cloud.dataplex.v1.AssetB‚A
-validate_only (B‚A"J
-DeleteAssetRequest4
-name (	B&‚A˙A
-dataplex.googleapis.com/Asset"´
-ListAssetsRequest5
-parent (	B%‚A˙A
-dataplex.googleapis.com/Zone
-	page_size (B‚A
+	page_size (B‡A
 
-page_token (	B‚A
-filter (	B‚A
-order_by (	B‚A"^
+page_token (	B‡A"D
+GetZoneRequest2
+name (	B$‡A˙A
+dataplex.googleapis.com/Zone"≤
+CreateAssetRequest4
+parent (	B$‡A˙A
+dataplex.googleapis.com/Zone
+asset_id (	B‡A3
+asset (2.google.cloud.dataplex.v1.AssetB‡A
+validate_only (B‡A"õ
+UpdateAssetRequest4
+update_mask (2.google.protobuf.FieldMaskB‡A3
+asset (2.google.cloud.dataplex.v1.AssetB‡A
+validate_only (B‡A"I
+DeleteAssetRequest3
+name (	B%‡A˙A
+dataplex.googleapis.com/Asset"¶
+ListAssetsRequest4
+parent (	B$‡A˙A
+dataplex.googleapis.com/Zone
+	page_size (B‡A
+
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"^
 ListAssetsResponse/
 assets (2.google.cloud.dataplex.v1.Asset
-next_page_token (	"Ñ
-ListAssetActionsRequest6
-parent (	B&‚A˙A
-dataplex.googleapis.com/Asset
-	page_size (B‚A
+next_page_token (	"Å
+ListAssetActionsRequest5
+parent (	B%‡A˙A
+dataplex.googleapis.com/Asset
+	page_size (B‡A
 
-page_token (	B‚A"G
-GetAssetRequest4
-name (	B&‚A˙A
-dataplex.googleapis.com/Asset"á
-OperationMetadata5
-create_time (2.google.protobuf.TimestampB‚A2
-end_time (2.google.protobuf.TimestampB‚A
-target (	B‚A
-verb (	B‚A
-status_message (	B‚A$
-requested_cancellation (B‚A
-api_version (	B‚A"≤
-CreateTaskRequest5
-parent (	B%‚A˙A
-dataplex.googleapis.com/Lake
-task_id (	B‚A2
-task (2.google.cloud.dataplex.v1.TaskB‚A
-validate_only (B‚A"õ
-UpdateTaskRequest5
-update_mask (2.google.protobuf.FieldMaskB‚A2
-task (2.google.cloud.dataplex.v1.TaskB‚A
-validate_only (B‚A"H
-DeleteTaskRequest3
-name (	B%‚A˙A
-dataplex.googleapis.com/Task"™
-ListTasksRequest5
-parent (	B%‚A˙A
-dataplex.googleapis.com/Lake
-	page_size (B‚A
+page_token (	B‡A"F
+GetAssetRequest3
+name (	B%‡A˙A
+dataplex.googleapis.com/Asset"Ä
+OperationMetadata4
+create_time (2.google.protobuf.TimestampB‡A1
+end_time (2.google.protobuf.TimestampB‡A
+target (	B‡A
+verb (	B‡A
+status_message (	B‡A#
+requested_cancellation (B‡A
+api_version (	B‡A"Æ
+CreateTaskRequest4
+parent (	B$‡A˙A
+dataplex.googleapis.com/Lake
+task_id (	B‡A1
+task (2.google.cloud.dataplex.v1.TaskB‡A
+validate_only (B‡A"ò
+UpdateTaskRequest4
+update_mask (2.google.protobuf.FieldMaskB‡A1
+task (2.google.cloud.dataplex.v1.TaskB‡A
+validate_only (B‡A"G
+DeleteTaskRequest2
+name (	B$‡A˙A
+dataplex.googleapis.com/Task"•
+ListTasksRequest4
+parent (	B$‡A˙A
+dataplex.googleapis.com/Lake
+	page_size (B‡A
 
-page_token (	B‚A
-filter (	B‚A
-order_by (	B‚A"z
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"z
 ListTasksResponse-
 tasks (2.google.cloud.dataplex.v1.Task
 next_page_token (	
-unreachable_locations (	"E
-GetTaskRequest3
-name (	B%‚A˙A
-dataplex.googleapis.com/Task"C
-GetJobRequest2
-name (	B$‚A˙A
-dataplex.googleapis.com/Job"µ
-RunTaskRequest3
-name (	B%‚A˙A
-dataplex.googleapis.com/TaskJ
-labels (24.google.cloud.dataplex.v1.RunTaskRequest.LabelsEntryB‚AF
-args (22.google.cloud.dataplex.v1.RunTaskRequest.ArgsEntryB‚A-
+unreachable_locations (	"D
+GetTaskRequest2
+name (	B$‡A˙A
+dataplex.googleapis.com/Task"B
+GetJobRequest1
+name (	B#‡A˙A
+dataplex.googleapis.com/Job"≤
+RunTaskRequest2
+name (	B$‡A˙A
+dataplex.googleapis.com/TaskI
+labels (24.google.cloud.dataplex.v1.RunTaskRequest.LabelsEntryB‡AE
+args (22.google.cloud.dataplex.v1.RunTaskRequest.ArgsEntryB‡A-
 LabelsEntry
 key (	
 value (	:8+
@@ -183,53 +183,53 @@ page_token (	B‚A
 key (	
 value (	:8"=
 RunTaskResponse*
-job (2.google.cloud.dataplex.v1.Job"{
-ListJobsRequest5
-parent (	B%‚A˙A
-dataplex.googleapis.com/Task
-	page_size (B‚A
+job (2.google.cloud.dataplex.v1.Job"x
+ListJobsRequest4
+parent (	B$‡A˙A
+dataplex.googleapis.com/Task
+	page_size (B‡A
 
-page_token (	B‚A"X
+page_token (	B‡A"X
 ListJobsResponse+
 jobs (2.google.cloud.dataplex.v1.Job
-next_page_token (	"F
-CancelJobRequest2
-name (	B$‚A˙A
-dataplex.googleapis.com/Job"Œ
-CreateEnvironmentRequest5
-parent (	B%‚A˙A
-dataplex.googleapis.com/Lake
-environment_id (	B‚A@
-environment (2%.google.cloud.dataplex.v1.EnvironmentB‚A
-validate_only (B‚A"∞
-UpdateEnvironmentRequest5
-update_mask (2.google.protobuf.FieldMaskB‚A@
-environment (2%.google.cloud.dataplex.v1.EnvironmentB‚A
-validate_only (B‚A"V
-DeleteEnvironmentRequest:
-name (	B,‚A˙A%
-#dataplex.googleapis.com/Environment"±
-ListEnvironmentsRequest5
-parent (	B%‚A˙A
-dataplex.googleapis.com/Lake
-	page_size (B‚A
+next_page_token (	"E
+CancelJobRequest1
+name (	B#‡A˙A
+dataplex.googleapis.com/Job" 
+CreateEnvironmentRequest4
+parent (	B$‡A˙A
+dataplex.googleapis.com/Lake
+environment_id (	B‡A?
+environment (2%.google.cloud.dataplex.v1.EnvironmentB‡A
+validate_only (B‡A"≠
+UpdateEnvironmentRequest4
+update_mask (2.google.protobuf.FieldMaskB‡A?
+environment (2%.google.cloud.dataplex.v1.EnvironmentB‡A
+validate_only (B‡A"U
+DeleteEnvironmentRequest9
+name (	B+‡A˙A%
+#dataplex.googleapis.com/Environment"¨
+ListEnvironmentsRequest4
+parent (	B$‡A˙A
+dataplex.googleapis.com/Lake
+	page_size (B‡A
 
-page_token (	B‚A
-filter (	B‚A
-order_by (	B‚A"p
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"p
 ListEnvironmentsResponse;
 environments (2%.google.cloud.dataplex.v1.Environment
-next_page_token (	"S
-GetEnvironmentRequest:
-name (	B,‚A˙A%
-#dataplex.googleapis.com/Environment"ú
-ListSessionsRequest<
-parent (	B,‚A˙A%
-#dataplex.googleapis.com/Environment
-	page_size (B‚A
+next_page_token (	"R
+GetEnvironmentRequest9
+name (	B+‡A˙A%
+#dataplex.googleapis.com/Environment"ò
+ListSessionsRequest;
+parent (	B+‡A˙A%
+#dataplex.googleapis.com/Environment
+	page_size (B‡A
 
-page_token (	B‚A
-filter (	B‚A"d
+page_token (	B‡A
+filter (	B‡A"d
 ListSessionsResponse3
 sessions (2!.google.cloud.dataplex.v1.Session
 next_page_token (	2¨2

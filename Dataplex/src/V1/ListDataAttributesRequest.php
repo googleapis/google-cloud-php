@@ -56,6 +56,7 @@ class ListDataAttributesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name of the DataTaxonomy:
      *                       projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
+     *                       Please see {@see DataTaxonomyServiceClient::dataTaxonomyName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\ListDataAttributesRequest
      *

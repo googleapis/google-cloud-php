@@ -42,7 +42,8 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The resource name of the parent environment:
-     *                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}`.
+     *                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}`. Please see
+     *                       {@see DataplexServiceClient::taskName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\ListJobsRequest
      *

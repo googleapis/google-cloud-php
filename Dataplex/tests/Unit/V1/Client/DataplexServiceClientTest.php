@@ -29,6 +29,8 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataplex\V1\Action;
 use Google\Cloud\Dataplex\V1\Asset;
+use Google\Cloud\Dataplex\V1\Asset\ResourceSpec;
+use Google\Cloud\Dataplex\V1\Asset\ResourceSpec\Type;
 use Google\Cloud\Dataplex\V1\CancelJobRequest;
 use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
 use Google\Cloud\Dataplex\V1\CreateAssetRequest;
@@ -42,6 +44,8 @@ use Google\Cloud\Dataplex\V1\DeleteLakeRequest;
 use Google\Cloud\Dataplex\V1\DeleteTaskRequest;
 use Google\Cloud\Dataplex\V1\DeleteZoneRequest;
 use Google\Cloud\Dataplex\V1\Environment;
+use Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec;
+use Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec\OsImageRuntime;
 use Google\Cloud\Dataplex\V1\GetAssetRequest;
 use Google\Cloud\Dataplex\V1\GetEnvironmentRequest;
 use Google\Cloud\Dataplex\V1\GetJobRequest;
@@ -72,12 +76,15 @@ use Google\Cloud\Dataplex\V1\RunTaskRequest;
 use Google\Cloud\Dataplex\V1\RunTaskResponse;
 use Google\Cloud\Dataplex\V1\Session;
 use Google\Cloud\Dataplex\V1\Task;
+use Google\Cloud\Dataplex\V1\Task\ExecutionSpec;
+use Google\Cloud\Dataplex\V1\Task\TriggerSpec;
 use Google\Cloud\Dataplex\V1\UpdateAssetRequest;
 use Google\Cloud\Dataplex\V1\UpdateEnvironmentRequest;
 use Google\Cloud\Dataplex\V1\UpdateLakeRequest;
 use Google\Cloud\Dataplex\V1\UpdateTaskRequest;
 use Google\Cloud\Dataplex\V1\UpdateZoneRequest;
 use Google\Cloud\Dataplex\V1\Zone;
+use Google\Cloud\Dataplex\V1\Zone\ResourceSpec\LocationType;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -90,6 +97,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -133,13 +141,18 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new CancelJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
+        $request = (new CancelJobRequest())
+            ->setName($formattedName);
         $gapicClient->cancelJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/CancelJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -161,7 +174,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CancelJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
+        $request = (new CancelJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->cancelJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -212,7 +228,18 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateAssetRequest();
+        // Mock request
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $assetId = 'assetId-373202742';
+        $asset = new Asset();
+        $assetResourceSpec = new ResourceSpec();
+        $resourceSpecType = Type::TYPE_UNSPECIFIED;
+        $assetResourceSpec->setType($resourceSpecType);
+        $asset->setResourceSpec($assetResourceSpec);
+        $request = (new CreateAssetRequest())
+            ->setParent($formattedParent)
+            ->setAssetId($assetId)
+            ->setAsset($asset);
         $response = $gapicClient->createAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -223,6 +250,12 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/CreateAsset', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getAssetId();
+        $this->assertProtobufEquals($assetId, $actualValue);
+        $actualValue = $actualApiRequestObject->getAsset();
+        $this->assertProtobufEquals($asset, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createAssetTest');
         $response->pollUntilComplete([
@@ -273,7 +306,18 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateAssetRequest();
+        // Mock request
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $assetId = 'assetId-373202742';
+        $asset = new Asset();
+        $assetResourceSpec = new ResourceSpec();
+        $resourceSpecType = Type::TYPE_UNSPECIFIED;
+        $assetResourceSpec->setType($resourceSpecType);
+        $asset->setResourceSpec($assetResourceSpec);
+        $request = (new CreateAssetRequest())
+            ->setParent($formattedParent)
+            ->setAssetId($assetId)
+            ->setAsset($asset);
         $response = $gapicClient->createAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -333,7 +377,20 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateEnvironmentRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $environmentId = 'environmentId608412359';
+        $environment = new Environment();
+        $environmentInfrastructureSpec = new InfrastructureSpec();
+        $infrastructureSpecOsImage = new OsImageRuntime();
+        $osImageImageVersion = 'osImageImageVersion-831593868';
+        $infrastructureSpecOsImage->setImageVersion($osImageImageVersion);
+        $environmentInfrastructureSpec->setOsImage($infrastructureSpecOsImage);
+        $environment->setInfrastructureSpec($environmentInfrastructureSpec);
+        $request = (new CreateEnvironmentRequest())
+            ->setParent($formattedParent)
+            ->setEnvironmentId($environmentId)
+            ->setEnvironment($environment);
         $response = $gapicClient->createEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -344,6 +401,12 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/CreateEnvironment', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getEnvironmentId();
+        $this->assertProtobufEquals($environmentId, $actualValue);
+        $actualValue = $actualApiRequestObject->getEnvironment();
+        $this->assertProtobufEquals($environment, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createEnvironmentTest');
         $response->pollUntilComplete([
@@ -394,7 +457,20 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateEnvironmentRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $environmentId = 'environmentId608412359';
+        $environment = new Environment();
+        $environmentInfrastructureSpec = new InfrastructureSpec();
+        $infrastructureSpecOsImage = new OsImageRuntime();
+        $osImageImageVersion = 'osImageImageVersion-831593868';
+        $infrastructureSpecOsImage->setImageVersion($osImageImageVersion);
+        $environmentInfrastructureSpec->setOsImage($infrastructureSpecOsImage);
+        $environment->setInfrastructureSpec($environmentInfrastructureSpec);
+        $request = (new CreateEnvironmentRequest())
+            ->setParent($formattedParent)
+            ->setEnvironmentId($environmentId)
+            ->setEnvironment($environment);
         $response = $gapicClient->createEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -456,7 +532,14 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateLakeRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $lakeId = 'lakeId-54902325';
+        $lake = new Lake();
+        $request = (new CreateLakeRequest())
+            ->setParent($formattedParent)
+            ->setLakeId($lakeId)
+            ->setLake($lake);
         $response = $gapicClient->createLake($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -467,6 +550,12 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/CreateLake', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getLakeId();
+        $this->assertProtobufEquals($lakeId, $actualValue);
+        $actualValue = $actualApiRequestObject->getLake();
+        $this->assertProtobufEquals($lake, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createLakeTest');
         $response->pollUntilComplete([
@@ -517,7 +606,14 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateLakeRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $lakeId = 'lakeId-54902325';
+        $lake = new Lake();
+        $request = (new CreateLakeRequest())
+            ->setParent($formattedParent)
+            ->setLakeId($lakeId)
+            ->setLake($lake);
         $response = $gapicClient->createLake($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -577,7 +673,22 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateTaskRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $taskId = 'taskId-1537240555';
+        $task = new Task();
+        $taskTriggerSpec = new TriggerSpec();
+        $triggerSpecType = \Google\Cloud\Dataplex\V1\Task\TriggerSpec\Type::TYPE_UNSPECIFIED;
+        $taskTriggerSpec->setType($triggerSpecType);
+        $task->setTriggerSpec($taskTriggerSpec);
+        $taskExecutionSpec = new ExecutionSpec();
+        $executionSpecServiceAccount = 'executionSpecServiceAccount-1249728629';
+        $taskExecutionSpec->setServiceAccount($executionSpecServiceAccount);
+        $task->setExecutionSpec($taskExecutionSpec);
+        $request = (new CreateTaskRequest())
+            ->setParent($formattedParent)
+            ->setTaskId($taskId)
+            ->setTask($task);
         $response = $gapicClient->createTask($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -588,6 +699,12 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/CreateTask', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getTaskId();
+        $this->assertProtobufEquals($taskId, $actualValue);
+        $actualValue = $actualApiRequestObject->getTask();
+        $this->assertProtobufEquals($task, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createTaskTest');
         $response->pollUntilComplete([
@@ -638,7 +755,22 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateTaskRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $taskId = 'taskId-1537240555';
+        $task = new Task();
+        $taskTriggerSpec = new TriggerSpec();
+        $triggerSpecType = \Google\Cloud\Dataplex\V1\Task\TriggerSpec\Type::TYPE_UNSPECIFIED;
+        $taskTriggerSpec->setType($triggerSpecType);
+        $task->setTriggerSpec($taskTriggerSpec);
+        $taskExecutionSpec = new ExecutionSpec();
+        $executionSpecServiceAccount = 'executionSpecServiceAccount-1249728629';
+        $taskExecutionSpec->setServiceAccount($executionSpecServiceAccount);
+        $task->setExecutionSpec($taskExecutionSpec);
+        $request = (new CreateTaskRequest())
+            ->setParent($formattedParent)
+            ->setTaskId($taskId)
+            ->setTask($task);
         $response = $gapicClient->createTask($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -698,7 +830,20 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateZoneRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $zoneId = 'zoneId-111174002';
+        $zone = new Zone();
+        $zoneType = \Google\Cloud\Dataplex\V1\Zone\Type::TYPE_UNSPECIFIED;
+        $zone->setType($zoneType);
+        $zoneResourceSpec = new \Google\Cloud\Dataplex\V1\Zone\ResourceSpec();
+        $resourceSpecLocationType = LocationType::LOCATION_TYPE_UNSPECIFIED;
+        $zoneResourceSpec->setLocationType($resourceSpecLocationType);
+        $zone->setResourceSpec($zoneResourceSpec);
+        $request = (new CreateZoneRequest())
+            ->setParent($formattedParent)
+            ->setZoneId($zoneId)
+            ->setZone($zone);
         $response = $gapicClient->createZone($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -709,6 +854,12 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/CreateZone', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getZoneId();
+        $this->assertProtobufEquals($zoneId, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createZoneTest');
         $response->pollUntilComplete([
@@ -759,7 +910,20 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateZoneRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $zoneId = 'zoneId-111174002';
+        $zone = new Zone();
+        $zoneType = \Google\Cloud\Dataplex\V1\Zone\Type::TYPE_UNSPECIFIED;
+        $zone->setType($zoneType);
+        $zoneResourceSpec = new \Google\Cloud\Dataplex\V1\Zone\ResourceSpec();
+        $resourceSpecLocationType = LocationType::LOCATION_TYPE_UNSPECIFIED;
+        $zoneResourceSpec->setLocationType($resourceSpecLocationType);
+        $zone->setResourceSpec($zoneResourceSpec);
+        $request = (new CreateZoneRequest())
+            ->setParent($formattedParent)
+            ->setZoneId($zoneId)
+            ->setZone($zone);
         $response = $gapicClient->createZone($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -811,7 +975,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteAssetRequest();
+        // Mock request
+        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
+        $request = (new DeleteAssetRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -822,6 +989,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/DeleteAsset', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteAssetTest');
         $response->pollUntilComplete([
@@ -872,7 +1041,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteAssetRequest();
+        // Mock request
+        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
+        $request = (new DeleteAssetRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -924,7 +1096,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteEnvironmentRequest();
+        // Mock request
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
+        $request = (new DeleteEnvironmentRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -935,6 +1110,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/DeleteEnvironment', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteEnvironmentTest');
         $response->pollUntilComplete([
@@ -985,7 +1162,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteEnvironmentRequest();
+        // Mock request
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
+        $request = (new DeleteEnvironmentRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1037,7 +1217,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteLakeRequest();
+        // Mock request
+        $formattedName = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $request = (new DeleteLakeRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteLake($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1048,6 +1231,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/DeleteLake', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteLakeTest');
         $response->pollUntilComplete([
@@ -1098,7 +1283,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteLakeRequest();
+        // Mock request
+        $formattedName = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $request = (new DeleteLakeRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteLake($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1150,7 +1338,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteTaskRequest();
+        // Mock request
+        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+        $request = (new DeleteTaskRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteTask($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1161,6 +1352,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/DeleteTask', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteTaskTest');
         $response->pollUntilComplete([
@@ -1211,7 +1404,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteTaskRequest();
+        // Mock request
+        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+        $request = (new DeleteTaskRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteTask($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1263,7 +1459,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteZoneRequest();
+        // Mock request
+        $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $request = (new DeleteZoneRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteZone($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1274,6 +1473,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/DeleteZone', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteZoneTest');
         $response->pollUntilComplete([
@@ -1324,7 +1525,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteZoneRequest();
+        // Mock request
+        $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $request = (new DeleteZoneRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteZone($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1366,7 +1570,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $request = new GetAssetRequest();
+        // Mock request
+        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
+        $request = (new GetAssetRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getAsset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1374,6 +1581,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/GetAsset', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1395,7 +1604,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetAssetRequest();
+        // Mock request
+        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
+        $request = (new GetAssetRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getAsset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1428,7 +1640,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $request = new GetEnvironmentRequest();
+        // Mock request
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
+        $request = (new GetEnvironmentRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getEnvironment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1436,6 +1651,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/GetEnvironment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1457,7 +1674,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetEnvironmentRequest();
+        // Mock request
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
+        $request = (new GetEnvironmentRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getEnvironment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1492,7 +1712,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setServiceJob($serviceJob);
         $expectedResponse->setMessage($message);
         $transport->addResponse($expectedResponse);
-        $request = new GetJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
+        $request = (new GetJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1500,6 +1723,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/GetJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1521,7 +1746,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
+        $request = (new GetJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1556,7 +1784,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
-        $request = new GetLakeRequest();
+        // Mock request
+        $formattedName = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $request = (new GetLakeRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getLake($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1564,6 +1795,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/GetLake', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1585,7 +1818,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetLakeRequest();
+        // Mock request
+        $formattedName = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $request = (new GetLakeRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getLake($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1618,7 +1854,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $request = new GetTaskRequest();
+        // Mock request
+        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+        $request = (new GetTaskRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getTask($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1626,6 +1865,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/GetTask', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1647,7 +1888,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetTaskRequest();
+        // Mock request
+        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+        $request = (new GetTaskRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getTask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1680,7 +1924,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $request = new GetZoneRequest();
+        // Mock request
+        $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $request = (new GetZoneRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getZone($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1688,6 +1935,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/GetZone', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1709,7 +1958,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetZoneRequest();
+        // Mock request
+        $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $request = (new GetZoneRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getZone($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1741,7 +1993,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setActions($actions);
         $transport->addResponse($expectedResponse);
-        $request = new ListAssetActionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
+        $request = (new ListAssetActionsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listAssetActions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1752,6 +2007,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/ListAssetActions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1773,7 +2030,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListAssetActionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
+        $request = (new ListAssetActionsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listAssetActions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1805,7 +2065,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAssets($assets);
         $transport->addResponse($expectedResponse);
-        $request = new ListAssetsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $request = (new ListAssetsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listAssets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1816,6 +2079,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/ListAssets', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1837,7 +2102,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListAssetsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $request = (new ListAssetsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1869,7 +2137,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEnvironments($environments);
         $transport->addResponse($expectedResponse);
-        $request = new ListEnvironmentsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $request = (new ListEnvironmentsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listEnvironments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1880,6 +2151,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/ListEnvironments', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1901,7 +2174,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListEnvironmentsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $request = (new ListEnvironmentsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listEnvironments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1933,7 +2209,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setJobs($jobs);
         $transport->addResponse($expectedResponse);
-        $request = new ListJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+        $request = (new ListJobsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1944,6 +2223,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/ListJobs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1965,7 +2246,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+        $request = (new ListJobsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1997,7 +2281,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setActions($actions);
         $transport->addResponse($expectedResponse);
-        $request = new ListLakeActionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $request = (new ListLakeActionsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listLakeActions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2008,6 +2295,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/ListLakeActions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2029,7 +2318,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListLakeActionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $request = (new ListLakeActionsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listLakeActions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2061,7 +2353,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLakes($lakes);
         $transport->addResponse($expectedResponse);
-        $request = new ListLakesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListLakesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listLakes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2072,6 +2367,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/ListLakes', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2093,7 +2390,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListLakesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListLakesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listLakes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2125,7 +2425,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSessions($sessions);
         $transport->addResponse($expectedResponse);
-        $request = new ListSessionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
+        $request = (new ListSessionsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listSessions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2136,6 +2439,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/ListSessions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2157,7 +2462,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListSessionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
+        $request = (new ListSessionsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listSessions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2189,7 +2497,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTasks($tasks);
         $transport->addResponse($expectedResponse);
-        $request = new ListTasksRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $request = (new ListTasksRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listTasks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2200,6 +2511,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/ListTasks', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2221,7 +2534,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListTasksRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $request = (new ListTasksRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listTasks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2253,7 +2569,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setActions($actions);
         $transport->addResponse($expectedResponse);
-        $request = new ListZoneActionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $request = (new ListZoneActionsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listZoneActions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2264,6 +2583,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/ListZoneActions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2285,7 +2606,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListZoneActionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $request = (new ListZoneActionsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listZoneActions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2317,7 +2641,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setZones($zones);
         $transport->addResponse($expectedResponse);
-        $request = new ListZonesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $request = (new ListZonesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listZones($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2328,6 +2655,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/ListZones', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2349,7 +2678,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListZonesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $request = (new ListZonesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listZones($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2374,7 +2706,10 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new RunTaskResponse();
         $transport->addResponse($expectedResponse);
-        $request = new RunTaskRequest();
+        // Mock request
+        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+        $request = (new RunTaskRequest())
+            ->setName($formattedName);
         $response = $gapicClient->runTask($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2382,6 +2717,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/RunTask', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2403,7 +2740,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new RunTaskRequest();
+        // Mock request
+        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+        $request = (new RunTaskRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->runTask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2454,7 +2794,16 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateAssetRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $asset = new Asset();
+        $assetResourceSpec = new ResourceSpec();
+        $resourceSpecType = Type::TYPE_UNSPECIFIED;
+        $assetResourceSpec->setType($resourceSpecType);
+        $asset->setResourceSpec($assetResourceSpec);
+        $request = (new UpdateAssetRequest())
+            ->setUpdateMask($updateMask)
+            ->setAsset($asset);
         $response = $gapicClient->updateAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2465,6 +2814,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/UpdateAsset', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualApiRequestObject->getAsset();
+        $this->assertProtobufEquals($asset, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateAssetTest');
         $response->pollUntilComplete([
@@ -2515,7 +2868,16 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateAssetRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $asset = new Asset();
+        $assetResourceSpec = new ResourceSpec();
+        $resourceSpecType = Type::TYPE_UNSPECIFIED;
+        $assetResourceSpec->setType($resourceSpecType);
+        $asset->setResourceSpec($assetResourceSpec);
+        $request = (new UpdateAssetRequest())
+            ->setUpdateMask($updateMask)
+            ->setAsset($asset);
         $response = $gapicClient->updateAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2575,7 +2937,18 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateEnvironmentRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $environment = new Environment();
+        $environmentInfrastructureSpec = new InfrastructureSpec();
+        $infrastructureSpecOsImage = new OsImageRuntime();
+        $osImageImageVersion = 'osImageImageVersion-831593868';
+        $infrastructureSpecOsImage->setImageVersion($osImageImageVersion);
+        $environmentInfrastructureSpec->setOsImage($infrastructureSpecOsImage);
+        $environment->setInfrastructureSpec($environmentInfrastructureSpec);
+        $request = (new UpdateEnvironmentRequest())
+            ->setUpdateMask($updateMask)
+            ->setEnvironment($environment);
         $response = $gapicClient->updateEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2586,6 +2959,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/UpdateEnvironment', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualApiRequestObject->getEnvironment();
+        $this->assertProtobufEquals($environment, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateEnvironmentTest');
         $response->pollUntilComplete([
@@ -2636,7 +3013,18 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateEnvironmentRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $environment = new Environment();
+        $environmentInfrastructureSpec = new InfrastructureSpec();
+        $infrastructureSpecOsImage = new OsImageRuntime();
+        $osImageImageVersion = 'osImageImageVersion-831593868';
+        $infrastructureSpecOsImage->setImageVersion($osImageImageVersion);
+        $environmentInfrastructureSpec->setOsImage($infrastructureSpecOsImage);
+        $environment->setInfrastructureSpec($environmentInfrastructureSpec);
+        $request = (new UpdateEnvironmentRequest())
+            ->setUpdateMask($updateMask)
+            ->setEnvironment($environment);
         $response = $gapicClient->updateEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2698,7 +3086,12 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateLakeRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $lake = new Lake();
+        $request = (new UpdateLakeRequest())
+            ->setUpdateMask($updateMask)
+            ->setLake($lake);
         $response = $gapicClient->updateLake($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2709,6 +3102,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/UpdateLake', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualApiRequestObject->getLake();
+        $this->assertProtobufEquals($lake, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateLakeTest');
         $response->pollUntilComplete([
@@ -2759,7 +3156,12 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateLakeRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $lake = new Lake();
+        $request = (new UpdateLakeRequest())
+            ->setUpdateMask($updateMask)
+            ->setLake($lake);
         $response = $gapicClient->updateLake($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2819,7 +3221,20 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateTaskRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $task = new Task();
+        $taskTriggerSpec = new TriggerSpec();
+        $triggerSpecType = \Google\Cloud\Dataplex\V1\Task\TriggerSpec\Type::TYPE_UNSPECIFIED;
+        $taskTriggerSpec->setType($triggerSpecType);
+        $task->setTriggerSpec($taskTriggerSpec);
+        $taskExecutionSpec = new ExecutionSpec();
+        $executionSpecServiceAccount = 'executionSpecServiceAccount-1249728629';
+        $taskExecutionSpec->setServiceAccount($executionSpecServiceAccount);
+        $task->setExecutionSpec($taskExecutionSpec);
+        $request = (new UpdateTaskRequest())
+            ->setUpdateMask($updateMask)
+            ->setTask($task);
         $response = $gapicClient->updateTask($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2830,6 +3245,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/UpdateTask', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualApiRequestObject->getTask();
+        $this->assertProtobufEquals($task, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateTaskTest');
         $response->pollUntilComplete([
@@ -2880,7 +3299,20 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateTaskRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $task = new Task();
+        $taskTriggerSpec = new TriggerSpec();
+        $triggerSpecType = \Google\Cloud\Dataplex\V1\Task\TriggerSpec\Type::TYPE_UNSPECIFIED;
+        $taskTriggerSpec->setType($triggerSpecType);
+        $task->setTriggerSpec($taskTriggerSpec);
+        $taskExecutionSpec = new ExecutionSpec();
+        $executionSpecServiceAccount = 'executionSpecServiceAccount-1249728629';
+        $taskExecutionSpec->setServiceAccount($executionSpecServiceAccount);
+        $task->setExecutionSpec($taskExecutionSpec);
+        $request = (new UpdateTaskRequest())
+            ->setUpdateMask($updateMask)
+            ->setTask($task);
         $response = $gapicClient->updateTask($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2940,7 +3372,18 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateZoneRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $zone = new Zone();
+        $zoneType = \Google\Cloud\Dataplex\V1\Zone\Type::TYPE_UNSPECIFIED;
+        $zone->setType($zoneType);
+        $zoneResourceSpec = new \Google\Cloud\Dataplex\V1\Zone\ResourceSpec();
+        $resourceSpecLocationType = LocationType::LOCATION_TYPE_UNSPECIFIED;
+        $zoneResourceSpec->setLocationType($resourceSpecLocationType);
+        $zone->setResourceSpec($zoneResourceSpec);
+        $request = (new UpdateZoneRequest())
+            ->setUpdateMask($updateMask)
+            ->setZone($zone);
         $response = $gapicClient->updateZone($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2951,6 +3394,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/UpdateZone', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateZoneTest');
         $response->pollUntilComplete([
@@ -3001,7 +3448,18 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateZoneRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $zone = new Zone();
+        $zoneType = \Google\Cloud\Dataplex\V1\Zone\Type::TYPE_UNSPECIFIED;
+        $zone->setType($zoneType);
+        $zoneResourceSpec = new \Google\Cloud\Dataplex\V1\Zone\ResourceSpec();
+        $resourceSpecLocationType = LocationType::LOCATION_TYPE_UNSPECIFIED;
+        $zoneResourceSpec->setLocationType($resourceSpecLocationType);
+        $zone->setResourceSpec($zoneResourceSpec);
+        $request = (new UpdateZoneRequest())
+            ->setUpdateMask($updateMask)
+            ->setZone($zone);
         $response = $gapicClient->updateZone($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3039,7 +3497,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3047,6 +3508,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3068,7 +3531,10 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3097,7 +3563,12 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3105,6 +3576,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3126,7 +3601,12 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3151,7 +3631,12 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3159,6 +3644,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3180,7 +3669,12 @@ class DataplexServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3329,13 +3823,18 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new CancelJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
+        $request = (new CancelJobRequest())
+            ->setName($formattedName);
         $gapicClient->cancelJobAsync($request)->wait();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataplexService/CancelJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

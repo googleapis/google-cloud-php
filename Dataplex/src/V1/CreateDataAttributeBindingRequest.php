@@ -50,6 +50,7 @@ class CreateDataAttributeBindingRequest extends \Google\Protobuf\Internal\Messag
     /**
      * @param string                                         $parent                 Required. The resource name of the parent data taxonomy
      *                                                                               projects/{project_number}/locations/{location_id}
+     *                                                                               Please see {@see DataTaxonomyServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Dataplex\V1\DataAttributeBinding $dataAttributeBinding   Required. DataAttributeBinding resource.
      * @param string                                         $dataAttributeBindingId Required. DataAttributeBinding identifier.
      *                                                                               * Must contain only lowercase letters, numbers and hyphens.

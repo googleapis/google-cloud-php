@@ -55,7 +55,8 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The resource name of the parent lake:
-     *                       `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
+     *                       `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`. Please see
+     *                       {@see DataplexServiceClient::lakeName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\ListEnvironmentsRequest
      *

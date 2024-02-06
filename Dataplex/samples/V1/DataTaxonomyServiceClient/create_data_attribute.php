@@ -33,19 +33,27 @@ use Google\Rpc\Status;
 /**
  * Create a DataAttribute resource.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the parent data taxonomy
+ *                                projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
+ *                                Please see {@see DataTaxonomyServiceClient::dataTaxonomyName()} for help formatting this field.
+ * @param string $dataAttributeId DataAttribute identifier.
+ *                                * Must contain only lowercase letters, numbers and hyphens.
+ *                                * Must start with a letter.
+ *                                * Must be between 1-63 characters.
+ *                                * Must end with a number or a letter.
+ *                                * Must be unique within the DataTaxonomy.
  */
-function create_data_attribute_sample(): void
+function create_data_attribute_sample(string $formattedParent, string $dataAttributeId): void
 {
     // Create a client.
     $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
 
     // Prepare the request message.
-    $request = new CreateDataAttributeRequest();
+    $dataAttribute = new DataAttribute();
+    $request = (new CreateDataAttributeRequest())
+        ->setParent($formattedParent)
+        ->setDataAttributeId($dataAttributeId)
+        ->setDataAttribute($dataAttribute);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +73,26 @@ function create_data_attribute_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataTaxonomyServiceClient::dataTaxonomyName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[DATA_TAXONOMY_ID]'
+    );
+    $dataAttributeId = '[DATA_ATTRIBUTE_ID]';
+
+    create_data_attribute_sample($formattedParent, $dataAttributeId);
 }
 // [END dataplex_v1_generated_DataTaxonomyService_CreateDataAttribute_sync]

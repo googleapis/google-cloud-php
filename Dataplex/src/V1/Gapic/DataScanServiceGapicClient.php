@@ -73,7 +73,10 @@ use Google\Protobuf\FieldMask;
  * ```
  * $dataScanServiceClient = new DataScanServiceClient();
  * try {
- *     $operationResponse = $dataScanServiceClient->createDataScan();
+ *     $formattedParent = $dataScanServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $dataScan = new DataScan();
+ *     $dataScanId = 'data_scan_id';
+ *     $operationResponse = $dataScanServiceClient->createDataScan($formattedParent, $dataScan, $dataScanId);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -84,7 +87,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $dataScanServiceClient->createDataScan();
+ *     $operationResponse = $dataScanServiceClient->createDataScan($formattedParent, $dataScan, $dataScanId);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $dataScanServiceClient->resumeOperation($operationName, 'createDataScan');
@@ -471,7 +474,10 @@ class DataScanServiceGapicClient
      * ```
      * $dataScanServiceClient = new DataScanServiceClient();
      * try {
-     *     $operationResponse = $dataScanServiceClient->createDataScan();
+     *     $formattedParent = $dataScanServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $dataScan = new DataScan();
+     *     $dataScanId = 'data_scan_id';
+     *     $operationResponse = $dataScanServiceClient->createDataScan($formattedParent, $dataScan, $dataScanId);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -482,7 +488,7 @@ class DataScanServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataScanServiceClient->createDataScan();
+     *     $operationResponse = $dataScanServiceClient->createDataScan($formattedParent, $dataScan, $dataScanId);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataScanServiceClient->resumeOperation($operationName, 'createDataScan');
@@ -502,24 +508,21 @@ class DataScanServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $parent       Required. The resource name of the parent location:
+     *                               `projects/{project}/locations/{location_id}`
+     *                               where `project` refers to a *project_id* or *project_number* and
+     *                               `location_id` refers to a GCP region.
+     * @param DataScan $dataScan     Required. DataScan resource.
+     * @param string   $dataScanId   Required. DataScan identifier.
+     *
+     *                               * Must contain only lowercase letters, numbers and hyphens.
+     *                               * Must start with a letter.
+     *                               * Must end with a number or a letter.
+     *                               * Must be between 1-63 characters.
+     *                               * Must be unique within the customer project / location.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the parent location:
-     *           `projects/{project}/locations/{location_id}`
-     *           where `project` refers to a *project_id* or *project_number* and
-     *           `location_id` refers to a GCP region.
-     *     @type DataScan $dataScan
-     *           Required. DataScan resource.
-     *     @type string $dataScanId
-     *           Required. DataScan identifier.
-     *
-     *           * Must contain only lowercase letters, numbers and hyphens.
-     *           * Must start with a letter.
-     *           * Must end with a number or a letter.
-     *           * Must be between 1-63 characters.
-     *           * Must be unique within the customer project / location.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is `false`.
@@ -533,23 +536,18 @@ class DataScanServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDataScan(array $optionalArgs = [])
-    {
+    public function createDataScan(
+        $parent,
+        $dataScan,
+        $dataScanId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateDataScanRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['dataScan'])) {
-            $request->setDataScan($optionalArgs['dataScan']);
-        }
-
-        if (isset($optionalArgs['dataScanId'])) {
-            $request->setDataScanId($optionalArgs['dataScanId']);
-        }
-
+        $request->setParent($parent);
+        $request->setDataScan($dataScan);
+        $request->setDataScanId($dataScanId);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -575,7 +573,8 @@ class DataScanServiceGapicClient
      * ```
      * $dataScanServiceClient = new DataScanServiceClient();
      * try {
-     *     $operationResponse = $dataScanServiceClient->deleteDataScan();
+     *     $formattedName = $dataScanServiceClient->dataScanName('[PROJECT]', '[LOCATION]', '[DATASCAN]');
+     *     $operationResponse = $dataScanServiceClient->deleteDataScan($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -585,7 +584,7 @@ class DataScanServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataScanServiceClient->deleteDataScan();
+     *     $operationResponse = $dataScanServiceClient->deleteDataScan($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataScanServiceClient->resumeOperation($operationName, 'deleteDataScan');
@@ -604,14 +603,13 @@ class DataScanServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the dataScan:
+     *                             `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+     *                             where `project` refers to a *project_id* or *project_number* and
+     *                             `location_id` refers to a GCP region.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the dataScan:
-     *           `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
-     *           where `project` refers to a *project_id* or *project_number* and
-     *           `location_id` refers to a GCP region.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -622,15 +620,12 @@ class DataScanServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDataScan(array $optionalArgs = [])
+    public function deleteDataScan($name, array $optionalArgs = [])
     {
         $request = new DeleteDataScanRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -652,20 +647,20 @@ class DataScanServiceGapicClient
      * ```
      * $dataScanServiceClient = new DataScanServiceClient();
      * try {
-     *     $response = $dataScanServiceClient->getDataScan();
+     *     $formattedName = $dataScanServiceClient->dataScanName('[PROJECT]', '[LOCATION]', '[DATASCAN]');
+     *     $response = $dataScanServiceClient->getDataScan($formattedName);
      * } finally {
      *     $dataScanServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the dataScan:
+     *                             `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+     *                             where `project` refers to a *project_id* or *project_number* and
+     *                             `location_id` refers to a GCP region.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the dataScan:
-     *           `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
-     *           where `project` refers to a *project_id* or *project_number* and
-     *           `location_id` refers to a GCP region.
      *     @type int $view
      *           Optional. Select the DataScan view to return. Defaults to `BASIC`.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Dataplex\V1\GetDataScanRequest\DataScanView}
@@ -679,15 +674,12 @@ class DataScanServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDataScan(array $optionalArgs = [])
+    public function getDataScan($name, array $optionalArgs = [])
     {
         $request = new GetDataScanRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -713,20 +705,20 @@ class DataScanServiceGapicClient
      * ```
      * $dataScanServiceClient = new DataScanServiceClient();
      * try {
-     *     $response = $dataScanServiceClient->getDataScanJob();
+     *     $formattedName = $dataScanServiceClient->dataScanJobName('[PROJECT]', '[LOCATION]', '[DATASCAN]', '[JOB]');
+     *     $response = $dataScanServiceClient->getDataScanJob($formattedName);
      * } finally {
      *     $dataScanServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the DataScanJob:
+     *                             `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/jobs/{data_scan_job_id}`
+     *                             where `project` refers to a *project_id* or *project_number* and
+     *                             `location_id` refers to a GCP region.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the DataScanJob:
-     *           `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}/jobs/{data_scan_job_id}`
-     *           where `project` refers to a *project_id* or *project_number* and
-     *           `location_id` refers to a GCP region.
      *     @type int $view
      *           Optional. Select the DataScanJob view to return. Defaults to `BASIC`.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Dataplex\V1\GetDataScanJobRequest\DataScanJobView}
@@ -740,15 +732,12 @@ class DataScanServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDataScanJob(array $optionalArgs = [])
+    public function getDataScanJob($name, array $optionalArgs = [])
     {
         $request = new GetDataScanJobRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -774,8 +763,9 @@ class DataScanServiceGapicClient
      * ```
      * $dataScanServiceClient = new DataScanServiceClient();
      * try {
+     *     $formattedParent = $dataScanServiceClient->dataScanName('[PROJECT]', '[LOCATION]', '[DATASCAN]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataScanServiceClient->listDataScanJobs();
+     *     $pagedResponse = $dataScanServiceClient->listDataScanJobs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -783,7 +773,7 @@ class DataScanServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataScanServiceClient->listDataScanJobs();
+     *     $pagedResponse = $dataScanServiceClient->listDataScanJobs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -792,14 +782,13 @@ class DataScanServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the parent environment:
+     *                             `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
+     *                             where `project` refers to a *project_id* or *project_number* and
+     *                             `location_id` refers to a GCP region.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the parent environment:
-     *           `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
-     *           where `project` refers to a *project_id* or *project_number* and
-     *           `location_id` refers to a GCP region.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -837,15 +826,12 @@ class DataScanServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDataScanJobs(array $optionalArgs = [])
+    public function listDataScanJobs($parent, array $optionalArgs = [])
     {
         $request = new ListDataScanJobsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -879,8 +865,9 @@ class DataScanServiceGapicClient
      * ```
      * $dataScanServiceClient = new DataScanServiceClient();
      * try {
+     *     $formattedParent = $dataScanServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataScanServiceClient->listDataScans();
+     *     $pagedResponse = $dataScanServiceClient->listDataScans($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -888,7 +875,7 @@ class DataScanServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataScanServiceClient->listDataScans();
+     *     $pagedResponse = $dataScanServiceClient->listDataScans($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -897,14 +884,13 @@ class DataScanServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the parent location:
+     *                             `projects/{project}/locations/{location_id}`
+     *                             where `project` refers to a *project_id* or *project_number* and
+     *                             `location_id` refers to a GCP region.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the parent location:
-     *           `projects/{project}/locations/{location_id}`
-     *           where `project` refers to a *project_id* or *project_number* and
-     *           `location_id` refers to a GCP region.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -929,15 +915,12 @@ class DataScanServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDataScans(array $optionalArgs = [])
+    public function listDataScans($parent, array $optionalArgs = [])
     {
         $request = new ListDataScansRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -975,22 +958,22 @@ class DataScanServiceGapicClient
      * ```
      * $dataScanServiceClient = new DataScanServiceClient();
      * try {
-     *     $response = $dataScanServiceClient->runDataScan();
+     *     $formattedName = $dataScanServiceClient->dataScanName('[PROJECT]', '[LOCATION]', '[DATASCAN]');
+     *     $response = $dataScanServiceClient->runDataScan($formattedName);
      * } finally {
      *     $dataScanServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the DataScan:
+     *                             `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`.
+     *                             where `project` refers to a *project_id* or *project_number* and
+     *                             `location_id` refers to a GCP region.
+     *
+     *                             Only **OnDemand** data scans are allowed.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the DataScan:
-     *           `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`.
-     *           where `project` refers to a *project_id* or *project_number* and
-     *           `location_id` refers to a GCP region.
-     *
-     *           Only **OnDemand** data scans are allowed.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1001,15 +984,12 @@ class DataScanServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function runDataScan(array $optionalArgs = [])
+    public function runDataScan($name, array $optionalArgs = [])
     {
         $request = new RunDataScanRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1031,7 +1011,9 @@ class DataScanServiceGapicClient
      * ```
      * $dataScanServiceClient = new DataScanServiceClient();
      * try {
-     *     $operationResponse = $dataScanServiceClient->updateDataScan();
+     *     $dataScan = new DataScan();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $dataScanServiceClient->updateDataScan($dataScan, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1042,7 +1024,7 @@ class DataScanServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataScanServiceClient->updateDataScan();
+     *     $operationResponse = $dataScanServiceClient->updateDataScan($dataScan, $updateMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataScanServiceClient->resumeOperation($operationName, 'updateDataScan');
@@ -1062,15 +1044,13 @@ class DataScanServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param DataScan  $dataScan     Required. DataScan resource to be updated.
+     *
+     *                                Only fields specified in `update_mask` are updated.
+     * @param FieldMask $updateMask   Required. Mask of fields to update.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type DataScan $dataScan
-     *           Required. DataScan resource to be updated.
-     *
-     *           Only fields specified in `update_mask` are updated.
-     *     @type FieldMask $updateMask
-     *           Required. Mask of fields to update.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is `false`.
@@ -1084,18 +1064,16 @@ class DataScanServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDataScan(array $optionalArgs = [])
-    {
+    public function updateDataScan(
+        $dataScan,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateDataScanRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['dataScan'])) {
-            $request->setDataScan($optionalArgs['dataScan']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setDataScan($dataScan);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['data_scan.name'] = $dataScan->getName();
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1122,18 +1100,18 @@ class DataScanServiceGapicClient
      * ```
      * $dataScanServiceClient = new DataScanServiceClient();
      * try {
-     *     $response = $dataScanServiceClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $dataScanServiceClient->getIamPolicy($resource);
      * } finally {
      *     $dataScanServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1147,15 +1125,12 @@ class DataScanServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1187,23 +1162,23 @@ class DataScanServiceGapicClient
      * ```
      * $dataScanServiceClient = new DataScanServiceClient();
      * try {
-     *     $response = $dataScanServiceClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $dataScanServiceClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $dataScanServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1220,19 +1195,13 @@ class DataScanServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1266,23 +1235,23 @@ class DataScanServiceGapicClient
      * ```
      * $dataScanServiceClient = new DataScanServiceClient();
      * try {
-     *     $response = $dataScanServiceClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $dataScanServiceClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $dataScanServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1293,19 +1262,16 @@ class DataScanServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

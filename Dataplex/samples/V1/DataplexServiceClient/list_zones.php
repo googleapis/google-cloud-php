@@ -32,19 +32,18 @@ use Google\Cloud\Dataplex\V1\Zone;
 /**
  * Lists zone resources in a lake.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the parent lake:
+ *                                `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`. Please see
+ *                                {@see DataplexServiceClient::lakeName()} for help formatting this field.
  */
-function list_zones_sample(): void
+function list_zones_sample(string $formattedParent): void
 {
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
     // Prepare the request message.
-    $request = new ListZonesRequest();
+    $request = (new ListZonesRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function list_zones_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataplexServiceClient::lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+
+    list_zones_sample($formattedParent);
 }
 // [END dataplex_v1_generated_DataplexService_ListZones_sync]

@@ -50,6 +50,7 @@ class CreateDataAttributeRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                  $parent          Required. The resource name of the parent data taxonomy
      *                                                                 projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
+     *                                                                 Please see {@see DataTaxonomyServiceClient::dataTaxonomyName()} for help formatting this field.
      * @param \Google\Cloud\Dataplex\V1\DataAttribute $dataAttribute   Required. DataAttribute resource.
      * @param string                                  $dataAttributeId Required. DataAttribute identifier.
      *                                                                 * Must contain only lowercase letters, numbers and hyphens.

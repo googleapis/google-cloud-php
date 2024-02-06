@@ -31,19 +31,18 @@ use Google\Cloud\Dataplex\V1\GetAssetRequest;
 /**
  * Retrieves an asset resource.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the asset:
+ *                              `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}`. Please see
+ *                              {@see DataplexServiceClient::assetName()} for help formatting this field.
  */
-function get_asset_sample(): void
+function get_asset_sample(string $formattedName): void
 {
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
     // Prepare the request message.
-    $request = new GetAssetRequest();
+    $request = (new GetAssetRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,27 @@ function get_asset_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DataplexServiceClient::assetName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[LAKE]',
+        '[ZONE]',
+        '[ASSET]'
+    );
+
+    get_asset_sample($formattedName);
 }
 // [END dataplex_v1_generated_DataplexService_GetAsset_sync]
