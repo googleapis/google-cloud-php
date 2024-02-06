@@ -82,7 +82,12 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ComputeTokensResponse();
         $transport->addResponse($expectedResponse);
-        $request = new ComputeTokensRequest();
+        // Mock request
+        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $instances = [];
+        $request = (new ComputeTokensRequest())
+            ->setEndpoint($formattedEndpoint)
+            ->setInstances($instances);
         $response = $gapicClient->computeTokens($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -90,6 +95,10 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.LlmUtilityService/ComputeTokens', $actualFuncCall);
+        $actualValue = $actualRequestObject->getEndpoint();
+        $this->assertProtobufEquals($formattedEndpoint, $actualValue);
+        $actualValue = $actualRequestObject->getInstances();
+        $this->assertProtobufEquals($instances, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -111,7 +120,12 @@ class LlmUtilityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ComputeTokensRequest();
+        // Mock request
+        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $instances = [];
+        $request = (new ComputeTokensRequest())
+            ->setEndpoint($formattedEndpoint)
+            ->setInstances($instances);
         try {
             $gapicClient->computeTokens($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -140,7 +154,16 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalTokens($totalTokens);
         $expectedResponse->setTotalBillableCharacters($totalBillableCharacters);
         $transport->addResponse($expectedResponse);
-        $request = new CountTokensRequest();
+        // Mock request
+        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $model = 'model104069929';
+        $instances = [];
+        $contents = [];
+        $request = (new CountTokensRequest())
+            ->setEndpoint($formattedEndpoint)
+            ->setModel($model)
+            ->setInstances($instances)
+            ->setContents($contents);
         $response = $gapicClient->countTokens($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -148,6 +171,14 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.LlmUtilityService/CountTokens', $actualFuncCall);
+        $actualValue = $actualRequestObject->getEndpoint();
+        $this->assertProtobufEquals($formattedEndpoint, $actualValue);
+        $actualValue = $actualRequestObject->getModel();
+        $this->assertProtobufEquals($model, $actualValue);
+        $actualValue = $actualRequestObject->getInstances();
+        $this->assertProtobufEquals($instances, $actualValue);
+        $actualValue = $actualRequestObject->getContents();
+        $this->assertProtobufEquals($contents, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -169,7 +200,16 @@ class LlmUtilityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CountTokensRequest();
+        // Mock request
+        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $model = 'model104069929';
+        $instances = [];
+        $contents = [];
+        $request = (new CountTokensRequest())
+            ->setEndpoint($formattedEndpoint)
+            ->setModel($model)
+            ->setInstances($instances)
+            ->setContents($contents);
         try {
             $gapicClient->countTokens($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -322,7 +362,10 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -330,6 +373,8 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -351,7 +396,10 @@ class LlmUtilityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -380,7 +428,12 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -388,6 +441,10 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -409,7 +466,12 @@ class LlmUtilityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -434,7 +496,12 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -442,6 +509,10 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -463,7 +534,12 @@ class LlmUtilityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -488,7 +564,12 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ComputeTokensResponse();
         $transport->addResponse($expectedResponse);
-        $request = new ComputeTokensRequest();
+        // Mock request
+        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $instances = [];
+        $request = (new ComputeTokensRequest())
+            ->setEndpoint($formattedEndpoint)
+            ->setInstances($instances);
         $response = $gapicClient->computeTokensAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -496,6 +577,10 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.LlmUtilityService/ComputeTokens', $actualFuncCall);
+        $actualValue = $actualRequestObject->getEndpoint();
+        $this->assertProtobufEquals($formattedEndpoint, $actualValue);
+        $actualValue = $actualRequestObject->getInstances();
+        $this->assertProtobufEquals($instances, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

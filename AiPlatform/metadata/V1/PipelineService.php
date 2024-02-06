@@ -26,17 +26,17 @@ class PipelineService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ò"
-1google/cloud/aiplatform/v1/pipeline_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto-google/cloud/aiplatform/v1/pipeline_job.proto2google/cloud/aiplatform/v1/training_pipeline.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"™
-CreateTrainingPipelineRequest:
-parent (	B*‚A˙A#
-!locations.googleapis.com/LocationM
-training_pipeline (2,.google.cloud.aiplatform.v1.TrainingPipelineB‚A"_
-GetTrainingPipelineRequestA
-name (	B3‚A˙A,
-*aiplatform.googleapis.com/TrainingPipeline"¿
-ListTrainingPipelinesRequest:
-parent (	B*‚A˙A#
+å"
+1google/cloud/aiplatform/v1/pipeline_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto-google/cloud/aiplatform/v1/pipeline_job.proto2google/cloud/aiplatform/v1/training_pipeline.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"®
+CreateTrainingPipelineRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/LocationL
+training_pipeline (2,.google.cloud.aiplatform.v1.TrainingPipelineB‡A"^
+GetTrainingPipelineRequest@
+name (	B2‡A˙A,
+*aiplatform.googleapis.com/TrainingPipeline"ø
+ListTrainingPipelinesRequest9
+parent (	B)‡A˙A#
 !locations.googleapis.com/Location
 filter (	
 	page_size (
@@ -45,23 +45,23 @@ page_token (	-
 	read_mask (2.google.protobuf.FieldMask"Ç
 ListTrainingPipelinesResponseH
 training_pipelines (2,.google.cloud.aiplatform.v1.TrainingPipeline
-next_page_token (	"b
-DeleteTrainingPipelineRequestA
-name (	B3‚A˙A,
-*aiplatform.googleapis.com/TrainingPipeline"b
-CancelTrainingPipelineRequestA
-name (	B3‚A˙A,
-*aiplatform.googleapis.com/TrainingPipeline"¥
-CreatePipelineJobRequest:
-parent (	B*‚A˙A#
-!locations.googleapis.com/LocationC
-pipeline_job (2\'.google.cloud.aiplatform.v1.PipelineJobB‚A
-pipeline_job_id (	"U
-GetPipelineJobRequest<
-name (	B.‚A˙A\'
-%aiplatform.googleapis.com/PipelineJob"Õ
-ListPipelineJobsRequest:
-parent (	B*‚A˙A#
+next_page_token (	"a
+DeleteTrainingPipelineRequest@
+name (	B2‡A˙A,
+*aiplatform.googleapis.com/TrainingPipeline"a
+CancelTrainingPipelineRequest@
+name (	B2‡A˙A,
+*aiplatform.googleapis.com/TrainingPipeline"≤
+CreatePipelineJobRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/LocationB
+pipeline_job (2\'.google.cloud.aiplatform.v1.PipelineJobB‡A
+pipeline_job_id (	"T
+GetPipelineJobRequest;
+name (	B-‡A˙A\'
+%aiplatform.googleapis.com/PipelineJob"Ã
+ListPipelineJobsRequest9
+parent (	B)‡A˙A#
 !locations.googleapis.com/Location
 filter (	
 	page_size (
@@ -71,12 +71,12 @@ page_token (	
 	read_mask (2.google.protobuf.FieldMask"s
 ListPipelineJobsResponse>
 pipeline_jobs (2\'.google.cloud.aiplatform.v1.PipelineJob
-next_page_token (	"X
-DeletePipelineJobRequest<
-name (	B.‚A˙A\'
-%aiplatform.googleapis.com/PipelineJob"X
-CancelPipelineJobRequest<
-name (	B.‚A˙A\'
+next_page_token (	"W
+DeletePipelineJobRequest;
+name (	B-‡A˙A\'
+%aiplatform.googleapis.com/PipelineJob"W
+CancelPipelineJobRequest;
+name (	B-‡A˙A\'
 %aiplatform.googleapis.com/PipelineJob2¸
 PipelineServiceÓ
 CreateTrainingPipeline9.google.cloud.aiplatform.v1.CreateTrainingPipelineRequest,.google.cloud.aiplatform.v1.TrainingPipeline"k⁄Aparent,training_pipelineÇ”‰ìJ"5/v1/{parent=projects/*/locations/*}/trainingPipelines:training_pipeline¡

@@ -48,6 +48,7 @@ class ListMetadataStoresRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The Location whose MetadataStores should be listed.
      *                       Format:
      *                       `projects/{project}/locations/{location}`
+     *                       Please see {@see MetadataServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ListMetadataStoresRequest
      *

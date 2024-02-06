@@ -52,6 +52,7 @@ class MutateDeployedModelRequest extends \Google\Protobuf\Internal\Message
      * @param string                                    $endpoint      Required. The name of the Endpoint resource into which to mutate a
      *                                                                 DeployedModel. Format:
      *                                                                 `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *                                                                 Please see {@see EndpointServiceClient::endpointName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\DeployedModel $deployedModel Required. The DeployedModel to be mutated within the Endpoint. Only the
      *                                                                 following fields can be mutated:
      *

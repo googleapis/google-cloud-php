@@ -28,6 +28,7 @@ class GetDeploymentResourcePoolRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the DeploymentResourcePool to retrieve.
      *                     Format:
      *                     `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`
+     *                     Please see {@see DeploymentResourcePoolServiceClient::deploymentResourcePoolName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetDeploymentResourcePoolRequest
      *

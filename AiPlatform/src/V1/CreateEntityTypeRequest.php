@@ -45,6 +45,7 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * @param string                                 $parent     Required. The resource name of the Featurestore to create EntityTypes.
      *                                                           Format:
      *                                                           `projects/{project}/locations/{location}/featurestores/{featurestore}`
+     *                                                           Please see {@see FeaturestoreServiceClient::featurestoreName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\EntityType $entityType The EntityType to create.
      *
      * @return \Google\Cloud\AIPlatform\V1\CreateEntityTypeRequest
@@ -62,6 +63,7 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * @param string                                 $parent       Required. The resource name of the Featurestore to create EntityTypes.
      *                                                             Format:
      *                                                             `projects/{project}/locations/{location}/featurestores/{featurestore}`
+     *                                                             Please see {@see FeaturestoreServiceClient::featurestoreName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\EntityType $entityType   The EntityType to create.
      * @param string                                 $entityTypeId Required. The ID to use for the EntityType, which will become the final
      *                                                             component of the EntityType's resource name.

@@ -27,23 +27,51 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\BatchCreateTensorboardRunsRequest;
 use Google\Cloud\AIPlatform\V1\BatchCreateTensorboardRunsResponse;
 use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
+use Google\Cloud\AIPlatform\V1\CreateTensorboardRunRequest;
+use Google\Cloud\AIPlatform\V1\TensorboardRun;
 
 /**
  * Batch create TensorboardRuns.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent                   The resource name of the TensorboardExperiment to create the
+ *                                                  TensorboardRuns in. Format:
+ *                                                  `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
+ *                                                  The parent field in the CreateTensorboardRunRequest messages must match
+ *                                                  this field. Please see
+ *                                                  {@see TensorboardServiceClient::tensorboardExperimentName()} for help formatting this field.
+ * @param string $formattedRequestsParent           The resource name of the TensorboardExperiment to create the
+ *                                                  TensorboardRun in. Format:
+ *                                                  `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
+ *                                                  Please see {@see TensorboardServiceClient::tensorboardRunName()} for help formatting this field.
+ * @param string $requestsTensorboardRunDisplayName User provided name of this TensorboardRun.
+ *                                                  This value must be unique among all TensorboardRuns
+ *                                                  belonging to the same parent TensorboardExperiment.
+ * @param string $requestsTensorboardRunId          The ID to use for the Tensorboard run, which becomes the final
+ *                                                  component of the Tensorboard run's resource name.
+ *
+ *                                                  This value should be 1-128 characters, and valid characters
+ *                                                  are `/[a-z][0-9]-/`.
  */
-function batch_create_tensorboard_runs_sample(): void
-{
+function batch_create_tensorboard_runs_sample(
+    string $formattedParent,
+    string $formattedRequestsParent,
+    string $requestsTensorboardRunDisplayName,
+    string $requestsTensorboardRunId
+): void {
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
     // Prepare the request message.
-    $request = new BatchCreateTensorboardRunsRequest();
+    $requestsTensorboardRun = (new TensorboardRun())
+        ->setDisplayName($requestsTensorboardRunDisplayName);
+    $createTensorboardRunRequest = (new CreateTensorboardRunRequest())
+        ->setParent($formattedRequestsParent)
+        ->setTensorboardRun($requestsTensorboardRun)
+        ->setTensorboardRunId($requestsTensorboardRunId);
+    $requests = [$createTensorboardRunRequest,];
+    $request = (new BatchCreateTensorboardRunsRequest())
+        ->setParent($formattedParent)
+        ->setRequests($requests);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +81,40 @@ function batch_create_tensorboard_runs_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = TensorboardServiceClient::tensorboardExperimentName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[TENSORBOARD]',
+        '[EXPERIMENT]'
+    );
+    $formattedRequestsParent = TensorboardServiceClient::tensorboardRunName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[TENSORBOARD]',
+        '[EXPERIMENT]',
+        '[RUN]'
+    );
+    $requestsTensorboardRunDisplayName = '[DISPLAY_NAME]';
+    $requestsTensorboardRunId = '[TENSORBOARD_RUN_ID]';
+
+    batch_create_tensorboard_runs_sample(
+        $formattedParent,
+        $formattedRequestsParent,
+        $requestsTensorboardRunDisplayName,
+        $requestsTensorboardRunId
+    );
 }
 // [END aiplatform_v1_generated_TensorboardService_BatchCreateTensorboardRuns_sync]

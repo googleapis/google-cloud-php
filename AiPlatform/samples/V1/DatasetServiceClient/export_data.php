@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
+use Google\Cloud\AIPlatform\V1\ExportDataConfig;
 use Google\Cloud\AIPlatform\V1\ExportDataRequest;
 use Google\Cloud\AIPlatform\V1\ExportDataResponse;
 use Google\Rpc\Status;
@@ -33,19 +34,21 @@ use Google\Rpc\Status;
 /**
  * Exports data from a Dataset.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the Dataset resource.
+ *                              Format:
+ *                              `projects/{project}/locations/{location}/datasets/{dataset}`
+ *                              Please see {@see DatasetServiceClient::datasetName()} for help formatting this field.
  */
-function export_data_sample(): void
+function export_data_sample(string $formattedName): void
 {
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
     // Prepare the request message.
-    $request = new ExportDataRequest();
+    $exportConfig = new ExportDataConfig();
+    $request = (new ExportDataRequest())
+        ->setName($formattedName)
+        ->setExportConfig($exportConfig);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +68,21 @@ function export_data_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DatasetServiceClient::datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+
+    export_data_sample($formattedName);
 }
 // [END aiplatform_v1_generated_DatasetService_ExportData_sync]

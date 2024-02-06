@@ -29,6 +29,7 @@ class GetPipelineJobRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the PipelineJob resource.
      *                     Format:
      *                     `projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}`
+     *                     Please see {@see PipelineServiceClient::pipelineJobName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetPipelineJobRequest
      *

@@ -33,6 +33,7 @@ class CreateTensorboardRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                  $parent      Required. The resource name of the Location to create the Tensorboard in.
      *                                                             Format: `projects/{project}/locations/{location}`
+     *                                                             Please see {@see TensorboardServiceClient::tensorboardName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\Tensorboard $tensorboard Required. The Tensorboard to create.
      *
      * @return \Google\Cloud\AIPlatform\V1\CreateTensorboardRequest

@@ -31,19 +31,19 @@ use Google\Cloud\AIPlatform\V1\ReadTensorboardSizeResponse;
 /**
  * Returns the storage size for a given TensorBoard instance.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedTensorboard The name of the Tensorboard resource.
+ *                                     Format:
+ *                                     `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+ *                                     Please see {@see TensorboardServiceClient::tensorboardName()} for help formatting this field.
  */
-function read_tensorboard_size_sample(): void
+function read_tensorboard_size_sample(string $formattedTensorboard): void
 {
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
     // Prepare the request message.
-    $request = new ReadTensorboardSizeRequest();
+    $request = (new ReadTensorboardSizeRequest())
+        ->setTensorboard($formattedTensorboard);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +53,25 @@ function read_tensorboard_size_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedTensorboard = TensorboardServiceClient::tensorboardName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[TENSORBOARD]'
+    );
+
+    read_tensorboard_size_sample($formattedTensorboard);
 }
 // [END aiplatform_v1_generated_TensorboardService_ReadTensorboardSize_sync]

@@ -35,6 +35,7 @@ class DeleteEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the EntityType to be deleted.
      *                     Format:
      *                     `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *                     Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\DeleteEntityTypeRequest
      *
@@ -50,6 +51,7 @@ class DeleteEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * @param string $name  Required. The name of the EntityType to be deleted.
      *                      Format:
      *                      `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *                      Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
      * @param bool   $force If set to true, any Features for this EntityType will also be deleted.
      *                      (Otherwise, the request will only work if the EntityType has no Features.)
      *

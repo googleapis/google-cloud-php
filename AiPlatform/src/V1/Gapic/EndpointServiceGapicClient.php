@@ -69,7 +69,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $endpointServiceClient = new EndpointServiceClient();
  * try {
- *     $operationResponse = $endpointServiceClient->createEndpoint();
+ *     $formattedParent = $endpointServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $endpoint = new Endpoint();
+ *     $operationResponse = $endpointServiceClient->createEndpoint($formattedParent, $endpoint);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -80,7 +82,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $endpointServiceClient->createEndpoint();
+ *     $operationResponse = $endpointServiceClient->createEndpoint($formattedParent, $endpoint);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $endpointServiceClient->resumeOperation($operationName, 'createEndpoint');
@@ -605,7 +607,9 @@ class EndpointServiceGapicClient
      * ```
      * $endpointServiceClient = new EndpointServiceClient();
      * try {
-     *     $operationResponse = $endpointServiceClient->createEndpoint();
+     *     $formattedParent = $endpointServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $endpoint = new Endpoint();
+     *     $operationResponse = $endpointServiceClient->createEndpoint($formattedParent, $endpoint);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -616,7 +620,7 @@ class EndpointServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $endpointServiceClient->createEndpoint();
+     *     $operationResponse = $endpointServiceClient->createEndpoint($formattedParent, $endpoint);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $endpointServiceClient->resumeOperation($operationName, 'createEndpoint');
@@ -636,14 +640,12 @@ class EndpointServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $parent       Required. The resource name of the Location to create the Endpoint in.
+     *                               Format: `projects/{project}/locations/{location}`
+     * @param Endpoint $endpoint     Required. The Endpoint to create.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location to create the Endpoint in.
-     *           Format: `projects/{project}/locations/{location}`
-     *     @type Endpoint $endpoint
-     *           Required. The Endpoint to create.
      *     @type string $endpointId
      *           Immutable. The ID to use for endpoint, which will become the final
      *           component of the endpoint resource name.
@@ -669,19 +671,13 @@ class EndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createEndpoint(array $optionalArgs = [])
+    public function createEndpoint($parent, $endpoint, array $optionalArgs = [])
     {
         $request = new CreateEndpointRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['endpoint'])) {
-            $request->setEndpoint($optionalArgs['endpoint']);
-        }
-
+        $request->setParent($parent);
+        $request->setEndpoint($endpoint);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['endpointId'])) {
             $request->setEndpointId($optionalArgs['endpointId']);
         }
@@ -707,7 +703,8 @@ class EndpointServiceGapicClient
      * ```
      * $endpointServiceClient = new EndpointServiceClient();
      * try {
-     *     $operationResponse = $endpointServiceClient->deleteEndpoint();
+     *     $formattedName = $endpointServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+     *     $operationResponse = $endpointServiceClient->deleteEndpoint($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -717,7 +714,7 @@ class EndpointServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $endpointServiceClient->deleteEndpoint();
+     *     $operationResponse = $endpointServiceClient->deleteEndpoint($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $endpointServiceClient->resumeOperation($operationName, 'deleteEndpoint');
@@ -736,13 +733,12 @@ class EndpointServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Endpoint resource to be deleted.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Endpoint resource to be deleted.
-     *           Format:
-     *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -753,15 +749,12 @@ class EndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteEndpoint(array $optionalArgs = [])
+    public function deleteEndpoint($name, array $optionalArgs = [])
     {
         $request = new DeleteEndpointRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -783,7 +776,9 @@ class EndpointServiceGapicClient
      * ```
      * $endpointServiceClient = new EndpointServiceClient();
      * try {
-     *     $operationResponse = $endpointServiceClient->deployModel();
+     *     $formattedEndpoint = $endpointServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+     *     $deployedModel = new DeployedModel();
+     *     $operationResponse = $endpointServiceClient->deployModel($formattedEndpoint, $deployedModel);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -794,7 +789,7 @@ class EndpointServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $endpointServiceClient->deployModel();
+     *     $operationResponse = $endpointServiceClient->deployModel($formattedEndpoint, $deployedModel);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $endpointServiceClient->resumeOperation($operationName, 'deployModel');
@@ -814,19 +809,17 @@ class EndpointServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string        $endpoint      Required. The name of the Endpoint resource into which to deploy a Model.
+     *                                     Format:
+     *                                     `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     * @param DeployedModel $deployedModel Required. The DeployedModel to be created within the Endpoint. Note that
+     *                                     [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split]
+     *                                     must be updated for the DeployedModel to start receiving traffic, either as
+     *                                     part of this call, or via
+     *                                     [EndpointService.UpdateEndpoint][google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint].
+     * @param array         $optionalArgs  {
      *     Optional.
      *
-     *     @type string $endpoint
-     *           Required. The name of the Endpoint resource into which to deploy a Model.
-     *           Format:
-     *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
-     *     @type DeployedModel $deployedModel
-     *           Required. The DeployedModel to be created within the Endpoint. Note that
-     *           [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split]
-     *           must be updated for the DeployedModel to start receiving traffic, either as
-     *           part of this call, or via
-     *           [EndpointService.UpdateEndpoint][google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint].
      *     @type array $trafficSplit
      *           A map from a DeployedModel's ID to the percentage of this Endpoint's
      *           traffic that should be forwarded to that DeployedModel.
@@ -851,19 +844,16 @@ class EndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deployModel(array $optionalArgs = [])
-    {
+    public function deployModel(
+        $endpoint,
+        $deployedModel,
+        array $optionalArgs = []
+    ) {
         $request = new DeployModelRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['endpoint'])) {
-            $request->setEndpoint($optionalArgs['endpoint']);
-            $requestParamHeaders['endpoint'] = $optionalArgs['endpoint'];
-        }
-
-        if (isset($optionalArgs['deployedModel'])) {
-            $request->setDeployedModel($optionalArgs['deployedModel']);
-        }
-
+        $request->setEndpoint($endpoint);
+        $request->setDeployedModel($deployedModel);
+        $requestParamHeaders['endpoint'] = $endpoint;
         if (isset($optionalArgs['trafficSplit'])) {
             $request->setTrafficSplit($optionalArgs['trafficSplit']);
         }
@@ -889,19 +879,19 @@ class EndpointServiceGapicClient
      * ```
      * $endpointServiceClient = new EndpointServiceClient();
      * try {
-     *     $response = $endpointServiceClient->getEndpoint();
+     *     $formattedName = $endpointServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+     *     $response = $endpointServiceClient->getEndpoint($formattedName);
      * } finally {
      *     $endpointServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Endpoint resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Endpoint resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -912,15 +902,12 @@ class EndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEndpoint(array $optionalArgs = [])
+    public function getEndpoint($name, array $optionalArgs = [])
     {
         $request = new GetEndpointRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -942,8 +929,9 @@ class EndpointServiceGapicClient
      * ```
      * $endpointServiceClient = new EndpointServiceClient();
      * try {
+     *     $formattedParent = $endpointServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $endpointServiceClient->listEndpoints();
+     *     $pagedResponse = $endpointServiceClient->listEndpoints($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -951,7 +939,7 @@ class EndpointServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $endpointServiceClient->listEndpoints();
+     *     $pagedResponse = $endpointServiceClient->listEndpoints($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -960,12 +948,11 @@ class EndpointServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the Location from which to list the
+     *                             Endpoints. Format: `projects/{project}/locations/{location}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location from which to list the
-     *           Endpoints. Format: `projects/{project}/locations/{location}`
      *     @type string $filter
      *           Optional. An expression for filtering the results of the request. For field
      *           names both snake_case and camelCase are supported.
@@ -1015,15 +1002,12 @@ class EndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listEndpoints(array $optionalArgs = [])
+    public function listEndpoints($parent, array $optionalArgs = [])
     {
         $request = new ListEndpointsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1068,7 +1052,10 @@ class EndpointServiceGapicClient
      * ```
      * $endpointServiceClient = new EndpointServiceClient();
      * try {
-     *     $operationResponse = $endpointServiceClient->mutateDeployedModel();
+     *     $formattedEndpoint = $endpointServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+     *     $deployedModel = new DeployedModel();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $endpointServiceClient->mutateDeployedModel($formattedEndpoint, $deployedModel, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1079,7 +1066,7 @@ class EndpointServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $endpointServiceClient->mutateDeployedModel();
+     *     $operationResponse = $endpointServiceClient->mutateDeployedModel($formattedEndpoint, $deployedModel, $updateMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $endpointServiceClient->resumeOperation($operationName, 'mutateDeployedModel');
@@ -1099,29 +1086,26 @@ class EndpointServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string        $endpoint      Required. The name of the Endpoint resource into which to mutate a
+     *                                     DeployedModel. Format:
+     *                                     `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     * @param DeployedModel $deployedModel Required. The DeployedModel to be mutated within the Endpoint. Only the
+     *                                     following fields can be mutated:
+     *
+     *                                     * `min_replica_count` in either
+     *                                     [DedicatedResources][google.cloud.aiplatform.v1.DedicatedResources] or
+     *                                     [AutomaticResources][google.cloud.aiplatform.v1.AutomaticResources]
+     *                                     * `max_replica_count` in either
+     *                                     [DedicatedResources][google.cloud.aiplatform.v1.DedicatedResources] or
+     *                                     [AutomaticResources][google.cloud.aiplatform.v1.AutomaticResources]
+     *                                     * [autoscaling_metric_specs][google.cloud.aiplatform.v1.DedicatedResources.autoscaling_metric_specs]
+     *                                     * `disable_container_logging` (v1 only)
+     *                                     * `enable_container_logging` (v1beta1 only)
+     * @param FieldMask     $updateMask    Required. The update mask applies to the resource. See
+     *                                     [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * @param array         $optionalArgs  {
      *     Optional.
      *
-     *     @type string $endpoint
-     *           Required. The name of the Endpoint resource into which to mutate a
-     *           DeployedModel. Format:
-     *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
-     *     @type DeployedModel $deployedModel
-     *           Required. The DeployedModel to be mutated within the Endpoint. Only the
-     *           following fields can be mutated:
-     *
-     *           * `min_replica_count` in either
-     *           [DedicatedResources][google.cloud.aiplatform.v1.DedicatedResources] or
-     *           [AutomaticResources][google.cloud.aiplatform.v1.AutomaticResources]
-     *           * `max_replica_count` in either
-     *           [DedicatedResources][google.cloud.aiplatform.v1.DedicatedResources] or
-     *           [AutomaticResources][google.cloud.aiplatform.v1.AutomaticResources]
-     *           * [autoscaling_metric_specs][google.cloud.aiplatform.v1.DedicatedResources.autoscaling_metric_specs]
-     *           * `disable_container_logging` (v1 only)
-     *           * `enable_container_logging` (v1beta1 only)
-     *     @type FieldMask $updateMask
-     *           Required. The update mask applies to the resource. See
-     *           [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1132,23 +1116,18 @@ class EndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function mutateDeployedModel(array $optionalArgs = [])
-    {
+    public function mutateDeployedModel(
+        $endpoint,
+        $deployedModel,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new MutateDeployedModelRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['endpoint'])) {
-            $request->setEndpoint($optionalArgs['endpoint']);
-            $requestParamHeaders['endpoint'] = $optionalArgs['endpoint'];
-        }
-
-        if (isset($optionalArgs['deployedModel'])) {
-            $request->setDeployedModel($optionalArgs['deployedModel']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setEndpoint($endpoint);
+        $request->setDeployedModel($deployedModel);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['endpoint'] = $endpoint;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1171,7 +1150,9 @@ class EndpointServiceGapicClient
      * ```
      * $endpointServiceClient = new EndpointServiceClient();
      * try {
-     *     $operationResponse = $endpointServiceClient->undeployModel();
+     *     $formattedEndpoint = $endpointServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+     *     $deployedModelId = 'deployed_model_id';
+     *     $operationResponse = $endpointServiceClient->undeployModel($formattedEndpoint, $deployedModelId);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1182,7 +1163,7 @@ class EndpointServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $endpointServiceClient->undeployModel();
+     *     $operationResponse = $endpointServiceClient->undeployModel($formattedEndpoint, $deployedModelId);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $endpointServiceClient->resumeOperation($operationName, 'undeployModel');
@@ -1202,15 +1183,13 @@ class EndpointServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $endpoint        Required. The name of the Endpoint resource from which to undeploy a Model.
+     *                                Format:
+     *                                `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     * @param string $deployedModelId Required. The ID of the DeployedModel to be undeployed from the Endpoint.
+     * @param array  $optionalArgs    {
      *     Optional.
      *
-     *     @type string $endpoint
-     *           Required. The name of the Endpoint resource from which to undeploy a Model.
-     *           Format:
-     *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
-     *     @type string $deployedModelId
-     *           Required. The ID of the DeployedModel to be undeployed from the Endpoint.
      *     @type array $trafficSplit
      *           If this field is provided, then the Endpoint's
      *           [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be
@@ -1229,19 +1208,16 @@ class EndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function undeployModel(array $optionalArgs = [])
-    {
+    public function undeployModel(
+        $endpoint,
+        $deployedModelId,
+        array $optionalArgs = []
+    ) {
         $request = new UndeployModelRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['endpoint'])) {
-            $request->setEndpoint($optionalArgs['endpoint']);
-            $requestParamHeaders['endpoint'] = $optionalArgs['endpoint'];
-        }
-
-        if (isset($optionalArgs['deployedModelId'])) {
-            $request->setDeployedModelId($optionalArgs['deployedModelId']);
-        }
-
+        $request->setEndpoint($endpoint);
+        $request->setDeployedModelId($deployedModelId);
+        $requestParamHeaders['endpoint'] = $endpoint;
         if (isset($optionalArgs['trafficSplit'])) {
             $request->setTrafficSplit($optionalArgs['trafficSplit']);
         }
@@ -1267,20 +1243,20 @@ class EndpointServiceGapicClient
      * ```
      * $endpointServiceClient = new EndpointServiceClient();
      * try {
-     *     $response = $endpointServiceClient->updateEndpoint();
+     *     $endpoint = new Endpoint();
+     *     $updateMask = new FieldMask();
+     *     $response = $endpointServiceClient->updateEndpoint($endpoint, $updateMask);
      * } finally {
      *     $endpointServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Endpoint  $endpoint     Required. The Endpoint which replaces the resource on the server.
+     * @param FieldMask $updateMask   Required. The update mask applies to the resource. See
+     *                                [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type Endpoint $endpoint
-     *           Required. The Endpoint which replaces the resource on the server.
-     *     @type FieldMask $updateMask
-     *           Required. The update mask applies to the resource. See
-     *           [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1291,18 +1267,16 @@ class EndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateEndpoint(array $optionalArgs = [])
-    {
+    public function updateEndpoint(
+        $endpoint,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateEndpointRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['endpoint'])) {
-            $request->setEndpoint($optionalArgs['endpoint']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setEndpoint($endpoint);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['endpoint.name'] = $endpoint->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1465,18 +1439,18 @@ class EndpointServiceGapicClient
      * ```
      * $endpointServiceClient = new EndpointServiceClient();
      * try {
-     *     $response = $endpointServiceClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $endpointServiceClient->getIamPolicy($resource);
      * } finally {
      *     $endpointServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1490,15 +1464,12 @@ class EndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1530,23 +1501,23 @@ class EndpointServiceGapicClient
      * ```
      * $endpointServiceClient = new EndpointServiceClient();
      * try {
-     *     $response = $endpointServiceClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $endpointServiceClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $endpointServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1563,19 +1534,13 @@ class EndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1609,23 +1574,23 @@ class EndpointServiceGapicClient
      * ```
      * $endpointServiceClient = new EndpointServiceClient();
      * try {
-     *     $response = $endpointServiceClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $endpointServiceClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $endpointServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1636,19 +1601,16 @@ class EndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

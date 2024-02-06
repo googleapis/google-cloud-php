@@ -28,24 +28,43 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\ExportFeatureValuesRequest;
 use Google\Cloud\AIPlatform\V1\ExportFeatureValuesResponse;
+use Google\Cloud\AIPlatform\V1\FeatureSelector;
+use Google\Cloud\AIPlatform\V1\FeatureValueDestination;
+use Google\Cloud\AIPlatform\V1\IdMatcher;
 use Google\Rpc\Status;
 
 /**
  * Exports Feature values from all the entities of a target EntityType.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedEntityType                The resource name of the EntityType from which to export Feature
+ *                                                   values. Format:
+ *                                                   `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+ *                                                   Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
+ * @param string $featureSelectorIdMatcherIdsElement The following are accepted as `ids`:
+ *
+ *                                                   * A single-element list containing only `*`, which selects all Features
+ *                                                   in the target EntityType, or
+ *                                                   * A list containing only Feature IDs, which selects only Features with
+ *                                                   those IDs in the target EntityType.
  */
-function export_feature_values_sample(): void
-{
+function export_feature_values_sample(
+    string $formattedEntityType,
+    string $featureSelectorIdMatcherIdsElement
+): void {
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
     // Prepare the request message.
-    $request = new ExportFeatureValuesRequest();
+    $destination = new FeatureValueDestination();
+    $featureSelectorIdMatcherIds = [$featureSelectorIdMatcherIdsElement,];
+    $featureSelectorIdMatcher = (new IdMatcher())
+        ->setIds($featureSelectorIdMatcherIds);
+    $featureSelector = (new FeatureSelector())
+        ->setIdMatcher($featureSelectorIdMatcher);
+    $request = (new ExportFeatureValuesRequest())
+        ->setEntityType($formattedEntityType)
+        ->setDestination($destination)
+        ->setFeatureSelector($featureSelector);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +84,27 @@ function export_feature_values_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedEntityType = FeaturestoreServiceClient::entityTypeName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[FEATURESTORE]',
+        '[ENTITY_TYPE]'
+    );
+    $featureSelectorIdMatcherIdsElement = '[IDS]';
+
+    export_feature_values_sample($formattedEntityType, $featureSelectorIdMatcherIdsElement);
 }
 // [END aiplatform_v1_generated_FeaturestoreService_ExportFeatureValues_sync]

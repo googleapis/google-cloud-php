@@ -51,6 +51,7 @@ class CreateFeatureRequest extends \Google\Protobuf\Internal\Message
      *                                                     `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
      *                                                     Format for feature_group as parent:
      *                                                     `projects/{project}/locations/{location}/featureGroups/{feature_group}`
+     *                                                     Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\Feature $feature Required. The Feature to create.
      *
      * @return \Google\Cloud\AIPlatform\V1\CreateFeatureRequest
@@ -70,6 +71,7 @@ class CreateFeatureRequest extends \Google\Protobuf\Internal\Message
      *                                                       `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
      *                                                       Format for feature_group as parent:
      *                                                       `projects/{project}/locations/{location}/featureGroups/{feature_group}`
+     *                                                       Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\Feature $feature   Required. The Feature to create.
      * @param string                              $featureId Required. The ID to use for the Feature, which will become the final
      *                                                       component of the Feature's resource name.

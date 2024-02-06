@@ -77,6 +77,7 @@ class ListDataLabelingJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent of the DataLabelingJob.
      *                       Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see JobServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ListDataLabelingJobsRequest
      *

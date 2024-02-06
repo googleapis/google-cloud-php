@@ -60,6 +60,7 @@ class SearchMigratableResourcesRequest extends \Google\Protobuf\Internal\Message
      *                       from. It's the Vertex AI location that the resources can be migrated to,
      *                       not the resources' original location. Format:
      *                       `projects/{project}/locations/{location}`
+     *                       Please see {@see MigrationServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\SearchMigratableResourcesRequest
      *

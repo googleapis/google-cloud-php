@@ -31,19 +31,27 @@ use Google\Cloud\AIPlatform\V1\TensorboardExperiment;
 /**
  * Creates a TensorboardExperiment.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent         The resource name of the Tensorboard to create the
+ *                                        TensorboardExperiment in. Format:
+ *                                        `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+ *                                        Please see {@see TensorboardServiceClient::tensorboardExperimentName()} for help formatting this field.
+ * @param string $tensorboardExperimentId The ID to use for the Tensorboard experiment, which becomes the
+ *                                        final component of the Tensorboard experiment's resource name.
+ *
+ *                                        This value should be 1-128 characters, and valid characters
+ *                                        are `/[a-z][0-9]-/`.
  */
-function create_tensorboard_experiment_sample(): void
-{
+function create_tensorboard_experiment_sample(
+    string $formattedParent,
+    string $tensorboardExperimentId
+): void {
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
     // Prepare the request message.
-    $request = new CreateTensorboardExperimentRequest();
+    $request = (new CreateTensorboardExperimentRequest())
+        ->setParent($formattedParent)
+        ->setTensorboardExperimentId($tensorboardExperimentId);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +61,27 @@ function create_tensorboard_experiment_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = TensorboardServiceClient::tensorboardExperimentName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[TENSORBOARD]',
+        '[EXPERIMENT]'
+    );
+    $tensorboardExperimentId = '[TENSORBOARD_EXPERIMENT_ID]';
+
+    create_tensorboard_experiment_sample($formattedParent, $tensorboardExperimentId);
 }
 // [END aiplatform_v1_generated_TensorboardService_CreateTensorboardExperiment_sync]

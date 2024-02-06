@@ -27,17 +27,17 @@ class FeatureOnlineStoreAdminService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ö6
-Cgoogle/cloud/aiplatform/v1/feature_online_store_admin_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto5google/cloud/aiplatform/v1/feature_online_store.proto-google/cloud/aiplatform/v1/feature_view.proto2google/cloud/aiplatform/v1/feature_view_sync.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"„
-CreateFeatureOnlineStoreRequestE
-parent (	B5‚A˙A.,aiplatform.googleapis.com/FeatureOnlineStoreR
-feature_online_store (2..google.cloud.aiplatform.v1.FeatureOnlineStoreB‚A%
-feature_online_store_id (	B‚A"c
-GetFeatureOnlineStoreRequestC
-name (	B5‚A˙A.
-,aiplatform.googleapis.com/FeatureOnlineStore"∞
-ListFeatureOnlineStoresRequestE
-parent (	B5‚A˙A.,aiplatform.googleapis.com/FeatureOnlineStore
+à6
+Cgoogle/cloud/aiplatform/v1/feature_online_store_admin_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto5google/cloud/aiplatform/v1/feature_online_store.proto-google/cloud/aiplatform/v1/feature_view.proto2google/cloud/aiplatform/v1/feature_view_sync.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"‡
+CreateFeatureOnlineStoreRequestD
+parent (	B4‡A˙A.,aiplatform.googleapis.com/FeatureOnlineStoreQ
+feature_online_store (2..google.cloud.aiplatform.v1.FeatureOnlineStoreB‡A$
+feature_online_store_id (	B‡A"b
+GetFeatureOnlineStoreRequestB
+name (	B4‡A˙A.
+,aiplatform.googleapis.com/FeatureOnlineStore"Ø
+ListFeatureOnlineStoresRequestD
+parent (	B4‡A˙A.,aiplatform.googleapis.com/FeatureOnlineStore
 filter (	
 	page_size (
 
@@ -45,25 +45,25 @@ page_token (	
 order_by (	"â
 ListFeatureOnlineStoresResponseM
 feature_online_stores (2..google.cloud.aiplatform.v1.FeatureOnlineStore
-next_page_token (	"¶
-UpdateFeatureOnlineStoreRequestR
-feature_online_store (2..google.cloud.aiplatform.v1.FeatureOnlineStoreB‚A/
-update_mask (2.google.protobuf.FieldMask"u
-DeleteFeatureOnlineStoreRequestC
-name (	B5‚A˙A.
+next_page_token (	"•
+UpdateFeatureOnlineStoreRequestQ
+feature_online_store (2..google.cloud.aiplatform.v1.FeatureOnlineStoreB‡A/
+update_mask (2.google.protobuf.FieldMask"t
+DeleteFeatureOnlineStoreRequestB
+name (	B4‡A˙A.
 ,aiplatform.googleapis.com/FeatureOnlineStore
-force ("È
-CreateFeatureViewRequestE
-parent (	B5‚A˙A.
-,aiplatform.googleapis.com/FeatureOnlineStoreC
-feature_view (2\'.google.cloud.aiplatform.v1.FeatureViewB‚A
-feature_view_id (	B‚A"
-run_sync_immediately (B‚A"U
-GetFeatureViewRequest<
-name (	B.‚A˙A\'
-%aiplatform.googleapis.com/FeatureView"¢
-ListFeatureViewsRequest>
-parent (	B.‚A˙A\'%aiplatform.googleapis.com/FeatureView
+force ("Â
+CreateFeatureViewRequestD
+parent (	B4‡A˙A.
+,aiplatform.googleapis.com/FeatureOnlineStoreB
+feature_view (2\'.google.cloud.aiplatform.v1.FeatureViewB‡A
+feature_view_id (	B‡A!
+run_sync_immediately (B‡A"T
+GetFeatureViewRequest;
+name (	B-‡A˙A\'
+%aiplatform.googleapis.com/FeatureView"°
+ListFeatureViewsRequest=
+parent (	B-‡A˙A\'%aiplatform.googleapis.com/FeatureView
 filter (	
 	page_size (
 
@@ -71,12 +71,12 @@ page_token (	
 order_by (	"s
 ListFeatureViewsResponse>
 feature_views (2\'.google.cloud.aiplatform.v1.FeatureView
-next_page_token (	"ê
-UpdateFeatureViewRequestC
-feature_view (2\'.google.cloud.aiplatform.v1.FeatureViewB‚A/
-update_mask (2.google.protobuf.FieldMask"X
-DeleteFeatureViewRequest<
-name (	B.‚A˙A\'
+next_page_token (	"è
+UpdateFeatureViewRequestB
+feature_view (2\'.google.cloud.aiplatform.v1.FeatureViewB‡A/
+update_mask (2.google.protobuf.FieldMask"W
+DeleteFeatureViewRequest;
+name (	B-‡A˙A\'
 %aiplatform.googleapis.com/FeatureView"{
 )CreateFeatureOnlineStoreOperationMetadataN
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"{
@@ -85,17 +85,17 @@ page_token (	
 "CreateFeatureViewOperationMetadataN
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"t
 "UpdateFeatureViewOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"^
-SyncFeatureViewRequestD
-feature_view (	B.‚A˙A\'
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"]
+SyncFeatureViewRequestC
+feature_view (	B-‡A˙A\'
 %aiplatform.googleapis.com/FeatureView"4
 SyncFeatureViewResponse
-feature_view_sync (	"]
-GetFeatureViewSyncRequest@
-name (	B2‚A˙A+
-)aiplatform.googleapis.com/FeatureViewSync"¶
-ListFeatureViewSyncsRequest>
-parent (	B.‚A˙A\'
+feature_view_sync (	"\\
+GetFeatureViewSyncRequest?
+name (	B1‡A˙A+
+)aiplatform.googleapis.com/FeatureViewSync"•
+ListFeatureViewSyncsRequest=
+parent (	B-‡A˙A\'
 %aiplatform.googleapis.com/FeatureView
 filter (	
 	page_size (

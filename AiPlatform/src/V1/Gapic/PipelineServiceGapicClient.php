@@ -75,7 +75,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $pipelineServiceClient = new PipelineServiceClient();
  * try {
- *     $pipelineServiceClient->cancelPipelineJob();
+ *     $formattedName = $pipelineServiceClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');
+ *     $pipelineServiceClient->cancelPipelineJob($formattedName);
  * } finally {
  *     $pipelineServiceClient->close();
  * }
@@ -786,19 +787,19 @@ class PipelineServiceGapicClient
      * ```
      * $pipelineServiceClient = new PipelineServiceClient();
      * try {
-     *     $pipelineServiceClient->cancelPipelineJob();
+     *     $formattedName = $pipelineServiceClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');
+     *     $pipelineServiceClient->cancelPipelineJob($formattedName);
      * } finally {
      *     $pipelineServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the PipelineJob to cancel.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the PipelineJob to cancel.
-     *           Format:
-     *           `projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -807,15 +808,12 @@ class PipelineServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelPipelineJob(array $optionalArgs = [])
+    public function cancelPipelineJob($name, array $optionalArgs = [])
     {
         $request = new CancelPipelineJobRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -850,19 +848,19 @@ class PipelineServiceGapicClient
      * ```
      * $pipelineServiceClient = new PipelineServiceClient();
      * try {
-     *     $pipelineServiceClient->cancelTrainingPipeline();
+     *     $formattedName = $pipelineServiceClient->trainingPipelineName('[PROJECT]', '[LOCATION]', '[TRAINING_PIPELINE]');
+     *     $pipelineServiceClient->cancelTrainingPipeline($formattedName);
      * } finally {
      *     $pipelineServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the TrainingPipeline to cancel.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the TrainingPipeline to cancel.
-     *           Format:
-     *           `projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -871,15 +869,12 @@ class PipelineServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelTrainingPipeline(array $optionalArgs = [])
+    public function cancelTrainingPipeline($name, array $optionalArgs = [])
     {
         $request = new CancelTrainingPipelineRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -901,20 +896,20 @@ class PipelineServiceGapicClient
      * ```
      * $pipelineServiceClient = new PipelineServiceClient();
      * try {
-     *     $response = $pipelineServiceClient->createPipelineJob();
+     *     $formattedParent = $pipelineServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $pipelineJob = new PipelineJob();
+     *     $response = $pipelineServiceClient->createPipelineJob($formattedParent, $pipelineJob);
      * } finally {
      *     $pipelineServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string      $parent       Required. The resource name of the Location to create the PipelineJob in.
+     *                                  Format: `projects/{project}/locations/{location}`
+     * @param PipelineJob $pipelineJob  Required. The PipelineJob to create.
+     * @param array       $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location to create the PipelineJob in.
-     *           Format: `projects/{project}/locations/{location}`
-     *     @type PipelineJob $pipelineJob
-     *           Required. The PipelineJob to create.
      *     @type string $pipelineJobId
      *           The ID to use for the PipelineJob, which will become the final component of
      *           the PipelineJob name. If not provided, an ID will be automatically
@@ -932,19 +927,16 @@ class PipelineServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createPipelineJob(array $optionalArgs = [])
-    {
+    public function createPipelineJob(
+        $parent,
+        $pipelineJob,
+        array $optionalArgs = []
+    ) {
         $request = new CreatePipelineJobRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['pipelineJob'])) {
-            $request->setPipelineJob($optionalArgs['pipelineJob']);
-        }
-
+        $request->setParent($parent);
+        $request->setPipelineJob($pipelineJob);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pipelineJobId'])) {
             $request->setPipelineJobId($optionalArgs['pipelineJobId']);
         }
@@ -971,20 +963,20 @@ class PipelineServiceGapicClient
      * ```
      * $pipelineServiceClient = new PipelineServiceClient();
      * try {
-     *     $response = $pipelineServiceClient->createTrainingPipeline();
+     *     $formattedParent = $pipelineServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $trainingPipeline = new TrainingPipeline();
+     *     $response = $pipelineServiceClient->createTrainingPipeline($formattedParent, $trainingPipeline);
      * } finally {
      *     $pipelineServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string           $parent           Required. The resource name of the Location to create the TrainingPipeline
+     *                                           in. Format: `projects/{project}/locations/{location}`
+     * @param TrainingPipeline $trainingPipeline Required. The TrainingPipeline to create.
+     * @param array            $optionalArgs     {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location to create the TrainingPipeline
-     *           in. Format: `projects/{project}/locations/{location}`
-     *     @type TrainingPipeline $trainingPipeline
-     *           Required. The TrainingPipeline to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -995,19 +987,16 @@ class PipelineServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTrainingPipeline(array $optionalArgs = [])
-    {
+    public function createTrainingPipeline(
+        $parent,
+        $trainingPipeline,
+        array $optionalArgs = []
+    ) {
         $request = new CreateTrainingPipelineRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['trainingPipeline'])) {
-            $request->setTrainingPipeline($optionalArgs['trainingPipeline']);
-        }
-
+        $request->setParent($parent);
+        $request->setTrainingPipeline($trainingPipeline);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1029,7 +1018,8 @@ class PipelineServiceGapicClient
      * ```
      * $pipelineServiceClient = new PipelineServiceClient();
      * try {
-     *     $operationResponse = $pipelineServiceClient->deletePipelineJob();
+     *     $formattedName = $pipelineServiceClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');
+     *     $operationResponse = $pipelineServiceClient->deletePipelineJob($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1039,7 +1029,7 @@ class PipelineServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $pipelineServiceClient->deletePipelineJob();
+     *     $operationResponse = $pipelineServiceClient->deletePipelineJob($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $pipelineServiceClient->resumeOperation($operationName, 'deletePipelineJob');
@@ -1058,13 +1048,12 @@ class PipelineServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the PipelineJob resource to be deleted.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the PipelineJob resource to be deleted.
-     *           Format:
-     *           `projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1075,15 +1064,12 @@ class PipelineServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deletePipelineJob(array $optionalArgs = [])
+    public function deletePipelineJob($name, array $optionalArgs = [])
     {
         $request = new DeletePipelineJobRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1105,7 +1091,8 @@ class PipelineServiceGapicClient
      * ```
      * $pipelineServiceClient = new PipelineServiceClient();
      * try {
-     *     $operationResponse = $pipelineServiceClient->deleteTrainingPipeline();
+     *     $formattedName = $pipelineServiceClient->trainingPipelineName('[PROJECT]', '[LOCATION]', '[TRAINING_PIPELINE]');
+     *     $operationResponse = $pipelineServiceClient->deleteTrainingPipeline($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1115,7 +1102,7 @@ class PipelineServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $pipelineServiceClient->deleteTrainingPipeline();
+     *     $operationResponse = $pipelineServiceClient->deleteTrainingPipeline($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $pipelineServiceClient->resumeOperation($operationName, 'deleteTrainingPipeline');
@@ -1134,13 +1121,12 @@ class PipelineServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the TrainingPipeline resource to be deleted.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the TrainingPipeline resource to be deleted.
-     *           Format:
-     *           `projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1151,15 +1137,12 @@ class PipelineServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTrainingPipeline(array $optionalArgs = [])
+    public function deleteTrainingPipeline($name, array $optionalArgs = [])
     {
         $request = new DeleteTrainingPipelineRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1181,19 +1164,19 @@ class PipelineServiceGapicClient
      * ```
      * $pipelineServiceClient = new PipelineServiceClient();
      * try {
-     *     $response = $pipelineServiceClient->getPipelineJob();
+     *     $formattedName = $pipelineServiceClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');
+     *     $response = $pipelineServiceClient->getPipelineJob($formattedName);
      * } finally {
      *     $pipelineServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the PipelineJob resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the PipelineJob resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1204,15 +1187,12 @@ class PipelineServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getPipelineJob(array $optionalArgs = [])
+    public function getPipelineJob($name, array $optionalArgs = [])
     {
         $request = new GetPipelineJobRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1234,19 +1214,19 @@ class PipelineServiceGapicClient
      * ```
      * $pipelineServiceClient = new PipelineServiceClient();
      * try {
-     *     $response = $pipelineServiceClient->getTrainingPipeline();
+     *     $formattedName = $pipelineServiceClient->trainingPipelineName('[PROJECT]', '[LOCATION]', '[TRAINING_PIPELINE]');
+     *     $response = $pipelineServiceClient->getTrainingPipeline($formattedName);
      * } finally {
      *     $pipelineServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the TrainingPipeline resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the TrainingPipeline resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1257,15 +1237,12 @@ class PipelineServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTrainingPipeline(array $optionalArgs = [])
+    public function getTrainingPipeline($name, array $optionalArgs = [])
     {
         $request = new GetTrainingPipelineRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1287,8 +1264,9 @@ class PipelineServiceGapicClient
      * ```
      * $pipelineServiceClient = new PipelineServiceClient();
      * try {
+     *     $formattedParent = $pipelineServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $pipelineServiceClient->listPipelineJobs();
+     *     $pagedResponse = $pipelineServiceClient->listPipelineJobs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1296,7 +1274,7 @@ class PipelineServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $pipelineServiceClient->listPipelineJobs();
+     *     $pagedResponse = $pipelineServiceClient->listPipelineJobs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1305,12 +1283,11 @@ class PipelineServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the Location to list the PipelineJobs from.
+     *                             Format: `projects/{project}/locations/{location}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location to list the PipelineJobs from.
-     *           Format: `projects/{project}/locations/{location}`
      *     @type string $filter
      *           Lists the PipelineJobs that match the filter expression. The following
      *           fields are supported:
@@ -1381,15 +1358,12 @@ class PipelineServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPipelineJobs(array $optionalArgs = [])
+    public function listPipelineJobs($parent, array $optionalArgs = [])
     {
         $request = new ListPipelineJobsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1431,8 +1405,9 @@ class PipelineServiceGapicClient
      * ```
      * $pipelineServiceClient = new PipelineServiceClient();
      * try {
+     *     $formattedParent = $pipelineServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $pipelineServiceClient->listTrainingPipelines();
+     *     $pagedResponse = $pipelineServiceClient->listTrainingPipelines($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1440,7 +1415,7 @@ class PipelineServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $pipelineServiceClient->listTrainingPipelines();
+     *     $pagedResponse = $pipelineServiceClient->listTrainingPipelines($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1449,12 +1424,11 @@ class PipelineServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the Location to list the TrainingPipelines
+     *                             from. Format: `projects/{project}/locations/{location}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location to list the TrainingPipelines
-     *           from. Format: `projects/{project}/locations/{location}`
      *     @type string $filter
      *           The standard list filter.
      *
@@ -1497,15 +1471,12 @@ class PipelineServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTrainingPipelines(array $optionalArgs = [])
+    public function listTrainingPipelines($parent, array $optionalArgs = [])
     {
         $request = new ListTrainingPipelinesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1684,18 +1655,18 @@ class PipelineServiceGapicClient
      * ```
      * $pipelineServiceClient = new PipelineServiceClient();
      * try {
-     *     $response = $pipelineServiceClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $pipelineServiceClient->getIamPolicy($resource);
      * } finally {
      *     $pipelineServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1709,15 +1680,12 @@ class PipelineServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1749,23 +1717,23 @@ class PipelineServiceGapicClient
      * ```
      * $pipelineServiceClient = new PipelineServiceClient();
      * try {
-     *     $response = $pipelineServiceClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $pipelineServiceClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $pipelineServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1782,19 +1750,13 @@ class PipelineServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1828,23 +1790,23 @@ class PipelineServiceGapicClient
      * ```
      * $pipelineServiceClient = new PipelineServiceClient();
      * try {
-     *     $response = $pipelineServiceClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $pipelineServiceClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $pipelineServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1855,19 +1817,16 @@ class PipelineServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

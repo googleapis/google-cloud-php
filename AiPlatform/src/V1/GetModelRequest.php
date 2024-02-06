@@ -45,7 +45,8 @@ class GetModelRequest extends \Google\Protobuf\Internal\Message
      *                     If no version ID or alias is specified, the "default" version will be
      *                     returned. The "default" version alias is created for the first version of
      *                     the model, and can be moved to other versions later on. There will be
-     *                     exactly one default version.
+     *                     exactly one default version. Please see
+     *                     {@see ModelServiceClient::modelName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetModelRequest
      *

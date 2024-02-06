@@ -29,6 +29,7 @@ class GetFeatureViewSyncRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the FeatureViewSync resource.
      *                     Format:
      *                     `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}/featureViewSyncs/{feature_view_sync}`
+     *                     Please see {@see FeatureOnlineStoreAdminServiceClient::featureViewSyncName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetFeatureViewSyncRequest
      *

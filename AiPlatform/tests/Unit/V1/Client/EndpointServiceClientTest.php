@@ -32,6 +32,7 @@ use Google\Cloud\AIPlatform\V1\CreateEndpointRequest;
 use Google\Cloud\AIPlatform\V1\DeleteEndpointRequest;
 use Google\Cloud\AIPlatform\V1\DeployModelRequest;
 use Google\Cloud\AIPlatform\V1\DeployModelResponse;
+use Google\Cloud\AIPlatform\V1\DeployedModel;
 use Google\Cloud\AIPlatform\V1\Endpoint;
 use Google\Cloud\AIPlatform\V1\GetEndpointRequest;
 use Google\Cloud\AIPlatform\V1\ListEndpointsRequest;
@@ -53,6 +54,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -128,7 +130,14 @@ class EndpointServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateEndpointRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $endpoint = new Endpoint();
+        $endpointDisplayName = 'endpointDisplayName697270680';
+        $endpoint->setDisplayName($endpointDisplayName);
+        $request = (new CreateEndpointRequest())
+            ->setParent($formattedParent)
+            ->setEndpoint($endpoint);
         $response = $gapicClient->createEndpoint($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -139,6 +148,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.EndpointService/CreateEndpoint', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getEndpoint();
+        $this->assertProtobufEquals($endpoint, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createEndpointTest');
         $response->pollUntilComplete([
@@ -189,7 +202,14 @@ class EndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateEndpointRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $endpoint = new Endpoint();
+        $endpointDisplayName = 'endpointDisplayName697270680';
+        $endpoint->setDisplayName($endpointDisplayName);
+        $request = (new CreateEndpointRequest())
+            ->setParent($formattedParent)
+            ->setEndpoint($endpoint);
         $response = $gapicClient->createEndpoint($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -241,7 +261,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteEndpointRequest();
+        // Mock request
+        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $request = (new DeleteEndpointRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteEndpoint($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -252,6 +275,8 @@ class EndpointServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.EndpointService/DeleteEndpoint', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteEndpointTest');
         $response->pollUntilComplete([
@@ -302,7 +327,10 @@ class EndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteEndpointRequest();
+        // Mock request
+        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $request = (new DeleteEndpointRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteEndpoint($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -354,7 +382,14 @@ class EndpointServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeployModelRequest();
+        // Mock request
+        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $deployedModel = new DeployedModel();
+        $deployedModelModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $deployedModel->setModel($deployedModelModel);
+        $request = (new DeployModelRequest())
+            ->setEndpoint($formattedEndpoint)
+            ->setDeployedModel($deployedModel);
         $response = $gapicClient->deployModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -365,6 +400,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.EndpointService/DeployModel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getEndpoint();
+        $this->assertProtobufEquals($formattedEndpoint, $actualValue);
+        $actualValue = $actualApiRequestObject->getDeployedModel();
+        $this->assertProtobufEquals($deployedModel, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deployModelTest');
         $response->pollUntilComplete([
@@ -415,7 +454,14 @@ class EndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeployModelRequest();
+        // Mock request
+        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $deployedModel = new DeployedModel();
+        $deployedModelModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $deployedModel->setModel($deployedModelModel);
+        $request = (new DeployModelRequest())
+            ->setEndpoint($formattedEndpoint)
+            ->setDeployedModel($deployedModel);
         $response = $gapicClient->deployModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -463,7 +509,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
         $expectedResponse->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob);
         $transport->addResponse($expectedResponse);
-        $request = new GetEndpointRequest();
+        // Mock request
+        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $request = (new GetEndpointRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getEndpoint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -471,6 +520,8 @@ class EndpointServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.EndpointService/GetEndpoint', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -492,7 +543,10 @@ class EndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetEndpointRequest();
+        // Mock request
+        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $request = (new GetEndpointRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getEndpoint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -524,7 +578,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEndpoints($endpoints);
         $transport->addResponse($expectedResponse);
-        $request = new ListEndpointsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListEndpointsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listEndpoints($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -535,6 +592,8 @@ class EndpointServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.EndpointService/ListEndpoints', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -556,7 +615,10 @@ class EndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListEndpointsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListEndpointsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listEndpoints($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -599,7 +661,16 @@ class EndpointServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new MutateDeployedModelRequest();
+        // Mock request
+        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $deployedModel = new DeployedModel();
+        $deployedModelModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $deployedModel->setModel($deployedModelModel);
+        $updateMask = new FieldMask();
+        $request = (new MutateDeployedModelRequest())
+            ->setEndpoint($formattedEndpoint)
+            ->setDeployedModel($deployedModel)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->mutateDeployedModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -610,6 +681,12 @@ class EndpointServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.EndpointService/MutateDeployedModel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getEndpoint();
+        $this->assertProtobufEquals($formattedEndpoint, $actualValue);
+        $actualValue = $actualApiRequestObject->getDeployedModel();
+        $this->assertProtobufEquals($deployedModel, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/mutateDeployedModelTest');
         $response->pollUntilComplete([
@@ -660,7 +737,16 @@ class EndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new MutateDeployedModelRequest();
+        // Mock request
+        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $deployedModel = new DeployedModel();
+        $deployedModelModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $deployedModel->setModel($deployedModelModel);
+        $updateMask = new FieldMask();
+        $request = (new MutateDeployedModelRequest())
+            ->setEndpoint($formattedEndpoint)
+            ->setDeployedModel($deployedModel)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->mutateDeployedModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -712,7 +798,12 @@ class EndpointServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UndeployModelRequest();
+        // Mock request
+        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $deployedModelId = 'deployedModelId866642506';
+        $request = (new UndeployModelRequest())
+            ->setEndpoint($formattedEndpoint)
+            ->setDeployedModelId($deployedModelId);
         $response = $gapicClient->undeployModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -723,6 +814,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.EndpointService/UndeployModel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getEndpoint();
+        $this->assertProtobufEquals($formattedEndpoint, $actualValue);
+        $actualValue = $actualApiRequestObject->getDeployedModelId();
+        $this->assertProtobufEquals($deployedModelId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/undeployModelTest');
         $response->pollUntilComplete([
@@ -773,7 +868,12 @@ class EndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UndeployModelRequest();
+        // Mock request
+        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $deployedModelId = 'deployedModelId866642506';
+        $request = (new UndeployModelRequest())
+            ->setEndpoint($formattedEndpoint)
+            ->setDeployedModelId($deployedModelId);
         $response = $gapicClient->undeployModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -821,7 +921,14 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
         $expectedResponse->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateEndpointRequest();
+        // Mock request
+        $endpoint = new Endpoint();
+        $endpointDisplayName = 'endpointDisplayName697270680';
+        $endpoint->setDisplayName($endpointDisplayName);
+        $updateMask = new FieldMask();
+        $request = (new UpdateEndpointRequest())
+            ->setEndpoint($endpoint)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateEndpoint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -829,6 +936,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.EndpointService/UpdateEndpoint', $actualFuncCall);
+        $actualValue = $actualRequestObject->getEndpoint();
+        $this->assertProtobufEquals($endpoint, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -850,7 +961,14 @@ class EndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateEndpointRequest();
+        // Mock request
+        $endpoint = new Endpoint();
+        $endpointDisplayName = 'endpointDisplayName697270680';
+        $endpoint->setDisplayName($endpointDisplayName);
+        $updateMask = new FieldMask();
+        $request = (new UpdateEndpointRequest())
+            ->setEndpoint($endpoint)
+            ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateEndpoint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1003,7 +1121,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1011,6 +1132,8 @@ class EndpointServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1032,7 +1155,10 @@ class EndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1061,7 +1187,12 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1069,6 +1200,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1090,7 +1225,12 @@ class EndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1115,7 +1255,12 @@ class EndpointServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1123,6 +1268,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1144,7 +1293,12 @@ class EndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1201,7 +1355,14 @@ class EndpointServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateEndpointRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $endpoint = new Endpoint();
+        $endpointDisplayName = 'endpointDisplayName697270680';
+        $endpoint->setDisplayName($endpointDisplayName);
+        $request = (new CreateEndpointRequest())
+            ->setParent($formattedParent)
+            ->setEndpoint($endpoint);
         $response = $gapicClient->createEndpointAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1212,6 +1373,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.EndpointService/CreateEndpoint', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getEndpoint();
+        $this->assertProtobufEquals($endpoint, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createEndpointTest');
         $response->pollUntilComplete([

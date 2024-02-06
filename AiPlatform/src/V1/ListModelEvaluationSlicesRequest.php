@@ -59,6 +59,7 @@ class ListModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The resource name of the ModelEvaluation to list the
      *                       ModelEvaluationSlices from. Format:
      *                       `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
+     *                       Please see {@see ModelServiceClient::modelEvaluationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ListModelEvaluationSlicesRequest
      *

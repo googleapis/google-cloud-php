@@ -27,6 +27,7 @@ class SyncFeatureViewRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $featureView Required. Format:
      *                            `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
+     *                            Please see {@see FeatureOnlineStoreAdminServiceClient::featureViewName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\SyncFeatureViewRequest
      *

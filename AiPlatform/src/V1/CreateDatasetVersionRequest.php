@@ -37,6 +37,7 @@ class CreateDatasetVersionRequest extends \Google\Protobuf\Internal\Message
      * @param string                                     $parent         Required. The name of the Dataset resource.
      *                                                                   Format:
      *                                                                   `projects/{project}/locations/{location}/datasets/{dataset}`
+     *                                                                   Please see {@see DatasetServiceClient::datasetName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\DatasetVersion $datasetVersion Required. The version to be created. The same CMEK policies with the
      *                                                                   original Dataset will be applied the dataset version. So here we don't need
      *                                                                   to specify the EncryptionSpecType here.

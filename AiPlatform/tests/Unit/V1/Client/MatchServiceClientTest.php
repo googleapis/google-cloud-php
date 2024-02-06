@@ -82,7 +82,10 @@ class MatchServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new FindNeighborsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new FindNeighborsRequest();
+        // Mock request
+        $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $request = (new FindNeighborsRequest())
+            ->setIndexEndpoint($formattedIndexEndpoint);
         $response = $gapicClient->findNeighbors($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -90,6 +93,8 @@ class MatchServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MatchService/FindNeighbors', $actualFuncCall);
+        $actualValue = $actualRequestObject->getIndexEndpoint();
+        $this->assertProtobufEquals($formattedIndexEndpoint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -111,7 +116,10 @@ class MatchServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new FindNeighborsRequest();
+        // Mock request
+        $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $request = (new FindNeighborsRequest())
+            ->setIndexEndpoint($formattedIndexEndpoint);
         try {
             $gapicClient->findNeighbors($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -136,7 +144,10 @@ class MatchServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ReadIndexDatapointsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new ReadIndexDatapointsRequest();
+        // Mock request
+        $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $request = (new ReadIndexDatapointsRequest())
+            ->setIndexEndpoint($formattedIndexEndpoint);
         $response = $gapicClient->readIndexDatapoints($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -144,6 +155,8 @@ class MatchServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MatchService/ReadIndexDatapoints', $actualFuncCall);
+        $actualValue = $actualRequestObject->getIndexEndpoint();
+        $this->assertProtobufEquals($formattedIndexEndpoint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -165,7 +178,10 @@ class MatchServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ReadIndexDatapointsRequest();
+        // Mock request
+        $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $request = (new ReadIndexDatapointsRequest())
+            ->setIndexEndpoint($formattedIndexEndpoint);
         try {
             $gapicClient->readIndexDatapoints($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -318,7 +334,10 @@ class MatchServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -326,6 +345,8 @@ class MatchServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -347,7 +368,10 @@ class MatchServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -376,7 +400,12 @@ class MatchServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -384,6 +413,10 @@ class MatchServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -405,7 +438,12 @@ class MatchServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -430,7 +468,12 @@ class MatchServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -438,6 +481,10 @@ class MatchServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -459,7 +506,12 @@ class MatchServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -484,7 +536,10 @@ class MatchServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new FindNeighborsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new FindNeighborsRequest();
+        // Mock request
+        $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $request = (new FindNeighborsRequest())
+            ->setIndexEndpoint($formattedIndexEndpoint);
         $response = $gapicClient->findNeighborsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -492,6 +547,8 @@ class MatchServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MatchService/FindNeighbors', $actualFuncCall);
+        $actualValue = $actualRequestObject->getIndexEndpoint();
+        $this->assertProtobufEquals($formattedIndexEndpoint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

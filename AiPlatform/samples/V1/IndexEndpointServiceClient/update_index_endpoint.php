@@ -27,23 +27,27 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\IndexEndpointServiceClient;
 use Google\Cloud\AIPlatform\V1\IndexEndpoint;
 use Google\Cloud\AIPlatform\V1\UpdateIndexEndpointRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates an IndexEndpoint.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $indexEndpointDisplayName The display name of the IndexEndpoint.
+ *                                         The name can be up to 128 characters long and can consist of any UTF-8
+ *                                         characters.
  */
-function update_index_endpoint_sample(): void
+function update_index_endpoint_sample(string $indexEndpointDisplayName): void
 {
     // Create a client.
     $indexEndpointServiceClient = new IndexEndpointServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateIndexEndpointRequest();
+    $indexEndpoint = (new IndexEndpoint())
+        ->setDisplayName($indexEndpointDisplayName);
+    $updateMask = new FieldMask();
+    $request = (new UpdateIndexEndpointRequest())
+        ->setIndexEndpoint($indexEndpoint)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +57,21 @@ function update_index_endpoint_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $indexEndpointDisplayName = '[DISPLAY_NAME]';
+
+    update_index_endpoint_sample($indexEndpointDisplayName);
 }
 // [END aiplatform_v1_generated_IndexEndpointService_UpdateIndexEndpoint_sync]

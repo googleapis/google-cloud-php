@@ -62,6 +62,7 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      * @param string $featurestore Required. The resource name of the Featurestore from which to query Feature
      *                             values. Format:
      *                             `projects/{project}/locations/{location}/featurestores/{featurestore}`
+     *                             Please see {@see FeaturestoreServiceClient::featurestoreName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest
      *

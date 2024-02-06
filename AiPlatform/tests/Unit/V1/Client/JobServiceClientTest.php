@@ -28,6 +28,8 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\BatchPredictionJob;
+use Google\Cloud\AIPlatform\V1\BatchPredictionJob\InputConfig;
+use Google\Cloud\AIPlatform\V1\BatchPredictionJob\OutputConfig;
 use Google\Cloud\AIPlatform\V1\CancelBatchPredictionJobRequest;
 use Google\Cloud\AIPlatform\V1\CancelCustomJobRequest;
 use Google\Cloud\AIPlatform\V1\CancelDataLabelingJobRequest;
@@ -41,6 +43,7 @@ use Google\Cloud\AIPlatform\V1\CreateHyperparameterTuningJobRequest;
 use Google\Cloud\AIPlatform\V1\CreateModelDeploymentMonitoringJobRequest;
 use Google\Cloud\AIPlatform\V1\CreateNasJobRequest;
 use Google\Cloud\AIPlatform\V1\CustomJob;
+use Google\Cloud\AIPlatform\V1\CustomJobSpec;
 use Google\Cloud\AIPlatform\V1\DataLabelingJob;
 use Google\Cloud\AIPlatform\V1\DeleteBatchPredictionJobRequest;
 use Google\Cloud\AIPlatform\V1\DeleteCustomJobRequest;
@@ -71,13 +74,17 @@ use Google\Cloud\AIPlatform\V1\ListNasJobsResponse;
 use Google\Cloud\AIPlatform\V1\ListNasTrialDetailsRequest;
 use Google\Cloud\AIPlatform\V1\ListNasTrialDetailsResponse;
 use Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob;
+use Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringScheduleConfig;
 use Google\Cloud\AIPlatform\V1\ModelMonitoringStatsAnomalies;
 use Google\Cloud\AIPlatform\V1\NasJob;
+use Google\Cloud\AIPlatform\V1\NasJobSpec;
 use Google\Cloud\AIPlatform\V1\NasTrialDetail;
 use Google\Cloud\AIPlatform\V1\PauseModelDeploymentMonitoringJobRequest;
 use Google\Cloud\AIPlatform\V1\ResumeModelDeploymentMonitoringJobRequest;
+use Google\Cloud\AIPlatform\V1\SamplingStrategy;
 use Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest;
 use Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesResponse;
+use Google\Cloud\AIPlatform\V1\StudySpec;
 use Google\Cloud\AIPlatform\V1\UpdateModelDeploymentMonitoringJobRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -91,7 +98,10 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\Duration;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Value;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -134,13 +144,18 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new CancelBatchPredictionJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
+        $request = (new CancelBatchPredictionJobRequest())
+            ->setName($formattedName);
         $gapicClient->cancelBatchPredictionJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/CancelBatchPredictionJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -162,7 +177,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CancelBatchPredictionJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
+        $request = (new CancelBatchPredictionJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->cancelBatchPredictionJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -187,13 +205,18 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new CancelCustomJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
+        $request = (new CancelCustomJobRequest())
+            ->setName($formattedName);
         $gapicClient->cancelCustomJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/CancelCustomJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -215,7 +238,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CancelCustomJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
+        $request = (new CancelCustomJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->cancelCustomJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -240,13 +266,18 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new CancelDataLabelingJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
+        $request = (new CancelDataLabelingJobRequest())
+            ->setName($formattedName);
         $gapicClient->cancelDataLabelingJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/CancelDataLabelingJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -268,7 +299,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CancelDataLabelingJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
+        $request = (new CancelDataLabelingJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->cancelDataLabelingJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -293,13 +327,18 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new CancelHyperparameterTuningJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
+        $request = (new CancelHyperparameterTuningJobRequest())
+            ->setName($formattedName);
         $gapicClient->cancelHyperparameterTuningJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/CancelHyperparameterTuningJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -321,7 +360,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CancelHyperparameterTuningJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
+        $request = (new CancelHyperparameterTuningJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->cancelHyperparameterTuningJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -346,13 +388,18 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new CancelNasJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
+        $request = (new CancelNasJobRequest())
+            ->setName($formattedName);
         $gapicClient->cancelNasJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/CancelNasJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -374,7 +421,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CancelNasJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
+        $request = (new CancelNasJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->cancelNasJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -413,7 +463,22 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setGenerateExplanation($generateExplanation);
         $expectedResponse->setDisableContainerLogging($disableContainerLogging);
         $transport->addResponse($expectedResponse);
-        $request = new CreateBatchPredictionJobRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $batchPredictionJob = new BatchPredictionJob();
+        $batchPredictionJobDisplayName = 'batchPredictionJobDisplayName-916867527';
+        $batchPredictionJob->setDisplayName($batchPredictionJobDisplayName);
+        $batchPredictionJobInputConfig = new InputConfig();
+        $inputConfigInstancesFormat = 'inputConfigInstancesFormat883633865';
+        $batchPredictionJobInputConfig->setInstancesFormat($inputConfigInstancesFormat);
+        $batchPredictionJob->setInputConfig($batchPredictionJobInputConfig);
+        $batchPredictionJobOutputConfig = new OutputConfig();
+        $outputConfigPredictionsFormat = 'outputConfigPredictionsFormat999432568';
+        $batchPredictionJobOutputConfig->setPredictionsFormat($outputConfigPredictionsFormat);
+        $batchPredictionJob->setOutputConfig($batchPredictionJobOutputConfig);
+        $request = (new CreateBatchPredictionJobRequest())
+            ->setParent($formattedParent)
+            ->setBatchPredictionJob($batchPredictionJob);
         $response = $gapicClient->createBatchPredictionJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -421,6 +486,10 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/CreateBatchPredictionJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getBatchPredictionJob();
+        $this->assertProtobufEquals($batchPredictionJob, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -442,7 +511,22 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateBatchPredictionJobRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $batchPredictionJob = new BatchPredictionJob();
+        $batchPredictionJobDisplayName = 'batchPredictionJobDisplayName-916867527';
+        $batchPredictionJob->setDisplayName($batchPredictionJobDisplayName);
+        $batchPredictionJobInputConfig = new InputConfig();
+        $inputConfigInstancesFormat = 'inputConfigInstancesFormat883633865';
+        $batchPredictionJobInputConfig->setInstancesFormat($inputConfigInstancesFormat);
+        $batchPredictionJob->setInputConfig($batchPredictionJobInputConfig);
+        $batchPredictionJobOutputConfig = new OutputConfig();
+        $outputConfigPredictionsFormat = 'outputConfigPredictionsFormat999432568';
+        $batchPredictionJobOutputConfig->setPredictionsFormat($outputConfigPredictionsFormat);
+        $batchPredictionJob->setOutputConfig($batchPredictionJobOutputConfig);
+        $request = (new CreateBatchPredictionJobRequest())
+            ->setParent($formattedParent)
+            ->setBatchPredictionJob($batchPredictionJob);
         try {
             $gapicClient->createBatchPredictionJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -471,7 +555,18 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $request = new CreateCustomJobRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $customJob = new CustomJob();
+        $customJobDisplayName = 'customJobDisplayName-299624383';
+        $customJob->setDisplayName($customJobDisplayName);
+        $customJobJobSpec = new CustomJobSpec();
+        $jobSpecWorkerPoolSpecs = [];
+        $customJobJobSpec->setWorkerPoolSpecs($jobSpecWorkerPoolSpecs);
+        $customJob->setJobSpec($customJobJobSpec);
+        $request = (new CreateCustomJobRequest())
+            ->setParent($formattedParent)
+            ->setCustomJob($customJob);
         $response = $gapicClient->createCustomJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -479,6 +574,10 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/CreateCustomJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getCustomJob();
+        $this->assertProtobufEquals($customJob, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -500,7 +599,18 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateCustomJobRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $customJob = new CustomJob();
+        $customJobDisplayName = 'customJobDisplayName-299624383';
+        $customJob->setDisplayName($customJobDisplayName);
+        $customJobJobSpec = new CustomJobSpec();
+        $jobSpecWorkerPoolSpecs = [];
+        $customJobJobSpec->setWorkerPoolSpecs($jobSpecWorkerPoolSpecs);
+        $customJob->setJobSpec($customJobJobSpec);
+        $request = (new CreateCustomJobRequest())
+            ->setParent($formattedParent)
+            ->setCustomJob($customJob);
         try {
             $gapicClient->createCustomJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -537,7 +647,26 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setInputsSchemaUri($inputsSchemaUri);
         $expectedResponse->setLabelingProgress($labelingProgress);
         $transport->addResponse($expectedResponse);
-        $request = new CreateDataLabelingJobRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataLabelingJob = new DataLabelingJob();
+        $dataLabelingJobDisplayName = 'dataLabelingJobDisplayName708178632';
+        $dataLabelingJob->setDisplayName($dataLabelingJobDisplayName);
+        $dataLabelingJobDatasets = [
+            $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]'),
+        ];
+        $dataLabelingJob->setDatasets($dataLabelingJobDatasets);
+        $dataLabelingJobLabelerCount = 500093453;
+        $dataLabelingJob->setLabelerCount($dataLabelingJobLabelerCount);
+        $dataLabelingJobInstructionUri = 'dataLabelingJobInstructionUri-886362173';
+        $dataLabelingJob->setInstructionUri($dataLabelingJobInstructionUri);
+        $dataLabelingJobInputsSchemaUri = 'dataLabelingJobInputsSchemaUri-1486933251';
+        $dataLabelingJob->setInputsSchemaUri($dataLabelingJobInputsSchemaUri);
+        $dataLabelingJobInputs = new Value();
+        $dataLabelingJob->setInputs($dataLabelingJobInputs);
+        $request = (new CreateDataLabelingJobRequest())
+            ->setParent($formattedParent)
+            ->setDataLabelingJob($dataLabelingJob);
         $response = $gapicClient->createDataLabelingJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -545,6 +674,10 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/CreateDataLabelingJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getDataLabelingJob();
+        $this->assertProtobufEquals($dataLabelingJob, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -566,7 +699,26 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateDataLabelingJobRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataLabelingJob = new DataLabelingJob();
+        $dataLabelingJobDisplayName = 'dataLabelingJobDisplayName708178632';
+        $dataLabelingJob->setDisplayName($dataLabelingJobDisplayName);
+        $dataLabelingJobDatasets = [
+            $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]'),
+        ];
+        $dataLabelingJob->setDatasets($dataLabelingJobDatasets);
+        $dataLabelingJobLabelerCount = 500093453;
+        $dataLabelingJob->setLabelerCount($dataLabelingJobLabelerCount);
+        $dataLabelingJobInstructionUri = 'dataLabelingJobInstructionUri-886362173';
+        $dataLabelingJob->setInstructionUri($dataLabelingJobInstructionUri);
+        $dataLabelingJobInputsSchemaUri = 'dataLabelingJobInputsSchemaUri-1486933251';
+        $dataLabelingJob->setInputsSchemaUri($dataLabelingJobInputsSchemaUri);
+        $dataLabelingJobInputs = new Value();
+        $dataLabelingJob->setInputs($dataLabelingJobInputs);
+        $request = (new CreateDataLabelingJobRequest())
+            ->setParent($formattedParent)
+            ->setDataLabelingJob($dataLabelingJob);
         try {
             $gapicClient->createDataLabelingJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -601,7 +753,28 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setParallelTrialCount($parallelTrialCount);
         $expectedResponse->setMaxFailedTrialCount($maxFailedTrialCount);
         $transport->addResponse($expectedResponse);
-        $request = new CreateHyperparameterTuningJobRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $hyperparameterTuningJob = new HyperparameterTuningJob();
+        $hyperparameterTuningJobDisplayName = 'hyperparameterTuningJobDisplayName279209698';
+        $hyperparameterTuningJob->setDisplayName($hyperparameterTuningJobDisplayName);
+        $hyperparameterTuningJobStudySpec = new StudySpec();
+        $studySpecMetrics = [];
+        $hyperparameterTuningJobStudySpec->setMetrics($studySpecMetrics);
+        $studySpecParameters = [];
+        $hyperparameterTuningJobStudySpec->setParameters($studySpecParameters);
+        $hyperparameterTuningJob->setStudySpec($hyperparameterTuningJobStudySpec);
+        $hyperparameterTuningJobMaxTrialCount = 1019368622;
+        $hyperparameterTuningJob->setMaxTrialCount($hyperparameterTuningJobMaxTrialCount);
+        $hyperparameterTuningJobParallelTrialCount = 1531269397;
+        $hyperparameterTuningJob->setParallelTrialCount($hyperparameterTuningJobParallelTrialCount);
+        $hyperparameterTuningJobTrialJobSpec = new CustomJobSpec();
+        $trialJobSpecWorkerPoolSpecs = [];
+        $hyperparameterTuningJobTrialJobSpec->setWorkerPoolSpecs($trialJobSpecWorkerPoolSpecs);
+        $hyperparameterTuningJob->setTrialJobSpec($hyperparameterTuningJobTrialJobSpec);
+        $request = (new CreateHyperparameterTuningJobRequest())
+            ->setParent($formattedParent)
+            ->setHyperparameterTuningJob($hyperparameterTuningJob);
         $response = $gapicClient->createHyperparameterTuningJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -609,6 +782,10 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/CreateHyperparameterTuningJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getHyperparameterTuningJob();
+        $this->assertProtobufEquals($hyperparameterTuningJob, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -630,7 +807,28 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateHyperparameterTuningJobRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $hyperparameterTuningJob = new HyperparameterTuningJob();
+        $hyperparameterTuningJobDisplayName = 'hyperparameterTuningJobDisplayName279209698';
+        $hyperparameterTuningJob->setDisplayName($hyperparameterTuningJobDisplayName);
+        $hyperparameterTuningJobStudySpec = new StudySpec();
+        $studySpecMetrics = [];
+        $hyperparameterTuningJobStudySpec->setMetrics($studySpecMetrics);
+        $studySpecParameters = [];
+        $hyperparameterTuningJobStudySpec->setParameters($studySpecParameters);
+        $hyperparameterTuningJob->setStudySpec($hyperparameterTuningJobStudySpec);
+        $hyperparameterTuningJobMaxTrialCount = 1019368622;
+        $hyperparameterTuningJob->setMaxTrialCount($hyperparameterTuningJobMaxTrialCount);
+        $hyperparameterTuningJobParallelTrialCount = 1531269397;
+        $hyperparameterTuningJob->setParallelTrialCount($hyperparameterTuningJobParallelTrialCount);
+        $hyperparameterTuningJobTrialJobSpec = new CustomJobSpec();
+        $trialJobSpecWorkerPoolSpecs = [];
+        $hyperparameterTuningJobTrialJobSpec->setWorkerPoolSpecs($trialJobSpecWorkerPoolSpecs);
+        $hyperparameterTuningJob->setTrialJobSpec($hyperparameterTuningJobTrialJobSpec);
+        $request = (new CreateHyperparameterTuningJobRequest())
+            ->setParent($formattedParent)
+            ->setHyperparameterTuningJob($hyperparameterTuningJob);
         try {
             $gapicClient->createHyperparameterTuningJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -667,7 +865,24 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setAnalysisInstanceSchemaUri($analysisInstanceSchemaUri);
         $expectedResponse->setEnableMonitoringPipelineLogs($enableMonitoringPipelineLogs);
         $transport->addResponse($expectedResponse);
-        $request = new CreateModelDeploymentMonitoringJobRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $modelDeploymentMonitoringJob = new ModelDeploymentMonitoringJob();
+        $modelDeploymentMonitoringJobDisplayName = 'modelDeploymentMonitoringJobDisplayName-563611194';
+        $modelDeploymentMonitoringJob->setDisplayName($modelDeploymentMonitoringJobDisplayName);
+        $modelDeploymentMonitoringJobEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $modelDeploymentMonitoringJob->setEndpoint($modelDeploymentMonitoringJobEndpoint);
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [];
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs($modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs);
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig = new ModelDeploymentMonitoringScheduleConfig();
+        $modelDeploymentMonitoringScheduleConfigMonitorInterval = new Duration();
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig->setMonitorInterval($modelDeploymentMonitoringScheduleConfigMonitorInterval);
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringScheduleConfig($modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig);
+        $modelDeploymentMonitoringJobLoggingSamplingStrategy = new SamplingStrategy();
+        $modelDeploymentMonitoringJob->setLoggingSamplingStrategy($modelDeploymentMonitoringJobLoggingSamplingStrategy);
+        $request = (new CreateModelDeploymentMonitoringJobRequest())
+            ->setParent($formattedParent)
+            ->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob);
         $response = $gapicClient->createModelDeploymentMonitoringJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -675,6 +890,10 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/CreateModelDeploymentMonitoringJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getModelDeploymentMonitoringJob();
+        $this->assertProtobufEquals($modelDeploymentMonitoringJob, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -696,7 +915,24 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateModelDeploymentMonitoringJobRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $modelDeploymentMonitoringJob = new ModelDeploymentMonitoringJob();
+        $modelDeploymentMonitoringJobDisplayName = 'modelDeploymentMonitoringJobDisplayName-563611194';
+        $modelDeploymentMonitoringJob->setDisplayName($modelDeploymentMonitoringJobDisplayName);
+        $modelDeploymentMonitoringJobEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $modelDeploymentMonitoringJob->setEndpoint($modelDeploymentMonitoringJobEndpoint);
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [];
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs($modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs);
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig = new ModelDeploymentMonitoringScheduleConfig();
+        $modelDeploymentMonitoringScheduleConfigMonitorInterval = new Duration();
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig->setMonitorInterval($modelDeploymentMonitoringScheduleConfigMonitorInterval);
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringScheduleConfig($modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig);
+        $modelDeploymentMonitoringJobLoggingSamplingStrategy = new SamplingStrategy();
+        $modelDeploymentMonitoringJob->setLoggingSamplingStrategy($modelDeploymentMonitoringJobLoggingSamplingStrategy);
+        $request = (new CreateModelDeploymentMonitoringJobRequest())
+            ->setParent($formattedParent)
+            ->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob);
         try {
             $gapicClient->createModelDeploymentMonitoringJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -727,7 +963,16 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEnableRestrictedImageTraining($enableRestrictedImageTraining);
         $transport->addResponse($expectedResponse);
-        $request = new CreateNasJobRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $nasJob = new NasJob();
+        $nasJobDisplayName = 'nasJobDisplayName-279570512';
+        $nasJob->setDisplayName($nasJobDisplayName);
+        $nasJobNasJobSpec = new NasJobSpec();
+        $nasJob->setNasJobSpec($nasJobNasJobSpec);
+        $request = (new CreateNasJobRequest())
+            ->setParent($formattedParent)
+            ->setNasJob($nasJob);
         $response = $gapicClient->createNasJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -735,6 +980,10 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/CreateNasJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNasJob();
+        $this->assertProtobufEquals($nasJob, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -756,7 +1005,16 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateNasJobRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $nasJob = new NasJob();
+        $nasJobDisplayName = 'nasJobDisplayName-279570512';
+        $nasJob->setDisplayName($nasJobDisplayName);
+        $nasJobNasJobSpec = new NasJobSpec();
+        $nasJob->setNasJobSpec($nasJobNasJobSpec);
+        $request = (new CreateNasJobRequest())
+            ->setParent($formattedParent)
+            ->setNasJob($nasJob);
         try {
             $gapicClient->createNasJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -799,7 +1057,10 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteBatchPredictionJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
+        $request = (new DeleteBatchPredictionJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteBatchPredictionJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -810,6 +1071,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/DeleteBatchPredictionJob', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteBatchPredictionJobTest');
         $response->pollUntilComplete([
@@ -860,7 +1123,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteBatchPredictionJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
+        $request = (new DeleteBatchPredictionJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteBatchPredictionJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -912,7 +1178,10 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteCustomJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
+        $request = (new DeleteCustomJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteCustomJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -923,6 +1192,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/DeleteCustomJob', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteCustomJobTest');
         $response->pollUntilComplete([
@@ -973,7 +1244,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteCustomJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
+        $request = (new DeleteCustomJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteCustomJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1025,7 +1299,10 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteDataLabelingJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
+        $request = (new DeleteDataLabelingJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteDataLabelingJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1036,6 +1313,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/DeleteDataLabelingJob', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteDataLabelingJobTest');
         $response->pollUntilComplete([
@@ -1086,7 +1365,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteDataLabelingJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
+        $request = (new DeleteDataLabelingJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteDataLabelingJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1138,7 +1420,10 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteHyperparameterTuningJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
+        $request = (new DeleteHyperparameterTuningJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteHyperparameterTuningJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1149,6 +1434,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/DeleteHyperparameterTuningJob', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteHyperparameterTuningJobTest');
         $response->pollUntilComplete([
@@ -1199,7 +1486,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteHyperparameterTuningJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
+        $request = (new DeleteHyperparameterTuningJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteHyperparameterTuningJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1251,7 +1541,10 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteModelDeploymentMonitoringJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $request = (new DeleteModelDeploymentMonitoringJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteModelDeploymentMonitoringJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1262,6 +1555,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/DeleteModelDeploymentMonitoringJob', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteModelDeploymentMonitoringJobTest');
         $response->pollUntilComplete([
@@ -1312,7 +1607,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteModelDeploymentMonitoringJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $request = (new DeleteModelDeploymentMonitoringJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteModelDeploymentMonitoringJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1364,7 +1662,10 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteNasJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
+        $request = (new DeleteNasJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteNasJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1375,6 +1676,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/DeleteNasJob', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteNasJobTest');
         $response->pollUntilComplete([
@@ -1425,7 +1728,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteNasJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
+        $request = (new DeleteNasJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteNasJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1473,7 +1779,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setGenerateExplanation($generateExplanation);
         $expectedResponse->setDisableContainerLogging($disableContainerLogging);
         $transport->addResponse($expectedResponse);
-        $request = new GetBatchPredictionJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
+        $request = (new GetBatchPredictionJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getBatchPredictionJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1481,6 +1790,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/GetBatchPredictionJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1502,7 +1813,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetBatchPredictionJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
+        $request = (new GetBatchPredictionJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getBatchPredictionJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1531,7 +1845,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $request = new GetCustomJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
+        $request = (new GetCustomJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getCustomJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1539,6 +1856,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/GetCustomJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1560,7 +1879,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetCustomJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
+        $request = (new GetCustomJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getCustomJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1597,7 +1919,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setInputsSchemaUri($inputsSchemaUri);
         $expectedResponse->setLabelingProgress($labelingProgress);
         $transport->addResponse($expectedResponse);
-        $request = new GetDataLabelingJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
+        $request = (new GetDataLabelingJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getDataLabelingJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1605,6 +1930,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/GetDataLabelingJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1626,7 +1953,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetDataLabelingJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
+        $request = (new GetDataLabelingJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getDataLabelingJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1661,7 +1991,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setParallelTrialCount($parallelTrialCount);
         $expectedResponse->setMaxFailedTrialCount($maxFailedTrialCount);
         $transport->addResponse($expectedResponse);
-        $request = new GetHyperparameterTuningJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
+        $request = (new GetHyperparameterTuningJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getHyperparameterTuningJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1669,6 +2002,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/GetHyperparameterTuningJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1690,7 +2025,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetHyperparameterTuningJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
+        $request = (new GetHyperparameterTuningJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getHyperparameterTuningJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1727,7 +2065,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setAnalysisInstanceSchemaUri($analysisInstanceSchemaUri);
         $expectedResponse->setEnableMonitoringPipelineLogs($enableMonitoringPipelineLogs);
         $transport->addResponse($expectedResponse);
-        $request = new GetModelDeploymentMonitoringJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $request = (new GetModelDeploymentMonitoringJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getModelDeploymentMonitoringJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1735,6 +2076,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/GetModelDeploymentMonitoringJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1756,7 +2099,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetModelDeploymentMonitoringJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $request = (new GetModelDeploymentMonitoringJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getModelDeploymentMonitoringJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1787,7 +2133,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEnableRestrictedImageTraining($enableRestrictedImageTraining);
         $transport->addResponse($expectedResponse);
-        $request = new GetNasJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
+        $request = (new GetNasJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getNasJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1795,6 +2144,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/GetNasJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1816,7 +2167,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetNasJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
+        $request = (new GetNasJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getNasJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1845,7 +2199,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setParameters($parameters);
         $transport->addResponse($expectedResponse);
-        $request = new GetNasTrialDetailRequest();
+        // Mock request
+        $formattedName = $gapicClient->nasTrialDetailName('[PROJECT]', '[LOCATION]', '[NAS_JOB]', '[NAS_TRIAL_DETAIL]');
+        $request = (new GetNasTrialDetailRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getNasTrialDetail($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1853,6 +2210,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/GetNasTrialDetail', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1874,7 +2233,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetNasTrialDetailRequest();
+        // Mock request
+        $formattedName = $gapicClient->nasTrialDetailName('[PROJECT]', '[LOCATION]', '[NAS_JOB]', '[NAS_TRIAL_DETAIL]');
+        $request = (new GetNasTrialDetailRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getNasTrialDetail($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1906,7 +2268,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBatchPredictionJobs($batchPredictionJobs);
         $transport->addResponse($expectedResponse);
-        $request = new ListBatchPredictionJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListBatchPredictionJobsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listBatchPredictionJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1917,6 +2282,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/ListBatchPredictionJobs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1938,7 +2305,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListBatchPredictionJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListBatchPredictionJobsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listBatchPredictionJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1970,7 +2340,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCustomJobs($customJobs);
         $transport->addResponse($expectedResponse);
-        $request = new ListCustomJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListCustomJobsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listCustomJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1981,6 +2354,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/ListCustomJobs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2002,7 +2377,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListCustomJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListCustomJobsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listCustomJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2034,7 +2412,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataLabelingJobs($dataLabelingJobs);
         $transport->addResponse($expectedResponse);
-        $request = new ListDataLabelingJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListDataLabelingJobsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listDataLabelingJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2045,6 +2426,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/ListDataLabelingJobs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2066,7 +2449,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListDataLabelingJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListDataLabelingJobsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listDataLabelingJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2098,7 +2484,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setHyperparameterTuningJobs($hyperparameterTuningJobs);
         $transport->addResponse($expectedResponse);
-        $request = new ListHyperparameterTuningJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListHyperparameterTuningJobsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listHyperparameterTuningJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2109,6 +2498,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/ListHyperparameterTuningJobs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2130,7 +2521,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListHyperparameterTuningJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListHyperparameterTuningJobsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listHyperparameterTuningJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2162,7 +2556,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setModelDeploymentMonitoringJobs($modelDeploymentMonitoringJobs);
         $transport->addResponse($expectedResponse);
-        $request = new ListModelDeploymentMonitoringJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListModelDeploymentMonitoringJobsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listModelDeploymentMonitoringJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2173,6 +2570,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/ListModelDeploymentMonitoringJobs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2194,7 +2593,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListModelDeploymentMonitoringJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListModelDeploymentMonitoringJobsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listModelDeploymentMonitoringJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2226,7 +2628,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNasJobs($nasJobs);
         $transport->addResponse($expectedResponse);
-        $request = new ListNasJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListNasJobsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listNasJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2237,6 +2642,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/ListNasJobs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2258,7 +2665,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListNasJobsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListNasJobsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listNasJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2290,7 +2700,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNasTrialDetails($nasTrialDetails);
         $transport->addResponse($expectedResponse);
-        $request = new ListNasTrialDetailsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
+        $request = (new ListNasTrialDetailsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listNasTrialDetails($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2301,6 +2714,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/ListNasTrialDetails', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2322,7 +2737,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListNasTrialDetailsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
+        $request = (new ListNasTrialDetailsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listNasTrialDetails($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2347,13 +2765,18 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new PauseModelDeploymentMonitoringJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $request = (new PauseModelDeploymentMonitoringJobRequest())
+            ->setName($formattedName);
         $gapicClient->pauseModelDeploymentMonitoringJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/PauseModelDeploymentMonitoringJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2375,7 +2798,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new PauseModelDeploymentMonitoringJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $request = (new PauseModelDeploymentMonitoringJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->pauseModelDeploymentMonitoringJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2400,13 +2826,18 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new ResumeModelDeploymentMonitoringJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $request = (new ResumeModelDeploymentMonitoringJobRequest())
+            ->setName($formattedName);
         $gapicClient->resumeModelDeploymentMonitoringJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/ResumeModelDeploymentMonitoringJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2428,7 +2859,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ResumeModelDeploymentMonitoringJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $request = (new ResumeModelDeploymentMonitoringJobRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->resumeModelDeploymentMonitoringJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2460,7 +2894,14 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMonitoringStats($monitoringStats);
         $transport->addResponse($expectedResponse);
-        $request = new SearchModelDeploymentMonitoringStatsAnomaliesRequest();
+        // Mock request
+        $formattedModelDeploymentMonitoringJob = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $deployedModelId = 'deployedModelId866642506';
+        $objectives = [];
+        $request = (new SearchModelDeploymentMonitoringStatsAnomaliesRequest())
+            ->setModelDeploymentMonitoringJob($formattedModelDeploymentMonitoringJob)
+            ->setDeployedModelId($deployedModelId)
+            ->setObjectives($objectives);
         $response = $gapicClient->searchModelDeploymentMonitoringStatsAnomalies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2471,6 +2912,12 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/SearchModelDeploymentMonitoringStatsAnomalies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getModelDeploymentMonitoringJob();
+        $this->assertProtobufEquals($formattedModelDeploymentMonitoringJob, $actualValue);
+        $actualValue = $actualRequestObject->getDeployedModelId();
+        $this->assertProtobufEquals($deployedModelId, $actualValue);
+        $actualValue = $actualRequestObject->getObjectives();
+        $this->assertProtobufEquals($objectives, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2492,7 +2939,14 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SearchModelDeploymentMonitoringStatsAnomaliesRequest();
+        // Mock request
+        $formattedModelDeploymentMonitoringJob = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $deployedModelId = 'deployedModelId866642506';
+        $objectives = [];
+        $request = (new SearchModelDeploymentMonitoringStatsAnomaliesRequest())
+            ->setModelDeploymentMonitoringJob($formattedModelDeploymentMonitoringJob)
+            ->setDeployedModelId($deployedModelId)
+            ->setObjectives($objectives);
         try {
             $gapicClient->searchModelDeploymentMonitoringStatsAnomalies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2547,7 +3001,24 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateModelDeploymentMonitoringJobRequest();
+        // Mock request
+        $modelDeploymentMonitoringJob = new ModelDeploymentMonitoringJob();
+        $modelDeploymentMonitoringJobDisplayName = 'modelDeploymentMonitoringJobDisplayName-563611194';
+        $modelDeploymentMonitoringJob->setDisplayName($modelDeploymentMonitoringJobDisplayName);
+        $modelDeploymentMonitoringJobEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $modelDeploymentMonitoringJob->setEndpoint($modelDeploymentMonitoringJobEndpoint);
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [];
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs($modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs);
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig = new ModelDeploymentMonitoringScheduleConfig();
+        $modelDeploymentMonitoringScheduleConfigMonitorInterval = new Duration();
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig->setMonitorInterval($modelDeploymentMonitoringScheduleConfigMonitorInterval);
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringScheduleConfig($modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig);
+        $modelDeploymentMonitoringJobLoggingSamplingStrategy = new SamplingStrategy();
+        $modelDeploymentMonitoringJob->setLoggingSamplingStrategy($modelDeploymentMonitoringJobLoggingSamplingStrategy);
+        $updateMask = new FieldMask();
+        $request = (new UpdateModelDeploymentMonitoringJobRequest())
+            ->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateModelDeploymentMonitoringJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2558,6 +3029,10 @@ class JobServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/UpdateModelDeploymentMonitoringJob', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getModelDeploymentMonitoringJob();
+        $this->assertProtobufEquals($modelDeploymentMonitoringJob, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateModelDeploymentMonitoringJobTest');
         $response->pollUntilComplete([
@@ -2608,7 +3083,24 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateModelDeploymentMonitoringJobRequest();
+        // Mock request
+        $modelDeploymentMonitoringJob = new ModelDeploymentMonitoringJob();
+        $modelDeploymentMonitoringJobDisplayName = 'modelDeploymentMonitoringJobDisplayName-563611194';
+        $modelDeploymentMonitoringJob->setDisplayName($modelDeploymentMonitoringJobDisplayName);
+        $modelDeploymentMonitoringJobEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $modelDeploymentMonitoringJob->setEndpoint($modelDeploymentMonitoringJobEndpoint);
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [];
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs($modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs);
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig = new ModelDeploymentMonitoringScheduleConfig();
+        $modelDeploymentMonitoringScheduleConfigMonitorInterval = new Duration();
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig->setMonitorInterval($modelDeploymentMonitoringScheduleConfigMonitorInterval);
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringScheduleConfig($modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig);
+        $modelDeploymentMonitoringJobLoggingSamplingStrategy = new SamplingStrategy();
+        $modelDeploymentMonitoringJob->setLoggingSamplingStrategy($modelDeploymentMonitoringJobLoggingSamplingStrategy);
+        $updateMask = new FieldMask();
+        $request = (new UpdateModelDeploymentMonitoringJobRequest())
+            ->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateModelDeploymentMonitoringJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2770,7 +3262,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2778,6 +3273,8 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2799,7 +3296,10 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2828,7 +3328,12 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2836,6 +3341,10 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2857,7 +3366,12 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2882,7 +3396,12 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2890,6 +3409,10 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2911,7 +3434,12 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2936,13 +3464,18 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new CancelBatchPredictionJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
+        $request = (new CancelBatchPredictionJobRequest())
+            ->setName($formattedName);
         $gapicClient->cancelBatchPredictionJobAsync($request)->wait();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.JobService/CancelBatchPredictionJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

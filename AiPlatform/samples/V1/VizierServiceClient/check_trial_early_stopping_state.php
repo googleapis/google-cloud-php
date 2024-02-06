@@ -36,19 +36,19 @@ use Google\Rpc\Status;
  * it will contain a
  * [CheckTrialEarlyStoppingStateResponse][google.cloud.aiplatform.v1.CheckTrialEarlyStoppingStateResponse].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedTrialName The Trial's name.
+ *                                   Format:
+ *                                   `projects/{project}/locations/{location}/studies/{study}/trials/{trial}`
+ *                                   Please see {@see VizierServiceClient::trialName()} for help formatting this field.
  */
-function check_trial_early_stopping_state_sample(): void
+function check_trial_early_stopping_state_sample(string $formattedTrialName): void
 {
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
     // Prepare the request message.
-    $request = new CheckTrialEarlyStoppingStateRequest();
+    $request = (new CheckTrialEarlyStoppingStateRequest())
+        ->setTrialName($formattedTrialName);
 
     // Call the API and handle any network failures.
     try {
@@ -68,5 +68,26 @@ function check_trial_early_stopping_state_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedTrialName = VizierServiceClient::trialName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[STUDY]',
+        '[TRIAL]'
+    );
+
+    check_trial_early_stopping_state_sample($formattedTrialName);
 }
 // [END aiplatform_v1_generated_VizierService_CheckTrialEarlyStoppingState_sync]

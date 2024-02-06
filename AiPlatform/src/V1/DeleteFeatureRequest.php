@@ -33,6 +33,7 @@ class DeleteFeatureRequest extends \Google\Protobuf\Internal\Message
      *                     Format:
      *                     `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
      *                     `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
+     *                     Please see {@see FeaturestoreServiceClient::featureName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\DeleteFeatureRequest
      *

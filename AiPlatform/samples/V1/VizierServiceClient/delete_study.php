@@ -30,19 +30,18 @@ use Google\Cloud\AIPlatform\V1\DeleteStudyRequest;
 /**
  * Deletes a Study.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the Study resource to be deleted.
+ *                              Format: `projects/{project}/locations/{location}/studies/{study}`
+ *                              Please see {@see VizierServiceClient::studyName()} for help formatting this field.
  */
-function delete_study_sample(): void
+function delete_study_sample(string $formattedName): void
 {
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteStudyRequest();
+    $request = (new DeleteStudyRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -51,5 +50,21 @@ function delete_study_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = VizierServiceClient::studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
+
+    delete_study_sample($formattedName);
 }
 // [END aiplatform_v1_generated_VizierService_DeleteStudy_sync]

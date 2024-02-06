@@ -29,6 +29,7 @@ class GetTensorboardRunRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the TensorboardRun resource.
      *                     Format:
      *                     `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+     *                     Please see {@see TensorboardServiceClient::tensorboardRunName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetTensorboardRunRequest
      *

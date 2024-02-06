@@ -27,10 +27,12 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\AIPlatform\V1\DedicatedResources;
 use Google\Cloud\AIPlatform\V1\DeployedModel;
 use Google\Cloud\AIPlatform\V1\DeploymentResourcePool;
 use Google\Cloud\AIPlatform\V1\DeploymentResourcePoolServiceClient;
 use Google\Cloud\AIPlatform\V1\ListDeploymentResourcePoolsResponse;
+use Google\Cloud\AIPlatform\V1\MachineSpec;
 use Google\Cloud\AIPlatform\V1\QueryDeployedModelsResponse;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
@@ -102,7 +104,17 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->createDeploymentResourcePool();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $deploymentResourcePool = new DeploymentResourcePool();
+        $deploymentResourcePoolDedicatedResources = new DedicatedResources();
+        $dedicatedResourcesMachineSpec = new MachineSpec();
+        $deploymentResourcePoolDedicatedResources->setMachineSpec($dedicatedResourcesMachineSpec);
+        $dedicatedResourcesMinReplicaCount = 386489645;
+        $deploymentResourcePoolDedicatedResources->setMinReplicaCount($dedicatedResourcesMinReplicaCount);
+        $deploymentResourcePool->setDedicatedResources($deploymentResourcePoolDedicatedResources);
+        $deploymentResourcePoolId = 'deploymentResourcePoolId732232487';
+        $response = $gapicClient->createDeploymentResourcePool($formattedParent, $deploymentResourcePool, $deploymentResourcePoolId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -112,6 +124,12 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DeploymentResourcePoolService/CreateDeploymentResourcePool', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getDeploymentResourcePool();
+        $this->assertProtobufEquals($deploymentResourcePool, $actualValue);
+        $actualValue = $actualApiRequestObject->getDeploymentResourcePoolId();
+        $this->assertProtobufEquals($deploymentResourcePoolId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createDeploymentResourcePoolTest');
         $response->pollUntilComplete([
@@ -162,7 +180,17 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->createDeploymentResourcePool();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $deploymentResourcePool = new DeploymentResourcePool();
+        $deploymentResourcePoolDedicatedResources = new DedicatedResources();
+        $dedicatedResourcesMachineSpec = new MachineSpec();
+        $deploymentResourcePoolDedicatedResources->setMachineSpec($dedicatedResourcesMachineSpec);
+        $dedicatedResourcesMinReplicaCount = 386489645;
+        $deploymentResourcePoolDedicatedResources->setMinReplicaCount($dedicatedResourcesMinReplicaCount);
+        $deploymentResourcePool->setDedicatedResources($deploymentResourcePoolDedicatedResources);
+        $deploymentResourcePoolId = 'deploymentResourcePoolId732232487';
+        $response = $gapicClient->createDeploymentResourcePool($formattedParent, $deploymentResourcePool, $deploymentResourcePoolId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -213,7 +241,9 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deleteDeploymentResourcePool();
+        // Mock request
+        $formattedName = $gapicClient->deploymentResourcePoolName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT_RESOURCE_POOL]');
+        $response = $gapicClient->deleteDeploymentResourcePool($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -223,6 +253,8 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DeploymentResourcePoolService/DeleteDeploymentResourcePool', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteDeploymentResourcePoolTest');
         $response->pollUntilComplete([
@@ -273,7 +305,9 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deleteDeploymentResourcePool();
+        // Mock request
+        $formattedName = $gapicClient->deploymentResourcePoolName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT_RESOURCE_POOL]');
+        $response = $gapicClient->deleteDeploymentResourcePool($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -308,13 +342,17 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $expectedResponse = new DeploymentResourcePool();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getDeploymentResourcePool();
+        // Mock request
+        $formattedName = $gapicClient->deploymentResourcePoolName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT_RESOURCE_POOL]');
+        $response = $gapicClient->getDeploymentResourcePool($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DeploymentResourcePoolService/GetDeploymentResourcePool', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -336,8 +374,10 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->deploymentResourcePoolName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT_RESOURCE_POOL]');
         try {
-            $gapicClient->getDeploymentResourcePool();
+            $gapicClient->getDeploymentResourcePool($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -367,7 +407,9 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDeploymentResourcePools($deploymentResourcePools);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listDeploymentResourcePools();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listDeploymentResourcePools($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -377,6 +419,8 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DeploymentResourcePoolService/ListDeploymentResourcePools', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -398,8 +442,10 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listDeploymentResourcePools();
+            $gapicClient->listDeploymentResourcePools($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -433,7 +479,9 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalEndpointCount($totalEndpointCount);
         $expectedResponse->setDeployedModels($deployedModels);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->queryDeployedModels();
+        // Mock request
+        $deploymentResourcePool = 'deploymentResourcePool-1160399437';
+        $response = $gapicClient->queryDeployedModels($deploymentResourcePool);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -443,6 +491,8 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DeploymentResourcePoolService/QueryDeployedModels', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDeploymentResourcePool();
+        $this->assertProtobufEquals($deploymentResourcePool, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -464,8 +514,10 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $deploymentResourcePool = 'deploymentResourcePool-1160399437';
         try {
-            $gapicClient->queryDeployedModels();
+            $gapicClient->queryDeployedModels($deploymentResourcePool);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -612,13 +664,17 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getIamPolicy();
+        // Mock request
+        $resource = 'resource-341064690';
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -640,8 +696,10 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy();
+            $gapicClient->getIamPolicy($resource);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -668,13 +726,20 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->setIamPolicy();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -696,8 +761,11 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy();
+            $gapicClient->setIamPolicy($resource, $policy);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -720,13 +788,20 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->testIamPermissions();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -748,8 +823,11 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
         try {
-            $gapicClient->testIamPermissions();
+            $gapicClient->testIamPermissions($resource, $permissions);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

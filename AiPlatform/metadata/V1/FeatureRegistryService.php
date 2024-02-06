@@ -27,17 +27,17 @@ class FeatureRegistryService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ì"
-9google/cloud/aiplatform/v1/feature_registry_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/cloud/aiplatform/v1/feature.proto.google/cloud/aiplatform/v1/feature_group.proto5google/cloud/aiplatform/v1/featurestore_service.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"√
-CreateFeatureGroupRequest?
-parent (	B/‚A˙A(&aiplatform.googleapis.com/FeatureGroupE
-feature_group (2(.google.cloud.aiplatform.v1.FeatureGroupB‚A
-feature_group_id (	B‚A"W
-GetFeatureGroupRequest=
-name (	B/‚A˙A(
-&aiplatform.googleapis.com/FeatureGroup"§
-ListFeatureGroupsRequest?
-parent (	B/‚A˙A(&aiplatform.googleapis.com/FeatureGroup
+å"
+9google/cloud/aiplatform/v1/feature_registry_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/cloud/aiplatform/v1/feature.proto.google/cloud/aiplatform/v1/feature_group.proto5google/cloud/aiplatform/v1/featurestore_service.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¿
+CreateFeatureGroupRequest>
+parent (	B.‡A˙A(&aiplatform.googleapis.com/FeatureGroupD
+feature_group (2(.google.cloud.aiplatform.v1.FeatureGroupB‡A
+feature_group_id (	B‡A"V
+GetFeatureGroupRequest<
+name (	B.‡A˙A(
+&aiplatform.googleapis.com/FeatureGroup"£
+ListFeatureGroupsRequest>
+parent (	B.‡A˙A(&aiplatform.googleapis.com/FeatureGroup
 filter (	
 	page_size (
 
@@ -45,12 +45,12 @@ page_token (	
 order_by (	"v
 ListFeatureGroupsResponse@
 feature_groups (2(.google.cloud.aiplatform.v1.FeatureGroup
-next_page_token (	"ì
-UpdateFeatureGroupRequestE
-feature_group (2(.google.cloud.aiplatform.v1.FeatureGroupB‚A/
-update_mask (2.google.protobuf.FieldMask"i
-DeleteFeatureGroupRequest=
-name (	B/‚A˙A(
+next_page_token (	"í
+UpdateFeatureGroupRequestD
+feature_group (2(.google.cloud.aiplatform.v1.FeatureGroupB‡A/
+update_mask (2.google.protobuf.FieldMask"h
+DeleteFeatureGroupRequest<
+name (	B.‡A˙A(
 &aiplatform.googleapis.com/FeatureGroup
 force ("u
 #CreateFeatureGroupOperationMetadataN

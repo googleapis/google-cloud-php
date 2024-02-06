@@ -33,19 +33,20 @@ use Google\Rpc\Status;
 /**
  * Updates an Index.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $indexDisplayName The display name of the Index.
+ *                                 The name can be up to 128 characters long and can consist of any UTF-8
+ *                                 characters.
  */
-function update_index_sample(): void
+function update_index_sample(string $indexDisplayName): void
 {
     // Create a client.
     $indexServiceClient = new IndexServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateIndexRequest();
+    $index = (new Index())
+        ->setDisplayName($indexDisplayName);
+    $request = (new UpdateIndexRequest())
+        ->setIndex($index);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +66,21 @@ function update_index_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $indexDisplayName = '[DISPLAY_NAME]';
+
+    update_index_sample($indexDisplayName);
 }
 // [END aiplatform_v1_generated_IndexService_UpdateIndex_sync]

@@ -29,6 +29,7 @@ class GetBatchPredictionJobRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the BatchPredictionJob resource.
      *                     Format:
      *                     `projects/{project}/locations/{location}/batchPredictionJobs/{batch_prediction_job}`
+     *                     Please see {@see JobServiceClient::batchPredictionJobName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetBatchPredictionJobRequest
      *

@@ -27,24 +27,52 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\VizierServiceClient;
 use Google\Cloud\AIPlatform\V1\CreateStudyRequest;
 use Google\Cloud\AIPlatform\V1\Study;
+use Google\Cloud\AIPlatform\V1\StudySpec;
+use Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec;
+use Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec\GoalType;
+use Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec;
 
 /**
  * Creates a Study. A resource name will be generated after creation of the
  * Study.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent                     The resource name of the Location to create the CustomJob in.
+ *                                                    Format: `projects/{project}/locations/{location}`
+ *                                                    Please see {@see VizierServiceClient::locationName()} for help formatting this field.
+ * @param string $studyDisplayName                    Describes the Study, default value is empty string.
+ * @param string $studyStudySpecMetricsMetricId       The ID of the metric. Must not contain whitespaces and must be
+ *                                                    unique amongst all MetricSpecs.
+ * @param int    $studyStudySpecMetricsGoal           The optimization goal of the metric.
+ * @param string $studyStudySpecParametersParameterId The ID of the parameter. Must not contain whitespaces and must
+ *                                                    be unique amongst all ParameterSpecs.
  */
-function create_study_sample(): void
-{
+function create_study_sample(
+    string $formattedParent,
+    string $studyDisplayName,
+    string $studyStudySpecMetricsMetricId,
+    int $studyStudySpecMetricsGoal,
+    string $studyStudySpecParametersParameterId
+): void {
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
     // Prepare the request message.
-    $request = new CreateStudyRequest();
+    $metricSpec = (new MetricSpec())
+        ->setMetricId($studyStudySpecMetricsMetricId)
+        ->setGoal($studyStudySpecMetricsGoal);
+    $studyStudySpecMetrics = [$metricSpec,];
+    $parameterSpec = (new ParameterSpec())
+        ->setParameterId($studyStudySpecParametersParameterId);
+    $studyStudySpecParameters = [$parameterSpec,];
+    $studyStudySpec = (new StudySpec())
+        ->setMetrics($studyStudySpecMetrics)
+        ->setParameters($studyStudySpecParameters);
+    $study = (new Study())
+        ->setDisplayName($studyDisplayName)
+        ->setStudySpec($studyStudySpec);
+    $request = (new CreateStudyRequest())
+        ->setParent($formattedParent)
+        ->setStudy($study);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +82,31 @@ function create_study_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = VizierServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $studyDisplayName = '[DISPLAY_NAME]';
+    $studyStudySpecMetricsMetricId = '[METRIC_ID]';
+    $studyStudySpecMetricsGoal = GoalType::GOAL_TYPE_UNSPECIFIED;
+    $studyStudySpecParametersParameterId = '[PARAMETER_ID]';
+
+    create_study_sample(
+        $formattedParent,
+        $studyDisplayName,
+        $studyStudySpecMetricsMetricId,
+        $studyStudySpecMetricsGoal,
+        $studyStudySpecParametersParameterId
+    );
 }
 // [END aiplatform_v1_generated_VizierService_CreateStudy_sync]

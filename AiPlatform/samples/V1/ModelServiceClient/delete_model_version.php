@@ -38,19 +38,20 @@ use Google\Rpc\Status;
  * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for
  * deleting the Model instead.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the model version to be deleted, with a version ID
+ *                              explicitly included.
+ *
+ *                              Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
+ *                              Please see {@see ModelServiceClient::modelName()} for help formatting this field.
  */
-function delete_model_version_sample(): void
+function delete_model_version_sample(string $formattedName): void
 {
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteModelVersionRequest();
+    $request = (new DeleteModelVersionRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -68,5 +69,21 @@ function delete_model_version_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ModelServiceClient::modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+
+    delete_model_version_sample($formattedName);
 }
 // [END aiplatform_v1_generated_ModelService_DeleteModelVersion_sync]

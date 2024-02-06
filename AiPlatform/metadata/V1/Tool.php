@@ -19,21 +19,21 @@ class Tool
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Í
-%google/cloud/aiplatform/v1/tool.protogoogle.cloud.aiplatform.v1(google/cloud/aiplatform/v1/openapi.protogoogle/protobuf/struct.proto"\\
-ToolT
-function_declarations (2/.google.cloud.aiplatform.v1.FunctionDeclarationB‚A"Ç
-FunctionDeclaration
-name (	B‚A
-description (	B‚A<
+·
+%google/cloud/aiplatform/v1/tool.protogoogle.cloud.aiplatform.v1(google/cloud/aiplatform/v1/openapi.protogoogle/protobuf/struct.proto"[
+ToolS
+function_declarations (2/.google.cloud.aiplatform.v1.FunctionDeclarationB‡A"
+FunctionDeclaration
+name (	B‡A
+description (	B‡A;
 
-parameters (2".google.cloud.aiplatform.v1.SchemaB‚A"O
-FunctionCall
-name (	B‚A+
-args (2.google.protobuf.StructB‚A"W
-FunctionResponse
-name (	B‚A/
-response (2.google.protobuf.StructB‚AB«
+parameters (2".google.cloud.aiplatform.v1.SchemaB‡A"M
+FunctionCall
+name (	B‡A*
+args (2.google.protobuf.StructB‡A"U
+FunctionResponse
+name (	B‡A.
+response (2.google.protobuf.StructB‡AB«
 com.google.cloud.aiplatform.v1B	ToolProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb™Google.Cloud.AIPlatform.V1 Google\\Cloud\\AIPlatform\\V1ÍGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

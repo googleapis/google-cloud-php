@@ -17,13 +17,13 @@ class FeatureSelector
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
- 
-1google/cloud/aiplatform/v1/feature_selector.protogoogle.cloud.aiplatform.v1"
-	IdMatcher
-ids (	BâA"R
-FeatureSelector?
+ž
+1google/cloud/aiplatform/v1/feature_selector.protogoogle.cloud.aiplatform.v1"
+	IdMatcher
+ids (	BàA"Q
+FeatureSelector>
 
-id_matcher (2%.google.cloud.aiplatform.v1.IdMatcherBâABÒ
+id_matcher (2%.google.cloud.aiplatform.v1.IdMatcherBàABÒ
 com.google.cloud.aiplatform.v1BFeatureSelectorProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

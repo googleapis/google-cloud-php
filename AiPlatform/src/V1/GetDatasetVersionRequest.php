@@ -35,6 +35,7 @@ class GetDatasetVersionRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The resource name of the Dataset version to delete.
      *                     Format:
      *                     `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
+     *                     Please see {@see DatasetServiceClient::datasetVersionName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetDatasetVersionRequest
      *

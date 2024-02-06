@@ -27,23 +27,35 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
 use Google\Cloud\AIPlatform\V1\Dataset;
 use Google\Cloud\AIPlatform\V1\UpdateDatasetRequest;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\Value;
 
 /**
  * Updates a Dataset.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $datasetDisplayName       The user-defined name of the Dataset.
+ *                                         The name can be up to 128 characters long and can consist of any UTF-8
+ *                                         characters.
+ * @param string $datasetMetadataSchemaUri Points to a YAML file stored on Google Cloud Storage describing
+ *                                         additional information about the Dataset. The schema is defined as an
+ *                                         OpenAPI 3.0.2 Schema Object. The schema files that can be used here are
+ *                                         found in gs://google-cloud-aiplatform/schema/dataset/metadata/.
  */
-function update_dataset_sample(): void
+function update_dataset_sample(string $datasetDisplayName, string $datasetMetadataSchemaUri): void
 {
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateDatasetRequest();
+    $datasetMetadata = new Value();
+    $dataset = (new Dataset())
+        ->setDisplayName($datasetDisplayName)
+        ->setMetadataSchemaUri($datasetMetadataSchemaUri)
+        ->setMetadata($datasetMetadata);
+    $updateMask = new FieldMask();
+    $request = (new UpdateDatasetRequest())
+        ->setDataset($dataset)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +65,22 @@ function update_dataset_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $datasetDisplayName = '[DISPLAY_NAME]';
+    $datasetMetadataSchemaUri = '[METADATA_SCHEMA_URI]';
+
+    update_dataset_sample($datasetDisplayName, $datasetMetadataSchemaUri);
 }
 // [END aiplatform_v1_generated_DatasetService_UpdateDataset_sync]

@@ -30,7 +30,8 @@ class GetDatasetRequest extends \Google\Protobuf\Internal\Message
     private $read_mask = null;
 
     /**
-     * @param string $name Required. The name of the Dataset resource.
+     * @param string $name Required. The name of the Dataset resource. Please see
+     *                     {@see DatasetServiceClient::datasetName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetDatasetRequest
      *

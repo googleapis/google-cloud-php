@@ -48,6 +48,7 @@ class CreateMetadataSchemaRequest extends \Google\Protobuf\Internal\Message
      * @param string                                     $parent           Required. The resource name of the MetadataStore where the MetadataSchema
      *                                                                     should be created. Format:
      *                                                                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     *                                                                     Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\MetadataSchema $metadataSchema   Required. The MetadataSchema to create.
      * @param string                                     $metadataSchemaId The {metadata_schema} portion of the resource name with the format:
      *                                                                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}/metadataSchemas/{metadataschema}`

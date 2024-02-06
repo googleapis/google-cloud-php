@@ -32,19 +32,19 @@ use Google\Cloud\AIPlatform\V1\TensorboardTimeSeries;
 /**
  * Lists TensorboardTimeSeries in a Location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the TensorboardRun to list
+ *                                TensorboardTimeSeries. Format:
+ *                                `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+ *                                Please see {@see TensorboardServiceClient::tensorboardRunName()} for help formatting this field.
  */
-function list_tensorboard_time_series_sample(): void
+function list_tensorboard_time_series_sample(string $formattedParent): void
 {
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
     // Prepare the request message.
-    $request = new ListTensorboardTimeSeriesRequest();
+    $request = (new ListTensorboardTimeSeriesRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +58,27 @@ function list_tensorboard_time_series_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = TensorboardServiceClient::tensorboardRunName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[TENSORBOARD]',
+        '[EXPERIMENT]',
+        '[RUN]'
+    );
+
+    list_tensorboard_time_series_sample($formattedParent);
 }
 // [END aiplatform_v1_generated_TensorboardService_ListTensorboardTimeSeries_sync]

@@ -42,7 +42,8 @@ class BatchReadTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Interna
      *                            `projects/{project}/locations/{location}/tensorboards/{tensorboard}`.
      *                            The TensorboardTimeSeries referenced by
      *                            [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series]
-     *                            must be sub resources of this Tensorboard.
+     *                            must be sub resources of this Tensorboard. Please see
+     *                            {@see TensorboardServiceClient::tensorboardName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\BatchReadTensorboardTimeSeriesDataRequest
      *

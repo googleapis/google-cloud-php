@@ -50,6 +50,7 @@ class CreateExecutionRequest extends \Google\Protobuf\Internal\Message
      *                                                           be created.
      *                                                           Format:
      *                                                           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     *                                                           Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\Execution $execution   Required. The Execution to create.
      * @param string                                $executionId The {execution} portion of the resource name with the format:
      *                                                           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`

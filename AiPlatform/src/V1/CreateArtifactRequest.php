@@ -49,6 +49,7 @@ class CreateArtifactRequest extends \Google\Protobuf\Internal\Message
      *                                                         be created.
      *                                                         Format:
      *                                                         `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     *                                                         Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\Artifact $artifact   Required. The Artifact to create.
      * @param string                               $artifactId The {artifact} portion of the resource name with the format:
      *                                                         `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`

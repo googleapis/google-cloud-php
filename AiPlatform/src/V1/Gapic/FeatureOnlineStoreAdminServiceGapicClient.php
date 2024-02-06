@@ -79,7 +79,10 @@ use Google\Protobuf\FieldMask;
  * ```
  * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
  * try {
- *     $operationResponse = $featureOnlineStoreAdminServiceClient->createFeatureOnlineStore();
+ *     $formattedParent = $featureOnlineStoreAdminServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $featureOnlineStore = new FeatureOnlineStore();
+ *     $featureOnlineStoreId = 'feature_online_store_id';
+ *     $operationResponse = $featureOnlineStoreAdminServiceClient->createFeatureOnlineStore($formattedParent, $featureOnlineStore, $featureOnlineStoreId);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -90,7 +93,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $featureOnlineStoreAdminServiceClient->createFeatureOnlineStore();
+ *     $operationResponse = $featureOnlineStoreAdminServiceClient->createFeatureOnlineStore($formattedParent, $featureOnlineStore, $featureOnlineStoreId);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $featureOnlineStoreAdminServiceClient->resumeOperation($operationName, 'createFeatureOnlineStore');
@@ -483,7 +486,10 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
-     *     $operationResponse = $featureOnlineStoreAdminServiceClient->createFeatureOnlineStore();
+     *     $formattedParent = $featureOnlineStoreAdminServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $featureOnlineStore = new FeatureOnlineStore();
+     *     $featureOnlineStoreId = 'feature_online_store_id';
+     *     $operationResponse = $featureOnlineStoreAdminServiceClient->createFeatureOnlineStore($formattedParent, $featureOnlineStore, $featureOnlineStoreId);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -494,7 +500,7 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featureOnlineStoreAdminServiceClient->createFeatureOnlineStore();
+     *     $operationResponse = $featureOnlineStoreAdminServiceClient->createFeatureOnlineStore($formattedParent, $featureOnlineStore, $featureOnlineStoreId);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featureOnlineStoreAdminServiceClient->resumeOperation($operationName, 'createFeatureOnlineStore');
@@ -514,23 +520,20 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string             $parent               Required. The resource name of the Location to create FeatureOnlineStores.
+     *                                                 Format:
+     *                                                 `projects/{project}/locations/{location}`
+     * @param FeatureOnlineStore $featureOnlineStore   Required. The FeatureOnlineStore to create.
+     * @param string             $featureOnlineStoreId Required. The ID to use for this FeatureOnlineStore, which will become the
+     *                                                 final component of the FeatureOnlineStore's resource name.
+     *
+     *                                                 This value may be up to 60 characters, and valid characters are
+     *                                                 `[a-z0-9_]`. The first character cannot be a number.
+     *
+     *                                                 The value must be unique within the project and location.
+     * @param array              $optionalArgs         {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location to create FeatureOnlineStores.
-     *           Format:
-     *           `projects/{project}/locations/{location}`
-     *     @type FeatureOnlineStore $featureOnlineStore
-     *           Required. The FeatureOnlineStore to create.
-     *     @type string $featureOnlineStoreId
-     *           Required. The ID to use for this FeatureOnlineStore, which will become the
-     *           final component of the FeatureOnlineStore's resource name.
-     *
-     *           This value may be up to 60 characters, and valid characters are
-     *           `[a-z0-9_]`. The first character cannot be a number.
-     *
-     *           The value must be unique within the project and location.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -541,27 +544,18 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createFeatureOnlineStore(array $optionalArgs = [])
-    {
+    public function createFeatureOnlineStore(
+        $parent,
+        $featureOnlineStore,
+        $featureOnlineStoreId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateFeatureOnlineStoreRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['featureOnlineStore'])) {
-            $request->setFeatureOnlineStore(
-                $optionalArgs['featureOnlineStore']
-            );
-        }
-
-        if (isset($optionalArgs['featureOnlineStoreId'])) {
-            $request->setFeatureOnlineStoreId(
-                $optionalArgs['featureOnlineStoreId']
-            );
-        }
-
+        $request->setParent($parent);
+        $request->setFeatureOnlineStore($featureOnlineStore);
+        $request->setFeatureOnlineStoreId($featureOnlineStoreId);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -583,7 +577,10 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
-     *     $operationResponse = $featureOnlineStoreAdminServiceClient->createFeatureView();
+     *     $formattedParent = $featureOnlineStoreAdminServiceClient->featureOnlineStoreName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]');
+     *     $featureView = new FeatureView();
+     *     $featureViewId = 'feature_view_id';
+     *     $operationResponse = $featureOnlineStoreAdminServiceClient->createFeatureView($formattedParent, $featureView, $featureViewId);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -594,7 +591,7 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featureOnlineStoreAdminServiceClient->createFeatureView();
+     *     $operationResponse = $featureOnlineStoreAdminServiceClient->createFeatureView($formattedParent, $featureView, $featureViewId);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featureOnlineStoreAdminServiceClient->resumeOperation($operationName, 'createFeatureView');
@@ -614,23 +611,20 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string      $parent        Required. The resource name of the FeatureOnlineStore to create
+     *                                   FeatureViews. Format:
+     *                                   `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}`
+     * @param FeatureView $featureView   Required. The FeatureView to create.
+     * @param string      $featureViewId Required. The ID to use for the FeatureView, which will become the final
+     *                                   component of the FeatureView's resource name.
+     *
+     *                                   This value may be up to 60 characters, and valid characters are
+     *                                   `[a-z0-9_]`. The first character cannot be a number.
+     *
+     *                                   The value must be unique within a FeatureOnlineStore.
+     * @param array       $optionalArgs  {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the FeatureOnlineStore to create
-     *           FeatureViews. Format:
-     *           `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}`
-     *     @type FeatureView $featureView
-     *           Required. The FeatureView to create.
-     *     @type string $featureViewId
-     *           Required. The ID to use for the FeatureView, which will become the final
-     *           component of the FeatureView's resource name.
-     *
-     *           This value may be up to 60 characters, and valid characters are
-     *           `[a-z0-9_]`. The first character cannot be a number.
-     *
-     *           The value must be unique within a FeatureOnlineStore.
      *     @type bool $runSyncImmediately
      *           Immutable. If set to true, one on demand sync will be run immediately,
      *           regardless whether the
@@ -646,23 +640,18 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createFeatureView(array $optionalArgs = [])
-    {
+    public function createFeatureView(
+        $parent,
+        $featureView,
+        $featureViewId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateFeatureViewRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['featureView'])) {
-            $request->setFeatureView($optionalArgs['featureView']);
-        }
-
-        if (isset($optionalArgs['featureViewId'])) {
-            $request->setFeatureViewId($optionalArgs['featureViewId']);
-        }
-
+        $request->setParent($parent);
+        $request->setFeatureView($featureView);
+        $request->setFeatureViewId($featureViewId);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['runSyncImmediately'])) {
             $request->setRunSyncImmediately(
                 $optionalArgs['runSyncImmediately']
@@ -691,7 +680,8 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
-     *     $operationResponse = $featureOnlineStoreAdminServiceClient->deleteFeatureOnlineStore();
+     *     $formattedName = $featureOnlineStoreAdminServiceClient->featureOnlineStoreName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]');
+     *     $operationResponse = $featureOnlineStoreAdminServiceClient->deleteFeatureOnlineStore($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -701,7 +691,7 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featureOnlineStoreAdminServiceClient->deleteFeatureOnlineStore();
+     *     $operationResponse = $featureOnlineStoreAdminServiceClient->deleteFeatureOnlineStore($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featureOnlineStoreAdminServiceClient->resumeOperation($operationName, 'deleteFeatureOnlineStore');
@@ -720,13 +710,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the FeatureOnlineStore to be deleted.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the FeatureOnlineStore to be deleted.
-     *           Format:
-     *           `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}`
      *     @type bool $force
      *           If set to true, any FeatureViews and Features for this FeatureOnlineStore
      *           will also be deleted. (Otherwise, the request will only work if the
@@ -741,15 +730,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteFeatureOnlineStore(array $optionalArgs = [])
+    public function deleteFeatureOnlineStore($name, array $optionalArgs = [])
     {
         $request = new DeleteFeatureOnlineStoreRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -775,7 +761,8 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
-     *     $operationResponse = $featureOnlineStoreAdminServiceClient->deleteFeatureView();
+     *     $formattedName = $featureOnlineStoreAdminServiceClient->featureViewName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
+     *     $operationResponse = $featureOnlineStoreAdminServiceClient->deleteFeatureView($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -785,7 +772,7 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featureOnlineStoreAdminServiceClient->deleteFeatureView();
+     *     $operationResponse = $featureOnlineStoreAdminServiceClient->deleteFeatureView($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featureOnlineStoreAdminServiceClient->resumeOperation($operationName, 'deleteFeatureView');
@@ -804,13 +791,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the FeatureView to be deleted.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the FeatureView to be deleted.
-     *           Format:
-     *           `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -821,15 +807,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteFeatureView(array $optionalArgs = [])
+    public function deleteFeatureView($name, array $optionalArgs = [])
     {
         $request = new DeleteFeatureViewRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -851,17 +834,17 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
-     *     $response = $featureOnlineStoreAdminServiceClient->getFeatureOnlineStore();
+     *     $formattedName = $featureOnlineStoreAdminServiceClient->featureOnlineStoreName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]');
+     *     $response = $featureOnlineStoreAdminServiceClient->getFeatureOnlineStore($formattedName);
      * } finally {
      *     $featureOnlineStoreAdminServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the FeatureOnlineStore resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the FeatureOnlineStore resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -872,15 +855,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getFeatureOnlineStore(array $optionalArgs = [])
+    public function getFeatureOnlineStore($name, array $optionalArgs = [])
     {
         $request = new GetFeatureOnlineStoreRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -902,19 +882,19 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
-     *     $response = $featureOnlineStoreAdminServiceClient->getFeatureView();
+     *     $formattedName = $featureOnlineStoreAdminServiceClient->featureViewName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
+     *     $response = $featureOnlineStoreAdminServiceClient->getFeatureView($formattedName);
      * } finally {
      *     $featureOnlineStoreAdminServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the FeatureView resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the FeatureView resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -925,15 +905,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getFeatureView(array $optionalArgs = [])
+    public function getFeatureView($name, array $optionalArgs = [])
     {
         $request = new GetFeatureViewRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -955,19 +932,19 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
-     *     $response = $featureOnlineStoreAdminServiceClient->getFeatureViewSync();
+     *     $formattedName = $featureOnlineStoreAdminServiceClient->featureViewSyncName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
+     *     $response = $featureOnlineStoreAdminServiceClient->getFeatureViewSync($formattedName);
      * } finally {
      *     $featureOnlineStoreAdminServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the FeatureViewSync resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}/featureViewSyncs/{feature_view_sync}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the FeatureViewSync resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}/featureViewSyncs/{feature_view_sync}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -978,15 +955,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getFeatureViewSync(array $optionalArgs = [])
+    public function getFeatureViewSync($name, array $optionalArgs = [])
     {
         $request = new GetFeatureViewSyncRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1008,8 +982,9 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
+     *     $formattedParent = $featureOnlineStoreAdminServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $featureOnlineStoreAdminServiceClient->listFeatureOnlineStores();
+     *     $pagedResponse = $featureOnlineStoreAdminServiceClient->listFeatureOnlineStores($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1017,7 +992,7 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $featureOnlineStoreAdminServiceClient->listFeatureOnlineStores();
+     *     $pagedResponse = $featureOnlineStoreAdminServiceClient->listFeatureOnlineStores($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1026,13 +1001,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the Location to list FeatureOnlineStores.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location to list FeatureOnlineStores.
-     *           Format:
-     *           `projects/{project}/locations/{location}`
      *     @type string $filter
      *           Lists the FeatureOnlineStores that match the filter expression. The
      *           following fields are supported:
@@ -1077,15 +1051,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listFeatureOnlineStores(array $optionalArgs = [])
+    public function listFeatureOnlineStores($parent, array $optionalArgs = [])
     {
         $request = new ListFeatureOnlineStoresRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1123,8 +1094,9 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
+     *     $formattedParent = $featureOnlineStoreAdminServiceClient->featureViewName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $featureOnlineStoreAdminServiceClient->listFeatureViewSyncs();
+     *     $pagedResponse = $featureOnlineStoreAdminServiceClient->listFeatureViewSyncs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1132,7 +1104,7 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $featureOnlineStoreAdminServiceClient->listFeatureViewSyncs();
+     *     $pagedResponse = $featureOnlineStoreAdminServiceClient->listFeatureViewSyncs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1141,13 +1113,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the FeatureView to list FeatureViewSyncs.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the FeatureView to list FeatureViewSyncs.
-     *           Format:
-     *           `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
      *     @type string $filter
      *           Lists the FeatureViewSyncs that match the filter expression. The following
      *           filters are supported:
@@ -1185,15 +1156,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listFeatureViewSyncs(array $optionalArgs = [])
+    public function listFeatureViewSyncs($parent, array $optionalArgs = [])
     {
         $request = new ListFeatureViewSyncsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1231,8 +1199,9 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
+     *     $formattedParent = $featureOnlineStoreAdminServiceClient->featureOnlineStoreName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $featureOnlineStoreAdminServiceClient->listFeatureViews();
+     *     $pagedResponse = $featureOnlineStoreAdminServiceClient->listFeatureViews($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1240,7 +1209,7 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $featureOnlineStoreAdminServiceClient->listFeatureViews();
+     *     $pagedResponse = $featureOnlineStoreAdminServiceClient->listFeatureViews($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1249,13 +1218,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the FeatureOnlineStore to list FeatureViews.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the FeatureOnlineStore to list FeatureViews.
-     *           Format:
-     *           `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}`
      *     @type string $filter
      *           Lists the FeatureViews that match the filter expression. The following
      *           filters are supported:
@@ -1303,15 +1271,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listFeatureViews(array $optionalArgs = [])
+    public function listFeatureViews($parent, array $optionalArgs = [])
     {
         $request = new ListFeatureViewsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1349,18 +1314,18 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
-     *     $response = $featureOnlineStoreAdminServiceClient->syncFeatureView();
+     *     $formattedFeatureView = $featureOnlineStoreAdminServiceClient->featureViewName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
+     *     $response = $featureOnlineStoreAdminServiceClient->syncFeatureView($formattedFeatureView);
      * } finally {
      *     $featureOnlineStoreAdminServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $featureView  Required. Format:
+     *                             `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $featureView
-     *           Required. Format:
-     *           `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1371,15 +1336,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function syncFeatureView(array $optionalArgs = [])
+    public function syncFeatureView($featureView, array $optionalArgs = [])
     {
         $request = new SyncFeatureViewRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['featureView'])) {
-            $request->setFeatureView($optionalArgs['featureView']);
-            $requestParamHeaders['feature_view'] = $optionalArgs['featureView'];
-        }
-
+        $request->setFeatureView($featureView);
+        $requestParamHeaders['feature_view'] = $featureView;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1401,7 +1363,8 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
-     *     $operationResponse = $featureOnlineStoreAdminServiceClient->updateFeatureOnlineStore();
+     *     $featureOnlineStore = new FeatureOnlineStore();
+     *     $operationResponse = $featureOnlineStoreAdminServiceClient->updateFeatureOnlineStore($featureOnlineStore);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1412,7 +1375,7 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featureOnlineStoreAdminServiceClient->updateFeatureOnlineStore();
+     *     $operationResponse = $featureOnlineStoreAdminServiceClient->updateFeatureOnlineStore($featureOnlineStore);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featureOnlineStoreAdminServiceClient->resumeOperation($operationName, 'updateFeatureOnlineStore');
@@ -1432,13 +1395,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param FeatureOnlineStore $featureOnlineStore Required. The FeatureOnlineStore's `name` field is used to identify the
+     *                                               FeatureOnlineStore to be updated. Format:
+     *                                               `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}`
+     * @param array              $optionalArgs       {
      *     Optional.
      *
-     *     @type FeatureOnlineStore $featureOnlineStore
-     *           Required. The FeatureOnlineStore's `name` field is used to identify the
-     *           FeatureOnlineStore to be updated. Format:
-     *           `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}`
      *     @type FieldMask $updateMask
      *           Field mask is used to specify the fields to be overwritten in the
      *           FeatureOnlineStore resource by the update.
@@ -1463,16 +1425,16 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateFeatureOnlineStore(array $optionalArgs = [])
-    {
+    public function updateFeatureOnlineStore(
+        $featureOnlineStore,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateFeatureOnlineStoreRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['featureOnlineStore'])) {
-            $request->setFeatureOnlineStore(
-                $optionalArgs['featureOnlineStore']
-            );
-        }
-
+        $request->setFeatureOnlineStore($featureOnlineStore);
+        $requestParamHeaders[
+            'feature_online_store.name'
+        ] = $featureOnlineStore->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1498,7 +1460,8 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
-     *     $operationResponse = $featureOnlineStoreAdminServiceClient->updateFeatureView();
+     *     $featureView = new FeatureView();
+     *     $operationResponse = $featureOnlineStoreAdminServiceClient->updateFeatureView($featureView);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1509,7 +1472,7 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featureOnlineStoreAdminServiceClient->updateFeatureView();
+     *     $operationResponse = $featureOnlineStoreAdminServiceClient->updateFeatureView($featureView);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featureOnlineStoreAdminServiceClient->resumeOperation($operationName, 'updateFeatureView');
@@ -1529,13 +1492,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param FeatureView $featureView  Required. The FeatureView's `name` field is used to identify the
+     *                                  FeatureView to be updated. Format:
+     *                                  `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
+     * @param array       $optionalArgs {
      *     Optional.
      *
-     *     @type FeatureView $featureView
-     *           Required. The FeatureView's `name` field is used to identify the
-     *           FeatureView to be updated. Format:
-     *           `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
      *     @type FieldMask $updateMask
      *           Field mask is used to specify the fields to be overwritten in the
      *           FeatureView resource by the update.
@@ -1558,14 +1520,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateFeatureView(array $optionalArgs = [])
+    public function updateFeatureView($featureView, array $optionalArgs = [])
     {
         $request = new UpdateFeatureViewRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['featureView'])) {
-            $request->setFeatureView($optionalArgs['featureView']);
-        }
-
+        $request->setFeatureView($featureView);
+        $requestParamHeaders['feature_view.name'] = $featureView->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1732,18 +1692,18 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
-     *     $response = $featureOnlineStoreAdminServiceClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $featureOnlineStoreAdminServiceClient->getIamPolicy($resource);
      * } finally {
      *     $featureOnlineStoreAdminServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1757,15 +1717,12 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1797,23 +1754,23 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
-     *     $response = $featureOnlineStoreAdminServiceClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $featureOnlineStoreAdminServiceClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $featureOnlineStoreAdminServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1830,19 +1787,13 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1876,23 +1827,23 @@ class FeatureOnlineStoreAdminServiceGapicClient
      * ```
      * $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
      * try {
-     *     $response = $featureOnlineStoreAdminServiceClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $featureOnlineStoreAdminServiceClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $featureOnlineStoreAdminServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1903,19 +1854,16 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

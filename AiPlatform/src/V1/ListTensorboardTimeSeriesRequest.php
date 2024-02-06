@@ -67,6 +67,7 @@ class ListTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The resource name of the TensorboardRun to list
      *                       TensorboardTimeSeries. Format:
      *                       `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+     *                       Please see {@see TensorboardServiceClient::tensorboardRunName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ListTensorboardTimeSeriesRequest
      *

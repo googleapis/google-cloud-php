@@ -33,6 +33,7 @@ class CreateTrainingPipelineRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                       $parent           Required. The resource name of the Location to create the TrainingPipeline
      *                                                                       in. Format: `projects/{project}/locations/{location}`
+     *                                                                       Please see {@see PipelineServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\TrainingPipeline $trainingPipeline Required. The TrainingPipeline to create.
      *
      * @return \Google\Cloud\AIPlatform\V1\CreateTrainingPipelineRequest

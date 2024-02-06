@@ -36,6 +36,7 @@ class UndeployIndexRequest extends \Google\Protobuf\Internal\Message
      * @param string $indexEndpoint   Required. The name of the IndexEndpoint resource from which to undeploy an
      *                                Index. Format:
      *                                `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
+     *                                Please see {@see IndexEndpointServiceClient::indexEndpointName()} for help formatting this field.
      * @param string $deployedIndexId Required. The ID of the DeployedIndex to be undeployed from the
      *                                IndexEndpoint.
      *

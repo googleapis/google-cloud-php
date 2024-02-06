@@ -32,19 +32,24 @@ use Google\Cloud\AIPlatform\V1\QueryContextLineageSubgraphRequest;
  * Retrieves Artifacts and Executions within the specified Context, connected
  * by Event edges and returned as a LineageSubgraph.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedContext The resource name of the Context whose Artifacts and Executions
+ *                                 should be retrieved as a LineageSubgraph.
+ *                                 Format:
+ *                                 `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+ *
+ *                                 The request may error with FAILED_PRECONDITION if the number of Artifacts,
+ *                                 the number of Executions, or the number of Events that would be returned
+ *                                 for the Context exceeds 1000. Please see
+ *                                 {@see MetadataServiceClient::contextName()} for help formatting this field.
  */
-function query_context_lineage_subgraph_sample(): void
+function query_context_lineage_subgraph_sample(string $formattedContext): void
 {
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $request = new QueryContextLineageSubgraphRequest();
+    $request = (new QueryContextLineageSubgraphRequest())
+        ->setContext($formattedContext);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +59,26 @@ function query_context_lineage_subgraph_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedContext = MetadataServiceClient::contextName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[METADATA_STORE]',
+        '[CONTEXT]'
+    );
+
+    query_context_lineage_subgraph_sample($formattedContext);
 }
 // [END aiplatform_v1_generated_MetadataService_QueryContextLineageSubgraph_sync]

@@ -32,19 +32,18 @@ use Google\Cloud\AIPlatform\V1\QueryDeployedModelsRequest;
 /**
  * List DeployedModels that have been deployed on this DeploymentResourcePool.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $deploymentResourcePool The name of the target DeploymentResourcePool to query.
+ *                                       Format:
+ *                                       `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`
  */
-function query_deployed_models_sample(): void
+function query_deployed_models_sample(string $deploymentResourcePool): void
 {
     // Create a client.
     $deploymentResourcePoolServiceClient = new DeploymentResourcePoolServiceClient();
 
     // Prepare the request message.
-    $request = new QueryDeployedModelsRequest();
+    $request = (new QueryDeployedModelsRequest())
+        ->setDeploymentResourcePool($deploymentResourcePool);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function query_deployed_models_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $deploymentResourcePool = '[DEPLOYMENT_RESOURCE_POOL]';
+
+    query_deployed_models_sample($deploymentResourcePool);
 }
 // [END aiplatform_v1_generated_DeploymentResourcePoolService_QueryDeployedModels_sync]

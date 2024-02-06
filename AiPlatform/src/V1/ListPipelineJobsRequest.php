@@ -101,6 +101,7 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name of the Location to list the PipelineJobs from.
      *                       Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see PipelineServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ListPipelineJobsRequest
      *

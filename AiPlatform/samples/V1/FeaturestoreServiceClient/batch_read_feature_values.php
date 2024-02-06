@@ -26,8 +26,12 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest;
+use Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\EntityTypeSpec;
 use Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesResponse;
 use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\FeatureSelector;
+use Google\Cloud\AIPlatform\V1\FeatureValueDestination;
+use Google\Cloud\AIPlatform\V1\IdMatcher;
 use Google\Rpc\Status;
 
 /**
@@ -38,19 +42,46 @@ use Google\Rpc\Status;
  * more EntityTypes. Point-in-time correctness is guaranteed for Feature
  * values of each read instance as of each instance's read timestamp.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedFeaturestore                             The resource name of the Featurestore from which to query Feature
+ *                                                                  values. Format:
+ *                                                                  `projects/{project}/locations/{location}/featurestores/{featurestore}`
+ *                                                                  Please see {@see FeaturestoreServiceClient::featurestoreName()} for help formatting this field.
+ * @param string $entityTypeSpecsEntityTypeId                       ID of the EntityType to select Features. The EntityType id is
+ *                                                                  the
+ *                                                                  [entity_type_id][google.cloud.aiplatform.v1.CreateEntityTypeRequest.entity_type_id]
+ *                                                                  specified during EntityType creation.
+ * @param string $entityTypeSpecsFeatureSelectorIdMatcherIdsElement The following are accepted as `ids`:
+ *
+ *                                                                  * A single-element list containing only `*`, which selects all Features
+ *                                                                  in the target EntityType, or
+ *                                                                  * A list containing only Feature IDs, which selects only Features with
+ *                                                                  those IDs in the target EntityType.
  */
-function batch_read_feature_values_sample(): void
-{
+function batch_read_feature_values_sample(
+    string $formattedFeaturestore,
+    string $entityTypeSpecsEntityTypeId,
+    string $entityTypeSpecsFeatureSelectorIdMatcherIdsElement
+): void {
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
     // Prepare the request message.
-    $request = new BatchReadFeatureValuesRequest();
+    $destination = new FeatureValueDestination();
+    $entityTypeSpecsFeatureSelectorIdMatcherIds = [
+        $entityTypeSpecsFeatureSelectorIdMatcherIdsElement,
+    ];
+    $entityTypeSpecsFeatureSelectorIdMatcher = (new IdMatcher())
+        ->setIds($entityTypeSpecsFeatureSelectorIdMatcherIds);
+    $entityTypeSpecsFeatureSelector = (new FeatureSelector())
+        ->setIdMatcher($entityTypeSpecsFeatureSelectorIdMatcher);
+    $entityTypeSpec = (new EntityTypeSpec())
+        ->setEntityTypeId($entityTypeSpecsEntityTypeId)
+        ->setFeatureSelector($entityTypeSpecsFeatureSelector);
+    $entityTypeSpecs = [$entityTypeSpec,];
+    $request = (new BatchReadFeatureValuesRequest())
+        ->setFeaturestore($formattedFeaturestore)
+        ->setDestination($destination)
+        ->setEntityTypeSpecs($entityTypeSpecs);
 
     // Call the API and handle any network failures.
     try {
@@ -70,5 +101,31 @@ function batch_read_feature_values_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedFeaturestore = FeaturestoreServiceClient::featurestoreName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[FEATURESTORE]'
+    );
+    $entityTypeSpecsEntityTypeId = '[ENTITY_TYPE_ID]';
+    $entityTypeSpecsFeatureSelectorIdMatcherIdsElement = '[IDS]';
+
+    batch_read_feature_values_sample(
+        $formattedFeaturestore,
+        $entityTypeSpecsEntityTypeId,
+        $entityTypeSpecsFeatureSelectorIdMatcherIdsElement
+    );
 }
 // [END aiplatform_v1_generated_FeaturestoreService_BatchReadFeatureValues_sync]

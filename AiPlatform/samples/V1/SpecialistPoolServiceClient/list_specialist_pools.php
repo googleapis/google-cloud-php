@@ -32,19 +32,18 @@ use Google\Cloud\AIPlatform\V1\SpecialistPool;
 /**
  * Lists SpecialistPools in a Location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the SpecialistPool's parent resource.
+ *                                Format: `projects/{project}/locations/{location}`
+ *                                Please see {@see SpecialistPoolServiceClient::locationName()} for help formatting this field.
  */
-function list_specialist_pools_sample(): void
+function list_specialist_pools_sample(string $formattedParent): void
 {
     // Create a client.
     $specialistPoolServiceClient = new SpecialistPoolServiceClient();
 
     // Prepare the request message.
-    $request = new ListSpecialistPoolsRequest();
+    $request = (new ListSpecialistPoolsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function list_specialist_pools_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = SpecialistPoolServiceClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_specialist_pools_sample($formattedParent);
 }
 // [END aiplatform_v1_generated_SpecialistPoolService_ListSpecialistPools_sync]

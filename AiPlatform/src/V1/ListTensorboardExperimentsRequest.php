@@ -67,6 +67,7 @@ class ListTensorboardExperimentsRequest extends \Google\Protobuf\Internal\Messag
      * @param string $parent Required. The resource name of the Tensorboard to list
      *                       TensorboardExperiments. Format:
      *                       `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+     *                       Please see {@see TensorboardServiceClient::tensorboardName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ListTensorboardExperimentsRequest
      *

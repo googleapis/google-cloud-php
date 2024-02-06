@@ -32,19 +32,18 @@ use Google\Cloud\AIPlatform\V1\ListIndexEndpointsRequest;
 /**
  * Lists IndexEndpoints in a Location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the Location from which to list the
+ *                                IndexEndpoints. Format: `projects/{project}/locations/{location}`
+ *                                Please see {@see IndexEndpointServiceClient::locationName()} for help formatting this field.
  */
-function list_index_endpoints_sample(): void
+function list_index_endpoints_sample(string $formattedParent): void
 {
     // Create a client.
     $indexEndpointServiceClient = new IndexEndpointServiceClient();
 
     // Prepare the request message.
-    $request = new ListIndexEndpointsRequest();
+    $request = (new ListIndexEndpointsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function list_index_endpoints_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = IndexEndpointServiceClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_index_endpoints_sample($formattedParent);
 }
 // [END aiplatform_v1_generated_IndexEndpointService_ListIndexEndpoints_sync]

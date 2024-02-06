@@ -43,7 +43,8 @@ class BatchCreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\
      *                                                                                   `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
      *                                                                                   The TensorboardRuns referenced by the parent fields in the
      *                                                                                   CreateTensorboardTimeSeriesRequest messages must be sub resources of this
-     *                                                                                   TensorboardExperiment.
+     *                                                                                   TensorboardExperiment. Please see
+     *                                                                                   {@see TensorboardServiceClient::tensorboardExperimentName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\CreateTensorboardTimeSeriesRequest[] $requests Required. The request message specifying the TensorboardTimeSeries to
      *                                                                                   create. A maximum of 1000 TensorboardTimeSeries can be created in a batch.
      *

@@ -44,6 +44,7 @@ class DeleteContextRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The resource name of the Context to delete.
      *                     Format:
      *                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     *                     Please see {@see MetadataServiceClient::contextName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\DeleteContextRequest
      *

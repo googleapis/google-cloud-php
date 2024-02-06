@@ -28,23 +28,31 @@ use Google\ApiCore\PagedListResponse;
 use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
 use Google\Cloud\AIPlatform\V1\ModelMonitoringStatsAnomalies;
 use Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest;
+use Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest\StatsAnomaliesObjective;
 
 /**
  * Searches Model Monitoring Statistics generated within a given time window.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedModelDeploymentMonitoringJob ModelDeploymentMonitoring Job resource name.
+ *                                                      Format:
+ *                                                      `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
+ *                                                      Please see {@see JobServiceClient::modelDeploymentMonitoringJobName()} for help formatting this field.
+ * @param string $deployedModelId                       The DeployedModel ID of the
+ *                                                      [ModelDeploymentMonitoringObjectiveConfig.deployed_model_id].
  */
-function search_model_deployment_monitoring_stats_anomalies_sample(): void
-{
+function search_model_deployment_monitoring_stats_anomalies_sample(
+    string $formattedModelDeploymentMonitoringJob,
+    string $deployedModelId
+): void {
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
     // Prepare the request message.
-    $request = new SearchModelDeploymentMonitoringStatsAnomaliesRequest();
+    $objectives = [new StatsAnomaliesObjective()];
+    $request = (new SearchModelDeploymentMonitoringStatsAnomaliesRequest())
+        ->setModelDeploymentMonitoringJob($formattedModelDeploymentMonitoringJob)
+        ->setDeployedModelId($deployedModelId)
+        ->setObjectives($objectives);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +66,29 @@ function search_model_deployment_monitoring_stats_anomalies_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedModelDeploymentMonitoringJob = JobServiceClient::modelDeploymentMonitoringJobName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[MODEL_DEPLOYMENT_MONITORING_JOB]'
+    );
+    $deployedModelId = '[DEPLOYED_MODEL_ID]';
+
+    search_model_deployment_monitoring_stats_anomalies_sample(
+        $formattedModelDeploymentMonitoringJob,
+        $deployedModelId
+    );
 }
 // [END aiplatform_v1_generated_JobService_SearchModelDeploymentMonitoringStatsAnomalies_sync]

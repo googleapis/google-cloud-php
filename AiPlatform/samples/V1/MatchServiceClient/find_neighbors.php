@@ -31,19 +31,19 @@ use Google\Cloud\AIPlatform\V1\FindNeighborsResponse;
 /**
  * Finds the nearest neighbors of each vector within the request.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedIndexEndpoint The name of the index endpoint.
+ *                                       Format:
+ *                                       `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
+ *                                       Please see {@see MatchServiceClient::indexEndpointName()} for help formatting this field.
  */
-function find_neighbors_sample(): void
+function find_neighbors_sample(string $formattedIndexEndpoint): void
 {
     // Create a client.
     $matchServiceClient = new MatchServiceClient();
 
     // Prepare the request message.
-    $request = new FindNeighborsRequest();
+    $request = (new FindNeighborsRequest())
+        ->setIndexEndpoint($formattedIndexEndpoint);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +53,25 @@ function find_neighbors_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedIndexEndpoint = MatchServiceClient::indexEndpointName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[INDEX_ENDPOINT]'
+    );
+
+    find_neighbors_sample($formattedIndexEndpoint);
 }
 // [END aiplatform_v1_generated_MatchService_FindNeighbors_sync]

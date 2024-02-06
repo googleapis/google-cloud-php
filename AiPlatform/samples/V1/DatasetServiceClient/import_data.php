@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
+use Google\Cloud\AIPlatform\V1\ImportDataConfig;
 use Google\Cloud\AIPlatform\V1\ImportDataRequest;
 use Google\Cloud\AIPlatform\V1\ImportDataResponse;
 use Google\Rpc\Status;
@@ -33,19 +34,27 @@ use Google\Rpc\Status;
 /**
  * Imports data into a Dataset.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName                The name of the Dataset resource.
+ *                                             Format:
+ *                                             `projects/{project}/locations/{location}/datasets/{dataset}`
+ *                                             Please see {@see DatasetServiceClient::datasetName()} for help formatting this field.
+ * @param string $importConfigsImportSchemaUri Points to a YAML file stored on Google Cloud Storage describing
+ *                                             the import format. Validation will be done against the schema. The schema
+ *                                             is defined as an [OpenAPI 3.0.2 Schema
+ *                                             Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
  */
-function import_data_sample(): void
+function import_data_sample(string $formattedName, string $importConfigsImportSchemaUri): void
 {
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
     // Prepare the request message.
-    $request = new ImportDataRequest();
+    $importDataConfig = (new ImportDataConfig())
+        ->setImportSchemaUri($importConfigsImportSchemaUri);
+    $importConfigs = [$importDataConfig,];
+    $request = (new ImportDataRequest())
+        ->setName($formattedName)
+        ->setImportConfigs($importConfigs);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +74,22 @@ function import_data_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DatasetServiceClient::datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+    $importConfigsImportSchemaUri = '[IMPORT_SCHEMA_URI]';
+
+    import_data_sample($formattedName, $importConfigsImportSchemaUri);
 }
 // [END aiplatform_v1_generated_DatasetService_ImportData_sync]

@@ -29,17 +29,17 @@ class TensorboardService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-„{
-4google/cloud/aiplatform/v1/tensorboard_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto,google/cloud/aiplatform/v1/tensorboard.proto1google/cloud/aiplatform/v1/tensorboard_data.proto7google/cloud/aiplatform/v1/tensorboard_experiment.proto0google/cloud/aiplatform/v1/tensorboard_run.proto8google/cloud/aiplatform/v1/tensorboard_time_series.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"û
-CreateTensorboardRequest>
-parent (	B.‚A˙A\'
-%aiplatform.googleapis.com/TensorboardB
-tensorboard (2\'.google.cloud.aiplatform.v1.TensorboardB‚A"U
-GetTensorboardRequest<
-name (	B.‚A˙A\'
-%aiplatform.googleapis.com/Tensorboard"—
-ListTensorboardsRequest>
-parent (	B.‚A˙A\'%aiplatform.googleapis.com/Tensorboard
+∂{
+4google/cloud/aiplatform/v1/tensorboard_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto,google/cloud/aiplatform/v1/tensorboard.proto1google/cloud/aiplatform/v1/tensorboard_data.proto7google/cloud/aiplatform/v1/tensorboard_experiment.proto0google/cloud/aiplatform/v1/tensorboard_run.proto8google/cloud/aiplatform/v1/tensorboard_time_series.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ú
+CreateTensorboardRequest=
+parent (	B-‡A˙A\'
+%aiplatform.googleapis.com/TensorboardA
+tensorboard (2\'.google.cloud.aiplatform.v1.TensorboardB‡A"T
+GetTensorboardRequest;
+name (	B-‡A˙A\'
+%aiplatform.googleapis.com/Tensorboard"–
+ListTensorboardsRequest=
+parent (	B-‡A˙A\'%aiplatform.googleapis.com/Tensorboard
 filter (	
 	page_size (
 
@@ -48,15 +48,15 @@ page_token (	
 	read_mask (2.google.protobuf.FieldMask"r
 ListTensorboardsResponse=
 tensorboards (2\'.google.cloud.aiplatform.v1.Tensorboard
-next_page_token (	"ï
-UpdateTensorboardRequest5
-update_mask (2.google.protobuf.FieldMaskB‚AB
-tensorboard (2\'.google.cloud.aiplatform.v1.TensorboardB‚A"X
-DeleteTensorboardRequest<
-name (	B.‚A˙A\'
-%aiplatform.googleapis.com/Tensorboard"b
-ReadTensorboardUsageRequestC
-tensorboard (	B.‚A˙A\'
+next_page_token (	"ì
+UpdateTensorboardRequest4
+update_mask (2.google.protobuf.FieldMaskB‡AA
+tensorboard (2\'.google.cloud.aiplatform.v1.TensorboardB‡A"W
+DeleteTensorboardRequest;
+name (	B-‡A˙A\'
+%aiplatform.googleapis.com/Tensorboard"a
+ReadTensorboardUsageRequestB
+tensorboard (	B-‡A˙A\'
 %aiplatform.googleapis.com/Tensorboard"√
 ReadTensorboardUsageResponsej
 monthly_usage_data (2N.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.MonthlyUsageDataEntry8
@@ -68,22 +68,22 @@ view_count (w
 user_usage_data (2I.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.PerUserUsageDataÉ
 MonthlyUsageDataEntry
 key (	Y
-value (2J.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.PerMonthUsageData:8"a
-ReadTensorboardSizeRequestC
-tensorboard (	B.‚A˙A\'
+value (2J.google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.PerMonthUsageData:8"`
+ReadTensorboardSizeRequestB
+tensorboard (	B-‡A˙A\'
 %aiplatform.googleapis.com/Tensorboard"8
 ReadTensorboardSizeResponse
-storage_size_byte ("Í
-"CreateTensorboardExperimentRequestH
-parent (	B8‚A˙A1
+storage_size_byte ("Ë
+"CreateTensorboardExperimentRequestG
+parent (	B7‡A˙A1
 /aiplatform.googleapis.com/TensorboardExperimentQ
-tensorboard_experiment (21.google.cloud.aiplatform.v1.TensorboardExperiment\'
-tensorboard_experiment_id (	B‚A"i
-GetTensorboardExperimentRequestF
-name (	B8‚A˙A1
-/aiplatform.googleapis.com/TensorboardExperiment"Â
-!ListTensorboardExperimentsRequestH
-parent (	B8‚A˙A1/aiplatform.googleapis.com/TensorboardExperiment
+tensorboard_experiment (21.google.cloud.aiplatform.v1.TensorboardExperiment&
+tensorboard_experiment_id (	B‡A"h
+GetTensorboardExperimentRequestE
+name (	B7‡A˙A1
+/aiplatform.googleapis.com/TensorboardExperiment"‰
+!ListTensorboardExperimentsRequestG
+parent (	B7‡A˙A1/aiplatform.googleapis.com/TensorboardExperiment
 filter (	
 	page_size (
 
@@ -92,35 +92,35 @@ page_token (	
 	read_mask (2.google.protobuf.FieldMask"ë
 "ListTensorboardExperimentsResponseR
 tensorboard_experiments (21.google.cloud.aiplatform.v1.TensorboardExperiment
-next_page_token (	"¥
-"UpdateTensorboardExperimentRequest5
-update_mask (2.google.protobuf.FieldMaskB‚AW
-tensorboard_experiment (21.google.cloud.aiplatform.v1.TensorboardExperimentB‚A"l
-"DeleteTensorboardExperimentRequestF
-name (	B8‚A˙A1
-/aiplatform.googleapis.com/TensorboardExperiment"æ
-!BatchCreateTensorboardRunsRequestH
-parent (	B8‚A˙A1
-/aiplatform.googleapis.com/TensorboardExperimentO
-requests (27.google.cloud.aiplatform.v1.CreateTensorboardRunRequestB‚A"j
+next_page_token (	"≤
+"UpdateTensorboardExperimentRequest4
+update_mask (2.google.protobuf.FieldMaskB‡AV
+tensorboard_experiment (21.google.cloud.aiplatform.v1.TensorboardExperimentB‡A"k
+"DeleteTensorboardExperimentRequestE
+name (	B7‡A˙A1
+/aiplatform.googleapis.com/TensorboardExperiment"º
+!BatchCreateTensorboardRunsRequestG
+parent (	B7‡A˙A1
+/aiplatform.googleapis.com/TensorboardExperimentN
+requests (27.google.cloud.aiplatform.v1.CreateTensorboardRunRequestB‡A"j
 "BatchCreateTensorboardRunsResponseD
-tensorboard_runs (2*.google.cloud.aiplatform.v1.TensorboardRun"Õ
-CreateTensorboardRunRequestA
-parent (	B1‚A˙A*
-(aiplatform.googleapis.com/TensorboardRunI
-tensorboard_run (2*.google.cloud.aiplatform.v1.TensorboardRunB‚A 
-tensorboard_run_id (	B‚A"[
-GetTensorboardRunRequest?
-name (	B1‚A˙A*
-(aiplatform.googleapis.com/TensorboardRun"Å
-ReadTensorboardBlobDataRequestM
-time_series (	B8‚A˙A1
+tensorboard_runs (2*.google.cloud.aiplatform.v1.TensorboardRun" 
+CreateTensorboardRunRequest@
+parent (	B0‡A˙A*
+(aiplatform.googleapis.com/TensorboardRunH
+tensorboard_run (2*.google.cloud.aiplatform.v1.TensorboardRunB‡A
+tensorboard_run_id (	B‡A"Z
+GetTensorboardRunRequest>
+name (	B0‡A˙A*
+(aiplatform.googleapis.com/TensorboardRun"Ä
+ReadTensorboardBlobDataRequestL
+time_series (	B7‡A˙A1
 /aiplatform.googleapis.com/TensorboardTimeSeries
 blob_ids (	"]
 ReadTensorboardBlobDataResponse:
-blobs (2+.google.cloud.aiplatform.v1.TensorboardBlob"◊
-ListTensorboardRunsRequestA
-parent (	B1‚A˙A*(aiplatform.googleapis.com/TensorboardRun
+blobs (2+.google.cloud.aiplatform.v1.TensorboardBlob"÷
+ListTensorboardRunsRequest@
+parent (	B0‡A˙A*(aiplatform.googleapis.com/TensorboardRun
 filter (	
 	page_size (
 
@@ -129,29 +129,29 @@ page_token (	
 	read_mask (2.google.protobuf.FieldMask"|
 ListTensorboardRunsResponseD
 tensorboard_runs (2*.google.cloud.aiplatform.v1.TensorboardRun
-next_page_token (	"ü
-UpdateTensorboardRunRequest5
-update_mask (2.google.protobuf.FieldMaskB‚AI
-tensorboard_run (2*.google.cloud.aiplatform.v1.TensorboardRunB‚A"^
-DeleteTensorboardRunRequest?
-name (	B1‚A˙A*
-(aiplatform.googleapis.com/TensorboardRun"À
-\'BatchCreateTensorboardTimeSeriesRequestH
-parent (	B8‚A˙A1
-/aiplatform.googleapis.com/TensorboardExperimentV
-requests (2>.google.cloud.aiplatform.v1.CreateTensorboardTimeSeriesRequestB‚A"~
+next_page_token (	"ù
+UpdateTensorboardRunRequest4
+update_mask (2.google.protobuf.FieldMaskB‡AH
+tensorboard_run (2*.google.cloud.aiplatform.v1.TensorboardRunB‡A"]
+DeleteTensorboardRunRequest>
+name (	B0‡A˙A*
+(aiplatform.googleapis.com/TensorboardRun"…
+\'BatchCreateTensorboardTimeSeriesRequestG
+parent (	B7‡A˙A1
+/aiplatform.googleapis.com/TensorboardExperimentU
+requests (2>.google.cloud.aiplatform.v1.CreateTensorboardTimeSeriesRequestB‡A"~
 (BatchCreateTensorboardTimeSeriesResponseR
-tensorboard_time_series (21.google.cloud.aiplatform.v1.TensorboardTimeSeries"Ú
-"CreateTensorboardTimeSeriesRequestH
-parent (	B8‚A˙A1
-/aiplatform.googleapis.com/TensorboardTimeSeries(
-tensorboard_time_series_id (	B‚AX
-tensorboard_time_series (21.google.cloud.aiplatform.v1.TensorboardTimeSeriesB‚A"i
-GetTensorboardTimeSeriesRequestF
-name (	B8‚A˙A1
-/aiplatform.googleapis.com/TensorboardTimeSeries"‰
- ListTensorboardTimeSeriesRequestH
-parent (	B8‚A˙A1/aiplatform.googleapis.com/TensorboardTimeSeries
+tensorboard_time_series (21.google.cloud.aiplatform.v1.TensorboardTimeSeries"Ô
+"CreateTensorboardTimeSeriesRequestG
+parent (	B7‡A˙A1
+/aiplatform.googleapis.com/TensorboardTimeSeries\'
+tensorboard_time_series_id (	B‡AW
+tensorboard_time_series (21.google.cloud.aiplatform.v1.TensorboardTimeSeriesB‡A"h
+GetTensorboardTimeSeriesRequestE
+name (	B7‡A˙A1
+/aiplatform.googleapis.com/TensorboardTimeSeries"„
+ ListTensorboardTimeSeriesRequestG
+parent (	B7‡A˙A1/aiplatform.googleapis.com/TensorboardTimeSeries
 filter (	
 	page_size (
 
@@ -160,39 +160,39 @@ page_token (	
 	read_mask (2.google.protobuf.FieldMask"ê
 !ListTensorboardTimeSeriesResponseR
 tensorboard_time_series (21.google.cloud.aiplatform.v1.TensorboardTimeSeries
-next_page_token (	"µ
-"UpdateTensorboardTimeSeriesRequest5
-update_mask (2.google.protobuf.FieldMaskB‚AX
-tensorboard_time_series (21.google.cloud.aiplatform.v1.TensorboardTimeSeriesB‚A"l
-"DeleteTensorboardTimeSeriesRequestF
-name (	B8‚A˙A1
-/aiplatform.googleapis.com/TensorboardTimeSeries"ø
-)BatchReadTensorboardTimeSeriesDataRequestC
-tensorboard (	B.‚A˙A\'
-%aiplatform.googleapis.com/TensorboardM
-time_series (	B8‚A˙A1
+next_page_token (	"≥
+"UpdateTensorboardTimeSeriesRequest4
+update_mask (2.google.protobuf.FieldMaskB‡AW
+tensorboard_time_series (21.google.cloud.aiplatform.v1.TensorboardTimeSeriesB‡A"k
+"DeleteTensorboardTimeSeriesRequestE
+name (	B7‡A˙A1
+/aiplatform.googleapis.com/TensorboardTimeSeries"Ω
+)BatchReadTensorboardTimeSeriesDataRequestB
+tensorboard (	B-‡A˙A\'
+%aiplatform.googleapis.com/TensorboardL
+time_series (	B7‡A˙A1
 /aiplatform.googleapis.com/TensorboardTimeSeries"r
 *BatchReadTensorboardTimeSeriesDataResponseD
-time_series_data (2*.google.cloud.aiplatform.v1.TimeSeriesData"™
-$ReadTensorboardTimeSeriesDataRequestY
-tensorboard_time_series (	B8‚A˙A1
+time_series_data (2*.google.cloud.aiplatform.v1.TimeSeriesData"©
+$ReadTensorboardTimeSeriesDataRequestX
+tensorboard_time_series (	B7‡A˙A1
 /aiplatform.googleapis.com/TensorboardTimeSeries
 max_data_points (
 filter (	"m
 %ReadTensorboardTimeSeriesDataResponseD
-time_series_data (2*.google.cloud.aiplatform.v1.TimeSeriesData"‰
-%WriteTensorboardExperimentDataRequestX
-tensorboard_experiment (	B8‚A˙A1
-/aiplatform.googleapis.com/TensorboardExperimenta
-write_run_data_requests (2:.google.cloud.aiplatform.v1.WriteTensorboardRunDataRequestB‚A"(
-&WriteTensorboardExperimentDataResponse"∏
-WriteTensorboardRunDataRequestJ
-tensorboard_run (	B1‚A˙A*
-(aiplatform.googleapis.com/TensorboardRunJ
-time_series_data (2*.google.cloud.aiplatform.v1.TimeSeriesDataB‚A"!
-WriteTensorboardRunDataResponse"Ã
-&ExportTensorboardTimeSeriesDataRequestY
-tensorboard_time_series (	B8‚A˙A1
+time_series_data (2*.google.cloud.aiplatform.v1.TimeSeriesData"‚
+%WriteTensorboardExperimentDataRequestW
+tensorboard_experiment (	B7‡A˙A1
+/aiplatform.googleapis.com/TensorboardExperiment`
+write_run_data_requests (2:.google.cloud.aiplatform.v1.WriteTensorboardRunDataRequestB‡A"(
+&WriteTensorboardExperimentDataResponse"∂
+WriteTensorboardRunDataRequestI
+tensorboard_run (	B0‡A˙A*
+(aiplatform.googleapis.com/TensorboardRunI
+time_series_data (2*.google.cloud.aiplatform.v1.TimeSeriesDataB‡A"!
+WriteTensorboardRunDataResponse"À
+&ExportTensorboardTimeSeriesDataRequestX
+tensorboard_time_series (	B7‡A˙A1
 /aiplatform.googleapis.com/TensorboardTimeSeries
 filter (	
 	page_size (

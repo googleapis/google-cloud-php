@@ -33,6 +33,7 @@ class CreateDatasetRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                              $parent  Required. The resource name of the Location to create the Dataset in.
      *                                                     Format: `projects/{project}/locations/{location}`
+     *                                                     Please see {@see DatasetServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\Dataset $dataset Required. The Dataset to create.
      *
      * @return \Google\Cloud\AIPlatform\V1\CreateDatasetRequest

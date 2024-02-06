@@ -32,19 +32,19 @@ use Google\Rpc\Status;
 /**
  * Deletes a TrainingPipeline.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the TrainingPipeline resource to be deleted.
+ *                              Format:
+ *                              `projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}`
+ *                              Please see {@see PipelineServiceClient::trainingPipelineName()} for help formatting this field.
  */
-function delete_training_pipeline_sample(): void
+function delete_training_pipeline_sample(string $formattedName): void
 {
     // Create a client.
     $pipelineServiceClient = new PipelineServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteTrainingPipelineRequest();
+    $request = (new DeleteTrainingPipelineRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -62,5 +62,25 @@ function delete_training_pipeline_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = PipelineServiceClient::trainingPipelineName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[TRAINING_PIPELINE]'
+    );
+
+    delete_training_pipeline_sample($formattedName);
 }
 // [END aiplatform_v1_generated_PipelineService_DeleteTrainingPipeline_sync]

@@ -18,12 +18,12 @@ class DeployedModelRef
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¿
-3google/cloud/aiplatform/v1/deployed_model_ref.protogoogle.cloud.aiplatform.v1google/api/resource.proto"r
-DeployedModelRef=
-endpoint (	B+âAúA$
-"aiplatform.googleapis.com/Endpoint
-deployed_model_id (	BâABÔ
+½
+3google/cloud/aiplatform/v1/deployed_model_ref.protogoogle.cloud.aiplatform.v1google/api/resource.proto"p
+DeployedModelRef<
+endpoint (	B*àAúA$
+"aiplatform.googleapis.com/Endpoint
+deployed_model_id (	BàABÔ
 com.google.cloud.aiplatform.v1BDeployedModelNameProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

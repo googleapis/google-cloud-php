@@ -29,6 +29,7 @@ class DeleteSavedQueryRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The resource name of the SavedQuery to delete.
      *                     Format:
      *                     `projects/{project}/locations/{location}/datasets/{dataset}/savedQueries/{saved_query}`
+     *                     Please see {@see DatasetServiceClient::savedQueryName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\DeleteSavedQueryRequest
      *

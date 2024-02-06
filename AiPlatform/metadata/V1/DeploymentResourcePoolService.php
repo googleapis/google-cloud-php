@@ -26,20 +26,20 @@ class DeploymentResourcePoolService
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ø
-Agoogle/cloud/aiplatform/v1/deployment_resource_pool_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/aiplatform/v1/deployed_model_ref.proto9google/cloud/aiplatform/v1/deployment_resource_pool.proto)google/cloud/aiplatform/v1/endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto"Ë
-#CreateDeploymentResourcePoolRequest:
-parent (	B*‚A˙A#
-!locations.googleapis.com/LocationZ
-deployment_resource_pool (22.google.cloud.aiplatform.v1.DeploymentResourcePoolB‚A)
-deployment_resource_pool_id (	B‚A"
+®
+Agoogle/cloud/aiplatform/v1/deployment_resource_pool_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/aiplatform/v1/deployed_model_ref.proto9google/cloud/aiplatform/v1/deployment_resource_pool.proto)google/cloud/aiplatform/v1/endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto"Â
+#CreateDeploymentResourcePoolRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/LocationY
+deployment_resource_pool (22.google.cloud.aiplatform.v1.DeploymentResourcePoolB‡A(
+deployment_resource_pool_id (	B‡A"
 -CreateDeploymentResourcePoolOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"k
- GetDeploymentResourcePoolRequestG
-name (	B9‚A˙A2
-0aiplatform.googleapis.com/DeploymentResourcePool"á
-"ListDeploymentResourcePoolsRequest:
-parent (	B*‚A˙A#!locations.googleapis.com/Location
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"j
+ GetDeploymentResourcePoolRequestF
+name (	B8‡A˙A2
+0aiplatform.googleapis.com/DeploymentResourcePool"Ü
+"ListDeploymentResourcePoolsRequest9
+parent (	B)‡A˙A#!locations.googleapis.com/Location
 	page_size (
 
 page_token (	"ï
@@ -47,12 +47,12 @@ page_token (	"ï
 deployment_resource_pools (22.google.cloud.aiplatform.v1.DeploymentResourcePool
 next_page_token (	"
 -UpdateDeploymentResourcePoolOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"n
-#DeleteDeploymentResourcePoolRequestG
-name (	B9‚A˙A2
-0aiplatform.googleapis.com/DeploymentResourcePool"k
-QueryDeployedModelsRequest&
-deployment_resource_pool (	B‚A
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"m
+#DeleteDeploymentResourcePoolRequestF
+name (	B8‡A˙A2
+0aiplatform.googleapis.com/DeploymentResourcePool"j
+QueryDeployedModelsRequest%
+deployment_resource_pool (	B‡A
 	page_size (
 
 page_token (	"ã

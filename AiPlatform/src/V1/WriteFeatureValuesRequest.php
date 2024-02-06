@@ -41,7 +41,8 @@ class WriteFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *                                                                            `projects/{project}/locations/{location}/featurestores/
      *                                                                            {featurestore}/entityTypes/{entityType}`. For example,
      *                                                                            for a machine learning model predicting user clicks on a website, an
-     *                                                                            EntityType ID could be `user`.
+     *                                                                            EntityType ID could be `user`. Please see
+     *                                                                            {@see FeaturestoreOnlineServingServiceClient::entityTypeName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\WriteFeatureValuesPayload[] $payloads   Required. The entities to be written. Up to 100,000 feature values can be
      *                                                                            written across all `payloads`.
      *

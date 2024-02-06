@@ -43,7 +43,9 @@ function update_execution_sample(): void
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateExecutionRequest();
+    $execution = new Execution();
+    $request = (new UpdateExecutionRequest())
+        ->setExecution($execution);
 
     // Call the API and handle any network failures.
     try {

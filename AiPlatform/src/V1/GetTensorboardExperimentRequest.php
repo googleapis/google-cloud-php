@@ -29,6 +29,7 @@ class GetTensorboardExperimentRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the TensorboardExperiment resource.
      *                     Format:
      *                     `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
+     *                     Please see {@see TensorboardServiceClient::tensorboardExperimentName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetTensorboardExperimentRequest
      *

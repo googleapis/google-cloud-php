@@ -28,24 +28,40 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
 use Google\Cloud\AIPlatform\V1\CreateDatasetRequest;
 use Google\Cloud\AIPlatform\V1\Dataset;
+use Google\Protobuf\Value;
 use Google\Rpc\Status;
 
 /**
  * Creates a Dataset.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent          The resource name of the Location to create the Dataset in.
+ *                                         Format: `projects/{project}/locations/{location}`
+ *                                         Please see {@see DatasetServiceClient::locationName()} for help formatting this field.
+ * @param string $datasetDisplayName       The user-defined name of the Dataset.
+ *                                         The name can be up to 128 characters long and can consist of any UTF-8
+ *                                         characters.
+ * @param string $datasetMetadataSchemaUri Points to a YAML file stored on Google Cloud Storage describing
+ *                                         additional information about the Dataset. The schema is defined as an
+ *                                         OpenAPI 3.0.2 Schema Object. The schema files that can be used here are
+ *                                         found in gs://google-cloud-aiplatform/schema/dataset/metadata/.
  */
-function create_dataset_sample(): void
-{
+function create_dataset_sample(
+    string $formattedParent,
+    string $datasetDisplayName,
+    string $datasetMetadataSchemaUri
+): void {
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
     // Prepare the request message.
-    $request = new CreateDatasetRequest();
+    $datasetMetadata = new Value();
+    $dataset = (new Dataset())
+        ->setDisplayName($datasetDisplayName)
+        ->setMetadataSchemaUri($datasetMetadataSchemaUri)
+        ->setMetadata($datasetMetadata);
+    $request = (new CreateDatasetRequest())
+        ->setParent($formattedParent)
+        ->setDataset($dataset);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +81,23 @@ function create_dataset_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DatasetServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $datasetDisplayName = '[DISPLAY_NAME]';
+    $datasetMetadataSchemaUri = '[METADATA_SCHEMA_URI]';
+
+    create_dataset_sample($formattedParent, $datasetDisplayName, $datasetMetadataSchemaUri);
 }
 // [END aiplatform_v1_generated_DatasetService_CreateDataset_sync]

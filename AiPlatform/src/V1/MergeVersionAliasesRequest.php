@@ -46,6 +46,7 @@ class MergeVersionAliasesRequest extends \Google\Protobuf\Internal\Message
      *                                 explicitly included.
      *
      *                                 Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
+     *                                 Please see {@see ModelServiceClient::modelName()} for help formatting this field.
      * @param string[] $versionAliases Required. The set of version aliases to merge.
      *                                 The alias should be at most 128 characters, and match
      *                                 `[a-z][a-zA-Z0-9-]{0,126}[a-z-0-9]`.

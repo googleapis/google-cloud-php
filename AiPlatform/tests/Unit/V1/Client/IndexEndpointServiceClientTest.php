@@ -32,6 +32,7 @@ use Google\Cloud\AIPlatform\V1\CreateIndexEndpointRequest;
 use Google\Cloud\AIPlatform\V1\DeleteIndexEndpointRequest;
 use Google\Cloud\AIPlatform\V1\DeployIndexRequest;
 use Google\Cloud\AIPlatform\V1\DeployIndexResponse;
+use Google\Cloud\AIPlatform\V1\DeployedIndex;
 use Google\Cloud\AIPlatform\V1\GetIndexEndpointRequest;
 use Google\Cloud\AIPlatform\V1\IndexEndpoint;
 use Google\Cloud\AIPlatform\V1\ListIndexEndpointsRequest;
@@ -53,6 +54,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -130,7 +132,14 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateIndexEndpointRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $indexEndpoint = new IndexEndpoint();
+        $indexEndpointDisplayName = 'indexEndpointDisplayName-894895258';
+        $indexEndpoint->setDisplayName($indexEndpointDisplayName);
+        $request = (new CreateIndexEndpointRequest())
+            ->setParent($formattedParent)
+            ->setIndexEndpoint($indexEndpoint);
         $response = $gapicClient->createIndexEndpoint($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -141,6 +150,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.IndexEndpointService/CreateIndexEndpoint', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getIndexEndpoint();
+        $this->assertProtobufEquals($indexEndpoint, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createIndexEndpointTest');
         $response->pollUntilComplete([
@@ -191,7 +204,14 @@ class IndexEndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateIndexEndpointRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $indexEndpoint = new IndexEndpoint();
+        $indexEndpointDisplayName = 'indexEndpointDisplayName-894895258';
+        $indexEndpoint->setDisplayName($indexEndpointDisplayName);
+        $request = (new CreateIndexEndpointRequest())
+            ->setParent($formattedParent)
+            ->setIndexEndpoint($indexEndpoint);
         $response = $gapicClient->createIndexEndpoint($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -243,7 +263,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteIndexEndpointRequest();
+        // Mock request
+        $formattedName = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $request = (new DeleteIndexEndpointRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteIndexEndpoint($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -254,6 +277,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.IndexEndpointService/DeleteIndexEndpoint', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteIndexEndpointTest');
         $response->pollUntilComplete([
@@ -304,7 +329,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteIndexEndpointRequest();
+        // Mock request
+        $formattedName = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $request = (new DeleteIndexEndpointRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteIndexEndpoint($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -356,7 +384,16 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeployIndexRequest();
+        // Mock request
+        $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $deployedIndex = new DeployedIndex();
+        $deployedIndexId = 'deployedIndexId-1101212953';
+        $deployedIndex->setId($deployedIndexId);
+        $deployedIndexIndex = $gapicClient->indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
+        $deployedIndex->setIndex($deployedIndexIndex);
+        $request = (new DeployIndexRequest())
+            ->setIndexEndpoint($formattedIndexEndpoint)
+            ->setDeployedIndex($deployedIndex);
         $response = $gapicClient->deployIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -367,6 +404,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.IndexEndpointService/DeployIndex', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getIndexEndpoint();
+        $this->assertProtobufEquals($formattedIndexEndpoint, $actualValue);
+        $actualValue = $actualApiRequestObject->getDeployedIndex();
+        $this->assertProtobufEquals($deployedIndex, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deployIndexTest');
         $response->pollUntilComplete([
@@ -417,7 +458,16 @@ class IndexEndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeployIndexRequest();
+        // Mock request
+        $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $deployedIndex = new DeployedIndex();
+        $deployedIndexId = 'deployedIndexId-1101212953';
+        $deployedIndex->setId($deployedIndexId);
+        $deployedIndexIndex = $gapicClient->indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
+        $deployedIndex->setIndex($deployedIndexIndex);
+        $request = (new DeployIndexRequest())
+            ->setIndexEndpoint($formattedIndexEndpoint)
+            ->setDeployedIndex($deployedIndex);
         $response = $gapicClient->deployIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -467,7 +517,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setPublicEndpointEnabled($publicEndpointEnabled);
         $expectedResponse->setPublicEndpointDomainName($publicEndpointDomainName);
         $transport->addResponse($expectedResponse);
-        $request = new GetIndexEndpointRequest();
+        // Mock request
+        $formattedName = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $request = (new GetIndexEndpointRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getIndexEndpoint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -475,6 +528,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.IndexEndpointService/GetIndexEndpoint', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -496,7 +551,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIndexEndpointRequest();
+        // Mock request
+        $formattedName = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $request = (new GetIndexEndpointRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getIndexEndpoint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -528,7 +586,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setIndexEndpoints($indexEndpoints);
         $transport->addResponse($expectedResponse);
-        $request = new ListIndexEndpointsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListIndexEndpointsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listIndexEndpoints($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -539,6 +600,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.IndexEndpointService/ListIndexEndpoints', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -560,7 +623,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListIndexEndpointsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListIndexEndpointsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listIndexEndpoints($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -603,7 +669,16 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new MutateDeployedIndexRequest();
+        // Mock request
+        $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $deployedIndex = new DeployedIndex();
+        $deployedIndexId = 'deployedIndexId-1101212953';
+        $deployedIndex->setId($deployedIndexId);
+        $deployedIndexIndex = $gapicClient->indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
+        $deployedIndex->setIndex($deployedIndexIndex);
+        $request = (new MutateDeployedIndexRequest())
+            ->setIndexEndpoint($formattedIndexEndpoint)
+            ->setDeployedIndex($deployedIndex);
         $response = $gapicClient->mutateDeployedIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -614,6 +689,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.IndexEndpointService/MutateDeployedIndex', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getIndexEndpoint();
+        $this->assertProtobufEquals($formattedIndexEndpoint, $actualValue);
+        $actualValue = $actualApiRequestObject->getDeployedIndex();
+        $this->assertProtobufEquals($deployedIndex, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/mutateDeployedIndexTest');
         $response->pollUntilComplete([
@@ -664,7 +743,16 @@ class IndexEndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new MutateDeployedIndexRequest();
+        // Mock request
+        $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $deployedIndex = new DeployedIndex();
+        $deployedIndexId = 'deployedIndexId-1101212953';
+        $deployedIndex->setId($deployedIndexId);
+        $deployedIndexIndex = $gapicClient->indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
+        $deployedIndex->setIndex($deployedIndexIndex);
+        $request = (new MutateDeployedIndexRequest())
+            ->setIndexEndpoint($formattedIndexEndpoint)
+            ->setDeployedIndex($deployedIndex);
         $response = $gapicClient->mutateDeployedIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -716,7 +804,12 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UndeployIndexRequest();
+        // Mock request
+        $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $deployedIndexId = 'deployedIndexId1598189569';
+        $request = (new UndeployIndexRequest())
+            ->setIndexEndpoint($formattedIndexEndpoint)
+            ->setDeployedIndexId($deployedIndexId);
         $response = $gapicClient->undeployIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -727,6 +820,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.IndexEndpointService/UndeployIndex', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getIndexEndpoint();
+        $this->assertProtobufEquals($formattedIndexEndpoint, $actualValue);
+        $actualValue = $actualApiRequestObject->getDeployedIndexId();
+        $this->assertProtobufEquals($deployedIndexId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/undeployIndexTest');
         $response->pollUntilComplete([
@@ -777,7 +874,12 @@ class IndexEndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UndeployIndexRequest();
+        // Mock request
+        $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $deployedIndexId = 'deployedIndexId1598189569';
+        $request = (new UndeployIndexRequest())
+            ->setIndexEndpoint($formattedIndexEndpoint)
+            ->setDeployedIndexId($deployedIndexId);
         $response = $gapicClient->undeployIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -827,7 +929,14 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setPublicEndpointEnabled($publicEndpointEnabled);
         $expectedResponse->setPublicEndpointDomainName($publicEndpointDomainName);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateIndexEndpointRequest();
+        // Mock request
+        $indexEndpoint = new IndexEndpoint();
+        $indexEndpointDisplayName = 'indexEndpointDisplayName-894895258';
+        $indexEndpoint->setDisplayName($indexEndpointDisplayName);
+        $updateMask = new FieldMask();
+        $request = (new UpdateIndexEndpointRequest())
+            ->setIndexEndpoint($indexEndpoint)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateIndexEndpoint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -835,6 +944,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.IndexEndpointService/UpdateIndexEndpoint', $actualFuncCall);
+        $actualValue = $actualRequestObject->getIndexEndpoint();
+        $this->assertProtobufEquals($indexEndpoint, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -856,7 +969,14 @@ class IndexEndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateIndexEndpointRequest();
+        // Mock request
+        $indexEndpoint = new IndexEndpoint();
+        $indexEndpointDisplayName = 'indexEndpointDisplayName-894895258';
+        $indexEndpoint->setDisplayName($indexEndpointDisplayName);
+        $updateMask = new FieldMask();
+        $request = (new UpdateIndexEndpointRequest())
+            ->setIndexEndpoint($indexEndpoint)
+            ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateIndexEndpoint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1009,7 +1129,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1017,6 +1140,8 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1038,7 +1163,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1067,7 +1195,12 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1075,6 +1208,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1096,7 +1233,12 @@ class IndexEndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1121,7 +1263,12 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1129,6 +1276,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1150,7 +1301,12 @@ class IndexEndpointServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1209,7 +1365,14 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateIndexEndpointRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $indexEndpoint = new IndexEndpoint();
+        $indexEndpointDisplayName = 'indexEndpointDisplayName-894895258';
+        $indexEndpoint->setDisplayName($indexEndpointDisplayName);
+        $request = (new CreateIndexEndpointRequest())
+            ->setParent($formattedParent)
+            ->setIndexEndpoint($indexEndpoint);
         $response = $gapicClient->createIndexEndpointAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1220,6 +1383,10 @@ class IndexEndpointServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.IndexEndpointService/CreateIndexEndpoint', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getIndexEndpoint();
+        $this->assertProtobufEquals($indexEndpoint, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createIndexEndpointTest');
         $response->pollUntilComplete([

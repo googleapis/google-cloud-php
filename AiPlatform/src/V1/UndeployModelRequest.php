@@ -47,6 +47,7 @@ class UndeployModelRequest extends \Google\Protobuf\Internal\Message
      * @param string $endpoint        Required. The name of the Endpoint resource from which to undeploy a Model.
      *                                Format:
      *                                `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *                                Please see {@see EndpointServiceClient::endpointName()} for help formatting this field.
      * @param string $deployedModelId Required. The ID of the DeployedModel to be undeployed from the Endpoint.
      * @param array  $trafficSplit    If this field is provided, then the Endpoint's
      *                                [traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split] will be

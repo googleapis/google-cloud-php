@@ -46,6 +46,7 @@ class AddContextArtifactsAndExecutionsRequest extends \Google\Protobuf\Internal\
      * @param string   $context    Required. The resource name of the Context that the Artifacts and
      *                             Executions belong to. Format:
      *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     *                             Please see {@see MetadataServiceClient::contextName()} for help formatting this field.
      * @param string[] $artifacts  The resource names of the Artifacts to attribute to the Context.
      *
      *                             Format:

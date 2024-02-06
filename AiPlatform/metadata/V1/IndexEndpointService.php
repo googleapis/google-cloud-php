@@ -25,54 +25,54 @@ class IndexEndpointService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ç%
-7google/cloud/aiplatform/v1/index_endpoint_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto/google/cloud/aiplatform/v1/index_endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"°
-CreateIndexEndpointRequest:
-parent (	B*‚A˙A#
-!locations.googleapis.com/LocationG
-index_endpoint (2).google.cloud.aiplatform.v1.IndexEndpointB‚A"v
+˚$
+7google/cloud/aiplatform/v1/index_endpoint_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto/google/cloud/aiplatform/v1/index_endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ü
+CreateIndexEndpointRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/LocationF
+index_endpoint (2).google.cloud.aiplatform.v1.IndexEndpointB‡A"v
 $CreateIndexEndpointOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"Y
-GetIndexEndpointRequest>
-name (	B0‚A˙A)
-\'aiplatform.googleapis.com/IndexEndpoint"’
-ListIndexEndpointsRequest:
-parent (	B*‚A˙A#
-!locations.googleapis.com/Location
-filter (	B‚A
-	page_size (B‚A
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"X
+GetIndexEndpointRequest=
+name (	B/‡A˙A)
+\'aiplatform.googleapis.com/IndexEndpoint"–
+ListIndexEndpointsRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/Location
+filter (	B‡A
+	page_size (B‡A
 
-page_token (	B‚A3
-	read_mask (2.google.protobuf.FieldMaskB‚A"y
+page_token (	B‡A2
+	read_mask (2.google.protobuf.FieldMaskB‡A"y
 ListIndexEndpointsResponseB
 index_endpoints (2).google.cloud.aiplatform.v1.IndexEndpoint
-next_page_token (	"ú
-UpdateIndexEndpointRequestG
-index_endpoint (2).google.cloud.aiplatform.v1.IndexEndpointB‚A5
-update_mask (2.google.protobuf.FieldMaskB‚A"\\
-DeleteIndexEndpointRequest>
-name (	B0‚A˙A)
-\'aiplatform.googleapis.com/IndexEndpoint"ß
-DeployIndexRequestH
-index_endpoint (	B0‚A˙A)
-\'aiplatform.googleapis.com/IndexEndpointG
-deployed_index (2).google.cloud.aiplatform.v1.DeployedIndexB‚A"X
+next_page_token (	"ö
+UpdateIndexEndpointRequestF
+index_endpoint (2).google.cloud.aiplatform.v1.IndexEndpointB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"[
+DeleteIndexEndpointRequest=
+name (	B/‡A˙A)
+\'aiplatform.googleapis.com/IndexEndpoint"•
+DeployIndexRequestG
+index_endpoint (	B/‡A˙A)
+\'aiplatform.googleapis.com/IndexEndpointF
+deployed_index (2).google.cloud.aiplatform.v1.DeployedIndexB‡A"X
 DeployIndexResponseA
 deployed_index (2).google.cloud.aiplatform.v1.DeployedIndex"â
 DeployIndexOperationMetadataN
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata
-deployed_index_id (	"Å
-UndeployIndexRequestH
-index_endpoint (	B0‚A˙A)
-\'aiplatform.googleapis.com/IndexEndpoint
-deployed_index_id (	B‚A"
+deployed_index_id (	"
+UndeployIndexRequestG
+index_endpoint (	B/‡A˙A)
+\'aiplatform.googleapis.com/IndexEndpoint
+deployed_index_id (	B‡A"
 UndeployIndexResponse"p
 UndeployIndexOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"Ø
-MutateDeployedIndexRequestH
-index_endpoint (	B0‚A˙A)
-\'aiplatform.googleapis.com/IndexEndpointG
-deployed_index (2).google.cloud.aiplatform.v1.DeployedIndexB‚A"`
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"≠
+MutateDeployedIndexRequestG
+index_endpoint (	B/‡A˙A)
+\'aiplatform.googleapis.com/IndexEndpointF
+deployed_index (2).google.cloud.aiplatform.v1.DeployedIndexB‡A"`
 MutateDeployedIndexResponseA
 deployed_index (2).google.cloud.aiplatform.v1.DeployedIndex"ë
 $MutateDeployedIndexOperationMetadataN

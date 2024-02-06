@@ -89,7 +89,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $modelServiceClient = new ModelServiceClient();
  * try {
- *     $response = $modelServiceClient->batchImportEvaluatedAnnotations();
+ *     $formattedParent = $modelServiceClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
+ *     $evaluatedAnnotations = [];
+ *     $response = $modelServiceClient->batchImportEvaluatedAnnotations($formattedParent, $evaluatedAnnotations);
  * } finally {
  *     $modelServiceClient->close();
  * }
@@ -647,21 +649,21 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $response = $modelServiceClient->batchImportEvaluatedAnnotations();
+     *     $formattedParent = $modelServiceClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
+     *     $evaluatedAnnotations = [];
+     *     $response = $modelServiceClient->batchImportEvaluatedAnnotations($formattedParent, $evaluatedAnnotations);
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                $parent               Required. The name of the parent ModelEvaluationSlice resource.
+     *                                                    Format:
+     *                                                    `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}`
+     * @param EvaluatedAnnotation[] $evaluatedAnnotations Required. Evaluated annotations resource to be imported.
+     * @param array                 $optionalArgs         {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the parent ModelEvaluationSlice resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}`
-     *     @type EvaluatedAnnotation[] $evaluatedAnnotations
-     *           Required. Evaluated annotations resource to be imported.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -672,21 +674,16 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchImportEvaluatedAnnotations(array $optionalArgs = [])
-    {
+    public function batchImportEvaluatedAnnotations(
+        $parent,
+        $evaluatedAnnotations,
+        array $optionalArgs = []
+    ) {
         $request = new BatchImportEvaluatedAnnotationsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['evaluatedAnnotations'])) {
-            $request->setEvaluatedAnnotations(
-                $optionalArgs['evaluatedAnnotations']
-            );
-        }
-
+        $request->setParent($parent);
+        $request->setEvaluatedAnnotations($evaluatedAnnotations);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -708,21 +705,21 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $response = $modelServiceClient->batchImportModelEvaluationSlices();
+     *     $formattedParent = $modelServiceClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
+     *     $modelEvaluationSlices = [];
+     *     $response = $modelServiceClient->batchImportModelEvaluationSlices($formattedParent, $modelEvaluationSlices);
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                 $parent                Required. The name of the parent ModelEvaluation resource.
+     *                                                      Format:
+     *                                                      `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
+     * @param ModelEvaluationSlice[] $modelEvaluationSlices Required. Model evaluation slice resource to be imported.
+     * @param array                  $optionalArgs          {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the parent ModelEvaluation resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
-     *     @type ModelEvaluationSlice[] $modelEvaluationSlices
-     *           Required. Model evaluation slice resource to be imported.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -733,21 +730,16 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchImportModelEvaluationSlices(array $optionalArgs = [])
-    {
+    public function batchImportModelEvaluationSlices(
+        $parent,
+        $modelEvaluationSlices,
+        array $optionalArgs = []
+    ) {
         $request = new BatchImportModelEvaluationSlicesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['modelEvaluationSlices'])) {
-            $request->setModelEvaluationSlices(
-                $optionalArgs['modelEvaluationSlices']
-            );
-        }
-
+        $request->setParent($parent);
+        $request->setModelEvaluationSlices($modelEvaluationSlices);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -774,7 +766,9 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $operationResponse = $modelServiceClient->copyModel();
+     *     $formattedParent = $modelServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedSourceModel = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $modelServiceClient->copyModel($formattedParent, $formattedSourceModel);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -785,7 +779,7 @@ class ModelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $modelServiceClient->copyModel();
+     *     $operationResponse = $modelServiceClient->copyModel($formattedParent, $formattedSourceModel);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'copyModel');
@@ -805,7 +799,12 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the Location into which to copy the Model.
+     *                             Format: `projects/{project}/locations/{location}`
+     * @param string $sourceModel  Required. The resource name of the Model to copy. That Model must be in the
+     *                             same Project. Format:
+     *                             `projects/{project}/locations/{location}/models/{model}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $modelId
@@ -817,13 +816,6 @@ class ModelServiceGapicClient
      *     @type string $parentModel
      *           Optional. Specify this field to copy source_model into this existing
      *           Model as a new version. Format:
-     *           `projects/{project}/locations/{location}/models/{model}`
-     *     @type string $parent
-     *           Required. The resource name of the Location into which to copy the Model.
-     *           Format: `projects/{project}/locations/{location}`
-     *     @type string $sourceModel
-     *           Required. The resource name of the Model to copy. That Model must be in the
-     *           same Project. Format:
      *           `projects/{project}/locations/{location}/models/{model}`
      *     @type EncryptionSpec $encryptionSpec
      *           Customer-managed encryption key options. If this is set,
@@ -838,25 +830,19 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function copyModel(array $optionalArgs = [])
+    public function copyModel($parent, $sourceModel, array $optionalArgs = [])
     {
         $request = new CopyModelRequest();
         $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setSourceModel($sourceModel);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['modelId'])) {
             $request->setModelId($optionalArgs['modelId']);
         }
 
         if (isset($optionalArgs['parentModel'])) {
             $request->setParentModel($optionalArgs['parentModel']);
-        }
-
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['sourceModel'])) {
-            $request->setSourceModel($optionalArgs['sourceModel']);
         }
 
         if (isset($optionalArgs['encryptionSpec'])) {
@@ -891,7 +877,8 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $operationResponse = $modelServiceClient->deleteModel();
+     *     $formattedName = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $modelServiceClient->deleteModel($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -901,7 +888,7 @@ class ModelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $modelServiceClient->deleteModel();
+     *     $operationResponse = $modelServiceClient->deleteModel($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'deleteModel');
@@ -920,12 +907,11 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Model resource to be deleted.
+     *                             Format: `projects/{project}/locations/{location}/models/{model}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Model resource to be deleted.
-     *           Format: `projects/{project}/locations/{location}/models/{model}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -936,15 +922,12 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteModel(array $optionalArgs = [])
+    public function deleteModel($name, array $optionalArgs = [])
     {
         $request = new DeleteModelRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -972,7 +955,8 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $operationResponse = $modelServiceClient->deleteModelVersion();
+     *     $formattedName = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $modelServiceClient->deleteModelVersion($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -982,7 +966,7 @@ class ModelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $modelServiceClient->deleteModelVersion();
+     *     $operationResponse = $modelServiceClient->deleteModelVersion($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'deleteModelVersion');
@@ -1001,14 +985,13 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the model version to be deleted, with a version ID
+     *                             explicitly included.
+     *
+     *                             Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the model version to be deleted, with a version ID
-     *           explicitly included.
-     *
-     *           Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1019,15 +1002,12 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteModelVersion(array $optionalArgs = [])
+    public function deleteModelVersion($name, array $optionalArgs = [])
     {
         $request = new DeleteModelVersionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1052,7 +1032,9 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $operationResponse = $modelServiceClient->exportModel();
+     *     $formattedName = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $outputConfig = new OutputConfig();
+     *     $operationResponse = $modelServiceClient->exportModel($formattedName, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1063,7 +1045,7 @@ class ModelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $modelServiceClient->exportModel();
+     *     $operationResponse = $modelServiceClient->exportModel($formattedName, $outputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'exportModel');
@@ -1083,15 +1065,13 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string       $name         Required. The resource name of the Model to export.
+     *                                   The resource name may contain version id or version alias to specify the
+     *                                   version, if no version is specified, the default version will be exported.
+     * @param OutputConfig $outputConfig Required. The desired output location and configuration.
+     * @param array        $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the Model to export.
-     *           The resource name may contain version id or version alias to specify the
-     *           version, if no version is specified, the default version will be exported.
-     *     @type OutputConfig $outputConfig
-     *           Required. The desired output location and configuration.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1102,19 +1082,13 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function exportModel(array $optionalArgs = [])
+    public function exportModel($name, $outputConfig, array $optionalArgs = [])
     {
         $request = new ExportModelRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['outputConfig'])) {
-            $request->setOutputConfig($optionalArgs['outputConfig']);
-        }
-
+        $request->setName($name);
+        $request->setOutputConfig($outputConfig);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1136,28 +1110,28 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $response = $modelServiceClient->getModel();
+     *     $formattedName = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $response = $modelServiceClient->getModel($formattedName);
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Model resource.
+     *                             Format: `projects/{project}/locations/{location}/models/{model}`
+     *
+     *                             In order to retrieve a specific version of the model, also provide
+     *                             the version ID or version alias.
+     *                             Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *                             or
+     *                             `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *                             If no version ID or alias is specified, the "default" version will be
+     *                             returned. The "default" version alias is created for the first version of
+     *                             the model, and can be moved to other versions later on. There will be
+     *                             exactly one default version.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Model resource.
-     *           Format: `projects/{project}/locations/{location}/models/{model}`
-     *
-     *           In order to retrieve a specific version of the model, also provide
-     *           the version ID or version alias.
-     *           Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
-     *           or
-     *           `projects/{project}/locations/{location}/models/{model}&#64;golden`
-     *           If no version ID or alias is specified, the "default" version will be
-     *           returned. The "default" version alias is created for the first version of
-     *           the model, and can be moved to other versions later on. There will be
-     *           exactly one default version.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1168,15 +1142,12 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getModel(array $optionalArgs = [])
+    public function getModel($name, array $optionalArgs = [])
     {
         $request = new GetModelRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1198,19 +1169,19 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $response = $modelServiceClient->getModelEvaluation();
+     *     $formattedName = $modelServiceClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
+     *     $response = $modelServiceClient->getModelEvaluation($formattedName);
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the ModelEvaluation resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the ModelEvaluation resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1221,15 +1192,12 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getModelEvaluation(array $optionalArgs = [])
+    public function getModelEvaluation($name, array $optionalArgs = [])
     {
         $request = new GetModelEvaluationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1251,19 +1219,19 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $response = $modelServiceClient->getModelEvaluationSlice();
+     *     $formattedName = $modelServiceClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
+     *     $response = $modelServiceClient->getModelEvaluationSlice($formattedName);
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the ModelEvaluationSlice resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the ModelEvaluationSlice resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1274,15 +1242,12 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getModelEvaluationSlice(array $optionalArgs = [])
+    public function getModelEvaluationSlice($name, array $optionalArgs = [])
     {
         $request = new GetModelEvaluationSliceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1304,20 +1269,20 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $response = $modelServiceClient->importModelEvaluation();
+     *     $formattedParent = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $modelEvaluation = new ModelEvaluation();
+     *     $response = $modelServiceClient->importModelEvaluation($formattedParent, $modelEvaluation);
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string          $parent          Required. The name of the parent model resource.
+     *                                         Format: `projects/{project}/locations/{location}/models/{model}`
+     * @param ModelEvaluation $modelEvaluation Required. Model evaluation resource to be imported.
+     * @param array           $optionalArgs    {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the parent model resource.
-     *           Format: `projects/{project}/locations/{location}/models/{model}`
-     *     @type ModelEvaluation $modelEvaluation
-     *           Required. Model evaluation resource to be imported.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1328,19 +1293,16 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importModelEvaluation(array $optionalArgs = [])
-    {
+    public function importModelEvaluation(
+        $parent,
+        $modelEvaluation,
+        array $optionalArgs = []
+    ) {
         $request = new ImportModelEvaluationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['modelEvaluation'])) {
-            $request->setModelEvaluation($optionalArgs['modelEvaluation']);
-        }
-
+        $request->setParent($parent);
+        $request->setModelEvaluation($modelEvaluation);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1362,8 +1324,9 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
+     *     $formattedParent = $modelServiceClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $modelServiceClient->listModelEvaluationSlices();
+     *     $pagedResponse = $modelServiceClient->listModelEvaluationSlices($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1371,7 +1334,7 @@ class ModelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $modelServiceClient->listModelEvaluationSlices();
+     *     $pagedResponse = $modelServiceClient->listModelEvaluationSlices($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1380,13 +1343,12 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the ModelEvaluation to list the
+     *                             ModelEvaluationSlices from. Format:
+     *                             `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the ModelEvaluation to list the
-     *           ModelEvaluationSlices from. Format:
-     *           `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
      *     @type string $filter
      *           The standard list filter.
      *
@@ -1412,15 +1374,12 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listModelEvaluationSlices(array $optionalArgs = [])
+    public function listModelEvaluationSlices($parent, array $optionalArgs = [])
     {
         $request = new ListModelEvaluationSlicesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1458,8 +1417,9 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
+     *     $formattedParent = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $modelServiceClient->listModelEvaluations();
+     *     $pagedResponse = $modelServiceClient->listModelEvaluations($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1467,7 +1427,7 @@ class ModelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $modelServiceClient->listModelEvaluations();
+     *     $pagedResponse = $modelServiceClient->listModelEvaluations($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1476,12 +1436,11 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the Model to list the ModelEvaluations from.
+     *                             Format: `projects/{project}/locations/{location}/models/{model}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Model to list the ModelEvaluations from.
-     *           Format: `projects/{project}/locations/{location}/models/{model}`
      *     @type string $filter
      *           The standard list filter.
      *     @type int $pageSize
@@ -1505,15 +1464,12 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listModelEvaluations(array $optionalArgs = [])
+    public function listModelEvaluations($parent, array $optionalArgs = [])
     {
         $request = new ListModelEvaluationsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1551,8 +1507,9 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
+     *     $formattedName = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $modelServiceClient->listModelVersions();
+     *     $pagedResponse = $modelServiceClient->listModelVersions($formattedName);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1560,7 +1517,7 @@ class ModelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $modelServiceClient->listModelVersions();
+     *     $pagedResponse = $modelServiceClient->listModelVersions($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1569,11 +1526,10 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the model to list versions for.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the model to list versions for.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1616,15 +1572,12 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listModelVersions(array $optionalArgs = [])
+    public function listModelVersions($name, array $optionalArgs = [])
     {
         $request = new ListModelVersionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1666,8 +1619,9 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
+     *     $formattedParent = $modelServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $modelServiceClient->listModels();
+     *     $pagedResponse = $modelServiceClient->listModels($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1675,7 +1629,7 @@ class ModelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $modelServiceClient->listModels();
+     *     $pagedResponse = $modelServiceClient->listModels($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1684,12 +1638,11 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the Location to list the Models from.
+     *                             Format: `projects/{project}/locations/{location}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location to list the Models from.
-     *           Format: `projects/{project}/locations/{location}`
      *     @type string $filter
      *           An expression for filtering the results of the request. For field names
      *           both snake_case and camelCase are supported.
@@ -1739,15 +1692,12 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listModels(array $optionalArgs = [])
+    public function listModels($parent, array $optionalArgs = [])
     {
         $request = new ListModelsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1789,33 +1739,33 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $response = $modelServiceClient->mergeVersionAliases();
+     *     $formattedName = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $versionAliases = [];
+     *     $response = $modelServiceClient->mergeVersionAliases($formattedName, $versionAliases);
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $name           Required. The name of the model version to merge aliases, with a version ID
+     *                                 explicitly included.
+     *
+     *                                 Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
+     * @param string[] $versionAliases Required. The set of version aliases to merge.
+     *                                 The alias should be at most 128 characters, and match
+     *                                 `[a-z][a-zA-Z0-9-]{0,126}[a-z-0-9]`.
+     *                                 Add the `-` prefix to an alias means removing that alias from the version.
+     *                                 `-` is NOT counted in the 128 characters. Example: `-golden` means removing
+     *                                 the `golden` alias from the version.
+     *
+     *                                 There is NO ordering in aliases, which means
+     *                                 1) The aliases returned from GetModel API might not have the exactly same
+     *                                 order from this MergeVersionAliases API. 2) Adding and deleting the same
+     *                                 alias in the request is not recommended, and the 2 operations will be
+     *                                 cancelled out.
+     * @param array    $optionalArgs   {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the model version to merge aliases, with a version ID
-     *           explicitly included.
-     *
-     *           Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
-     *     @type string[] $versionAliases
-     *           Required. The set of version aliases to merge.
-     *           The alias should be at most 128 characters, and match
-     *           `[a-z][a-zA-Z0-9-]{0,126}[a-z-0-9]`.
-     *           Add the `-` prefix to an alias means removing that alias from the version.
-     *           `-` is NOT counted in the 128 characters. Example: `-golden` means removing
-     *           the `golden` alias from the version.
-     *
-     *           There is NO ordering in aliases, which means
-     *           1) The aliases returned from GetModel API might not have the exactly same
-     *           order from this MergeVersionAliases API. 2) Adding and deleting the same
-     *           alias in the request is not recommended, and the 2 operations will be
-     *           cancelled out.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1826,19 +1776,16 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function mergeVersionAliases(array $optionalArgs = [])
-    {
+    public function mergeVersionAliases(
+        $name,
+        $versionAliases,
+        array $optionalArgs = []
+    ) {
         $request = new MergeVersionAliasesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['versionAliases'])) {
-            $request->setVersionAliases($optionalArgs['versionAliases']);
-        }
-
+        $request->setName($name);
+        $request->setVersionAliases($versionAliases);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1860,7 +1807,8 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $operationResponse = $modelServiceClient->updateExplanationDataset();
+     *     $formattedModel = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $modelServiceClient->updateExplanationDataset($formattedModel);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1871,7 +1819,7 @@ class ModelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $modelServiceClient->updateExplanationDataset();
+     *     $operationResponse = $modelServiceClient->updateExplanationDataset($formattedModel);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'updateExplanationDataset');
@@ -1891,12 +1839,11 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $model        Required. The resource name of the Model to update.
+     *                             Format: `projects/{project}/locations/{location}/models/{model}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $model
-     *           Required. The resource name of the Model to update.
-     *           Format: `projects/{project}/locations/{location}/models/{model}`
      *     @type Examples $examples
      *           The example config containing the location of the dataset.
      *     @type RetrySettings|array $retrySettings
@@ -1909,15 +1856,12 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateExplanationDataset(array $optionalArgs = [])
+    public function updateExplanationDataset($model, array $optionalArgs = [])
     {
         $request = new UpdateExplanationDatasetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['model'])) {
-            $request->setModel($optionalArgs['model']);
-            $requestParamHeaders['model'] = $optionalArgs['model'];
-        }
-
+        $request->setModel($model);
+        $requestParamHeaders['model'] = $model;
         if (isset($optionalArgs['examples'])) {
             $request->setExamples($optionalArgs['examples']);
         }
@@ -1943,38 +1887,38 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $response = $modelServiceClient->updateModel();
+     *     $model = new Model();
+     *     $updateMask = new FieldMask();
+     *     $response = $modelServiceClient->updateModel($model, $updateMask);
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Model     $model        Required. The Model which replaces the resource on the server.
+     *                                When Model Versioning is enabled, the model.name will be used to determine
+     *                                whether to update the model or model version.
+     *                                1. model.name with the &#64; value, e.g. models/123&#64;1, refers to a version
+     *                                specific update.
+     *                                2. model.name without the &#64; value, e.g. models/123, refers to a model
+     *                                update.
+     *                                3. model.name with &#64;-, e.g. models/123&#64;-, refers to a model update.
+     *                                4. Supported model fields: display_name, description; supported
+     *                                version-specific fields: version_description. Labels are supported in both
+     *                                scenarios. Both the model labels and the version labels are merged when a
+     *                                model is returned. When updating labels, if the request is for
+     *                                model-specific update, model label gets updated. Otherwise, version labels
+     *                                get updated.
+     *                                5. A model name or model version name fields update mismatch will cause a
+     *                                precondition error.
+     *                                6. One request cannot update both the model and the version fields. You
+     *                                must update them separately.
+     * @param FieldMask $updateMask   Required. The update mask applies to the resource.
+     *                                For the `FieldMask` definition, see
+     *                                [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type Model $model
-     *           Required. The Model which replaces the resource on the server.
-     *           When Model Versioning is enabled, the model.name will be used to determine
-     *           whether to update the model or model version.
-     *           1. model.name with the &#64; value, e.g. models/123&#64;1, refers to a version
-     *           specific update.
-     *           2. model.name without the &#64; value, e.g. models/123, refers to a model
-     *           update.
-     *           3. model.name with &#64;-, e.g. models/123&#64;-, refers to a model update.
-     *           4. Supported model fields: display_name, description; supported
-     *           version-specific fields: version_description. Labels are supported in both
-     *           scenarios. Both the model labels and the version labels are merged when a
-     *           model is returned. When updating labels, if the request is for
-     *           model-specific update, model label gets updated. Otherwise, version labels
-     *           get updated.
-     *           5. A model name or model version name fields update mismatch will cause a
-     *           precondition error.
-     *           6. One request cannot update both the model and the version fields. You
-     *           must update them separately.
-     *     @type FieldMask $updateMask
-     *           Required. The update mask applies to the resource.
-     *           For the `FieldMask` definition, see
-     *           [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1985,18 +1929,13 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateModel(array $optionalArgs = [])
+    public function updateModel($model, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateModelRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['model'])) {
-            $request->setModel($optionalArgs['model']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setModel($model);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['model.name'] = $model->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2018,7 +1957,9 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $operationResponse = $modelServiceClient->uploadModel();
+     *     $formattedParent = $modelServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $model = new Model();
+     *     $operationResponse = $modelServiceClient->uploadModel($formattedParent, $model);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2029,7 +1970,7 @@ class ModelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $modelServiceClient->uploadModel();
+     *     $operationResponse = $modelServiceClient->uploadModel($formattedParent, $model);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'uploadModel');
@@ -2049,12 +1990,12 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the Location into which to upload the Model.
+     *                             Format: `projects/{project}/locations/{location}`
+     * @param Model  $model        Required. The Model to create.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location into which to upload the Model.
-     *           Format: `projects/{project}/locations/{location}`
      *     @type string $parentModel
      *           Optional. The resource name of the model into which to upload the version.
      *           Only specify this field when uploading a new version.
@@ -2064,8 +2005,6 @@ class ModelServiceGapicClient
      *
      *           This value may be up to 63 characters, and valid characters are
      *           `[a-z0-9_-]`. The first character cannot be a number or hyphen.
-     *     @type Model $model
-     *           Required. The Model to create.
      *     @type string $serviceAccount
      *           Optional. The user-provided custom service account to use to do the model
      *           upload. If empty, [Vertex AI Service
@@ -2084,25 +2023,19 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function uploadModel(array $optionalArgs = [])
+    public function uploadModel($parent, $model, array $optionalArgs = [])
     {
         $request = new UploadModelRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $request->setModel($model);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['parentModel'])) {
             $request->setParentModel($optionalArgs['parentModel']);
         }
 
         if (isset($optionalArgs['modelId'])) {
             $request->setModelId($optionalArgs['modelId']);
-        }
-
-        if (isset($optionalArgs['model'])) {
-            $request->setModel($optionalArgs['model']);
         }
 
         if (isset($optionalArgs['serviceAccount'])) {
@@ -2271,18 +2204,18 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $response = $modelServiceClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $modelServiceClient->getIamPolicy($resource);
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -2296,15 +2229,12 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -2336,23 +2266,23 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $response = $modelServiceClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $modelServiceClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -2369,19 +2299,13 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2415,23 +2339,23 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $response = $modelServiceClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $modelServiceClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2442,19 +2366,16 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

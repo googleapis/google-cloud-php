@@ -33,19 +33,19 @@ use Google\Rpc\Status;
  * Deletes a single EntityType. The EntityType must not have any Features
  * or `force` must be set to true for the request to succeed.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the EntityType to be deleted.
+ *                              Format:
+ *                              `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+ *                              Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
  */
-function delete_entity_type_sample(): void
+function delete_entity_type_sample(string $formattedName): void
 {
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteEntityTypeRequest();
+    $request = (new DeleteEntityTypeRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -63,5 +63,26 @@ function delete_entity_type_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = FeaturestoreServiceClient::entityTypeName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[FEATURESTORE]',
+        '[ENTITY_TYPE]'
+    );
+
+    delete_entity_type_sample($formattedName);
 }
 // [END aiplatform_v1_generated_FeaturestoreService_DeleteEntityType_sync]

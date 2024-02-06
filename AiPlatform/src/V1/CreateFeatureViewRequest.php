@@ -54,6 +54,7 @@ class CreateFeatureViewRequest extends \Google\Protobuf\Internal\Message
      * @param string                                  $parent        Required. The resource name of the FeatureOnlineStore to create
      *                                                               FeatureViews. Format:
      *                                                               `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}`
+     *                                                               Please see {@see FeatureOnlineStoreAdminServiceClient::featureOnlineStoreName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\FeatureView $featureView   Required. The FeatureView to create.
      * @param string                                  $featureViewId Required. The ID to use for the FeatureView, which will become the final
      *                                                               component of the FeatureView's resource name.

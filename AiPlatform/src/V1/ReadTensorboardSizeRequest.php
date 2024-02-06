@@ -29,6 +29,7 @@ class ReadTensorboardSizeRequest extends \Google\Protobuf\Internal\Message
      * @param string $tensorboard Required. The name of the Tensorboard resource.
      *                            Format:
      *                            `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+     *                            Please see {@see TensorboardServiceClient::tensorboardName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ReadTensorboardSizeRequest
      *

@@ -42,19 +42,19 @@ use Google\Rpc\Status;
  * required, the caller must retry the same delete request again and wait till
  * the new operation returned is marked as successfully done.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedEntityType The resource name of the EntityType grouping the Features for
+ *                                    which values are being deleted from. Format:
+ *                                    `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`
+ *                                    Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
  */
-function delete_feature_values_sample(): void
+function delete_feature_values_sample(string $formattedEntityType): void
 {
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteFeatureValuesRequest();
+    $request = (new DeleteFeatureValuesRequest())
+        ->setEntityType($formattedEntityType);
 
     // Call the API and handle any network failures.
     try {
@@ -74,5 +74,26 @@ function delete_feature_values_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedEntityType = FeaturestoreServiceClient::entityTypeName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[FEATURESTORE]',
+        '[ENTITY_TYPE]'
+    );
+
+    delete_feature_values_sample($formattedEntityType);
 }
 // [END aiplatform_v1_generated_FeaturestoreService_DeleteFeatureValues_sync]

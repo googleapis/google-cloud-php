@@ -73,7 +73,10 @@ use Google\Protobuf\FieldMask;
  * ```
  * $featureRegistryServiceClient = new FeatureRegistryServiceClient();
  * try {
- *     $operationResponse = $featureRegistryServiceClient->createFeature();
+ *     $formattedParent = $featureRegistryServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
+ *     $feature = new Feature();
+ *     $featureId = 'feature_id';
+ *     $operationResponse = $featureRegistryServiceClient->createFeature($formattedParent, $feature, $featureId);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -84,7 +87,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $featureRegistryServiceClient->createFeature();
+ *     $operationResponse = $featureRegistryServiceClient->createFeature($formattedParent, $feature, $featureId);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $featureRegistryServiceClient->resumeOperation($operationName, 'createFeature');
@@ -567,7 +570,10 @@ class FeatureRegistryServiceGapicClient
      * ```
      * $featureRegistryServiceClient = new FeatureRegistryServiceClient();
      * try {
-     *     $operationResponse = $featureRegistryServiceClient->createFeature();
+     *     $formattedParent = $featureRegistryServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
+     *     $feature = new Feature();
+     *     $featureId = 'feature_id';
+     *     $operationResponse = $featureRegistryServiceClient->createFeature($formattedParent, $feature, $featureId);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -578,7 +584,7 @@ class FeatureRegistryServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featureRegistryServiceClient->createFeature();
+     *     $operationResponse = $featureRegistryServiceClient->createFeature($formattedParent, $feature, $featureId);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featureRegistryServiceClient->resumeOperation($operationName, 'createFeature');
@@ -598,25 +604,22 @@ class FeatureRegistryServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string  $parent       Required. The resource name of the EntityType or FeatureGroup to create a
+     *                              Feature. Format for entity_type as parent:
+     *                              `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *                              Format for feature_group as parent:
+     *                              `projects/{project}/locations/{location}/featureGroups/{feature_group}`
+     * @param Feature $feature      Required. The Feature to create.
+     * @param string  $featureId    Required. The ID to use for the Feature, which will become the final
+     *                              component of the Feature's resource name.
+     *
+     *                              This value may be up to 128 characters, and valid characters are
+     *                              `[a-z0-9_]`. The first character cannot be a number.
+     *
+     *                              The value must be unique within an EntityType/FeatureGroup.
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the EntityType or FeatureGroup to create a
-     *           Feature. Format for entity_type as parent:
-     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
-     *           Format for feature_group as parent:
-     *           `projects/{project}/locations/{location}/featureGroups/{feature_group}`
-     *     @type Feature $feature
-     *           Required. The Feature to create.
-     *     @type string $featureId
-     *           Required. The ID to use for the Feature, which will become the final
-     *           component of the Feature's resource name.
-     *
-     *           This value may be up to 128 characters, and valid characters are
-     *           `[a-z0-9_]`. The first character cannot be a number.
-     *
-     *           The value must be unique within an EntityType/FeatureGroup.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -627,23 +630,18 @@ class FeatureRegistryServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createFeature(array $optionalArgs = [])
-    {
+    public function createFeature(
+        $parent,
+        $feature,
+        $featureId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateFeatureRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['feature'])) {
-            $request->setFeature($optionalArgs['feature']);
-        }
-
-        if (isset($optionalArgs['featureId'])) {
-            $request->setFeatureId($optionalArgs['featureId']);
-        }
-
+        $request->setParent($parent);
+        $request->setFeature($feature);
+        $request->setFeatureId($featureId);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -665,7 +663,10 @@ class FeatureRegistryServiceGapicClient
      * ```
      * $featureRegistryServiceClient = new FeatureRegistryServiceClient();
      * try {
-     *     $operationResponse = $featureRegistryServiceClient->createFeatureGroup();
+     *     $formattedParent = $featureRegistryServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $featureGroup = new FeatureGroup();
+     *     $featureGroupId = 'feature_group_id';
+     *     $operationResponse = $featureRegistryServiceClient->createFeatureGroup($formattedParent, $featureGroup, $featureGroupId);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -676,7 +677,7 @@ class FeatureRegistryServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featureRegistryServiceClient->createFeatureGroup();
+     *     $operationResponse = $featureRegistryServiceClient->createFeatureGroup($formattedParent, $featureGroup, $featureGroupId);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featureRegistryServiceClient->resumeOperation($operationName, 'createFeatureGroup');
@@ -696,23 +697,20 @@ class FeatureRegistryServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string       $parent         Required. The resource name of the Location to create FeatureGroups.
+     *                                     Format:
+     *                                     `projects/{project}/locations/{location}'`
+     * @param FeatureGroup $featureGroup   Required. The FeatureGroup to create.
+     * @param string       $featureGroupId Required. The ID to use for this FeatureGroup, which will become the final
+     *                                     component of the FeatureGroup's resource name.
+     *
+     *                                     This value may be up to 60 characters, and valid characters are
+     *                                     `[a-z0-9_]`. The first character cannot be a number.
+     *
+     *                                     The value must be unique within the project and location.
+     * @param array        $optionalArgs   {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location to create FeatureGroups.
-     *           Format:
-     *           `projects/{project}/locations/{location}'`
-     *     @type FeatureGroup $featureGroup
-     *           Required. The FeatureGroup to create.
-     *     @type string $featureGroupId
-     *           Required. The ID to use for this FeatureGroup, which will become the final
-     *           component of the FeatureGroup's resource name.
-     *
-     *           This value may be up to 60 characters, and valid characters are
-     *           `[a-z0-9_]`. The first character cannot be a number.
-     *
-     *           The value must be unique within the project and location.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -723,23 +721,18 @@ class FeatureRegistryServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createFeatureGroup(array $optionalArgs = [])
-    {
+    public function createFeatureGroup(
+        $parent,
+        $featureGroup,
+        $featureGroupId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateFeatureGroupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['featureGroup'])) {
-            $request->setFeatureGroup($optionalArgs['featureGroup']);
-        }
-
-        if (isset($optionalArgs['featureGroupId'])) {
-            $request->setFeatureGroupId($optionalArgs['featureGroupId']);
-        }
-
+        $request->setParent($parent);
+        $request->setFeatureGroup($featureGroup);
+        $request->setFeatureGroupId($featureGroupId);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -761,7 +754,8 @@ class FeatureRegistryServiceGapicClient
      * ```
      * $featureRegistryServiceClient = new FeatureRegistryServiceClient();
      * try {
-     *     $operationResponse = $featureRegistryServiceClient->deleteFeature();
+     *     $formattedName = $featureRegistryServiceClient->featureName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]', '[FEATURE]');
+     *     $operationResponse = $featureRegistryServiceClient->deleteFeature($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -771,7 +765,7 @@ class FeatureRegistryServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featureRegistryServiceClient->deleteFeature();
+     *     $operationResponse = $featureRegistryServiceClient->deleteFeature($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featureRegistryServiceClient->resumeOperation($operationName, 'deleteFeature');
@@ -790,14 +784,13 @@ class FeatureRegistryServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Features to be deleted.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     *                             `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Features to be deleted.
-     *           Format:
-     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
-     *           `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -808,15 +801,12 @@ class FeatureRegistryServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteFeature(array $optionalArgs = [])
+    public function deleteFeature($name, array $optionalArgs = [])
     {
         $request = new DeleteFeatureRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -838,7 +828,8 @@ class FeatureRegistryServiceGapicClient
      * ```
      * $featureRegistryServiceClient = new FeatureRegistryServiceClient();
      * try {
-     *     $operationResponse = $featureRegistryServiceClient->deleteFeatureGroup();
+     *     $formattedName = $featureRegistryServiceClient->featureGroupName('[PROJECT]', '[LOCATION]', '[FEATURE_GROUP]');
+     *     $operationResponse = $featureRegistryServiceClient->deleteFeatureGroup($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -848,7 +839,7 @@ class FeatureRegistryServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featureRegistryServiceClient->deleteFeatureGroup();
+     *     $operationResponse = $featureRegistryServiceClient->deleteFeatureGroup($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featureRegistryServiceClient->resumeOperation($operationName, 'deleteFeatureGroup');
@@ -867,13 +858,12 @@ class FeatureRegistryServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the FeatureGroup to be deleted.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/featureGroups/{feature_group}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the FeatureGroup to be deleted.
-     *           Format:
-     *           `projects/{project}/locations/{location}/featureGroups/{feature_group}`
      *     @type bool $force
      *           If set to true, any Features under this FeatureGroup
      *           will also be deleted. (Otherwise, the request will only work if the
@@ -888,15 +878,12 @@ class FeatureRegistryServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteFeatureGroup(array $optionalArgs = [])
+    public function deleteFeatureGroup($name, array $optionalArgs = [])
     {
         $request = new DeleteFeatureGroupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -922,21 +909,21 @@ class FeatureRegistryServiceGapicClient
      * ```
      * $featureRegistryServiceClient = new FeatureRegistryServiceClient();
      * try {
-     *     $response = $featureRegistryServiceClient->getFeature();
+     *     $formattedName = $featureRegistryServiceClient->featureName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]', '[FEATURE]');
+     *     $response = $featureRegistryServiceClient->getFeature($formattedName);
      * } finally {
      *     $featureRegistryServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Feature resource.
+     *                             Format for entity_type as parent:
+     *                             `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *                             Format for feature_group as parent:
+     *                             `projects/{project}/locations/{location}/featureGroups/{feature_group}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Feature resource.
-     *           Format for entity_type as parent:
-     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
-     *           Format for feature_group as parent:
-     *           `projects/{project}/locations/{location}/featureGroups/{feature_group}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -947,15 +934,12 @@ class FeatureRegistryServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getFeature(array $optionalArgs = [])
+    public function getFeature($name, array $optionalArgs = [])
     {
         $request = new GetFeatureRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -977,17 +961,17 @@ class FeatureRegistryServiceGapicClient
      * ```
      * $featureRegistryServiceClient = new FeatureRegistryServiceClient();
      * try {
-     *     $response = $featureRegistryServiceClient->getFeatureGroup();
+     *     $formattedName = $featureRegistryServiceClient->featureGroupName('[PROJECT]', '[LOCATION]', '[FEATURE_GROUP]');
+     *     $response = $featureRegistryServiceClient->getFeatureGroup($formattedName);
      * } finally {
      *     $featureRegistryServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the FeatureGroup resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the FeatureGroup resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -998,15 +982,12 @@ class FeatureRegistryServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getFeatureGroup(array $optionalArgs = [])
+    public function getFeatureGroup($name, array $optionalArgs = [])
     {
         $request = new GetFeatureGroupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1028,8 +1009,9 @@ class FeatureRegistryServiceGapicClient
      * ```
      * $featureRegistryServiceClient = new FeatureRegistryServiceClient();
      * try {
+     *     $formattedParent = $featureRegistryServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $featureRegistryServiceClient->listFeatureGroups();
+     *     $pagedResponse = $featureRegistryServiceClient->listFeatureGroups($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1037,7 +1019,7 @@ class FeatureRegistryServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $featureRegistryServiceClient->listFeatureGroups();
+     *     $pagedResponse = $featureRegistryServiceClient->listFeatureGroups($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1046,13 +1028,12 @@ class FeatureRegistryServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the Location to list FeatureGroups.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location to list FeatureGroups.
-     *           Format:
-     *           `projects/{project}/locations/{location}`
      *     @type string $filter
      *           Lists the FeatureGroups that match the filter expression. The
      *           following fields are supported:
@@ -1097,15 +1078,12 @@ class FeatureRegistryServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listFeatureGroups(array $optionalArgs = [])
+    public function listFeatureGroups($parent, array $optionalArgs = [])
     {
         $request = new ListFeatureGroupsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1143,8 +1121,9 @@ class FeatureRegistryServiceGapicClient
      * ```
      * $featureRegistryServiceClient = new FeatureRegistryServiceClient();
      * try {
+     *     $formattedParent = $featureRegistryServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $featureRegistryServiceClient->listFeatures();
+     *     $pagedResponse = $featureRegistryServiceClient->listFeatures($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1152,7 +1131,7 @@ class FeatureRegistryServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $featureRegistryServiceClient->listFeatures();
+     *     $pagedResponse = $featureRegistryServiceClient->listFeatures($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1161,15 +1140,14 @@ class FeatureRegistryServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the Location to list Features.
+     *                             Format for entity_type as parent:
+     *                             `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *                             Format for feature_group as parent:
+     *                             `projects/{project}/locations/{location}/featureGroups/{feature_group}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location to list Features.
-     *           Format for entity_type as parent:
-     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
-     *           Format for feature_group as parent:
-     *           `projects/{project}/locations/{location}/featureGroups/{feature_group}`
      *     @type string $filter
      *           Lists the Features that match the filter expression. The following
      *           filters are supported:
@@ -1229,15 +1207,12 @@ class FeatureRegistryServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listFeatures(array $optionalArgs = [])
+    public function listFeatures($parent, array $optionalArgs = [])
     {
         $request = new ListFeaturesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1283,7 +1258,8 @@ class FeatureRegistryServiceGapicClient
      * ```
      * $featureRegistryServiceClient = new FeatureRegistryServiceClient();
      * try {
-     *     $operationResponse = $featureRegistryServiceClient->updateFeature();
+     *     $feature = new Feature();
+     *     $operationResponse = $featureRegistryServiceClient->updateFeature($feature);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1294,7 +1270,7 @@ class FeatureRegistryServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featureRegistryServiceClient->updateFeature();
+     *     $operationResponse = $featureRegistryServiceClient->updateFeature($feature);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featureRegistryServiceClient->resumeOperation($operationName, 'updateFeature');
@@ -1314,15 +1290,14 @@ class FeatureRegistryServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Feature $feature      Required. The Feature's `name` field is used to identify the Feature to be
+     *                              updated.
+     *                              Format:
+     *                              `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     *                              `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type Feature $feature
-     *           Required. The Feature's `name` field is used to identify the Feature to be
-     *           updated.
-     *           Format:
-     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
-     *           `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      *     @type FieldMask $updateMask
      *           Field mask is used to specify the fields to be overwritten in the
      *           Features resource by the update.
@@ -1347,14 +1322,12 @@ class FeatureRegistryServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateFeature(array $optionalArgs = [])
+    public function updateFeature($feature, array $optionalArgs = [])
     {
         $request = new UpdateFeatureRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['feature'])) {
-            $request->setFeature($optionalArgs['feature']);
-        }
-
+        $request->setFeature($feature);
+        $requestParamHeaders['feature.name'] = $feature->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1380,7 +1353,8 @@ class FeatureRegistryServiceGapicClient
      * ```
      * $featureRegistryServiceClient = new FeatureRegistryServiceClient();
      * try {
-     *     $operationResponse = $featureRegistryServiceClient->updateFeatureGroup();
+     *     $featureGroup = new FeatureGroup();
+     *     $operationResponse = $featureRegistryServiceClient->updateFeatureGroup($featureGroup);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1391,7 +1365,7 @@ class FeatureRegistryServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featureRegistryServiceClient->updateFeatureGroup();
+     *     $operationResponse = $featureRegistryServiceClient->updateFeatureGroup($featureGroup);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featureRegistryServiceClient->resumeOperation($operationName, 'updateFeatureGroup');
@@ -1411,13 +1385,12 @@ class FeatureRegistryServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param FeatureGroup $featureGroup Required. The FeatureGroup's `name` field is used to identify the
+     *                                   FeatureGroup to be updated. Format:
+     *                                   `projects/{project}/locations/{location}/featureGroups/{feature_group}`
+     * @param array        $optionalArgs {
      *     Optional.
      *
-     *     @type FeatureGroup $featureGroup
-     *           Required. The FeatureGroup's `name` field is used to identify the
-     *           FeatureGroup to be updated. Format:
-     *           `projects/{project}/locations/{location}/featureGroups/{feature_group}`
      *     @type FieldMask $updateMask
      *           Field mask is used to specify the fields to be overwritten in the
      *           FeatureGroup resource by the update.
@@ -1440,14 +1413,12 @@ class FeatureRegistryServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateFeatureGroup(array $optionalArgs = [])
+    public function updateFeatureGroup($featureGroup, array $optionalArgs = [])
     {
         $request = new UpdateFeatureGroupRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['featureGroup'])) {
-            $request->setFeatureGroup($optionalArgs['featureGroup']);
-        }
-
+        $request->setFeatureGroup($featureGroup);
+        $requestParamHeaders['feature_group.name'] = $featureGroup->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1614,18 +1585,18 @@ class FeatureRegistryServiceGapicClient
      * ```
      * $featureRegistryServiceClient = new FeatureRegistryServiceClient();
      * try {
-     *     $response = $featureRegistryServiceClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $featureRegistryServiceClient->getIamPolicy($resource);
      * } finally {
      *     $featureRegistryServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1639,15 +1610,12 @@ class FeatureRegistryServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1679,23 +1647,23 @@ class FeatureRegistryServiceGapicClient
      * ```
      * $featureRegistryServiceClient = new FeatureRegistryServiceClient();
      * try {
-     *     $response = $featureRegistryServiceClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $featureRegistryServiceClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $featureRegistryServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1712,19 +1680,13 @@ class FeatureRegistryServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1758,23 +1720,23 @@ class FeatureRegistryServiceGapicClient
      * ```
      * $featureRegistryServiceClient = new FeatureRegistryServiceClient();
      * try {
-     *     $response = $featureRegistryServiceClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $featureRegistryServiceClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $featureRegistryServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1785,19 +1747,16 @@ class FeatureRegistryServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

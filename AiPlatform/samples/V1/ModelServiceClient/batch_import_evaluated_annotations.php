@@ -27,23 +27,26 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\BatchImportEvaluatedAnnotationsRequest;
 use Google\Cloud\AIPlatform\V1\BatchImportEvaluatedAnnotationsResponse;
 use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
+use Google\Cloud\AIPlatform\V1\EvaluatedAnnotation;
 
 /**
  * Imports a list of externally generated EvaluatedAnnotations.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the parent ModelEvaluationSlice resource.
+ *                                Format:
+ *                                `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}`
+ *                                Please see {@see ModelServiceClient::modelEvaluationSliceName()} for help formatting this field.
  */
-function batch_import_evaluated_annotations_sample(): void
+function batch_import_evaluated_annotations_sample(string $formattedParent): void
 {
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
     // Prepare the request message.
-    $request = new BatchImportEvaluatedAnnotationsRequest();
+    $evaluatedAnnotations = [new EvaluatedAnnotation()];
+    $request = (new BatchImportEvaluatedAnnotationsRequest())
+        ->setParent($formattedParent)
+        ->setEvaluatedAnnotations($evaluatedAnnotations);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +56,27 @@ function batch_import_evaluated_annotations_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ModelServiceClient::modelEvaluationSliceName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[MODEL]',
+        '[EVALUATION]',
+        '[SLICE]'
+    );
+
+    batch_import_evaluated_annotations_sample($formattedParent);
 }
 // [END aiplatform_v1_generated_ModelService_BatchImportEvaluatedAnnotations_sync]

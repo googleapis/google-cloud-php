@@ -28,6 +28,7 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\Client\IndexEndpointServiceClient;
 use Google\Cloud\AIPlatform\V1\DeployIndexRequest;
 use Google\Cloud\AIPlatform\V1\DeployIndexResponse;
+use Google\Cloud\AIPlatform\V1\DeployedIndex;
 use Google\Rpc\Status;
 
 /**
@@ -35,19 +36,33 @@ use Google\Rpc\Status;
  * it.
  * Only non-empty Indexes can be deployed.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedIndexEndpoint      The name of the IndexEndpoint resource into which to deploy an
+ *                                            Index. Format:
+ *                                            `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
+ *                                            Please see {@see IndexEndpointServiceClient::indexEndpointName()} for help formatting this field.
+ * @param string $deployedIndexId             The user specified ID of the DeployedIndex.
+ *                                            The ID can be up to 128 characters long and must start with a letter and
+ *                                            only contain letters, numbers, and underscores.
+ *                                            The ID must be unique within the project it is created in.
+ * @param string $formattedDeployedIndexIndex The name of the Index this is the deployment of.
+ *                                            We may refer to this Index as the DeployedIndex's "original" Index. Please see
+ *                                            {@see IndexEndpointServiceClient::indexName()} for help formatting this field.
  */
-function deploy_index_sample(): void
-{
+function deploy_index_sample(
+    string $formattedIndexEndpoint,
+    string $deployedIndexId,
+    string $formattedDeployedIndexIndex
+): void {
     // Create a client.
     $indexEndpointServiceClient = new IndexEndpointServiceClient();
 
     // Prepare the request message.
-    $request = new DeployIndexRequest();
+    $deployedIndex = (new DeployedIndex())
+        ->setId($deployedIndexId)
+        ->setIndex($formattedDeployedIndexIndex);
+    $request = (new DeployIndexRequest())
+        ->setIndexEndpoint($formattedIndexEndpoint)
+        ->setDeployedIndex($deployedIndex);
 
     // Call the API and handle any network failures.
     try {
@@ -67,5 +82,31 @@ function deploy_index_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedIndexEndpoint = IndexEndpointServiceClient::indexEndpointName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[INDEX_ENDPOINT]'
+    );
+    $deployedIndexId = '[ID]';
+    $formattedDeployedIndexIndex = IndexEndpointServiceClient::indexName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[INDEX]'
+    );
+
+    deploy_index_sample($formattedIndexEndpoint, $deployedIndexId, $formattedDeployedIndexIndex);
 }
 // [END aiplatform_v1_generated_IndexEndpointService_DeployIndex_sync]

@@ -34,19 +34,17 @@ use Google\Cloud\AIPlatform\V1\ListOptimalTrialsResponse;
  * pareto-optimal can be checked in wiki page.
  * https://en.wikipedia.org/wiki/Pareto_efficiency
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the Study that the optimal Trial belongs to. Please see
+ *                                {@see VizierServiceClient::studyName()} for help formatting this field.
  */
-function list_optimal_trials_sample(): void
+function list_optimal_trials_sample(string $formattedParent): void
 {
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
     // Prepare the request message.
-    $request = new ListOptimalTrialsRequest();
+    $request = (new ListOptimalTrialsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -56,5 +54,21 @@ function list_optimal_trials_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = VizierServiceClient::studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
+
+    list_optimal_trials_sample($formattedParent);
 }
 // [END aiplatform_v1_generated_VizierService_ListOptimalTrials_sync]

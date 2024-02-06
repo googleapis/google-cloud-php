@@ -79,6 +79,7 @@ class SearchModelDeploymentMonitoringStatsAnomaliesRequest extends \Google\Proto
      * @param string $modelDeploymentMonitoringJob Required. ModelDeploymentMonitoring Job resource name.
      *                                             Format:
      *                                             `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
+     *                                             Please see {@see JobServiceClient::modelDeploymentMonitoringJobName()} for help formatting this field.
      * @param string $deployedModelId              Required. The DeployedModel ID of the
      *                                             [ModelDeploymentMonitoringObjectiveConfig.deployed_model_id].
      *

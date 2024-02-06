@@ -31,19 +31,19 @@ use Google\Cloud\AIPlatform\V1\GetDatasetVersionRequest;
 /**
  * Gets a Dataset version.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the Dataset version to delete.
+ *                              Format:
+ *                              `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
+ *                              Please see {@see DatasetServiceClient::datasetVersionName()} for help formatting this field.
  */
-function get_dataset_version_sample(): void
+function get_dataset_version_sample(string $formattedName): void
 {
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
     // Prepare the request message.
-    $request = new GetDatasetVersionRequest();
+    $request = (new GetDatasetVersionRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +53,26 @@ function get_dataset_version_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DatasetServiceClient::datasetVersionName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[DATASET]',
+        '[DATASET_VERSION]'
+    );
+
+    get_dataset_version_sample($formattedName);
 }
 // [END aiplatform_v1_generated_DatasetService_GetDatasetVersion_sync]

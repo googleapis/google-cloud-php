@@ -25,40 +25,40 @@ class EndpointService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ö%
-1google/cloud/aiplatform/v1/endpoint_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/aiplatform/v1/endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¬
-CreateEndpointRequest:
-parent (	B*âAúA#
-!locations.googleapis.com/Location<
-endpoint (2$.google.cloud.aiplatform.v1.EndpointBâA
-endpoint_id (	BâA"q
+Ã%
+1google/cloud/aiplatform/v1/endpoint_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/aiplatform/v1/endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"©
+CreateEndpointRequest9
+parent (	B)àAúA#
+!locations.googleapis.com/Location;
+endpoint (2$.google.cloud.aiplatform.v1.EndpointBàA
+endpoint_id (	BàA"q
 CreateEndpointOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"O
-GetEndpointRequest9
-name (	B+âAúA$
-"aiplatform.googleapis.com/Endpoint"â
-ListEndpointsRequest:
-parent (	B*âAúA#
-!locations.googleapis.com/Location
-filter (	BâA
-	page_size (BâA
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"N
+GetEndpointRequest8
+name (	B*àAúA$
+"aiplatform.googleapis.com/Endpoint"Ý
+ListEndpointsRequest9
+parent (	B)àAúA#
+!locations.googleapis.com/Location
+filter (	BàA
+	page_size (BàA
 
-page_token (	BâA3
-	read_mask (2.google.protobuf.FieldMaskBâA
+page_token (	BàA2
+	read_mask (2.google.protobuf.FieldMaskBàA
 order_by (	"i
 ListEndpointsResponse7
 	endpoints (2$.google.cloud.aiplatform.v1.Endpoint
-next_page_token (	"Œ
-UpdateEndpointRequest<
-endpoint (2$.google.cloud.aiplatform.v1.EndpointBâA5
-update_mask (2.google.protobuf.FieldMaskBâA"R
-DeleteEndpointRequest9
-name (	B+âAúA$
-"aiplatform.googleapis.com/Endpoint"ª
-DeployModelRequest=
-endpoint (	B+âAúA$
-"aiplatform.googleapis.com/EndpointG
-deployed_model (2).google.cloud.aiplatform.v1.DeployedModelBâAW
+next_page_token (	"Š
+UpdateEndpointRequest;
+endpoint (2$.google.cloud.aiplatform.v1.EndpointBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"Q
+DeleteEndpointRequest8
+name (	B*àAúA$
+"aiplatform.googleapis.com/Endpoint"¨
+DeployModelRequest<
+endpoint (	B*àAúA$
+"aiplatform.googleapis.com/EndpointF
+deployed_model (2).google.cloud.aiplatform.v1.DeployedModelBàAW
 traffic_split (2@.google.cloud.aiplatform.v1.DeployModelRequest.TrafficSplitEntry3
 TrafficSplitEntry
 key (	
@@ -66,23 +66,23 @@ page_token (	BâA3
 DeployModelResponseA
 deployed_model (2).google.cloud.aiplatform.v1.DeployedModel"n
 DeployModelOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"†
-UndeployModelRequest=
-endpoint (	B+âAúA$
-"aiplatform.googleapis.com/Endpoint
-deployed_model_id (	BâAY
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"„
+UndeployModelRequest<
+endpoint (	B*àAúA$
+"aiplatform.googleapis.com/Endpoint
+deployed_model_id (	BàAY
 traffic_split (2B.google.cloud.aiplatform.v1.UndeployModelRequest.TrafficSplitEntry3
 TrafficSplitEntry
 key (	
 value (:8"
 UndeployModelResponse"p
 UndeployModelOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"Û
-MutateDeployedModelRequest=
-endpoint (	B+âAúA$
-"aiplatform.googleapis.com/EndpointG
-deployed_model (2).google.cloud.aiplatform.v1.DeployedModelBâA5
-update_mask (2.google.protobuf.FieldMaskBâA"`
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"Ø
+MutateDeployedModelRequest<
+endpoint (	B*àAúA$
+"aiplatform.googleapis.com/EndpointF
+deployed_model (2).google.cloud.aiplatform.v1.DeployedModelBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"`
 MutateDeployedModelResponseA
 deployed_model (2).google.cloud.aiplatform.v1.DeployedModel"v
 $MutateDeployedModelOperationMetadataN

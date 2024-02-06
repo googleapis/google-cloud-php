@@ -31,19 +31,34 @@ use Google\Cloud\AIPlatform\V1\Model;
 /**
  * Merges a set of aliases for a Model version.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName         The name of the model version to merge aliases, with a version ID
+ *                                      explicitly included.
+ *
+ *                                      Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
+ *                                      Please see {@see ModelServiceClient::modelName()} for help formatting this field.
+ * @param string $versionAliasesElement The set of version aliases to merge.
+ *                                      The alias should be at most 128 characters, and match
+ *                                      `[a-z][a-zA-Z0-9-]{0,126}[a-z-0-9]`.
+ *                                      Add the `-` prefix to an alias means removing that alias from the version.
+ *                                      `-` is NOT counted in the 128 characters. Example: `-golden` means removing
+ *                                      the `golden` alias from the version.
+ *
+ *                                      There is NO ordering in aliases, which means
+ *                                      1) The aliases returned from GetModel API might not have the exactly same
+ *                                      order from this MergeVersionAliases API. 2) Adding and deleting the same
+ *                                      alias in the request is not recommended, and the 2 operations will be
+ *                                      cancelled out.
  */
-function merge_version_aliases_sample(): void
+function merge_version_aliases_sample(string $formattedName, string $versionAliasesElement): void
 {
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
     // Prepare the request message.
-    $request = new MergeVersionAliasesRequest();
+    $versionAliases = [$versionAliasesElement,];
+    $request = (new MergeVersionAliasesRequest())
+        ->setName($formattedName)
+        ->setVersionAliases($versionAliases);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +68,22 @@ function merge_version_aliases_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ModelServiceClient::modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+    $versionAliasesElement = '[VERSION_ALIASES]';
+
+    merge_version_aliases_sample($formattedName, $versionAliasesElement);
 }
 // [END aiplatform_v1_generated_ModelService_MergeVersionAliases_sync]

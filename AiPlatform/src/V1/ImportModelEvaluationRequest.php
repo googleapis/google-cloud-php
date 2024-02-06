@@ -33,6 +33,7 @@ class ImportModelEvaluationRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                      $parent          Required. The name of the parent model resource.
      *                                                                     Format: `projects/{project}/locations/{location}/models/{model}`
+     *                                                                     Please see {@see ModelServiceClient::modelName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\ModelEvaluation $modelEvaluation Required. Model evaluation resource to be imported.
      *
      * @return \Google\Cloud\AIPlatform\V1\ImportModelEvaluationRequest

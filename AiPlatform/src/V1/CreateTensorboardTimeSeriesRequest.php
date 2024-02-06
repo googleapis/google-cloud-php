@@ -46,6 +46,7 @@ class CreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\Messa
      *                                                                                 TensorboardTimeSeries in.
      *                                                                                 Format:
      *                                                                                 `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+     *                                                                                 Please see {@see TensorboardServiceClient::tensorboardTimeSeriesName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\TensorboardTimeSeries $tensorboardTimeSeries Required. The TensorboardTimeSeries to create.
      *
      * @return \Google\Cloud\AIPlatform\V1\CreateTensorboardTimeSeriesRequest

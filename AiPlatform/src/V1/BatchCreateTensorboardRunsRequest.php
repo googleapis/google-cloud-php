@@ -39,7 +39,8 @@ class BatchCreateTensorboardRunsRequest extends \Google\Protobuf\Internal\Messag
      *                                                                            TensorboardRuns in. Format:
      *                                                                            `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
      *                                                                            The parent field in the CreateTensorboardRunRequest messages must match
-     *                                                                            this field.
+     *                                                                            this field. Please see
+     *                                                                            {@see TensorboardServiceClient::tensorboardExperimentName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\CreateTensorboardRunRequest[] $requests Required. The request message specifying the TensorboardRuns to create.
      *                                                                            A maximum of 1000 TensorboardRuns can be created in a batch.
      *

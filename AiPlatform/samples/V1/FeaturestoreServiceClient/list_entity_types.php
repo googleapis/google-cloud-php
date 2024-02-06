@@ -32,19 +32,19 @@ use Google\Cloud\AIPlatform\V1\ListEntityTypesRequest;
 /**
  * Lists EntityTypes in a given Featurestore.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the Featurestore to list EntityTypes.
+ *                                Format:
+ *                                `projects/{project}/locations/{location}/featurestores/{featurestore}`
+ *                                Please see {@see FeaturestoreServiceClient::featurestoreName()} for help formatting this field.
  */
-function list_entity_types_sample(): void
+function list_entity_types_sample(string $formattedParent): void
 {
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
     // Prepare the request message.
-    $request = new ListEntityTypesRequest();
+    $request = (new ListEntityTypesRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +58,25 @@ function list_entity_types_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = FeaturestoreServiceClient::featurestoreName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[FEATURESTORE]'
+    );
+
+    list_entity_types_sample($formattedParent);
 }
 // [END aiplatform_v1_generated_FeaturestoreService_ListEntityTypes_sync]

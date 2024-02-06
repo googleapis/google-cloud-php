@@ -32,19 +32,20 @@ use Google\Cloud\AIPlatform\V1\Study;
  * Looks a study up using the user-defined display_name field instead of the
  * fully qualified resource name.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the Location to get the Study from.
+ *                                Format: `projects/{project}/locations/{location}`
+ *                                Please see {@see VizierServiceClient::locationName()} for help formatting this field.
+ * @param string $displayName     The user-defined display name of the Study
  */
-function lookup_study_sample(): void
+function lookup_study_sample(string $formattedParent, string $displayName): void
 {
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
     // Prepare the request message.
-    $request = new LookupStudyRequest();
+    $request = (new LookupStudyRequest())
+        ->setParent($formattedParent)
+        ->setDisplayName($displayName);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +55,22 @@ function lookup_study_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = VizierServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $displayName = '[DISPLAY_NAME]';
+
+    lookup_study_sample($formattedParent, $displayName);
 }
 // [END aiplatform_v1_generated_VizierService_LookupStudy_sync]

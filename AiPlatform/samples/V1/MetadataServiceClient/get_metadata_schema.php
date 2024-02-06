@@ -31,19 +31,19 @@ use Google\Cloud\AIPlatform\V1\MetadataSchema;
 /**
  * Retrieves a specific MetadataSchema.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the MetadataSchema to retrieve.
+ *                              Format:
+ *                              `projects/{project}/locations/{location}/metadataStores/{metadatastore}/metadataSchemas/{metadataschema}`
+ *                              Please see {@see MetadataServiceClient::metadataSchemaName()} for help formatting this field.
  */
-function get_metadata_schema_sample(): void
+function get_metadata_schema_sample(string $formattedName): void
 {
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $request = new GetMetadataSchemaRequest();
+    $request = (new GetMetadataSchemaRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +53,26 @@ function get_metadata_schema_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = MetadataServiceClient::metadataSchemaName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[METADATA_STORE]',
+        '[METADATA_SCHEMA]'
+    );
+
+    get_metadata_schema_sample($formattedName);
 }
 // [END aiplatform_v1_generated_MetadataService_GetMetadataSchema_sync]

@@ -107,7 +107,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $tensorboardServiceClient = new TensorboardServiceClient();
  * try {
- *     $response = $tensorboardServiceClient->batchCreateTensorboardRuns();
+ *     $formattedParent = $tensorboardServiceClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+ *     $requests = [];
+ *     $response = $tensorboardServiceClient->batchCreateTensorboardRuns($formattedParent, $requests);
  * } finally {
  *     $tensorboardServiceClient->close();
  * }
@@ -532,24 +534,24 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->batchCreateTensorboardRuns();
+     *     $formattedParent = $tensorboardServiceClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+     *     $requests = [];
+     *     $response = $tensorboardServiceClient->batchCreateTensorboardRuns($formattedParent, $requests);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                        $parent       Required. The resource name of the TensorboardExperiment to create the
+     *                                                    TensorboardRuns in. Format:
+     *                                                    `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
+     *                                                    The parent field in the CreateTensorboardRunRequest messages must match
+     *                                                    this field.
+     * @param CreateTensorboardRunRequest[] $requests     Required. The request message specifying the TensorboardRuns to create.
+     *                                                    A maximum of 1000 TensorboardRuns can be created in a batch.
+     * @param array                         $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the TensorboardExperiment to create the
-     *           TensorboardRuns in. Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
-     *           The parent field in the CreateTensorboardRunRequest messages must match
-     *           this field.
-     *     @type CreateTensorboardRunRequest[] $requests
-     *           Required. The request message specifying the TensorboardRuns to create.
-     *           A maximum of 1000 TensorboardRuns can be created in a batch.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -560,19 +562,16 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchCreateTensorboardRuns(array $optionalArgs = [])
-    {
+    public function batchCreateTensorboardRuns(
+        $parent,
+        $requests,
+        array $optionalArgs = []
+    ) {
         $request = new BatchCreateTensorboardRunsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['requests'])) {
-            $request->setRequests($optionalArgs['requests']);
-        }
-
+        $request->setParent($parent);
+        $request->setRequests($requests);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -594,26 +593,26 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->batchCreateTensorboardTimeSeries();
+     *     $formattedParent = $tensorboardServiceClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+     *     $requests = [];
+     *     $response = $tensorboardServiceClient->batchCreateTensorboardTimeSeries($formattedParent, $requests);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                               $parent       Required. The resource name of the TensorboardExperiment to create the
+     *                                                           TensorboardTimeSeries in.
+     *                                                           Format:
+     *                                                           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
+     *                                                           The TensorboardRuns referenced by the parent fields in the
+     *                                                           CreateTensorboardTimeSeriesRequest messages must be sub resources of this
+     *                                                           TensorboardExperiment.
+     * @param CreateTensorboardTimeSeriesRequest[] $requests     Required. The request message specifying the TensorboardTimeSeries to
+     *                                                           create. A maximum of 1000 TensorboardTimeSeries can be created in a batch.
+     * @param array                                $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the TensorboardExperiment to create the
-     *           TensorboardTimeSeries in.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
-     *           The TensorboardRuns referenced by the parent fields in the
-     *           CreateTensorboardTimeSeriesRequest messages must be sub resources of this
-     *           TensorboardExperiment.
-     *     @type CreateTensorboardTimeSeriesRequest[] $requests
-     *           Required. The request message specifying the TensorboardTimeSeries to
-     *           create. A maximum of 1000 TensorboardTimeSeries can be created in a batch.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -624,19 +623,16 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchCreateTensorboardTimeSeries(array $optionalArgs = [])
-    {
+    public function batchCreateTensorboardTimeSeries(
+        $parent,
+        $requests,
+        array $optionalArgs = []
+    ) {
         $request = new BatchCreateTensorboardTimeSeriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['requests'])) {
-            $request->setRequests($optionalArgs['requests']);
-        }
-
+        $request->setParent($parent);
+        $request->setRequests($requests);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -662,26 +658,28 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->batchReadTensorboardTimeSeriesData();
+     *     $formattedTensorboard = $tensorboardServiceClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+     *     $formattedTimeSeries = [
+     *         $tensorboardServiceClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]'),
+     *     ];
+     *     $response = $tensorboardServiceClient->batchReadTensorboardTimeSeriesData($formattedTensorboard, $formattedTimeSeries);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $tensorboard  Required. The resource name of the Tensorboard containing
+     *                               TensorboardTimeSeries to read data from. Format:
+     *                               `projects/{project}/locations/{location}/tensorboards/{tensorboard}`.
+     *                               The TensorboardTimeSeries referenced by
+     *                               [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series]
+     *                               must be sub resources of this Tensorboard.
+     * @param string[] $timeSeries   Required. The resource names of the TensorboardTimeSeries to read data
+     *                               from. Format:
+     *                               `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $tensorboard
-     *           Required. The resource name of the Tensorboard containing
-     *           TensorboardTimeSeries to read data from. Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}`.
-     *           The TensorboardTimeSeries referenced by
-     *           [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series]
-     *           must be sub resources of this Tensorboard.
-     *     @type string[] $timeSeries
-     *           Required. The resource names of the TensorboardTimeSeries to read data
-     *           from. Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -692,19 +690,16 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchReadTensorboardTimeSeriesData(array $optionalArgs = [])
-    {
+    public function batchReadTensorboardTimeSeriesData(
+        $tensorboard,
+        $timeSeries,
+        array $optionalArgs = []
+    ) {
         $request = new BatchReadTensorboardTimeSeriesDataRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['tensorboard'])) {
-            $request->setTensorboard($optionalArgs['tensorboard']);
-            $requestParamHeaders['tensorboard'] = $optionalArgs['tensorboard'];
-        }
-
-        if (isset($optionalArgs['timeSeries'])) {
-            $request->setTimeSeries($optionalArgs['timeSeries']);
-        }
-
+        $request->setTensorboard($tensorboard);
+        $request->setTimeSeries($timeSeries);
+        $requestParamHeaders['tensorboard'] = $tensorboard;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -726,7 +721,9 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $operationResponse = $tensorboardServiceClient->createTensorboard();
+     *     $formattedParent = $tensorboardServiceClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+     *     $tensorboard = new Tensorboard();
+     *     $operationResponse = $tensorboardServiceClient->createTensorboard($formattedParent, $tensorboard);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -737,7 +734,7 @@ class TensorboardServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tensorboardServiceClient->createTensorboard();
+     *     $operationResponse = $tensorboardServiceClient->createTensorboard($formattedParent, $tensorboard);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tensorboardServiceClient->resumeOperation($operationName, 'createTensorboard');
@@ -757,14 +754,12 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string      $parent       Required. The resource name of the Location to create the Tensorboard in.
+     *                                  Format: `projects/{project}/locations/{location}`
+     * @param Tensorboard $tensorboard  Required. The Tensorboard to create.
+     * @param array       $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location to create the Tensorboard in.
-     *           Format: `projects/{project}/locations/{location}`
-     *     @type Tensorboard $tensorboard
-     *           Required. The Tensorboard to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -775,19 +770,16 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTensorboard(array $optionalArgs = [])
-    {
+    public function createTensorboard(
+        $parent,
+        $tensorboard,
+        array $optionalArgs = []
+    ) {
         $request = new CreateTensorboardRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['tensorboard'])) {
-            $request->setTensorboard($optionalArgs['tensorboard']);
-        }
-
+        $request->setParent($parent);
+        $request->setTensorboard($tensorboard);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -809,27 +801,27 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->createTensorboardExperiment();
+     *     $formattedParent = $tensorboardServiceClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+     *     $tensorboardExperimentId = 'tensorboard_experiment_id';
+     *     $response = $tensorboardServiceClient->createTensorboardExperiment($formattedParent, $tensorboardExperimentId);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent                  Required. The resource name of the Tensorboard to create the
+     *                                        TensorboardExperiment in. Format:
+     *                                        `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+     * @param string $tensorboardExperimentId Required. The ID to use for the Tensorboard experiment, which becomes the
+     *                                        final component of the Tensorboard experiment's resource name.
+     *
+     *                                        This value should be 1-128 characters, and valid characters
+     *                                        are `/[a-z][0-9]-/`.
+     * @param array  $optionalArgs            {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Tensorboard to create the
-     *           TensorboardExperiment in. Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *     @type TensorboardExperiment $tensorboardExperiment
      *           The TensorboardExperiment to create.
-     *     @type string $tensorboardExperimentId
-     *           Required. The ID to use for the Tensorboard experiment, which becomes the
-     *           final component of the Tensorboard experiment's resource name.
-     *
-     *           This value should be 1-128 characters, and valid characters
-     *           are `/[a-z][0-9]-/`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -840,24 +832,19 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTensorboardExperiment(array $optionalArgs = [])
-    {
+    public function createTensorboardExperiment(
+        $parent,
+        $tensorboardExperimentId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateTensorboardExperimentRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $request->setTensorboardExperimentId($tensorboardExperimentId);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['tensorboardExperiment'])) {
             $request->setTensorboardExperiment(
                 $optionalArgs['tensorboardExperiment']
-            );
-        }
-
-        if (isset($optionalArgs['tensorboardExperimentId'])) {
-            $request->setTensorboardExperimentId(
-                $optionalArgs['tensorboardExperimentId']
             );
         }
 
@@ -882,27 +869,27 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->createTensorboardRun();
+     *     $formattedParent = $tensorboardServiceClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+     *     $tensorboardRun = new TensorboardRun();
+     *     $tensorboardRunId = 'tensorboard_run_id';
+     *     $response = $tensorboardServiceClient->createTensorboardRun($formattedParent, $tensorboardRun, $tensorboardRunId);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string         $parent           Required. The resource name of the TensorboardExperiment to create the
+     *                                         TensorboardRun in. Format:
+     *                                         `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
+     * @param TensorboardRun $tensorboardRun   Required. The TensorboardRun to create.
+     * @param string         $tensorboardRunId Required. The ID to use for the Tensorboard run, which becomes the final
+     *                                         component of the Tensorboard run's resource name.
+     *
+     *                                         This value should be 1-128 characters, and valid characters
+     *                                         are `/[a-z][0-9]-/`.
+     * @param array          $optionalArgs     {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the TensorboardExperiment to create the
-     *           TensorboardRun in. Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
-     *     @type TensorboardRun $tensorboardRun
-     *           Required. The TensorboardRun to create.
-     *     @type string $tensorboardRunId
-     *           Required. The ID to use for the Tensorboard run, which becomes the final
-     *           component of the Tensorboard run's resource name.
-     *
-     *           This value should be 1-128 characters, and valid characters
-     *           are `/[a-z][0-9]-/`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -913,23 +900,18 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTensorboardRun(array $optionalArgs = [])
-    {
+    public function createTensorboardRun(
+        $parent,
+        $tensorboardRun,
+        $tensorboardRunId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateTensorboardRunRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['tensorboardRun'])) {
-            $request->setTensorboardRun($optionalArgs['tensorboardRun']);
-        }
-
-        if (isset($optionalArgs['tensorboardRunId'])) {
-            $request->setTensorboardRunId($optionalArgs['tensorboardRunId']);
-        }
-
+        $request->setParent($parent);
+        $request->setTensorboardRun($tensorboardRun);
+        $request->setTensorboardRunId($tensorboardRunId);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -951,27 +933,27 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->createTensorboardTimeSeries();
+     *     $formattedParent = $tensorboardServiceClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
+     *     $tensorboardTimeSeries = new TensorboardTimeSeries();
+     *     $response = $tensorboardServiceClient->createTensorboardTimeSeries($formattedParent, $tensorboardTimeSeries);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                $parent                Required. The resource name of the TensorboardRun to create the
+     *                                                     TensorboardTimeSeries in.
+     *                                                     Format:
+     *                                                     `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+     * @param TensorboardTimeSeries $tensorboardTimeSeries Required. The TensorboardTimeSeries to create.
+     * @param array                 $optionalArgs          {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the TensorboardRun to create the
-     *           TensorboardTimeSeries in.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
      *     @type string $tensorboardTimeSeriesId
      *           Optional. The user specified unique ID to use for the
      *           TensorboardTimeSeries, which becomes the final component of the
      *           TensorboardTimeSeries's resource name. This value should match
      *           "[a-z0-9][a-z0-9-]{0, 127}"
-     *     @type TensorboardTimeSeries $tensorboardTimeSeries
-     *           Required. The TensorboardTimeSeries to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -982,24 +964,19 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTensorboardTimeSeries(array $optionalArgs = [])
-    {
+    public function createTensorboardTimeSeries(
+        $parent,
+        $tensorboardTimeSeries,
+        array $optionalArgs = []
+    ) {
         $request = new CreateTensorboardTimeSeriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $request->setTensorboardTimeSeries($tensorboardTimeSeries);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['tensorboardTimeSeriesId'])) {
             $request->setTensorboardTimeSeriesId(
                 $optionalArgs['tensorboardTimeSeriesId']
-            );
-        }
-
-        if (isset($optionalArgs['tensorboardTimeSeries'])) {
-            $request->setTensorboardTimeSeries(
-                $optionalArgs['tensorboardTimeSeries']
             );
         }
 
@@ -1024,7 +1001,8 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $operationResponse = $tensorboardServiceClient->deleteTensorboard();
+     *     $formattedName = $tensorboardServiceClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+     *     $operationResponse = $tensorboardServiceClient->deleteTensorboard($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1034,7 +1012,7 @@ class TensorboardServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tensorboardServiceClient->deleteTensorboard();
+     *     $operationResponse = $tensorboardServiceClient->deleteTensorboard($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tensorboardServiceClient->resumeOperation($operationName, 'deleteTensorboard');
@@ -1053,13 +1031,12 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Tensorboard to be deleted.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Tensorboard to be deleted.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1070,15 +1047,12 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTensorboard(array $optionalArgs = [])
+    public function deleteTensorboard($name, array $optionalArgs = [])
     {
         $request = new DeleteTensorboardRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1100,7 +1074,8 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $operationResponse = $tensorboardServiceClient->deleteTensorboardExperiment();
+     *     $formattedName = $tensorboardServiceClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+     *     $operationResponse = $tensorboardServiceClient->deleteTensorboardExperiment($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1110,7 +1085,7 @@ class TensorboardServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tensorboardServiceClient->deleteTensorboardExperiment();
+     *     $operationResponse = $tensorboardServiceClient->deleteTensorboardExperiment($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tensorboardServiceClient->resumeOperation($operationName, 'deleteTensorboardExperiment');
@@ -1129,13 +1104,12 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the TensorboardExperiment to be deleted.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the TensorboardExperiment to be deleted.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1146,15 +1120,12 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTensorboardExperiment(array $optionalArgs = [])
+    public function deleteTensorboardExperiment($name, array $optionalArgs = [])
     {
         $request = new DeleteTensorboardExperimentRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1176,7 +1147,8 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $operationResponse = $tensorboardServiceClient->deleteTensorboardRun();
+     *     $formattedName = $tensorboardServiceClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+     *     $operationResponse = $tensorboardServiceClient->deleteTensorboardRun($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1186,7 +1158,7 @@ class TensorboardServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tensorboardServiceClient->deleteTensorboardRun();
+     *     $operationResponse = $tensorboardServiceClient->deleteTensorboardRun($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tensorboardServiceClient->resumeOperation($operationName, 'deleteTensorboardRun');
@@ -1205,13 +1177,12 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the TensorboardRun to be deleted.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the TensorboardRun to be deleted.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1222,15 +1193,12 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTensorboardRun(array $optionalArgs = [])
+    public function deleteTensorboardRun($name, array $optionalArgs = [])
     {
         $request = new DeleteTensorboardRunRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1252,7 +1220,8 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $operationResponse = $tensorboardServiceClient->deleteTensorboardTimeSeries();
+     *     $formattedName = $tensorboardServiceClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
+     *     $operationResponse = $tensorboardServiceClient->deleteTensorboardTimeSeries($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1262,7 +1231,7 @@ class TensorboardServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tensorboardServiceClient->deleteTensorboardTimeSeries();
+     *     $operationResponse = $tensorboardServiceClient->deleteTensorboardTimeSeries($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tensorboardServiceClient->resumeOperation($operationName, 'deleteTensorboardTimeSeries');
@@ -1281,13 +1250,12 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the TensorboardTimeSeries to be deleted.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the TensorboardTimeSeries to be deleted.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1298,15 +1266,12 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTensorboardTimeSeries(array $optionalArgs = [])
+    public function deleteTensorboardTimeSeries($name, array $optionalArgs = [])
     {
         $request = new DeleteTensorboardTimeSeriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1329,8 +1294,9 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
+     *     $formattedTensorboardTimeSeries = $tensorboardServiceClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $tensorboardServiceClient->exportTensorboardTimeSeriesData();
+     *     $pagedResponse = $tensorboardServiceClient->exportTensorboardTimeSeriesData($formattedTensorboardTimeSeries);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1338,7 +1304,7 @@ class TensorboardServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $tensorboardServiceClient->exportTensorboardTimeSeriesData();
+     *     $pagedResponse = $tensorboardServiceClient->exportTensorboardTimeSeriesData($formattedTensorboardTimeSeries);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1347,13 +1313,12 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $tensorboardTimeSeries Required. The resource name of the TensorboardTimeSeries to export data
+     *                                      from. Format:
+     *                                      `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
+     * @param array  $optionalArgs          {
      *     Optional.
      *
-     *     @type string $tensorboardTimeSeries
-     *           Required. The resource name of the TensorboardTimeSeries to export data
-     *           from. Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      *     @type string $filter
      *           Exports the TensorboardTimeSeries' data that match the filter expression.
      *     @type int $pageSize
@@ -1379,18 +1344,16 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function exportTensorboardTimeSeriesData(array $optionalArgs = [])
-    {
+    public function exportTensorboardTimeSeriesData(
+        $tensorboardTimeSeries,
+        array $optionalArgs = []
+    ) {
         $request = new ExportTensorboardTimeSeriesDataRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['tensorboardTimeSeries'])) {
-            $request->setTensorboardTimeSeries(
-                $optionalArgs['tensorboardTimeSeries']
-            );
-            $requestParamHeaders['tensorboard_time_series'] =
-                $optionalArgs['tensorboardTimeSeries'];
-        }
-
+        $request->setTensorboardTimeSeries($tensorboardTimeSeries);
+        $requestParamHeaders[
+            'tensorboard_time_series'
+        ] = $tensorboardTimeSeries;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1428,19 +1391,19 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->getTensorboard();
+     *     $formattedName = $tensorboardServiceClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+     *     $response = $tensorboardServiceClient->getTensorboard($formattedName);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Tensorboard resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Tensorboard resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1451,15 +1414,12 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTensorboard(array $optionalArgs = [])
+    public function getTensorboard($name, array $optionalArgs = [])
     {
         $request = new GetTensorboardRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1481,19 +1441,19 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->getTensorboardExperiment();
+     *     $formattedName = $tensorboardServiceClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+     *     $response = $tensorboardServiceClient->getTensorboardExperiment($formattedName);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the TensorboardExperiment resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the TensorboardExperiment resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1504,15 +1464,12 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTensorboardExperiment(array $optionalArgs = [])
+    public function getTensorboardExperiment($name, array $optionalArgs = [])
     {
         $request = new GetTensorboardExperimentRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1534,19 +1491,19 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->getTensorboardRun();
+     *     $formattedName = $tensorboardServiceClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+     *     $response = $tensorboardServiceClient->getTensorboardRun($formattedName);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the TensorboardRun resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the TensorboardRun resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1557,15 +1514,12 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTensorboardRun(array $optionalArgs = [])
+    public function getTensorboardRun($name, array $optionalArgs = [])
     {
         $request = new GetTensorboardRunRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1587,19 +1541,19 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->getTensorboardTimeSeries();
+     *     $formattedName = $tensorboardServiceClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
+     *     $response = $tensorboardServiceClient->getTensorboardTimeSeries($formattedName);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the TensorboardTimeSeries resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the TensorboardTimeSeries resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1610,15 +1564,12 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTensorboardTimeSeries(array $optionalArgs = [])
+    public function getTensorboardTimeSeries($name, array $optionalArgs = [])
     {
         $request = new GetTensorboardTimeSeriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1640,8 +1591,9 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
+     *     $formattedParent = $tensorboardServiceClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $tensorboardServiceClient->listTensorboardExperiments();
+     *     $pagedResponse = $tensorboardServiceClient->listTensorboardExperiments($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1649,7 +1601,7 @@ class TensorboardServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $tensorboardServiceClient->listTensorboardExperiments();
+     *     $pagedResponse = $tensorboardServiceClient->listTensorboardExperiments($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1658,13 +1610,12 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the Tensorboard to list
+     *                             TensorboardExperiments. Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Tensorboard to list
-     *           TensorboardExperiments. Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *     @type string $filter
      *           Lists the TensorboardExperiments that match the filter expression.
      *     @type int $pageSize
@@ -1690,15 +1641,14 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTensorboardExperiments(array $optionalArgs = [])
-    {
+    public function listTensorboardExperiments(
+        $parent,
+        array $optionalArgs = []
+    ) {
         $request = new ListTensorboardExperimentsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1740,8 +1690,9 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
+     *     $formattedParent = $tensorboardServiceClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $tensorboardServiceClient->listTensorboardRuns();
+     *     $pagedResponse = $tensorboardServiceClient->listTensorboardRuns($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1749,7 +1700,7 @@ class TensorboardServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $tensorboardServiceClient->listTensorboardRuns();
+     *     $pagedResponse = $tensorboardServiceClient->listTensorboardRuns($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1758,13 +1709,12 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the TensorboardExperiment to list
+     *                             TensorboardRuns. Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the TensorboardExperiment to list
-     *           TensorboardRuns. Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
      *     @type string $filter
      *           Lists the TensorboardRuns that match the filter expression.
      *     @type int $pageSize
@@ -1790,15 +1740,12 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTensorboardRuns(array $optionalArgs = [])
+    public function listTensorboardRuns($parent, array $optionalArgs = [])
     {
         $request = new ListTensorboardRunsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1840,8 +1787,9 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
+     *     $formattedParent = $tensorboardServiceClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $tensorboardServiceClient->listTensorboardTimeSeries();
+     *     $pagedResponse = $tensorboardServiceClient->listTensorboardTimeSeries($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1849,7 +1797,7 @@ class TensorboardServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $tensorboardServiceClient->listTensorboardTimeSeries();
+     *     $pagedResponse = $tensorboardServiceClient->listTensorboardTimeSeries($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1858,13 +1806,12 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the TensorboardRun to list
+     *                             TensorboardTimeSeries. Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the TensorboardRun to list
-     *           TensorboardTimeSeries. Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
      *     @type string $filter
      *           Lists the TensorboardTimeSeries that match the filter expression.
      *     @type int $pageSize
@@ -1890,15 +1837,12 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTensorboardTimeSeries(array $optionalArgs = [])
+    public function listTensorboardTimeSeries($parent, array $optionalArgs = [])
     {
         $request = new ListTensorboardTimeSeriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1940,8 +1884,9 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
+     *     $formattedParent = $tensorboardServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $tensorboardServiceClient->listTensorboards();
+     *     $pagedResponse = $tensorboardServiceClient->listTensorboards($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1949,7 +1894,7 @@ class TensorboardServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $tensorboardServiceClient->listTensorboards();
+     *     $pagedResponse = $tensorboardServiceClient->listTensorboards($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1958,13 +1903,12 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the Location to list Tensorboards.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location to list Tensorboards.
-     *           Format:
-     *           `projects/{project}/locations/{location}`
      *     @type string $filter
      *           Lists the Tensorboards that match the filter expression.
      *     @type int $pageSize
@@ -1990,15 +1934,12 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTensorboards(array $optionalArgs = [])
+    public function listTensorboards($parent, array $optionalArgs = [])
     {
         $request = new ListTensorboardsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2043,8 +1984,9 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
+     *     $formattedTimeSeries = $tensorboardServiceClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
      *     // Read all responses until the stream is complete
-     *     $stream = $tensorboardServiceClient->readTensorboardBlobData();
+     *     $stream = $tensorboardServiceClient->readTensorboardBlobData($formattedTimeSeries);
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2053,13 +1995,12 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $timeSeries   Required. The resource name of the TensorboardTimeSeries to list Blobs.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $timeSeries
-     *           Required. The resource name of the TensorboardTimeSeries to list Blobs.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      *     @type string[] $blobIds
      *           IDs of the blobs to read.
      *     @type int $timeoutMillis
@@ -2070,15 +2011,14 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function readTensorboardBlobData(array $optionalArgs = [])
-    {
+    public function readTensorboardBlobData(
+        $timeSeries,
+        array $optionalArgs = []
+    ) {
         $request = new ReadTensorboardBlobDataRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['timeSeries'])) {
-            $request->setTimeSeries($optionalArgs['timeSeries']);
-            $requestParamHeaders['time_series'] = $optionalArgs['timeSeries'];
-        }
-
+        $request->setTimeSeries($timeSeries);
+        $requestParamHeaders['time_series'] = $timeSeries;
         if (isset($optionalArgs['blobIds'])) {
             $request->setBlobIds($optionalArgs['blobIds']);
         }
@@ -2105,19 +2045,19 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->readTensorboardSize();
+     *     $formattedTensorboard = $tensorboardServiceClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+     *     $response = $tensorboardServiceClient->readTensorboardSize($formattedTensorboard);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $tensorboard  Required. The name of the Tensorboard resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $tensorboard
-     *           Required. The name of the Tensorboard resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2128,15 +2068,12 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function readTensorboardSize(array $optionalArgs = [])
+    public function readTensorboardSize($tensorboard, array $optionalArgs = [])
     {
         $request = new ReadTensorboardSizeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['tensorboard'])) {
-            $request->setTensorboard($optionalArgs['tensorboard']);
-            $requestParamHeaders['tensorboard'] = $optionalArgs['tensorboard'];
-        }
-
+        $request->setTensorboard($tensorboard);
+        $requestParamHeaders['tensorboard'] = $tensorboard;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2162,19 +2099,19 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->readTensorboardTimeSeriesData();
+     *     $formattedTensorboardTimeSeries = $tensorboardServiceClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
+     *     $response = $tensorboardServiceClient->readTensorboardTimeSeriesData($formattedTensorboardTimeSeries);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $tensorboardTimeSeries Required. The resource name of the TensorboardTimeSeries to read data from.
+     *                                      Format:
+     *                                      `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
+     * @param array  $optionalArgs          {
      *     Optional.
      *
-     *     @type string $tensorboardTimeSeries
-     *           Required. The resource name of the TensorboardTimeSeries to read data from.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      *     @type int $maxDataPoints
      *           The maximum number of TensorboardTimeSeries' data to return.
      *
@@ -2192,18 +2129,16 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function readTensorboardTimeSeriesData(array $optionalArgs = [])
-    {
+    public function readTensorboardTimeSeriesData(
+        $tensorboardTimeSeries,
+        array $optionalArgs = []
+    ) {
         $request = new ReadTensorboardTimeSeriesDataRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['tensorboardTimeSeries'])) {
-            $request->setTensorboardTimeSeries(
-                $optionalArgs['tensorboardTimeSeries']
-            );
-            $requestParamHeaders['tensorboard_time_series'] =
-                $optionalArgs['tensorboardTimeSeries'];
-        }
-
+        $request->setTensorboardTimeSeries($tensorboardTimeSeries);
+        $requestParamHeaders[
+            'tensorboard_time_series'
+        ] = $tensorboardTimeSeries;
         if (isset($optionalArgs['maxDataPoints'])) {
             $request->setMaxDataPoints($optionalArgs['maxDataPoints']);
         }
@@ -2233,19 +2168,19 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->readTensorboardUsage();
+     *     $formattedTensorboard = $tensorboardServiceClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+     *     $response = $tensorboardServiceClient->readTensorboardUsage($formattedTensorboard);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $tensorboard  Required. The name of the Tensorboard resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $tensorboard
-     *           Required. The name of the Tensorboard resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2256,15 +2191,12 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function readTensorboardUsage(array $optionalArgs = [])
+    public function readTensorboardUsage($tensorboard, array $optionalArgs = [])
     {
         $request = new ReadTensorboardUsageRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['tensorboard'])) {
-            $request->setTensorboard($optionalArgs['tensorboard']);
-            $requestParamHeaders['tensorboard'] = $optionalArgs['tensorboard'];
-        }
-
+        $request->setTensorboard($tensorboard);
+        $requestParamHeaders['tensorboard'] = $tensorboard;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2286,7 +2218,9 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $operationResponse = $tensorboardServiceClient->updateTensorboard();
+     *     $updateMask = new FieldMask();
+     *     $tensorboard = new Tensorboard();
+     *     $operationResponse = $tensorboardServiceClient->updateTensorboard($updateMask, $tensorboard);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2297,7 +2231,7 @@ class TensorboardServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tensorboardServiceClient->updateTensorboard();
+     *     $operationResponse = $tensorboardServiceClient->updateTensorboard($updateMask, $tensorboard);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tensorboardServiceClient->resumeOperation($operationName, 'updateTensorboard');
@@ -2317,20 +2251,18 @@ class TensorboardServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param FieldMask   $updateMask   Required. Field mask is used to specify the fields to be overwritten in the
+     *                                  Tensorboard resource by the update.
+     *                                  The fields specified in the update_mask are relative to the resource, not
+     *                                  the full request. A field is overwritten if it's in the mask. If the
+     *                                  user does not provide a mask then all fields are overwritten if new
+     *                                  values are specified.
+     * @param Tensorboard $tensorboard  Required. The Tensorboard's `name` field is used to identify the
+     *                                  Tensorboard to be updated. Format:
+     *                                  `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
+     * @param array       $optionalArgs {
      *     Optional.
      *
-     *     @type FieldMask $updateMask
-     *           Required. Field mask is used to specify the fields to be overwritten in the
-     *           Tensorboard resource by the update.
-     *           The fields specified in the update_mask are relative to the resource, not
-     *           the full request. A field is overwritten if it's in the mask. If the
-     *           user does not provide a mask then all fields are overwritten if new
-     *           values are specified.
-     *     @type Tensorboard $tensorboard
-     *           Required. The Tensorboard's `name` field is used to identify the
-     *           Tensorboard to be updated. Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2341,18 +2273,16 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTensorboard(array $optionalArgs = [])
-    {
+    public function updateTensorboard(
+        $updateMask,
+        $tensorboard,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateTensorboardRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        if (isset($optionalArgs['tensorboard'])) {
-            $request->setTensorboard($optionalArgs['tensorboard']);
-        }
-
+        $request->setUpdateMask($updateMask);
+        $request->setTensorboard($tensorboard);
+        $requestParamHeaders['tensorboard.name'] = $tensorboard->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2374,26 +2304,26 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->updateTensorboardExperiment();
+     *     $updateMask = new FieldMask();
+     *     $tensorboardExperiment = new TensorboardExperiment();
+     *     $response = $tensorboardServiceClient->updateTensorboardExperiment($updateMask, $tensorboardExperiment);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param FieldMask             $updateMask            Required. Field mask is used to specify the fields to be overwritten in the
+     *                                                     TensorboardExperiment resource by the update.
+     *                                                     The fields specified in the update_mask are relative to the resource, not
+     *                                                     the full request. A field is overwritten if it's in the mask. If the
+     *                                                     user does not provide a mask then all fields are overwritten if new
+     *                                                     values are specified.
+     * @param TensorboardExperiment $tensorboardExperiment Required. The TensorboardExperiment's `name` field is used to identify the
+     *                                                     TensorboardExperiment to be updated. Format:
+     *                                                     `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
+     * @param array                 $optionalArgs          {
      *     Optional.
      *
-     *     @type FieldMask $updateMask
-     *           Required. Field mask is used to specify the fields to be overwritten in the
-     *           TensorboardExperiment resource by the update.
-     *           The fields specified in the update_mask are relative to the resource, not
-     *           the full request. A field is overwritten if it's in the mask. If the
-     *           user does not provide a mask then all fields are overwritten if new
-     *           values are specified.
-     *     @type TensorboardExperiment $tensorboardExperiment
-     *           Required. The TensorboardExperiment's `name` field is used to identify the
-     *           TensorboardExperiment to be updated. Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2404,20 +2334,18 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTensorboardExperiment(array $optionalArgs = [])
-    {
+    public function updateTensorboardExperiment(
+        $updateMask,
+        $tensorboardExperiment,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateTensorboardExperimentRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        if (isset($optionalArgs['tensorboardExperiment'])) {
-            $request->setTensorboardExperiment(
-                $optionalArgs['tensorboardExperiment']
-            );
-        }
-
+        $request->setUpdateMask($updateMask);
+        $request->setTensorboardExperiment($tensorboardExperiment);
+        $requestParamHeaders[
+            'tensorboard_experiment.name'
+        ] = $tensorboardExperiment->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2439,26 +2367,26 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->updateTensorboardRun();
+     *     $updateMask = new FieldMask();
+     *     $tensorboardRun = new TensorboardRun();
+     *     $response = $tensorboardServiceClient->updateTensorboardRun($updateMask, $tensorboardRun);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param FieldMask      $updateMask     Required. Field mask is used to specify the fields to be overwritten in the
+     *                                       TensorboardRun resource by the update.
+     *                                       The fields specified in the update_mask are relative to the resource, not
+     *                                       the full request. A field is overwritten if it's in the mask. If the
+     *                                       user does not provide a mask then all fields are overwritten if new
+     *                                       values are specified.
+     * @param TensorboardRun $tensorboardRun Required. The TensorboardRun's `name` field is used to identify the
+     *                                       TensorboardRun to be updated. Format:
+     *                                       `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+     * @param array          $optionalArgs   {
      *     Optional.
      *
-     *     @type FieldMask $updateMask
-     *           Required. Field mask is used to specify the fields to be overwritten in the
-     *           TensorboardRun resource by the update.
-     *           The fields specified in the update_mask are relative to the resource, not
-     *           the full request. A field is overwritten if it's in the mask. If the
-     *           user does not provide a mask then all fields are overwritten if new
-     *           values are specified.
-     *     @type TensorboardRun $tensorboardRun
-     *           Required. The TensorboardRun's `name` field is used to identify the
-     *           TensorboardRun to be updated. Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2469,18 +2397,18 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTensorboardRun(array $optionalArgs = [])
-    {
+    public function updateTensorboardRun(
+        $updateMask,
+        $tensorboardRun,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateTensorboardRunRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        if (isset($optionalArgs['tensorboardRun'])) {
-            $request->setTensorboardRun($optionalArgs['tensorboardRun']);
-        }
-
+        $request->setUpdateMask($updateMask);
+        $request->setTensorboardRun($tensorboardRun);
+        $requestParamHeaders[
+            'tensorboard_run.name'
+        ] = $tensorboardRun->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2502,27 +2430,27 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->updateTensorboardTimeSeries();
+     *     $updateMask = new FieldMask();
+     *     $tensorboardTimeSeries = new TensorboardTimeSeries();
+     *     $response = $tensorboardServiceClient->updateTensorboardTimeSeries($updateMask, $tensorboardTimeSeries);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param FieldMask             $updateMask            Required. Field mask is used to specify the fields to be overwritten in the
+     *                                                     TensorboardTimeSeries resource by the update.
+     *                                                     The fields specified in the update_mask are relative to the resource, not
+     *                                                     the full request. A field is overwritten if it's in the mask. If the
+     *                                                     user does not provide a mask then all fields are overwritten if new
+     *                                                     values are specified.
+     * @param TensorboardTimeSeries $tensorboardTimeSeries Required. The TensorboardTimeSeries' `name` field is used to identify the
+     *                                                     TensorboardTimeSeries to be updated.
+     *                                                     Format:
+     *                                                     `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
+     * @param array                 $optionalArgs          {
      *     Optional.
      *
-     *     @type FieldMask $updateMask
-     *           Required. Field mask is used to specify the fields to be overwritten in the
-     *           TensorboardTimeSeries resource by the update.
-     *           The fields specified in the update_mask are relative to the resource, not
-     *           the full request. A field is overwritten if it's in the mask. If the
-     *           user does not provide a mask then all fields are overwritten if new
-     *           values are specified.
-     *     @type TensorboardTimeSeries $tensorboardTimeSeries
-     *           Required. The TensorboardTimeSeries' `name` field is used to identify the
-     *           TensorboardTimeSeries to be updated.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2533,20 +2461,18 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTensorboardTimeSeries(array $optionalArgs = [])
-    {
+    public function updateTensorboardTimeSeries(
+        $updateMask,
+        $tensorboardTimeSeries,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateTensorboardTimeSeriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        if (isset($optionalArgs['tensorboardTimeSeries'])) {
-            $request->setTensorboardTimeSeries(
-                $optionalArgs['tensorboardTimeSeries']
-            );
-        }
-
+        $request->setUpdateMask($updateMask);
+        $request->setTensorboardTimeSeries($tensorboardTimeSeries);
+        $requestParamHeaders[
+            'tensorboard_time_series.name'
+        ] = $tensorboardTimeSeries->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2569,21 +2495,21 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->writeTensorboardExperimentData();
+     *     $formattedTensorboardExperiment = $tensorboardServiceClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+     *     $writeRunDataRequests = [];
+     *     $response = $tensorboardServiceClient->writeTensorboardExperimentData($formattedTensorboardExperiment, $writeRunDataRequests);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                           $tensorboardExperiment Required. The resource name of the TensorboardExperiment to write data to.
+     *                                                                Format:
+     *                                                                `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
+     * @param WriteTensorboardRunDataRequest[] $writeRunDataRequests  Required. Requests containing per-run TensorboardTimeSeries data to write.
+     * @param array                            $optionalArgs          {
      *     Optional.
      *
-     *     @type string $tensorboardExperiment
-     *           Required. The resource name of the TensorboardExperiment to write data to.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
-     *     @type WriteTensorboardRunDataRequest[] $writeRunDataRequests
-     *           Required. Requests containing per-run TensorboardTimeSeries data to write.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2594,24 +2520,16 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function writeTensorboardExperimentData(array $optionalArgs = [])
-    {
+    public function writeTensorboardExperimentData(
+        $tensorboardExperiment,
+        $writeRunDataRequests,
+        array $optionalArgs = []
+    ) {
         $request = new WriteTensorboardExperimentDataRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['tensorboardExperiment'])) {
-            $request->setTensorboardExperiment(
-                $optionalArgs['tensorboardExperiment']
-            );
-            $requestParamHeaders['tensorboard_experiment'] =
-                $optionalArgs['tensorboardExperiment'];
-        }
-
-        if (isset($optionalArgs['writeRunDataRequests'])) {
-            $request->setWriteRunDataRequests(
-                $optionalArgs['writeRunDataRequests']
-            );
-        }
-
+        $request->setTensorboardExperiment($tensorboardExperiment);
+        $request->setWriteRunDataRequests($writeRunDataRequests);
+        $requestParamHeaders['tensorboard_experiment'] = $tensorboardExperiment;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2634,25 +2552,25 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->writeTensorboardRunData();
+     *     $formattedTensorboardRun = $tensorboardServiceClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+     *     $timeSeriesData = [];
+     *     $response = $tensorboardServiceClient->writeTensorboardRunData($formattedTensorboardRun, $timeSeriesData);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string           $tensorboardRun Required. The resource name of the TensorboardRun to write data to.
+     *                                         Format:
+     *                                         `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
+     * @param TimeSeriesData[] $timeSeriesData Required. The TensorboardTimeSeries data to write.
+     *                                         Values with in a time series are indexed by their step value.
+     *                                         Repeated writes to the same step will overwrite the existing value for that
+     *                                         step.
+     *                                         The upper limit of data points per write request is 5000.
+     * @param array            $optionalArgs   {
      *     Optional.
      *
-     *     @type string $tensorboardRun
-     *           Required. The resource name of the TensorboardRun to write data to.
-     *           Format:
-     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
-     *     @type TimeSeriesData[] $timeSeriesData
-     *           Required. The TensorboardTimeSeries data to write.
-     *           Values with in a time series are indexed by their step value.
-     *           Repeated writes to the same step will overwrite the existing value for that
-     *           step.
-     *           The upper limit of data points per write request is 5000.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2663,20 +2581,16 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function writeTensorboardRunData(array $optionalArgs = [])
-    {
+    public function writeTensorboardRunData(
+        $tensorboardRun,
+        $timeSeriesData,
+        array $optionalArgs = []
+    ) {
         $request = new WriteTensorboardRunDataRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['tensorboardRun'])) {
-            $request->setTensorboardRun($optionalArgs['tensorboardRun']);
-            $requestParamHeaders['tensorboard_run'] =
-                $optionalArgs['tensorboardRun'];
-        }
-
-        if (isset($optionalArgs['timeSeriesData'])) {
-            $request->setTimeSeriesData($optionalArgs['timeSeriesData']);
-        }
-
+        $request->setTensorboardRun($tensorboardRun);
+        $request->setTimeSeriesData($timeSeriesData);
+        $requestParamHeaders['tensorboard_run'] = $tensorboardRun;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2839,18 +2753,18 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $tensorboardServiceClient->getIamPolicy($resource);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -2864,15 +2778,12 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -2904,23 +2815,23 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $tensorboardServiceClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -2937,19 +2848,13 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2983,23 +2888,23 @@ class TensorboardServiceGapicClient
      * ```
      * $tensorboardServiceClient = new TensorboardServiceClient();
      * try {
-     *     $response = $tensorboardServiceClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $tensorboardServiceClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $tensorboardServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3010,19 +2915,16 @@ class TensorboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

@@ -29,6 +29,7 @@ class GetFeatureViewRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the FeatureView resource.
      *                     Format:
      *                     `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
+     *                     Please see {@see FeatureOnlineStoreAdminServiceClient::featureViewName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetFeatureViewRequest
      *

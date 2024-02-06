@@ -32,19 +32,19 @@ use Google\Rpc\Status;
 /**
  * Deletes a CustomJob.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the CustomJob resource to be deleted.
+ *                              Format:
+ *                              `projects/{project}/locations/{location}/customJobs/{custom_job}`
+ *                              Please see {@see JobServiceClient::customJobName()} for help formatting this field.
  */
-function delete_custom_job_sample(): void
+function delete_custom_job_sample(string $formattedName): void
 {
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteCustomJobRequest();
+    $request = (new DeleteCustomJobRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -62,5 +62,21 @@ function delete_custom_job_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = JobServiceClient::customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
+
+    delete_custom_job_sample($formattedName);
 }
 // [END aiplatform_v1_generated_JobService_DeleteCustomJob_sync]

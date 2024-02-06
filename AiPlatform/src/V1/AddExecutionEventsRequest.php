@@ -37,6 +37,7 @@ class AddExecutionEventsRequest extends \Google\Protobuf\Internal\Message
      *                                                       Artifacts with.
      *                                                       Format:
      *                                                       `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
+     *                                                       Please see {@see MetadataServiceClient::executionName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\Event[] $events    The Events to create and add.
      *
      * @return \Google\Cloud\AIPlatform\V1\AddExecutionEventsRequest

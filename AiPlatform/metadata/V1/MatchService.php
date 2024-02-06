@@ -21,16 +21,16 @@ class MatchService
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Index::initOnce();
         $pool->internalAddGeneratedFile(
             '
-º
-.google/cloud/aiplatform/v1/match_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/aiplatform/v1/index.proto"Õ
-FindNeighborsRequestH
-index_endpoint (	B0‚A˙A)
+π
+.google/cloud/aiplatform/v1/match_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/aiplatform/v1/index.proto"À
+FindNeighborsRequestG
+index_endpoint (	B/‡A˙A)
 \'aiplatform.googleapis.com/IndexEndpoint
 deployed_index_id (	G
 queries (26.google.cloud.aiplatform.v1.FindNeighborsRequest.Query
-return_full_datapoint (Á
-QueryC
-	datapoint (2*.google.cloud.aiplatform.v1.IndexDatapointB‚A
+return_full_datapoint (Ê
+QueryB
+	datapoint (2*.google.cloud.aiplatform.v1.IndexDatapointB‡A
 neighbor_count (-
 %per_crowding_attribute_neighbor_count ("
 approximate_neighbor_count (.
@@ -43,9 +43,9 @@ class MatchService
 NearestNeighbors
 
 id (	M
-	neighbors (2:.google.cloud.aiplatform.v1.FindNeighborsResponse.Neighbor"é
-ReadIndexDatapointsRequestH
-index_endpoint (	B0‚A˙A)
+	neighbors (2:.google.cloud.aiplatform.v1.FindNeighborsResponse.Neighbor"ç
+ReadIndexDatapointsRequestG
+index_endpoint (	B/‡A˙A)
 \'aiplatform.googleapis.com/IndexEndpoint
 deployed_index_id (	
 ids (	"]

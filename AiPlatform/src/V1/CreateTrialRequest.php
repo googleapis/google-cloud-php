@@ -33,6 +33,7 @@ class CreateTrialRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                            $parent Required. The resource name of the Study to create the Trial in.
      *                                                  Format: `projects/{project}/locations/{location}/studies/{study}`
+     *                                                  Please see {@see VizierServiceClient::studyName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\Trial $trial  Required. The Trial to create.
      *
      * @return \Google\Cloud\AIPlatform\V1\CreateTrialRequest

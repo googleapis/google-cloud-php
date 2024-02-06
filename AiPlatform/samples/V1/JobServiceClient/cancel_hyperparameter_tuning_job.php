@@ -43,19 +43,19 @@ use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
  * [HyperparameterTuningJob.state][google.cloud.aiplatform.v1.HyperparameterTuningJob.state]
  * is set to `CANCELLED`.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the HyperparameterTuningJob to cancel.
+ *                              Format:
+ *                              `projects/{project}/locations/{location}/hyperparameterTuningJobs/{hyperparameter_tuning_job}`
+ *                              Please see {@see JobServiceClient::hyperparameterTuningJobName()} for help formatting this field.
  */
-function cancel_hyperparameter_tuning_job_sample(): void
+function cancel_hyperparameter_tuning_job_sample(string $formattedName): void
 {
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
     // Prepare the request message.
-    $request = new CancelHyperparameterTuningJobRequest();
+    $request = (new CancelHyperparameterTuningJobRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -64,5 +64,25 @@ function cancel_hyperparameter_tuning_job_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = JobServiceClient::hyperparameterTuningJobName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[HYPERPARAMETER_TUNING_JOB]'
+    );
+
+    cancel_hyperparameter_tuning_job_sample($formattedName);
 }
 // [END aiplatform_v1_generated_JobService_CancelHyperparameterTuningJob_sync]

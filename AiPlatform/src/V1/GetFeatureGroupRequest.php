@@ -24,7 +24,8 @@ class GetFeatureGroupRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the FeatureGroup resource.
+     * @param string $name Required. The name of the FeatureGroup resource. Please see
+     *                     {@see FeatureRegistryServiceClient::featureGroupName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetFeatureGroupRequest
      *

@@ -49,6 +49,7 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      * @param string                   $endpoint  Required. The name of the Endpoint requested to perform token counting.
      *                                            Format:
      *                                            `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *                                            Please see {@see LlmUtilityServiceClient::endpointName()} for help formatting this field.
      * @param \Google\Protobuf\Value[] $instances Required. The instances that are the input to token counting call.
      *                                            Schema is identical to the prediction schema of the underlying model.
      *

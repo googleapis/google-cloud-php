@@ -27,24 +27,42 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\PipelineServiceClient;
 use Google\Cloud\AIPlatform\V1\CreateTrainingPipelineRequest;
 use Google\Cloud\AIPlatform\V1\TrainingPipeline;
+use Google\Protobuf\Value;
 
 /**
  * Creates a TrainingPipeline. A created TrainingPipeline right away will be
  * attempted to be run.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent                        The resource name of the Location to create the TrainingPipeline
+ *                                                       in. Format: `projects/{project}/locations/{location}`
+ *                                                       Please see {@see PipelineServiceClient::locationName()} for help formatting this field.
+ * @param string $trainingPipelineDisplayName            The user-defined name of this TrainingPipeline.
+ * @param string $trainingPipelineTrainingTaskDefinition A Google Cloud Storage path to the YAML file that defines the
+ *                                                       training task which is responsible for producing the model artifact, and
+ *                                                       may also include additional auxiliary work. The definition files that can
+ *                                                       be used here are found in
+ *                                                       gs://google-cloud-aiplatform/schema/trainingjob/definition/.
+ *                                                       Note: The URI given on output will be immutable and probably different,
+ *                                                       including the URI scheme, than the one given on input. The output URI will
+ *                                                       point to a location where the user only has a read access.
  */
-function create_training_pipeline_sample(): void
-{
+function create_training_pipeline_sample(
+    string $formattedParent,
+    string $trainingPipelineDisplayName,
+    string $trainingPipelineTrainingTaskDefinition
+): void {
     // Create a client.
     $pipelineServiceClient = new PipelineServiceClient();
 
     // Prepare the request message.
-    $request = new CreateTrainingPipelineRequest();
+    $trainingPipelineTrainingTaskInputs = new Value();
+    $trainingPipeline = (new TrainingPipeline())
+        ->setDisplayName($trainingPipelineDisplayName)
+        ->setTrainingTaskDefinition($trainingPipelineTrainingTaskDefinition)
+        ->setTrainingTaskInputs($trainingPipelineTrainingTaskInputs);
+    $request = (new CreateTrainingPipelineRequest())
+        ->setParent($formattedParent)
+        ->setTrainingPipeline($trainingPipeline);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +72,27 @@ function create_training_pipeline_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = PipelineServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $trainingPipelineDisplayName = '[DISPLAY_NAME]';
+    $trainingPipelineTrainingTaskDefinition = '[TRAINING_TASK_DEFINITION]';
+
+    create_training_pipeline_sample(
+        $formattedParent,
+        $trainingPipelineDisplayName,
+        $trainingPipelineTrainingTaskDefinition
+    );
 }
 // [END aiplatform_v1_generated_PipelineService_CreateTrainingPipeline_sync]

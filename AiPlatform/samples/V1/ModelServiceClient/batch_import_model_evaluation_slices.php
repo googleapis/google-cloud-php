@@ -27,23 +27,26 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesRequest;
 use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesResponse;
 use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
+use Google\Cloud\AIPlatform\V1\ModelEvaluationSlice;
 
 /**
  * Imports a list of externally generated ModelEvaluationSlice.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the parent ModelEvaluation resource.
+ *                                Format:
+ *                                `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
+ *                                Please see {@see ModelServiceClient::modelEvaluationName()} for help formatting this field.
  */
-function batch_import_model_evaluation_slices_sample(): void
+function batch_import_model_evaluation_slices_sample(string $formattedParent): void
 {
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
     // Prepare the request message.
-    $request = new BatchImportModelEvaluationSlicesRequest();
+    $modelEvaluationSlices = [new ModelEvaluationSlice()];
+    $request = (new BatchImportModelEvaluationSlicesRequest())
+        ->setParent($formattedParent)
+        ->setModelEvaluationSlices($modelEvaluationSlices);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +56,26 @@ function batch_import_model_evaluation_slices_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ModelServiceClient::modelEvaluationName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[MODEL]',
+        '[EVALUATION]'
+    );
+
+    batch_import_model_evaluation_slices_sample($formattedParent);
 }
 // [END aiplatform_v1_generated_ModelService_BatchImportModelEvaluationSlices_sync]

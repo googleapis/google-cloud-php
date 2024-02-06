@@ -22,51 +22,51 @@ class IndexEndpoint
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ˆ
-/google/cloud/aiplatform/v1/index_endpoint.protogoogle.cloud.aiplatform.v1google/api/resource.proto0google/cloud/aiplatform/v1/encryption_spec.proto2google/cloud/aiplatform/v1/machine_resources.proto3google/cloud/aiplatform/v1/service_networking.protogoogle/protobuf/timestamp.proto"Ó
-IndexEndpoint
-name (	BâA
-display_name (	BâA
-description (	I
-deployed_indexes (2).google.cloud.aiplatform.v1.DeployedIndexBâA
+ð
+/google/cloud/aiplatform/v1/index_endpoint.protogoogle.cloud.aiplatform.v1google/api/resource.proto0google/cloud/aiplatform/v1/encryption_spec.proto2google/cloud/aiplatform/v1/machine_resources.proto3google/cloud/aiplatform/v1/service_networking.protogoogle/protobuf/timestamp.proto"È
+IndexEndpoint
+name (	BàA
+display_name (	BàA
+description (	H
+deployed_indexes (2).google.cloud.aiplatform.v1.DeployedIndexBàA
 etag (	E
-labels (25.google.cloud.aiplatform.v1.IndexEndpoint.LabelsEntry5
-create_time (2.google.protobuf.TimestampBâA5
-update_time (2.google.protobuf.TimestampBâA
-network	 (	BâA.
+labels (25.google.cloud.aiplatform.v1.IndexEndpoint.LabelsEntry4
+create_time (2.google.protobuf.TimestampBàA4
+update_time (2.google.protobuf.TimestampBàA
+network	 (	BàA-
 enable_private_service_connect
- (BâAe
-private_service_connect_config (27.google.cloud.aiplatform.v1.PrivateServiceConnectConfigBâA%
-public_endpoint_enabled (BâA)
-public_endpoint_domain_name (	BâAI
-encryption_spec (2*.google.cloud.aiplatform.v1.EncryptionSpecBâA-
+ (BàAd
+private_service_connect_config (27.google.cloud.aiplatform.v1.PrivateServiceConnectConfigBàA$
+public_endpoint_enabled (BàA(
+public_endpoint_domain_name (	BàAH
+encryption_spec (2*.google.cloud.aiplatform.v1.EncryptionSpecBàA-
 LabelsEntry
 key (	
 value (	:8:uêAr
-\'aiplatform.googleapis.com/IndexEndpointGprojects/{project}/locations/{location}/indexEndpoints/{index_endpoint}"¢
-DeployedIndex
-id (	BâA7
-index (	B(âAúA!
+\'aiplatform.googleapis.com/IndexEndpointGprojects/{project}/locations/{location}/indexEndpoints/{index_endpoint}"—
+DeployedIndex
+id (	BàA6
+index (	B\'àAúA!
 aiplatform.googleapis.com/Index
-display_name (	5
-create_time (2.google.protobuf.TimestampBâAR
-private_endpoints (21.google.cloud.aiplatform.v1.IndexPrivateEndpointsBâA9
-index_sync_time (2.google.protobuf.TimestampBâAQ
-automatic_resources (2..google.cloud.aiplatform.v1.AutomaticResourcesBâAQ
-dedicated_resources (2..google.cloud.aiplatform.v1.DedicatedResourcesBâA#
-enable_access_logging (BâA]
-deployed_index_auth_config	 (23.google.cloud.aiplatform.v1.DeployedIndexAuthConfigBâA 
+display_name (	4
+create_time (2.google.protobuf.TimestampBàAQ
+private_endpoints (21.google.cloud.aiplatform.v1.IndexPrivateEndpointsBàA8
+index_sync_time (2.google.protobuf.TimestampBàAP
+automatic_resources (2..google.cloud.aiplatform.v1.AutomaticResourcesBàAP
+dedicated_resources (2..google.cloud.aiplatform.v1.DedicatedResourcesBàA"
+enable_access_logging (BàA\\
+deployed_index_auth_config	 (23.google.cloud.aiplatform.v1.DeployedIndexAuthConfigBàA
 reserved_ip_ranges
- (	BâA
-deployment_group (	BâA"®
+ (	BàA
+deployment_group (	BàA"®
 DeployedIndexAuthConfigW
 auth_provider (2@.google.cloud.aiplatform.v1.DeployedIndexAuthConfig.AuthProvider:
 AuthProvider
 	audiences (	
-allowed_issuers (	"[
-IndexPrivateEndpoints 
-match_grpc_address (	BâA 
-service_attachment (	BâABÐ
+allowed_issuers (	"Y
+IndexPrivateEndpoints
+match_grpc_address (	BàA
+service_attachment (	BàABÐ
 com.google.cloud.aiplatform.v1BIndexEndpointProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

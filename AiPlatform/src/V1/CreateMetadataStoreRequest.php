@@ -48,6 +48,7 @@ class CreateMetadataStoreRequest extends \Google\Protobuf\Internal\Message
      * @param string                                    $parent          Required. The resource name of the Location where the MetadataStore should
      *                                                                   be created.
      *                                                                   Format: `projects/{project}/locations/{location}/`
+     *                                                                   Please see {@see MetadataServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\MetadataStore $metadataStore   Required. The MetadataStore to create.
      * @param string                                    $metadataStoreId The {metadatastore} portion of the resource name with the format:
      *                                                                   `projects/{project}/locations/{location}/metadataStores/{metadatastore}`

@@ -55,6 +55,7 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
      * @param string                                    $endpoint      Required. The name of the Endpoint resource into which to deploy a Model.
      *                                                                 Format:
      *                                                                 `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *                                                                 Please see {@see EndpointServiceClient::endpointName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\DeployedModel $deployedModel Required. The DeployedModel to be created within the Endpoint. Note that
      *                                                                 [Endpoint.traffic_split][google.cloud.aiplatform.v1.Endpoint.traffic_split]
      *                                                                 must be updated for the DeployedModel to start receiving traffic, either as

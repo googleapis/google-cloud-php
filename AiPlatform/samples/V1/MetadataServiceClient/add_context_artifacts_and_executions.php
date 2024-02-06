@@ -33,19 +33,19 @@ use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
  * Artifacts or Executions have already been added to a Context, they are
  * simply skipped.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedContext The resource name of the Context that the Artifacts and
+ *                                 Executions belong to. Format:
+ *                                 `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+ *                                 Please see {@see MetadataServiceClient::contextName()} for help formatting this field.
  */
-function add_context_artifacts_and_executions_sample(): void
+function add_context_artifacts_and_executions_sample(string $formattedContext): void
 {
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $request = new AddContextArtifactsAndExecutionsRequest();
+    $request = (new AddContextArtifactsAndExecutionsRequest())
+        ->setContext($formattedContext);
 
     // Call the API and handle any network failures.
     try {
@@ -55,5 +55,26 @@ function add_context_artifacts_and_executions_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedContext = MetadataServiceClient::contextName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[METADATA_STORE]',
+        '[CONTEXT]'
+    );
+
+    add_context_artifacts_and_executions_sample($formattedContext);
 }
 // [END aiplatform_v1_generated_MetadataService_AddContextArtifactsAndExecutions_sync]

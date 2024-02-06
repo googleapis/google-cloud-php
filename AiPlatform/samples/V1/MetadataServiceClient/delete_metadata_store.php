@@ -33,19 +33,19 @@ use Google\Rpc\Status;
  * Deletes a single MetadataStore and all its child resources (Artifacts,
  * Executions, and Contexts).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the MetadataStore to delete.
+ *                              Format:
+ *                              `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+ *                              Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
  */
-function delete_metadata_store_sample(): void
+function delete_metadata_store_sample(string $formattedName): void
 {
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteMetadataStoreRequest();
+    $request = (new DeleteMetadataStoreRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -63,5 +63,25 @@ function delete_metadata_store_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = MetadataServiceClient::metadataStoreName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[METADATA_STORE]'
+    );
+
+    delete_metadata_store_sample($formattedName);
 }
 // [END aiplatform_v1_generated_MetadataService_DeleteMetadataStore_sync]

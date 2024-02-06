@@ -29,6 +29,7 @@ class GetHyperparameterTuningJobRequest extends \Google\Protobuf\Internal\Messag
      * @param string $name Required. The name of the HyperparameterTuningJob resource.
      *                     Format:
      *                     `projects/{project}/locations/{location}/hyperparameterTuningJobs/{hyperparameter_tuning_job}`
+     *                     Please see {@see JobServiceClient::hyperparameterTuningJobName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetHyperparameterTuningJobRequest
      *

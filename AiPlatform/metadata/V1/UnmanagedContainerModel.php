@@ -18,12 +18,12 @@ class UnmanagedContainerModel
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Model::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¬
-:google/cloud/aiplatform/v1/unmanaged_container_model.protogoogle.cloud.aiplatform.v1&google/cloud/aiplatform/v1/model.proto"Ä
+«
+:google/cloud/aiplatform/v1/unmanaged_container_model.protogoogle.cloud.aiplatform.v1&google/cloud/aiplatform/v1/model.proto"Ã
 UnmanagedContainerModel
 artifact_uri (	E
-predict_schemata (2+.google.cloud.aiplatform.v1.PredictSchemataL
-container_spec (2..google.cloud.aiplatform.v1.ModelContainerSpecBâABÚ
+predict_schemata (2+.google.cloud.aiplatform.v1.PredictSchemataK
+container_spec (2..google.cloud.aiplatform.v1.ModelContainerSpecBàABÚ
 com.google.cloud.aiplatform.v1BUnmanagedContainerModelProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

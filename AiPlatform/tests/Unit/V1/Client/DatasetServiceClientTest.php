@@ -39,6 +39,7 @@ use Google\Cloud\AIPlatform\V1\DatasetVersion;
 use Google\Cloud\AIPlatform\V1\DeleteDatasetRequest;
 use Google\Cloud\AIPlatform\V1\DeleteDatasetVersionRequest;
 use Google\Cloud\AIPlatform\V1\DeleteSavedQueryRequest;
+use Google\Cloud\AIPlatform\V1\ExportDataConfig;
 use Google\Cloud\AIPlatform\V1\ExportDataRequest;
 use Google\Cloud\AIPlatform\V1\ExportDataResponse;
 use Google\Cloud\AIPlatform\V1\GetAnnotationSpecRequest;
@@ -73,7 +74,9 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Value;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -148,7 +151,18 @@ class DatasetServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateDatasetRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataset = new Dataset();
+        $datasetDisplayName = 'datasetDisplayName1912393429';
+        $dataset->setDisplayName($datasetDisplayName);
+        $datasetMetadataSchemaUri = 'datasetMetadataSchemaUri-1520763900';
+        $dataset->setMetadataSchemaUri($datasetMetadataSchemaUri);
+        $datasetMetadata = new Value();
+        $dataset->setMetadata($datasetMetadata);
+        $request = (new CreateDatasetRequest())
+            ->setParent($formattedParent)
+            ->setDataset($dataset);
         $response = $gapicClient->createDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -159,6 +173,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/CreateDataset', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getDataset();
+        $this->assertProtobufEquals($dataset, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createDatasetTest');
         $response->pollUntilComplete([
@@ -209,7 +227,18 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateDatasetRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataset = new Dataset();
+        $datasetDisplayName = 'datasetDisplayName1912393429';
+        $dataset->setDisplayName($datasetDisplayName);
+        $datasetMetadataSchemaUri = 'datasetMetadataSchemaUri-1520763900';
+        $dataset->setMetadataSchemaUri($datasetMetadataSchemaUri);
+        $datasetMetadata = new Value();
+        $dataset->setMetadata($datasetMetadata);
+        $request = (new CreateDatasetRequest())
+            ->setParent($formattedParent)
+            ->setDataset($dataset);
         $response = $gapicClient->createDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -267,7 +296,12 @@ class DatasetServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateDatasetVersionRequest();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $datasetVersion = new DatasetVersion();
+        $request = (new CreateDatasetVersionRequest())
+            ->setParent($formattedParent)
+            ->setDatasetVersion($datasetVersion);
         $response = $gapicClient->createDatasetVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -278,6 +312,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/CreateDatasetVersion', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getDatasetVersion();
+        $this->assertProtobufEquals($datasetVersion, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createDatasetVersionTest');
         $response->pollUntilComplete([
@@ -328,7 +366,12 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateDatasetVersionRequest();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $datasetVersion = new DatasetVersion();
+        $request = (new CreateDatasetVersionRequest())
+            ->setParent($formattedParent)
+            ->setDatasetVersion($datasetVersion);
         $response = $gapicClient->createDatasetVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -380,7 +423,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteDatasetRequest();
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new DeleteDatasetRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -391,6 +437,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/DeleteDataset', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteDatasetTest');
         $response->pollUntilComplete([
@@ -441,7 +489,10 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteDatasetRequest();
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new DeleteDatasetRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -493,7 +544,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteDatasetVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
+        $request = (new DeleteDatasetVersionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteDatasetVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -504,6 +558,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/DeleteDatasetVersion', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteDatasetVersionTest');
         $response->pollUntilComplete([
@@ -554,7 +610,10 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteDatasetVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
+        $request = (new DeleteDatasetVersionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteDatasetVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -606,7 +665,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteSavedQueryRequest();
+        // Mock request
+        $formattedName = $gapicClient->savedQueryName('[PROJECT]', '[LOCATION]', '[DATASET]', '[SAVED_QUERY]');
+        $request = (new DeleteSavedQueryRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteSavedQuery($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -617,6 +679,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/DeleteSavedQuery', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteSavedQueryTest');
         $response->pollUntilComplete([
@@ -667,7 +731,10 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteSavedQueryRequest();
+        // Mock request
+        $formattedName = $gapicClient->savedQueryName('[PROJECT]', '[LOCATION]', '[DATASET]', '[SAVED_QUERY]');
+        $request = (new DeleteSavedQueryRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteSavedQuery($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -719,7 +786,12 @@ class DatasetServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new ExportDataRequest();
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $exportConfig = new ExportDataConfig();
+        $request = (new ExportDataRequest())
+            ->setName($formattedName)
+            ->setExportConfig($exportConfig);
         $response = $gapicClient->exportData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -730,6 +802,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/ExportData', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getExportConfig();
+        $this->assertProtobufEquals($exportConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportDataTest');
         $response->pollUntilComplete([
@@ -780,7 +856,12 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new ExportDataRequest();
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $exportConfig = new ExportDataConfig();
+        $request = (new ExportDataRequest())
+            ->setName($formattedName)
+            ->setExportConfig($exportConfig);
         $response = $gapicClient->exportData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -820,7 +901,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetAnnotationSpecRequest();
+        // Mock request
+        $formattedName = $gapicClient->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
+        $request = (new GetAnnotationSpecRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getAnnotationSpec($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -828,6 +912,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/GetAnnotationSpec', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -849,7 +935,10 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetAnnotationSpecRequest();
+        // Mock request
+        $formattedName = $gapicClient->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
+        $request = (new GetAnnotationSpecRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getAnnotationSpec($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -888,7 +977,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
         $transport->addResponse($expectedResponse);
-        $request = new GetDatasetRequest();
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new GetDatasetRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getDataset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -896,6 +988,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/GetDataset', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -917,7 +1011,10 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetDatasetRequest();
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new GetDatasetRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getDataset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -948,7 +1045,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
         $transport->addResponse($expectedResponse);
-        $request = new GetDatasetVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
+        $request = (new GetDatasetVersionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getDatasetVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -956,6 +1056,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/GetDatasetVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -977,7 +1079,10 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetDatasetVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
+        $request = (new GetDatasetVersionRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getDatasetVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1020,7 +1125,12 @@ class DatasetServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new ImportDataRequest();
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $importConfigs = [];
+        $request = (new ImportDataRequest())
+            ->setName($formattedName)
+            ->setImportConfigs($importConfigs);
         $response = $gapicClient->importData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1031,6 +1141,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/ImportData', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getImportConfigs();
+        $this->assertProtobufEquals($importConfigs, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importDataTest');
         $response->pollUntilComplete([
@@ -1081,7 +1195,12 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new ImportDataRequest();
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $importConfigs = [];
+        $request = (new ImportDataRequest())
+            ->setName($formattedName)
+            ->setImportConfigs($importConfigs);
         $response = $gapicClient->importData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1122,7 +1241,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAnnotations($annotations);
         $transport->addResponse($expectedResponse);
-        $request = new ListAnnotationsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->dataItemName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATA_ITEM]');
+        $request = (new ListAnnotationsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listAnnotations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1133,6 +1255,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/ListAnnotations', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1154,7 +1278,10 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListAnnotationsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->dataItemName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATA_ITEM]');
+        $request = (new ListAnnotationsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listAnnotations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1186,7 +1313,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataItems($dataItems);
         $transport->addResponse($expectedResponse);
-        $request = new ListDataItemsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new ListDataItemsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listDataItems($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1197,6 +1327,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/ListDataItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1218,7 +1350,10 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListDataItemsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new ListDataItemsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listDataItems($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1250,7 +1385,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDatasetVersions($datasetVersions);
         $transport->addResponse($expectedResponse);
-        $request = new ListDatasetVersionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new ListDatasetVersionsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listDatasetVersions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1261,6 +1399,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/ListDatasetVersions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1282,7 +1422,10 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListDatasetVersionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new ListDatasetVersionsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listDatasetVersions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1314,7 +1457,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDatasets($datasets);
         $transport->addResponse($expectedResponse);
-        $request = new ListDatasetsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListDatasetsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listDatasets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1325,6 +1471,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/ListDatasets', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1346,7 +1494,10 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListDatasetsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListDatasetsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listDatasets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1378,7 +1529,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSavedQueries($savedQueries);
         $transport->addResponse($expectedResponse);
-        $request = new ListSavedQueriesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new ListSavedQueriesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listSavedQueries($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1389,6 +1543,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/ListSavedQueries', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1410,7 +1566,10 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListSavedQueriesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new ListSavedQueriesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listSavedQueries($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1459,7 +1618,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new RestoreDatasetVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
+        $request = (new RestoreDatasetVersionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->restoreDatasetVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1470,6 +1632,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/RestoreDatasetVersion', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/restoreDatasetVersionTest');
         $response->pollUntilComplete([
@@ -1520,7 +1684,10 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new RestoreDatasetVersionRequest();
+        // Mock request
+        $formattedName = $gapicClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
+        $request = (new RestoreDatasetVersionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->restoreDatasetVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1561,7 +1728,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataItemViews($dataItemViews);
         $transport->addResponse($expectedResponse);
-        $request = new SearchDataItemsRequest();
+        // Mock request
+        $formattedDataset = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new SearchDataItemsRequest())
+            ->setDataset($formattedDataset);
         $response = $gapicClient->searchDataItems($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1572,6 +1742,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/SearchDataItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDataset();
+        $this->assertProtobufEquals($formattedDataset, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1593,7 +1765,10 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SearchDataItemsRequest();
+        // Mock request
+        $formattedDataset = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new SearchDataItemsRequest())
+            ->setDataset($formattedDataset);
         try {
             $gapicClient->searchDataItems($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1632,7 +1807,18 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateDatasetRequest();
+        // Mock request
+        $dataset = new Dataset();
+        $datasetDisplayName = 'datasetDisplayName1912393429';
+        $dataset->setDisplayName($datasetDisplayName);
+        $datasetMetadataSchemaUri = 'datasetMetadataSchemaUri-1520763900';
+        $dataset->setMetadataSchemaUri($datasetMetadataSchemaUri);
+        $datasetMetadata = new Value();
+        $dataset->setMetadata($datasetMetadata);
+        $updateMask = new FieldMask();
+        $request = (new UpdateDatasetRequest())
+            ->setDataset($dataset)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateDataset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1640,6 +1826,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/UpdateDataset', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDataset();
+        $this->assertProtobufEquals($dataset, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1661,7 +1851,18 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateDatasetRequest();
+        // Mock request
+        $dataset = new Dataset();
+        $datasetDisplayName = 'datasetDisplayName1912393429';
+        $dataset->setDisplayName($datasetDisplayName);
+        $datasetMetadataSchemaUri = 'datasetMetadataSchemaUri-1520763900';
+        $dataset->setMetadataSchemaUri($datasetMetadataSchemaUri);
+        $datasetMetadata = new Value();
+        $dataset->setMetadata($datasetMetadata);
+        $updateMask = new FieldMask();
+        $request = (new UpdateDatasetRequest())
+            ->setDataset($dataset)
+            ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateDataset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1814,7 +2015,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1822,6 +2026,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1843,7 +2049,10 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1872,7 +2081,12 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1880,6 +2094,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1901,7 +2119,12 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1926,7 +2149,12 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1934,6 +2162,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1955,7 +2187,12 @@ class DatasetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2012,7 +2249,18 @@ class DatasetServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateDatasetRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataset = new Dataset();
+        $datasetDisplayName = 'datasetDisplayName1912393429';
+        $dataset->setDisplayName($datasetDisplayName);
+        $datasetMetadataSchemaUri = 'datasetMetadataSchemaUri-1520763900';
+        $dataset->setMetadataSchemaUri($datasetMetadataSchemaUri);
+        $datasetMetadata = new Value();
+        $dataset->setMetadata($datasetMetadata);
+        $request = (new CreateDatasetRequest())
+            ->setParent($formattedParent)
+            ->setDataset($dataset);
         $response = $gapicClient->createDatasetAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2023,6 +2271,10 @@ class DatasetServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/CreateDataset', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getDataset();
+        $this->assertProtobufEquals($dataset, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createDatasetTest');
         $response->pollUntilComplete([

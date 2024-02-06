@@ -27,23 +27,25 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\LlmUtilityServiceClient;
 use Google\Cloud\AIPlatform\V1\ComputeTokensRequest;
 use Google\Cloud\AIPlatform\V1\ComputeTokensResponse;
+use Google\Protobuf\Value;
 
 /**
  * Return a list of tokens based on the input text.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedEndpoint The name of the Endpoint requested to get lists of tokens and
+ *                                  token ids. Please see
+ *                                  {@see LlmUtilityServiceClient::endpointName()} for help formatting this field.
  */
-function compute_tokens_sample(): void
+function compute_tokens_sample(string $formattedEndpoint): void
 {
     // Create a client.
     $llmUtilityServiceClient = new LlmUtilityServiceClient();
 
     // Prepare the request message.
-    $request = new ComputeTokensRequest();
+    $instances = [new Value()];
+    $request = (new ComputeTokensRequest())
+        ->setEndpoint($formattedEndpoint)
+        ->setInstances($instances);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +55,21 @@ function compute_tokens_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedEndpoint = LlmUtilityServiceClient::endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+
+    compute_tokens_sample($formattedEndpoint);
 }
 // [END aiplatform_v1_generated_LlmUtilityService_ComputeTokens_sync]

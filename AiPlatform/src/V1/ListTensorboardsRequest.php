@@ -67,6 +67,7 @@ class ListTensorboardsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The resource name of the Location to list Tensorboards.
      *                       Format:
      *                       `projects/{project}/locations/{location}`
+     *                       Please see {@see TensorboardServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ListTensorboardsRequest
      *

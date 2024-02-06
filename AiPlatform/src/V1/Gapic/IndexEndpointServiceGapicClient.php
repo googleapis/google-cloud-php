@@ -69,7 +69,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $indexEndpointServiceClient = new IndexEndpointServiceClient();
  * try {
- *     $operationResponse = $indexEndpointServiceClient->createIndexEndpoint();
+ *     $formattedParent = $indexEndpointServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $indexEndpoint = new IndexEndpoint();
+ *     $operationResponse = $indexEndpointServiceClient->createIndexEndpoint($formattedParent, $indexEndpoint);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -80,7 +82,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $indexEndpointServiceClient->createIndexEndpoint();
+ *     $operationResponse = $indexEndpointServiceClient->createIndexEndpoint($formattedParent, $indexEndpoint);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $indexEndpointServiceClient->resumeOperation($operationName, 'createIndexEndpoint');
@@ -427,7 +429,9 @@ class IndexEndpointServiceGapicClient
      * ```
      * $indexEndpointServiceClient = new IndexEndpointServiceClient();
      * try {
-     *     $operationResponse = $indexEndpointServiceClient->createIndexEndpoint();
+     *     $formattedParent = $indexEndpointServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $indexEndpoint = new IndexEndpoint();
+     *     $operationResponse = $indexEndpointServiceClient->createIndexEndpoint($formattedParent, $indexEndpoint);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -438,7 +442,7 @@ class IndexEndpointServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $indexEndpointServiceClient->createIndexEndpoint();
+     *     $operationResponse = $indexEndpointServiceClient->createIndexEndpoint($formattedParent, $indexEndpoint);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $indexEndpointServiceClient->resumeOperation($operationName, 'createIndexEndpoint');
@@ -458,14 +462,12 @@ class IndexEndpointServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string        $parent        Required. The resource name of the Location to create the IndexEndpoint in.
+     *                                     Format: `projects/{project}/locations/{location}`
+     * @param IndexEndpoint $indexEndpoint Required. The IndexEndpoint to create.
+     * @param array         $optionalArgs  {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location to create the IndexEndpoint in.
-     *           Format: `projects/{project}/locations/{location}`
-     *     @type IndexEndpoint $indexEndpoint
-     *           Required. The IndexEndpoint to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -476,19 +478,16 @@ class IndexEndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createIndexEndpoint(array $optionalArgs = [])
-    {
+    public function createIndexEndpoint(
+        $parent,
+        $indexEndpoint,
+        array $optionalArgs = []
+    ) {
         $request = new CreateIndexEndpointRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['indexEndpoint'])) {
-            $request->setIndexEndpoint($optionalArgs['indexEndpoint']);
-        }
-
+        $request->setParent($parent);
+        $request->setIndexEndpoint($indexEndpoint);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -510,7 +509,8 @@ class IndexEndpointServiceGapicClient
      * ```
      * $indexEndpointServiceClient = new IndexEndpointServiceClient();
      * try {
-     *     $operationResponse = $indexEndpointServiceClient->deleteIndexEndpoint();
+     *     $formattedName = $indexEndpointServiceClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+     *     $operationResponse = $indexEndpointServiceClient->deleteIndexEndpoint($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -520,7 +520,7 @@ class IndexEndpointServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $indexEndpointServiceClient->deleteIndexEndpoint();
+     *     $operationResponse = $indexEndpointServiceClient->deleteIndexEndpoint($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $indexEndpointServiceClient->resumeOperation($operationName, 'deleteIndexEndpoint');
@@ -539,13 +539,12 @@ class IndexEndpointServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the IndexEndpoint resource to be deleted.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the IndexEndpoint resource to be deleted.
-     *           Format:
-     *           `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -556,15 +555,12 @@ class IndexEndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteIndexEndpoint(array $optionalArgs = [])
+    public function deleteIndexEndpoint($name, array $optionalArgs = [])
     {
         $request = new DeleteIndexEndpointRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -588,7 +584,9 @@ class IndexEndpointServiceGapicClient
      * ```
      * $indexEndpointServiceClient = new IndexEndpointServiceClient();
      * try {
-     *     $operationResponse = $indexEndpointServiceClient->deployIndex();
+     *     $formattedIndexEndpoint = $indexEndpointServiceClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+     *     $deployedIndex = new DeployedIndex();
+     *     $operationResponse = $indexEndpointServiceClient->deployIndex($formattedIndexEndpoint, $deployedIndex);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -599,7 +597,7 @@ class IndexEndpointServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $indexEndpointServiceClient->deployIndex();
+     *     $operationResponse = $indexEndpointServiceClient->deployIndex($formattedIndexEndpoint, $deployedIndex);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $indexEndpointServiceClient->resumeOperation($operationName, 'deployIndex');
@@ -619,15 +617,13 @@ class IndexEndpointServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string        $indexEndpoint Required. The name of the IndexEndpoint resource into which to deploy an
+     *                                     Index. Format:
+     *                                     `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
+     * @param DeployedIndex $deployedIndex Required. The DeployedIndex to be created within the IndexEndpoint.
+     * @param array         $optionalArgs  {
      *     Optional.
      *
-     *     @type string $indexEndpoint
-     *           Required. The name of the IndexEndpoint resource into which to deploy an
-     *           Index. Format:
-     *           `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
-     *     @type DeployedIndex $deployedIndex
-     *           Required. The DeployedIndex to be created within the IndexEndpoint.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -638,20 +634,16 @@ class IndexEndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deployIndex(array $optionalArgs = [])
-    {
+    public function deployIndex(
+        $indexEndpoint,
+        $deployedIndex,
+        array $optionalArgs = []
+    ) {
         $request = new DeployIndexRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['indexEndpoint'])) {
-            $request->setIndexEndpoint($optionalArgs['indexEndpoint']);
-            $requestParamHeaders['index_endpoint'] =
-                $optionalArgs['indexEndpoint'];
-        }
-
-        if (isset($optionalArgs['deployedIndex'])) {
-            $request->setDeployedIndex($optionalArgs['deployedIndex']);
-        }
-
+        $request->setIndexEndpoint($indexEndpoint);
+        $request->setDeployedIndex($deployedIndex);
+        $requestParamHeaders['index_endpoint'] = $indexEndpoint;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -673,19 +665,19 @@ class IndexEndpointServiceGapicClient
      * ```
      * $indexEndpointServiceClient = new IndexEndpointServiceClient();
      * try {
-     *     $response = $indexEndpointServiceClient->getIndexEndpoint();
+     *     $formattedName = $indexEndpointServiceClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+     *     $response = $indexEndpointServiceClient->getIndexEndpoint($formattedName);
      * } finally {
      *     $indexEndpointServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the IndexEndpoint resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the IndexEndpoint resource.
-     *           Format:
-     *           `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -696,15 +688,12 @@ class IndexEndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIndexEndpoint(array $optionalArgs = [])
+    public function getIndexEndpoint($name, array $optionalArgs = [])
     {
         $request = new GetIndexEndpointRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -726,8 +715,9 @@ class IndexEndpointServiceGapicClient
      * ```
      * $indexEndpointServiceClient = new IndexEndpointServiceClient();
      * try {
+     *     $formattedParent = $indexEndpointServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $indexEndpointServiceClient->listIndexEndpoints();
+     *     $pagedResponse = $indexEndpointServiceClient->listIndexEndpoints($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -735,7 +725,7 @@ class IndexEndpointServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $indexEndpointServiceClient->listIndexEndpoints();
+     *     $pagedResponse = $indexEndpointServiceClient->listIndexEndpoints($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -744,12 +734,11 @@ class IndexEndpointServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the Location from which to list the
+     *                             IndexEndpoints. Format: `projects/{project}/locations/{location}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location from which to list the
-     *           IndexEndpoints. Format: `projects/{project}/locations/{location}`
      *     @type string $filter
      *           Optional. An expression for filtering the results of the request. For field
      *           names both snake_case and camelCase are supported.
@@ -790,15 +779,12 @@ class IndexEndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listIndexEndpoints(array $optionalArgs = [])
+    public function listIndexEndpoints($parent, array $optionalArgs = [])
     {
         $request = new ListIndexEndpointsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -836,7 +822,9 @@ class IndexEndpointServiceGapicClient
      * ```
      * $indexEndpointServiceClient = new IndexEndpointServiceClient();
      * try {
-     *     $operationResponse = $indexEndpointServiceClient->mutateDeployedIndex();
+     *     $formattedIndexEndpoint = $indexEndpointServiceClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+     *     $deployedIndex = new DeployedIndex();
+     *     $operationResponse = $indexEndpointServiceClient->mutateDeployedIndex($formattedIndexEndpoint, $deployedIndex);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -847,7 +835,7 @@ class IndexEndpointServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $indexEndpointServiceClient->mutateDeployedIndex();
+     *     $operationResponse = $indexEndpointServiceClient->mutateDeployedIndex($formattedIndexEndpoint, $deployedIndex);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $indexEndpointServiceClient->resumeOperation($operationName, 'mutateDeployedIndex');
@@ -867,17 +855,15 @@ class IndexEndpointServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string        $indexEndpoint Required. The name of the IndexEndpoint resource into which to deploy an
+     *                                     Index. Format:
+     *                                     `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
+     * @param DeployedIndex $deployedIndex Required. The DeployedIndex to be updated within the IndexEndpoint.
+     *                                     Currently, the updatable fields are [DeployedIndex][automatic_resources]
+     *                                     and [DeployedIndex][dedicated_resources]
+     * @param array         $optionalArgs  {
      *     Optional.
      *
-     *     @type string $indexEndpoint
-     *           Required. The name of the IndexEndpoint resource into which to deploy an
-     *           Index. Format:
-     *           `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
-     *     @type DeployedIndex $deployedIndex
-     *           Required. The DeployedIndex to be updated within the IndexEndpoint.
-     *           Currently, the updatable fields are [DeployedIndex][automatic_resources]
-     *           and [DeployedIndex][dedicated_resources]
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -888,20 +874,16 @@ class IndexEndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function mutateDeployedIndex(array $optionalArgs = [])
-    {
+    public function mutateDeployedIndex(
+        $indexEndpoint,
+        $deployedIndex,
+        array $optionalArgs = []
+    ) {
         $request = new MutateDeployedIndexRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['indexEndpoint'])) {
-            $request->setIndexEndpoint($optionalArgs['indexEndpoint']);
-            $requestParamHeaders['index_endpoint'] =
-                $optionalArgs['indexEndpoint'];
-        }
-
-        if (isset($optionalArgs['deployedIndex'])) {
-            $request->setDeployedIndex($optionalArgs['deployedIndex']);
-        }
-
+        $request->setIndexEndpoint($indexEndpoint);
+        $request->setDeployedIndex($deployedIndex);
+        $requestParamHeaders['index_endpoint'] = $indexEndpoint;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -924,7 +906,9 @@ class IndexEndpointServiceGapicClient
      * ```
      * $indexEndpointServiceClient = new IndexEndpointServiceClient();
      * try {
-     *     $operationResponse = $indexEndpointServiceClient->undeployIndex();
+     *     $formattedIndexEndpoint = $indexEndpointServiceClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+     *     $deployedIndexId = 'deployed_index_id';
+     *     $operationResponse = $indexEndpointServiceClient->undeployIndex($formattedIndexEndpoint, $deployedIndexId);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -935,7 +919,7 @@ class IndexEndpointServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $indexEndpointServiceClient->undeployIndex();
+     *     $operationResponse = $indexEndpointServiceClient->undeployIndex($formattedIndexEndpoint, $deployedIndexId);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $indexEndpointServiceClient->resumeOperation($operationName, 'undeployIndex');
@@ -955,16 +939,14 @@ class IndexEndpointServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $indexEndpoint   Required. The name of the IndexEndpoint resource from which to undeploy an
+     *                                Index. Format:
+     *                                `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
+     * @param string $deployedIndexId Required. The ID of the DeployedIndex to be undeployed from the
+     *                                IndexEndpoint.
+     * @param array  $optionalArgs    {
      *     Optional.
      *
-     *     @type string $indexEndpoint
-     *           Required. The name of the IndexEndpoint resource from which to undeploy an
-     *           Index. Format:
-     *           `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
-     *     @type string $deployedIndexId
-     *           Required. The ID of the DeployedIndex to be undeployed from the
-     *           IndexEndpoint.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -975,20 +957,16 @@ class IndexEndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function undeployIndex(array $optionalArgs = [])
-    {
+    public function undeployIndex(
+        $indexEndpoint,
+        $deployedIndexId,
+        array $optionalArgs = []
+    ) {
         $request = new UndeployIndexRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['indexEndpoint'])) {
-            $request->setIndexEndpoint($optionalArgs['indexEndpoint']);
-            $requestParamHeaders['index_endpoint'] =
-                $optionalArgs['indexEndpoint'];
-        }
-
-        if (isset($optionalArgs['deployedIndexId'])) {
-            $request->setDeployedIndexId($optionalArgs['deployedIndexId']);
-        }
-
+        $request->setIndexEndpoint($indexEndpoint);
+        $request->setDeployedIndexId($deployedIndexId);
+        $requestParamHeaders['index_endpoint'] = $indexEndpoint;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1010,20 +988,20 @@ class IndexEndpointServiceGapicClient
      * ```
      * $indexEndpointServiceClient = new IndexEndpointServiceClient();
      * try {
-     *     $response = $indexEndpointServiceClient->updateIndexEndpoint();
+     *     $indexEndpoint = new IndexEndpoint();
+     *     $updateMask = new FieldMask();
+     *     $response = $indexEndpointServiceClient->updateIndexEndpoint($indexEndpoint, $updateMask);
      * } finally {
      *     $indexEndpointServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param IndexEndpoint $indexEndpoint Required. The IndexEndpoint which replaces the resource on the server.
+     * @param FieldMask     $updateMask    Required. The update mask applies to the resource. See
+     *                                     [google.protobuf.FieldMask][google.protobuf.FieldMask].
+     * @param array         $optionalArgs  {
      *     Optional.
      *
-     *     @type IndexEndpoint $indexEndpoint
-     *           Required. The IndexEndpoint which replaces the resource on the server.
-     *     @type FieldMask $updateMask
-     *           Required. The update mask applies to the resource. See
-     *           [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1034,18 +1012,16 @@ class IndexEndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateIndexEndpoint(array $optionalArgs = [])
-    {
+    public function updateIndexEndpoint(
+        $indexEndpoint,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateIndexEndpointRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['indexEndpoint'])) {
-            $request->setIndexEndpoint($optionalArgs['indexEndpoint']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setIndexEndpoint($indexEndpoint);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['index_endpoint.name'] = $indexEndpoint->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1208,18 +1184,18 @@ class IndexEndpointServiceGapicClient
      * ```
      * $indexEndpointServiceClient = new IndexEndpointServiceClient();
      * try {
-     *     $response = $indexEndpointServiceClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $indexEndpointServiceClient->getIamPolicy($resource);
      * } finally {
      *     $indexEndpointServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1233,15 +1209,12 @@ class IndexEndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1273,23 +1246,23 @@ class IndexEndpointServiceGapicClient
      * ```
      * $indexEndpointServiceClient = new IndexEndpointServiceClient();
      * try {
-     *     $response = $indexEndpointServiceClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $indexEndpointServiceClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $indexEndpointServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1306,19 +1279,13 @@ class IndexEndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1352,23 +1319,23 @@ class IndexEndpointServiceGapicClient
      * ```
      * $indexEndpointServiceClient = new IndexEndpointServiceClient();
      * try {
-     *     $response = $indexEndpointServiceClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $indexEndpointServiceClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $indexEndpointServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1379,19 +1346,16 @@ class IndexEndpointServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

@@ -22,12 +22,12 @@ class LlmUtilityService
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ò
-4google/cloud/aiplatform/v1/llm_utility_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/aiplatform/v1/prediction_service.protogoogle/protobuf/struct.proto"Ü
-ComputeTokensRequest=
-endpoint (	B+‚A˙A$
-"aiplatform.googleapis.com/Endpoint/
-	instances (2.google.protobuf.ValueB‚A"/
+ñ
+4google/cloud/aiplatform/v1/llm_utility_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/aiplatform/v1/prediction_service.protogoogle/protobuf/struct.proto"Ñ
+ComputeTokensRequest<
+endpoint (	B*‡A˙A$
+"aiplatform.googleapis.com/Endpoint.
+	instances (2.google.protobuf.ValueB‡A"/
 
 TokensInfo
 tokens (

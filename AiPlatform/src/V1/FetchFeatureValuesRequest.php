@@ -42,6 +42,7 @@ class FetchFeatureValuesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                         $featureView Required. FeatureView resource format
      *                                                                    `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}/featureViews/{featureView}`
+     *                                                                    Please see {@see FeatureOnlineStoreServiceClient::featureViewName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\FeatureViewDataKey $dataKey     Optional. The request key to fetch feature values for.
      *
      * @return \Google\Cloud\AIPlatform\V1\FetchFeatureValuesRequest

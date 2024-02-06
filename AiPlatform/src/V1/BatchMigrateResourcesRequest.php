@@ -35,6 +35,7 @@ class BatchMigrateResourcesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                               $parent                  Required. The location of the migrated resource will live in.
      *                                                                                      Format: `projects/{project}/locations/{location}`
+     *                                                                                      Please see {@see MigrationServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\MigrateResourceRequest[] $migrateResourceRequests Required. The request messages specifying the resources to migrate.
      *                                                                                      They must be in the same location as the destination.
      *                                                                                      Up to 50 resources can be migrated in one batch.

@@ -17,10 +17,10 @@ class EncryptionSpec
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ø
-0google/cloud/aiplatform/v1/encryption_spec.protogoogle.cloud.aiplatform.v1",
-EncryptionSpec
-kms_key_name (	BâABÑ
+×
+0google/cloud/aiplatform/v1/encryption_spec.protogoogle.cloud.aiplatform.v1"+
+EncryptionSpec
+kms_key_name (	BàABÑ
 com.google.cloud.aiplatform.v1BEncryptionSpecProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

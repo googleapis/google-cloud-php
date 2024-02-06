@@ -26,25 +26,31 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\AIPlatform\V1\Client\PredictionServiceClient;
+use Google\Cloud\AIPlatform\V1\Content;
 use Google\Cloud\AIPlatform\V1\GenerateContentRequest;
 use Google\Cloud\AIPlatform\V1\GenerateContentResponse;
+use Google\Cloud\AIPlatform\V1\Part;
 
 /**
  * Generate content with multimodal inputs with streaming support.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $model The name of the publisher model requested to serve the
+ *                      prediction. Format:
+ *                      `projects/{project}/locations/{location}/publishers/&#42;/models/*`
  */
-function stream_generate_content_sample(): void
+function stream_generate_content_sample(string $model): void
 {
     // Create a client.
     $predictionServiceClient = new PredictionServiceClient();
 
     // Prepare the request message.
-    $request = new GenerateContentRequest();
+    $contentsParts = [new Part()];
+    $content = (new Content())
+        ->setParts($contentsParts);
+    $contents = [$content,];
+    $request = (new GenerateContentRequest())
+        ->setModel($model)
+        ->setContents($contents);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +64,21 @@ function stream_generate_content_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $model = '[MODEL]';
+
+    stream_generate_content_sample($model);
 }
 // [END aiplatform_v1_generated_PredictionService_StreamGenerateContent_sync]

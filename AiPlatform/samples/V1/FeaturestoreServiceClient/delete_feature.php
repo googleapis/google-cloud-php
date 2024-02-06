@@ -32,19 +32,20 @@ use Google\Rpc\Status;
 /**
  * Deletes a single Feature.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the Features to be deleted.
+ *                              Format:
+ *                              `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+ *                              `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
+ *                              Please see {@see FeaturestoreServiceClient::featureName()} for help formatting this field.
  */
-function delete_feature_sample(): void
+function delete_feature_sample(string $formattedName): void
 {
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteFeatureRequest();
+    $request = (new DeleteFeatureRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -62,5 +63,27 @@ function delete_feature_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = FeaturestoreServiceClient::featureName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[FEATURESTORE]',
+        '[ENTITY_TYPE]',
+        '[FEATURE]'
+    );
+
+    delete_feature_sample($formattedName);
 }
 // [END aiplatform_v1_generated_FeaturestoreService_DeleteFeature_sync]

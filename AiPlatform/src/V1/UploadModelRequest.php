@@ -61,6 +61,7 @@ class UploadModelRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                            $parent Required. The resource name of the Location into which to upload the Model.
      *                                                  Format: `projects/{project}/locations/{location}`
+     *                                                  Please see {@see ModelServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\Model $model  Required. The Model to create.
      *
      * @return \Google\Cloud\AIPlatform\V1\UploadModelRequest

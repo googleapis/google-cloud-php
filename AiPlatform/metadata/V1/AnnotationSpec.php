@@ -19,14 +19,14 @@ class AnnotationSpec
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-º
-0google/cloud/aiplatform/v1/annotation_spec.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/timestamp.proto"Ñ
-AnnotationSpec
-name (	BâA
-display_name (	BâA5
-create_time (2.google.protobuf.TimestampBâA5
-update_time (2.google.protobuf.TimestampBâA
-etag (	BâA:ŒêAˆ
+µ
+0google/cloud/aiplatform/v1/annotation_spec.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/timestamp.proto"Ì
+AnnotationSpec
+name (	BàA
+display_name (	BàA4
+create_time (2.google.protobuf.TimestampBàA4
+update_time (2.google.protobuf.TimestampBàA
+etag (	BàA:ŒêAˆ
 (aiplatform.googleapis.com/AnnotationSpec\\projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}BÑ
 com.google.cloud.aiplatform.v1BAnnotationSpecProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);

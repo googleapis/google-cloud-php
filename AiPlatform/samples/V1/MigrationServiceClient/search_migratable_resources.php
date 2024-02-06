@@ -34,19 +34,20 @@ use Google\Cloud\AIPlatform\V1\SearchMigratableResourcesRequest;
  * datalabeling.googleapis.com and ml.googleapis.com that can be migrated to
  * Vertex AI's given location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The location that the migratable resources should be searched
+ *                                from. It's the Vertex AI location that the resources can be migrated to,
+ *                                not the resources' original location. Format:
+ *                                `projects/{project}/locations/{location}`
+ *                                Please see {@see MigrationServiceClient::locationName()} for help formatting this field.
  */
-function search_migratable_resources_sample(): void
+function search_migratable_resources_sample(string $formattedParent): void
 {
     // Create a client.
     $migrationServiceClient = new MigrationServiceClient();
 
     // Prepare the request message.
-    $request = new SearchMigratableResourcesRequest();
+    $request = (new SearchMigratableResourcesRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -60,5 +61,21 @@ function search_migratable_resources_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = MigrationServiceClient::locationName('[PROJECT]', '[LOCATION]');
+
+    search_migratable_resources_sample($formattedParent);
 }
 // [END aiplatform_v1_generated_MigrationService_SearchMigratableResources_sync]

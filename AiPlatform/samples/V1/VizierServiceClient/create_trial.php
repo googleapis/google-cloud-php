@@ -31,19 +31,20 @@ use Google\Cloud\AIPlatform\V1\Trial;
 /**
  * Adds a user provided Trial to a Study.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the Study to create the Trial in.
+ *                                Format: `projects/{project}/locations/{location}/studies/{study}`
+ *                                Please see {@see VizierServiceClient::studyName()} for help formatting this field.
  */
-function create_trial_sample(): void
+function create_trial_sample(string $formattedParent): void
 {
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
     // Prepare the request message.
-    $request = new CreateTrialRequest();
+    $trial = new Trial();
+    $request = (new CreateTrialRequest())
+        ->setParent($formattedParent)
+        ->setTrial($trial);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +54,21 @@ function create_trial_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = VizierServiceClient::studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
+
+    create_trial_sample($formattedParent);
 }
 // [END aiplatform_v1_generated_VizierService_CreateTrial_sync]

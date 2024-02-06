@@ -49,6 +49,7 @@ class CreateEndpointRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                               $parent   Required. The resource name of the Location to create the Endpoint in.
      *                                                       Format: `projects/{project}/locations/{location}`
+     *                                                       Please see {@see EndpointServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\Endpoint $endpoint Required. The Endpoint to create.
      *
      * @return \Google\Cloud\AIPlatform\V1\CreateEndpointRequest
@@ -65,6 +66,7 @@ class CreateEndpointRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                               $parent     Required. The resource name of the Location to create the Endpoint in.
      *                                                         Format: `projects/{project}/locations/{location}`
+     *                                                         Please see {@see EndpointServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\Endpoint $endpoint   Required. The Endpoint to create.
      * @param string                               $endpointId Immutable. The ID to use for endpoint, which will become the final
      *                                                         component of the endpoint resource name.

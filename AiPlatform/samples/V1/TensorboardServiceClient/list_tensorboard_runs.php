@@ -32,19 +32,19 @@ use Google\Cloud\AIPlatform\V1\TensorboardRun;
 /**
  * Lists TensorboardRuns in a Location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the TensorboardExperiment to list
+ *                                TensorboardRuns. Format:
+ *                                `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
+ *                                Please see {@see TensorboardServiceClient::tensorboardExperimentName()} for help formatting this field.
  */
-function list_tensorboard_runs_sample(): void
+function list_tensorboard_runs_sample(string $formattedParent): void
 {
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
     // Prepare the request message.
-    $request = new ListTensorboardRunsRequest();
+    $request = (new ListTensorboardRunsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +58,26 @@ function list_tensorboard_runs_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = TensorboardServiceClient::tensorboardExperimentName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[TENSORBOARD]',
+        '[EXPERIMENT]'
+    );
+
+    list_tensorboard_runs_sample($formattedParent);
 }
 // [END aiplatform_v1_generated_TensorboardService_ListTensorboardRuns_sync]

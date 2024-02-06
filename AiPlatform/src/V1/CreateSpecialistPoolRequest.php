@@ -32,7 +32,8 @@ class CreateSpecialistPoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                     $parent         Required. The parent Project name for the new SpecialistPool.
-     *                                                                   The form is `projects/{project}/locations/{location}`.
+     *                                                                   The form is `projects/{project}/locations/{location}`. Please see
+     *                                                                   {@see SpecialistPoolServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\SpecialistPool $specialistPool Required. The SpecialistPool to create.
      *
      * @return \Google\Cloud\AIPlatform\V1\CreateSpecialistPoolRequest

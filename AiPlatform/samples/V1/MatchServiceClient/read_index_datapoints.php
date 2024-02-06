@@ -32,19 +32,19 @@ use Google\Cloud\AIPlatform\V1\ReadIndexDatapointsResponse;
  * Reads the datapoints/vectors of the given IDs.
  * A maximum of 1000 datapoints can be retrieved in a batch.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedIndexEndpoint The name of the index endpoint.
+ *                                       Format:
+ *                                       `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
+ *                                       Please see {@see MatchServiceClient::indexEndpointName()} for help formatting this field.
  */
-function read_index_datapoints_sample(): void
+function read_index_datapoints_sample(string $formattedIndexEndpoint): void
 {
     // Create a client.
     $matchServiceClient = new MatchServiceClient();
 
     // Prepare the request message.
-    $request = new ReadIndexDatapointsRequest();
+    $request = (new ReadIndexDatapointsRequest())
+        ->setIndexEndpoint($formattedIndexEndpoint);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +54,25 @@ function read_index_datapoints_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedIndexEndpoint = MatchServiceClient::indexEndpointName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[INDEX_ENDPOINT]'
+    );
+
+    read_index_datapoints_sample($formattedIndexEndpoint);
 }
 // [END aiplatform_v1_generated_MatchService_ReadIndexDatapoints_sync]

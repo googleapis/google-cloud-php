@@ -106,7 +106,8 @@ use Google\Protobuf\FieldMask;
  * ```
  * $metadataServiceClient = new MetadataServiceClient();
  * try {
- *     $response = $metadataServiceClient->addContextArtifactsAndExecutions();
+ *     $formattedContext = $metadataServiceClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
+ *     $response = $metadataServiceClient->addContextArtifactsAndExecutions($formattedContext);
  * } finally {
  *     $metadataServiceClient->close();
  * }
@@ -565,19 +566,19 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->addContextArtifactsAndExecutions();
+     *     $formattedContext = $metadataServiceClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
+     *     $response = $metadataServiceClient->addContextArtifactsAndExecutions($formattedContext);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $context      Required. The resource name of the Context that the Artifacts and
+     *                             Executions belong to. Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $context
-     *           Required. The resource name of the Context that the Artifacts and
-     *           Executions belong to. Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
      *     @type string[] $artifacts
      *           The resource names of the Artifacts to attribute to the Context.
      *
@@ -599,15 +600,14 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addContextArtifactsAndExecutions(array $optionalArgs = [])
-    {
+    public function addContextArtifactsAndExecutions(
+        $context,
+        array $optionalArgs = []
+    ) {
         $request = new AddContextArtifactsAndExecutionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['context'])) {
-            $request->setContext($optionalArgs['context']);
-            $requestParamHeaders['context'] = $optionalArgs['context'];
-        }
-
+        $request->setContext($context);
+        $requestParamHeaders['context'] = $context;
         if (isset($optionalArgs['artifacts'])) {
             $request->setArtifacts($optionalArgs['artifacts']);
         }
@@ -641,20 +641,20 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->addContextChildren();
+     *     $formattedContext = $metadataServiceClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
+     *     $response = $metadataServiceClient->addContextChildren($formattedContext);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $context      Required. The resource name of the parent Context.
+     *
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $context
-     *           Required. The resource name of the parent Context.
-     *
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
      *     @type string[] $childContexts
      *           The resource names of the child Contexts.
      *     @type RetrySettings|array $retrySettings
@@ -667,15 +667,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addContextChildren(array $optionalArgs = [])
+    public function addContextChildren($context, array $optionalArgs = [])
     {
         $request = new AddContextChildrenRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['context'])) {
-            $request->setContext($optionalArgs['context']);
-            $requestParamHeaders['context'] = $optionalArgs['context'];
-        }
-
+        $request->setContext($context);
+        $requestParamHeaders['context'] = $context;
         if (isset($optionalArgs['childContexts'])) {
             $request->setChildContexts($optionalArgs['childContexts']);
         }
@@ -704,20 +701,20 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->addExecutionEvents();
+     *     $formattedExecution = $metadataServiceClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
+     *     $response = $metadataServiceClient->addExecutionEvents($formattedExecution);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $execution    Required. The resource name of the Execution that the Events connect
+     *                             Artifacts with.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $execution
-     *           Required. The resource name of the Execution that the Events connect
-     *           Artifacts with.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      *     @type Event[] $events
      *           The Events to create and add.
      *     @type RetrySettings|array $retrySettings
@@ -730,15 +727,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addExecutionEvents(array $optionalArgs = [])
+    public function addExecutionEvents($execution, array $optionalArgs = [])
     {
         $request = new AddExecutionEventsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['execution'])) {
-            $request->setExecution($optionalArgs['execution']);
-            $requestParamHeaders['execution'] = $optionalArgs['execution'];
-        }
-
+        $request->setExecution($execution);
+        $requestParamHeaders['execution'] = $execution;
         if (isset($optionalArgs['events'])) {
             $request->setEvents($optionalArgs['events']);
         }
@@ -764,22 +758,22 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->createArtifact();
+     *     $formattedParent = $metadataServiceClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
+     *     $artifact = new Artifact();
+     *     $response = $metadataServiceClient->createArtifact($formattedParent, $artifact);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $parent       Required. The resource name of the MetadataStore where the Artifact should
+     *                               be created.
+     *                               Format:
+     *                               `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     * @param Artifact $artifact     Required. The Artifact to create.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the MetadataStore where the Artifact should
-     *           be created.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
-     *     @type Artifact $artifact
-     *           Required. The Artifact to create.
      *     @type string $artifactId
      *           The {artifact} portion of the resource name with the format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
@@ -798,19 +792,13 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createArtifact(array $optionalArgs = [])
+    public function createArtifact($parent, $artifact, array $optionalArgs = [])
     {
         $request = new CreateArtifactRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['artifact'])) {
-            $request->setArtifact($optionalArgs['artifact']);
-        }
-
+        $request->setParent($parent);
+        $request->setArtifact($artifact);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['artifactId'])) {
             $request->setArtifactId($optionalArgs['artifactId']);
         }
@@ -836,21 +824,21 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->createContext();
+     *     $formattedParent = $metadataServiceClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
+     *     $context = new Context();
+     *     $response = $metadataServiceClient->createContext($formattedParent, $context);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string  $parent       Required. The resource name of the MetadataStore where the Context should
+     *                              be created. Format:
+     *                              `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     * @param Context $context      Required. The Context to create.
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the MetadataStore where the Context should
-     *           be created. Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
-     *     @type Context $context
-     *           Required. The Context to create.
      *     @type string $contextId
      *           The {context} portion of the resource name with the format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`.
@@ -869,19 +857,13 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createContext(array $optionalArgs = [])
+    public function createContext($parent, $context, array $optionalArgs = [])
     {
         $request = new CreateContextRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['context'])) {
-            $request->setContext($optionalArgs['context']);
-        }
-
+        $request->setParent($parent);
+        $request->setContext($context);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['contextId'])) {
             $request->setContextId($optionalArgs['contextId']);
         }
@@ -907,22 +889,22 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->createExecution();
+     *     $formattedParent = $metadataServiceClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
+     *     $execution = new Execution();
+     *     $response = $metadataServiceClient->createExecution($formattedParent, $execution);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string    $parent       Required. The resource name of the MetadataStore where the Execution should
+     *                                be created.
+     *                                Format:
+     *                                `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     * @param Execution $execution    Required. The Execution to create.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the MetadataStore where the Execution should
-     *           be created.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
-     *     @type Execution $execution
-     *           Required. The Execution to create.
      *     @type string $executionId
      *           The {execution} portion of the resource name with the format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
@@ -942,19 +924,16 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createExecution(array $optionalArgs = [])
-    {
+    public function createExecution(
+        $parent,
+        $execution,
+        array $optionalArgs = []
+    ) {
         $request = new CreateExecutionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['execution'])) {
-            $request->setExecution($optionalArgs['execution']);
-        }
-
+        $request->setParent($parent);
+        $request->setExecution($execution);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['executionId'])) {
             $request->setExecutionId($optionalArgs['executionId']);
         }
@@ -980,21 +959,21 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->createMetadataSchema();
+     *     $formattedParent = $metadataServiceClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
+     *     $metadataSchema = new MetadataSchema();
+     *     $response = $metadataServiceClient->createMetadataSchema($formattedParent, $metadataSchema);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string         $parent         Required. The resource name of the MetadataStore where the MetadataSchema
+     *                                       should be created. Format:
+     *                                       `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     * @param MetadataSchema $metadataSchema Required. The MetadataSchema to create.
+     * @param array          $optionalArgs   {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the MetadataStore where the MetadataSchema
-     *           should be created. Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
-     *     @type MetadataSchema $metadataSchema
-     *           Required. The MetadataSchema to create.
      *     @type string $metadataSchemaId
      *           The {metadata_schema} portion of the resource name with the format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/metadataSchemas/{metadataschema}`
@@ -1014,19 +993,16 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createMetadataSchema(array $optionalArgs = [])
-    {
+    public function createMetadataSchema(
+        $parent,
+        $metadataSchema,
+        array $optionalArgs = []
+    ) {
         $request = new CreateMetadataSchemaRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['metadataSchema'])) {
-            $request->setMetadataSchema($optionalArgs['metadataSchema']);
-        }
-
+        $request->setParent($parent);
+        $request->setMetadataSchema($metadataSchema);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['metadataSchemaId'])) {
             $request->setMetadataSchemaId($optionalArgs['metadataSchemaId']);
         }
@@ -1052,7 +1028,9 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $operationResponse = $metadataServiceClient->createMetadataStore();
+     *     $formattedParent = $metadataServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $metadataStore = new MetadataStore();
+     *     $operationResponse = $metadataServiceClient->createMetadataStore($formattedParent, $metadataStore);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1063,7 +1041,7 @@ class MetadataServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $metadataServiceClient->createMetadataStore();
+     *     $operationResponse = $metadataServiceClient->createMetadataStore($formattedParent, $metadataStore);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $metadataServiceClient->resumeOperation($operationName, 'createMetadataStore');
@@ -1083,15 +1061,13 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string        $parent        Required. The resource name of the Location where the MetadataStore should
+     *                                     be created.
+     *                                     Format: `projects/{project}/locations/{location}/`
+     * @param MetadataStore $metadataStore Required. The MetadataStore to create.
+     * @param array         $optionalArgs  {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the Location where the MetadataStore should
-     *           be created.
-     *           Format: `projects/{project}/locations/{location}/`
-     *     @type MetadataStore $metadataStore
-     *           Required. The MetadataStore to create.
      *     @type string $metadataStoreId
      *           The {metadatastore} portion of the resource name with the format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
@@ -1111,19 +1087,16 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createMetadataStore(array $optionalArgs = [])
-    {
+    public function createMetadataStore(
+        $parent,
+        $metadataStore,
+        array $optionalArgs = []
+    ) {
         $request = new CreateMetadataStoreRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['metadataStore'])) {
-            $request->setMetadataStore($optionalArgs['metadataStore']);
-        }
-
+        $request->setParent($parent);
+        $request->setMetadataStore($metadataStore);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['metadataStoreId'])) {
             $request->setMetadataStoreId($optionalArgs['metadataStoreId']);
         }
@@ -1149,7 +1122,8 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $operationResponse = $metadataServiceClient->deleteArtifact();
+     *     $formattedName = $metadataServiceClient->artifactName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[ARTIFACT]');
+     *     $operationResponse = $metadataServiceClient->deleteArtifact($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1159,7 +1133,7 @@ class MetadataServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $metadataServiceClient->deleteArtifact();
+     *     $operationResponse = $metadataServiceClient->deleteArtifact($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $metadataServiceClient->resumeOperation($operationName, 'deleteArtifact');
@@ -1178,13 +1152,12 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the Artifact to delete.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the Artifact to delete.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      *     @type string $etag
      *           Optional. The etag of the Artifact to delete.
      *           If this is provided, it must match the server's etag. Otherwise, the
@@ -1199,15 +1172,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteArtifact(array $optionalArgs = [])
+    public function deleteArtifact($name, array $optionalArgs = [])
     {
         $request = new DeleteArtifactRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -1233,7 +1203,8 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $operationResponse = $metadataServiceClient->deleteContext();
+     *     $formattedName = $metadataServiceClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
+     *     $operationResponse = $metadataServiceClient->deleteContext($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1243,7 +1214,7 @@ class MetadataServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $metadataServiceClient->deleteContext();
+     *     $operationResponse = $metadataServiceClient->deleteContext($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $metadataServiceClient->resumeOperation($operationName, 'deleteContext');
@@ -1262,13 +1233,12 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the Context to delete.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the Context to delete.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
      *     @type bool $force
      *           The force deletion semantics is still undefined.
      *           Users should not use this field.
@@ -1286,15 +1256,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteContext(array $optionalArgs = [])
+    public function deleteContext($name, array $optionalArgs = [])
     {
         $request = new DeleteContextRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -1324,7 +1291,8 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $operationResponse = $metadataServiceClient->deleteExecution();
+     *     $formattedName = $metadataServiceClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
+     *     $operationResponse = $metadataServiceClient->deleteExecution($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1334,7 +1302,7 @@ class MetadataServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $metadataServiceClient->deleteExecution();
+     *     $operationResponse = $metadataServiceClient->deleteExecution($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $metadataServiceClient->resumeOperation($operationName, 'deleteExecution');
@@ -1353,13 +1321,12 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the Execution to delete.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the Execution to delete.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      *     @type string $etag
      *           Optional. The etag of the Execution to delete.
      *           If this is provided, it must match the server's etag. Otherwise, the
@@ -1374,15 +1341,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteExecution(array $optionalArgs = [])
+    public function deleteExecution($name, array $optionalArgs = [])
     {
         $request = new DeleteExecutionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -1409,7 +1373,8 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $operationResponse = $metadataServiceClient->deleteMetadataStore();
+     *     $formattedName = $metadataServiceClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
+     *     $operationResponse = $metadataServiceClient->deleteMetadataStore($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1419,7 +1384,7 @@ class MetadataServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $metadataServiceClient->deleteMetadataStore();
+     *     $operationResponse = $metadataServiceClient->deleteMetadataStore($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $metadataServiceClient->resumeOperation($operationName, 'deleteMetadataStore');
@@ -1438,13 +1403,12 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the MetadataStore to delete.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the MetadataStore to delete.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      *     @type bool $force
      *           Deprecated: Field is no longer supported.
      *     @type RetrySettings|array $retrySettings
@@ -1457,15 +1421,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteMetadataStore(array $optionalArgs = [])
+    public function deleteMetadataStore($name, array $optionalArgs = [])
     {
         $request = new DeleteMetadataStoreRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -1491,19 +1452,19 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->getArtifact();
+     *     $formattedName = $metadataServiceClient->artifactName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[ARTIFACT]');
+     *     $response = $metadataServiceClient->getArtifact($formattedName);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the Artifact to retrieve.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the Artifact to retrieve.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1514,15 +1475,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getArtifact(array $optionalArgs = [])
+    public function getArtifact($name, array $optionalArgs = [])
     {
         $request = new GetArtifactRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1544,19 +1502,19 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->getContext();
+     *     $formattedName = $metadataServiceClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
+     *     $response = $metadataServiceClient->getContext($formattedName);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the Context to retrieve.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the Context to retrieve.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1567,15 +1525,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getContext(array $optionalArgs = [])
+    public function getContext($name, array $optionalArgs = [])
     {
         $request = new GetContextRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1597,19 +1552,19 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->getExecution();
+     *     $formattedName = $metadataServiceClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
+     *     $response = $metadataServiceClient->getExecution($formattedName);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the Execution to retrieve.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the Execution to retrieve.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1620,15 +1575,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getExecution(array $optionalArgs = [])
+    public function getExecution($name, array $optionalArgs = [])
     {
         $request = new GetExecutionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1650,19 +1602,19 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->getMetadataSchema();
+     *     $formattedName = $metadataServiceClient->metadataSchemaName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[METADATA_SCHEMA]');
+     *     $response = $metadataServiceClient->getMetadataSchema($formattedName);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the MetadataSchema to retrieve.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/metadataSchemas/{metadataschema}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the MetadataSchema to retrieve.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/metadataSchemas/{metadataschema}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1673,15 +1625,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getMetadataSchema(array $optionalArgs = [])
+    public function getMetadataSchema($name, array $optionalArgs = [])
     {
         $request = new GetMetadataSchemaRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1703,19 +1652,19 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->getMetadataStore();
+     *     $formattedName = $metadataServiceClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
+     *     $response = $metadataServiceClient->getMetadataStore($formattedName);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the MetadataStore to retrieve.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the MetadataStore to retrieve.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1726,15 +1675,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getMetadataStore(array $optionalArgs = [])
+    public function getMetadataStore($name, array $optionalArgs = [])
     {
         $request = new GetMetadataStoreRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1756,8 +1702,9 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
+     *     $formattedParent = $metadataServiceClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $metadataServiceClient->listArtifacts();
+     *     $pagedResponse = $metadataServiceClient->listArtifacts($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1765,7 +1712,7 @@ class MetadataServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $metadataServiceClient->listArtifacts();
+     *     $pagedResponse = $metadataServiceClient->listArtifacts($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1774,13 +1721,12 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The MetadataStore whose Artifacts should be listed.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The MetadataStore whose Artifacts should be listed.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1839,15 +1785,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listArtifacts(array $optionalArgs = [])
+    public function listArtifacts($parent, array $optionalArgs = [])
     {
         $request = new ListArtifactsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1885,8 +1828,9 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
+     *     $formattedParent = $metadataServiceClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $metadataServiceClient->listContexts();
+     *     $pagedResponse = $metadataServiceClient->listContexts($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1894,7 +1838,7 @@ class MetadataServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $metadataServiceClient->listContexts();
+     *     $pagedResponse = $metadataServiceClient->listContexts($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1903,13 +1847,12 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The MetadataStore whose Contexts should be listed.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The MetadataStore whose Contexts should be listed.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1972,15 +1915,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listContexts(array $optionalArgs = [])
+    public function listContexts($parent, array $optionalArgs = [])
     {
         $request = new ListContextsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2018,8 +1958,9 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
+     *     $formattedParent = $metadataServiceClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $metadataServiceClient->listExecutions();
+     *     $pagedResponse = $metadataServiceClient->listExecutions($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2027,7 +1968,7 @@ class MetadataServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $metadataServiceClient->listExecutions();
+     *     $pagedResponse = $metadataServiceClient->listExecutions($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2036,13 +1977,12 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The MetadataStore whose Executions should be listed.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The MetadataStore whose Executions should be listed.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2101,15 +2041,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listExecutions(array $optionalArgs = [])
+    public function listExecutions($parent, array $optionalArgs = [])
     {
         $request = new ListExecutionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2147,8 +2084,9 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
+     *     $formattedParent = $metadataServiceClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $metadataServiceClient->listMetadataSchemas();
+     *     $pagedResponse = $metadataServiceClient->listMetadataSchemas($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2156,7 +2094,7 @@ class MetadataServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $metadataServiceClient->listMetadataSchemas();
+     *     $pagedResponse = $metadataServiceClient->listMetadataSchemas($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2165,13 +2103,12 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The MetadataStore whose MetadataSchemas should be listed.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The MetadataStore whose MetadataSchemas should be listed.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2193,15 +2130,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listMetadataSchemas(array $optionalArgs = [])
+    public function listMetadataSchemas($parent, array $optionalArgs = [])
     {
         $request = new ListMetadataSchemasRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2235,8 +2169,9 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
+     *     $formattedParent = $metadataServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $metadataServiceClient->listMetadataStores();
+     *     $pagedResponse = $metadataServiceClient->listMetadataStores($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2244,7 +2179,7 @@ class MetadataServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $metadataServiceClient->listMetadataStores();
+     *     $pagedResponse = $metadataServiceClient->listMetadataStores($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2253,13 +2188,12 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The Location whose MetadataStores should be listed.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The Location whose MetadataStores should be listed.
-     *           Format:
-     *           `projects/{project}/locations/{location}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2279,15 +2213,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listMetadataStores(array $optionalArgs = [])
+    public function listMetadataStores($parent, array $optionalArgs = [])
     {
         $request = new ListMetadataStoresRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2317,7 +2248,9 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $operationResponse = $metadataServiceClient->purgeArtifacts();
+     *     $formattedParent = $metadataServiceClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
+     *     $filter = 'filter';
+     *     $operationResponse = $metadataServiceClient->purgeArtifacts($formattedParent, $filter);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2328,7 +2261,7 @@ class MetadataServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $metadataServiceClient->purgeArtifacts();
+     *     $operationResponse = $metadataServiceClient->purgeArtifacts($formattedParent, $filter);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $metadataServiceClient->resumeOperation($operationName, 'purgeArtifacts');
@@ -2348,16 +2281,14 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The metadata store to purge Artifacts from.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     * @param string $filter       Required. A required filter matching the Artifacts to be purged.
+     *                             E.g., `update_time <= 2020-11-19T11:30:00-04:00`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The metadata store to purge Artifacts from.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
-     *     @type string $filter
-     *           Required. A required filter matching the Artifacts to be purged.
-     *           E.g., `update_time <= 2020-11-19T11:30:00-04:00`.
      *     @type bool $force
      *           Optional. Flag to indicate to actually perform the purge.
      *           If `force` is set to false, the method will return a sample of
@@ -2372,19 +2303,13 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function purgeArtifacts(array $optionalArgs = [])
+    public function purgeArtifacts($parent, $filter, array $optionalArgs = [])
     {
         $request = new PurgeArtifactsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['filter'])) {
-            $request->setFilter($optionalArgs['filter']);
-        }
-
+        $request->setParent($parent);
+        $request->setFilter($filter);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -2410,7 +2335,9 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $operationResponse = $metadataServiceClient->purgeContexts();
+     *     $formattedParent = $metadataServiceClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
+     *     $filter = 'filter';
+     *     $operationResponse = $metadataServiceClient->purgeContexts($formattedParent, $filter);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2421,7 +2348,7 @@ class MetadataServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $metadataServiceClient->purgeContexts();
+     *     $operationResponse = $metadataServiceClient->purgeContexts($formattedParent, $filter);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $metadataServiceClient->resumeOperation($operationName, 'purgeContexts');
@@ -2441,16 +2368,14 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The metadata store to purge Contexts from.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     * @param string $filter       Required. A required filter matching the Contexts to be purged.
+     *                             E.g., `update_time <= 2020-11-19T11:30:00-04:00`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The metadata store to purge Contexts from.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
-     *     @type string $filter
-     *           Required. A required filter matching the Contexts to be purged.
-     *           E.g., `update_time <= 2020-11-19T11:30:00-04:00`.
      *     @type bool $force
      *           Optional. Flag to indicate to actually perform the purge.
      *           If `force` is set to false, the method will return a sample of
@@ -2465,19 +2390,13 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function purgeContexts(array $optionalArgs = [])
+    public function purgeContexts($parent, $filter, array $optionalArgs = [])
     {
         $request = new PurgeContextsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['filter'])) {
-            $request->setFilter($optionalArgs['filter']);
-        }
-
+        $request->setParent($parent);
+        $request->setFilter($filter);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -2503,7 +2422,9 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $operationResponse = $metadataServiceClient->purgeExecutions();
+     *     $formattedParent = $metadataServiceClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
+     *     $filter = 'filter';
+     *     $operationResponse = $metadataServiceClient->purgeExecutions($formattedParent, $filter);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2514,7 +2435,7 @@ class MetadataServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $metadataServiceClient->purgeExecutions();
+     *     $operationResponse = $metadataServiceClient->purgeExecutions($formattedParent, $filter);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $metadataServiceClient->resumeOperation($operationName, 'purgeExecutions');
@@ -2534,16 +2455,14 @@ class MetadataServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The metadata store to purge Executions from.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
+     * @param string $filter       Required. A required filter matching the Executions to be purged.
+     *                             E.g., `update_time <= 2020-11-19T11:30:00-04:00`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The metadata store to purge Executions from.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
-     *     @type string $filter
-     *           Required. A required filter matching the Executions to be purged.
-     *           E.g., `update_time <= 2020-11-19T11:30:00-04:00`.
      *     @type bool $force
      *           Optional. Flag to indicate to actually perform the purge.
      *           If `force` is set to false, the method will return a sample of
@@ -2558,19 +2477,13 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function purgeExecutions(array $optionalArgs = [])
+    public function purgeExecutions($parent, $filter, array $optionalArgs = [])
     {
         $request = new PurgeExecutionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['filter'])) {
-            $request->setFilter($optionalArgs['filter']);
-        }
-
+        $request->setParent($parent);
+        $request->setFilter($filter);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -2597,23 +2510,23 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->queryArtifactLineageSubgraph();
+     *     $formattedArtifact = $metadataServiceClient->artifactName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[ARTIFACT]');
+     *     $response = $metadataServiceClient->queryArtifactLineageSubgraph($formattedArtifact);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $artifact     Required. The resource name of the Artifact whose Lineage needs to be
+     *                             retrieved as a LineageSubgraph. Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
+     *
+     *                             The request may error with FAILED_PRECONDITION if the number of Artifacts,
+     *                             the number of Executions, or the number of Events that would be returned
+     *                             for the Context exceeds 1000.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $artifact
-     *           Required. The resource name of the Artifact whose Lineage needs to be
-     *           retrieved as a LineageSubgraph. Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
-     *
-     *           The request may error with FAILED_PRECONDITION if the number of Artifacts,
-     *           the number of Executions, or the number of Events that would be returned
-     *           for the Context exceeds 1000.
      *     @type int $maxHops
      *           Specifies the size of the lineage graph in terms of number of hops from the
      *           specified artifact.
@@ -2656,15 +2569,14 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function queryArtifactLineageSubgraph(array $optionalArgs = [])
-    {
+    public function queryArtifactLineageSubgraph(
+        $artifact,
+        array $optionalArgs = []
+    ) {
         $request = new QueryArtifactLineageSubgraphRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['artifact'])) {
-            $request->setArtifact($optionalArgs['artifact']);
-            $requestParamHeaders['artifact'] = $optionalArgs['artifact'];
-        }
-
+        $request->setArtifact($artifact);
+        $requestParamHeaders['artifact'] = $artifact;
         if (isset($optionalArgs['maxHops'])) {
             $request->setMaxHops($optionalArgs['maxHops']);
         }
@@ -2695,24 +2607,24 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->queryContextLineageSubgraph();
+     *     $formattedContext = $metadataServiceClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
+     *     $response = $metadataServiceClient->queryContextLineageSubgraph($formattedContext);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $context      Required. The resource name of the Context whose Artifacts and Executions
+     *                             should be retrieved as a LineageSubgraph.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     *
+     *                             The request may error with FAILED_PRECONDITION if the number of Artifacts,
+     *                             the number of Executions, or the number of Events that would be returned
+     *                             for the Context exceeds 1000.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $context
-     *           Required. The resource name of the Context whose Artifacts and Executions
-     *           should be retrieved as a LineageSubgraph.
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
-     *
-     *           The request may error with FAILED_PRECONDITION if the number of Artifacts,
-     *           the number of Executions, or the number of Events that would be returned
-     *           for the Context exceeds 1000.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2723,15 +2635,14 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function queryContextLineageSubgraph(array $optionalArgs = [])
-    {
+    public function queryContextLineageSubgraph(
+        $context,
+        array $optionalArgs = []
+    ) {
         $request = new QueryContextLineageSubgraphRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['context'])) {
-            $request->setContext($optionalArgs['context']);
-            $requestParamHeaders['context'] = $optionalArgs['context'];
-        }
-
+        $request->setContext($context);
+        $requestParamHeaders['context'] = $context;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2755,19 +2666,19 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->queryExecutionInputsAndOutputs();
+     *     $formattedExecution = $metadataServiceClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
+     *     $response = $metadataServiceClient->queryExecutionInputsAndOutputs($formattedExecution);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $execution    Required. The resource name of the Execution whose input and output
+     *                             Artifacts should be retrieved as a LineageSubgraph. Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $execution
-     *           Required. The resource name of the Execution whose input and output
-     *           Artifacts should be retrieved as a LineageSubgraph. Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2778,15 +2689,14 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function queryExecutionInputsAndOutputs(array $optionalArgs = [])
-    {
+    public function queryExecutionInputsAndOutputs(
+        $execution,
+        array $optionalArgs = []
+    ) {
         $request = new QueryExecutionInputsAndOutputsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['execution'])) {
-            $request->setExecution($optionalArgs['execution']);
-            $requestParamHeaders['execution'] = $optionalArgs['execution'];
-        }
-
+        $request->setExecution($execution);
+        $requestParamHeaders['execution'] = $execution;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2810,20 +2720,20 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->removeContextChildren();
+     *     $formattedContext = $metadataServiceClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
+     *     $response = $metadataServiceClient->removeContextChildren($formattedContext);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $context      Required. The resource name of the parent Context.
+     *
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $context
-     *           Required. The resource name of the parent Context.
-     *
-     *           Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
      *     @type string[] $childContexts
      *           The resource names of the child Contexts.
      *     @type RetrySettings|array $retrySettings
@@ -2836,15 +2746,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function removeContextChildren(array $optionalArgs = [])
+    public function removeContextChildren($context, array $optionalArgs = [])
     {
         $request = new RemoveContextChildrenRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['context'])) {
-            $request->setContext($optionalArgs['context']);
-            $requestParamHeaders['context'] = $optionalArgs['context'];
-        }
-
+        $request->setContext($context);
+        $requestParamHeaders['context'] = $context;
         if (isset($optionalArgs['childContexts'])) {
             $request->setChildContexts($optionalArgs['childContexts']);
         }
@@ -2870,20 +2777,20 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->updateArtifact();
+     *     $artifact = new Artifact();
+     *     $response = $metadataServiceClient->updateArtifact($artifact);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Artifact $artifact     Required. The Artifact containing updates.
+     *                               The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name]
+     *                               field is used to identify the Artifact to be updated. Format:
+     *                               `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type Artifact $artifact
-     *           Required. The Artifact containing updates.
-     *           The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name]
-     *           field is used to identify the Artifact to be updated. Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      *     @type FieldMask $updateMask
      *           Optional. A FieldMask indicating which fields should be updated.
      *     @type bool $allowMissing
@@ -2900,14 +2807,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateArtifact(array $optionalArgs = [])
+    public function updateArtifact($artifact, array $optionalArgs = [])
     {
         $request = new UpdateArtifactRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['artifact'])) {
-            $request->setArtifact($optionalArgs['artifact']);
-        }
-
+        $request->setArtifact($artifact);
+        $requestParamHeaders['artifact.name'] = $artifact->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2937,20 +2842,20 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->updateContext();
+     *     $context = new Context();
+     *     $response = $metadataServiceClient->updateContext($context);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Context $context      Required. The Context containing updates.
+     *                              The Context's [Context.name][google.cloud.aiplatform.v1.Context.name] field
+     *                              is used to identify the Context to be updated. Format:
+     *                              `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type Context $context
-     *           Required. The Context containing updates.
-     *           The Context's [Context.name][google.cloud.aiplatform.v1.Context.name] field
-     *           is used to identify the Context to be updated. Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
      *     @type FieldMask $updateMask
      *           Optional. A FieldMask indicating which fields should be updated.
      *     @type bool $allowMissing
@@ -2966,14 +2871,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateContext(array $optionalArgs = [])
+    public function updateContext($context, array $optionalArgs = [])
     {
         $request = new UpdateContextRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['context'])) {
-            $request->setContext($optionalArgs['context']);
-        }
-
+        $request->setContext($context);
+        $requestParamHeaders['context.name'] = $context->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -3003,20 +2906,20 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->updateExecution();
+     *     $execution = new Execution();
+     *     $response = $metadataServiceClient->updateExecution($execution);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Execution $execution    Required. The Execution containing updates.
+     *                                The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name]
+     *                                field is used to identify the Execution to be updated. Format:
+     *                                `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type Execution $execution
-     *           Required. The Execution containing updates.
-     *           The Execution's [Execution.name][google.cloud.aiplatform.v1.Execution.name]
-     *           field is used to identify the Execution to be updated. Format:
-     *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      *     @type FieldMask $updateMask
      *           Optional. A FieldMask indicating which fields should be updated.
      *     @type bool $allowMissing
@@ -3033,14 +2936,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateExecution(array $optionalArgs = [])
+    public function updateExecution($execution, array $optionalArgs = [])
     {
         $request = new UpdateExecutionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['execution'])) {
-            $request->setExecution($optionalArgs['execution']);
-        }
-
+        $request->setExecution($execution);
+        $requestParamHeaders['execution.name'] = $execution->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -3211,18 +3112,18 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $metadataServiceClient->getIamPolicy($resource);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -3236,15 +3137,12 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -3276,23 +3174,23 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $metadataServiceClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -3309,19 +3207,13 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -3355,23 +3247,23 @@ class MetadataServiceGapicClient
      * ```
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
-     *     $response = $metadataServiceClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $metadataServiceClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3382,19 +3274,16 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

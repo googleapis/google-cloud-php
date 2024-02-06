@@ -25,17 +25,17 @@ class ScheduleService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Å
-1google/cloud/aiplatform/v1/schedule_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto)google/cloud/aiplatform/v1/schedule.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"‘
-CreateScheduleRequest:
-parent (	B*âAúA#
-!locations.googleapis.com/Location<
-schedule (2$.google.cloud.aiplatform.v1.ScheduleBâA"O
-GetScheduleRequest9
-name (	B+âAúA$
-"aiplatform.googleapis.com/Schedule"›
-ListSchedulesRequest:
-parent (	B*âAúA#
+»
+1google/cloud/aiplatform/v1/schedule_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto)google/cloud/aiplatform/v1/schedule.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"
+CreateScheduleRequest9
+parent (	B)àAúA#
+!locations.googleapis.com/Location;
+schedule (2$.google.cloud.aiplatform.v1.ScheduleBàA"N
+GetScheduleRequest8
+name (	B*àAúA$
+"aiplatform.googleapis.com/Schedule"š
+ListSchedulesRequest9
+parent (	B)àAúA#
 !locations.googleapis.com/Location
 filter (	
 	page_size (
@@ -44,20 +44,20 @@ page_token (	
 order_by (	"i
 ListSchedulesResponse7
 	schedules (2$.google.cloud.aiplatform.v1.Schedule
-next_page_token (	"R
-DeleteScheduleRequest9
-name (	B+âAúA$
-"aiplatform.googleapis.com/Schedule"Q
-PauseScheduleRequest9
-name (	B+âAúA$
-"aiplatform.googleapis.com/Schedule"j
-ResumeScheduleRequest9
-name (	B+âAúA$
-"aiplatform.googleapis.com/Schedule
-catch_up (BâA"Œ
-UpdateScheduleRequest<
-schedule (2$.google.cloud.aiplatform.v1.ScheduleBâA5
-update_mask (2.google.protobuf.FieldMaskBâA2ö
+next_page_token (	"Q
+DeleteScheduleRequest8
+name (	B*àAúA$
+"aiplatform.googleapis.com/Schedule"P
+PauseScheduleRequest8
+name (	B*àAúA$
+"aiplatform.googleapis.com/Schedule"h
+ResumeScheduleRequest8
+name (	B*àAúA$
+"aiplatform.googleapis.com/Schedule
+catch_up (BàA"Š
+UpdateScheduleRequest;
+schedule (2$.google.cloud.aiplatform.v1.ScheduleBàA4
+update_mask (2.google.protobuf.FieldMaskBàA2ö
 
 ScheduleService¼
 CreateSchedule1.google.cloud.aiplatform.v1.CreateScheduleRequest$.google.cloud.aiplatform.v1.Schedule"QÚAparent,schedule‚Óä“9"-/v1/{parent=projects/*/locations/*}/schedules:scheduleÓ

@@ -29,6 +29,7 @@ class GetMetadataSchemaRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The resource name of the MetadataSchema to retrieve.
      *                     Format:
      *                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}/metadataSchemas/{metadataschema}`
+     *                     Please see {@see MetadataServiceClient::metadataSchemaName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetMetadataSchemaRequest
      *

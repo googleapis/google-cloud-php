@@ -33,6 +33,7 @@ class CreateScheduleRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                               $parent   Required. The resource name of the Location to create the Schedule in.
      *                                                       Format: `projects/{project}/locations/{location}`
+     *                                                       Please see {@see ScheduleServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\Schedule $schedule Required. The Schedule to create.
      *
      * @return \Google\Cloud\AIPlatform\V1\CreateScheduleRequest

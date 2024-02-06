@@ -46,7 +46,8 @@ class ReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *                           Value format:
      *                           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`.
      *                           For example, for a machine learning model predicting user clicks on a
-     *                           website, an EntityType ID could be `user`.
+     *                           website, an EntityType ID could be `user`. Please see
+     *                           {@see FeaturestoreOnlineServingServiceClient::entityTypeName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ReadFeatureValuesRequest
      *

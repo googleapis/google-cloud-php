@@ -31,19 +31,28 @@ use Google\Cloud\AIPlatform\V1\Model;
 /**
  * Gets a Model.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the Model resource.
+ *                              Format: `projects/{project}/locations/{location}/models/{model}`
+ *
+ *                              In order to retrieve a specific version of the model, also provide
+ *                              the version ID or version alias.
+ *                              Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+ *                              or
+ *                              `projects/{project}/locations/{location}/models/{model}&#64;golden`
+ *                              If no version ID or alias is specified, the "default" version will be
+ *                              returned. The "default" version alias is created for the first version of
+ *                              the model, and can be moved to other versions later on. There will be
+ *                              exactly one default version. Please see
+ *                              {@see ModelServiceClient::modelName()} for help formatting this field.
  */
-function get_model_sample(): void
+function get_model_sample(string $formattedName): void
 {
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
     // Prepare the request message.
-    $request = new GetModelRequest();
+    $request = (new GetModelRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +62,21 @@ function get_model_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ModelServiceClient::modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+
+    get_model_sample($formattedName);
 }
 // [END aiplatform_v1_generated_ModelService_GetModel_sync]

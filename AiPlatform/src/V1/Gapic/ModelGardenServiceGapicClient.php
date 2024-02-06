@@ -57,7 +57,8 @@ use Google\Protobuf\FieldMask;
  * ```
  * $modelGardenServiceClient = new ModelGardenServiceClient();
  * try {
- *     $response = $modelGardenServiceClient->getPublisherModel();
+ *     $formattedName = $modelGardenServiceClient->publisherModelName('[PUBLISHER]', '[MODEL]');
+ *     $response = $modelGardenServiceClient->getPublisherModel($formattedName);
  * } finally {
  *     $modelGardenServiceClient->close();
  * }
@@ -280,19 +281,19 @@ class ModelGardenServiceGapicClient
      * ```
      * $modelGardenServiceClient = new ModelGardenServiceClient();
      * try {
-     *     $response = $modelGardenServiceClient->getPublisherModel();
+     *     $formattedName = $modelGardenServiceClient->publisherModelName('[PUBLISHER]', '[MODEL]');
+     *     $response = $modelGardenServiceClient->getPublisherModel($formattedName);
      * } finally {
      *     $modelGardenServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the PublisherModel resource.
+     *                             Format:
+     *                             `publishers/{publisher}/models/{publisher_model}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the PublisherModel resource.
-     *           Format:
-     *           `publishers/{publisher}/models/{publisher_model}`
      *     @type string $languageCode
      *           Optional. The IETF BCP-47 language code representing the language in which
      *           the publisher model's text information should be written in (see go/bcp47).
@@ -309,15 +310,12 @@ class ModelGardenServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getPublisherModel(array $optionalArgs = [])
+    public function getPublisherModel($name, array $optionalArgs = [])
     {
         $request = new GetPublisherModelRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
         }
@@ -488,18 +486,18 @@ class ModelGardenServiceGapicClient
      * ```
      * $modelGardenServiceClient = new ModelGardenServiceClient();
      * try {
-     *     $response = $modelGardenServiceClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $modelGardenServiceClient->getIamPolicy($resource);
      * } finally {
      *     $modelGardenServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -513,15 +511,12 @@ class ModelGardenServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -553,23 +548,23 @@ class ModelGardenServiceGapicClient
      * ```
      * $modelGardenServiceClient = new ModelGardenServiceClient();
      * try {
-     *     $response = $modelGardenServiceClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $modelGardenServiceClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $modelGardenServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -586,19 +581,13 @@ class ModelGardenServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -632,23 +621,23 @@ class ModelGardenServiceGapicClient
      * ```
      * $modelGardenServiceClient = new ModelGardenServiceClient();
      * try {
-     *     $response = $modelGardenServiceClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $modelGardenServiceClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $modelGardenServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -659,19 +648,16 @@ class ModelGardenServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

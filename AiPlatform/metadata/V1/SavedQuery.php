@@ -20,21 +20,21 @@ class SavedQuery
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-í
-,google/cloud/aiplatform/v1/saved_query.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"î
+å
+,google/cloud/aiplatform/v1/saved_query.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"æ
 
-SavedQuery
-name (	BâA
-display_name (	BâA(
-metadata (2.google.protobuf.Value5
-create_time (2.google.protobuf.TimestampBâA5
-update_time (2.google.protobuf.TimestampBâA
-annotation_filter (	BâA
-problem_type (	BâA#
+SavedQuery
+name (	BàA
+display_name (	BàA(
+metadata (2.google.protobuf.Value4
+create_time (2.google.protobuf.TimestampBàA4
+update_time (2.google.protobuf.TimestampBàA
+annotation_filter (	BàA
+problem_type (	BàA"
 annotation_spec_count
- (BâA
-etag (	%
-support_automl_training	 (BâA:€êA}
+ (BàA
+etag (	$
+support_automl_training	 (BàA:€êA}
 $aiplatform.googleapis.com/SavedQueryUprojects/{project}/locations/{location}/datasets/{dataset}/savedQueries/{saved_query}BÍ
 com.google.cloud.aiplatform.v1BSavedQueryProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);

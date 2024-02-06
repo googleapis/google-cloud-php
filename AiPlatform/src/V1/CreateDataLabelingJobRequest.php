@@ -33,6 +33,7 @@ class CreateDataLabelingJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                      $parent          Required. The parent of the DataLabelingJob.
      *                                                                     Format: `projects/{project}/locations/{location}`
+     *                                                                     Please see {@see JobServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\DataLabelingJob $dataLabelingJob Required. The DataLabelingJob to create.
      *
      * @return \Google\Cloud\AIPlatform\V1\CreateDataLabelingJobRequest

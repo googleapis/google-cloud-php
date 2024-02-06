@@ -37,6 +37,7 @@ class DeleteArtifactRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The resource name of the Artifact to delete.
      *                     Format:
      *                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
+     *                     Please see {@see MetadataServiceClient::artifactName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\DeleteArtifactRequest
      *

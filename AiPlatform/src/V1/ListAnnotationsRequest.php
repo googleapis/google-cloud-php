@@ -60,6 +60,7 @@ class ListAnnotationsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The resource name of the DataItem to list Annotations from.
      *                       Format:
      *                       `projects/{project}/locations/{location}/datasets/{dataset}/dataItems/{data_item}`
+     *                       Please see {@see DatasetServiceClient::dataItemName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ListAnnotationsRequest
      *

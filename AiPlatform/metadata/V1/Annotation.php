@@ -21,18 +21,18 @@ class Annotation
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-å
-+google/cloud/aiplatform/v1/annotation.protogoogle.cloud.aiplatform.v1google/api/resource.proto6google/cloud/aiplatform/v1/user_action_reference.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"÷
+Ñ
++google/cloud/aiplatform/v1/annotation.protogoogle.cloud.aiplatform.v1google/api/resource.proto6google/cloud/aiplatform/v1/user_action_reference.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"Œ
 
-Annotation
-name (	B‚A 
-payload_schema_uri (	B‚A-
-payload (2.google.protobuf.ValueB‚A5
-create_time (2.google.protobuf.TimestampB‚A5
-update_time (2.google.protobuf.TimestampB‚A
-etag (	B‚AP
-annotation_source (2/.google.cloud.aiplatform.v1.UserActionReferenceB‚AH
-labels (22.google.cloud.aiplatform.v1.Annotation.LabelsEntryB‚A-
+Annotation
+name (	B‡A
+payload_schema_uri (	B‡A,
+payload (2.google.protobuf.ValueB‡A4
+create_time (2.google.protobuf.TimestampB‡A4
+update_time (2.google.protobuf.TimestampB‡A
+etag (	B‡AO
+annotation_source (2/.google.cloud.aiplatform.v1.UserActionReferenceB‡AG
+labels (22.google.cloud.aiplatform.v1.Annotation.LabelsEntryB‡A-
 LabelsEntry
 key (	
 value (	:8:ïÍAë

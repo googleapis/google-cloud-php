@@ -32,19 +32,18 @@ use Google\Cloud\AIPlatform\V1\Trial;
 /**
  * Lists the Trials associated with a Study.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the Study to list the Trial from.
+ *                                Format: `projects/{project}/locations/{location}/studies/{study}`
+ *                                Please see {@see VizierServiceClient::studyName()} for help formatting this field.
  */
-function list_trials_sample(): void
+function list_trials_sample(string $formattedParent): void
 {
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
     // Prepare the request message.
-    $request = new ListTrialsRequest();
+    $request = (new ListTrialsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function list_trials_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = VizierServiceClient::studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
+
+    list_trials_sample($formattedParent);
 }
 // [END aiplatform_v1_generated_VizierService_ListTrials_sync]

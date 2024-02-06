@@ -29,6 +29,7 @@ class DeleteEndpointRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the Endpoint resource to be deleted.
      *                     Format:
      *                     `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *                     Please see {@see EndpointServiceClient::endpointName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\DeleteEndpointRequest
      *

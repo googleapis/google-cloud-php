@@ -45,6 +45,7 @@ use Google\Cloud\AIPlatform\V1\TensorboardExperiment;
 use Google\Cloud\AIPlatform\V1\TensorboardRun;
 use Google\Cloud\AIPlatform\V1\TensorboardServiceClient;
 use Google\Cloud\AIPlatform\V1\TensorboardTimeSeries;
+use Google\Cloud\AIPlatform\V1\TensorboardTimeSeries\ValueType;
 use Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint;
 use Google\Cloud\AIPlatform\V1\WriteTensorboardExperimentDataResponse;
 use Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataResponse;
@@ -55,6 +56,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -98,13 +100,20 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchCreateTensorboardRunsResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->batchCreateTensorboardRuns();
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $requests = [];
+        $response = $gapicClient->batchCreateTensorboardRuns($formattedParent, $requests);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/BatchCreateTensorboardRuns', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -126,8 +135,11 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $requests = [];
         try {
-            $gapicClient->batchCreateTensorboardRuns();
+            $gapicClient->batchCreateTensorboardRuns($formattedParent, $requests);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -150,13 +162,20 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchCreateTensorboardTimeSeriesResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->batchCreateTensorboardTimeSeries();
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $requests = [];
+        $response = $gapicClient->batchCreateTensorboardTimeSeries($formattedParent, $requests);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/BatchCreateTensorboardTimeSeries', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -178,8 +197,11 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $requests = [];
         try {
-            $gapicClient->batchCreateTensorboardTimeSeries();
+            $gapicClient->batchCreateTensorboardTimeSeries($formattedParent, $requests);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -202,13 +224,22 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchReadTensorboardTimeSeriesDataResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->batchReadTensorboardTimeSeriesData();
+        // Mock request
+        $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        $formattedTimeSeries = [
+            $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]'),
+        ];
+        $response = $gapicClient->batchReadTensorboardTimeSeriesData($formattedTensorboard, $formattedTimeSeries);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/BatchReadTensorboardTimeSeriesData', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTensorboard();
+        $this->assertProtobufEquals($formattedTensorboard, $actualValue);
+        $actualValue = $actualRequestObject->getTimeSeries();
+        $this->assertProtobufEquals($formattedTimeSeries, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -230,8 +261,13 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        $formattedTimeSeries = [
+            $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]'),
+        ];
         try {
-            $gapicClient->batchReadTensorboardTimeSeriesData();
+            $gapicClient->batchReadTensorboardTimeSeriesData($formattedTensorboard, $formattedTimeSeries);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -286,7 +322,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->createTensorboard();
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        $tensorboard = new Tensorboard();
+        $tensorboardDisplayName = 'tensorboardDisplayName-448676352';
+        $tensorboard->setDisplayName($tensorboardDisplayName);
+        $response = $gapicClient->createTensorboard($formattedParent, $tensorboard);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -296,6 +337,10 @@ class TensorboardServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/CreateTensorboard', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getTensorboard();
+        $this->assertProtobufEquals($tensorboard, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createTensorboardTest');
         $response->pollUntilComplete([
@@ -346,7 +391,12 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->createTensorboard();
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        $tensorboard = new Tensorboard();
+        $tensorboardDisplayName = 'tensorboardDisplayName-448676352';
+        $tensorboard->setDisplayName($tensorboardDisplayName);
+        $response = $gapicClient->createTensorboard($formattedParent, $tensorboard);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -389,13 +439,20 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSource($source);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createTensorboardExperiment();
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $tensorboardExperimentId = 'tensorboardExperimentId932137483';
+        $response = $gapicClient->createTensorboardExperiment($formattedParent, $tensorboardExperimentId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/CreateTensorboardExperiment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getTensorboardExperimentId();
+        $this->assertProtobufEquals($tensorboardExperimentId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -417,8 +474,11 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $tensorboardExperimentId = 'tensorboardExperimentId932137483';
         try {
-            $gapicClient->createTensorboardExperiment();
+            $gapicClient->createTensorboardExperiment($formattedParent, $tensorboardExperimentId);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -449,13 +509,25 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createTensorboardRun();
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+        $tensorboardRun = new TensorboardRun();
+        $tensorboardRunDisplayName = 'tensorboardRunDisplayName-996156817';
+        $tensorboardRun->setDisplayName($tensorboardRunDisplayName);
+        $tensorboardRunId = 'tensorboardRunId1793766817';
+        $response = $gapicClient->createTensorboardRun($formattedParent, $tensorboardRun, $tensorboardRunId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/CreateTensorboardRun', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getTensorboardRun();
+        $this->assertProtobufEquals($tensorboardRun, $actualValue);
+        $actualValue = $actualRequestObject->getTensorboardRunId();
+        $this->assertProtobufEquals($tensorboardRunId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -477,8 +549,14 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+        $tensorboardRun = new TensorboardRun();
+        $tensorboardRunDisplayName = 'tensorboardRunDisplayName-996156817';
+        $tensorboardRun->setDisplayName($tensorboardRunDisplayName);
+        $tensorboardRunId = 'tensorboardRunId1793766817';
         try {
-            $gapicClient->createTensorboardRun();
+            $gapicClient->createTensorboardRun($formattedParent, $tensorboardRun, $tensorboardRunId);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -513,13 +591,24 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setPluginName($pluginName);
         $expectedResponse->setPluginData($pluginData);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createTensorboardTimeSeries();
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
+        $tensorboardTimeSeries = new TensorboardTimeSeries();
+        $tensorboardTimeSeriesDisplayName = 'tensorboardTimeSeriesDisplayName1084140540';
+        $tensorboardTimeSeries->setDisplayName($tensorboardTimeSeriesDisplayName);
+        $tensorboardTimeSeriesValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
+        $tensorboardTimeSeries->setValueType($tensorboardTimeSeriesValueType);
+        $response = $gapicClient->createTensorboardTimeSeries($formattedParent, $tensorboardTimeSeries);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/CreateTensorboardTimeSeries', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getTensorboardTimeSeries();
+        $this->assertProtobufEquals($tensorboardTimeSeries, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -541,8 +630,15 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
+        $tensorboardTimeSeries = new TensorboardTimeSeries();
+        $tensorboardTimeSeriesDisplayName = 'tensorboardTimeSeriesDisplayName1084140540';
+        $tensorboardTimeSeries->setDisplayName($tensorboardTimeSeriesDisplayName);
+        $tensorboardTimeSeriesValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
+        $tensorboardTimeSeries->setValueType($tensorboardTimeSeriesValueType);
         try {
-            $gapicClient->createTensorboardTimeSeries();
+            $gapicClient->createTensorboardTimeSeries($formattedParent, $tensorboardTimeSeries);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -583,7 +679,9 @@ class TensorboardServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deleteTensorboard();
+        // Mock request
+        $formattedName = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        $response = $gapicClient->deleteTensorboard($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -593,6 +691,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/DeleteTensorboard', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteTensorboardTest');
         $response->pollUntilComplete([
@@ -643,7 +743,9 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deleteTensorboard();
+        // Mock request
+        $formattedName = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        $response = $gapicClient->deleteTensorboard($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -694,7 +796,9 @@ class TensorboardServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deleteTensorboardExperiment();
+        // Mock request
+        $formattedName = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $response = $gapicClient->deleteTensorboardExperiment($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -704,6 +808,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/DeleteTensorboardExperiment', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteTensorboardExperimentTest');
         $response->pollUntilComplete([
@@ -754,7 +860,9 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deleteTensorboardExperiment();
+        // Mock request
+        $formattedName = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $response = $gapicClient->deleteTensorboardExperiment($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -805,7 +913,9 @@ class TensorboardServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deleteTensorboardRun();
+        // Mock request
+        $formattedName = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+        $response = $gapicClient->deleteTensorboardRun($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -815,6 +925,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/DeleteTensorboardRun', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteTensorboardRunTest');
         $response->pollUntilComplete([
@@ -865,7 +977,9 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deleteTensorboardRun();
+        // Mock request
+        $formattedName = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+        $response = $gapicClient->deleteTensorboardRun($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -916,7 +1030,9 @@ class TensorboardServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->deleteTensorboardTimeSeries();
+        // Mock request
+        $formattedName = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
+        $response = $gapicClient->deleteTensorboardTimeSeries($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -926,6 +1042,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/DeleteTensorboardTimeSeries', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteTensorboardTimeSeriesTest');
         $response->pollUntilComplete([
@@ -976,7 +1094,9 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->deleteTensorboardTimeSeries();
+        // Mock request
+        $formattedName = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
+        $response = $gapicClient->deleteTensorboardTimeSeries($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1016,7 +1136,9 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTimeSeriesDataPoints($timeSeriesDataPoints);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->exportTensorboardTimeSeriesData();
+        // Mock request
+        $formattedTensorboardTimeSeries = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
+        $response = $gapicClient->exportTensorboardTimeSeriesData($formattedTensorboardTimeSeries);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1026,6 +1148,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/ExportTensorboardTimeSeriesData', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTensorboardTimeSeries();
+        $this->assertProtobufEquals($formattedTensorboardTimeSeries, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1047,8 +1171,10 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedTensorboardTimeSeries = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
         try {
-            $gapicClient->exportTensorboardTimeSeriesData();
+            $gapicClient->exportTensorboardTimeSeriesData($formattedTensorboardTimeSeries);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1085,13 +1211,17 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setIsDefault($isDefault);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getTensorboard();
+        // Mock request
+        $formattedName = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        $response = $gapicClient->getTensorboard($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/GetTensorboard', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1113,8 +1243,10 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
         try {
-            $gapicClient->getTensorboard();
+            $gapicClient->getTensorboard($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1147,13 +1279,17 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSource($source);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getTensorboardExperiment();
+        // Mock request
+        $formattedName = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $response = $gapicClient->getTensorboardExperiment($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/GetTensorboardExperiment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1175,8 +1311,10 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
         try {
-            $gapicClient->getTensorboardExperiment();
+            $gapicClient->getTensorboardExperiment($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1207,13 +1345,17 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getTensorboardRun();
+        // Mock request
+        $formattedName = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+        $response = $gapicClient->getTensorboardRun($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/GetTensorboardRun', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1235,8 +1377,10 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
         try {
-            $gapicClient->getTensorboardRun();
+            $gapicClient->getTensorboardRun($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1271,13 +1415,17 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setPluginName($pluginName);
         $expectedResponse->setPluginData($pluginData);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getTensorboardTimeSeries();
+        // Mock request
+        $formattedName = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
+        $response = $gapicClient->getTensorboardTimeSeries($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/GetTensorboardTimeSeries', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1299,8 +1447,10 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
         try {
-            $gapicClient->getTensorboardTimeSeries();
+            $gapicClient->getTensorboardTimeSeries($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1330,7 +1480,9 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTensorboardExperiments($tensorboardExperiments);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listTensorboardExperiments();
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        $response = $gapicClient->listTensorboardExperiments($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1340,6 +1492,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/ListTensorboardExperiments', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1361,8 +1515,10 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
         try {
-            $gapicClient->listTensorboardExperiments();
+            $gapicClient->listTensorboardExperiments($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1392,7 +1548,9 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTensorboardRuns($tensorboardRuns);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listTensorboardRuns();
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $response = $gapicClient->listTensorboardRuns($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1402,6 +1560,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/ListTensorboardRuns', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1423,8 +1583,10 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
         try {
-            $gapicClient->listTensorboardRuns();
+            $gapicClient->listTensorboardRuns($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1454,7 +1616,9 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTensorboardTimeSeries($tensorboardTimeSeries);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listTensorboardTimeSeries();
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+        $response = $gapicClient->listTensorboardTimeSeries($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1464,6 +1628,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/ListTensorboardTimeSeries', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1485,8 +1651,10 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
         try {
-            $gapicClient->listTensorboardTimeSeries();
+            $gapicClient->listTensorboardTimeSeries($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1516,7 +1684,9 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTensorboards($tensorboards);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listTensorboards();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listTensorboards($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1526,6 +1696,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/ListTensorboards', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1547,8 +1719,10 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listTensorboards();
+            $gapicClient->listTensorboards($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1576,7 +1750,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse3 = new ReadTensorboardBlobDataResponse();
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $serverStream = $gapicClient->readTensorboardBlobData();
+        $formattedTimeSeries = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
+        $serverStream = $gapicClient->readTensorboardBlobData($formattedTimeSeries);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
         $expectedResponses = [];
@@ -1589,6 +1764,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/ReadTensorboardBlobData', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTimeSeries();
+        $this->assertProtobufEquals($formattedTimeSeries, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1611,7 +1788,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
-        $serverStream = $gapicClient->readTensorboardBlobData();
+        $formattedTimeSeries = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
+        $serverStream = $gapicClient->readTensorboardBlobData($formattedTimeSeries);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);
@@ -1639,13 +1817,17 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse = new ReadTensorboardSizeResponse();
         $expectedResponse->setStorageSizeByte($storageSizeByte);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->readTensorboardSize();
+        // Mock request
+        $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        $response = $gapicClient->readTensorboardSize($formattedTensorboard);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/ReadTensorboardSize', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTensorboard();
+        $this->assertProtobufEquals($formattedTensorboard, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1667,8 +1849,10 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
         try {
-            $gapicClient->readTensorboardSize();
+            $gapicClient->readTensorboardSize($formattedTensorboard);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1691,13 +1875,17 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ReadTensorboardTimeSeriesDataResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->readTensorboardTimeSeriesData();
+        // Mock request
+        $formattedTensorboardTimeSeries = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
+        $response = $gapicClient->readTensorboardTimeSeriesData($formattedTensorboardTimeSeries);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/ReadTensorboardTimeSeriesData', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTensorboardTimeSeries();
+        $this->assertProtobufEquals($formattedTensorboardTimeSeries, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1719,8 +1907,10 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedTensorboardTimeSeries = $gapicClient->tensorboardTimeSeriesName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]', '[TIME_SERIES]');
         try {
-            $gapicClient->readTensorboardTimeSeriesData();
+            $gapicClient->readTensorboardTimeSeriesData($formattedTensorboardTimeSeries);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1743,13 +1933,17 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ReadTensorboardUsageResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->readTensorboardUsage();
+        // Mock request
+        $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
+        $response = $gapicClient->readTensorboardUsage($formattedTensorboard);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/ReadTensorboardUsage', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTensorboard();
+        $this->assertProtobufEquals($formattedTensorboard, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1771,8 +1965,10 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedTensorboard = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
         try {
-            $gapicClient->readTensorboardUsage();
+            $gapicClient->readTensorboardUsage($formattedTensorboard);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1827,7 +2023,12 @@ class TensorboardServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $gapicClient->updateTensorboard();
+        // Mock request
+        $updateMask = new FieldMask();
+        $tensorboard = new Tensorboard();
+        $tensorboardDisplayName = 'tensorboardDisplayName-448676352';
+        $tensorboard->setDisplayName($tensorboardDisplayName);
+        $response = $gapicClient->updateTensorboard($updateMask, $tensorboard);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1837,6 +2038,10 @@ class TensorboardServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/UpdateTensorboard', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualApiRequestObject->getTensorboard();
+        $this->assertProtobufEquals($tensorboard, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateTensorboardTest');
         $response->pollUntilComplete([
@@ -1887,7 +2092,12 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $gapicClient->updateTensorboard();
+        // Mock request
+        $updateMask = new FieldMask();
+        $tensorboard = new Tensorboard();
+        $tensorboardDisplayName = 'tensorboardDisplayName-448676352';
+        $tensorboard->setDisplayName($tensorboardDisplayName);
+        $response = $gapicClient->updateTensorboard($updateMask, $tensorboard);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1930,13 +2140,20 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSource($source);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->updateTensorboardExperiment();
+        // Mock request
+        $updateMask = new FieldMask();
+        $tensorboardExperiment = new TensorboardExperiment();
+        $response = $gapicClient->updateTensorboardExperiment($updateMask, $tensorboardExperiment);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/UpdateTensorboardExperiment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualRequestObject->getTensorboardExperiment();
+        $this->assertProtobufEquals($tensorboardExperiment, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1958,8 +2175,11 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $updateMask = new FieldMask();
+        $tensorboardExperiment = new TensorboardExperiment();
         try {
-            $gapicClient->updateTensorboardExperiment();
+            $gapicClient->updateTensorboardExperiment($updateMask, $tensorboardExperiment);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1990,13 +2210,22 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->updateTensorboardRun();
+        // Mock request
+        $updateMask = new FieldMask();
+        $tensorboardRun = new TensorboardRun();
+        $tensorboardRunDisplayName = 'tensorboardRunDisplayName-996156817';
+        $tensorboardRun->setDisplayName($tensorboardRunDisplayName);
+        $response = $gapicClient->updateTensorboardRun($updateMask, $tensorboardRun);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/UpdateTensorboardRun', $actualFuncCall);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualRequestObject->getTensorboardRun();
+        $this->assertProtobufEquals($tensorboardRun, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2018,8 +2247,13 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $updateMask = new FieldMask();
+        $tensorboardRun = new TensorboardRun();
+        $tensorboardRunDisplayName = 'tensorboardRunDisplayName-996156817';
+        $tensorboardRun->setDisplayName($tensorboardRunDisplayName);
         try {
-            $gapicClient->updateTensorboardRun();
+            $gapicClient->updateTensorboardRun($updateMask, $tensorboardRun);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2054,13 +2288,24 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setPluginName($pluginName);
         $expectedResponse->setPluginData($pluginData);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->updateTensorboardTimeSeries();
+        // Mock request
+        $updateMask = new FieldMask();
+        $tensorboardTimeSeries = new TensorboardTimeSeries();
+        $tensorboardTimeSeriesDisplayName = 'tensorboardTimeSeriesDisplayName1084140540';
+        $tensorboardTimeSeries->setDisplayName($tensorboardTimeSeriesDisplayName);
+        $tensorboardTimeSeriesValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
+        $tensorboardTimeSeries->setValueType($tensorboardTimeSeriesValueType);
+        $response = $gapicClient->updateTensorboardTimeSeries($updateMask, $tensorboardTimeSeries);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/UpdateTensorboardTimeSeries', $actualFuncCall);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualRequestObject->getTensorboardTimeSeries();
+        $this->assertProtobufEquals($tensorboardTimeSeries, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2082,8 +2327,15 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $updateMask = new FieldMask();
+        $tensorboardTimeSeries = new TensorboardTimeSeries();
+        $tensorboardTimeSeriesDisplayName = 'tensorboardTimeSeriesDisplayName1084140540';
+        $tensorboardTimeSeries->setDisplayName($tensorboardTimeSeriesDisplayName);
+        $tensorboardTimeSeriesValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
+        $tensorboardTimeSeries->setValueType($tensorboardTimeSeriesValueType);
         try {
-            $gapicClient->updateTensorboardTimeSeries();
+            $gapicClient->updateTensorboardTimeSeries($updateMask, $tensorboardTimeSeries);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2106,13 +2358,20 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new WriteTensorboardExperimentDataResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->writeTensorboardExperimentData();
+        // Mock request
+        $formattedTensorboardExperiment = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $writeRunDataRequests = [];
+        $response = $gapicClient->writeTensorboardExperimentData($formattedTensorboardExperiment, $writeRunDataRequests);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/WriteTensorboardExperimentData', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTensorboardExperiment();
+        $this->assertProtobufEquals($formattedTensorboardExperiment, $actualValue);
+        $actualValue = $actualRequestObject->getWriteRunDataRequests();
+        $this->assertProtobufEquals($writeRunDataRequests, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2134,8 +2393,11 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedTensorboardExperiment = $gapicClient->tensorboardExperimentName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]');
+        $writeRunDataRequests = [];
         try {
-            $gapicClient->writeTensorboardExperimentData();
+            $gapicClient->writeTensorboardExperimentData($formattedTensorboardExperiment, $writeRunDataRequests);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2158,13 +2420,20 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new WriteTensorboardRunDataResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->writeTensorboardRunData();
+        // Mock request
+        $formattedTensorboardRun = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+        $timeSeriesData = [];
+        $response = $gapicClient->writeTensorboardRunData($formattedTensorboardRun, $timeSeriesData);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.TensorboardService/WriteTensorboardRunData', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTensorboardRun();
+        $this->assertProtobufEquals($formattedTensorboardRun, $actualValue);
+        $actualValue = $actualRequestObject->getTimeSeriesData();
+        $this->assertProtobufEquals($timeSeriesData, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2186,8 +2455,11 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedTensorboardRun = $gapicClient->tensorboardRunName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]', '[EXPERIMENT]', '[RUN]');
+        $timeSeriesData = [];
         try {
-            $gapicClient->writeTensorboardRunData();
+            $gapicClient->writeTensorboardRunData($formattedTensorboardRun, $timeSeriesData);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2334,13 +2606,17 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getIamPolicy();
+        // Mock request
+        $resource = 'resource-341064690';
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2362,8 +2638,10 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy();
+            $gapicClient->getIamPolicy($resource);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2390,13 +2668,20 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->setIamPolicy();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2418,8 +2703,11 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy();
+            $gapicClient->setIamPolicy($resource, $policy);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2442,13 +2730,20 @@ class TensorboardServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->testIamPermissions();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2470,8 +2765,11 @@ class TensorboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
         try {
-            $gapicClient->testIamPermissions();
+            $gapicClient->testIamPermissions($resource, $permissions);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

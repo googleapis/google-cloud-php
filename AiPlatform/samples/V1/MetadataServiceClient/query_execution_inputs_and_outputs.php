@@ -33,19 +33,19 @@ use Google\Cloud\AIPlatform\V1\QueryExecutionInputsAndOutputsRequest;
  * form of LineageSubgraph that also contains the Execution and connecting
  * Events.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedExecution The resource name of the Execution whose input and output
+ *                                   Artifacts should be retrieved as a LineageSubgraph. Format:
+ *                                   `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
+ *                                   Please see {@see MetadataServiceClient::executionName()} for help formatting this field.
  */
-function query_execution_inputs_and_outputs_sample(): void
+function query_execution_inputs_and_outputs_sample(string $formattedExecution): void
 {
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $request = new QueryExecutionInputsAndOutputsRequest();
+    $request = (new QueryExecutionInputsAndOutputsRequest())
+        ->setExecution($formattedExecution);
 
     // Call the API and handle any network failures.
     try {
@@ -55,5 +55,26 @@ function query_execution_inputs_and_outputs_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedExecution = MetadataServiceClient::executionName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[METADATA_STORE]',
+        '[EXECUTION]'
+    );
+
+    query_execution_inputs_and_outputs_sample($formattedExecution);
 }
 // [END aiplatform_v1_generated_MetadataService_QueryExecutionInputsAndOutputs_sync]

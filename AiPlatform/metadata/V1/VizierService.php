@@ -25,37 +25,37 @@ class VizierService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ú/
-/google/cloud/aiplatform/v1/vizier_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto&google/cloud/aiplatform/v1/study.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"I
-GetStudyRequest6
-name (	B(‚A˙A!
-aiplatform.googleapis.com/Study"à
-CreateStudyRequest:
-parent (	B*‚A˙A#
-!locations.googleapis.com/Location6
-study (2!.google.cloud.aiplatform.v1.StudyB‚A"É
-ListStudiesRequest:
-parent (	B*‚A˙A#
-!locations.googleapis.com/Location
+‘/
+/google/cloud/aiplatform/v1/vizier_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto&google/cloud/aiplatform/v1/study.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"H
+GetStudyRequest5
+name (	B\'‡A˙A!
+aiplatform.googleapis.com/Study"Ü
+CreateStudyRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/Location5
+study (2!.google.cloud.aiplatform.v1.StudyB‡A"Ä
+ListStudiesRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/Location
 
-page_token (	B‚A
-	page_size (B‚A"b
+page_token (	B‡A
+	page_size (B‡A"b
 ListStudiesResponse2
 studies (2!.google.cloud.aiplatform.v1.Study
-next_page_token (	"L
-DeleteStudyRequest6
-name (	B(‚A˙A!
-aiplatform.googleapis.com/Study"l
-LookupStudyRequest:
-parent (	B*‚A˙A#
-!locations.googleapis.com/Location
-display_name (	B‚A"À
-SuggestTrialsRequest8
-parent (	B(‚A˙A!
-aiplatform.googleapis.com/Study
-suggestion_count (B‚A
-	client_id (	B‚A@
-contexts (2(.google.cloud.aiplatform.v1.TrialContextB‚A"Ê
+next_page_token (	"K
+DeleteStudyRequest5
+name (	B\'‡A˙A!
+aiplatform.googleapis.com/Study"j
+LookupStudyRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/Location
+display_name (	B‡A"«
+SuggestTrialsRequest7
+parent (	B\'‡A˙A!
+aiplatform.googleapis.com/Study
+suggestion_count (B‡A
+	client_id (	B‡A?
+contexts (2(.google.cloud.aiplatform.v1.TrialContextB‡A"Ê
 SuggestTrialsResponse1
 trials (2!.google.cloud.aiplatform.v1.Trial<
 study_state (2\'.google.cloud.aiplatform.v1.Study.State.
@@ -64,52 +64,52 @@ start_time (2.google.protobuf.Timestamp,
 end_time (2.google.protobuf.Timestamp"z
 SuggestTrialsMetadataN
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata
-	client_id (	"Ü
-CreateTrialRequest8
-parent (	B(‚A˙A!
-aiplatform.googleapis.com/Study6
-trial (2!.google.cloud.aiplatform.v1.TrialB‚A"I
-GetTrialRequest6
-name (	B(‚A˙A!
-aiplatform.googleapis.com/Trial"Ä
-ListTrialsRequest8
-parent (	B(‚A˙A!
-aiplatform.googleapis.com/Study
+	client_id (	"Ñ
+CreateTrialRequest7
+parent (	B\'‡A˙A!
+aiplatform.googleapis.com/Study5
+trial (2!.google.cloud.aiplatform.v1.TrialB‡A"H
+GetTrialRequest5
+name (	B\'‡A˙A!
+aiplatform.googleapis.com/Trial"}
+ListTrialsRequest7
+parent (	B\'‡A˙A!
+aiplatform.googleapis.com/Study
 
-page_token (	B‚A
-	page_size (B‚A"`
+page_token (	B‡A
+	page_size (B‡A"`
 ListTrialsResponse1
 trials (2!.google.cloud.aiplatform.v1.Trial
-next_page_token (	"û
-AddTrialMeasurementRequest<
+next_page_token (	"ú
+AddTrialMeasurementRequest;
 
-trial_name (	B(‚A˙A!
-aiplatform.googleapis.com/TrialB
-measurement (2\'.google.cloud.aiplatform.v1.MeasurementB‚A"Ÿ
-CompleteTrialRequest6
-name (	B(‚A˙A!
-aiplatform.googleapis.com/TrialH
-final_measurement (2\'.google.cloud.aiplatform.v1.MeasurementB‚A
-trial_infeasible (B‚A
-infeasible_reason (	B‚A"L
-DeleteTrialRequest6
-name (	B(‚A˙A!
-aiplatform.googleapis.com/Trial"c
-#CheckTrialEarlyStoppingStateRequest<
+trial_name (	B\'‡A˙A!
+aiplatform.googleapis.com/TrialA
+measurement (2\'.google.cloud.aiplatform.v1.MeasurementB‡A"’
+CompleteTrialRequest5
+name (	B\'‡A˙A!
+aiplatform.googleapis.com/TrialG
+final_measurement (2\'.google.cloud.aiplatform.v1.MeasurementB‡A
+trial_infeasible (B‡A
+infeasible_reason (	B‡A"K
+DeleteTrialRequest5
+name (	B\'‡A˙A!
+aiplatform.googleapis.com/Trial"b
+#CheckTrialEarlyStoppingStateRequest;
 
-trial_name (	B(‚A˙A!
+trial_name (	B\'‡A˙A!
 aiplatform.googleapis.com/Trial";
 $CheckTrialEarlyStoppingStateResponse
 should_stop ("ï
 %CheckTrialEarlyStoppingStateMetatdataN
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata
 study (	
-trial (	"J
-StopTrialRequest6
-name (	B(‚A˙A!
-aiplatform.googleapis.com/Trial"T
-ListOptimalTrialsRequest8
-parent (	B(‚A˙A!
+trial (	"I
+StopTrialRequest5
+name (	B\'‡A˙A!
+aiplatform.googleapis.com/Trial"S
+ListOptimalTrialsRequest7
+parent (	B\'‡A˙A!
 aiplatform.googleapis.com/Study"V
 ListOptimalTrialsResponse9
 optimal_trials (2!.google.cloud.aiplatform.v1.Trial2‘
