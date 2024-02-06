@@ -102,28 +102,28 @@ page_token (	"_
 input_uri_prefix (	
 namespace_ids (	2©
 FirestoreAdminÛ
-CreateIndex-.google.firestore.admin.v1.CreateIndexRequest.google.longrunning.Operation"~‚Óä“G">/v1/{parent=projects/*/databases/*/collectionGroups/*}/indexes:indexÚAparent,indexÊA
-IndexIndexOperationMetadata½
-ListIndexes-.google.firestore.admin.v1.ListIndexesRequest..google.firestore.admin.v1.ListIndexesResponse"O‚Óä“@>/v1/{parent=projects/*/databases/*/collectionGroups/*}/indexesÚAparent§
-GetIndex*.google.firestore.admin.v1.GetIndexRequest .google.firestore.admin.v1.Index"M‚Óä“@>/v1/{name=projects/*/databases/*/collectionGroups/*/indexes/*}ÚAname£
-DeleteIndex-.google.firestore.admin.v1.DeleteIndexRequest.google.protobuf.Empty"M‚Óä“@*>/v1/{name=projects/*/databases/*/collectionGroups/*/indexes/*}ÚAname¦
-GetField*.google.firestore.admin.v1.GetFieldRequest .google.firestore.admin.v1.Field"L‚Óä“?=/v1/{name=projects/*/databases/*/collectionGroups/*/fields/*}ÚAnameÙ
-UpdateField-.google.firestore.admin.v1.UpdateFieldRequest.google.longrunning.Operation"|‚Óä“L2C/v1/{field.name=projects/*/databases/*/collectionGroups/*/fields/*}:fieldÚAfieldÊA
-FieldFieldOperationMetadata¹
+CreateIndex-.google.firestore.admin.v1.CreateIndexRequest.google.longrunning.Operation"~ÊA
+IndexIndexOperationMetadataÚAparent,index‚Óä“G">/v1/{parent=projects/*/databases/*/collectionGroups/*}/indexes:index½
+ListIndexes-.google.firestore.admin.v1.ListIndexesRequest..google.firestore.admin.v1.ListIndexesResponse"OÚAparent‚Óä“@>/v1/{parent=projects/*/databases/*/collectionGroups/*}/indexes§
+GetIndex*.google.firestore.admin.v1.GetIndexRequest .google.firestore.admin.v1.Index"MÚAname‚Óä“@>/v1/{name=projects/*/databases/*/collectionGroups/*/indexes/*}£
+DeleteIndex-.google.firestore.admin.v1.DeleteIndexRequest.google.protobuf.Empty"MÚAname‚Óä“@*>/v1/{name=projects/*/databases/*/collectionGroups/*/indexes/*}¦
+GetField*.google.firestore.admin.v1.GetFieldRequest .google.firestore.admin.v1.Field"LÚAname‚Óä“?=/v1/{name=projects/*/databases/*/collectionGroups/*/fields/*}Ù
+UpdateField-.google.firestore.admin.v1.UpdateFieldRequest.google.longrunning.Operation"|ÊA
+FieldFieldOperationMetadataÚAfield‚Óä“L2C/v1/{field.name=projects/*/databases/*/collectionGroups/*/fields/*}:field¹
 
-ListFields,.google.firestore.admin.v1.ListFieldsRequest-.google.firestore.admin.v1.ListFieldsResponse"N‚Óä“?=/v1/{parent=projects/*/databases/*/collectionGroups/*}/fieldsÚAparentİ
-ExportDocuments1.google.firestore.admin.v1.ExportDocumentsRequest.google.longrunning.Operation"x‚Óä“6"1/v1/{name=projects/*/databases/*}:exportDocuments:*ÚAnameÊA2
-ExportDocumentsResponseExportDocumentsMetadataÛ
-ImportDocuments1.google.firestore.admin.v1.ImportDocumentsRequest.google.longrunning.Operation"v‚Óä“6"1/v1/{name=projects/*/databases/*}:importDocuments:*ÚAnameÊA0
-google.protobuf.EmptyImportDocumentsMetadataÙ
-CreateDatabase0.google.firestore.admin.v1.CreateDatabaseRequest.google.longrunning.Operation"v‚Óä“-"!/v1/{parent=projects/*}/databases:databaseÚAparent,database,database_idÊA"
-DatabaseCreateDatabaseMetadata“
-GetDatabase-.google.firestore.admin.v1.GetDatabaseRequest#.google.firestore.admin.v1.Database"0‚Óä“#!/v1/{name=projects/*/databases/*}ÚAname¦
-ListDatabases/.google.firestore.admin.v1.ListDatabasesRequest0.google.firestore.admin.v1.ListDatabasesResponse"2‚Óä“#!/v1/{parent=projects/*}/databasesÚAparentÛ
-UpdateDatabase0.google.firestore.admin.v1.UpdateDatabaseRequest.google.longrunning.Operation"x‚Óä“62*/v1/{database.name=projects/*/databases/*}:databaseÚAdatabase,update_maskÊA"
-DatabaseUpdateDatabaseMetadata¸
-DeleteDatabase0.google.firestore.admin.v1.DeleteDatabaseRequest.google.longrunning.Operation"U‚Óä“#*!/v1/{name=projects/*/databases/*}ÚAnameÊA"
-DatabaseDeleteDatabaseMetadatavÊAfirestore.googleapis.comÒAXhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/datastoreB¥
+ListFields,.google.firestore.admin.v1.ListFieldsRequest-.google.firestore.admin.v1.ListFieldsResponse"NÚAparent‚Óä“?=/v1/{parent=projects/*/databases/*/collectionGroups/*}/fieldsİ
+ExportDocuments1.google.firestore.admin.v1.ExportDocumentsRequest.google.longrunning.Operation"xÊA2
+ExportDocumentsResponseExportDocumentsMetadataÚAname‚Óä“6"1/v1/{name=projects/*/databases/*}:exportDocuments:*Û
+ImportDocuments1.google.firestore.admin.v1.ImportDocumentsRequest.google.longrunning.Operation"vÊA0
+google.protobuf.EmptyImportDocumentsMetadataÚAname‚Óä“6"1/v1/{name=projects/*/databases/*}:importDocuments:*Ù
+CreateDatabase0.google.firestore.admin.v1.CreateDatabaseRequest.google.longrunning.Operation"vÊA"
+DatabaseCreateDatabaseMetadataÚAparent,database,database_id‚Óä“-"!/v1/{parent=projects/*}/databases:database“
+GetDatabase-.google.firestore.admin.v1.GetDatabaseRequest#.google.firestore.admin.v1.Database"0ÚAname‚Óä“#!/v1/{name=projects/*/databases/*}¦
+ListDatabases/.google.firestore.admin.v1.ListDatabasesRequest0.google.firestore.admin.v1.ListDatabasesResponse"2ÚAparent‚Óä“#!/v1/{parent=projects/*}/databasesÛ
+UpdateDatabase0.google.firestore.admin.v1.UpdateDatabaseRequest.google.longrunning.Operation"xÊA"
+DatabaseUpdateDatabaseMetadataÚAdatabase,update_mask‚Óä“62*/v1/{database.name=projects/*/databases/*}:database¸
+DeleteDatabase0.google.firestore.admin.v1.DeleteDatabaseRequest.google.longrunning.Operation"UÊA"
+DatabaseDeleteDatabaseMetadataÚAname‚Óä“#*!/v1/{name=projects/*/databases/*}vÊAfirestore.googleapis.comÒAXhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/datastoreB¥
 com.google.firestore.admin.v1BFirestoreAdminProtoPZ9cloud.google.com/go/firestore/apiv1/admin/adminpb;adminpb¢GCFSªGoogle.Cloud.Firestore.Admin.V1ÊGoogle\\Cloud\\Firestore\\Admin\\V1ê#Google::Cloud::Firestore::Admin::V1êAL
 !firestore.googleapis.com/Location\'projects/{project}/locations/{location}êAq
 (firestore.googleapis.com/CollectionGroupEprojects/{project}/databases/{database}/collectionGroups/{collection}bproto3'

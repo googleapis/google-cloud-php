@@ -137,33 +137,33 @@ expires_in (
 
 token_type (	2Ì#
 AzureClustersý
-CreateAzureClient7.google.cloud.gkemulticloud.v1.CreateAzureClientRequest.google.longrunning.Operation"‚Óä“@"0/v1/{parent=projects/*/locations/*}/azureClients:azure_clientÚA#parent,azure_client,azure_client_idÊA 
-AzureClientOperationMetadata³
-GetAzureClient4.google.cloud.gkemulticloud.v1.GetAzureClientRequest*.google.cloud.gkemulticloud.v1.AzureClient"?‚Óä“20/v1/{name=projects/*/locations/*/azureClients/*}ÚAnameÆ
-ListAzureClients6.google.cloud.gkemulticloud.v1.ListAzureClientsRequest7.google.cloud.gkemulticloud.v1.ListAzureClientsResponse"A‚Óä“20/v1/{parent=projects/*/locations/*}/azureClientsÚAparentÙ
-DeleteAzureClient7.google.cloud.gkemulticloud.v1.DeleteAzureClientRequest.google.longrunning.Operation"l‚Óä“2*0/v1/{name=projects/*/locations/*/azureClients/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadata„
-CreateAzureCluster8.google.cloud.gkemulticloud.v1.CreateAzureClusterRequest.google.longrunning.Operation"”‚Óä“B"1/v1/{parent=projects/*/locations/*}/azureClusters:azure_clusterÚA%parent,azure_cluster,azure_cluster_idÊA!
-AzureClusterOperationMetadata†
-UpdateAzureCluster8.google.cloud.gkemulticloud.v1.UpdateAzureClusterRequest.google.longrunning.Operation"–‚Óä“P2?/v1/{azure_cluster.name=projects/*/locations/*/azureClusters/*}:azure_clusterÚAazure_cluster,update_maskÊA!
-AzureClusterOperationMetadata·
-GetAzureCluster5.google.cloud.gkemulticloud.v1.GetAzureClusterRequest+.google.cloud.gkemulticloud.v1.AzureCluster"@‚Óä“31/v1/{name=projects/*/locations/*/azureClusters/*}ÚAnameÊ
-ListAzureClusters7.google.cloud.gkemulticloud.v1.ListAzureClustersRequest8.google.cloud.gkemulticloud.v1.ListAzureClustersResponse"B‚Óä“31/v1/{parent=projects/*/locations/*}/azureClustersÚAparentÜ
-DeleteAzureCluster8.google.cloud.gkemulticloud.v1.DeleteAzureClusterRequest.google.longrunning.Operation"m‚Óä“3*1/v1/{name=projects/*/locations/*/azureClusters/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadata“
+CreateAzureClient7.google.cloud.gkemulticloud.v1.CreateAzureClientRequest.google.longrunning.Operation"ÊA 
+AzureClientOperationMetadataÚA#parent,azure_client,azure_client_id‚Óä“@"0/v1/{parent=projects/*/locations/*}/azureClients:azure_client³
+GetAzureClient4.google.cloud.gkemulticloud.v1.GetAzureClientRequest*.google.cloud.gkemulticloud.v1.AzureClient"?ÚAname‚Óä“20/v1/{name=projects/*/locations/*/azureClients/*}Æ
+ListAzureClients6.google.cloud.gkemulticloud.v1.ListAzureClientsRequest7.google.cloud.gkemulticloud.v1.ListAzureClientsResponse"AÚAparent‚Óä“20/v1/{parent=projects/*/locations/*}/azureClientsÙ
+DeleteAzureClient7.google.cloud.gkemulticloud.v1.DeleteAzureClientRequest.google.longrunning.Operation"lÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“2*0/v1/{name=projects/*/locations/*/azureClients/*}„
+CreateAzureCluster8.google.cloud.gkemulticloud.v1.CreateAzureClusterRequest.google.longrunning.Operation"”ÊA!
+AzureClusterOperationMetadataÚA%parent,azure_cluster,azure_cluster_id‚Óä“B"1/v1/{parent=projects/*/locations/*}/azureClusters:azure_cluster†
+UpdateAzureCluster8.google.cloud.gkemulticloud.v1.UpdateAzureClusterRequest.google.longrunning.Operation"–ÊA!
+AzureClusterOperationMetadataÚAazure_cluster,update_mask‚Óä“P2?/v1/{azure_cluster.name=projects/*/locations/*/azureClusters/*}:azure_cluster·
+GetAzureCluster5.google.cloud.gkemulticloud.v1.GetAzureClusterRequest+.google.cloud.gkemulticloud.v1.AzureCluster"@ÚAname‚Óä“31/v1/{name=projects/*/locations/*/azureClusters/*}Ê
+ListAzureClusters7.google.cloud.gkemulticloud.v1.ListAzureClustersRequest8.google.cloud.gkemulticloud.v1.ListAzureClustersResponse"BÚAparent‚Óä“31/v1/{parent=projects/*/locations/*}/azureClustersÜ
+DeleteAzureCluster8.google.cloud.gkemulticloud.v1.DeleteAzureClusterRequest.google.longrunning.Operation"mÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“3*1/v1/{name=projects/*/locations/*/azureClusters/*}“
 GenerateAzureClusterAgentTokenD.google.cloud.gkemulticloud.v1.GenerateAzureClusterAgentTokenRequestE.google.cloud.gkemulticloud.v1.GenerateAzureClusterAgentTokenResponse"d‚Óä“^"Y/v1/{azure_cluster=projects/*/locations/*/azureClusters/*}:generateAzureClusterAgentToken:*ø
 GenerateAzureAccessToken>.google.cloud.gkemulticloud.v1.GenerateAzureAccessTokenRequest?.google.cloud.gkemulticloud.v1.GenerateAzureAccessTokenResponse"[‚Óä“US/v1/{azure_cluster=projects/*/locations/*/azureClusters/*}:generateAzureAccessTokenž
-CreateAzureNodePool9.google.cloud.gkemulticloud.v1.CreateAzureNodePoolRequest.google.longrunning.Operation"¬‚Óä“U"B/v1/{parent=projects/*/locations/*/azureClusters/*}/azureNodePools:azure_node_poolÚA)parent,azure_node_pool,azure_node_pool_idÊA"
-AzureNodePoolOperationMetadata 
-UpdateAzureNodePool9.google.cloud.gkemulticloud.v1.UpdateAzureNodePoolRequest.google.longrunning.Operation"®‚Óä“e2R/v1/{azure_node_pool.name=projects/*/locations/*/azureClusters/*/azureNodePools/*}:azure_node_poolÚAazure_node_pool,update_maskÊA"
-AzureNodePoolOperationMetadataË
-GetAzureNodePool6.google.cloud.gkemulticloud.v1.GetAzureNodePoolRequest,.google.cloud.gkemulticloud.v1.AzureNodePool"Q‚Óä“DB/v1/{name=projects/*/locations/*/azureClusters/*/azureNodePools/*}ÚAnameÞ
-ListAzureNodePools8.google.cloud.gkemulticloud.v1.ListAzureNodePoolsRequest9.google.cloud.gkemulticloud.v1.ListAzureNodePoolsResponse"S‚Óä“DB/v1/{parent=projects/*/locations/*/azureClusters/*}/azureNodePoolsÚAparentï
-DeleteAzureNodePool9.google.cloud.gkemulticloud.v1.DeleteAzureNodePoolRequest.google.longrunning.Operation"~‚Óä“D*B/v1/{name=projects/*/locations/*/azureClusters/*/azureNodePools/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadataù
-GetAzureOpenIdConfig:.google.cloud.gkemulticloud.v1.GetAzureOpenIdConfigRequest0.google.cloud.gkemulticloud.v1.AzureOpenIdConfig"s‚Óä“][/v1/{azure_cluster=projects/*/locations/*/azureClusters/*}/.well-known/openid-configurationÚAazure_clusterÚ
-GetAzureJsonWebKeys9.google.cloud.gkemulticloud.v1.GetAzureJsonWebKeysRequest/.google.cloud.gkemulticloud.v1.AzureJsonWebKeys"W‚Óä“A?/v1/{azure_cluster=projects/*/locations/*/azureClusters/*}/jwksÚAazure_clusterÈ
-GetAzureServerConfig:.google.cloud.gkemulticloud.v1.GetAzureServerConfigRequest0.google.cloud.gkemulticloud.v1.AzureServerConfig"B‚Óä“53/v1/{name=projects/*/locations/*/azureServerConfig}ÚAnamePÊAgkemulticloud.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBä
+CreateAzureNodePool9.google.cloud.gkemulticloud.v1.CreateAzureNodePoolRequest.google.longrunning.Operation"¬ÊA"
+AzureNodePoolOperationMetadataÚA)parent,azure_node_pool,azure_node_pool_id‚Óä“U"B/v1/{parent=projects/*/locations/*/azureClusters/*}/azureNodePools:azure_node_pool 
+UpdateAzureNodePool9.google.cloud.gkemulticloud.v1.UpdateAzureNodePoolRequest.google.longrunning.Operation"®ÊA"
+AzureNodePoolOperationMetadataÚAazure_node_pool,update_mask‚Óä“e2R/v1/{azure_node_pool.name=projects/*/locations/*/azureClusters/*/azureNodePools/*}:azure_node_poolË
+GetAzureNodePool6.google.cloud.gkemulticloud.v1.GetAzureNodePoolRequest,.google.cloud.gkemulticloud.v1.AzureNodePool"QÚAname‚Óä“DB/v1/{name=projects/*/locations/*/azureClusters/*/azureNodePools/*}Þ
+ListAzureNodePools8.google.cloud.gkemulticloud.v1.ListAzureNodePoolsRequest9.google.cloud.gkemulticloud.v1.ListAzureNodePoolsResponse"SÚAparent‚Óä“DB/v1/{parent=projects/*/locations/*/azureClusters/*}/azureNodePoolsï
+DeleteAzureNodePool9.google.cloud.gkemulticloud.v1.DeleteAzureNodePoolRequest.google.longrunning.Operation"~ÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“D*B/v1/{name=projects/*/locations/*/azureClusters/*/azureNodePools/*}ù
+GetAzureOpenIdConfig:.google.cloud.gkemulticloud.v1.GetAzureOpenIdConfigRequest0.google.cloud.gkemulticloud.v1.AzureOpenIdConfig"sÚAazure_cluster‚Óä“][/v1/{azure_cluster=projects/*/locations/*/azureClusters/*}/.well-known/openid-configurationÚ
+GetAzureJsonWebKeys9.google.cloud.gkemulticloud.v1.GetAzureJsonWebKeysRequest/.google.cloud.gkemulticloud.v1.AzureJsonWebKeys"WÚAazure_cluster‚Óä“A?/v1/{azure_cluster=projects/*/locations/*/azureClusters/*}/jwksÈ
+GetAzureServerConfig:.google.cloud.gkemulticloud.v1.GetAzureServerConfigRequest0.google.cloud.gkemulticloud.v1.AzureServerConfig"BÚAname‚Óä“53/v1/{name=projects/*/locations/*/azureServerConfig}PÊAgkemulticloud.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBä
 !com.google.cloud.gkemulticloud.v1BAzureServiceProtoPZGcloud.google.com/go/gkemulticloud/apiv1/gkemulticloudpb;gkemulticloudpbªGoogle.Cloud.GkeMultiCloud.V1ÊGoogle\\Cloud\\GkeMultiCloud\\V1ê Google::Cloud::GkeMultiCloud::V1bproto3'
         , true);
 
